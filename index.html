@@ -11,10 +11,11 @@
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo-container img { display: block; }
     nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: 500; }
-    .hero { padding: 80px 20px; text-align: center; background: #000; }
+    .hero { padding: 60px 20px 40px 20px; text-align: center; background: #000; }
     .hero-box { display: inline-block; background: linear-gradient(135deg, #7BE495 0%, #3AC8A8 100%); padding: 40px 60px; border-radius: 12px; }
     .hero-box h2, .hero-box p { color: #fff; }
     .btn { display: inline-block; background: #fff; color: #2A9D8F; padding: 12px 30px; border-radius: 4px; text-decoration: none; font-weight: 500; }
+    .btn { margin-top: 30px; }
     .section { padding: 60px 20px; background: #000; color: #fff; }
     .container { max-width: 1024px; margin: 0 auto; }
     .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
@@ -31,8 +32,7 @@
   <header>
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center;">
-        <img src="images/logo-full.png" alt="Neo Hive Full Logo" style="height:40px; margin-right:10px;">
-        <img src="images/logo-icon.png" alt="Neo Hive Icon" style="height:32px;">
+        
       </div>
       <nav>
         <a href="#features">기능 소개</a>
@@ -43,10 +43,14 @@
   </header>
 
   <section class="hero">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <h2>3개월 무료 파트너십 신청</h2>
+      <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
+    </div>
     <div class="hero-box">
       <h2>스마트하게, 함께 하는 피트니스</h2>
       <p>지역 기반 운동 파트너 매칭과 헬스장 리워드 시스템으로<br>회원 이탈을 줄이고, 신규 유입을 늘리는 스마트 플랫폼</p>
-      <a href="#signup" class="btn">무료 파트너 신청하기</a>
+      <button onclick="openForm()" class="btn">무료 파트너 신청하기</button>
     </div>
   </section>
 
@@ -69,6 +73,14 @@
         <div class="feature-item">
           <h3>운영 대시보드</h3>
           <p>전용 앱으로 회원 활동 데이터 & 리텐션 확인.</p>
+        </div>
+        <div class="feature-item">
+          <h3>예약 푸시 알림</h3>
+          <p>고객 예약 시 실시간 알림 전송으로 응대 효율 및 운영 정확도 향상.</p>
+        </div>
+        <div class="feature-item">
+          <h3>동기부여 기반 활성화</h3>
+          <p>운동 리마인더 및 파트너 매칭으로 지속적인 동기 부여와 센터 이용률 증대.</p>
         </div>
       </div>
     </div>
@@ -94,28 +106,35 @@
     </div>
   </section>
 
-  <section id="signup" class="section signup">
-    <div class="container">
-      <h2>3개월 무료 파트너십 신청</h2>
-      <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
-      <form action="#" method="post">
-        <input type="text" name="gym" placeholder="헬스장명" required>
-        <input type="text" name="contact" placeholder="담당자명" required>
-        <input type="tel" name="phone" placeholder="연락처" required>
-        <button type="submit" class="btn">신청하기</button>
-      </form>
-    </div>
-  </section>
+  
 
   <section class="bottom-logos">
     <div class="container">
-      <img src="images/logo-full.png" alt="Neo Hive Logo" style="max-width:300px;">
+      <img src="./images/neohive2.png" alt="Neo Hive Logo" style="max-width:600px; margin-bottom: -40px;">
     </div>
   </section>
 
   <footer>
     &copy; 2025 Neo Hive. All Rights Reserved.<br>
-    서울특별시 강남구 테헤란로 123, 5층 | 사업자등록번호: 000-00-00000
+    경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
   </footer>
+
+  <div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#fff; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px;">
+    <div style="text-align:right;">
+      <button onclick="closeForm()" style="background:none; border:none; font-size:1.5rem;">&times;</button>
+    </div>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMQJUJuX2l1PSZ7YS1tbmS60Efo7TaQB1Z8ryXozPRvfSanw/viewform?embedded=true"
+      width="100%" height="700" frameborder="0" style="border-radius:8px;" marginheight="0" marginwidth="0">
+      로드 중…
+    </iframe>
+  </div>
+  <script>
+    function openForm() {
+      document.getElementById('formModal').style.display = 'block';
+    }
+    function closeForm() {
+      document.getElementById('formModal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
