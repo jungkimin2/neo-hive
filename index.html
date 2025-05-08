@@ -26,6 +26,25 @@
     .bottom-logos { background: #000; padding: 40px 20px; text-align: center; }
     footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
     a, a:visited, a:hover { color: inherit; }
+
+    @media (max-width: 768px) {
+      .hero-box {
+        padding: 30px 20px;
+        width: 90%;
+      }
+      .hero-box h2 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .hero-box p {
+        font-size: 1rem;
+        line-height: 1.6rem;
+      }
+      .bottom-logos img {
+        max-width: 80%;
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,7 +129,7 @@
 
   <section class="bottom-logos">
     <div class="container">
-      <img src="./images/neohive2.png" alt="Neo Hive Logo" style="max-width:600px; margin-bottom: -40px;">
+      <img class="responsive-logo" src="./images/neohive2.png" alt="Neo Hive Logo" style="max-width:600px; margin-bottom: -40px;">
     </div>
   </section>
 
