@@ -24,6 +24,10 @@
     .signup input, .signup button { padding: 12px; font-size: 1rem; margin: 5px; border-radius: 4px; border: none; }
     .signup button { background: #3AC8A8; color: #fff; cursor: pointer; }
     .bottom-logos { background: #000; padding: 40px 20px; text-align: center; }
+    .bottom-logos img {
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
     footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
     a, a:visited, a:hover { color: inherit; }
 
@@ -41,9 +45,22 @@
         font-size: 1rem;
         line-height: 1.6rem;
       }
+      /* Make bottom logo smaller and center it */
       .bottom-logos img {
         max-width: 80%;
-        height: auto;
+        margin-bottom: 20px;
+      }
+      /* Add spacing between the hero title section and the hero box */
+      .hero {
+        padding-top: 40px;
+      }
+      /* Reduce the gap between the feature grid and the footer */
+      #benefits {
+        margin-bottom: 40px;
+      }
+      /* Center and stack the “3개월 무료 파트너십 신청” header above hero box */
+      .section:first-of-type .container {
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -63,7 +80,7 @@
   </header>
 
   <section class="section">
-    <div class="container" style="text-align: center; margin-bottom: 0;">
+    <div class="container" style="text-align: center;">
       <h2>3개월 무료 파트너십 신청</h2>
       <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
     </div>
@@ -133,7 +150,7 @@
 
   <section class="bottom-logos">
     <div class="container">
-      <img class="responsive-logo" src="./images/neohive2.png" alt="Neo Hive Logo" style="max-width:600px; margin-bottom: -40px;">
+      <img class="responsive-logo" src="./images/neohive2.png" alt="Neo Hive Logo">
     </div>
   </section>
 
