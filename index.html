@@ -33,7 +33,16 @@
       max-width: 800px;
       width: auto;
       height: auto;
-      margin-bottom: 20px;
+      margin-bottom: 0;
+    }
+    .bottom-logos .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .bottom-logos button.btn {
+      margin-top: 0;
     }
     footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
     a, a:visited, a:hover { color: inherit; }
@@ -98,7 +107,6 @@
     <div class="hero-box">
       <h2>스마트하게, 함께 하는 피트니스</h2>
       <p>지역 기반 운동 파트너 매칭과 헬스장 리워드 시스템으로<br>회원 이탈을 줄이고, 신규 유입을 늘리는 스마트 플랫폼</p>
-      <button onclick="openForm()" class="btn">무료 파트너 신청하기</button>
     </div>
   </section>
 
@@ -159,6 +167,7 @@
   <section class="bottom-logos">
     <div class="container">
       <img class="responsive-logo" src="./images/neohive2.png" alt="Neo Hive Logo">
+      <button onclick="openForm()" class="btn" style="margin-top: -48px;">무료 파트너 신청하기</button>
     </div>
   </section>
 
@@ -174,6 +183,7 @@
     <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:12px;">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
+      <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
       <input type="text" name="gym" placeholder="헬스장명" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
       <input type="text" name="contact" placeholder="담당자명" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
       <input type="tel" name="phone" placeholder="연락처" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
