@@ -4,27 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
   <style>
     ::placeholder {
       color: #7BE495;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #000; }
+    body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #0A0A0A; }
     header { background: linear-gradient(135deg, #7BE495 0%, #3AC8A8 100%); color: #fff; padding: 20px; }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo-container img { display: block; }
     nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: 500; }
     .hero { padding: 60px 20px 40px 20px; text-align: center; background: #000; }
-    .hero-box { display: inline-block; background: linear-gradient(135deg, #7BE495 0%, #3AC8A8 100%); padding: 40px 60px; border-radius: 12px; }
+    .hero-box { display: inline-block; background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A); padding: 40px 60px; border-radius: 12px; }
     .hero-box h2, .hero-box p { color: #fff; white-space: normal; overflow-wrap: break-word; word-break: keep-all; }
     .btn { display: inline-block; background: #fff; color: #2A9D8F; padding: 12px 30px; border-radius: 4px; text-decoration: none; font-weight: 500; }
     .btn { margin-top: 30px; }
+    .btn {
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #7BE495;
+    }
     .section { padding: 60px 20px; background: #000; color: #fff; }
     /* Reduce spacing above hero box header */
     .section:first-of-type { padding: 100px 20px 20px; }
     .container { max-width: 1024px; margin: 0 auto; }
     .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
-    .feature-item, .benefit-item { background: #3AC8A8; padding: 20px; border-radius: 8px; color: #fff; }
+    .feature-item, .benefit-item { background: #243348; padding: 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+    .feature-item:hover,
+    .benefit-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
     .signup { background: #000; text-align: center; }
     .signup input, .signup button { padding: 12px; font-size: 1rem; margin: 5px; border-radius: 4px; border: none; }
     .signup button { background: #3AC8A8; color: #fff; cursor: pointer; }
@@ -34,6 +49,10 @@
       width: auto;
       height: auto;
       margin: 0 0 8px 0;
+    }
+    @keyframes scaleUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
     .bottom-logos .container {
       display: flex;
@@ -46,6 +65,44 @@
     }
     footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
     a, a:visited, a:hover { color: inherit; }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .section.animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .section.animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: white; }
+    }
+
+    .typing {
+      width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid white;
+      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
 
     @media (max-width: 768px) {
       .hero-box {
@@ -96,7 +153,7 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="section animate-on-scroll">
     <div class="container" style="text-align: center;">
       <h2>3개월 무료 파트너십 신청</h2>
       <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
@@ -105,12 +162,12 @@
 
   <section class="hero">
     <div class="hero-box">
-      <h2>스마트하게, 함께 하는 피트니스</h2>
+      <h2 class="typing">스마트하게, 함께 하는 피트니스</h2>
       <p>지역 기반 운동 파트너 매칭과 헬스장 리워드 시스템으로<br>회원 이탈을 줄이고, 신규 유입을 늘리는 스마트 플랫폼</p>
     </div>
   </section>
 
-  <section id="features" class="section">
+  <section id="features" class="section animate-on-scroll">
     <div class="container">
       <h2>주요 기능</h2>
       <div class="features">
@@ -142,21 +199,21 @@
     </div>
   </section>
 
-  <section id="benefits" class="section">
+  <section id="benefits" class="section animate-on-scroll">
     <div class="container">
       <h2>헬스장 파트너 혜택</h2>
       <div class="benefits">
         <div class="benefit-item">
-          <h3>회원 유지율 ↑</h3>
-          <p>게임화된 리워드로 재방문율 15% 이상↑</p>
+          <h3>회원 유지율 📈</h3>
+          <p>게임화된 리워드로 재방문율 15% 이상</p>
         </div>
         <div class="benefit-item">
           <h3>신규 회원 모집</h3>
           <p>앱 노출로 자동 신규 유입 확보</p>
         </div>
         <div class="benefit-item">
-          <h3>운영 비용 절감</h3>
-          <p>자동 체크인 & 데이터 분석으로 비용 ↓</p>
+          <h3>운영 비용 절감 💰</h3>
+          <p>자동 체크인 & 데이터 분석으로 비용 절감</p>
         </div>
       </div>
     </div>
@@ -166,7 +223,7 @@
 
   <section class="bottom-logos">
     <div class="container">
-      <img class="responsive-logo" src="./images/neohive2.png" alt="Neo Hive Logo">
+      <img class="responsive-logo animate-on-scroll" src="./images/neohive2.png" alt="Neo Hive Logo">
       <button onclick="openForm()" class="btn" style="margin-top: -16px;">무료 파트너 신청하기</button>
     </div>
   </section>
@@ -197,6 +254,22 @@
     function closeForm() {
       document.getElementById('formModal').style.display = 'none';
     }
+  </script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll").forEach(el => {
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
