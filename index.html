@@ -289,16 +289,34 @@
       /* Responsive hive-showcase slider */
       .hive-showcase {
         height: 300px !important;
+        overflow: hidden;
       }
       .hive-image {
         width: 80px !important;
+        height: auto !important;
+      }
+      /* First slide on the left (strongest leftmost) */
+      .slide-in-left:nth-of-type(1) {
+        transform: translate(-120%, -50%) scale(0.7) !important;
+      }
+      /* First slide on the right (strongest rightmost) */
+      .slide-in-right:nth-of-type(1) {
+        transform: translate(120%, -50%) scale(0.7) !important;
       }
       .video-phone {
-        width: 200px !important;
-        height: 400px !important;
+        width: 180px !important;
+        height: 360px !important;
+      }
+      #slide-prev {
+        left: 5px !important;
+      }
+      #slide-next {
+        right: 5px !important;
       }
       #slide-prev, #slide-next {
-        width: 36px; height: 36px; font-size: 1.5rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
       }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
@@ -619,10 +637,3 @@
       box-shadow: 0 0 24px rgba(123,228,149,0.4), 0 8px 32px rgba(0,0,0,0.2);
     }
   </style>
-    /* Subtle divider below header if using <hr> instead of border-bottom */
-    hr {
-      border: none;
-      height: 2px;
-      background-color: rgba(42, 157, 143, 0.6);
-      margin: 0;
-    }
