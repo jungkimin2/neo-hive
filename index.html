@@ -46,6 +46,10 @@
       font-family: 'SUIT', 'Noto Sans KR', sans-serif;
       text-shadow: 0 0 6px rgba(123, 228, 149, 0.4);
     }
+    .desktop-nav {
+      display: flex;
+      gap: 20px;
+    }
     .hero {
       padding: 60px 20px 40px 20px;
       text-align: center;
@@ -279,19 +283,11 @@
       .logo-container img {
         max-height: 36px;
       }
-      nav {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 100%;
-        padding: 0;
-        margin: 8px 0;
-        gap: 12px;
+      .desktop-nav {
+        display: none;
       }
       nav a {
-        font-size: 0.9rem;
-        margin: 0 6px;
-        white-space: nowrap;
+        display: none;
       }
       .btn {
         font-size: 0.75rem;
@@ -413,6 +409,10 @@
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px;">
         <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
       </div>
+      <nav class="desktop-nav">
+        <a href="#features">기능 소개</a>
+        <a href="#benefits">헬스장 혜택</a>
+      </nav>
       <button onclick="openForm()" class="btn" style="margin-left:auto;">
         무료 파트너 신청하기
       </button>
