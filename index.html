@@ -270,7 +270,7 @@
       header .container {
         flex-direction: column;
         align-items: center;
-        padding: 8px 16px;
+        padding: 12px 16px;
       }
       .logo-container {
         margin-left: 0 !important;
@@ -282,23 +282,24 @@
         margin: 8px 0;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-wrap: wrap;
       }
       nav a {
-        margin: 6px 8px;
-        font-size: 1rem;
+        flex: 1 1 100%;
         text-align: center;
-        flex: 1 1 auto;
+        font-size: 0.95rem;
+        margin: 6px 0;
       }
       .btn {
-        margin: 12px 0 0 0 !important;
-        align-self: center;
+        margin: 10px 0 0 0 !important;
+        font-size: 0.95rem;
       }
 
       /* Responsive hive-showcase slider */
       .hive-showcase {
         height: auto !important;
+        padding-bottom: 40px;
         overflow: visible;
         display: flex;
         flex-direction: column;
@@ -309,6 +310,12 @@
         width: 120px !important;
         height: auto !important;
         margin: 8px 0;
+        transform: scale(0.8) !important;
+      }
+      .hive-image.active {
+        width: 220px !important;
+        height: auto !important;
+        transform: translate(-50%, -50%) scale(1) !important;
       }
       /* First slide on the left (strongest leftmost) */
       .slide-in-left:nth-of-type(1) {
@@ -321,6 +328,7 @@
       .video-phone {
         width: 220px !important;
         height: 440px !important;
+        top: 52% !important;
       }
       #slide-prev {
         left: 10px !important;
@@ -334,6 +342,10 @@
         width: 36px;
         height: 36px;
         font-size: 1.5rem;
+      }
+      .features {
+        grid-template-columns: 1fr !important;
+        row-gap: 20px;
       }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
