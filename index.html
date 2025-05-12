@@ -354,6 +354,30 @@
     .video-phone {
       transition: opacity 0.4s ease;
     }
+
+    .video-phone.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        row-gap: 24px;
+        margin-top: 20px;
+      }
+
+      .feature-item {
+        margin-bottom: 20px;
+      }
+
+      .video-phone {
+        width: 200px !important;
+        height: 400px !important;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -571,9 +595,13 @@
       if (idx === -1) {
         // Show video
         videoPhone.style.display = 'block';
-        setTimeout(() => videoPhone.style.opacity = '1', 10);
+        setTimeout(() => {
+          videoPhone.style.opacity = '1';
+          videoPhone.classList.add('active');
+        }, 10);
       } else {
         // Hide video
+        videoPhone.classList.remove('active');
         videoPhone.style.opacity = '0';
         setTimeout(() => videoPhone.style.display = 'none', 400);
         // Activate selected image
