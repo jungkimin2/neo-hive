@@ -233,11 +233,37 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        overflow-x: hidden;
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
       }
-      html {
-        overflow-x: hidden;
+      .logo-container {
+        margin-left: 0;
+        margin-right: auto;
+        justify-content: flex-start;
+        padding: 4px 8px;
+      }
+      .logo-container img {
+        max-height: 36px;
+      }
+      .desktop-nav {
+        display: none;
+      }
+      nav a {
+        display: none;
+      }
+      .btn {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        margin: 0 !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        text-align: center;
       }
       .hero-box {
         padding: 24px 16px;
@@ -270,36 +296,6 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
-
-      /* Responsive header */
-      header .container {
-        flex-direction: column;
-        align-items: center;
-        padding: 8px 16px;
-      }
-      .logo-container {
-        padding: 4px 8px;
-      }
-      .logo-container img {
-        max-height: 36px;
-      }
-      .desktop-nav {
-        display: none;
-      }
-      nav a {
-        display: none;
-      }
-      .btn {
-        font-size: 0.75rem;
-        padding: 6px 10px;
-        margin: 8px 0 0 0 !important;
-        align-self: center;
-        display: block;
-        width: fit-content;
-        max-width: 100%;
-        text-align: center;
-      }
-
       /* Responsive hive-showcase slider */
       .hive-showcase {
         height: auto !important;
@@ -340,7 +336,6 @@
         height: 36px;
         font-size: 1.5rem;
       }
-
       /* Mobile: shrink "네오 하이브 주요 기능" text and push slider down */
       .section.animate-on-scroll .container > h2 {
         margin-top: -2.25rem !important;
@@ -363,7 +358,6 @@
       .section.animate-on-scroll .features {
         margin-top: calc(20px + 20rem) !important;
       }
-
       /* Mobile styles for .feature-item and its children */
       .features .feature-item {
         padding: 12px 8px !important;
@@ -382,6 +376,11 @@
         white-space: normal !important;
         padding: 0 !important;
       }
+    }
+
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+      overflow-x: hidden;
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
       white-space: nowrap;
