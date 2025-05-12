@@ -89,7 +89,12 @@
     /* Reduce spacing above hero box header */
     .section:first-of-type { padding: 100px 20px 20px; }
     .container { max-width: 1024px; margin: 0 auto; }
-    .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
+    .features, .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      column-gap: 40px;
+      row-gap: 24px;
+    }
     .feature-item, .benefit-item { background: #243348; padding: 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
     .feature-item {
       background: #0F1A1C;
@@ -264,23 +269,27 @@
       /* Responsive header */
       header .container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 8px 16px;
       }
       .logo-container {
         margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 4px 0;
+        justify-content: center !important;
       }
       nav {
-        margin-left: 0 !important;
-        margin: 12px 0;
+        margin: 8px 0;
         width: 100%;
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
       }
       nav a {
-        margin: 0;
+        margin: 6px 8px;
         font-size: 1rem;
+        text-align: center;
+        flex: 1 1 auto;
       }
       .btn {
         margin: 12px 0 0 0 !important;
