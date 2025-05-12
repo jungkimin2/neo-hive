@@ -336,15 +336,22 @@
 
       /* Mobile: shrink "네오 하이브 주요 기능" text and push slider down */
       .section.animate-on-scroll .container > h2 {
-        font-size: 1.4rem !important;
+        font-size: 1.2rem !important;
         margin-top: 0 !important;
         margin-bottom: 8px !important;
+        padding-top: 20px !important;
       }
       .hive-showcase {
         margin-top: 180px !important;
       }
       #slide-prev, #slide-next {
         top: 95% !important;
+      }
+      /* 주요 기능 상세 설명(슬라이드 아래 features) 2열 배치 on mobile */
+      .section.animate-on-scroll .features {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        margin-top: 20px !important;
       }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
