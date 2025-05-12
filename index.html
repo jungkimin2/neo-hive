@@ -11,22 +11,79 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #0A0A0A; }
-    header { background: linear-gradient(135deg, #7BE495 0%, #3AC8A8 100%); color: #fff; padding: 20px; }
-    header .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo-container img { display: block; }
-    nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: 500; }
-    .hero { padding: 60px 20px 40px 20px; text-align: center; background: #000; }
-    .hero-box { display: inline-block; background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A); padding: 40px 60px; border-radius: 12px; }
+    header {
+      background: #0F1A1C;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+    .logo-container img {
+      height: 80px;
+      margin-right: 12px;
+      display: block;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 0px;
+      margin-left: -160px;
+      padding: 4px 12px;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      font-family: 'SUIT', 'Noto Sans KR', sans-serif;
+      text-shadow: 0 0 6px rgba(123, 228, 149, 0.4);
+    }
+    .hero {
+      padding: 60px 20px 40px 20px;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.8), rgba(10,10,10,1)), url('./images/hero-bg.jpg') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-box {
+      display: inline-block;
+      background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A);
+      padding: 40px 60px;
+      border-radius: 12px;
+      position: relative;
+      z-index: 2;
+    }
     .hero-box h2, .hero-box p { color: #fff; white-space: normal; overflow-wrap: break-word; word-break: keep-all; }
-    .btn { display: inline-block; background: #fff; color: #2A9D8F; padding: 12px 30px; border-radius: 4px; text-decoration: none; font-weight: 500; }
-    .btn { margin-top: 30px; }
     .btn {
+      display: inline-block;
+      background: none;
+      color: #7BE495;
+      padding: 8px 18px;
+      border: 2px solid #7BE495;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
       transition: all 0.3s ease;
+      /* Neon effect, stronger glow */
+      box-shadow: 0 0 10px rgba(123, 228, 149, 0.8), 0 0 16px #7BE495;
+      vertical-align: middle;
+      margin-top: 30px;
+      text-decoration: none;
+      transform: translateY(-12px);
     }
     .btn:hover {
       background: transparent;
       color: #fff;
       border: 2px solid #7BE495;
+      box-shadow: 0 0 10px #7BE495, 0 0 20px #3AC8A8;
     }
     .section { padding: 60px 20px; background: #000; color: #fff; }
     /* Reduce spacing above hero box header */
@@ -34,11 +91,49 @@
     .container { max-width: 1024px; margin: 0 auto; }
     .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
     .feature-item, .benefit-item { background: #243348; padding: 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+    .feature-item {
+      background: #0F1A1C;
+      border: 1px solid #7BE495;
+      box-shadow: 0 0 8px rgba(123, 228, 149, 0.4), 0 0 12px rgba(123, 228, 149, 0.3);
+      padding: 20px;
+      border-radius: 8px;
+      color: #fff;
+      position: relative;
+      cursor: pointer;
+      /* Scroll animation initial state */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+    .feature-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .feature-item:hover,
     .benefit-item:hover {
       transform: translateY(-6px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.4);
       transition: all 0.3s ease;
+    }
+    .feature-item p {
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: keep-word;
+    }
+    .feature-detail {
+      display: none;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #7BE495, #3AC8A8);
+      color: #000;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      animation: fadeInExpand 0.4s ease forwards;
+    }
+    @keyframes fadeInExpand {
+      from { opacity: 0; max-height: 0; transform: scaleY(0.9); }
+      to { opacity: 1; max-height: 300px; transform: scaleY(1); }
     }
     .signup { background: #000; text-align: center; }
     .signup input, .signup button { padding: 12px; font-size: 1rem; margin: 5px; border-radius: 4px; border: none; }
@@ -102,6 +197,35 @@
       white-space: nowrap;
       border-right: 2px solid white;
       animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+      font-size: 2.2rem;
+      text-shadow: 0 0 10px #7BE495;
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease;
+    }
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s ease;
+    }
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     @media (max-width: 768px) {
@@ -136,41 +260,125 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
+
+      /* Responsive header */
+      header .container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 16px;
+      }
+      .logo-container {
+        margin-left: 0 !important;
+        padding: 4px 0;
+      }
+      nav {
+        margin: 12px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        margin: 0;
+        font-size: 1rem;
+      }
+      .btn {
+        margin: 12px 0 0 0 !important;
+        align-self: center;
+      }
+
+      /* Responsive hive-showcase slider */
+      .hive-showcase {
+        height: 300px !important;
+      }
+      .hive-image {
+        width: 80px !important;
+      }
+      .video-phone {
+        width: 200px !important;
+        height: 400px !important;
+      }
+      #slide-prev, #slide-next {
+        width: 36px; height: 36px; font-size: 1.5rem;
+      }
+    }
+    p[style*="margin-top: 40px; font-weight: bold;"] {
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+    .hive-image.active {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(1) !important;
+      z-index: 10 !important;
+      width: 280px !important;
+      height: 560px !important;
+      transition: transform 0.6s ease, left 0.6s ease, top 0.6s ease, z-index 0.2s ease;
+      border-radius: 32px !important;
+    }
+    .video-phone {
+      transition: opacity 0.4s ease;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <div class="logo-container" style="display:flex; align-items:center;">
-        
+      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin-top: 0px; margin-left: -200px; padding: 4px 12px;">
+        <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 25px; margin-right: 12px;">
       </div>
-      <nav>
+      <nav style="margin-left: -280px;">
         <a href="#features">기능 소개</a>
         <a href="#benefits">헬스장 혜택</a>
         <a href="#signup">파트너 신청</a>
       </nav>
+      <button onclick="openForm()" class="btn" style="margin-left: 100px;">
+        무료 파트너 신청하기
+      </button>
     </div>
   </header>
 
-  <section class="section animate-on-scroll">
-    <div class="container" style="text-align: center;">
-      <h2>3개월 무료 파트너십 신청</h2>
-      <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
-    </div>
-  </section>
 
-  <section class="hero">
-    <div class="hero-box">
-      <h2 class="typing">스마트하게, 함께 하는 피트니스</h2>
-      <p>지역 기반 운동 파트너 매칭과 헬스장 리워드 시스템으로<br>회원 이탈을 줄이고, 신규 유입을 늘리는 스마트 플랫폼</p>
-    </div>
-  </section>
+  <section class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
+    <div class="container" style="text-align:center;">
+      <h2 style="font-size: 2rem; text-align: left;">네오 하이브 주요 기능</h2>
+      <p style="margin: 10px 0 40px; color: #aaa; text-align: left;">운동 파트너 매칭부터 포인트 보상까지, 하이브 시스템의 모든 것</p>
 
-  <section id="features" class="section animate-on-scroll">
-    <div class="container">
-      <h2>주요 기능</h2>
-      <div class="features">
+      <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 40px;">
+        <!-- Background glow -->
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
+        <button id="slide-prev" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10094;</button>
+        <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
+
+        <!-- Left 3 images stacked behind center -->
+        <img src="./images/네오하이브1.png"
+             class="hive-image slide-in-left animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:2; pointer-events:auto; transition-delay:0.12s;">
+        <img src="./images/네오하이브2.png"
+             class="hive-image slide-in-left animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:1; pointer-events:auto; transition-delay:0.24s;">
+        <img src="./images/네오하이브3.png"
+             class="hive-image slide-in-left animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:0; pointer-events:auto; transition-delay:0.36s;">
+
+        <!-- Right 3 images stacked behind center -->
+        <img src="./images/네오하이브4.png"
+             class="hive-image slide-in-right animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(100%, -50%) scale(0.95); z-index:2; pointer-events:auto; transition-delay:0.12s; height: 410px;">
+        <img src="./images/네오하이브5.png"
+             class="hive-image slide-in-right animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(150%, -50%) scale(0.9); z-index:1; pointer-events:auto; transition-delay:0.24s; width:160px; height:410px;">
+        <img src="./images/네오하이브6.png"
+             class="hive-image slide-in-right animate-on-scroll"
+             style="position:absolute; left:50%; top:50%; transform:translate(200%, -50%) scale(0.85); z-index:0; pointer-events:auto; transition-delay:0.36s; width:160px; height:390px;">
+
+        <!-- Center phone -->
+        <div class="video-phone" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 280px; height: 560px; border-radius: 32px; overflow: hidden; border: 8px solid #333; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3) 0%, rgba(10,10,10,1) 80%); box-shadow: 0 0 60px rgba(123, 228, 149, 0.4); z-index: 10;">
+          <video src="./videos/neohive3.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>
+        </div>
+      </div>
+      <!-- 주요 기능 상세 설명: 새 레이아웃 (moved below .hive-showcase) -->
+      <div class="features" style="margin-top: 140px;">
         <div class="feature-item">
           <h3>운동 파트너 매칭</h3>
           <p>사용자의 위치와 운동 선호도를 기반으로 최적의 파트너를 찾아드립니다.</p>
@@ -198,6 +406,40 @@
       </div>
     </div>
   </section>
+  <section class="section animate-on-scroll" style="background:#000;">
+  <div class="container" style="text-align: center;">
+    <h2 style="text-align: left;">네오 스마트 주요 기능</h2>
+    <div class="features" style="margin-top: 40px;">
+      <div class="feature-item">
+        <h3>NFC 기반 운동 가이드 제공</h3>
+        <p>태그 한 번으로 기구별 사용법과 영상 제공</p>
+      </div>
+      <div class="feature-item">
+        <h3>이해하기 쉬운 숏폼</h3>
+        <p>기구 사용법, 체형교정, 네오핏 클래스 제공</p>
+      </div>
+      <div class="feature-item">
+        <h3>트레이너 보조 도구</h3>
+        <p>회원 교육 시간을 줄이고 매출과 개인 레슨에 집중 가능</p>
+      </div>
+      <div class="feature-item">
+        <h3>자기 주도 운동</h3>
+        <p>회원이 직접 스캔하고 따라하는 자율 운동 지원</p>
+      </div>
+      <div class="feature-item">
+        <h3>운영 효율 향상</h3>
+        <p>무인 가이드로 인력 최소화, 전문 이미지 구축</p>
+      </div>
+    </div>
+    <p style="margin-top: 40px; font-weight: bold;">
+      📌 정리하면<br>
+      <span style="color: #7BE495;">네오 스마트는 ‘운동 지식 전달 자동화’ 시스템입니다.</span><br>
+      트레이너 1명이 1명을 지도하던 기존의 피트니스 환경을 뛰어넘어,<br>
+      누구나 쉽게, 어디서나 올바르게 운동할 수 있는 시스템을 제공합니다.
+    </p>
+  </div>
+</section>
+
 
   <section id="benefits" class="section animate-on-scroll">
     <div class="container">
@@ -221,13 +463,19 @@
 
   
 
-  <section class="bottom-logos">
-    <div class="container">
-      <img class="responsive-logo animate-on-scroll" src="./images/neohive2.png" alt="Neo Hive Logo">
-      <button onclick="openForm()" class="btn" style="margin-top: -16px;">무료 파트너 신청하기</button>
+  <section class="section animate-on-scroll">
+    <div class="container" style="text-align: center;">
+      <h2>3개월 무료 파트너십 신청</h2>
+      <p>9월 정식 출시 전, 김포 지역 10곳 한정</p>
     </div>
   </section>
 
+  <section class="hero" style="background:#000; padding:40px 20px; text-align:center;">
+    <div class="hero-box" style="display:inline-block; background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A); padding:40px 60px; border-radius:12px;">
+      <h2 style="color:#fff; font-size:2rem; margin-bottom:12px;">스마트하게, 함께 하는 피트니스</h2>
+      <p style="color:#fff; font-size:1rem;">지역 기반 운동 파트너 매칭과 헬스장 리워드 시스템으로<br>회원 이탈을 줄이고, 신규 유입을 늘리는 스마트 플랫폼</p>
+    </div>
+  </section>
   <footer>
     &copy; 2025 Neo Hive. All Rights Reserved.<br>
     경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
@@ -254,6 +502,88 @@
     function closeForm() {
       document.getElementById('formModal').style.display = 'none';
     }
+    // function toggleFeatureDetail(el) {
+    //   const detail = el.querySelector('.feature-detail');
+    //   const isVisible = detail.style.display === 'block';
+    //   document.querySelectorAll('.feature-detail').forEach(d => d.style.display = 'none');
+    //   if (!isVisible) detail.style.display = 'block';
+    // }
+    // Hive 이미지 클릭: 중앙 확대 및 video-phone 숨김 (좌/우 모두 동일 동작)
+    let slideIndex = -1; // -1 = video center
+    const hiveImages = document.querySelectorAll('.hive-image');
+    const videoPhone = document.querySelector('.video-phone');
+
+    // Store original inline style values for transform, left, top, zIndex on page load
+    window.addEventListener('load', () => {
+      hiveImages.forEach(img => {
+        img.dataset.originalTransform = img.style.transform;
+        img.dataset.originalLeft = img.style.left;
+        img.dataset.originalTop = img.style.top;
+        img.dataset.originalZ = img.style.zIndex;
+      });
+      showSlide(slideIndex);
+    });
+
+    function showSlide(idx) {
+      // Reset all images
+      hiveImages.forEach((img, i) => {
+        img.classList.remove('active');
+        img.style.transform = img.dataset.originalTransform;
+        img.style.left = img.dataset.originalLeft;
+        img.style.top = img.dataset.originalTop;
+        img.style.zIndex = img.dataset.originalZ;
+      });
+      if (idx === -1) {
+        // Show video
+        videoPhone.style.display = 'block';
+        setTimeout(() => videoPhone.style.opacity = '1', 10);
+      } else {
+        // Hide video
+        videoPhone.style.opacity = '0';
+        setTimeout(() => videoPhone.style.display = 'none', 400);
+        // Activate selected image
+        const img = hiveImages[idx];
+        img.classList.add('active');
+        img.style.transition = 'transform 0.6s ease, left 0.6s ease, top 0.6s ease, z-index 0.2s ease';
+        img.style.transform = 'translate(-50%, -50%) scale(1)';
+        img.style.left = '50%';
+        img.style.top = '50%';
+        img.style.zIndex = '10';
+      }
+    }
+
+    hiveImages.forEach((img, i) => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = img.classList.contains('active');
+        if (!isActive) {
+          slideIndex = i;
+        } else {
+          slideIndex = -1;
+        }
+        showSlide(slideIndex);
+      });
+    });
+
+    document.getElementById('slide-prev').addEventListener('click', e => {
+      e.stopPropagation();
+      if (slideIndex === -1) slideIndex = hiveImages.length - 1;
+      else slideIndex = slideIndex - 1;
+      showSlide(slideIndex);
+    });
+    document.getElementById('slide-next').addEventListener('click', e => {
+      e.stopPropagation();
+      if (slideIndex === hiveImages.length - 1) slideIndex = -1;
+      else slideIndex = slideIndex + 1;
+      showSlide(slideIndex);
+    });
+
+    // Reset all if clicked outside
+    document.querySelector('.hive-showcase').addEventListener('click', (e) => {
+      if (e.target.classList.contains('hive-image')) return;
+      slideIndex = -1;
+      showSlide(slideIndex);
+    });
   </script>
   <script>
     const observer = new IntersectionObserver((entries) => {
@@ -267,9 +597,32 @@
       rootMargin: '0px 0px -100px 0px'
     });
 
-    document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll").forEach(el => {
+    document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
       observer.observe(el);
     });
   </script>
 </body>
 </html>
+  <style>
+    .hive-image {
+      width: 160px;
+      height: auto;
+      border-radius: 12px;
+      border: 2px solid #7BE495;
+      box-shadow: 0 0 10px rgba(123,228,149,0.4);
+      transition: transform 0.8s cubic-bezier(0.4,0.2,0.2,1), opacity 0.8s cubic-bezier(0.4,0.2,0.2,1), box-shadow 0.8s;
+      opacity: 0;
+    }
+    .hive-image.visible {
+      opacity: 1;
+      /* transform and z-index are set inline for each image */
+      box-shadow: 0 0 24px rgba(123,228,149,0.4), 0 8px 32px rgba(0,0,0,0.2);
+    }
+  </style>
+    /* Subtle divider below header if using <hr> instead of border-bottom */
+    hr {
+      border: none;
+      height: 2px;
+      background-color: rgba(42, 157, 143, 0.6);
+      margin: 0;
+    }
