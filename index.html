@@ -370,20 +370,21 @@
 
       /* Mobile styles for .feature-item and its children */
       .features .feature-item {
-        padding: 16px 12px !important;
-        font-size: 0.85rem !important;
-        line-height: 1.4rem !important;
+        padding: 12px 8px !important;
+        font-size: 0.8rem !important;
+        line-height: 1.2rem !important;
         text-align: left !important;
       }
       .features .feature-item h3 {
-        font-size: 1rem !important;
-        margin-bottom: 8px !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 6px !important;
       }
       .features .feature-item p {
-        font-size: 0.85rem !important;
-        line-height: 1.4rem !important;
+        font-size: 0.75rem !important;
+        line-height: 1.2rem !important;
         word-break: keep-all !important;
         white-space: normal !important;
+        padding: 0 !important;
       }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
@@ -409,15 +410,10 @@
 <body>
   <header>
     <div class="container">
-      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin-top: 0px; margin-left: -200px; padding: 4px 12px;">
-        <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 25px; margin-right: 12px;">
+      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px;">
+        <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
       </div>
-      <nav style="margin-left: -280px;">
-        <a href="#features">기능 소개</a>
-        <a href="#benefits">헬스장 혜택</a>
-        <a href="#signup">파트너 신청</a>
-      </nav>
-      <button onclick="openForm()" class="btn" style="margin-left: 100px;">
+      <button onclick="openForm()" class="btn" style="margin-left:auto;">
         무료 파트너 신청하기
       </button>
     </div>
@@ -463,7 +459,7 @@
         </div>
       </div>
       <!-- 주요 기능 상세 설명: 새 레이아웃 (moved below .hive-showcase) -->
-      <div class="features" style="margin-top: 140px;">
+      <div class="features" style="margin-top: 140px; gap: 12px;">
         <div class="feature-item">
           <h3>운동 파트너 매칭</h3>
           <p>사용자의 위치와 운동 선호도를 기반으로 최적의 파트너를 찾아드립니다.</p>
