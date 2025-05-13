@@ -99,7 +99,7 @@
       background: #0F1A1C;
       border: 1px solid #7BE495;
       box-shadow: 0 0 8px rgba(123, 228, 149, 0.4), 0 0 12px rgba(123, 228, 149, 0.3);
-      padding: 20px;
+      padding: 12px 12px;
       border-radius: 8px;
       color: #fff;
       position: relative;
@@ -108,6 +108,20 @@
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.6s ease-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .feature-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .feature-item p {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      text-align: center;
+      margin: 0;
     }
     .feature-item.visible {
       opacity: 1;
@@ -399,6 +413,43 @@
     .video-phone {
       transition: opacity 0.4s ease;
     }
+
+    /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
+    .floating-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-2deg);
+      width: 280px;
+      height: 560px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 10px solid #3AC8A8;
+      background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A);
+      box-shadow: 0 0 80px rgba(58, 200, 168, 0.4), 0 0 40px rgba(123, 228, 149, 0.3);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translate(-50%, -50%) rotate(-2deg) translateY(0px); }
+      50% { transform: translate(-50%, -50%) rotate(-2deg) translateY(-8px); }
+    }
+    .smart-caption {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #7BE495;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px #7BE495;
+      border-bottom: 2px solid #7BE495;
+      padding-bottom: 4px;
+      animation: glowUnderline 2s infinite alternate;
+    }
+    @keyframes glowUnderline {
+      0% { border-color: rgba(123, 228, 149, 0.4); }
+      100% { border-color: rgba(123, 228, 149, 1); }
+    }
   </style>
 </head>
 <body>
@@ -418,7 +469,7 @@
   </header>
 
 
-  <section class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
+  <section class="section animate-on-scroll" style="background:#000;">
     <div class="container" style="text-align:center;">
       <h2 style="font-size: 2rem; text-align: left;">네오 하이브 주요 기능</h2>
       <p style="margin: 10px 0 40px; color: #aaa; text-align: left; line-height: 1.6;">
@@ -464,65 +515,84 @@
       <!-- 주요 기능 상세 설명: 새 레이아웃 (moved below .hive-showcase) -->
       <div class="features" style="margin-top: 140px; gap: 12px;">
         <div class="feature-item">
-          <h3>운동 파트너 매칭</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">운동 파트너 매칭</h3>
           <p>사용자의 위치와 운동 선호도를 기반으로 최적의 파트너를 찾아드립니다.</p>
         </div>
         <div class="feature-item">
-          <h3>실시간 체크인 인증</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">실시간 체크인 인증</h3>
           <p>QR 코드 / NFC를 통해 헬스장 체크인을 자동으로 기록하고 인증합니다.</p>
         </div>
         <div class="feature-item">
-          <h3>포인트 & 리워드</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">포인트 & 리워드</h3>
           <p>매번 체크인할 때마다 포인트 적립 & 리워드 환급.</p>
         </div>
         <div class="feature-item">
-          <h3>운영 대시보드</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">운영 대시보드</h3>
           <p>전용 앱으로 회원 활동 데이터 & 리텐션 확인.</p>
         </div>
         <div class="feature-item">
-          <h3>예약 푸시 알림</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">예약 푸시 알림</h3>
           <p>고객 예약 시 실시간 알림 전송으로 응대 효율 및 운영 정확도 향상.</p>
         </div>
         <div class="feature-item">
-          <h3>동기부여 기반 활성화</h3>
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495;">동기부여 기반 활성화</h3>
           <p>운동 리마인더 및 파트너 매칭으로 지속적인 동기 부여와 센터 이용률 증대.</p>
         </div>
       </div>
     </div>
   </section>
-  <section class="section animate-on-scroll" style="background:#000;">
-  <div class="container" style="text-align: center;">
-    <h2 style="text-align: left;">네오 스마트 주요 기능</h2>
-    <div class="features" style="margin-top: 40px;">
-      <div class="feature-item">
-        <h3>NFC 기반 운동 가이드 제공</h3>
-        <p>태그 한 번으로 기구별 사용법과 영상 제공</p>
+
+
+  <section class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
+    <div class="container" style="text-align:center;">
+      <h2 style="font-size: 2rem; text-align: left;">네오 스마트 주요 기능</h2>
+      <p style="margin: 10px 0 40px; color: #aaa; text-align: left; line-height: 1.6;">
+        NFC 태깅부터 운동 가이드 자동화까지,<br>
+        <span style="color: #7BE495; font-weight: bold; text-shadow: 0 0 8px #7BE495; white-space: nowrap;">
+          트레이너의 효율성을 높이고, 회원의 자율 운동을 실현하는 스마트 시스템
+        </span>
+      </p>
+      <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 40px;">
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
+        <img src="./images/neos.png" alt="NEO-S NFC Sticker" style="position: absolute; top: 50%; left: 43%; transform: translate(-50%, -50%) scale(2); width: 300px; height: auto; z-index: 20; box-shadow: 0 0 24px rgba(123, 228, 149, 0.7); border-radius: 20px;">
+        <div class="floating-video" style="left: 78%; z-index: 30;">
+          <video src="./videos/neofits.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>
+        </div>
+      </div> <!-- End of .floating-video -->
+      <div style="margin-top: 20px; text-align: center;">
+        <span style="font-weight: 500; font-size: 1.2rem; color: #7BE495; text-shadow: 0 0 4px #7BE495;">
+          내 손안의 스마트 트레이너
+        </span>
       </div>
-      <div class="feature-item">
-        <h3>이해하기 쉬운 숏폼</h3>
-        <p>기구 사용법, 체형교정, 네오핏 클래스 제공</p>
-      </div>
-      <div class="feature-item">
-        <h3>트레이너 보조 도구</h3>
-        <p>회원 교육 시간을 줄이고 매출과 개인 레슨에 집중 가능</p>
-      </div>
-      <div class="feature-item">
-        <h3>자기 주도 운동</h3>
-        <p>회원이 직접 스캔하고 따라하는 자율 운동 지원</p>
-      </div>
-      <div class="feature-item">
-        <h3>운영 효율 향상</h3>
-        <p>무인 가이드로 인력 최소화, 전문 이미지 구축</p>
+      <div class="features" style="margin-top: 140px; gap: 12px;">
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">NFC 기반 운동 가이드 제공</h3>
+          <p>태그 한 번으로 기구별 사용법 학습</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">이해하기 쉬운 숏폼</h3>
+          <p>기구 사용법, 체형교정, 네오핏 클래스 제공</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">트레이너 보조 도구</h3>
+          <p>회원 교육 시간을 줄이고 매출과 개인 레슨에 집중 가능</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">자기 주도 운동</h3>
+          <p>회원이 직접 스캔하고 따라하는 자율 운동 지원</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">운영 효율 향상</h3>
+          <p>무인 가이드로 인력 최소화, 전문 이미지 구축</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="color: #7BE495; text-shadow: 0 0 8px #7BE495; font-size: 1rem; margin-bottom: 0; text-align: center;">매출 증대 효과</h3>
+          <p>회원 유지와 신규 유입을 동시에 실현하여 헬스장의 전체 매출 향상</p>
+        </div>
       </div>
     </div>
-    <p style="margin-top: 40px; font-weight: bold;">
-      📌 정리하면<br>
-      <span style="color: #7BE495;">네오 스마트는 ‘운동 지식 전달 자동화’ 시스템입니다.</span><br>
-      트레이너 1명이 1명을 지도하던 기존의 피트니스 환경을 뛰어넘어,<br>
-      누구나 쉽게, 어디서나 올바르게 운동할 수 있는 시스템을 제공합니다.
-    </p>
-  </div>
-</section>
+  </section>
+
 
 
   <section id="benefits" class="section animate-on-scroll">
