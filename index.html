@@ -789,10 +789,10 @@
         height: 480px !important; /* 이전: 560px */
       }
       .neo-smart-logo {
-        left: 42% !important;
+        left: 38% !important;
         top: calc(50% + 32px) !important;
-        transform: translate(-50%, -50%) scale(0.45); /* reduced scale from 0.7 to 0.45 */
-        width: 150px !important; /* ensure width doesn't default too large */
+        transform: translate(-50%, -50%) scale(0.35); /* scale 값을 0.45 → 0.35 로 줄임 */
+        width: 120px !important;
         max-width: 100% !important;
       }
       .section:nth-of-type(3) .neo-smart-features {
@@ -800,3 +800,7 @@
       }
     }
   </style>
+      /* 네오 스마트 주요 기능 설명 span: 모바일에서 폰트 크기 줄임 */
+      .section:nth-of-type(3) span {
+        font-size: 0.85rem !important;
+      }
