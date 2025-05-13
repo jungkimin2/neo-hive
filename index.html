@@ -246,6 +246,150 @@
       transform: translateX(0);
     }
 
+    @media (max-width: 768px) {
+      /* 모바일: "회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템" span 폰트 크기 줄임 */
+      span[style*="회원 유지·신규 유입·운영 효율"] {
+        font-size: 0.85rem !important;
+      }
+      header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+      }
+      .logo-container {
+        margin-left: -22px;
+        margin-right: auto;
+        justify-content: flex-start;
+        padding: 4px 0;
+      }
+      .logo-container img {
+        max-height: 36px;
+      }
+      .desktop-nav {
+        display: none;
+      }
+      nav a {
+        display: none;
+      }
+      .btn {
+        margin-top: 28px !important;
+        margin-bottom: 0 !important;
+        margin-left: auto !important;
+        margin-right: 4px !important;
+        display: block;
+        width: fit-content;
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        text-align: center;
+      }
+      .hero-box h2 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .hero-box p {
+        font-size: 1rem;
+        line-height: 1.6rem;
+      }
+      .bottom-logos img {
+        width: 120%;
+        max-width: none;
+        height: auto;
+        margin: 0 -10% 20px;
+      }
+      /* Add spacing between the hero title section and the hero box */
+      .hero {
+        padding-top: 40px;
+      }
+      /* Reduce the gap between the feature grid and the footer */
+      #benefits {
+        margin-bottom: 40px;
+      }
+      /* Center and stack the “3개월 무료 파트너십 신청” header above hero box */
+      .section:first-of-type .container {
+        margin-bottom: 20px;
+      }
+      /* Responsive hive-showcase slider */
+      .hive-showcase {
+        height: auto !important;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        margin-top: calc(180px + 0 * 1rem) !important;
+      }
+      .hive-image {
+        width: 120px !important;
+        height: auto !important;
+        margin: 8px 0;
+      }
+      /* First slide on the left (strongest leftmost) */
+      .slide-in-left:nth-of-type(1) {
+        transform: translate(-120%, -50%) scale(0.7) !important;
+      }
+      /* First slide on the right (strongest rightmost) */
+      .slide-in-right:nth-of-type(1) {
+        transform: translate(120%, -50%) scale(0.7) !important;
+      }
+      .video-phone {
+        width: 220px !important;
+        height: 440px !important;
+      }
+      #slide-prev {
+        left: 10px !important;
+        top: 85% !important;
+      }
+      #slide-next {
+        right: 10px !important;
+        top: 85% !important;
+      }
+      #slide-prev, #slide-next {
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+      }
+      /* Mobile: shrink "네오 하이브 주요 기능" text and push slider down */
+      .section.animate-on-scroll .container > h2 {
+        margin-top: -2.25rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 8px !important;
+        padding-top: 16px !important;
+      }
+      .hive-showcase {
+        margin-top: calc(160px + 7 * 1rem) !important;
+      }
+      #slide-prev, #slide-next {
+        top: 95% !important;
+      }
+      /* 주요 기능 상세 설명(슬라이드 아래 features) 2열 배치 on mobile */
+      .section.animate-on-scroll .features {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        margin-top: 20px !important;
+      }
+      .section.animate-on-scroll .features {
+        margin-top: calc(20px + 20rem) !important;
+      }
+      /* Mobile styles for .feature-item and its children */
+      .features .feature-item {
+        padding: 12px 8px !important;
+        font-size: 0.8rem !important;
+        line-height: 1.2rem !important;
+        text-align: left !important;
+      }
+      .features .feature-item h3 {
+        font-size: 0.9rem !important;
+        margin-bottom: 6px !important;
+      }
+      .features .feature-item p {
+        font-size: 0.75rem !important;
+        line-height: 1.2rem !important;
+        word-break: keep-all !important;
+        white-space: normal !important;
+        padding: 0 !important;
+      }
+    }
 
     /* Prevent horizontal scrolling on mobile */
     html, body {
@@ -629,3 +773,4 @@
       box-shadow: 0 0 24px rgba(123,228,149,0.4), 0 8px 32px rgba(0,0,0,0.2);
     }
   </style>
+     
