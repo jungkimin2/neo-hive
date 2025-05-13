@@ -259,6 +259,11 @@
         justify-content: center !important;
         text-align: center !important;
       }
+      /* 네오 스마트 주요 기능 제목, 설명 왼쪽 여백 한 칸만(8px) */
+      .section:nth-of-type(3) h2,
+      .section:nth-of-type(3) p {
+        margin-left: 8px !important;
+      }
       .section:nth-of-type(2) h2,
       .section:nth-of-type(2) p {
         margin-left: 16px !important;
@@ -279,9 +284,12 @@
       .smart-caption {
         margin-top: 240px !important;
       }
-      /* 모바일: "회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템" span 폰트 크기 줄임 */
+      /* 모바일: "회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템" span 폰트 크기 줄임, 왼쪽 여백 및 max-width 추가 */
       span[style*="회원 유지·신규 유입·운영 효율"] {
         font-size: 0.85rem !important;
+        display: inline-block !important;
+        margin-left: 4px !important;
+        max-width: 95% !important;
       }
       header .container {
         flex-direction: row;
@@ -837,6 +845,5 @@
       }
     }
   </style>
-    
     
     
