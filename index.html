@@ -774,26 +774,29 @@
     }
   </style>
       /* 모바일 최적화: 네오 스마트 기능 섹션 내 NFC 스티커 및 영상 UI */
-      .section:nth-of-type(3) .hive-showcase {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: auto !important;
-        padding: 0 12px;
-      }
+      @media (max-width: 768px) {
+        .section:nth-of-type(3) .hive-showcase {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: auto !important;
+          padding: 0 12px;
+          position: relative;
+        }
 
-      .section:nth-of-type(3) .hive-showcase img[alt="NEO-S NFC Sticker"] {
-        width: 80px !important;
-        transform: translate(-50%, -50%) !important;
-        left: 50% !important;
-        top: 45% !important;
-        position: absolute !important;
-      }
+        .section:nth-of-type(3) .hive-showcase img[alt="NEO-S NFC Sticker"] {
+          width: 60px !important;
+          left: 50% !important;
+          top: 35% !important;
+          transform: translate(-50%, -50%) !important;
+          position: absolute !important;
+        }
 
-      .section:nth-of-type(3) .floating-video {
-        width: 140px !important;
-        height: 280px !important;
-        left: 50% !important;
-        top: 65% !important;
-        transform: translate(-50%, -50%) rotate(-2deg) !important;
+        .section:nth-of-type(3) .floating-video {
+          width: 120px !important;
+          height: 240px !important;
+          left: 50% !important;
+          top: 65% !important;
+          transform: translate(-50%, -50%) rotate(-2deg) !important;
+        }
       }
