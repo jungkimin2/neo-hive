@@ -430,6 +430,39 @@
         white-space: normal !important;
         padding: 0 !important;
       }
+
+      /* Restore benefits layout and heading on mobile */
+      #benefits h2 {
+        display: block !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        margin: 20px 0 !important;
+      }
+      .benefits {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 16px !important;
+      }
+      .benefit-item {
+        display: block !important;
+        padding: 16px !important;
+        background: #243348 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      }
+      .benefit-item h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 8px !important;
+        text-align: center !important;
+      }
+      .benefit-item p {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+        color: #fff !important;
+        text-align: center !important;
+        margin: 0 !important;
+      }
     }
 
     /* Prevent horizontal scrolling on mobile */
