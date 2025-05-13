@@ -374,6 +374,10 @@
       .section.animate-on-scroll .features {
         margin-top: calc(20px + 20rem) !important;
       }
+      /* 네오 스마트 설명 박스만 margin-top 조정 (3번째 section의 features만 타겟) */
+      .section:nth-of-type(3) .features {
+        margin-top: calc(24px + 13rem) !important; /* move up by approx 7 lines (7 * 1.5rem = ~10.5rem) */
+      }
       /* Mobile styles for .feature-item and its children */
       .features .feature-item {
         padding: 12px 8px !important;
@@ -778,17 +782,20 @@
       .smart-caption {
         margin-top: 280px !important;
       }
-    /* 모바일 환경에서 NEO-S NFC Sticker 이미지 크기 및 위치 조정 */
-    .hive-showcase img[alt="NEO-S NFC Sticker"] {
-      width: 200px !important;
-      height: auto !important;
-      top: 55% !important;
-      left: 25% !important;
-      transform: translate(-50%, -50%) scale(0.95) !important;
-      position: absolute !important;
-      z-index: 10 !important;
-    }
-
+      /* 모바일 환경에서 NEO-S NFC Sticker 이미지 크기 및 위치 조정 */
+      .hive-showcase img[alt="NEO-S NFC Sticker"] {
+        width: 200px !important;
+        height: auto !important;
+        top: 55% !important;
+        left: 25% !important;
+        transform: translate(-50%, -50%) scale(0.95) !important;
+        position: absolute !important;
+        z-index: 10 !important;
+      }
+      /* 모바일 환경에서 네오 스마트 설명 박스의 features만 margin-top 조정 */
+      .section:nth-of-type(3) .features {
+        margin-top: calc(24px + 13rem) !important; /* move up by approx 7 lines (7 * 1.5rem = ~10.5rem) */
+      }
       /* 모바일 환경에서 floating-video 크기 및 위치 조정 */
       .hive-showcase .floating-video {
         width: 260px !important;
