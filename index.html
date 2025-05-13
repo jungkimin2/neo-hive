@@ -247,6 +247,18 @@
     }
 
     @media (max-width: 768px) {
+      /* 네오 하이브/스마트 주요 기능 텍스트 왼쪽 여백 보정 */
+      .section.animate-on-scroll .container > h2,
+      .section.animate-on-scroll .container > p {
+        margin-left: 16px !important;
+        text-align: left !important;
+      }
+
+      /* 네오 스마트 하단 설명 박스 2열 중앙 정렬 */
+      .section:nth-of-type(3) .features.neo-smart-features {
+        justify-content: center !important;
+        text-align: center !important;
+      }
       .section:nth-of-type(2) h2,
       .section:nth-of-type(2) p {
         margin-left: 16px !important;
@@ -470,6 +482,13 @@
       100% { border-color: rgba(123, 228, 149, 1); }
     }
     /* 네오 스마트 주요 기능 설명 span: 모바일에서 폰트 크기 줄임 */
+
+    /* 네오 스마트 하단 설명 박스 flex 중앙 정렬 (기본) */
+    .features.neo-smart-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -818,5 +837,6 @@
       }
     }
   </style>
+    
     
     
