@@ -247,6 +247,77 @@
     }
 
     @media (max-width: 768px) {
+      .video-phone,
+      .floating-video {
+        width: 200px !important;
+        height: 400px !important;
+        top: 54% !important;
+        left: 82% !important;
+        transform: translate(-50%, -50%) rotate(0deg) !important;
+      }
+
+      .hive-showcase img {
+        display: none !important;
+      }
+
+      .hive-showcase {
+        flex-direction: column !important;
+        align-items: center !important;
+        height: auto !important;
+        padding-top: 20px;
+      }
+
+      .hive-showcase img[src*="neos.png"] {
+        display: block !important;
+        width: 160px !important;
+        height: auto !important;
+        transform: none !important;
+        left: 50% !important;
+        top: 20% !important;
+        margin-top: 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        padding: 0 16px;
+      }
+
+      .feature-item h3 {
+        font-size: 1rem !important;
+      }
+
+      .feature-item p {
+        font-size: 0.85rem !important;
+        line-height: 1.3rem !important;
+        word-break: keep-word;
+      }
+
+      .smart-caption {
+        top: -30px !important;
+        font-size: 1rem !important;
+        padding-bottom: 2px;
+      }
+
+      .hero-box {
+        padding: 24px 32px !important;
+      }
+
+      .hero-box h2 {
+        font-size: 1.5rem !important;
+      }
+
+      .hero-box p {
+        font-size: 1rem !important;
+      }
+
+      .btn {
+        font-size: 0.85rem !important;
+        padding: 6px 14px !important;
+        width: fit-content !important;
+        display: block !important;
+        margin: 16px auto !important;
+      }
       /* 모바일: "회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템" span 폰트 크기 줄임 */
       span[style*="회원 유지·신규 유입·운영 효율"] {
         font-size: 0.85rem !important;
