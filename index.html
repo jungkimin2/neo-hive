@@ -785,12 +785,13 @@
       .neo-smart-video {
         left: 64% !important;
         top: calc(50% + 32px) !important;
-        width: 280px !important;
-        height: 560px !important;
+        width: 240px !important;  /* 이전: 280px */
+        height: 480px !important; /* 이전: 560px */
       }
       .neo-smart-logo {
         left: 42% !important;
         top: calc(50% + 32px) !important;
+        transform: translate(-50%, -50%) scale(1.4); /* 이전: scale(2) */
       }
       .section:nth-of-type(3) .neo-smart-features {
         margin-top: 80px !important;
