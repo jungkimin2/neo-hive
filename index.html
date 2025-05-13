@@ -808,7 +808,20 @@
     }
   </style>
     
-      .section.animate-on-scroll .container > h2,
-      .section.animate-on-scroll .container > p {
-        margin-left: 16px !important;
-      }
+  <style>
+    /* 네오 하이브 주요 기능: 슬라이드 애니메이션 */
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
