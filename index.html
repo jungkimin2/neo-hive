@@ -10,6 +10,10 @@
       color: #7BE495;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Hide any horizontal rules */
+    hr {
+      display: none !important;
+    }
     hr {
       display: none !important;
     }
@@ -257,6 +261,16 @@
       span[style*="회원 유지·신규 유입·운영 효율"] {
         font-size: 0.85rem !important;
       }
+      /* Prevent cutting off the smart system text on mobile */
+      .section:nth-of-type(3) p > span {
+        white-space: nowrap !important;
+        display: inline-block !important;
+        font-size: 0.6rem !important;
+        line-height: 1rem !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+      }
       header .container {
         flex-direction: row;
         justify-content: space-between;
@@ -456,16 +470,6 @@
       100% { border-color: rgba(123, 228, 149, 1); }
     }
     /* 네오 스마트 주요 기능 설명 span: 모바일에서 줄바꿈 방지하고 폰트 크기 더 줄임 */
-    @media (max-width: 768px) {
-      .section:nth-of-type(3) p > span {
-        white-space: nowrap !important;
-        display: inline-block !important;
-        font-size: 0.8rem !important;
-        line-height: 1.2rem !important;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
   </style>
 </head>
 <body>
