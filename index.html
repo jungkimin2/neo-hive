@@ -774,24 +774,35 @@
 
   <style>
     @media (max-width: 768px) {
-    /* 모바일 환경에서 NEO-S NFC Sticker 이미지 크기 및 위치 조정 */
-    .hive-showcase img[alt="NEO-S NFC Sticker"] {
-      width: 200px !important;
-      height: auto !important;
-      top: 55% !important;
-      left: 25% !important;
-      transform: translate(-50%, -50%) scale(0.95) !important;
-      position: absolute !important;
-      z-index: 10 !important;
-    }
+      /* 모바일 환경에서 NEO-S NFC Sticker 이미지 크기 및 위치 조정 */
+      .hive-showcase img[alt="NEO-S NFC Sticker"] {
+        width: 200px !important;
+        height: auto !important;
+        top: 65% !important;
+        left: 25% !important;
+        transform: translate(-50%, -50%) scale(0.95) !important;
+        position: absolute !important;
+        z-index: 10 !important;
+      }
 
       /* 모바일 환경에서 floating-video 크기 및 위치 조정 */
       .hive-showcase .floating-video {
         width: 260px !important;
         height: 520px !important;
-        top: 60% !important;
+        top: 70% !important;
         left: 68% !important;
         transform: translate(-50%, -50%) rotate(-2deg) !important;
       }
-  }
+
+      /* 스마트 캡션 spacing for 네오 스마트 section */
+      .smart-caption {
+        margin-top: 320px !important;
+      }
+
+      /* 네오 스마트 주요 기능 features spacing */
+      .section:nth-of-type(3) .features,
+      .section.animate-on-scroll .features {
+        margin-top: 40px !important;
+      }
+    }
   </style>
