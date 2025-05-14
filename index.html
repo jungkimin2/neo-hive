@@ -6,8 +6,17 @@
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
   <style>
-    ::placeholder {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Hide any horizontal rules */
+    hr {
+      display: none !important;
+    }
+    hr {
+      display: none !important;
+    }
+    .neon-green {
       color: #7BE495;
+      text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
@@ -275,11 +284,11 @@
       /* Neo Hive section (section 2) */
       .section:nth-of-type(2) h2 {
         margin-left: 8px !important;
-        font-size: 0.85rem !important;
+        font-size: 0.95rem !important;
       }
       .section:nth-of-type(2) p {
         margin-left: 8px !important;
-        font-size: 0.75rem !important;
+        font-size: 0.85rem !important;
       }
       /* Strong override: Neo Smart section paragraph left-shifted using padding */
       .section:nth-of-type(3) p {
@@ -576,12 +585,10 @@
 
   <section class="section animate-on-scroll" style="background:#000;">
     <div class="container" style="text-align:center;">
-      <h2 style="font-size: 2rem; text-align: left;">네오 하이브 주요 기능</h2>
+      <h2 style="font-size: 2rem; text-align: left;">네오 하이브 : "하나되는 우리"</h2>
       <p style="margin: 10px 0 40px; color: #aaa; text-align: left; line-height: 1.6;">
-        지역 기반 운동 파트너 매칭부터 헬스장 리워드 자동화까지,<br>
-        <span style="color: #7BE495; font-weight: bold; text-shadow: 0 0 8px #7BE495; white-space: nowrap;">
-          회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템
-        </span>
+        지역 기반 운동 파트너 매칭 및 헬스장 매칭 시스템<br>
+        <span class="neon-green">회원 재등록·신규 유입·매출 상승</span>
       </p>
 
       <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 40px;">
@@ -651,11 +658,10 @@
   <section class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
     <div class="container" style="text-align:center;">
       <div class="smart-feature-text">
-        <h2>📱 네오 스마트 주요 기능</h2>
+        <h2 style="color: #fff;">네오 스마트 : “내 손안의 스마트 트레이너”</h2>
         <p style="white-space: normal; overflow-wrap: break-word;">
-          • NFC 운동 가이드 자동화<br>
-          • 트레이너의 효율 상승<br>
-          • 회원 자율 운동 스마트 시스템
+          회원이 언제 어디서나 쉽고 빠르게 복습할 수 있는 시스템,<br>
+          <span class="neon-green">경쟁 센터와의 차별화를 실현하는 디지털 피트니스 솔루션</span>
         </p>
       </div>
       <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 40px;">
@@ -942,3 +948,4 @@
       transform: translateX(100%);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
