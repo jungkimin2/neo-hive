@@ -264,11 +264,12 @@
 
     @media (max-width: 768px) {
       /* 모바일: 네오 스마트 주요 기능 텍스트 레이아웃 및 가독성 개선 */
-      .smart-feature-text {
+      /* Left-align Neo Smart feature text on mobile */
+      .section:nth-of-type(3) .smart-feature-text {
         margin: 24px 0 !important;
-        text-align: left !important;
-        color: #fff !important;
         padding: 0 12px !important;
+        width: 100% !important;
+        text-align: left !important;
       }
       .smart-feature-text h2 {
         font-size: 1.8rem !important;
