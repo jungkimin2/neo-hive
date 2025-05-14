@@ -273,9 +273,13 @@
         color: #ccc !important;
       }
       /* Neo Hive section (section 2) */
-      .section:nth-of-type(2) h2,
+      .section:nth-of-type(2) h2 {
+        margin-left: 8px !important;
+        font-size: 0.95rem !important;
+      }
       .section:nth-of-type(2) p {
         margin-left: 8px !important;
+        font-size: 0.85rem !important;
       }
       /* Strong override: Neo Smart section paragraph left-shifted using padding */
       .section:nth-of-type(3) p {
@@ -648,7 +652,10 @@
     <div class="container" style="text-align:center;">
       <div class="smart-feature-text">
         <h2>📱 네오 스마트 주요 기능</h2>
-        <p style="white-space: nowrap; overflow: visible;"><strong>NFC 태깅</strong>부터 <strong>운동 가이드 자동화</strong>까지, 트레이너 효율을 높이고, 회원 자율 운동을 실현하는 스마트 시스템</p>
+        <p style="white-space: normal; overflow-wrap: break-word;">
+          NFC 태깅부터 운동 가이드 자동화까지,<br>
+          트레이너 효율을 높이고, 회원 자율 운동을 실현하는 스마트 시스템
+        </p>
       </div>
       <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 40px;">
         <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
