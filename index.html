@@ -267,6 +267,19 @@
         padding-right: 16px !important;
         text-align: left !important;
       }
+      /* Force Neo Smart content to shift left and override centering */
+      .section:nth-of-type(3) .container {
+        display: block !important;
+        text-align: left !important;
+        padding-left: 48px !important; /* shift left by ~3 units */
+        padding-right: 16px !important;
+      }
+
+      .section:nth-of-type(3) h2,
+      .section:nth-of-type(3) p {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+      }
       .smart-caption {
         margin-top: 240px !important;
       }
