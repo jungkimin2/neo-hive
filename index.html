@@ -539,6 +539,24 @@
     }
 
     /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
+    /* 네오 스마트 비디오 슬라이드 애니메이션 */
+    @keyframes slideRightToLeft {
+      0% {
+        left: 90%;
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        left: 55%;
+        opacity: 1;
+      }
+    }
+
+    .neo-smart-video.tag-slide {
+      animation: slideRightToLeft 2.8s ease-out forwards;
+    }
     .floating-video {
       position: absolute;
       top: 50%;
@@ -874,6 +892,14 @@
     });
   </script>
 </body>
+<script>
+  window.addEventListener('load', () => {
+    const video = document.querySelector('.neo-smart-video');
+    setTimeout(() => {
+      video.classList.add('tag-slide');
+    }, 800);
+  });
+</script>
 </html>
   <style>
     .hive-image {
