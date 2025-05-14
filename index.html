@@ -474,6 +474,11 @@
         white-space: normal !important;
         padding: 0 !important;
       }
+      /* Prevent feature-item headings from breaking on mobile */
+      .features .feature-item h3 {
+        white-space: nowrap !important;
+        overflow-wrap: normal !important;
+      }
 
       /* Restore benefits layout and heading on mobile */
       #benefits h2 {
