@@ -545,20 +545,17 @@
         left: 90%;
         opacity: 0;
       }
-      20% {
+      30% {
         opacity: 1;
       }
       100% {
-        left: 66%;
+        left: 55%;
         opacity: 1;
       }
     }
 
     .neo-smart-video.tag-slide {
       animation: slideRightToLeft 2.8s ease-out forwards;
-    }
-    .neo-smart-video {
-      position: absolute;
     }
     .floating-video {
       position: absolute;
@@ -890,16 +887,14 @@
     });
   </script>
 </body>
-</body>
 <script>
   window.addEventListener('load', () => {
     const video = document.querySelector('.neo-smart-video');
     setTimeout(() => {
       video.classList.add('tag-slide');
-    }, 500); // Delay before the animation starts
+    }, 800);
   });
 </script>
-</html>
 </html>
   <style>
     .hive-image {
