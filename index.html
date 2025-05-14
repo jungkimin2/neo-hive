@@ -259,26 +259,23 @@
       .section:nth-of-type(2) p {
         margin-left: 8px !important;
       }
-      /* Shift Neo Smart section heading and paragraph further left on mobile */
+      /* Strong override: Neo Smart section heading and paragraph left-aligned, full width */
       .section:nth-of-type(3) h2,
       .section:nth-of-type(3) p {
-        margin-left: -48px !important;
-        padding-left: 0px !important;
-        padding-right: 16px !important;
+        margin: 0 !important;
+        padding-left: 24px !important;
+        padding-right: 12px !important;
         text-align: left !important;
-      }
-      /* Force Neo Smart content to shift left and override centering */
-      .section:nth-of-type(3) .container {
+        width: 100% !important;
         display: block !important;
-        text-align: left !important;
-        padding-left: 48px !important; /* shift left by ~3 units */
-        padding-right: 16px !important;
+        box-sizing: border-box !important;
       }
-
-      .section:nth-of-type(3) h2,
-      .section:nth-of-type(3) p {
-        margin-left: 0 !important;
-        padding-left: 0 !important;
+      /* Remove centering/padding from Neo Smart container, force left alignment */
+      .section:nth-of-type(3) .container {
+        padding: 0 !important;
+        margin: 0 auto !important;
+        max-width: 100% !important;
+        text-align: left !important;
       }
       .smart-caption {
         margin-top: 240px !important;
