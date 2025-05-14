@@ -823,13 +823,29 @@
         img.style.zIndex = img.dataset.originalZ;
       });
       if (idx === -1) {
-        // Show video
+        // Show video with fade-in on mobile only
+        const isMobile = window.innerWidth <= 768;
         videoPhone.style.display = 'block';
-        setTimeout(() => videoPhone.style.opacity = '1', 10);
+        if (isMobile) {
+          videoPhone.style.opacity = '0';
+          videoPhone.style.transition = 'opacity 0.6s ease';
+          setTimeout(() => {
+            videoPhone.style.opacity = '1';
+          }, 10);
+        } else {
+          videoPhone.style.opacity = '1';
+        }
       } else {
-        // Hide video
-        videoPhone.style.opacity = '0';
-        setTimeout(() => videoPhone.style.display = 'none', 400);
+        // Hide video with fade-out on mobile only
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          videoPhone.style.transition = 'opacity 0.6s ease';
+          videoPhone.style.opacity = '0';
+          setTimeout(() => videoPhone.style.display = 'none', 600);
+        } else {
+          videoPhone.style.opacity = '0';
+          setTimeout(() => videoPhone.style.display = 'none', 400);
+        }
         // Activate selected image
         const img = hiveImages[idx];
         img.classList.add('active');
