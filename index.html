@@ -528,29 +528,29 @@
         font-weight: 500 !important;
       }
               .hive-image {
-          width: 120px !important;
+          width: 100px !important;
           height: auto !important;
-          margin: 8px 0;
-          min-width: 60px !important;
-          max-width: 38vw !important;
-          position: relative !important;
-          transition: transform 0.3s ease, opacity 0.3s ease !important;
-        }
-        
-        /* 모바일에서 active 이미지 스타일 */
-        .hive-image.active {
-          transform: scale(1.1) !important;
-          opacity: 1 !important;
-          z-index: 10 !important;
-          border: 2px solid #7BE495 !important;
           border-radius: 12px !important;
-          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6) !important;
+          transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+          opacity: 0 !important;
+          border: none !important;
+          box-shadow: none !important;
+          will-change: transform, opacity !important;
+          transform: translateZ(0) !important;
+          backface-visibility: hidden !important;
         }
         
-        /* 모바일에서 비활성 이미지 스타일 */
-        .hive-image:not(.active) {
-          opacity: 0.7 !important;
-          transform: scale(0.95) !important;
+        .hive-image.visible {
+          opacity: 1 !important;
+          box-shadow: none !important;
+        }
+        
+        .hive-image.active {
+          width: 180px !important;
+          height: 360px !important;
+          border-radius: 24px !important;
+          border: 4px solid #7BE495 !important;
+          box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
         }
       /* First slide on the left (strongest leftmost) */
       .slide-in-left:nth-of-type(1) {
@@ -560,13 +560,14 @@
       .slide-in-right:nth-of-type(1) {
         transform: translate(120%, -50%) scale(0.7) !important;
       }
-      .video-phone {
-        width: 220px !important;
-        height: 440px !important;
-        min-width: 120px !important;
-        min-height: 220px !important;
-        border-width: 4px !important;
-      }
+              .video-phone {
+          width: 180px !important;
+          height: 360px !important;
+          min-width: 120px !important;
+          min-height: 240px !important;
+          border-width: 4px !important;
+          border-radius: 24px !important;
+        }
       #slide-prev {
         left: 10px !important;
         top: 85% !important;
@@ -1890,37 +1891,6 @@
       const container = document.querySelector('.hive-showcase');
       if (!container) return;
       
-      // 모바일 환경 체크
-      const isMobile = window.innerWidth <= 768;
-      
-      if (isMobile) {
-        // 모바일에서는 단순히 active 클래스만 변경
-        requestAnimationFrame(() => {
-          hiveImages.forEach((img, i) => {
-            img.classList.remove('active');
-            if (i === idx) {
-              img.classList.add('active');
-            }
-          });
-          
-          // 비디오 표시/숨김만 처리
-          if (videoPhone) {
-            if (idx === -1) {
-              videoPhone.style.display = 'block';
-              videoPhone.style.opacity = '1';
-            } else {
-              videoPhone.style.opacity = '0.3';
-            }
-          }
-          
-          setTimeout(() => {
-            isTransitioning = false;
-          }, 300);
-        });
-        return;
-      }
-      
-      // 데스크톱에서는 기존 로직 유지
       const containerRect = container.getBoundingClientRect();
 
       requestAnimationFrame(() => {
