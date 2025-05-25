@@ -586,9 +586,6 @@
        }
              .video-phone {
          position: absolute !important;
-         top: 55% !important;
-         left: 50% !important;
-         transform: translate(-50%, -60%) !important;
          width: 140px !important;
          height: 280px !important;
          min-width: 120px !important;
@@ -596,7 +593,7 @@
          border-width: 3px !important;
          border-radius: 18px !important;
          z-index: 10 !important;
-         transition: all 0.4s ease-out !important;
+         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
        }
       #slide-prev {
         left: 10px !important;
