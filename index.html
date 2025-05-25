@@ -559,6 +559,15 @@
     html, body {
       overflow-x: hidden;
     }
+    
+    /* 스크롤 위치 안정화 */
+    html {
+      scroll-behavior: auto;
+    }
+    
+    body {
+      position: relative;
+    }
     p[style*="margin-top: 40px; font-weight: bold;"] {
       white-space: nowrap;
       word-break: keep-all;
@@ -1596,6 +1605,23 @@
     </form>
   </div>
   <script>
+    // 페이지 로드 시 스크롤 위치 초기화
+    window.addEventListener('beforeunload', function() {
+      window.scrollTo(0, 0);
+    });
+    
+    window.addEventListener('load', function() {
+      // 페이지 로드 완료 후 스크롤을 맨 위로 강제 이동
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 100);
+    });
+    
+    // 브라우저의 자동 스크롤 복원 비활성화
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
     function openForm() {
       document.getElementById('formModal').style.display = 'block';
     }
@@ -1625,6 +1651,30 @@
         closeForm();
         closeMobileNav();
       }
+    });
+    
+    // 네비게이션 링크 클릭 시 정확한 위치로 스크롤
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerHeight = 56; // 고정 헤더 높이
+            const additionalOffset = 20; // 추가 여백
+            const targetPosition = targetElement.offsetTop - headerHeight - additionalOffset;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
     });
   </script>
   <script>
