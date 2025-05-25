@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
@@ -571,33 +574,39 @@
         visibility: visible !important;
       }
         
-        /* 모바일에서 PC와 동일한 배치 - 좌측 1,2,3 (중앙) 우측 4,5,6 */
-        .hive-image:nth-child(1) {
+        /* 모바일에서 PC와 동일한 배치 - 좌측 1,2,3 (중앙) 우측 4,5,6 - 최고 우선순위 */
+        .hive-showcase .hive-image:nth-child(1) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-200%, -50%) scale(0.95) !important;
+          transform: translate(-200%, -50%) scale(0.95) translateZ(0) !important;
           z-index: 3 !important;
           opacity: 1 !important;
           display: block !important;
           visibility: visible !important;
+          width: 120px !important;
+          height: auto !important;
         }
-        .hive-image:nth-child(2) {
+        .hive-showcase .hive-image:nth-child(2) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-250%, -50%) scale(0.9) !important;
+          transform: translate(-250%, -50%) scale(0.9) translateZ(0) !important;
           z-index: 2 !important;
           opacity: 1 !important;
           display: block !important;
           visibility: visible !important;
+          width: 120px !important;
+          height: auto !important;
         }
-        .hive-image:nth-child(3) {
+        .hive-showcase .hive-image:nth-child(3) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-300%, -50%) scale(0.85) !important;
+          transform: translate(-300%, -50%) scale(0.85) translateZ(0) !important;
           z-index: 1 !important;
           opacity: 1 !important;
           display: block !important;
           visibility: visible !important;
+          width: 120px !important;
+          height: auto !important;
         }
         
         /* 모바일에서만 사용자 제공 이미지로 교체 */
@@ -611,11 +620,11 @@
           content: url('./images/mobile_team_create.png') !important;
         }
         
-        /* 모바일 우측 배열 - 중앙에서 우측으로 4,5,6 */
-        .hive-image:nth-child(4) {
+        /* 모바일 우측 배열 - 중앙에서 우측으로 4,5,6 - 최고 우선순위 */
+        .hive-showcase .hive-image:nth-child(4) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(100%, -50%) scale(0.95) !important;
+          transform: translate(100%, -50%) scale(0.95) translateZ(0) !important;
           z-index: 3 !important;
           width: 120px !important;
           height: auto !important;
@@ -623,10 +632,10 @@
           display: block !important;
           visibility: visible !important;
         }
-        .hive-image:nth-child(5) {
+        .hive-showcase .hive-image:nth-child(5) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(150%, -50%) scale(0.9) !important;
+          transform: translate(150%, -50%) scale(0.9) translateZ(0) !important;
           z-index: 2 !important;
           width: 120px !important;
           height: auto !important;
@@ -634,10 +643,10 @@
           display: block !important;
           visibility: visible !important;
         }
-        .hive-image:nth-child(6) {
+        .hive-showcase .hive-image:nth-child(6) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(200%, -50%) scale(0.85) !important;
+          transform: translate(200%, -50%) scale(0.85) translateZ(0) !important;
           z-index: 1 !important;
           width: 120px !important;
           height: auto !important;
@@ -2032,6 +2041,26 @@
             img.style.position = 'absolute';
             img.style.width = '120px';
             img.style.height = 'auto';
+            img.style.borderRadius = '10px';
+            img.style.border = 'none';
+            img.style.boxShadow = 'none';
+            
+            // 모바일에서 배치 강제 적용
+            const mobilePositions = [
+              { left: '50%', top: '50%', transform: 'translate(-200%, -50%) scale(0.95) translateZ(0)', zIndex: '3' },
+              { left: '50%', top: '50%', transform: 'translate(-250%, -50%) scale(0.9) translateZ(0)', zIndex: '2' },
+              { left: '50%', top: '50%', transform: 'translate(-300%, -50%) scale(0.85) translateZ(0)', zIndex: '1' },
+              { left: '50%', top: '50%', transform: 'translate(100%, -50%) scale(0.95) translateZ(0)', zIndex: '3' },
+              { left: '50%', top: '50%', transform: 'translate(150%, -50%) scale(0.9) translateZ(0)', zIndex: '2' },
+              { left: '50%', top: '50%', transform: 'translate(200%, -50%) scale(0.85) translateZ(0)', zIndex: '1' }
+            ];
+            
+            if (mobilePositions[index]) {
+              img.style.left = mobilePositions[index].left;
+              img.style.top = mobilePositions[index].top;
+              img.style.transform = mobilePositions[index].transform;
+              img.style.zIndex = mobilePositions[index].zIndex;
+            }
           }
         });
         
@@ -2608,14 +2637,22 @@
     }
 
     @media (max-width: 768px) {
-      /* 모바일에서 모든 hive-image 강제 표시 */
-      .hive-image {
+      /* 모바일에서 모든 hive-image 강제 표시 - 최고 우선순위 */
+      .hive-showcase .hive-image {
         opacity: 1 !important;
         display: block !important;
         visibility: visible !important;
         position: absolute !important;
         width: 120px !important;
         height: auto !important;
+        border-radius: 10px !important;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+        border: none !important;
+        box-shadow: none !important;
+        will-change: transform, opacity !important;
+        transform: translateZ(0) !important;
+        backface-visibility: hidden !important;
+        object-fit: cover !important;
       }
       
       .hive-image.active {
