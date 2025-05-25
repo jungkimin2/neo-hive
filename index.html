@@ -470,8 +470,8 @@
       }
       /* 하이브 쇼케이스 슬라이더 */
       .hive-showcase {
-        height: 320px !important;
-        overflow: hidden;
+        height: 620px !important;
+        overflow: visible !important;
         position: relative !important;
         margin: 60px 0 40px 0 !important;
         padding: 0 !important;
@@ -480,44 +480,60 @@
         justify-content: center !important;
       }
       
-      /* 모바일에서 하이브 라벨 위치 조정 */
+      /* 모바일에서도 PC와 동일한 라벨 위치 */
       .hive-label-left {
-        top: 30px !important;
-        left: 8px !important;
-        font-size: 0.7rem !important;
-        padding: 3px 6px !important;
-        z-index: 25 !important;
+        top: 100px !important;
+        left: 130px !important;
+        font-size: 0.85rem !important;
+        padding: 6px 12px !important;
+        z-index: 20 !important;
       }
       
       .hive-label-left img {
-        width: 16px !important;
-        height: 16px !important;
-        margin-right: 3px !important;
+        width: 24px !important;
+        height: 24px !important;
+        margin-right: 6px !important;
       }
       
       .hive-label-right {
-        top: 30px !important;
-        right: 8px !important;
-        font-size: 0.7rem !important;
-        padding: 3px 6px !important;
-        z-index: 25 !important;
+        top: 100px !important;
+        right: 130px !important;
+        font-size: 0.85rem !important;
+        padding: 6px 12px !important;
+        z-index: 20 !important;
       }
       
       .hive-label-right img {
-        width: 16px !important;
-        height: 16px !important;
-        margin-right: 3px !important;
+        width: 24px !important;
+        height: 24px !important;
+        margin-right: 6px !important;
       }
       
       /* 모바일에서 라벨 스타일 조정 */
       .hive-label-left,
       .hive-label-right {
         transition: all 0.5s ease-out !important;
+        background: rgba(0,0,0,0.6) !important;
+        border-radius: 20px !important;
+        color: #7BE495 !important;
+        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
+        font-weight: 500 !important;
+        animation: fadeInUp 1s ease forwards !important;
       }
       
       .hive-label-left img,
       .hive-label-right img {
         transition: all 0.5s ease-out !important;
+        vertical-align: middle !important;
+      }
+      
+      /* 모바일에서도 PC와 동일한 텍스트 표시 */
+      .hive-label-left::after {
+        content: " 네오 하이브 팀 결성" !important;
+      }
+      
+      .hive-label-right::after {
+        content: " 주변 제휴센터 예약" !important;
       }
       .hive-image {
         width: 80px !important;
@@ -548,66 +564,91 @@
         z-index: 15 !important;
       }
 
-      /* 모바일에서 모든 이미지 기본 설정 */
-      .hive-image {
-        position: absolute !important;
-        top: 50% !important;
-        width: 50px !important;
-        height: 100px !important;
-        border-radius: 6px !important;
-        opacity: 1 !important;
-        transition: all 0.4s ease-out !important;
-        cursor: pointer !important;
-        object-fit: cover !important;
-        display: block !important;
-        visibility: visible !important;
-      }
+              /* 모바일에서도 PC와 동일한 이미지 크기 및 배치 */
+        .hive-image {
+          width: 160px !important;
+          height: auto !important;
+          border-radius: 12px !important;
+          transition: transform 0.4s ease-out, opacity 0.4s ease-out !important;
+          opacity: 0 !important;
+          border: none !important;
+          box-shadow: none !important;
+          will-change: transform, opacity !important;
+          transform: translateZ(0) !important;
+          backface-visibility: hidden !important;
+          object-fit: cover !important;
+          position: absolute !important;
+        }
+        
+        .hive-image.visible {
+          opacity: 1 !important;
+          box-shadow: none !important;
+        }
+        
+        /* 모바일 좌측 배열 - PC와 동일한 스택 구조 (팀 결성) */
+        .hive-image:nth-child(1) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-200%, -50%) scale(0.95) !important;
+          z-index: 3 !important;
+        }
+        .hive-image:nth-child(2) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-250%, -50%) scale(0.9) !important;
+          z-index: 2 !important;
+        }
+        .hive-image:nth-child(3) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-300%, -50%) scale(0.85) !important;
+          z-index: 1 !important;
+        }
+        
+        /* 모바일 우측 배열 - PC와 동일한 스택 구조 (주변 센터 예약) */
+        .hive-image:nth-child(4) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(100%, -50%) scale(0.95) !important;
+          z-index: 3 !important;
+          width: 160px !important;
+          height: auto !important;
+        }
+        .hive-image:nth-child(5) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(150%, -50%) scale(0.9) !important;
+          z-index: 2 !important;
+          width: 160px !important;
+          height: auto !important;
+        }
+        .hive-image:nth-child(6) {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(200%, -50%) scale(0.85) !important;
+          z-index: 1 !important;
+          width: 160px !important;
+          height: auto !important;
+        }
 
-      /* 모바일 좌측 배열 - 팀 결성 이미지들 (1,2,3번째 이미지) */
-      .hive-image:nth-child(1) {
-        left: calc(50% - 60px) !important;
-        transform: translate(-50%, -50%) scale(0.95) !important;
-        z-index: 6 !important;
-      }
-      .hive-image:nth-child(2) {
-        left: calc(50% - 85px) !important;
-        transform: translate(-50%, -50%) scale(0.85) !important;
-        z-index: 5 !important;
-      }
-      .hive-image:nth-child(3) {
-        left: calc(50% - 110px) !important;
-        transform: translate(-50%, -50%) scale(0.75) !important;
-        z-index: 4 !important;
-      }
-
-      /* 모바일 우측 배열 - 주변 센터 예약 이미지들 (4,5,6번째 이미지) */
-      .hive-image:nth-child(4) {
-        left: calc(50% + 60px) !important;
-        transform: translate(-50%, -50%) scale(0.95) !important;
-        z-index: 6 !important;
-      }
-      .hive-image:nth-child(5) {
-        left: calc(50% + 85px) !important;
-        transform: translate(-50%, -50%) scale(0.85) !important;
-        z-index: 5 !important;
-      }
-      .hive-image:nth-child(6) {
-        left: calc(50% + 110px) !important;
-        transform: translate(-50%, -50%) scale(0.75) !important;
-        z-index: 4 !important;
-      }
-
-      /* 모바일에서 활성 이미지 (중앙) */
-      .hive-image.mobile-active {
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) scale(1.4) !important;
-        z-index: 30 !important;
-        width: 100px !important;
-        height: 200px !important;
-        border: 2px solid #7BE495 !important;
-        box-shadow: 0 0 15px rgba(123, 228, 149, 0.8) !important;
-      }
+              /* 모바일에서 활성 이미지 - PC와 동일한 크기 */
+        .hive-image.active {
+          position: absolute !important;
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(1.02) !important;
+          z-index: 10 !important;
+          width: 256px !important;
+          height: 512px !important;
+          border-radius: 24px !important;
+          border: 6px solid #7BE495 !important;
+          background-color: #95e19c !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
+          will-change: transform, box-shadow, opacity !important;
+          overflow: hidden !important;
+        }
       .video-phone {
         width: 120px !important;
         height: 240px !important;
@@ -634,24 +675,27 @@
         height: 36px;
         font-size: 1.5rem;
       }
-      /* 슬라이드 네비게이션 버튼 */
+      /* 모바일에서도 PC와 동일한 슬라이드 네비게이션 버튼 */
       #slide-prev, #slide-next {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 1rem !important;
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 2rem !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
-        background: rgba(0,0,0,0.7) !important;
+        background: rgba(0,0,0,0.5) !important;
         border-radius: 50% !important;
         z-index: 20 !important;
+        border: none !important;
+        color: #7BE495 !important;
+        cursor: pointer !important;
       }
       
       #slide-prev {
-        left: 8px !important;
+        left: 10px !important;
       }
       
       #slide-next {
-        right: 8px !important;
+        right: 10px !important;
       }
       
       /* 피처 그리드 */
@@ -2050,13 +2094,7 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        // 모바일에서 이미지 클릭 처리
-        if (window.innerWidth <= 768) {
-          handleMobileImageClick(img, i);
-          return;
-        }
-        
-        // PC에서 기존 로직
+        // 모바일과 PC 모두 동일한 로직 사용
         const isActive = img.classList.contains('active');
         if (!isActive) {
           slideIndex = i;
@@ -2067,37 +2105,7 @@
       });
     });
 
-    // 모바일에서 이미지 클릭 처리
-    let currentActiveIndex = -1; // 현재 활성화된 이미지 인덱스
-    
-    function handleMobileImageClick(clickedImg, clickedIndex) {
-      if (isTransitioning) return;
-      
-      isTransitioning = true;
-      
-      // 이전에 활성화된 이미지가 있다면 원래 위치로 복귀
-      if (currentActiveIndex !== -1) {
-        const prevActiveImg = hiveImages[currentActiveIndex];
-        if (prevActiveImg) {
-          prevActiveImg.classList.remove('mobile-active');
-          resetImageToOriginalPosition(prevActiveImg, currentActiveIndex);
-        }
-      }
-      
-      // 비디오 숨기기
-      if (videoPhone) {
-        videoPhone.style.opacity = '0';
-        videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(0.8)';
-      }
-      
-      // 클릭된 이미지를 중앙으로 이동
-      clickedImg.classList.add('mobile-active');
-      currentActiveIndex = clickedIndex;
-      
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 400);
-    }
+
     
     // 이미지를 원래 위치로 복귀시키는 함수
     function resetImageToOriginalPosition(img, index) {
@@ -2124,23 +2132,7 @@
       }
     }
     
-    // 모바일에서 외부 클릭 시 활성 이미지 해제
-    function handleMobileOutsideClick() {
-      if (window.innerWidth <= 768 && currentActiveIndex !== -1 && !isTransitioning) {
-        const activeImg = hiveImages[currentActiveIndex];
-        if (activeImg) {
-          activeImg.classList.remove('mobile-active');
-          resetImageToOriginalPosition(activeImg, currentActiveIndex);
-          currentActiveIndex = -1;
-          
-          // 비디오 다시 보이기
-          if (videoPhone) {
-            videoPhone.style.opacity = '1';
-            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(1)';
-          }
-        }
-      }
-    }
+
 
     const prevBtn = document.getElementById('slide-prev');
     const nextBtn = document.getElementById('slide-next');
@@ -2171,13 +2163,7 @@
     document.querySelector('.hive-showcase').addEventListener('click', (e) => {
       if (e.target.classList.contains('hive-image')) return;
       
-      // 모바일에서 외부 클릭 처리
-      if (window.innerWidth <= 768) {
-        handleMobileOutsideClick();
-        return;
-      }
-      
-      // PC에서 기존 로직
+      // 모바일과 PC 모두 동일한 로직 사용
       slideIndex = -1;
       showSlide(slideIndex);
     });
