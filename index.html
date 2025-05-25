@@ -315,8 +315,8 @@
       }
       
       .neo-smart-video {
-        width: 220px !important;
-        height: 440px !important;
+        width: 180px !important;
+        height: 360px !important;
       }
       
       /* 모바일: 네오 스마트 주요 기능 텍스트 레이아웃 및 가독성 개선 */
@@ -482,8 +482,8 @@
       
       /* 모바일에서 하이브 라벨 위치 조정 */
       .hive-label-left {
-        top: 40px !important;
-        left: 16px !important;
+        top: 30px !important;
+        left: 8px !important;
         font-size: 0.7rem !important;
         padding: 3px 6px !important;
         z-index: 25 !important;
@@ -496,8 +496,8 @@
       }
       
       .hive-label-right {
-        top: 40px !important;
-        right: 16px !important;
+        top: 30px !important;
+        right: 8px !important;
         font-size: 0.7rem !important;
         padding: 3px 6px !important;
         z-index: 25 !important;
@@ -509,29 +509,15 @@
         margin-right: 3px !important;
       }
       
-      /* 모바일에서만 텍스트 변경 */
-      .hive-label-left {
-        font-size: 0 !important; /* 기존 텍스트 숨김 */
-      }
-      
-      .hive-label-left::after {
-        content: "팀 결성" !important;
-        font-size: 0.75rem !important;
-        color: #7BE495 !important;
-        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
-        font-weight: 500 !important;
-      }
-      
+      /* 모바일에서 라벨 스타일 조정 */
+      .hive-label-left,
       .hive-label-right {
-        font-size: 0 !important; /* 기존 텍스트 숨김 */
+        transition: all 0.5s ease-out !important;
       }
       
-      .hive-label-right::after {
-        content: "주변 센터 예약" !important;
-        font-size: 0.75rem !important;
-        color: #7BE495 !important;
-        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
-        font-weight: 500 !important;
+      .hive-label-left img,
+      .hive-label-right img {
+        transition: all 0.5s ease-out !important;
       }
               .hive-image {
           width: 80px !important;
@@ -554,59 +540,59 @@
         }
         
         .hive-image.active {
-          width: 140px !important;
-          height: 280px !important;
-          border-radius: 20px !important;
+          width: 120px !important;
+          height: 240px !important;
+          border-radius: 18px !important;
           border: 3px solid #7BE495 !important;
           box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
           z-index: 15 !important;
         }
-              /* 모바일 중앙 배열 - 좌측 이미지들 */
-        .slide-in-left:nth-of-type(1) {
-          left: calc(50% - 120px) !important;
+              /* 모바일 중앙 배열 - 좌측 이미지들 (팀 결성) */
+        .team-formation:nth-of-type(1) {
+          left: calc(50% - 100px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.9) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
           z-index: 3 !important;
         }
-        .slide-in-left:nth-of-type(2) {
-          left: calc(50% - 160px) !important;
+        .team-formation:nth-of-type(2) {
+          left: calc(50% - 140px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
           z-index: 2 !important;
         }
-        .slide-in-left:nth-of-type(3) {
-          left: calc(50% - 200px) !important;
+        .team-formation:nth-of-type(3) {
+          left: calc(50% - 180px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+          transform: translate(-50%, -50%) scale(0.65) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 중앙 배열 - 우측 이미지들 */
-        .slide-in-right:nth-of-type(1) {
-          left: calc(50% + 120px) !important;
+        /* 모바일 중앙 배열 - 우측 이미지들 (주변 센터 예약) */
+        .center-booking:nth-of-type(1) {
+          left: calc(50% + 100px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.9) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
           z-index: 3 !important;
         }
-        .slide-in-right:nth-of-type(2) {
-          left: calc(50% + 160px) !important;
+        .center-booking:nth-of-type(2) {
+          left: calc(50% + 140px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
           z-index: 2 !important;
         }
-        .slide-in-right:nth-of-type(3) {
-          left: calc(50% + 200px) !important;
+        .center-booking:nth-of-type(3) {
+          left: calc(50% + 180px) !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+          transform: translate(-50%, -50%) scale(0.65) !important;
           z-index: 1 !important;
         }
               .video-phone {
-          width: 140px !important;
-          height: 280px !important;
-          min-width: 120px !important;
-          min-height: 240px !important;
+          width: 120px !important;
+          height: 240px !important;
+          min-width: 100px !important;
+          min-height: 200px !important;
           border-width: 3px !important;
-          border-radius: 20px !important;
+          border-radius: 18px !important;
           position: absolute !important;
           top: 50% !important;
           left: 50% !important;
@@ -959,26 +945,32 @@
         <button id="slide-prev" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10094;</button>
         <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
-        <!-- Left 3 images stacked behind center -->
+        <!-- Left 3 images stacked behind center (팀 결성 관련) -->
         <img src="./images/neohive9.png" loading="lazy"
-             class="hive-image slide-in-left animate-on-scroll"
+             class="hive-image slide-in-left animate-on-scroll team-formation"
+             data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
         <img src="./images/neohive5.png" loading="lazy"
-             class="hive-image slide-in-left animate-on-scroll"
+             class="hive-image slide-in-left animate-on-scroll team-formation"
+             data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
         <img src="./images/neohive6.png" loading="lazy"
-             class="hive-image slide-in-left animate-on-scroll"
+             class="hive-image slide-in-left animate-on-scroll team-formation"
+             data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
-        <!-- Right 3 images stacked behind center -->
+        <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
         <img src="./images/neohive7.png" loading="lazy"
-             class="hive-image slide-in-right animate-on-scroll"
+             class="hive-image slide-in-right animate-on-scroll center-booking"
+             data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(100%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
         <img src="./images/neohive8.png" loading="lazy"
-             class="hive-image slide-in-right animate-on-scroll"
+             class="hive-image slide-in-right animate-on-scroll center-booking"
+             data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(150%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
         <img src="./images/neohive4.png" loading="lazy"
-             class="hive-image slide-in-right animate-on-scroll"
+             class="hive-image slide-in-right animate-on-scroll center-booking"
+             data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(200%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
         <!-- Center phone -->
@@ -2036,6 +2028,17 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
+        // 모바일에서 좌우 이미지 클릭 시 위치 바꾸기
+        if (window.innerWidth <= 768) {
+          const clickedCategory = img.dataset.category;
+          
+          if (clickedCategory === 'team' || clickedCategory === 'booking') {
+            // 팀 결성과 주변 센터 예약 이미지들의 위치를 바꿈
+            swapImagePositions(clickedCategory);
+            return;
+          }
+        }
+        
         const isActive = img.classList.contains('active');
         if (!isActive) {
           slideIndex = i;
@@ -2045,6 +2048,60 @@
         showSlide(slideIndex);
       });
     });
+
+    // 모바일에서 좌우 이미지 위치 바꾸기 함수
+    function swapImagePositions(clickedCategory) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      
+      const teamImages = document.querySelectorAll('.team-formation');
+      const bookingImages = document.querySelectorAll('.center-booking');
+      
+      requestAnimationFrame(() => {
+        // 팀 결성 이미지들을 우측으로, 주변 센터 예약 이미지들을 좌측으로 이동
+        teamImages.forEach((img, index) => {
+          img.style.transition = 'all 0.5s ease-out';
+          img.style.left = `calc(50% + ${100 + (index * 40)}px)`;
+          img.style.transform = `translate(-50%, -50%) scale(${0.85 - (index * 0.1)})`;
+          img.style.zIndex = `${3 - index}`;
+          
+          // 클래스 변경
+          img.classList.remove('slide-in-left', 'team-formation');
+          img.classList.add('slide-in-right', 'center-booking');
+          img.dataset.category = 'booking';
+        });
+        
+        bookingImages.forEach((img, index) => {
+          img.style.transition = 'all 0.5s ease-out';
+          img.style.left = `calc(50% - ${100 + (index * 40)}px)`;
+          img.style.transform = `translate(-50%, -50%) scale(${0.85 - (index * 0.1)})`;
+          img.style.zIndex = `${3 - index}`;
+          
+          // 클래스 변경
+          img.classList.remove('slide-in-right', 'center-booking');
+          img.classList.add('slide-in-left', 'team-formation');
+          img.dataset.category = 'team';
+        });
+        
+        // 라벨도 함께 바꾸기
+        const leftLabel = document.querySelector('.hive-label-left');
+        const rightLabel = document.querySelector('.hive-label-right');
+        
+        if (leftLabel && rightLabel) {
+          // 라벨 내용 교체
+          const leftContent = leftLabel.innerHTML;
+          const rightContent = rightLabel.innerHTML;
+          
+          leftLabel.innerHTML = rightContent;
+          rightLabel.innerHTML = leftContent;
+        }
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500);
+      });
+    }
 
     const prevBtn = document.getElementById('slide-prev');
     const nextBtn = document.getElementById('slide-next');
@@ -2428,8 +2485,8 @@
   <style>
     @media (max-width: 768px) {
       .hive-image.active {
-        width: 220px !important;
-        height: 440px !important;
+        width: 180px !important;
+        height: 360px !important;
         min-width: 0 !important;
         min-height: 0 !important;
         max-width: none !important;
@@ -2439,8 +2496,8 @@
         display: block !important;
       }
       .video-phone {
-        width: 220px !important;
-        height: 440px !important;
+        width: 180px !important;
+        height: 360px !important;
       }
     }
   </style>
