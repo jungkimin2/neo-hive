@@ -547,49 +547,53 @@
           box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
           z-index: 15 !important;
         }
-              /* 모바일 중앙 배열 - 좌측 이미지들 (팀 결성) */
-        .team-formation {
+        
+        /* 모바일에서 우측 이미지들 강제 정렬 */
+        .slide-in-right {
+          position: absolute !important;
+        }
+              /* 모바일에서 모든 이미지 기본 설정 */
+        .hive-image {
           position: absolute !important;
           top: 50% !important;
           transition: all 0.3s ease-out !important;
+          width: 80px !important;
+          height: 160px !important;
+          border-radius: 12px !important;
+          opacity: 1 !important;
         }
         
+        /* 모바일 좌측 배열 - 팀 결성 이미지들 */
         .team-formation:nth-of-type(1) {
-          left: calc(50% - 80px) !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+          left: calc(50% - 90px) !important;
+          transform: translate(-50%, -50%) scale(0.9) !important;
           z-index: 3 !important;
         }
         .team-formation:nth-of-type(2) {
-          left: calc(50% - 120px) !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+          left: calc(50% - 130px) !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
           z-index: 2 !important;
         }
         .team-formation:nth-of-type(3) {
-          left: calc(50% - 160px) !important;
-          transform: translate(-50%, -50%) scale(0.6) !important;
+          left: calc(50% - 170px) !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 중앙 배열 - 우측 이미지들 (주변 센터 예약) */
-        .center-booking {
-          position: absolute !important;
-          top: 50% !important;
-          transition: all 0.3s ease-out !important;
-        }
-        
+        /* 모바일 우측 배열 - 주변 센터 예약 이미지들 */
         .center-booking:nth-of-type(1) {
-          left: calc(50% + 80px) !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+          left: calc(50% + 90px) !important;
+          transform: translate(-50%, -50%) scale(0.9) !important;
           z-index: 3 !important;
         }
         .center-booking:nth-of-type(2) {
-          left: calc(50% + 120px) !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+          left: calc(50% + 130px) !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
           z-index: 2 !important;
         }
         .center-booking:nth-of-type(3) {
-          left: calc(50% + 160px) !important;
-          transform: translate(-50%, -50%) scale(0.6) !important;
+          left: calc(50% + 170px) !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
           z-index: 1 !important;
         }
               .video-phone {
@@ -2113,8 +2117,8 @@
       // 팀 결성 이미지들을 우측으로 이동
       teamImages.forEach((img, index) => {
         img.style.transition = 'all 0.5s ease-out';
-        img.style.left = `calc(50% + ${80 + (index * 40)}px)`;
-        img.style.transform = `translate(-50%, -50%) scale(${0.8 - (index * 0.1)})`;
+        img.style.left = `calc(50% + ${90 + (index * 40)}px)`;
+        img.style.transform = `translate(-50%, -50%) scale(${0.9 - (index * 0.1)})`;
         img.style.zIndex = `${3 - index}`;
         
         // 클래스 변경
@@ -2126,8 +2130,8 @@
       // 주변 센터 예약 이미지들을 좌측으로 이동
       bookingImages.forEach((img, index) => {
         img.style.transition = 'all 0.5s ease-out';
-        img.style.left = `calc(50% - ${80 + (index * 40)}px)`;
-        img.style.transform = `translate(-50%, -50%) scale(${0.8 - (index * 0.1)})`;
+        img.style.left = `calc(50% - ${90 + (index * 40)}px)`;
+        img.style.transform = `translate(-50%, -50%) scale(${0.9 - (index * 0.1)})`;
         img.style.zIndex = `${3 - index}`;
         
         // 클래스 변경
