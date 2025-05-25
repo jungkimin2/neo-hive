@@ -526,15 +526,6 @@
         transition: all 0.5s ease-out !important;
         vertical-align: middle !important;
       }
-      
-      /* 모바일에서 축약된 텍스트 표시 */
-      .hive-label-left::after {
-        content: " 팀 결성" !important;
-      }
-      
-      .hive-label-right::after {
-        content: " 센터 예약" !important;
-      }
       .hive-image {
         width: 80px !important;
         height: 160px !important;
@@ -564,11 +555,11 @@
         z-index: 15 !important;
       }
 
-              /* 모바일에서 PC와 유사한 이미지 크기 및 배치 */
+              /* 모바일 최적화된 이미지 크기 및 배치 */
         .hive-image {
-          width: 120px !important;
+          width: 100px !important;
           height: auto !important;
-          border-radius: 10px !important;
+          border-radius: 8px !important;
           transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
           opacity: 0 !important;
           border: none !important;
@@ -585,49 +576,49 @@
           box-shadow: none !important;
         }
         
-        /* 모바일 좌측 배열 - PC와 동일한 중앙 기점 스택 구조 (팀 결성) */
+        /* 모바일 좌측 배열 - 컴팩트한 스택 구조 (팀 결성) */
         .hive-image:nth-child(1) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-200%, -50%) scale(0.95) !important;
+          transform: translate(-160%, -50%) scale(0.9) !important;
           z-index: 3 !important;
         }
         .hive-image:nth-child(2) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-250%, -50%) scale(0.9) !important;
+          transform: translate(-200%, -50%) scale(0.8) !important;
           z-index: 2 !important;
         }
         .hive-image:nth-child(3) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-300%, -50%) scale(0.85) !important;
+          transform: translate(-240%, -50%) scale(0.7) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 우측 배열 - PC와 동일한 중앙 기점 스택 구조 (주변 센터 예약) */
+        /* 모바일 우측 배열 - 컴팩트한 스택 구조 (주변 센터 예약) */
         .hive-image:nth-child(4) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(100%, -50%) scale(0.95) !important;
+          transform: translate(60%, -50%) scale(0.9) !important;
           z-index: 3 !important;
-          width: 120px !important;
+          width: 100px !important;
           height: auto !important;
         }
         .hive-image:nth-child(5) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(150%, -50%) scale(0.9) !important;
+          transform: translate(100%, -50%) scale(0.8) !important;
           z-index: 2 !important;
-          width: 120px !important;
+          width: 100px !important;
           height: auto !important;
         }
         .hive-image:nth-child(6) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(200%, -50%) scale(0.85) !important;
+          transform: translate(140%, -50%) scale(0.7) !important;
           z-index: 1 !important;
-          width: 120px !important;
+          width: 100px !important;
           height: auto !important;
         }
 
@@ -1057,54 +1048,55 @@
           <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
         </div>
         <div class="mb-6">
-          <p class="text-xl text-gray-300" style="text-align: left; word-break: keep-all; line-height: 1.6;">
-            <span class="neon-green">NEO HIVE</span>는 지역 기반 팀 매칭을 통해 헬스장 방문을 유도하고, 회원 유입과 운동 참여를 자연스럽게 연결합니다.
+          <p class="text-xl text-gray-300" style="text-align: left;">
+            <span class="neon-green">NEO HIVE</span>는 지역 기반 팀 매칭을 통해 헬스장 방문을 유도하고,<br>
+            회원 유입과 운동 참여를 자연스럽게 연결합니다.
           </p>
         </div>
         <!-- Unified Row: Steps 1 ➔ 2 ➔ 3 ➔ 4 ➔ 5 ➔ 6 (리뉴얼: 스크린샷 스타일) -->
         <div class="flow-step-wrapper" style="display:flex; flex-wrap: nowrap; justify-content:center; gap: 20px; max-width: 100%; overflow-x: visible; margin: 40px auto 28px; padding: 0 12px;">
           <div class="flow-step">
             <div class="step-number">1</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">지역내 운동 목표 기반<br>파트너를 매칭</div>
             <div class="flow-icon" style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, rgba(98, 210, 162, 0.3) 0%, rgba(157, 243, 196, 0.15) 100%); display: flex; justify-content: center; align-items: center; margin-bottom: 12px; margin-left: 0;">
               <img src="./images/neo43.png" loading="lazy" alt="설치 아이콘" style="width: 36px; height: 36px; object-fit: contain;">
             </div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">매칭</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">지역내 운동 목표 기반<br>파트너를 매칭</div>
             <div class="flow-arrow-inside">➔</div>
           </div>
           <div class="flow-step">
             <div class="step-number">2</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">3~4인 매칭으로 팀명 설정 및 리더 지정</div>
             <div class="flow-icon"><img src="./images/neo44.png" alt="팀 구성" style="width: 36px; height: 36px;"></div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">팀 구성</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">3~4인 매칭으로 팀명 설정 및 리더 지정</div>
             <div class="flow-arrow-inside">➔</div>
           </div>
           <div class="flow-step">
             <div class="step-number">3</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">시간대 선택 후 예약 신청 푸시 알림 전송</div>
             <div class="flow-icon"><img src="./images/neo42.png" alt="센터 예약 아이콘" style="width: 30px; height: 30px;"></div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">센터 예약</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">시간대 선택 후 예약 신청 푸시 알림 전송</div>
             <div class="flow-arrow-inside">➔</div>
           </div>
           <div class="flow-step">
             <div class="step-number">4</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">자동 알림 전송: "00팀 00시 예약 완료"</div>
             <div class="flow-icon"><img src="./images/neo32.png" alt="관리자 알림" style="width: 30px; height: 30px;"></div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">관리자 알림</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">자동 알림 전송: "00팀 00시 예약 완료"</div>
             <div class="flow-arrow-inside">➔</div>
           </div>
           <div class="flow-step">
             <div class="step-number">5</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">앱 푸시로 당일<br>출입 코드 자동 전송</div>
             <div class="flow-icon"><img src="./images/neo35.png" alt="출입 코드 발급" style="width: 36px; height: 36px;"></div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">출입 코드 발급</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.85rem; color: #bbb; text-align: left;">앱 푸시로 당일<br>출입 코드 자동 전송</div>
             <div class="flow-arrow-inside">➔</div>
           </div>
           <div class="flow-step">
             <div class="step-number">6</div>
-            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left; margin-bottom: 8px;">QR코드로 자동 인증과 출석 랭킹 연동</div>
             <div class="flow-icon"><img src="./images/chek.png" alt="출석 인증" style="width: 28px; height: 28px;"></div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">출석 인증</div>
+            <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">QR코드로 자동 인증과 출석 랭킹 연동</div>
           </div>
         </div>
         <!-- FLEX 3-BOX BLOCK MOVED HERE -->
@@ -2109,25 +2101,25 @@
 
 
     
-    // 이미지를 원래 위치로 복귀시키는 함수 (PC와 동일한 배치)
+    // 이미지를 원래 위치로 복귀시키는 함수
     function resetImageToOriginalPosition(img, index) {
       const positions = [
         // 좌측 이미지들 (팀 결성) - 0,1,2번 인덱스
-        { left: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
+        { left: 'calc(50% - 60px)', transform: 'translate(-50%, -50%) scale(0.95)', zIndex: 6 },
+        { left: 'calc(50% - 85px)', transform: 'translate(-50%, -50%) scale(0.85)', zIndex: 5 },
+        { left: 'calc(50% - 110px)', transform: 'translate(-50%, -50%) scale(0.75)', zIndex: 4 },
         // 우측 이미지들 (주변 센터 예약) - 3,4,5번 인덱스
-        { left: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
+        { left: 'calc(50% + 60px)', transform: 'translate(-50%, -50%) scale(0.95)', zIndex: 6 },
+        { left: 'calc(50% + 85px)', transform: 'translate(-50%, -50%) scale(0.85)', zIndex: 5 },
+        { left: 'calc(50% + 110px)', transform: 'translate(-50%, -50%) scale(0.75)', zIndex: 4 }
       ];
       
       if (positions[index]) {
         img.style.left = positions[index].left;
         img.style.transform = positions[index].transform;
         img.style.zIndex = positions[index].zIndex;
-        img.style.width = '120px';
-        img.style.height = 'auto';
+        img.style.width = '50px';
+        img.style.height = '100px';
         img.style.border = 'none';
         img.style.boxShadow = 'none';
         img.style.top = '50%';
@@ -2165,64 +2157,16 @@
     document.querySelector('.hive-showcase').addEventListener('click', (e) => {
       if (e.target.classList.contains('hive-image')) return;
       
+      // 모바일에서 외부 클릭 처리
+      if (window.innerWidth <= 768) {
+        handleMobileOutsideClick();
+        return;
+      }
+      
+      // PC에서 기존 로직
       slideIndex = -1;
       showSlide(slideIndex);
     });
-    
-    // 모바일 터치 스와이프 기능 추가
-    if (window.innerWidth <= 768) {
-      let startX = 0;
-      let startY = 0;
-      let isSwipe = false;
-      
-      const showcase = document.querySelector('.hive-showcase');
-      
-      showcase.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isSwipe = false;
-      }, { passive: true });
-      
-      showcase.addEventListener('touchmove', (e) => {
-        if (!startX || !startY) return;
-        
-        const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
-        
-        const diffX = Math.abs(currentX - startX);
-        const diffY = Math.abs(currentY - startY);
-        
-        // 수평 스와이프가 수직 스와이프보다 클 때만 처리
-        if (diffX > diffY && diffX > 30) {
-          isSwipe = true;
-          e.preventDefault(); // 스크롤 방지
-        }
-      }, { passive: false });
-      
-      showcase.addEventListener('touchend', (e) => {
-        if (!isSwipe || !startX) return;
-        
-        const endX = e.changedTouches[0].clientX;
-        const diffX = startX - endX;
-        
-        if (Math.abs(diffX) > 50) { // 최소 50px 이동
-          if (diffX > 0) {
-            // 왼쪽으로 스와이프 - 다음 슬라이드
-            if (slideIndex === hiveImages.length - 1) slideIndex = -1;
-            else slideIndex = Math.min(slideIndex + 1, hiveImages.length - 1);
-          } else {
-            // 오른쪽으로 스와이프 - 이전 슬라이드
-            if (slideIndex === -1) slideIndex = hiveImages.length - 1;
-            else slideIndex = Math.max(slideIndex - 1, 0);
-          }
-          showSlide(slideIndex);
-        }
-        
-        startX = 0;
-        startY = 0;
-        isSwipe = false;
-      }, { passive: true });
-    }
   </script>
 </body>
 <script>
@@ -2536,20 +2480,11 @@
         font-size: 0.8rem !important;
       }
       
-      .flow-step .text-sm {
-        font-size: 0.7rem !important;
-        line-height: 1.2 !important;
-        text-align: center !important;
-        margin: 0 0 8px 0 !important;
-        order: 1 !important;
-      }
-      
       .flow-step .flow-icon {
         width: 40px !important;
         height: 40px !important;
         margin-bottom: 8px !important;
         flex-shrink: 0 !important;
-        order: 2 !important;
       }
       
       .flow-step .flow-icon img {
@@ -2563,7 +2498,16 @@
         text-align: center !important;
         line-height: 1.2 !important;
         flex-shrink: 0 !important;
-        order: 3 !important;
+      }
+      
+      .flow-step .text-sm {
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        flex-grow: 1 !important;
+        display: flex !important;
+        align-items: center !important;
       }
       
       .flow-step .flow-arrow-inside {
