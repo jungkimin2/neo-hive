@@ -2043,14 +2043,14 @@
     // 인덱스에 따른 위치 정보 반환 함수
     function getPositionForIndex(index) {
       if (window.innerWidth <= 768) {
-        // 모바일용 위치 - 간격 조정
+        // 모바일용 위치 - PC와 동일한 레이아웃
         const positions = [
-          { left: '50%', top: '50%', transform: 'translate(-140%, -50%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(-180%, -50%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(-220%, -50%) scale(0.85)', zIndex: 1 },
-          { left: '50%', top: '50%', transform: 'translate(40%, -50%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(80%, -50%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(120%, -50%) scale(0.85)', zIndex: 1 }
+          { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
+          { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
         ];
         return positions[index] || positions[0];
       } else {
@@ -2073,51 +2073,25 @@
     
          // 이미지를 원래 위치로 복귀시키는 함수
      function resetImageToOriginalPosition(img, index) {
+       const positions = getPositionForIndex(index);
+       
+       img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+       img.style.left = positions.left;
+       img.style.top = positions.top;
+       img.style.transform = positions.transform;
+       img.style.zIndex = positions.zIndex;
+       
        if (window.innerWidth <= 768) {
-         // 모바일용 위치 (중앙 기점 좌우 배치)
-         const positions = [
-           { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 },
-           { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }
-         ];
-         
-         if (positions[index]) {
-           img.style.left = positions[index].left;
-           img.style.top = positions[index].top;
-           img.style.transform = positions[index].transform;
-           img.style.zIndex = positions[index].zIndex;
-           img.style.width = '70px';
-           img.style.height = 'auto';
-           img.style.border = 'none';
-           img.style.boxShadow = 'none';
-           img.style.borderRadius = '12px';
-         }
+         img.style.width = '90px';
+         img.style.height = '180px';
        } else {
-         // PC용 기존 로직
-         const positions = [
-           { left: '50%', top: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
-           { left: '50%', top: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
-         ];
-         
-         if (positions[index]) {
-           img.style.transition = 'all 0.4s ease-out';
-           img.style.left = positions[index].left;
-           img.style.top = positions[index].top;
-           img.style.transform = positions[index].transform;
-           img.style.zIndex = positions[index].zIndex;
-           img.style.width = '160px';
-           img.style.height = 'auto';
-           img.style.border = 'none';
-           img.style.boxShadow = 'none';
-         }
+         img.style.width = '160px';
+         img.style.height = 'auto';
        }
+       
+       img.style.border = 'none';
+       img.style.boxShadow = 'none';
+       img.style.borderRadius = window.innerWidth <= 768 ? '16px' : '24px';
      }
     
          
@@ -2664,84 +2638,16 @@
 
       hiveImages.forEach((image, idx) => {
         image.addEventListener('click', function (e) {
-          if (isMobile()) {
-            swapPositions(image, videoPhone);
+          e.stopPropagation();
+          if (isTransitioning) return;
+          
+          const isActive = image.classList.contains('active');
+          if (!isActive) {
+            slideIndex = idx;
           } else {
-            // PC: 영상 UI와 이미지가 자연스럽게 위치를 바꿈
-            e.stopPropagation();
-            const isActive = image.classList.contains('active');
-            
-            if (!isActive) {
-              // 클릭한 이미지를 중앙으로, 영상 UI를 클릭한 이미지 위치로
-              const targetPosition = getPositionForIndex(idx);
-              
-              // 모든 이미지를 원래 위치로 리셋
-              hiveImages.forEach((img, index) => {
-                img.classList.remove('active');
-                if (index !== idx) {
-                  const pos = getPositionForIndex(index);
-                  img.style.transition = 'all 0.4s ease-out';
-                  img.style.left = pos.left;
-                  img.style.top = pos.top;
-                  img.style.transform = pos.transform;
-                  img.style.zIndex = pos.zIndex;
-                  img.style.width = '160px';
-                  img.style.height = 'auto';
-                  img.style.border = 'none';
-                  img.style.boxShadow = 'none';
-                }
-              });
-              
-              // 영상 UI를 클릭한 이미지의 위치로 이동
-              videoPhone.style.transition = 'all 0.4s ease-out';
-              videoPhone.style.left = targetPosition.left;
-              videoPhone.style.top = targetPosition.top;
-              videoPhone.style.transform = targetPosition.transform; // rotate(-2deg) 제거
-              videoPhone.style.zIndex = targetPosition.zIndex;
-              videoPhone.style.width = '160px';
-              videoPhone.style.height = '320px';
-              videoPhone.style.border = 'none';
-              videoPhone.style.boxShadow = 'none';
-              videoPhone.style.borderRadius = '24px';
-              
-              // 클릭한 이미지를 중앙으로 이동
-              image.classList.add('active');
-              image.style.transition = 'all 0.4s ease-out';
-              image.style.left = '50%';
-              image.style.top = '50%';
-              image.style.transform = 'translate(-50%, -50%)';
-              image.style.zIndex = '10';
-              image.style.width = '256px';
-              image.style.height = '512px';
-              image.style.border = '6px solid #7BE495';
-              image.style.boxShadow = '0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3)';
-              image.style.borderRadius = '24px';
-            } else {
-              // 이미지가 이미 활성화된 경우: 비디오를 중앙으로 되돌림
-              image.classList.remove('active');
-              const pos = getPositionForIndex(idx);
-              image.style.transition = 'all 0.4s ease-out';
-              image.style.left = pos.left;
-              image.style.top = pos.top;
-              image.style.transform = pos.transform;
-              image.style.zIndex = pos.zIndex;
-              image.style.width = '160px';
-              image.style.height = 'auto';
-              image.style.border = 'none';
-              image.style.boxShadow = 'none';
-              
-              // 영상 UI를 중앙으로
-              videoPhone.style.transition = 'all 0.4s ease-out';
-              videoPhone.style.left = '50%';
-              videoPhone.style.top = '50%';
-              videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
-              videoPhone.style.zIndex = '10';
-              videoPhone.style.width = '256px';
-              videoPhone.style.height = '512px';
-              videoPhone.style.border = '10px solid #7BE495';
-              videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
-            }
+            slideIndex = -1;
           }
+          showSlide(slideIndex);
         });
       });
     });
