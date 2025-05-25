@@ -468,21 +468,18 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
-             /* 하이브 쇼케이스 슬라이더 */
-      .hive-showcase {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        align-items: center !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        gap: 12px !important;
-        height: auto !important;
-        position: relative !important;
-        margin: 40px 0 !important;
-        padding: 0 16px !important;
-        width: 100% !important;
-      }
+                    /* 하이브 쇼케이스 슬라이더 */
+       .hive-showcase {
+         position: relative !important;
+         display: flex !important;
+         align-items: center !important;
+         justify-content: center !important;
+         margin: 40px 0 !important;
+         padding: 0 16px !important;
+         width: 100% !important;
+         height: 350px !important;
+         overflow: visible !important;
+       }
       
       /* 모바일에서 하이브 라벨 위치 조정 */
       .hive-label-left {
@@ -523,36 +520,84 @@
       .hive-label-right img {
         transition: all 0.5s ease-out !important;
       }
-      /* 하이브 이미지: 모바일에서 일렬 가로 정렬, 크기와 정렬 통일 */
-      .hive-image {
-        position: relative !important;
-        width: 120px !important;
-        height: auto !important;
-        border-radius: 16px !important;
-        margin: 0 8px !important;
-        opacity: 1 !important;
-        transform: none !important;
-        left: auto !important;
-        top: auto !important;
-        display: inline-block !important;
-        z-index: 1 !important;
-      }
-      .video-phone {
-        position: relative !important;
-        transform: none !important;
-        left: auto !important;
-        top: auto !important;
-        margin: 0 auto !important;
-        display: block !important;
-        width: 160px !important;
-        height: 320px !important;
-        min-width: 140px !important;
-        min-height: 280px !important;
-        border-width: 4px !important;
-        border-radius: 20px !important;
-        z-index: 10 !important;
-        transition: all 0.4s ease-out !important;
-      }
+             /* 모바일 하이브 이미지 기본 설정 */
+       .hive-image {
+         position: absolute !important;
+         width: 70px !important;
+         height: auto !important;
+         border-radius: 12px !important;
+         opacity: 1 !important;
+         transition: all 0.4s ease-out !important;
+         cursor: pointer !important;
+         object-fit: cover !important;
+         display: block !important;
+         visibility: visible !important;
+       }
+       
+       /* 모바일 중앙 기점 좌우 배치 */
+       .hive-image:nth-child(1) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(-160%, -50%) scale(0.9) !important;
+         z-index: 3 !important;
+       }
+       .hive-image:nth-child(2) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(-210%, -50%) scale(0.8) !important;
+         z-index: 2 !important;
+       }
+       .hive-image:nth-child(3) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(-260%, -50%) scale(0.7) !important;
+         z-index: 1 !important;
+       }
+       .hive-image:nth-child(4) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(60%, -50%) scale(0.9) !important;
+         z-index: 3 !important;
+       }
+       .hive-image:nth-child(5) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(110%, -50%) scale(0.8) !important;
+         z-index: 2 !important;
+       }
+       .hive-image:nth-child(6) {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(160%, -50%) scale(0.7) !important;
+         z-index: 1 !important;
+       }
+       
+       /* 모바일 활성 이미지 */
+       .hive-image.active {
+         left: 50% !important;
+         top: 50% !important;
+         transform: translate(-50%, -50%) scale(1.2) !important;
+         z-index: 10 !important;
+         width: 140px !important;
+         height: 280px !important;
+         border: 3px solid #7BE495 !important;
+         box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
+         border-radius: 16px !important;
+       }
+             .video-phone {
+         position: absolute !important;
+         top: 50% !important;
+         left: 50% !important;
+         transform: translate(-50%, -50%) rotate(-2deg) !important;
+         width: 140px !important;
+         height: 280px !important;
+         min-width: 120px !important;
+         min-height: 240px !important;
+         border-width: 3px !important;
+         border-radius: 18px !important;
+         z-index: 10 !important;
+         transition: all 0.4s ease-out !important;
+       }
       #slide-prev {
         left: 10px !important;
         top: 85% !important;
@@ -2000,12 +2045,12 @@
        if (window.innerWidth <= 768) {
          // 모바일용 위치 (중앙 기점 좌우 배치)
          const positions = [
-           { left: '50%', top: '50%', transform: 'translate(-180%, -50%) scale(0.9)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(-230%, -50%) scale(0.8)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(-280%, -50%) scale(0.7)', zIndex: 1 },
-           { left: '50%', top: '50%', transform: 'translate(80%, -50%) scale(0.9)', zIndex: 3 },
-           { left: '50%', top: '50%', transform: 'translate(130%, -50%) scale(0.8)', zIndex: 2 },
-           { left: '50%', top: '50%', transform: 'translate(180%, -50%) scale(0.7)', zIndex: 1 }
+           { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 },
+           { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 },
+           { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 },
+           { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },
+           { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 },
+           { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }
          ];
          
          if (positions[index]) {
@@ -2013,11 +2058,11 @@
            img.style.top = positions[index].top;
            img.style.transform = positions[index].transform;
            img.style.zIndex = positions[index].zIndex;
-           img.style.width = '80px';
+           img.style.width = '70px';
            img.style.height = 'auto';
            img.style.border = 'none';
            img.style.boxShadow = 'none';
-           img.style.borderRadius = '8px';
+           img.style.borderRadius = '12px';
          }
        } else {
          // PC용 기존 로직
