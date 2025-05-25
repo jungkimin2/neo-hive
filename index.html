@@ -585,31 +585,31 @@
           box-shadow: none !important;
         }
         
-        /* 모바일 좌측 배열 - PC와 동일한 중앙 기점 스택 구조 (팀 결성) */
+        /* 모바일에서 PC와 동일한 중앙 기점 배치 - 좌측 1,2,3 우측 4,5,6 */
         .hive-image:nth-child(1) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-200%, -50%) scale(0.95) !important;
+          transform: translate(-120px, -50%) scale(0.95) !important;
           z-index: 3 !important;
         }
         .hive-image:nth-child(2) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-250%, -50%) scale(0.9) !important;
+          transform: translate(-180px, -50%) scale(0.9) !important;
           z-index: 2 !important;
         }
         .hive-image:nth-child(3) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-300%, -50%) scale(0.85) !important;
+          transform: translate(-240px, -50%) scale(0.85) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 우측 배열 - PC와 동일한 중앙 기점 스택 구조 (주변 센터 예약) */
+        /* 모바일 우측 배열 - 중앙에서 우측으로 4,5,6 */
         .hive-image:nth-child(4) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(100%, -50%) scale(0.95) !important;
+          transform: translate(20px, -50%) scale(0.95) !important;
           z-index: 3 !important;
           width: 120px !important;
           height: auto !important;
@@ -617,7 +617,7 @@
         .hive-image:nth-child(5) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(150%, -50%) scale(0.9) !important;
+          transform: translate(80px, -50%) scale(0.9) !important;
           z-index: 2 !important;
           width: 120px !important;
           height: auto !important;
@@ -625,7 +625,7 @@
         .hive-image:nth-child(6) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(200%, -50%) scale(0.85) !important;
+          transform: translate(140px, -50%) scale(0.85) !important;
           z-index: 1 !important;
           width: 120px !important;
           height: auto !important;
@@ -2109,17 +2109,17 @@
 
 
     
-    // 이미지를 원래 위치로 복귀시키는 함수 (PC와 동일한 배치)
+    // 이미지를 원래 위치로 복귀시키는 함수 (모바일에서 PC와 동일한 중앙 기점 배치)
     function resetImageToOriginalPosition(img, index) {
       const positions = [
         // 좌측 이미지들 (팀 결성) - 0,1,2번 인덱스
-        { left: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
+        { left: '50%', transform: 'translate(-120px, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(-180px, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(-240px, -50%) scale(0.85)', zIndex: 1 },
         // 우측 이미지들 (주변 센터 예약) - 3,4,5번 인덱스
-        { left: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
+        { left: '50%', transform: 'translate(20px, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(80px, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(140px, -50%) scale(0.85)', zIndex: 1 }
       ];
       
       if (positions[index]) {
