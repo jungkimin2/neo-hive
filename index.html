@@ -803,14 +803,16 @@
     /* 네오 스마트 비디오 슬라이드 애니메이션 */
     @keyframes slideRightToLeft {
       0% {
-        left: 90%;
+        left: 88%;
         opacity: 0;
       }
       30% {
         opacity: 1;
       }
       100% {
-        left: 68%;
+        left: 73%;
+        top: calc(50% + 40px);
+        transform: translate(-50%, -50%) rotate(-8deg);
         opacity: 1;
       }
     }
@@ -2169,9 +2171,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (video) {
     video.addEventListener('animationend', () => {
       video.classList.remove('tag-slide');
-      video.style.transform = '';
-      video.style.left = '';
-      video.style.top = '';
+      video.style.left = '73%';
+      video.style.top = 'calc(50% + 40px)';
+      video.style.transform = 'translate(-50%, -50%) rotate(-8deg)';
     });
   }
 });
