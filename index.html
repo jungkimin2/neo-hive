@@ -468,98 +468,63 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
-      /* 하이브 쇼케이스 슬라이더 - 모바일 최적화 */
+      /* 하이브 쇼케이스 슬라이더 */
       .hive-showcase {
-        height: 450px !important;
         overflow: visible !important;
         position: relative !important;
-        margin: 40px 0 30px 0 !important;
-        padding: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+        margin: 40px 0 !important;
+        padding: 0 16px !important;
+        width: 100% !important;
       }
       
-      /* 모바일 최적화된 라벨 위치 */
+      /* 모바일에서 하이브 라벨 위치 조정 */
       .hive-label-left {
-        top: 60px !important;
-        left: 20px !important;
-        font-size: 0.75rem !important;
-        padding: 4px 8px !important;
-        z-index: 20 !important;
+        top: 30px !important;
+        left: 8px !important;
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+        z-index: 25 !important;
       }
       
       .hive-label-left img {
-        width: 18px !important;
-        height: 18px !important;
-        margin-right: 4px !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 3px !important;
       }
       
       .hive-label-right {
-        top: 60px !important;
-        right: 20px !important;
-        font-size: 0.75rem !important;
-        padding: 4px 8px !important;
-        z-index: 20 !important;
+        top: 30px !important;
+        right: 8px !important;
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+        z-index: 25 !important;
       }
       
       .hive-label-right img {
-        width: 18px !important;
-        height: 18px !important;
-        margin-right: 4px !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 3px !important;
       }
       
       /* 모바일에서 라벨 스타일 조정 */
       .hive-label-left,
       .hive-label-right {
         transition: all 0.5s ease-out !important;
-        background: rgba(0,0,0,0.6) !important;
-        border-radius: 20px !important;
-        color: #7BE495 !important;
-        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
-        font-weight: 500 !important;
-        animation: fadeInUp 1s ease forwards !important;
       }
       
       .hive-label-left img,
       .hive-label-right img {
         transition: all 0.5s ease-out !important;
-        vertical-align: middle !important;
       }
-      .hive-image {
-        width: 80px !important;
-        height: 160px !important;
-        border-radius: 12px !important;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
-        opacity: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
-        will-change: transform, opacity !important;
-        transform: translateZ(0) !important;
-        backface-visibility: hidden !important;
-        object-fit: cover !important;
-        position: absolute !important;
-      }
-
-      .hive-image.visible {
-        opacity: 1 !important;
-        box-shadow: none !important;
-      }
-
-      .hive-image.active {
-        width: 120px !important;
-        height: 240px !important;
-        border-radius: 18px !important;
-        border: 3px solid #7BE495 !important;
-        box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
-        z-index: 15 !important;
-      }
-
-              /* 모바일 최적화된 이미지 크기 및 배치 */
-        .hive-image {
-          width: 100px !important;
-          height: auto !important;
-          border-radius: 8px !important;
+              .hive-image {
+          width: 80px !important;
+          height: 160px !important;
+          border-radius: 12px !important;
           transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
           opacity: 0 !important;
           border: none !important;
@@ -576,83 +541,125 @@
           box-shadow: none !important;
         }
         
-        /* 모바일 좌측 배열 - 컴팩트한 스택 구조 (팀 결성) */
-        .hive-image:nth-child(1) {
-          left: 50% !important;
-          top: 50% !important;
-          transform: translate(-160%, -50%) scale(0.9) !important;
-          z-index: 3 !important;
-        }
-        .hive-image:nth-child(2) {
-          left: 50% !important;
-          top: 50% !important;
-          transform: translate(-200%, -50%) scale(0.8) !important;
-          z-index: 2 !important;
-        }
-        .hive-image:nth-child(3) {
-          left: 50% !important;
-          top: 50% !important;
-          transform: translate(-240%, -50%) scale(0.7) !important;
-          z-index: 1 !important;
+        .hive-image.active {
+          width: 120px !important;
+          height: 240px !important;
+          border-radius: 18px !important;
+          border: 3px solid #7BE495 !important;
+          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
+          z-index: 15 !important;
         }
         
-        /* 모바일 우측 배열 - 컴팩트한 스택 구조 (주변 센터 예약) */
-        .hive-image:nth-child(4) {
-          left: 50% !important;
+        /* 모바일에서 좌우 이미지들 강제 표시 */
+        .slide-in-left,
+        .slide-in-right {
+          position: absolute !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+        
+        /* 모바일에서 하이브 쇼케이스 컨테이너 설정 */
+        .hive-showcase {
+          overflow: visible !important;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          flex-direction: row !important;
+          gap: 12px !important;
+          margin: 40px 0 !important;
+          padding: 0 16px !important;
+          width: 100% !important;
+          flex-wrap: nowrap !important;
+        }
+      /* Ensure hive-image and video-phone are flex children and relatively positioned for flex alignment */
+      .hive-showcase > .hive-image,
+      .hive-showcase > .video-phone {
+        position: relative !important;
+        flex: 0 0 auto !important;
+        display: block !important;
+      }
+        
+        /* 모바일에서 모든 hive-image 강제 표시 */
+        .hive-image {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+              /* 모바일에서 모든 이미지 기본 설정 */
+        .hive-image {
+          position: absolute !important;
           top: 50% !important;
-          transform: translate(60%, -50%) scale(0.9) !important;
-          z-index: 3 !important;
-          width: 100px !important;
-          height: auto !important;
+          width: 50px !important;
+          height: 100px !important;
+          border-radius: 6px !important;
+          opacity: 1 !important;
+          transition: all 0.4s ease-out !important;
+          cursor: pointer !important;
+          object-fit: cover !important;
+          display: block !important;
+          visibility: visible !important;
+        }
+        
+        /* 모바일 좌측 배열 - 팀 결성 이미지들 (1,2,3번째 이미지) */
+        .hive-image:nth-child(1) {
+          left: calc(50% - 60px) !important;
+          transform: translate(-50%, -50%) scale(0.95) !important;
+          z-index: 6 !important;
+        }
+        .hive-image:nth-child(2) {
+          left: calc(50% - 85px) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
+          z-index: 5 !important;
+        }
+        .hive-image:nth-child(3) {
+          left: calc(50% - 110px) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
+          z-index: 4 !important;
+        }
+        
+        /* 모바일 우측 배열 - 주변 센터 예약 이미지들 (4,5,6번째 이미지) */
+        .hive-image:nth-child(4) {
+          left: calc(50% + 60px) !important;
+          transform: translate(-50%, -50%) scale(0.95) !important;
+          z-index: 6 !important;
         }
         .hive-image:nth-child(5) {
-          left: 50% !important;
-          top: 50% !important;
-          transform: translate(100%, -50%) scale(0.8) !important;
-          z-index: 2 !important;
-          width: 100px !important;
-          height: auto !important;
+          left: calc(50% + 85px) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
+          z-index: 5 !important;
         }
         .hive-image:nth-child(6) {
+          left: calc(50% + 110px) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
+          z-index: 4 !important;
+        }
+        
+        /* 모바일에서 활성 이미지 (중앙) */
+        .hive-image.mobile-active {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(140%, -50%) scale(0.7) !important;
-          z-index: 1 !important;
+          transform: translate(-50%, -50%) scale(1.4) !important;
+          z-index: 30 !important;
           width: 100px !important;
-          height: auto !important;
+          height: 200px !important;
+          border: 2px solid #7BE495 !important;
+          box-shadow: 0 0 15px rgba(123, 228, 149, 0.8) !important;
         }
-
-              /* 모바일 최적화된 활성 이미지 */
-        .hive-image.active {
+              .video-phone {
+          width: 120px !important;
+          height: 240px !important;
+          min-width: 100px !important;
+          min-height: 200px !important;
+          border-width: 3px !important;
+          border-radius: 18px !important;
           position: absolute !important;
-          left: 50% !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(1.1) !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) rotate(-2deg) !important;
           z-index: 10 !important;
-          width: 180px !important;
-          height: 360px !important;
-          border-radius: 16px !important;
-          border: 3px solid #7BE495 !important;
-          background-color: #95e19c !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 25px rgba(123, 228, 149, 0.4) !important;
-          will-change: transform, box-shadow, opacity !important;
-          overflow: hidden !important;
         }
-      .video-phone {
-        width: 180px !important;
-        height: 360px !important;
-        min-width: 160px !important;
-        min-height: 320px !important;
-        border-width: 6px !important;
-        border-radius: 20px !important;
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) rotate(-2deg) !important;
-        z-index: 10 !important;
-      }
       #slide-prev {
         left: 10px !important;
         top: 85% !important;
@@ -666,30 +673,24 @@
         height: 36px;
         font-size: 1.5rem;
       }
-      /* 모바일 최적화된 슬라이드 네비게이션 버튼 */
+      /* 슬라이드 네비게이션 버튼 */
       #slide-prev, #slide-next {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 1.4rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 1rem !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
         background: rgba(0,0,0,0.7) !important;
         border-radius: 50% !important;
         z-index: 20 !important;
-        border: none !important;
-        color: #7BE495 !important;
-        cursor: pointer !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
       }
       
       #slide-prev {
-        left: 5px !important;
+        left: 8px !important;
       }
       
       #slide-next {
-        right: 5px !important;
+        right: 8px !important;
       }
       
       /* 피처 그리드 */
@@ -2088,7 +2089,13 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        // 모바일과 PC 모두 동일한 로직 사용
+        // 모바일에서 이미지 클릭 처리
+        if (window.innerWidth <= 768) {
+          handleMobileImageClick(img, i);
+          return;
+        }
+        
+        // PC에서 기존 로직
         const isActive = img.classList.contains('active');
         if (!isActive) {
           slideIndex = i;
@@ -2099,7 +2106,37 @@
       });
     });
 
-
+    // 모바일에서 이미지 클릭 처리
+    let currentActiveIndex = -1; // 현재 활성화된 이미지 인덱스
+    
+    function handleMobileImageClick(clickedImg, clickedIndex) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      
+      // 이전에 활성화된 이미지가 있다면 원래 위치로 복귀
+      if (currentActiveIndex !== -1) {
+        const prevActiveImg = hiveImages[currentActiveIndex];
+        if (prevActiveImg) {
+          prevActiveImg.classList.remove('mobile-active');
+          resetImageToOriginalPosition(prevActiveImg, currentActiveIndex);
+        }
+      }
+      
+      // 비디오 숨기기
+      if (videoPhone) {
+        videoPhone.style.opacity = '0';
+        videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(0.8)';
+      }
+      
+      // 클릭된 이미지를 중앙으로 이동
+      clickedImg.classList.add('mobile-active');
+      currentActiveIndex = clickedIndex;
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }
     
     // 이미지를 원래 위치로 복귀시키는 함수
     function resetImageToOriginalPosition(img, index) {
@@ -2126,7 +2163,23 @@
       }
     }
     
-
+    // 모바일에서 외부 클릭 시 활성 이미지 해제
+    function handleMobileOutsideClick() {
+      if (window.innerWidth <= 768 && currentActiveIndex !== -1 && !isTransitioning) {
+        const activeImg = hiveImages[currentActiveIndex];
+        if (activeImg) {
+          activeImg.classList.remove('mobile-active');
+          resetImageToOriginalPosition(activeImg, currentActiveIndex);
+          currentActiveIndex = -1;
+          
+          // 비디오 다시 보이기
+          if (videoPhone) {
+            videoPhone.style.opacity = '1';
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(1)';
+          }
+        }
+      }
+    }
 
     const prevBtn = document.getElementById('slide-prev');
     const nextBtn = document.getElementById('slide-next');
