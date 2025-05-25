@@ -1969,11 +1969,11 @@
             videoPhone.style.zIndex = '10';
             
             if (window.innerWidth <= 768) {
-              videoPhone.style.width = '180px';
-              videoPhone.style.height = '360px';
-              videoPhone.style.border = '4px solid #7BE495';
-              videoPhone.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-              videoPhone.style.borderRadius = '20px';
+              videoPhone.style.width = '140px'; // 중앙 비디오 (모바일)
+              videoPhone.style.height = '280px'; // 중앙 비디오 (모바일)
+              videoPhone.style.border = '3px solid #7BE495';
+              videoPhone.style.boxShadow = '0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3)';
+              videoPhone.style.borderRadius = '16px';
             } else {
               videoPhone.style.width = '256px';
               videoPhone.style.height = '512px';
@@ -2004,11 +2004,11 @@
             videoPhone.style.zIndex = targetPosition.zIndex;
             
             if (window.innerWidth <= 768) {
-              videoPhone.style.width = '90px';
-              videoPhone.style.height = '180px';
+              videoPhone.style.width = '70px'; // 주변 비디오 (모바일)
+              videoPhone.style.height = '140px'; // 주변 비디오 (모바일)
               videoPhone.style.border = 'none';
               videoPhone.style.boxShadow = 'none';
-              videoPhone.style.borderRadius = '16px';
+              videoPhone.style.borderRadius = '12px';
             } else {
               videoPhone.style.width = '160px';
               videoPhone.style.height = '320px';
@@ -2027,11 +2027,11 @@
           targetImg.style.zIndex = '10';
           
           if (window.innerWidth <= 768) {
-            targetImg.style.width = '180px';
-            targetImg.style.height = '360px';
-            targetImg.style.border = '4px solid #7BE495';
-            targetImg.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-            targetImg.style.borderRadius = '20px';
+            targetImg.style.width = '140px'; // 중앙 이미지 (모바일)
+            targetImg.style.height = '280px'; // 중앙 이미지 (모바일)
+            targetImg.style.border = '3px solid #7BE495';
+            targetImg.style.boxShadow = '0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3)';
+            targetImg.style.borderRadius = '16px';
           } else {
             targetImg.style.width = '256px';
             targetImg.style.height = '512px';
@@ -2051,14 +2051,14 @@
     // 인덱스에 따른 위치 정보 반환 함수
     function getPositionForIndex(index) {
       if (window.innerWidth <= 768) {
-        // 모바일용 위치 - PC와 동일한 레이아웃
+        // 모바일용 위치 - 좀 더 중앙에 가깝게, 겹침 줄임
         const positions = [
-          { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
-          { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
+          { left: '50%', top: '50%', transform: 'translate(-150%, -50%) scale(0.9)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(-200%, -50%) scale(0.8)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(-250%, -50%) scale(0.7)', zIndex: 1 },
+          { left: '50%', top: '50%', transform: 'translate(50%, -50%) scale(0.9)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(100%, -50%) scale(0.8)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(150%, -50%) scale(0.7)', zIndex: 1 }
         ];
         return positions[index] || positions[0];
       } else {
@@ -2090,16 +2090,17 @@
        img.style.zIndex = positions.zIndex;
        
        if (window.innerWidth <= 768) {
-         img.style.width = '90px';
-         img.style.height = '180px';
+         img.style.width = '70px'; // 모바일 기본 이미지 너비 조정
+         img.style.height = '140px'; // 모바일 기본 이미지 높이 조정
+         img.style.borderRadius = '12px'; // 모바일 기본 이미지 모서리 반경
        } else {
          img.style.width = '160px';
          img.style.height = 'auto';
+         img.style.borderRadius = '24px';
        }
        
        img.style.border = 'none';
        img.style.boxShadow = 'none';
-       img.style.borderRadius = window.innerWidth <= 768 ? '16px' : '24px';
      }
     
          
@@ -2165,16 +2166,16 @@
 </html>
   <style>
     .hive-image {
-      width: 160px;
-      height: auto;
+      width: 160px; /* Default PC width, JS might override for mobile */
+      height: auto; /* Default PC height, JS might override for mobile */
       border-radius: 12px;
-      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-      opacity: 0;
+      /* transition: transform 0.4s ease-out, opacity 0.4s ease-out; */ /* Removed to rely on JS transition */
+      opacity: 0; /* Initial state for animation */
       border: none;
       box-shadow: none;
-      will-change: transform, opacity;
-      transform: translateZ(0); /* 하드웨어 가속 */
-      backface-visibility: hidden;
+      will-change: transform, opacity, width, height, left, top;
+      transform: translateZ(0); /* Hardware acceleration */
+      backface-visibility: hidden; /* Smoother animations */
     }
     .hive-image.visible {
       opacity: 1;
@@ -2702,6 +2703,9 @@
     .video-phone {
       position: absolute;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform, opacity, width, height, left, top; 
+      transform: translateZ(0); 
+      backface-visibility: hidden; 
     }
 
     @media (max-width: 768px) {
