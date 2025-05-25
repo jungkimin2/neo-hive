@@ -592,7 +592,7 @@
          min-height: 240px !important;
          border-width: 3px !important;
          border-radius: 18px !important;
-         z-index: 9 !important;
+         z-index: 10 !important;
          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
        }
       #slide-prev {
@@ -797,27 +797,7 @@
       transition: opacity 0.4s ease;
       box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
       will-change: transform, box-shadow, opacity;
-      z-index: 9 !important;
     }
-</body>
-<script>
-  document.querySelectorAll('.hive-image').forEach(img => {
-    img.addEventListener('click', () => {
-      document.querySelectorAll('.hive-image').forEach(i => {
-        i.classList.remove('active');
-        i.style.zIndex = 1;
-      });
-
-      img.classList.add('active');
-      img.style.zIndex = 11;
-
-      const videoBox = document.querySelector('.video-phone');
-      if (videoBox) {
-        videoBox.style.zIndex = 9;
-      }
-    });
-  });
-</script>
 
     /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
     /* 네오 스마트 비디오 슬라이드 애니메이션 */
@@ -888,73 +868,6 @@
       transform: translateY(-4px) !important;
     }
 </style>
-  <style>
-  .flip-container {
-    position: relative;
-    z-index: 5;
-    perspective: 1000px;
-    width: 100%;
-    height: auto;
-    pointer-events: auto;
-  }
-
-  .flipper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.8s ease;
-  }
-
-  .flip-container:hover .flipper {
-    transform: rotateY(180deg);
-  }
-
-  .neo-smart-logo.front,
-  .back {
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: 16px;
-  }
-
-  .neo-smart-logo.front {
-    display: block;
-  }
-
-  .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transform: rotateY(180deg);
-    /* Green neon glow */
-    filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
-  }
-  .back-text-overlay {
-    opacity: 0;
-    transition: opacity 0.4s ease-in 0.3s;
-    position: absolute;
-    top: 50%;
-    left: calc(50% - 50px);
-    transform: translate(-50%, -35%) rotateY(180deg);
-    color: #7BE495;
-    text-align: left;
-    font-size: 0.9rem;
-    font-weight: bold;
-    z-index: 2;
-    width: 100%;
-    pointer-events: none;
-    text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
-    line-height: 1.6;
-  }
-
-  .flip-container:hover .back-text-overlay {
-    opacity: 1;
-  }
-  .flip-container:not(:hover) .back-text-overlay {
-    transition-delay: 0s !important;
-  }
-  </style>
 </head>
 <body>
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
@@ -1296,6 +1209,73 @@
             </div>
           </div>
         </div>
+  <style>
+  .flip-container {
+    position: relative;
+    z-index: 5;
+    perspective: 1000px;
+    width: 100%;
+    height: auto;
+    pointer-events: auto;
+  }
+
+  .flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+  }
+
+  .flip-container:hover .flipper {
+    transform: rotateY(180deg);
+  }
+
+  .neo-smart-logo.front,
+  .back {
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+  }
+
+  .neo-smart-logo.front {
+    display: block;
+  }
+
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: rotateY(180deg);
+    /* Green neon glow */
+    filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
+  }
+  .back-text-overlay {
+    opacity: 0;
+    transition: opacity 0.4s ease-in 0.3s;
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 50px);
+    transform: translate(-50%, -35%) rotateY(180deg);
+    color: #7BE495;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 2;
+    width: 100%;
+    pointer-events: none;
+    text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
+    line-height: 1.6;
+  }
+
+  .flip-container:hover .back-text-overlay {
+    opacity: 1;
+  }
+  .flip-container:not(:hover) .back-text-overlay {
+    transition-delay: 0s !important;
+  }
+  </style>
         <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
           <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
