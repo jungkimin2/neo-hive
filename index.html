@@ -1958,68 +1958,100 @@
       const containerRect = container.getBoundingClientRect();
 
       requestAnimationFrame(() => {
-        // Reset all images with optimized transitions
-        hiveImages.forEach((img) => {
+        // Reset all images to their original positions
+        hiveImages.forEach((img, index) => {
           img.classList.remove('active');
-          img.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
-          img.style.transform = img.dataset.originalTransform + ' translateZ(0)';
-          img.style.left = img.dataset.originalLeft;
-          img.style.top = img.dataset.originalTop;
-          img.style.zIndex = img.dataset.originalZ;
+          resetImageToOriginalPosition(img, index);
         });
 
         if (idx === -1) {
-          // Center video - 간소화된 애니메이션
+          // 비디오가 중앙으로
           if (videoPhone) {
-            const centerX = containerRect.width / 2;
-            const centerY = containerRect.height / 2;
-            videoPhone.style.display = 'block';
-            videoPhone.style.border = '10px solid #7BE495';
-            videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
-            videoPhone.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
-            videoPhone.style.left = `${centerX}px`;
-            videoPhone.style.top = `${centerY}px`;
-            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) translateZ(0)';
+            videoPhone.style.transition = 'all 0.4s ease-out';
+            videoPhone.style.left = '50%';
+            videoPhone.style.top = '50%';
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
             videoPhone.style.zIndex = '10';
-            videoPhone.style.width = videoPhone.dataset.originalWidth;
-            videoPhone.style.height = videoPhone.dataset.originalHeight;
-            videoPhone.style.opacity = '1';
+            
+            // 모바일과 PC 구분하여 크기 설정
+            if (window.innerWidth <= 768) {
+              videoPhone.style.width = '140px';
+              videoPhone.style.height = '280px';
+              videoPhone.style.border = '3px solid #7BE495';
+            } else {
+              videoPhone.style.width = '256px';
+              videoPhone.style.height = '512px';
+              videoPhone.style.border = '10px solid #7BE495';
+            }
+            videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
           }
         } else if (hiveImages[idx]) {
+          // 이미지가 중앙으로, 비디오는 그 이미지 자리로
           const targetImg = hiveImages[idx];
-          const imgRect = targetImg.getBoundingClientRect();
-
+          
+          // 비디오를 클릭된 이미지의 원래 위치로 이동
           if (videoPhone) {
-            // Position video over the clicked image's original spot
-            const posX = imgRect.left + imgRect.width / 2 - containerRect.left;
-            const posY = imgRect.top + imgRect.height / 2 - containerRect.top;
-            videoPhone.style.display = 'block';
-            videoPhone.style.border = 'none';
+            const positions = getPositionForIndex(idx);
+            videoPhone.style.transition = 'all 0.4s ease-out';
+            videoPhone.style.left = positions.left;
+            videoPhone.style.top = positions.top;
+            videoPhone.style.transform = positions.transform + ' rotate(-2deg)';
+            videoPhone.style.zIndex = positions.zIndex;
+            
+            // 모바일과 PC 구분하여 크기 설정
+            if (window.innerWidth <= 768) {
+              videoPhone.style.width = '70px';
+              videoPhone.style.height = 'auto';
+              videoPhone.style.border = 'none';
+            } else {
+              videoPhone.style.width = '160px';
+              videoPhone.style.height = 'auto';
+              videoPhone.style.border = 'none';
+            }
             videoPhone.style.boxShadow = 'none';
-            videoPhone.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
-            videoPhone.style.left = `${posX}px`;
-            videoPhone.style.top = `${posY}px`;
-            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) translateZ(0)';
-            videoPhone.style.zIndex = targetImg.dataset.originalZ;
-            videoPhone.style.width = `${imgRect.width}px`;
-            videoPhone.style.height = `${imgRect.height}px`;
           }
 
-          // Move clicked image to center
-          const centerX = containerRect.width / 2;
-          const centerY = containerRect.height / 2;
+          // 클릭된 이미지를 중앙으로 이동
           targetImg.classList.add('active');
-          targetImg.style.left = `${centerX}px`;
-          targetImg.style.top = `${centerY}px`;
-          targetImg.style.transform = 'translate(-50%, -50%) scale(1) translateZ(0)';
+          targetImg.style.transition = 'all 0.4s ease-out';
+          targetImg.style.left = '50%';
+          targetImg.style.top = '50%';
+          targetImg.style.transform = 'translate(-50%, -50%)';
           targetImg.style.zIndex = '10';
         }
         
         // 전환 완료 후 플래그 리셋
         setTimeout(() => {
           isTransitioning = false;
-        }, 300);
+        }, 400);
       });
+    }
+    
+    // 인덱스에 따른 위치 정보 반환 함수
+    function getPositionForIndex(index) {
+      if (window.innerWidth <= 768) {
+        // 모바일용 위치
+        const positions = [
+          { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 },
+          { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }
+        ];
+        return positions[index] || positions[0];
+      } else {
+        // PC용 위치
+        const positions = [
+          { left: '50%', top: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
+          { left: '50%', top: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
+        ];
+        return positions[index] || positions[0];
+      }
     }
 
     hiveImages.forEach((img, i) => {
