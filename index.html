@@ -1963,19 +1963,16 @@
           });
 
           if (videoPhone) {
-            videoPhone.classList.add('center');
-            videoPhone.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             videoPhone.style.left = '50%';
             videoPhone.style.top = '50%';
             videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
             videoPhone.style.zIndex = '10';
-            
             if (window.innerWidth <= 768) {
-              videoPhone.style.width = '140px'; // 중앙 비디오 (모바일)
-              videoPhone.style.height = '280px'; // 중앙 비디오 (모바일)
-              videoPhone.style.border = '3px solid #7BE495';
-              videoPhone.style.boxShadow = '0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3)';
-              videoPhone.style.borderRadius = '16px';
+              videoPhone.style.width = '180px';
+              videoPhone.style.height = '360px';
+              videoPhone.style.border = '4px solid #7BE495';
+              videoPhone.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
+              videoPhone.style.borderRadius = '20px';
             } else {
               videoPhone.style.width = '256px';
               videoPhone.style.height = '512px';
@@ -1997,21 +1994,24 @@
             }
           });
 
-          // 비디오를 클릭된 이미지의 원래 위치로 이동
+          // 비디오를 클릭된 이미지의 원래 위치로 이동 (모바일)
           if (videoPhone) {
             videoPhone.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            videoPhone.style.left = targetPosition.left;
-            videoPhone.style.top = targetPosition.top;
-            videoPhone.style.transform = targetPosition.transform;
-            videoPhone.style.zIndex = targetPosition.zIndex;
-            
             if (window.innerWidth <= 768) {
-              videoPhone.style.width = '70px'; // 주변 비디오 (모바일)
-              videoPhone.style.height = '140px'; // 주변 비디오 (모바일)
+              videoPhone.style.left = targetPosition.left;
+              videoPhone.style.top = targetPosition.top;
+              videoPhone.style.transform = targetPosition.transform;
+              videoPhone.style.zIndex = targetPosition.zIndex;
+              videoPhone.style.width = '90px';
+              videoPhone.style.height = '180px';
               videoPhone.style.border = 'none';
               videoPhone.style.boxShadow = 'none';
-              videoPhone.style.borderRadius = '12px';
+              videoPhone.style.borderRadius = '16px';
             } else {
+              videoPhone.style.left = targetPosition.left;
+              videoPhone.style.top = targetPosition.top;
+              videoPhone.style.transform = targetPosition.transform;
+              videoPhone.style.zIndex = targetPosition.zIndex;
               videoPhone.style.width = '160px';
               videoPhone.style.height = '320px';
               videoPhone.style.border = 'none';
@@ -2027,13 +2027,12 @@
           targetImg.style.top = '50%';
           targetImg.style.transform = 'translate(-50%, -50%)';
           targetImg.style.zIndex = '10';
-          
           if (window.innerWidth <= 768) {
-            targetImg.style.width = '140px'; // 중앙 이미지 (모바일)
-            targetImg.style.height = '280px'; // 중앙 이미지 (모바일)
-            targetImg.style.border = '3px solid #7BE495';
-            targetImg.style.boxShadow = '0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3)';
-            targetImg.style.borderRadius = '16px';
+            targetImg.style.width = '180px';
+            targetImg.style.height = '360px';
+            targetImg.style.border = '4px solid #7BE495';
+            targetImg.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
+            targetImg.style.borderRadius = '20px';
           } else {
             targetImg.style.width = '256px';
             targetImg.style.height = '512px';
