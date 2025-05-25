@@ -2579,3 +2579,90 @@
       }
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Find all .hive-image elements
+      const hiveImages = document.querySelectorAll('.hive-image');
+      const videoPhone = document.querySelector('.video-phone');
+      if (!videoPhone) return;
+      // Save initial video phone transform for fallback
+      const videoPhoneInitialTransform = videoPhone.style.transform;
+      // Save initial video phone position/size for fallback
+      const videoPhoneInitialStyle = {
+        left: videoPhone.style.left,
+        top: videoPhone.style.top,
+        width: videoPhone.style.width,
+        height: videoPhone.style.height,
+        zIndex: videoPhone.style.zIndex,
+        border: videoPhone.style.border,
+        borderRadius: videoPhone.style.borderRadius
+      };
+
+      hiveImages.forEach(image => {
+        image.addEventListener('click', function () {
+          // Get the video element inside .video-phone
+          const videoEl = videoPhone.querySelector('video');
+          if (!videoEl) return;
+          // Swap src attributes
+          const imgSrc = image.src;
+          const imgCategory = image.getAttribute('data-category');
+          // For video, use current src (may be absolute)
+          const videoSrc = videoEl.currentSrc || videoEl.src;
+          const videoCategory = videoPhone.getAttribute('data-category');
+          // Swap src
+          image.src = videoSrc;
+          videoEl.src = imgSrc;
+          // Swap data-category
+          image.setAttribute('data-category', videoCategory || '');
+          videoPhone.setAttribute('data-category', imgCategory || '');
+          // Swap inline styles (transform, left, top, z-index, width, height, border, borderRadius)
+          // Save image's position-related styles
+          const imgStyle = window.getComputedStyle(image);
+          const imgTransform = imgStyle.transform !== 'none' ? imgStyle.transform : image.style.transform;
+          const imgLeft = image.style.left;
+          const imgTop = image.style.top;
+          const imgWidth = image.style.width;
+          const imgHeight = image.style.height;
+          const imgZ = image.style.zIndex;
+          const imgBorder = image.style.border;
+          const imgBorderRadius = image.style.borderRadius;
+
+          // Swap transform
+          const tempTransform = image.style.transform;
+          image.style.transform = videoPhone.style.transform;
+          videoPhone.style.transform = tempTransform;
+          // Swap left/top
+          const tempLeft = image.style.left, tempTop = image.style.top;
+          image.style.left = videoPhone.style.left;
+          image.style.top = videoPhone.style.top;
+          videoPhone.style.left = tempLeft;
+          videoPhone.style.top = tempTop;
+          // Swap z-index
+          const tempZ = image.style.zIndex;
+          image.style.zIndex = videoPhone.style.zIndex;
+          videoPhone.style.zIndex = tempZ;
+          // Swap width/height
+          const tempWidth = image.style.width, tempHeight = image.style.height;
+          image.style.width = videoPhone.style.width;
+          image.style.height = videoPhone.style.height;
+          videoPhone.style.width = tempWidth;
+          videoPhone.style.height = tempHeight;
+          // Swap border/borderRadius if present
+          const tempBorder = image.style.border, tempBorderRadius = image.style.borderRadius;
+          image.style.border = videoPhone.style.border;
+          image.style.borderRadius = videoPhone.style.borderRadius;
+          videoPhone.style.border = tempBorder;
+          videoPhone.style.borderRadius = tempBorderRadius;
+
+          // Optionally, swap .active class if relevant
+          if (image.classList.contains('active')) {
+            image.classList.remove('active');
+            videoPhone.classList.add('active');
+          } else if (videoPhone.classList.contains('active')) {
+            videoPhone.classList.remove('active');
+            image.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
