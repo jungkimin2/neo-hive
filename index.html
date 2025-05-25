@@ -2163,6 +2163,19 @@
     }, 800);
   });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.querySelector('.neo-smart-video');
+  if (video) {
+    video.addEventListener('animationend', () => {
+      video.classList.remove('tag-slide');
+      video.style.transform = '';
+      video.style.left = '';
+      video.style.top = '';
+    });
+  }
+});
+</script>
 </html>
   <style>
     .hive-image {
