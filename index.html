@@ -469,6 +469,33 @@
         margin: 32px 0 !important;
         padding: 0 !important;
       }
+      
+      /* 모바일에서 하이브 라벨 위치 조정 */
+      .hive-label-left {
+        top: 60px !important;
+        left: 20px !important;
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+      }
+      
+      .hive-label-left img {
+        width: 18px !important;
+        height: 18px !important;
+        margin-right: 4px !important;
+      }
+      
+      .hive-label-right {
+        top: 60px !important;
+        right: 20px !important;
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+      }
+      
+      .hive-label-right img {
+        width: 18px !important;
+        height: 18px !important;
+        margin-right: 4px !important;
+      }
       .hive-image {
         width: 120px !important;
         height: auto !important;
@@ -791,10 +818,10 @@
       </p>
 
       <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
-        <div style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
+        <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
           <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> 네오 하이브 팀 결성
         </div>
-        <div style="position: absolute; top: 100px; right: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
+        <div class="hive-label-right" style="position: absolute; top: 100px; right: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
           <img src="./images/neo41.png" alt="위치 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> 주변 제휴센터 예약
         </div>
         <!-- Background glow -->
@@ -2158,7 +2185,7 @@
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         gap: 16px !important;
-        margin: 0 !important;
+        margin: 24px 0 0 0 !important;
         padding: 0 !important;
         justify-items: stretch !important;
       }
