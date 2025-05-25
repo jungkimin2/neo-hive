@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
-  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
@@ -469,38 +470,43 @@
       }
       /* 하이브 쇼케이스 슬라이더 */
       .hive-showcase {
-        height: 400px !important;
+        height: 320px !important;
         overflow: visible;
         position: relative !important;
         margin: 32px 0 !important;
         padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
       
       /* 모바일에서 하이브 라벨 위치 조정 */
       .hive-label-left {
-        top: 60px !important;
-        left: 20px !important;
-        font-size: 0.75rem !important;
-        padding: 4px 8px !important;
+        top: 40px !important;
+        left: 16px !important;
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+        z-index: 25 !important;
       }
       
       .hive-label-left img {
-        width: 18px !important;
-        height: 18px !important;
-        margin-right: 4px !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 3px !important;
       }
       
       .hive-label-right {
-        top: 60px !important;
-        right: 20px !important;
-        font-size: 0.75rem !important;
-        padding: 4px 8px !important;
+        top: 40px !important;
+        right: 16px !important;
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+        z-index: 25 !important;
       }
       
       .hive-label-right img {
-        width: 18px !important;
-        height: 18px !important;
-        margin-right: 4px !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 3px !important;
       }
       
       /* 모바일에서만 텍스트 변경 */
@@ -528,8 +534,8 @@
         font-weight: 500 !important;
       }
               .hive-image {
-          width: 100px !important;
-          height: auto !important;
+          width: 80px !important;
+          height: 160px !important;
           border-radius: 12px !important;
           transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
           opacity: 0 !important;
@@ -538,6 +544,8 @@
           will-change: transform, opacity !important;
           transform: translateZ(0) !important;
           backface-visibility: hidden !important;
+          object-fit: cover !important;
+          position: absolute !important;
         }
         
         .hive-image.visible {
@@ -546,27 +554,64 @@
         }
         
         .hive-image.active {
-          width: 180px !important;
-          height: 360px !important;
-          border-radius: 24px !important;
-          border: 4px solid #7BE495 !important;
-          box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
+          width: 140px !important;
+          height: 280px !important;
+          border-radius: 20px !important;
+          border: 3px solid #7BE495 !important;
+          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
+          z-index: 15 !important;
         }
-      /* First slide on the left (strongest leftmost) */
-      .slide-in-left:nth-of-type(1) {
-        transform: translate(-120%, -50%) scale(0.7) !important;
-      }
-      /* First slide on the right (strongest rightmost) */
-      .slide-in-right:nth-of-type(1) {
-        transform: translate(120%, -50%) scale(0.7) !important;
-      }
+              /* 모바일 중앙 배열 - 좌측 이미지들 */
+        .slide-in-left:nth-of-type(1) {
+          left: calc(50% - 120px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.9) !important;
+          z-index: 3 !important;
+        }
+        .slide-in-left:nth-of-type(2) {
+          left: calc(50% - 160px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
+          z-index: 2 !important;
+        }
+        .slide-in-left:nth-of-type(3) {
+          left: calc(50% - 200px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
+          z-index: 1 !important;
+        }
+        
+        /* 모바일 중앙 배열 - 우측 이미지들 */
+        .slide-in-right:nth-of-type(1) {
+          left: calc(50% + 120px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.9) !important;
+          z-index: 3 !important;
+        }
+        .slide-in-right:nth-of-type(2) {
+          left: calc(50% + 160px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
+          z-index: 2 !important;
+        }
+        .slide-in-right:nth-of-type(3) {
+          left: calc(50% + 200px) !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
+          z-index: 1 !important;
+        }
               .video-phone {
-          width: 180px !important;
-          height: 360px !important;
+          width: 140px !important;
+          height: 280px !important;
           min-width: 120px !important;
           min-height: 240px !important;
-          border-width: 4px !important;
-          border-radius: 24px !important;
+          border-width: 3px !important;
+          border-radius: 20px !important;
+          position: absolute !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) rotate(-2deg) !important;
+          z-index: 10 !important;
         }
       #slide-prev {
         left: 10px !important;
@@ -583,18 +628,22 @@
       }
       /* 슬라이드 네비게이션 버튼 */
       #slide-prev, #slide-next {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 1.2rem !important;
-        top: 90% !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 1rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        background: rgba(0,0,0,0.7) !important;
+        border-radius: 50% !important;
+        z-index: 20 !important;
       }
       
       #slide-prev {
-        left: 16px !important;
+        left: 8px !important;
       }
       
       #slide-next {
-        right: 16px !important;
+        right: 8px !important;
       }
       
       /* 피처 그리드 */
@@ -716,6 +765,28 @@
     
     body {
       position: relative;
+    }
+    
+    /* 성능 최적화 */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    /* 모바일 성능 최적화 */
+    @media (max-width: 768px) {
+      * {
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+      }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
       white-space: nowrap;
@@ -889,30 +960,30 @@
         <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
         <!-- Left 3 images stacked behind center -->
-        <img src="./images/neohive9.png"
+        <img src="./images/neohive9.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
-        <img src="./images/neohive5.png"
+        <img src="./images/neohive5.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
-        <img src="./images/neohive6.png"
+        <img src="./images/neohive6.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
         <!-- Right 3 images stacked behind center -->
-        <img src="./images/neohive7.png"
+        <img src="./images/neohive7.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(100%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
-        <img src="./images/neohive8.png"
+        <img src="./images/neohive8.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(150%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
-        <img src="./images/neohive4.png"
+        <img src="./images/neohive4.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll"
              style="position:absolute; left:50%; top:50%; transform:translate(200%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
         <!-- Center phone -->
         <div class="video-phone" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); animation: floatY 4s ease-in-out infinite; z-index: 10;">
-          <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>
+          <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div>
       <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
@@ -935,7 +1006,7 @@
           <div class="flow-step">
             <div class="step-number">1</div>
             <div class="flow-icon" style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, rgba(98, 210, 162, 0.3) 0%, rgba(157, 243, 196, 0.15) 100%); display: flex; justify-content: center; align-items: center; margin-bottom: 12px; margin-left: 0;">
-              <img src="./images/neo43.png" alt="설치 아이콘" style="width: 36px; height: 36px; object-fit: contain;">
+              <img src="./images/neo43.png" loading="lazy" alt="설치 아이콘" style="width: 36px; height: 36px; object-fit: contain;">
             </div>
             <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">매칭</div>
             <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">지역내 운동 목표 기반<br>파트너를 매칭</div>
@@ -1218,7 +1289,7 @@
   }
   </style>
         <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
-          <video src="./videos/neofits.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>
+          <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div> <!-- End of .hive-showcase -->
   <style>
@@ -1763,22 +1834,19 @@
     </form>
   </div>
   <script>
-    // 페이지 로드 시 스크롤 위치 초기화
-    window.addEventListener('beforeunload', function() {
-      window.scrollTo(0, 0);
-    });
-    
-    window.addEventListener('load', function() {
-      // 페이지 로드 완료 후 스크롤을 맨 위로 강제 이동
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 100);
-    });
-    
-    // 브라우저의 자동 스크롤 복원 비활성화
+    // 페이지 로드 시 스크롤 위치 초기화 - 최적화
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
+    
+    // DOMContentLoaded로 더 빠른 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      window.scrollTo(0, 0);
+    });
+    
+    window.addEventListener('beforeunload', function() {
+      window.scrollTo(0, 0);
+    });
     
     function openForm() {
       document.getElementById('formModal').style.display = 'block';
@@ -1836,15 +1904,20 @@
     });
   </script>
   <script>
+    // 성능 최적화된 Intersection Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+          // requestAnimationFrame으로 애니메이션 최적화
+          requestAnimationFrame(() => {
+            entry.target.classList.add("visible");
+          });
           observer.unobserve(entry.target);
         }
       });
     }, {
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: '0px 0px -50px 0px', // 더 빠른 트리거
+      threshold: 0.1 // 10%만 보여도 트리거
     });
 
     document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
@@ -1939,7 +2012,6 @@
             videoPhone.style.zIndex = targetImg.dataset.originalZ;
             videoPhone.style.width = `${imgRect.width}px`;
             videoPhone.style.height = `${imgRect.height}px`;
-            videoPhone.style.opacity = '0.3';
           }
 
           // Move clicked image to center
