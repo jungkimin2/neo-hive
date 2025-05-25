@@ -408,15 +408,21 @@
         justify-content: space-between;
         align-items: center;
         padding: 12px 16px;
+        height: 56px;
       }
       .logo-container {
         margin-left: -22px;
         margin-right: auto;
         justify-content: flex-start;
-        padding: 4px 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
       }
       .logo-container img {
-        max-height: 36px;
+        max-height: 32px;
+        height: 32px;
+        width: auto;
       }
       .desktop-nav {
         display: none;
@@ -842,7 +848,16 @@
   <style>
     /* 모바일 네비게이션 햄버거 버튼 노출 */
     @media (max-width: 768px) {
-      #mobile-nav-toggle { display: block !important; }
+      #mobile-nav-toggle { 
+        display: flex !important; 
+        align-items: center !important;
+        justify-content: center !important;
+        height: 32px !important;
+        width: 32px !important;
+        font-size: 1.5rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
       .desktop-nav { display: none !important; }
     }
     @media (min-width: 769px) {
