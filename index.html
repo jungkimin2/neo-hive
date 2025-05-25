@@ -2043,14 +2043,14 @@
     // 인덱스에 따른 위치 정보 반환 함수
     function getPositionForIndex(index) {
       if (window.innerWidth <= 768) {
-        // 모바일용 위치
+        // 모바일용 위치 - 간격 조정
         const positions = [
-          { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 },
-          { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }
+          { left: '50%', top: '50%', transform: 'translate(-140%, -50%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(-180%, -50%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(-220%, -50%) scale(0.85)', zIndex: 1 },
+          { left: '50%', top: '50%', transform: 'translate(40%, -50%) scale(0.95)', zIndex: 3 },
+          { left: '50%', top: '50%', transform: 'translate(80%, -50%) scale(0.9)', zIndex: 2 },
+          { left: '50%', top: '50%', transform: 'translate(120%, -50%) scale(0.85)', zIndex: 1 }
         ];
         return positions[index] || positions[0];
       } else {
@@ -2130,7 +2130,9 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        if (slideIndex === -1) slideIndex = hiveImages.length - 1;
+        // 좌측 이미지들(0,1,2)만 순환
+        if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
+        else if (slideIndex <= 0) slideIndex = 2;
         else slideIndex = Math.max(slideIndex - 1, 0);
         showSlide(slideIndex);
       });
@@ -2141,8 +2143,10 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        if (slideIndex === hiveImages.length - 1) slideIndex = -1;
-        else slideIndex = Math.min(slideIndex + 1, hiveImages.length - 1);
+        // 우측 이미지들(3,4,5)만 순환
+        if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
+        else if (slideIndex >= 5) slideIndex = 3;
+        else slideIndex = Math.min(slideIndex + 1, 5);
         showSlide(slideIndex);
       });
     }
@@ -2526,10 +2530,29 @@
         object-fit: contain !important;
         aspect-ratio: 1/2 !important;
         display: block !important;
+        border: 4px solid #7BE495 !important;
+        box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+        border-radius: 20px !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
+      
       .video-phone {
         width: 180px !important;
         height: 360px !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+
+      .hive-image {
+        width: 90px !important;
+        height: 180px !important;
+        border-radius: 16px !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+
+      .hive-showcase {
+        margin-top: 16px !important;
+        padding: 0 16px !important;
+        touch-action: pan-x pinch-zoom !important;
       }
     }
   </style>
@@ -2565,40 +2588,70 @@
 
       // swap 함수: 두 요소의 스타일을 완전히 교환 (모바일 전용)
       function swapPositions(img, video) {
-        const imgStyle = {
-          left: img.style.left,
-          top: img.style.top,
-          transform: img.style.transform,
-          zIndex: img.style.zIndex,
-          width: img.style.width,
-          height: img.style.height,
-          border: img.style.border,
-          borderRadius: img.style.borderRadius,
-          boxShadow: img.style.boxShadow,
-          backgroundColor: img.style.backgroundColor,
-          opacity: img.style.opacity,
-          transition: 'all 0.4s ease-out'
-        };
-        const videoStyle = {
-          left: video.style.left,
-          top: video.style.top,
-          transform: video.style.transform,
-          zIndex: video.style.zIndex,
-          width: video.style.width,
-          height: video.style.height,
-          border: video.style.border,
-          borderRadius: video.style.borderRadius,
-          boxShadow: video.style.boxShadow,
-          backgroundColor: video.style.backgroundColor,
-          opacity: video.style.opacity,
-          transition: 'all 0.4s ease-out'
-        };
+        if (window.innerWidth <= 768) {
+          const imgStyle = {
+            left: img.style.left,
+            top: img.style.top,
+            transform: img.style.transform,
+            zIndex: img.style.zIndex,
+            width: img.style.width,
+            height: img.style.height,
+            border: img.style.border,
+            borderRadius: img.style.borderRadius,
+            boxShadow: img.style.boxShadow,
+            backgroundColor: img.style.backgroundColor,
+            opacity: img.style.opacity,
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+          };
+          
+          const videoStyle = {
+            left: video.style.left,
+            top: video.style.top,
+            transform: video.style.transform,
+            zIndex: video.style.zIndex,
+            width: video.style.width,
+            height: video.style.height,
+            border: video.style.border,
+            borderRadius: video.style.borderRadius,
+            boxShadow: video.style.boxShadow,
+            backgroundColor: video.style.backgroundColor,
+            opacity: video.style.opacity,
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+          };
 
-        // 완벽한 스타일 교환
-        Object.keys(imgStyle).forEach(key => {
-          img.style[key] = videoStyle[key];
-          video.style[key] = imgStyle[key];
-        });
+          // 활성화된 이미지 스타일
+          const activeImgStyle = {
+            width: '180px',
+            height: '360px',
+            border: '4px solid #7BE495',
+            borderRadius: '20px',
+            boxShadow: '0 0 20px rgba(123, 228, 149, 0.6)',
+            zIndex: '10'
+          };
+
+          // 비활성화된 이미지 스타일
+          const inactiveImgStyle = {
+            width: '90px',
+            height: '180px',
+            border: 'none',
+            borderRadius: '16px',
+            boxShadow: 'none'
+          };
+
+          // 스타일 교환 및 적용
+          if (img.classList.contains('active')) {
+            Object.assign(img.style, { ...imgStyle, ...inactiveImgStyle });
+            Object.assign(video.style, { ...videoStyle, ...activeImgStyle });
+          } else {
+            Object.assign(img.style, { ...imgStyle, ...activeImgStyle });
+            Object.assign(video.style, { ...videoStyle, ...inactiveImgStyle });
+          }
+
+          // 클래스 토글
+          img.classList.toggle('active');
+        } else {
+          // ... existing PC swap code ...
+        }
       }
 
             // getPositionForIndex 함수를 DOMContentLoaded 내부에 정의
@@ -2697,5 +2750,43 @@
           }
         });
       });
+    });
+  </script>
+  <script>
+    // 터치 이벤트 처리 추가
+    document.addEventListener("DOMContentLoaded", function () {
+      const showcase = document.querySelector('.hive-showcase');
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      showcase.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+
+      showcase.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchEndX - touchStartX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            // 오른쪽으로 스와이프
+            if (window.innerWidth <= 768) {
+              const prevBtn = document.getElementById('slide-prev');
+              if (prevBtn) prevBtn.click();
+            }
+          } else {
+            // 왼쪽으로 스와이프
+            if (window.innerWidth <= 768) {
+              const nextBtn = document.getElementById('slide-next');
+              if (nextBtn) nextBtn.click();
+            }
+          }
+        }
+      }
     });
   </script>
