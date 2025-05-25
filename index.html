@@ -548,42 +548,48 @@
           z-index: 15 !important;
         }
               /* 모바일 중앙 배열 - 좌측 이미지들 (팀 결성) */
-        .team-formation:nth-of-type(1) {
-          left: calc(50% - 100px) !important;
+        .team-formation {
+          position: absolute !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.85) !important;
+          transition: all 0.3s ease-out !important;
+        }
+        
+        .team-formation:nth-of-type(1) {
+          left: calc(50% - 80px) !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
           z-index: 3 !important;
         }
         .team-formation:nth-of-type(2) {
-          left: calc(50% - 140px) !important;
-          top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.75) !important;
+          left: calc(50% - 120px) !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
           z-index: 2 !important;
         }
         .team-formation:nth-of-type(3) {
-          left: calc(50% - 180px) !important;
-          top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.65) !important;
+          left: calc(50% - 160px) !important;
+          transform: translate(-50%, -50%) scale(0.6) !important;
           z-index: 1 !important;
         }
         
         /* 모바일 중앙 배열 - 우측 이미지들 (주변 센터 예약) */
-        .center-booking:nth-of-type(1) {
-          left: calc(50% + 100px) !important;
+        .center-booking {
+          position: absolute !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.85) !important;
+          transition: all 0.3s ease-out !important;
+        }
+        
+        .center-booking:nth-of-type(1) {
+          left: calc(50% + 80px) !important;
+          transform: translate(-50%, -50%) scale(0.8) !important;
           z-index: 3 !important;
         }
         .center-booking:nth-of-type(2) {
-          left: calc(50% + 140px) !important;
-          top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.75) !important;
+          left: calc(50% + 120px) !important;
+          transform: translate(-50%, -50%) scale(0.7) !important;
           z-index: 2 !important;
         }
         .center-booking:nth-of-type(3) {
-          left: calc(50% + 180px) !important;
-          top: 50% !important;
-          transform: translate(-50%, -50%) scale(0.65) !important;
+          left: calc(50% + 160px) !important;
+          transform: translate(-50%, -50%) scale(0.6) !important;
           z-index: 1 !important;
         }
               .video-phone {
@@ -946,29 +952,29 @@
         <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
         <!-- Left 3 images stacked behind center (팀 결성 관련) -->
-        <img src="./images/neohive9.png" loading="lazy"
+        <img src="./images/neohive6.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
-        <img src="./images/neohive5.png" loading="lazy"
+        <img src="./images/neohive9.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
-        <img src="./images/neohive6.png" loading="lazy"
+        <img src="./images/neohive5.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
              style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
         <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
-        <img src="./images/neohive7.png" loading="lazy"
+        <img src="./images/neohive4.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(100%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
-        <img src="./images/neohive8.png" loading="lazy"
+        <img src="./images/neohive7.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(150%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
-        <img src="./images/neohive4.png" loading="lazy"
+        <img src="./images/neohive8.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
              style="position:absolute; left:50%; top:50%; transform:translate(200%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
@@ -2028,13 +2034,13 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        // 모바일에서 좌우 이미지 클릭 시 위치 바꾸기
+        // 모바일에서 좌우 이미지 클릭 시 중앙으로 이동 및 위치 바꾸기
         if (window.innerWidth <= 768) {
           const clickedCategory = img.dataset.category;
           
           if (clickedCategory === 'team' || clickedCategory === 'booking') {
-            // 팀 결성과 주변 센터 예약 이미지들의 위치를 바꿈
-            swapImagePositions(clickedCategory);
+            // 클릭된 이미지를 중앙으로 이동하고 위치 바꾸기
+            moveToCenter(img, clickedCategory);
             return;
           }
         }
@@ -2049,58 +2055,99 @@
       });
     });
 
-    // 모바일에서 좌우 이미지 위치 바꾸기 함수
-    function swapImagePositions(clickedCategory) {
+    // 모바일에서 클릭된 이미지를 중앙으로 이동하고 위치 바꾸기
+    function moveToCenter(clickedImg, clickedCategory) {
       if (isTransitioning) return;
       
       isTransitioning = true;
       
+      const container = document.querySelector('.hive-showcase');
+      const containerRect = container.getBoundingClientRect();
+      const centerX = containerRect.width / 2;
+      const centerY = containerRect.height / 2;
+      
+      requestAnimationFrame(() => {
+        // 비디오 숨기기
+        if (videoPhone) {
+          videoPhone.style.opacity = '0';
+          videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(0.8)';
+        }
+        
+        // 클릭된 이미지를 중앙으로 이동
+        clickedImg.style.transition = 'all 0.5s ease-out';
+        clickedImg.style.left = '50%';
+        clickedImg.style.top = '50%';
+        clickedImg.style.transform = 'translate(-50%, -50%) scale(1.2)';
+        clickedImg.style.zIndex = '20';
+        clickedImg.classList.add('active');
+        
+        // 1초 후 위치 바꾸기 실행
+        setTimeout(() => {
+          swapImagePositions();
+          
+          // 중앙 이미지 원래 위치로 복귀
+          setTimeout(() => {
+            clickedImg.classList.remove('active');
+            clickedImg.style.transform = '';
+            clickedImg.style.left = '';
+            clickedImg.style.top = '';
+            clickedImg.style.zIndex = '';
+            
+            // 비디오 다시 보이기
+            if (videoPhone) {
+              videoPhone.style.opacity = '1';
+              videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(1)';
+            }
+            
+            isTransitioning = false;
+          }, 500);
+        }, 1000);
+      });
+    }
+
+    // 모바일에서 좌우 이미지 위치 바꾸기 함수
+    function swapImagePositions() {
       const teamImages = document.querySelectorAll('.team-formation');
       const bookingImages = document.querySelectorAll('.center-booking');
       
-      requestAnimationFrame(() => {
-        // 팀 결성 이미지들을 우측으로, 주변 센터 예약 이미지들을 좌측으로 이동
-        teamImages.forEach((img, index) => {
-          img.style.transition = 'all 0.5s ease-out';
-          img.style.left = `calc(50% + ${100 + (index * 40)}px)`;
-          img.style.transform = `translate(-50%, -50%) scale(${0.85 - (index * 0.1)})`;
-          img.style.zIndex = `${3 - index}`;
-          
-          // 클래스 변경
-          img.classList.remove('slide-in-left', 'team-formation');
-          img.classList.add('slide-in-right', 'center-booking');
-          img.dataset.category = 'booking';
-        });
+      // 팀 결성 이미지들을 우측으로 이동
+      teamImages.forEach((img, index) => {
+        img.style.transition = 'all 0.5s ease-out';
+        img.style.left = `calc(50% + ${80 + (index * 40)}px)`;
+        img.style.transform = `translate(-50%, -50%) scale(${0.8 - (index * 0.1)})`;
+        img.style.zIndex = `${3 - index}`;
         
-        bookingImages.forEach((img, index) => {
-          img.style.transition = 'all 0.5s ease-out';
-          img.style.left = `calc(50% - ${100 + (index * 40)}px)`;
-          img.style.transform = `translate(-50%, -50%) scale(${0.85 - (index * 0.1)})`;
-          img.style.zIndex = `${3 - index}`;
-          
-          // 클래스 변경
-          img.classList.remove('slide-in-right', 'center-booking');
-          img.classList.add('slide-in-left', 'team-formation');
-          img.dataset.category = 'team';
-        });
-        
-        // 라벨도 함께 바꾸기
-        const leftLabel = document.querySelector('.hive-label-left');
-        const rightLabel = document.querySelector('.hive-label-right');
-        
-        if (leftLabel && rightLabel) {
-          // 라벨 내용 교체
-          const leftContent = leftLabel.innerHTML;
-          const rightContent = rightLabel.innerHTML;
-          
-          leftLabel.innerHTML = rightContent;
-          rightLabel.innerHTML = leftContent;
-        }
-        
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 500);
+        // 클래스 변경
+        img.classList.remove('slide-in-left', 'team-formation');
+        img.classList.add('slide-in-right', 'center-booking');
+        img.dataset.category = 'booking';
       });
+      
+      // 주변 센터 예약 이미지들을 좌측으로 이동
+      bookingImages.forEach((img, index) => {
+        img.style.transition = 'all 0.5s ease-out';
+        img.style.left = `calc(50% - ${80 + (index * 40)}px)`;
+        img.style.transform = `translate(-50%, -50%) scale(${0.8 - (index * 0.1)})`;
+        img.style.zIndex = `${3 - index}`;
+        
+        // 클래스 변경
+        img.classList.remove('slide-in-right', 'center-booking');
+        img.classList.add('slide-in-left', 'team-formation');
+        img.dataset.category = 'team';
+      });
+      
+      // 라벨도 함께 바꾸기
+      const leftLabel = document.querySelector('.hive-label-left');
+      const rightLabel = document.querySelector('.hive-label-right');
+      
+      if (leftLabel && rightLabel) {
+        // 라벨 내용 교체
+        const leftContent = leftLabel.innerHTML;
+        const rightContent = rightLabel.innerHTML;
+        
+        leftLabel.innerHTML = rightContent;
+        rightLabel.innerHTML = leftContent;
+      }
     }
 
     const prevBtn = document.getElementById('slide-prev');
