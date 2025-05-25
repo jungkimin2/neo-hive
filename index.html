@@ -2589,65 +2589,59 @@
       // swap 함수: 두 요소의 스타일을 완전히 교환 (모바일 전용)
       function swapPositions(img, video) {
         if (window.innerWidth <= 768) {
-          const imgStyle = {
-            left: img.style.left,
-            top: img.style.top,
-            transform: img.style.transform,
-            zIndex: img.style.zIndex,
-            width: img.style.width,
-            height: img.style.height,
-            border: img.style.border,
-            borderRadius: img.style.borderRadius,
-            boxShadow: img.style.boxShadow,
-            backgroundColor: img.style.backgroundColor,
-            opacity: img.style.opacity,
-            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
-          };
+          const imgIndex = Array.from(document.querySelectorAll('.hive-image')).indexOf(img);
+          const pos = getPositionForIndex(imgIndex);
           
-          const videoStyle = {
-            left: video.style.left,
-            top: video.style.top,
-            transform: video.style.transform,
-            zIndex: video.style.zIndex,
-            width: video.style.width,
-            height: video.style.height,
-            border: video.style.border,
-            borderRadius: video.style.borderRadius,
-            boxShadow: video.style.boxShadow,
-            backgroundColor: video.style.backgroundColor,
-            opacity: video.style.opacity,
-            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
-          };
-
-          // 활성화된 이미지 스타일
-          const activeImgStyle = {
-            width: '180px',
-            height: '360px',
-            border: '4px solid #7BE495',
-            borderRadius: '20px',
-            boxShadow: '0 0 20px rgba(123, 228, 149, 0.6)',
-            zIndex: '10'
-          };
-
-          // 비활성화된 이미지 스타일
-          const inactiveImgStyle = {
-            width: '90px',
-            height: '180px',
-            border: 'none',
-            borderRadius: '16px',
-            boxShadow: 'none'
-          };
-
-          // 스타일 교환 및 적용
           if (img.classList.contains('active')) {
-            Object.assign(img.style, { ...imgStyle, ...inactiveImgStyle });
-            Object.assign(video.style, { ...videoStyle, ...activeImgStyle });
+            // 활성화된 이미지를 원래 위치로
+            img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            img.style.left = pos.left;
+            img.style.top = pos.top;
+            img.style.transform = pos.transform;
+            img.style.zIndex = pos.zIndex;
+            img.style.width = '90px';
+            img.style.height = '180px';
+            img.style.border = 'none';
+            img.style.borderRadius = '16px';
+            img.style.boxShadow = 'none';
+            
+            // 비디오를 중앙으로
+            video.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            video.style.left = '50%';
+            video.style.top = '50%';
+            video.style.transform = 'translate(-50%, -50%)';
+            video.style.zIndex = '10';
+            video.style.width = '180px';
+            video.style.height = '360px';
+            video.style.border = '4px solid #7BE495';
+            video.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
+            video.style.borderRadius = '20px';
           } else {
-            Object.assign(img.style, { ...imgStyle, ...activeImgStyle });
-            Object.assign(video.style, { ...videoStyle, ...inactiveImgStyle });
+            // 이미지를 중앙으로
+            img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            img.style.left = '50%';
+            img.style.top = '50%';
+            img.style.transform = 'translate(-50%, -50%)';
+            img.style.zIndex = '10';
+            img.style.width = '180px';
+            img.style.height = '360px';
+            img.style.border = '4px solid #7BE495';
+            img.style.borderRadius = '20px';
+            img.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
+            
+            // 비디오를 클릭된 이미지의 원래 위치로
+            video.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            video.style.left = pos.left;
+            video.style.top = pos.top;
+            video.style.transform = pos.transform;
+            video.style.zIndex = pos.zIndex;
+            video.style.width = '90px';
+            video.style.height = '180px';
+            video.style.border = 'none';
+            video.style.boxShadow = 'none';
+            video.style.borderRadius = '16px';
           }
-
-          // 클래스 토글
+          
           img.classList.toggle('active');
         } else {
           // ... existing PC swap code ...
