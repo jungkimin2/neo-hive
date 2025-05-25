@@ -290,21 +290,40 @@
     }
 
     @media (max-width: 768px) {
+      /* 전체 모바일 레이아웃 기본 설정 */
+      body {
+        padding-top: 56px !important;
+      }
+      
+      /* 모바일에서 전체 섹션들의 상단 여백 조정 */
+      .section {
+        padding: 60px 16px 40px 16px !important;
+        margin: 0 !important;
+      }
+      
+      /* 첫 번째 섹션(네오 하이브) 특별 처리 */
+      #hive.section {
+        padding-top: 40px !important;
+      }
+      
+      /* 컨테이너 기본 설정 */
+      .container {
+        max-width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 auto !important;
+      }
+      
       .neo-smart-video {
         width: 220px !important;
         height: 440px !important;
       }
+      
       /* 모바일: 네오 스마트 주요 기능 텍스트 레이아웃 및 가독성 개선 */
-      /* Left-align Neo Smart feature text on mobile */
       .section:nth-of-type(3) .smart-feature-text {
         margin: 24px 0 !important;
-        padding: 0 12px !important;
+        padding: 0 16px !important;
         width: 100% !important;
         text-align: left !important;
-      }
-      /* 모바일에서 전체 섹션들의 상단 여백 조정 */
-      .section {
-        padding-top: 100px !important;
       }
       .smart-feature-text h2 {
         font-size: 1.8rem !important;
@@ -349,24 +368,40 @@
       .smart-caption {
         margin-top: 240px !important;
       }
-      /* 모바일: "회원 유지·신규 유입·운영 효율을 한 번에 해결하는 하이브 시스템" span 폰트 크기 줄임 */
-      span[style*="회원 유지·신규 유입·운영 효율"] {
-        font-size: 0.85rem !important;
+      /* 텍스트 가독성 개선 */
+      h1, h2, h3 {
+        word-break: keep-all !important;
+        line-height: 1.4 !important;
       }
-      /* Prevent cutting off the smart system text on mobile */
-      .section:nth-of-type(3) p > span {
-        white-space: nowrap !important;
-        display: inline-block !important;
-        font-size: 0.6rem !important;
-        line-height: 1rem !important;
-        max-width: 100% !important;
-        overflow: visible !important;
-        text-overflow: unset !important;
+      
+      /* 네오 하이브 제목 */
+      #hive h2 {
+        font-size: 1.6rem !important;
+        margin: 0 0 16px 0 !important;
+        padding: 0 !important;
       }
-      /* Reduce font size for Neo Hive description on mobile */
-      .section:nth-of-type(2) p {
-        font-size: 0.9rem !important;
-        line-height: 1.4rem !important;
+      
+      /* 네오 하이브 설명 텍스트 */
+      #hive p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        margin: 0 0 24px 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* 네오 스마트 제목 */
+      #smart h2 {
+        font-size: 1.6rem !important;
+        margin: 0 0 16px 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* 네오 스마트 설명 텍스트 */
+      #smart p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        margin: 0 0 24px 0 !important;
+        padding: 0 !important;
       }
       header .container {
         flex-direction: row;
@@ -426,15 +461,13 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
-      /* Responsive hive-showcase slider */
+      /* 하이브 쇼케이스 슬라이더 */
       .hive-showcase {
-        height: auto !important;
+        height: 400px !important;
         overflow: visible;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-        margin-top: calc(180px + 0 * 1rem) !important;
+        position: relative !important;
+        margin: 32px 0 !important;
+        padding: 0 !important;
       }
       .hive-image {
         width: 120px !important;
@@ -471,87 +504,126 @@
         height: 36px;
         font-size: 1.5rem;
       }
-      /* Mobile: shrink "네오 하이브 주요 기능" text and push slider down */
-      .section.animate-on-scroll .container > h2 {
-        margin-top: -2.25rem !important;
-        font-size: 1rem !important;
-        margin-bottom: 8px !important;
-        padding-top: 16px !important;
-      }
-      .hive-showcase {
-        margin-top: calc(160px + 7 * 1rem) !important;
-      }
+      /* 슬라이드 네비게이션 버튼 */
       #slide-prev, #slide-next {
-        top: 95% !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.2rem !important;
+        top: 90% !important;
       }
-      /* 주요 기능 상세 설명(슬라이드 아래 features) 2열 배치 on mobile */
-      .section.animate-on-scroll .features {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
-        margin-top: 20px !important;
+      
+      #slide-prev {
+        left: 16px !important;
       }
-      .section.animate-on-scroll .features {
-        margin-top: calc(20px + 20rem) !important;
+      
+      #slide-next {
+        right: 16px !important;
       }
-      /* 네오 스마트 설명 박스만 margin-top 조정 (3번째 section의 features만 타겟) */
-      .section:nth-of-type(3) .features {
-        margin-top: calc(24px + 13rem) !important; /* move up by approx 7 lines (7 * 1.5rem = ~10.5rem) */
-      }
-      /* Mobile styles for .feature-item and its children */
-      .features .feature-item {
-        padding: 12px 8px !important;
-        font-size: 0.8rem !important;
-        line-height: 1.2rem !important;
-        text-align: left !important;
-      }
-      .features .feature-item h3 {
-        font-size: 0.9rem !important;
-        margin-bottom: 6px !important;
-      }
-      .features .feature-item p {
-        font-size: 0.75rem !important;
-        line-height: 1.2rem !important;
-        word-break: keep-all !important;
-        white-space: normal !important;
+      
+      /* 피처 그리드 */
+      .features {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        margin: 32px 0 !important;
         padding: 0 !important;
       }
-      /* Prevent feature-item headings from breaking on mobile */
-      .features .feature-item h3 {
-        white-space: nowrap !important;
-        overflow-wrap: normal !important;
+      
+      .feature-item {
+        padding: 16px !important;
+        margin: 0 !important;
+        text-align: center !important;
+      }
+      
+      .feature-item h3 {
+        font-size: 1rem !important;
+        margin: 0 0 8px 0 !important;
+      }
+      
+      .feature-item p {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+      }
+      /* 네오 스마트 섹션 특별 처리 */
+      #smart .hive-showcase {
+        height: 500px !important;
+        margin: 32px 0 !important;
+      }
+      
+      /* 원형 플로우 컨테이너 */
+      .circular-flow-container {
+        width: 100% !important;
+        height: 400px !important;
+        margin: 32px 0 !important;
+      }
+      
+      .circle-center-title {
+        width: 120px !important;
+        height: 120px !important;
+        font-size: 0.9rem !important;
+      }
+      
+      .circle-step {
+        width: 80px !important;
+        height: 80px !important;
+        font-size: 0.7rem !important;
+      }
+      
+      .circle-step img {
+        width: 24px !important;
+        height: 24px !important;
       }
 
-      /* Restore benefits layout and heading on mobile */
-      #benefits h2 {
-        display: block !important;
-        font-size: 1.5rem !important;
-        text-align: center !important;
-        margin: 20px 0 !important;
+      /* 베네핏 섹션 */
+      #benefits {
+        padding: 60px 16px 40px 16px !important;
       }
+      
+      #benefits h2 {
+        font-size: 1.6rem !important;
+        text-align: center !important;
+        margin: 0 0 32px 0 !important;
+      }
+      
       .benefits {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 16px !important;
-        padding: 0 16px !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
+      
       .benefit-item {
-        display: block !important;
-        padding: 16px !important;
-        background: #243348 !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        padding: 20px !important;
+        margin: 0 !important;
+        text-align: center !important;
+        border-radius: 12px !important;
       }
+      
       .benefit-item h3 {
         font-size: 1.1rem !important;
-        margin-bottom: 8px !important;
-        text-align: center !important;
+        margin: 0 0 12px 0 !important;
       }
+      
       .benefit-item p {
         font-size: 0.9rem !important;
-        line-height: 1.4 !important;
-        color: #fff !important;
-        text-align: center !important;
+        line-height: 1.5 !important;
         margin: 0 !important;
+      }
+      
+      /* 폼 모달 */
+      #formModal {
+        width: 95% !important;
+        max-width: 400px !important;
+        padding: 20px !important;
+      }
+      
+      #formModal input, 
+      #formModal textarea, 
+      #formModal select {
+        width: 100% !important;
+        margin-bottom: 12px !important;
+        font-size: 16px !important; /* iOS 줌 방지 */
       }
     }
 
@@ -2063,41 +2135,56 @@
   <!-- ===================== //디자인 개선 끝 ===================== -->
   <style>
     @media (max-width: 768px) {
+      /* UX 흐름 섹션 */
+      .slide-container.p-10 {
+        margin: 60px 0 40px 0 !important;
+        padding: 0 !important;
+      }
+      
+      .slide-container.p-10 h1 {
+        font-size: 1.4rem !important;
+        margin: 0 0 16px 0 !important;
+        text-align: left !important;
+      }
+      
+      .slide-container.p-10 p {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        margin: 0 0 32px 0 !important;
+      }
+      
+      /* 플로우 스텝 래퍼 */
       .flow-step-wrapper {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 16px 12px !important;
-        margin-top: 120px !important;
-        margin-bottom: 12px !important;
-        justify-items: center;
+        gap: 16px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        justify-items: stretch !important;
       }
+      
       .flow-step {
-        width: 98% !important;
+        width: 100% !important;
         min-width: 0 !important;
-        max-width: 180px !important;
+        max-width: none !important;
         height: auto !important;
-        padding: 14px 8px !important;
-        font-size: 0.95rem !important;
-        margin: 0 auto !important;
-        box-sizing: border-box;
+        padding: 16px 12px !important;
+        font-size: 0.85rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
       }
-      .slide-container.p-10 {
-        margin-top: 200px !important;
-        padding-top: 40px !important;
+      
+      .flow-step .font-semibold {
+        font-size: 0.9rem !important;
+        margin: 8px 0 4px 0 !important;
+        text-align: center !important;
       }
-      .hive-showcase {
-        margin-bottom: 40px !important;
-      }
-      /* UX 흐름 섹션 제목과 설명 텍스트에 추가 상단 마진 */
-      .slide-container.p-10 .flex.items-center.mb-8 h1 {
-        margin-top: 120px !important;
-      }
-      .slide-container.p-10 .mb-6 {
-        margin-top: 30px !important;
-      }
-      /* 네오 하이브 섹션 자체에도 상단 여백 추가 */
-      #hive.section {
-        padding-top: 80px !important;
+      
+      .flow-step .text-sm {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        text-align: center !important;
       }
     }
   </style>
