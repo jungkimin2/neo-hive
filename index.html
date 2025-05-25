@@ -564,11 +564,11 @@
         z-index: 15 !important;
       }
 
-              /* 모바일 최적화된 이미지 크기 및 배치 */
+              /* 모바일에서 PC와 유사한 이미지 크기 및 배치 */
         .hive-image {
-          width: 100px !important;
+          width: 120px !important;
           height: auto !important;
-          border-radius: 8px !important;
+          border-radius: 10px !important;
           transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
           opacity: 0 !important;
           border: none !important;
@@ -585,77 +585,77 @@
           box-shadow: none !important;
         }
         
-        /* 모바일 좌측 배열 - 컴팩트한 스택 구조 (팀 결성) */
+        /* 모바일 좌측 배열 - PC와 동일한 중앙 기점 스택 구조 (팀 결성) */
         .hive-image:nth-child(1) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-160%, -50%) scale(0.9) !important;
+          transform: translate(-200%, -50%) scale(0.95) !important;
           z-index: 3 !important;
         }
         .hive-image:nth-child(2) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-200%, -50%) scale(0.8) !important;
+          transform: translate(-250%, -50%) scale(0.9) !important;
           z-index: 2 !important;
         }
         .hive-image:nth-child(3) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-240%, -50%) scale(0.7) !important;
+          transform: translate(-300%, -50%) scale(0.85) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 우측 배열 - 컴팩트한 스택 구조 (주변 센터 예약) */
+        /* 모바일 우측 배열 - PC와 동일한 중앙 기점 스택 구조 (주변 센터 예약) */
         .hive-image:nth-child(4) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(60%, -50%) scale(0.9) !important;
+          transform: translate(100%, -50%) scale(0.95) !important;
           z-index: 3 !important;
-          width: 100px !important;
+          width: 120px !important;
           height: auto !important;
         }
         .hive-image:nth-child(5) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(100%, -50%) scale(0.8) !important;
+          transform: translate(150%, -50%) scale(0.9) !important;
           z-index: 2 !important;
-          width: 100px !important;
+          width: 120px !important;
           height: auto !important;
         }
         .hive-image:nth-child(6) {
           left: 50% !important;
           top: 50% !important;
-          transform: translate(140%, -50%) scale(0.7) !important;
+          transform: translate(200%, -50%) scale(0.85) !important;
           z-index: 1 !important;
-          width: 100px !important;
+          width: 120px !important;
           height: auto !important;
         }
 
-              /* 모바일 최적화된 활성 이미지 */
+              /* 모바일에서 PC와 유사한 활성 이미지 */
         .hive-image.active {
           position: absolute !important;
           left: 50% !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) scale(1.1) !important;
+          transform: translate(-50%, -50%) scale(1.02) !important;
           z-index: 10 !important;
-          width: 180px !important;
-          height: 360px !important;
-          border-radius: 16px !important;
-          border: 3px solid #7BE495 !important;
+          width: 200px !important;
+          height: 400px !important;
+          border-radius: 20px !important;
+          border: 4px solid #7BE495 !important;
           background-color: #95e19c !important;
           padding: 0 !important;
           margin: 0 !important;
-          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 25px rgba(123, 228, 149, 0.4) !important;
+          box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
           will-change: transform, box-shadow, opacity !important;
           overflow: hidden !important;
         }
       .video-phone {
-        width: 180px !important;
-        height: 360px !important;
-        min-width: 160px !important;
-        min-height: 320px !important;
-        border-width: 6px !important;
-        border-radius: 20px !important;
+        width: 200px !important;
+        height: 400px !important;
+        min-width: 180px !important;
+        min-height: 360px !important;
+        border-width: 8px !important;
+        border-radius: 24px !important;
         position: absolute !important;
         top: 50% !important;
         left: 50% !important;
@@ -2109,24 +2109,24 @@
 
 
     
-    // 이미지를 원래 위치로 복귀시키는 함수 (모바일 최적화)
+    // 이미지를 원래 위치로 복귀시키는 함수 (PC와 동일한 배치)
     function resetImageToOriginalPosition(img, index) {
       const positions = [
         // 좌측 이미지들 (팀 결성) - 0,1,2번 인덱스
-        { left: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 },
-        { left: '50%', transform: 'translate(-200%, -50%) scale(0.8)', zIndex: 2 },
-        { left: '50%', transform: 'translate(-240%, -50%) scale(0.7)', zIndex: 1 },
+        { left: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
         // 우측 이미지들 (주변 센터 예약) - 3,4,5번 인덱스
-        { left: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },
-        { left: '50%', transform: 'translate(100%, -50%) scale(0.8)', zIndex: 2 },
-        { left: '50%', transform: 'translate(140%, -50%) scale(0.7)', zIndex: 1 }
+        { left: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
       ];
       
       if (positions[index]) {
         img.style.left = positions[index].left;
         img.style.transform = positions[index].transform;
         img.style.zIndex = positions[index].zIndex;
-        img.style.width = '100px';
+        img.style.width = '120px';
         img.style.height = 'auto';
         img.style.border = 'none';
         img.style.boxShadow = 'none';
