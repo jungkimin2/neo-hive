@@ -1793,93 +1793,117 @@
     });
   </script>
   <script>
-    // Hive 이미지 슬라이드 기능 복구
+    // Hive 이미지 슬라이드 기능 - 성능 최적화
     let slideIndex = -1; // -1 = video center
+    let isTransitioning = false; // 전환 중 중복 클릭 방지
     const hiveImages = document.querySelectorAll('.hive-image');
     const videoPhone = document.querySelector('.video-phone');
 
     // Store original inline style values for transform, left, top, zIndex on page load
     window.addEventListener('load', () => {
-      hiveImages.forEach(img => {
-        img.dataset.originalTransform = img.style.transform;
-        img.dataset.originalLeft = img.style.left;
-        img.dataset.originalTop = img.style.top;
-        img.dataset.originalZ = img.style.zIndex;
-        // Store each image's width and height
-        const rect = img.getBoundingClientRect();
-        img.dataset.originalWidth = rect.width;
-        img.dataset.originalHeight = rect.height;
+      // 성능 최적화를 위한 requestAnimationFrame 사용
+      requestAnimationFrame(() => {
+        hiveImages.forEach((img, index) => {
+          img.dataset.originalTransform = img.style.transform;
+          img.dataset.originalLeft = img.style.left;
+          img.dataset.originalTop = img.style.top;
+          img.dataset.originalZ = img.style.zIndex;
+          img.dataset.index = index;
+          
+          // 하드웨어 가속 적용
+          img.style.willChange = 'transform, opacity';
+          img.style.transform = img.style.transform + ' translateZ(0)';
+        });
+        
+        if (videoPhone) {
+          videoPhone.dataset.originalWidth = videoPhone.getBoundingClientRect().width + 'px';
+          videoPhone.dataset.originalHeight = videoPhone.getBoundingClientRect().height + 'px';
+          videoPhone.style.willChange = 'transform, opacity';
+        }
+        
+        showSlide(slideIndex);
       });
-      // Store videoPhone's original width and height
-      videoPhone.dataset.originalWidth = videoPhone.getBoundingClientRect().width + 'px';
-      videoPhone.dataset.originalHeight = videoPhone.getBoundingClientRect().height + 'px';
-      showSlide(slideIndex);
     });
 
     function showSlide(idx) {
+      if (isTransitioning) return; // 전환 중이면 무시
+      
+      isTransitioning = true;
       const container = document.querySelector('.hive-showcase');
+      if (!container) return;
+      
       const containerRect = container.getBoundingClientRect();
 
-      // Reset all images
-      hiveImages.forEach((img) => {
-        img.classList.remove('active');
-        img.style.transition = 'all 0.6s ease';
-        img.style.transform = img.dataset.originalTransform;
-        img.style.left = img.dataset.originalLeft;
-        img.style.top = img.dataset.originalTop;
-        img.style.zIndex = img.dataset.originalZ;
+      // 성능 최적화를 위한 배치 읽기/쓰기 분리
+      requestAnimationFrame(() => {
+        // Reset all images with optimized transitions
+        hiveImages.forEach((img) => {
+          img.classList.remove('active');
+          img.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+          img.style.transform = img.dataset.originalTransform + ' translateZ(0)';
+          img.style.left = img.dataset.originalLeft;
+          img.style.top = img.dataset.originalTop;
+          img.style.zIndex = img.dataset.originalZ;
+        });
+
+        if (idx === -1) {
+          // Center video - 간소화된 애니메이션
+          if (videoPhone) {
+            const centerX = containerRect.width / 2;
+            const centerY = containerRect.height / 2;
+            videoPhone.style.display = 'block';
+            videoPhone.style.border = '10px solid #7BE495';
+            videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
+            videoPhone.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+            videoPhone.style.left = `${centerX}px`;
+            videoPhone.style.top = `${centerY}px`;
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) translateZ(0)';
+            videoPhone.style.zIndex = '10';
+            videoPhone.style.width = videoPhone.dataset.originalWidth;
+            videoPhone.style.height = videoPhone.dataset.originalHeight;
+          }
+        } else if (hiveImages[idx]) {
+          const targetImg = hiveImages[idx];
+          const imgRect = targetImg.getBoundingClientRect();
+
+          if (videoPhone) {
+            // Position video over the clicked image's original spot
+            const posX = imgRect.left + imgRect.width / 2 - containerRect.left;
+            const posY = imgRect.top + imgRect.height / 2 - containerRect.top;
+            videoPhone.style.display = 'block';
+            videoPhone.style.border = 'none';
+            videoPhone.style.boxShadow = 'none';
+            videoPhone.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+            videoPhone.style.left = `${posX}px`;
+            videoPhone.style.top = `${posY}px`;
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) translateZ(0)';
+            videoPhone.style.zIndex = targetImg.dataset.originalZ;
+            videoPhone.style.width = `${imgRect.width}px`;
+            videoPhone.style.height = `${imgRect.height}px`;
+          }
+
+          // Move clicked image to center
+          const centerX = containerRect.width / 2;
+          const centerY = containerRect.height / 2;
+          targetImg.classList.add('active');
+          targetImg.style.left = `${centerX}px`;
+          targetImg.style.top = `${centerY}px`;
+          targetImg.style.transform = 'translate(-50%, -50%) scale(1) translateZ(0)';
+          targetImg.style.zIndex = '10';
+        }
+        
+        // 전환 완료 후 플래그 리셋
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 300);
       });
-
-      if (idx === -1) {
-        // Center video
-        const centerX = containerRect.width / 2;
-        const centerY = containerRect.height / 2;
-        videoPhone.style.display = 'block';
-        // Restore neon border and glow
-        videoPhone.style.border = '10px solid #7BE495';
-        videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
-        videoPhone.style.transition = 'all 0.6s ease';
-        videoPhone.style.left = `${centerX}px`;
-        videoPhone.style.top = `${centerY}px`;
-        videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
-        videoPhone.style.zIndex = '10';
-        // Reset to original size
-        videoPhone.style.width = videoPhone.dataset.originalWidth;
-        videoPhone.style.height = videoPhone.dataset.originalHeight;
-      } else {
-        const targetImg = hiveImages[idx];
-        const imgRect = targetImg.getBoundingClientRect();
-
-        // Position video over the clicked image's original spot
-        const posX = imgRect.left + imgRect.width / 2 - containerRect.left;
-        const posY = imgRect.top + imgRect.height / 2 - containerRect.top;
-        videoPhone.style.display = 'block';
-        // Remove neon effects
-        videoPhone.style.border = 'none';
-        videoPhone.style.boxShadow = 'none';
-        videoPhone.style.transition = 'all 0.6s ease';
-        videoPhone.style.left = `${posX}px`;
-        videoPhone.style.top = `${posY}px`;
-        videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
-        videoPhone.style.zIndex = targetImg.dataset.originalZ;
-        // Set video size to match the clicked image
-        videoPhone.style.width = `${imgRect.width}px`;
-        videoPhone.style.height = `${imgRect.height}px`;
-
-        // Move clicked image to center
-        const centerX = containerRect.width / 2;
-        const centerY = containerRect.height / 2;
-        targetImg.classList.add('active');
-        targetImg.style.left = `${centerX}px`;
-        targetImg.style.top = `${centerY}px`;
-        targetImg.style.transform = 'translate(-50%, -50%) scale(1)';
-        targetImg.style.zIndex = '10';
-      }
     }
 
     hiveImages.forEach((img, i) => {
       img.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (isTransitioning) return; // 전환 중이면 무시
+        
         const isActive = img.classList.contains('active');
         if (!isActive) {
           slideIndex = i;
@@ -1890,18 +1914,30 @@
       });
     });
 
-    document.getElementById('slide-prev').addEventListener('click', e => {
-      e.stopPropagation();
-      if (slideIndex === -1) slideIndex = hiveImages.length - 1;
-      else slideIndex = slideIndex - 1;
-      showSlide(slideIndex);
-    });
-    document.getElementById('slide-next').addEventListener('click', e => {
-      e.stopPropagation();
-      if (slideIndex === hiveImages.length - 1) slideIndex = -1;
-      else slideIndex = slideIndex + 1;
-      showSlide(slideIndex);
-    });
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (isTransitioning) return; // 전환 중이면 무시
+        
+        if (slideIndex === -1) slideIndex = hiveImages.length - 1;
+        else slideIndex = Math.max(slideIndex - 1, 0);
+        showSlide(slideIndex);
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (isTransitioning) return; // 전환 중이면 무시
+        
+        if (slideIndex === hiveImages.length - 1) slideIndex = -1;
+        else slideIndex = Math.min(slideIndex + 1, hiveImages.length - 1);
+        showSlide(slideIndex);
+      });
+    }
 
     // Reset all if clicked outside
     document.querySelector('.hive-showcase').addEventListener('click', (e) => {
@@ -1925,14 +1961,16 @@
       width: 160px;
       height: auto;
       border-radius: 12px;
-      transition: transform 0.8s cubic-bezier(0.4,0.2,0.2,1), opacity 0.8s cubic-bezier(0.4,0.2,0.2,1), box-shadow 0.8s;
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       opacity: 0;
       border: none;
       box-shadow: none;
+      will-change: transform, opacity;
+      transform: translateZ(0); /* 하드웨어 가속 */
+      backface-visibility: hidden;
     }
     .hive-image.visible {
       opacity: 1;
-      /* transform and z-index are set inline for each image */
       box-shadow: none;
     }
 
@@ -2180,38 +2218,78 @@
         margin: 0 0 32px 0 !important;
       }
       
-      /* 플로우 스텝 래퍼 */
+      /* 플로우 스텝 래퍼 - 성능 최적화 */
       .flow-step-wrapper {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 16px !important;
+        gap: 12px !important;
         margin: 24px 0 0 0 !important;
-        padding: 0 !important;
-        justify-items: stretch !important;
+        padding: 0 8px !important;
+        justify-items: center !important;
+        will-change: auto !important;
       }
       
       .flow-step {
         width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
+        max-width: 160px !important;
+        min-height: 180px !important;
         height: auto !important;
-        padding: 16px 12px !important;
-        font-size: 0.85rem !important;
+        padding: 12px 8px !important;
+        font-size: 0.8rem !important;
         margin: 0 !important;
         box-sizing: border-box !important;
         text-align: center !important;
+        position: relative !important;
+        transform: translateZ(0) !important; /* 하드웨어 가속 */
+        backface-visibility: hidden !important;
+        perspective: 1000px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+      }
+      
+      .flow-step .step-number {
+        position: absolute !important;
+        top: -8px !important;
+        left: -8px !important;
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.8rem !important;
+      }
+      
+      .flow-step .flow-icon {
+        width: 40px !important;
+        height: 40px !important;
+        margin-bottom: 8px !important;
+        flex-shrink: 0 !important;
+      }
+      
+      .flow-step .flow-icon img {
+        width: 24px !important;
+        height: 24px !important;
       }
       
       .flow-step .font-semibold {
-        font-size: 0.9rem !important;
-        margin: 8px 0 4px 0 !important;
+        font-size: 0.85rem !important;
+        margin: 4px 0 !important;
         text-align: center !important;
+        line-height: 1.2 !important;
+        flex-shrink: 0 !important;
       }
       
       .flow-step .text-sm {
-        font-size: 0.75rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
         text-align: center !important;
+        margin: 0 !important;
+        flex-grow: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+      
+      .flow-step .flow-arrow-inside {
+        display: none !important; /* 모바일에서 화살표 숨김 */
       }
     }
   </style>
