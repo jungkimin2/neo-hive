@@ -496,13 +496,56 @@
         height: 18px !important;
         margin-right: 4px !important;
       }
-      .hive-image {
-        width: 120px !important;
-        height: auto !important;
-        margin: 8px 0;
-        min-width: 60px !important;
-        max-width: 38vw !important;
+      
+      /* 모바일에서만 텍스트 변경 */
+      .hive-label-left {
+        font-size: 0 !important; /* 기존 텍스트 숨김 */
       }
+      
+      .hive-label-left::after {
+        content: "팀 결성" !important;
+        font-size: 0.75rem !important;
+        color: #7BE495 !important;
+        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
+        font-weight: 500 !important;
+      }
+      
+      .hive-label-right {
+        font-size: 0 !important; /* 기존 텍스트 숨김 */
+      }
+      
+      .hive-label-right::after {
+        content: "주변 센터 예약" !important;
+        font-size: 0.75rem !important;
+        color: #7BE495 !important;
+        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
+        font-weight: 500 !important;
+      }
+              .hive-image {
+          width: 120px !important;
+          height: auto !important;
+          margin: 8px 0;
+          min-width: 60px !important;
+          max-width: 38vw !important;
+          position: relative !important;
+          transition: transform 0.3s ease, opacity 0.3s ease !important;
+        }
+        
+        /* 모바일에서 active 이미지 스타일 */
+        .hive-image.active {
+          transform: scale(1.1) !important;
+          opacity: 1 !important;
+          z-index: 10 !important;
+          border: 2px solid #7BE495 !important;
+          border-radius: 12px !important;
+          box-shadow: 0 0 15px rgba(123, 228, 149, 0.6) !important;
+        }
+        
+        /* 모바일에서 비활성 이미지 스타일 */
+        .hive-image:not(.active) {
+          opacity: 0.7 !important;
+          transform: scale(0.95) !important;
+        }
       /* First slide on the left (strongest leftmost) */
       .slide-in-left:nth-of-type(1) {
         transform: translate(-120%, -50%) scale(0.7) !important;
@@ -1832,9 +1875,39 @@
       const container = document.querySelector('.hive-showcase');
       if (!container) return;
       
+      // 모바일 환경 체크
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        // 모바일에서는 단순히 active 클래스만 변경
+        requestAnimationFrame(() => {
+          hiveImages.forEach((img, i) => {
+            img.classList.remove('active');
+            if (i === idx) {
+              img.classList.add('active');
+            }
+          });
+          
+          // 비디오 표시/숨김만 처리
+          if (videoPhone) {
+            if (idx === -1) {
+              videoPhone.style.display = 'block';
+              videoPhone.style.opacity = '1';
+            } else {
+              videoPhone.style.opacity = '0.3';
+            }
+          }
+          
+          setTimeout(() => {
+            isTransitioning = false;
+          }, 300);
+        });
+        return;
+      }
+      
+      // 데스크톱에서는 기존 로직 유지
       const containerRect = container.getBoundingClientRect();
 
-      // 성능 최적화를 위한 배치 읽기/쓰기 분리
       requestAnimationFrame(() => {
         // Reset all images with optimized transitions
         hiveImages.forEach((img) => {
@@ -1861,6 +1934,7 @@
             videoPhone.style.zIndex = '10';
             videoPhone.style.width = videoPhone.dataset.originalWidth;
             videoPhone.style.height = videoPhone.dataset.originalHeight;
+            videoPhone.style.opacity = '1';
           }
         } else if (hiveImages[idx]) {
           const targetImg = hiveImages[idx];
@@ -1880,6 +1954,7 @@
             videoPhone.style.zIndex = targetImg.dataset.originalZ;
             videoPhone.style.width = `${imgRect.width}px`;
             videoPhone.style.height = `${imgRect.height}px`;
+            videoPhone.style.opacity = '0.3';
           }
 
           // Move clicked image to center
