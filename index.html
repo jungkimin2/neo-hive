@@ -46,7 +46,7 @@
       display: none !important;
     }
     body {
-      padding-top: 56px; /* adjust if header height changes */
+      padding-top: 56px !important;
     }
     header .container {
       display: flex;
@@ -2032,6 +2032,38 @@
       }
       .hive-showcase {
         margin-bottom: 0 !important;
+      }
+    }
+  </style>
+  <style>
+    @media (max-width: 768px) {
+      .hive-image.active {
+        width: 220px !important;
+        height: 440px !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        aspect-ratio: 1/2 !important;
+        display: block !important;
+      }
+      .video-phone {
+        width: 220px !important;
+        height: 440px !important;
+      }
+    }
+  </style>
+  <style>
+    body {
+      padding-top: 56px !important;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 56px !important;
+      }
+      .hive-showcase {
+        margin-top: 16px !important;
       }
     }
   </style>
