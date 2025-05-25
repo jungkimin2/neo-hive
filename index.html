@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
@@ -471,9 +468,9 @@
       .section:first-of-type .container {
         margin-bottom: 20px;
       }
-      /* 하이브 쇼케이스 슬라이더 - 모바일 PC와 동일한 레이아웃 */
+      /* 하이브 쇼케이스 슬라이더 - 모바일 최적화 */
       .hive-showcase {
-        height: 620px !important;
+        height: 450px !important;
         overflow: visible !important;
         position: relative !important;
         margin: 40px 0 30px 0 !important;
@@ -483,33 +480,51 @@
         justify-content: center !important;
       }
       
-      /* 모바일 라벨 위치 - PC와 동일하게 */
+      /* 모바일 최적화된 라벨 위치 */
       .hive-label-left {
-        top: 80px !important;
-        left: 30px !important;
-        font-size: 0.7rem !important;
+        top: 60px !important;
+        left: 20px !important;
+        font-size: 0.75rem !important;
         padding: 4px 8px !important;
         z-index: 20 !important;
       }
       
       .hive-label-left img {
-        width: 16px !important;
-        height: 16px !important;
+        width: 18px !important;
+        height: 18px !important;
         margin-right: 4px !important;
       }
       
       .hive-label-right {
-        top: 80px !important;
-        right: 30px !important;
-        font-size: 0.7rem !important;
+        top: 60px !important;
+        right: 20px !important;
+        font-size: 0.75rem !important;
         padding: 4px 8px !important;
         z-index: 20 !important;
       }
       
       .hive-label-right img {
-        width: 16px !important;
-        height: 16px !important;
+        width: 18px !important;
+        height: 18px !important;
         margin-right: 4px !important;
+      }
+      
+      /* 모바일에서 라벨 스타일 조정 */
+      .hive-label-left,
+      .hive-label-right {
+        transition: all 0.5s ease-out !important;
+        background: rgba(0,0,0,0.6) !important;
+        border-radius: 20px !important;
+        color: #7BE495 !important;
+        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6) !important;
+        font-weight: 500 !important;
+        animation: fadeInUp 1s ease forwards !important;
+      }
+      
+      .hive-label-left img,
+      .hive-label-right img {
+        transition: all 0.5s ease-out !important;
+        vertical-align: middle !important;
       }
       
       /* 모바일에서 축약된 텍스트 표시 */
@@ -520,13 +535,12 @@
       .hive-label-right::after {
         content: " 센터 예약" !important;
       }
-      /* 모바일에서 PC와 유사한 이미지 크기 및 배치 */
       .hive-image {
-        width: 120px !important;
-        height: auto !important;
-        border-radius: 10px !important;
+        width: 80px !important;
+        height: 160px !important;
+        border-radius: 12px !important;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
-        opacity: 1 !important;
+        opacity: 0 !important;
         border: none !important;
         box-shadow: none !important;
         will-change: transform, opacity !important;
@@ -534,35 +548,29 @@
         backface-visibility: hidden !important;
         object-fit: cover !important;
         position: absolute !important;
-        display: block !important;
-        visibility: visible !important;
       }
-      
+
       .hive-image.visible {
         opacity: 1 !important;
         box-shadow: none !important;
-        display: block !important;
-        visibility: visible !important;
       }
 
       .hive-image.active {
-        width: 200px !important;
-        height: 400px !important;
-        border-radius: 20px !important;
-        border: 4px solid #7BE495 !important;
+        width: 120px !important;
+        height: 240px !important;
+        border-radius: 18px !important;
+        border: 3px solid #7BE495 !important;
         box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
         z-index: 15 !important;
-        display: block !important;
-        visibility: visible !important;
       }
-        
-        /* 모바일에서 PC와 완전히 동일한 슬라이드 배치 - 새로 작성 */
+
+              /* 모바일에서 PC와 유사한 이미지 크기 및 배치 */
         .hive-image {
-          width: 140px !important;
+          width: 120px !important;
           height: auto !important;
-          border-radius: 12px !important;
-          transition: transform 0.4s ease-out, opacity 0.4s ease-out !important;
-          opacity: 1 !important;
+          border-radius: 10px !important;
+          transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+          opacity: 0 !important;
           border: none !important;
           box-shadow: none !important;
           will-change: transform, opacity !important;
@@ -570,11 +578,14 @@
           backface-visibility: hidden !important;
           object-fit: cover !important;
           position: absolute !important;
-          display: block !important;
-          visibility: visible !important;
         }
         
-        /* 좌측 이미지 배치 (팀 결성) - PC와 동일한 스타일 */
+        .hive-image.visible {
+          opacity: 1 !important;
+          box-shadow: none !important;
+        }
+        
+        /* 모바일에서 PC와 동일한 배치 - 좌측 1,2,3 (중앙) 우측 4,5,6 */
         .hive-image:nth-child(1) {
           left: 50% !important;
           top: 50% !important;
@@ -594,30 +605,57 @@
           z-index: 1 !important;
         }
         
-        /* 우측 이미지 배치 (센터 예약) - PC와 동일한 스타일 */
+        /* 모바일 우측 배열 - 중앙에서 우측으로 4,5,6 */
         .hive-image:nth-child(4) {
           left: 50% !important;
           top: 50% !important;
           transform: translate(100%, -50%) scale(0.95) !important;
           z-index: 3 !important;
+          width: 120px !important;
+          height: auto !important;
         }
         .hive-image:nth-child(5) {
           left: 50% !important;
           top: 50% !important;
           transform: translate(150%, -50%) scale(0.9) !important;
           z-index: 2 !important;
+          width: 120px !important;
+          height: auto !important;
         }
         .hive-image:nth-child(6) {
           left: 50% !important;
           top: 50% !important;
           transform: translate(200%, -50%) scale(0.85) !important;
           z-index: 1 !important;
+          width: 120px !important;
+          height: auto !important;
+        }
+
+              /* 모바일에서 PC와 유사한 활성 이미지 */
+        .hive-image.active {
+          position: absolute !important;
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(1.02) !important;
+          z-index: 10 !important;
+          width: 200px !important;
+          height: 400px !important;
+          border-radius: 20px !important;
+          border: 4px solid #7BE495 !important;
+          background-color: #95e19c !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
+          will-change: transform, box-shadow, opacity !important;
+          overflow: hidden !important;
         }
       .video-phone {
-        width: 256px !important;
-        height: 512px !important;
-        border-width: 10px !important;
-        border-radius: 32px !important;
+        width: 200px !important;
+        height: 400px !important;
+        min-width: 180px !important;
+        min-height: 360px !important;
+        border-width: 8px !important;
+        border-radius: 24px !important;
         position: absolute !important;
         top: 50% !important;
         left: 50% !important;
@@ -961,7 +999,7 @@
         네오 하이브 : <span class="neon-green">"하나되는 우리"</span>
       </h2>
       <p style="margin: 10px 0 24px; color: #aaa; text-align: left; line-height: 1.6;">
-        지역 기반 소모임 헬스 커뮤니티 플랫폼<br><span class="neon-green">커뮤니티와 헬스장을 하나로 연결</span><span style="color:#aaa;">하여 지속적인 운동 문화를 만들고, 헬스장의 활성화를 도모합니다.</span>
+        지역 기반 소모임 헬스 커뮤니티 플랫폼<br><span class="neon-green">지역 커뮤니티와 헬스장을 하나로 연결</span><span style="color:#aaa;">하여 지속적인 운동 문화를 만들고, 헬스장의 활성화를 도모합니다.</span>
       </p>
 
       <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
@@ -977,18 +1015,18 @@
         <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
         <!-- Left 3 images stacked behind center (팀 결성 관련) -->
-        <img src="./images/neohive9.png" loading="lazy"
-             class="hive-image slide-in-left animate-on-scroll team-formation"
-             data-category="team"
-             style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
         <img src="./images/neohive6.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
-             style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
+             style="position:absolute; left:50%; top:50%; transform:translate(-200%, -50%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
+        <img src="./images/neohive9.png" loading="lazy"
+             class="hive-image slide-in-left animate-on-scroll team-formation"
+             data-category="team"
+             style="position:absolute; left:50%; top:50%; transform:translate(-250%, -50%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
         <img src="./images/neohive5.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
-             style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
+             style="position:absolute; left:50%; top:50%; transform:translate(-300%, -50%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
         <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
         <img src="./images/neohive4.png" loading="lazy"
@@ -1967,22 +2005,6 @@
           // 하드웨어 가속 적용
           img.style.willChange = 'transform, opacity';
           img.style.transform = img.style.transform + ' translateZ(0)';
-          
-          // 모바일에서 이미지가 보이도록 강제 설정
-          img.classList.add('visible');
-          img.style.opacity = '1';
-          img.style.display = 'block';
-          img.style.visibility = 'visible';
-          
-          // 모바일에서도 PC와 동일한 스타일 적용
-          if (window.innerWidth <= 768) {
-            img.style.position = 'absolute';
-            img.style.width = '140px';
-            img.style.height = 'auto';
-            img.style.borderRadius = '12px';
-            img.style.border = 'none';
-            img.style.boxShadow = 'none';
-          }
         });
         
         if (videoPhone) {
@@ -2087,24 +2109,24 @@
 
 
     
-    // 이미지를 원래 위치로 복귀시키는 함수 (PC와 모바일 동일)
+    // 이미지를 원래 위치로 복귀시키는 함수 (모바일에서 PC와 동일한 중앙 기점 배치)
     function resetImageToOriginalPosition(img, index) {
       const positions = [
         // 좌측 이미지들 (팀 결성) - 0,1,2번 인덱스
-        { left: '50%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 },
+        { left: '50%', transform: 'translate(-120px, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(-180px, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(-240px, -50%) scale(0.85)', zIndex: 1 },
         // 우측 이미지들 (주변 센터 예약) - 3,4,5번 인덱스
-        { left: '50%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },
-        { left: '50%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },
-        { left: '50%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }
+        { left: '50%', transform: 'translate(20px, -50%) scale(0.95)', zIndex: 3 },
+        { left: '50%', transform: 'translate(80px, -50%) scale(0.9)', zIndex: 2 },
+        { left: '50%', transform: 'translate(140px, -50%) scale(0.85)', zIndex: 1 }
       ];
       
       if (positions[index]) {
         img.style.left = positions[index].left;
         img.style.transform = positions[index].transform;
         img.style.zIndex = positions[index].zIndex;
-        img.style.width = window.innerWidth <= 768 ? '140px' : '160px';
+        img.style.width = '120px';
         img.style.height = 'auto';
         img.style.border = 'none';
         img.style.boxShadow = 'none';
@@ -2213,7 +2235,22 @@
 </script>
 </html>
   <style>
-    /* 중복 CSS 제거됨 - 모바일 CSS가 우선 적용되도록 함 */
+    .hive-image {
+      width: 160px;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+      opacity: 0;
+      border: none;
+      box-shadow: none;
+      will-change: transform, opacity;
+      transform: translateZ(0); /* 하드웨어 가속 */
+      backface-visibility: hidden;
+    }
+    .hive-image.visible {
+      opacity: 1;
+      box-shadow: none;
+    }
 
     @media (max-width: 768px) {
       .neo-smart-caption-wrapper {
@@ -2535,47 +2572,7 @@
     }
   </style>
   <style>
-    /* PC 버전에서 hive-image 기본 스타일 */
-    .hive-image {
-      width: 160px;
-      height: auto;
-      border-radius: 12px;
-      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-      opacity: 1;
-      border: none;
-      box-shadow: none;
-      will-change: transform, opacity;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      position: absolute;
-      display: block;
-      visibility: visible;
-    }
-    
-    .hive-image.visible {
-      opacity: 1;
-      box-shadow: none;
-    }
-
     @media (max-width: 768px) {
-      /* 모바일에서 모든 hive-image 강제 표시 - 최고 우선순위 */
-      .hive-showcase .hive-image {
-        opacity: 1 !important;
-        display: block !important;
-        visibility: visible !important;
-        position: absolute !important;
-        width: 120px !important;
-        height: auto !important;
-        border-radius: 10px !important;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
-        border: none !important;
-        box-shadow: none !important;
-        will-change: transform, opacity !important;
-        transform: translateZ(0) !important;
-        backface-visibility: hidden !important;
-        object-fit: cover !important;
-      }
-      
       .hive-image.active {
         width: 180px !important;
         height: 360px !important;
