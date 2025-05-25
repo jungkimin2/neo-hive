@@ -556,45 +556,59 @@
         .hive-image {
           position: absolute !important;
           top: 50% !important;
-          transition: all 0.3s ease-out !important;
-          width: 80px !important;
-          height: 160px !important;
-          border-radius: 12px !important;
+          width: 70px !important;
+          height: 140px !important;
+          border-radius: 10px !important;
           opacity: 1 !important;
+          transition: all 0.4s ease-out !important;
+          cursor: pointer !important;
+          object-fit: cover !important;
         }
         
-        /* 모바일 좌측 배열 - 팀 결성 이미지들 */
-        .team-formation:nth-of-type(1) {
-          left: calc(50% - 90px) !important;
-          transform: translate(-50%, -50%) scale(0.9) !important;
+        /* 모바일 좌측 배열 - 팀 결성 이미지들 (PC와 동일한 순서) */
+        .team-formation:nth-child(1) {
+          left: calc(50% - 80px) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
           z-index: 3 !important;
         }
-        .team-formation:nth-of-type(2) {
-          left: calc(50% - 130px) !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+        .team-formation:nth-child(2) {
+          left: calc(50% - 115px) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
           z-index: 2 !important;
         }
-        .team-formation:nth-of-type(3) {
-          left: calc(50% - 170px) !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+        .team-formation:nth-child(3) {
+          left: calc(50% - 150px) !important;
+          transform: translate(-50%, -50%) scale(0.65) !important;
           z-index: 1 !important;
         }
         
-        /* 모바일 우측 배열 - 주변 센터 예약 이미지들 */
-        .center-booking:nth-of-type(1) {
-          left: calc(50% + 90px) !important;
-          transform: translate(-50%, -50%) scale(0.9) !important;
+        /* 모바일 우측 배열 - 주변 센터 예약 이미지들 (PC와 동일한 순서) */
+        .center-booking:nth-child(4) {
+          left: calc(50% + 80px) !important;
+          transform: translate(-50%, -50%) scale(0.85) !important;
           z-index: 3 !important;
         }
-        .center-booking:nth-of-type(2) {
-          left: calc(50% + 130px) !important;
-          transform: translate(-50%, -50%) scale(0.8) !important;
+        .center-booking:nth-child(5) {
+          left: calc(50% + 115px) !important;
+          transform: translate(-50%, -50%) scale(0.75) !important;
           z-index: 2 !important;
         }
-        .center-booking:nth-of-type(3) {
-          left: calc(50% + 170px) !important;
-          transform: translate(-50%, -50%) scale(0.7) !important;
+        .center-booking:nth-child(6) {
+          left: calc(50% + 150px) !important;
+          transform: translate(-50%, -50%) scale(0.65) !important;
           z-index: 1 !important;
+        }
+        
+        /* 모바일에서 활성 이미지 (중앙) */
+        .hive-image.mobile-active {
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) scale(1.1) !important;
+          z-index: 20 !important;
+          width: 140px !important;
+          height: 280px !important;
+          border: 3px solid #7BE495 !important;
+          box-shadow: 0 0 20px rgba(123, 228, 149, 0.8) !important;
         }
               .video-phone {
           width: 120px !important;
@@ -2038,17 +2052,13 @@
         e.stopPropagation();
         if (isTransitioning) return; // 전환 중이면 무시
         
-        // 모바일에서 좌우 이미지 클릭 시 중앙으로 이동 및 위치 바꾸기
+        // 모바일에서 이미지 클릭 처리
         if (window.innerWidth <= 768) {
-          const clickedCategory = img.dataset.category;
-          
-          if (clickedCategory === 'team' || clickedCategory === 'booking') {
-            // 클릭된 이미지를 중앙으로 이동하고 위치 바꾸기
-            moveToCenter(img, clickedCategory);
-            return;
-          }
+          handleMobileImageClick(img, i);
+          return;
         }
         
+        // PC에서 기존 로직
         const isActive = img.classList.contains('active');
         if (!isActive) {
           slideIndex = i;
@@ -2059,98 +2069,77 @@
       });
     });
 
-    // 모바일에서 클릭된 이미지를 중앙으로 이동하고 위치 바꾸기
-    function moveToCenter(clickedImg, clickedCategory) {
+    // 모바일에서 이미지 클릭 처리
+    let currentActiveIndex = -1; // 현재 활성화된 이미지 인덱스
+    
+    function handleMobileImageClick(clickedImg, clickedIndex) {
       if (isTransitioning) return;
       
       isTransitioning = true;
       
-      const container = document.querySelector('.hive-showcase');
-      const containerRect = container.getBoundingClientRect();
-      const centerX = containerRect.width / 2;
-      const centerY = containerRect.height / 2;
-      
-      requestAnimationFrame(() => {
-        // 비디오 숨기기
-        if (videoPhone) {
-          videoPhone.style.opacity = '0';
-          videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(0.8)';
+      // 이전에 활성화된 이미지가 있다면 원래 위치로 복귀
+      if (currentActiveIndex !== -1) {
+        const prevActiveImg = hiveImages[currentActiveIndex];
+        if (prevActiveImg) {
+          prevActiveImg.classList.remove('mobile-active');
+          resetImageToOriginalPosition(prevActiveImg, currentActiveIndex);
         }
-        
-        // 클릭된 이미지를 중앙으로 이동
-        clickedImg.style.transition = 'all 0.5s ease-out';
-        clickedImg.style.left = '50%';
-        clickedImg.style.top = '50%';
-        clickedImg.style.transform = 'translate(-50%, -50%) scale(1.2)';
-        clickedImg.style.zIndex = '20';
-        clickedImg.classList.add('active');
-        
-        // 1초 후 위치 바꾸기 실행
-        setTimeout(() => {
-          swapImagePositions();
-          
-          // 중앙 이미지 원래 위치로 복귀
-          setTimeout(() => {
-            clickedImg.classList.remove('active');
-            clickedImg.style.transform = '';
-            clickedImg.style.left = '';
-            clickedImg.style.top = '';
-            clickedImg.style.zIndex = '';
-            
-            // 비디오 다시 보이기
-            if (videoPhone) {
-              videoPhone.style.opacity = '1';
-              videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(1)';
-            }
-            
-            isTransitioning = false;
-          }, 500);
-        }, 1000);
-      });
+      }
+      
+      // 비디오 숨기기
+      if (videoPhone) {
+        videoPhone.style.opacity = '0';
+        videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(0.8)';
+      }
+      
+      // 클릭된 이미지를 중앙으로 이동
+      clickedImg.classList.add('mobile-active');
+      currentActiveIndex = clickedIndex;
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
     }
-
-    // 모바일에서 좌우 이미지 위치 바꾸기 함수
-    function swapImagePositions() {
-      const teamImages = document.querySelectorAll('.team-formation');
-      const bookingImages = document.querySelectorAll('.center-booking');
+    
+    // 이미지를 원래 위치로 복귀시키는 함수
+    function resetImageToOriginalPosition(img, index) {
+      const positions = [
+        // 좌측 이미지들 (팀 결성)
+        { left: 'calc(50% - 80px)', transform: 'translate(-50%, -50%) scale(0.85)', zIndex: 3 },
+        { left: 'calc(50% - 115px)', transform: 'translate(-50%, -50%) scale(0.75)', zIndex: 2 },
+        { left: 'calc(50% - 150px)', transform: 'translate(-50%, -50%) scale(0.65)', zIndex: 1 },
+        // 우측 이미지들 (주변 센터 예약)
+        { left: 'calc(50% + 80px)', transform: 'translate(-50%, -50%) scale(0.85)', zIndex: 3 },
+        { left: 'calc(50% + 115px)', transform: 'translate(-50%, -50%) scale(0.75)', zIndex: 2 },
+        { left: 'calc(50% + 150px)', transform: 'translate(-50%, -50%) scale(0.65)', zIndex: 1 }
+      ];
       
-      // 팀 결성 이미지들을 우측으로 이동
-      teamImages.forEach((img, index) => {
-        img.style.transition = 'all 0.5s ease-out';
-        img.style.left = `calc(50% + ${90 + (index * 40)}px)`;
-        img.style.transform = `translate(-50%, -50%) scale(${0.9 - (index * 0.1)})`;
-        img.style.zIndex = `${3 - index}`;
-        
-        // 클래스 변경
-        img.classList.remove('slide-in-left', 'team-formation');
-        img.classList.add('slide-in-right', 'center-booking');
-        img.dataset.category = 'booking';
-      });
-      
-      // 주변 센터 예약 이미지들을 좌측으로 이동
-      bookingImages.forEach((img, index) => {
-        img.style.transition = 'all 0.5s ease-out';
-        img.style.left = `calc(50% - ${90 + (index * 40)}px)`;
-        img.style.transform = `translate(-50%, -50%) scale(${0.9 - (index * 0.1)})`;
-        img.style.zIndex = `${3 - index}`;
-        
-        // 클래스 변경
-        img.classList.remove('slide-in-right', 'center-booking');
-        img.classList.add('slide-in-left', 'team-formation');
-        img.dataset.category = 'team';
-      });
-      
-      // 라벨도 함께 바꾸기
-      const leftLabel = document.querySelector('.hive-label-left');
-      const rightLabel = document.querySelector('.hive-label-right');
-      
-      if (leftLabel && rightLabel) {
-        // 라벨 내용 교체
-        const leftContent = leftLabel.innerHTML;
-        const rightContent = rightLabel.innerHTML;
-        
-        leftLabel.innerHTML = rightContent;
-        rightLabel.innerHTML = leftContent;
+      if (positions[index]) {
+        img.style.left = positions[index].left;
+        img.style.transform = positions[index].transform;
+        img.style.zIndex = positions[index].zIndex;
+        img.style.width = '70px';
+        img.style.height = '140px';
+        img.style.border = 'none';
+        img.style.boxShadow = 'none';
+      }
+    }
+    
+    // 모바일에서 외부 클릭 시 활성 이미지 해제
+    function handleMobileOutsideClick() {
+      if (window.innerWidth <= 768 && currentActiveIndex !== -1 && !isTransitioning) {
+        const activeImg = hiveImages[currentActiveIndex];
+        if (activeImg) {
+          activeImg.classList.remove('mobile-active');
+          resetImageToOriginalPosition(activeImg, currentActiveIndex);
+          currentActiveIndex = -1;
+          
+          // 비디오 다시 보이기
+          if (videoPhone) {
+            videoPhone.style.opacity = '1';
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg) scale(1)';
+          }
+        }
       }
     }
 
@@ -2182,6 +2171,14 @@
     // Reset all if clicked outside
     document.querySelector('.hive-showcase').addEventListener('click', (e) => {
       if (e.target.classList.contains('hive-image')) return;
+      
+      // 모바일에서 외부 클릭 처리
+      if (window.innerWidth <= 768) {
+        handleMobileOutsideClick();
+        return;
+      }
+      
+      // PC에서 기존 로직
       slideIndex = -1;
       showSlide(slideIndex);
     });
