@@ -2154,7 +2154,13 @@
     document.querySelector('.hive-showcase').addEventListener('click', (e) => {
       if (e.target.classList.contains('hive-image')) return;
       
-      // 모바일과 PC 모두 동일한 로직 사용
+      // 모바일에서 외부 클릭 처리
+      if (window.innerWidth <= 768) {
+        handleMobileOutsideClick();
+        return;
+      }
+      
+      // PC에서 기존 로직
       slideIndex = -1;
       showSlide(slideIndex);
     });
