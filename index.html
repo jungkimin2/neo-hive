@@ -972,7 +972,7 @@
              style="position:absolute; left:50%; top:55%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
         <!-- Center phone -->
-        <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;">
+        <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%) rotate(-2deg)">
           <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div>
@@ -2056,7 +2056,7 @@
     // 인덱스에 따른 위치 정보 반환 함수
     function getPositionForIndex(index) {
       if (window.innerWidth <= 768) {
-        // 모바일용 위치 - 좀 더 중앙에 가깝게, 겹침 줄임
+        // 모바일용 위치 - CSS nth-of-type과 정확히 일치
         const positions = [
           { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
           { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
@@ -2651,16 +2651,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // getPositionForIndex 함수를 DOMContentLoaded 내부에 정의
       function getPositionForIndex(index) {
-        // PC용 위치 (top: 55%, transform: ... -60%)
-        const positions = [
-          { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
-          { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
-          { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
-          { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
-        ];
-        return positions[index] || positions[0];
+        if (window.innerWidth <= 768) {
+          // 모바일용 위치 - CSS nth-of-type과 정확히 일치
+          const positions = [
+            { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
+            { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
+            { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
+            { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
+            { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
+            { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
+          ];
+          return positions[index] || positions[0];
+        } else {
+          // PC용 위치 (top: 55%, transform: ... -60%)
+          const positions = [
+            { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
+            { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
+            { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
+            { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
+            { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
+            { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
+          ];
+          return positions[index] || positions[0];
+        }
       }
 
       hiveImages.forEach((image, idx) => {
