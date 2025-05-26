@@ -2859,4 +2859,18 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+<style>
+@media (max-width: 768px) {
+  /* '핵심 가치'와 설명만 한 칸(12px) 아래로 내림 (박스 전체 X) */
+  .neohive-twobox-col h4[style*='핵심 가치'] {
+    margin-top: 12px !important;
+  }
+  .neohive-twobox-col h4[style*='핵심 가치'] + p,
+  .neohive-twobox-col h4[style*='핵심 가치'] + p span {
+    margin-top: 12px !important;
+    display: inline-block !important;
+  }
+}
+</style>
+
 
