@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
@@ -484,7 +485,7 @@
       /* 모바일에서 하이브 라벨 위치 조정 */
       .hive-label-left {
         top: 70px !important;
-        left: -12px !important;
+        left: -2px !important;
         font-size: 0.7rem !important;
         padding: 3px 6px !important;
         z-index: 25 !important;
@@ -498,7 +499,7 @@
       
       .hive-label-right {
         top: 70px !important;
-        right: -25px !important;
+        right: -15px !important;
         font-size: 0.7rem !important;
         padding: 3px 6px !important;
         z-index: 25 !important;
@@ -774,6 +775,26 @@
         -o-transform: translateZ(0);
         transform: translateZ(0);
       }
+      
+      /* 모바일에서 애니메이션 최적화 */
+      .animate-on-scroll,
+      .slide-in-left,
+      .slide-in-right {
+        will-change: transform, opacity;
+        transform: translateZ(0);
+      }
+      
+      /* 모바일에서 비디오 최적화 */
+      video {
+        will-change: auto;
+        transform: translateZ(0);
+      }
+      
+      /* 모바일에서 이미지 최적화 */
+      img {
+        will-change: auto;
+        transform: translateZ(0);
+      }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
       white-space: nowrap;
@@ -958,36 +979,36 @@
         <button id="slide-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:20; background:rgba(0,0,0,0.5); border:none; color:#7BE495; font-size:2rem; width:48px; height:48px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
         <!-- Left 3 images stacked behind center (팀 결성 관련) -->
-        <img src="./images/neohive6.png" loading="lazy"
+        <img src="./images/neohive6.png" loading="lazy" decoding="async"
              class="hive-image slide-in-left animate-on-scroll team-formation"
-             data-category="team"
+             data-category="team" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(-200%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
-        <img src="./images/neohive9.png" loading="lazy"
+        <img src="./images/neohive9.png" loading="lazy" decoding="async"
              class="hive-image slide-in-left animate-on-scroll team-formation"
-             data-category="team"
+             data-category="team" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(-250%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
-        <img src="./images/neohive5.png" loading="lazy"
+        <img src="./images/neohive5.png" loading="lazy" decoding="async"
              class="hive-image slide-in-left animate-on-scroll team-formation"
-             data-category="team"
+             data-category="team" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(-300%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
         <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
-        <img src="./images/neohive4.png" loading="lazy"
+        <img src="./images/neohive4.png" loading="lazy" decoding="async"
              class="hive-image slide-in-right animate-on-scroll center-booking"
-             data-category="booking"
+             data-category="booking" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(100%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
-        <img src="./images/neohive7.png" loading="lazy"
+        <img src="./images/neohive7.png" loading="lazy" decoding="async"
              class="hive-image slide-in-right animate-on-scroll center-booking"
-             data-category="booking"
+             data-category="booking" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(150%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
-        <img src="./images/neohive8.png" loading="lazy"
+        <img src="./images/neohive8.png" loading="lazy" decoding="async"
              class="hive-image slide-in-right animate-on-scroll center-booking"
-             data-category="booking"
+             data-category="booking" width="160" height="320"
              style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
         <!-- Center phone -->
         <div class="video-phone" style="position:absolute; left:50%; top:60%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;" data-original-left="50%" data-original-top="60%" data-original-transform="translate(-50%, -50%) rotate(-2deg)">
-          <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
+          <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div>
       <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
@@ -1075,8 +1096,8 @@
                       <img src="./images/neo40.png" alt="지역 기반 연결 아이콘" style="width: 28px; height: 28px;">
                     </div>
                     <div>
-                      <p style="color: #fff; font-weight: bold; margin: 0;">지역 기반 연결</p>
-                      <p style="color: #ccc; margin: 0;">가까운 거리의 사용자들과 함께 운동</p>
+                      <p style="color: #fff; font-weight: bold; margin: 0; margin-bottom: -2px;">지역 기반 연결</p>
+                      <p style="color: #ccc; margin: 0; margin-top: 2px;">가까운 거리의 사용자들과 함께 운동</p>
                     </div>
                   </div>
                   <div style="display: flex; align-items: center;">
@@ -1084,8 +1105,8 @@
                       <img src="./images/neo22.png" alt="팀 기반 시스템" style="width: 24px; height: 24px;">
                     </div>
                     <div>
-                      <p style="color: #fff; font-weight: bold; margin: 0;">팀 기반 시스템</p>
-                      <p style="color: #ccc; margin: 0;">3~4인 팀 구성으로 함께 운동하는 즐거움</p>
+                      <p style="color: #fff; font-weight: bold; margin: 0; margin-bottom: -2px;">팀 기반 시스템</p>
+                      <p style="color: #ccc; margin: 0; margin-top: 2px;">3~4인 팀 구성으로 함께 운동하는 즐거움</p>
                     </div>
                   </div>
                 </div>
@@ -1292,7 +1313,7 @@
   }
   </style>
         <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
-          <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
+          <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div> <!-- End of .hive-showcase -->
   <style>
@@ -1842,9 +1863,20 @@
       history.scrollRestoration = 'manual';
     }
     
+    // 즉시 스크롤 초기화 (더 빠른 실행)
+    window.scrollTo(0, 0);
+    
     // DOMContentLoaded로 더 빠른 초기화
     document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo(0, 0);
+      
+      // 비디오 지연 로딩
+      setTimeout(() => {
+        const videos = document.querySelectorAll('video[preload="none"]');
+        videos.forEach(video => {
+          video.preload = 'metadata';
+        });
+      }, 1000);
     });
     
     window.addEventListener('beforeunload', function() {
