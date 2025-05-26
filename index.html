@@ -1961,22 +1961,22 @@
             resetImageToOriginalPosition(img, index);
           });
           if (videoPhone) {
-            videoPhone.style.left = '50%';
-            videoPhone.style.top = '50%';
-            videoPhone.style.transform = 'translate(-50%, -50%)' + (window.innerWidth > 768 ? ' rotate(-2deg)' : '');
-            videoPhone.style.zIndex = '10';
+            videoPhone.style.setProperty('left', '50%', 'important');
+            videoPhone.style.setProperty('top', '50%', 'important');
+            videoPhone.style.setProperty('transform', 'translate(-50%, -50%)' + (window.innerWidth > 768 ? ' rotate(-2deg)' : ''), 'important');
+            videoPhone.style.setProperty('z-index', '10', 'important');
             if (window.innerWidth <= 768) {
-              videoPhone.style.width = '180px';
-              videoPhone.style.height = '360px';
-              videoPhone.style.border = '4px solid #7BE495';
-              videoPhone.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-              videoPhone.style.borderRadius = '20px';
+              videoPhone.style.setProperty('width', '180px', 'important');
+              videoPhone.style.setProperty('height', '360px', 'important');
+              videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
+              videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+              videoPhone.style.setProperty('border-radius', '20px', 'important');
             } else {
-              videoPhone.style.width = '256px';
-              videoPhone.style.height = '512px';
-              videoPhone.style.border = '10px solid #7BE495';
-              videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
-              videoPhone.style.borderRadius = '24px';
+              videoPhone.style.setProperty('width', '256px', 'important');
+              videoPhone.style.setProperty('height', '512px', 'important');
+              videoPhone.style.setProperty('border', '10px solid #7BE495', 'important');
+              videoPhone.style.setProperty('box-shadow', '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)', 'important');
+              videoPhone.style.setProperty('border-radius', '24px', 'important');
             }
           }
         } else if (hiveImages[idx]) {
@@ -1992,51 +1992,47 @@
             }
           });
 
-          // 비디오를 클릭된 이미지의 원래 위치로 이동 (모바일)
+          // 비디오를 클릭된 이미지의 원래 위치로 이동 (!important 사용)
           if (videoPhone) {
             videoPhone.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            videoPhone.style.setProperty('left', targetPosition.left, 'important');
+            videoPhone.style.setProperty('top', targetPosition.top, 'important');
+            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
+            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
             if (window.innerWidth <= 768) {
-              videoPhone.style.left = targetPosition.left;
-              videoPhone.style.top = targetPosition.top;
-              videoPhone.style.transform = targetPosition.transform;
-              videoPhone.style.zIndex = targetPosition.zIndex;
-              videoPhone.style.width = '90px';
-              videoPhone.style.height = '180px';
-              videoPhone.style.border = 'none';
-              videoPhone.style.boxShadow = 'none';
-              videoPhone.style.borderRadius = '16px';
+              videoPhone.style.setProperty('width', '90px', 'important');
+              videoPhone.style.setProperty('height', '180px', 'important');
+              videoPhone.style.setProperty('border', 'none', 'important');
+              videoPhone.style.setProperty('box-shadow', 'none', 'important');
+              videoPhone.style.setProperty('border-radius', '16px', 'important');
             } else {
-              videoPhone.style.left = targetPosition.left;
-              videoPhone.style.top = targetPosition.top;
-              videoPhone.style.transform = targetPosition.transform;
-              videoPhone.style.zIndex = targetPosition.zIndex;
-              videoPhone.style.width = '160px';
-              videoPhone.style.height = '320px';
-              videoPhone.style.border = 'none';
-              videoPhone.style.boxShadow = 'none';
-              videoPhone.style.borderRadius = '24px';
+              videoPhone.style.setProperty('width', '160px', 'important');
+              videoPhone.style.setProperty('height', '320px', 'important');
+              videoPhone.style.setProperty('border', 'none', 'important');
+              videoPhone.style.setProperty('box-shadow', 'none', 'important');
+              videoPhone.style.setProperty('border-radius', '24px', 'important');
             }
           }
 
-          // 클릭된 이미지를 중앙으로 이동
+          // 클릭된 이미지를 중앙으로 이동 (!important 사용)
           targetImg.classList.add('active');
           targetImg.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-          targetImg.style.left = '50%';
-          targetImg.style.top = '50%';
-          targetImg.style.transform = 'translate(-50%, -50%)';
-          targetImg.style.zIndex = '10';
+          targetImg.style.setProperty('left', '50%', 'important');
+          targetImg.style.setProperty('top', '50%', 'important');
+          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          targetImg.style.setProperty('z-index', '10', 'important');
           if (window.innerWidth <= 768) {
-            targetImg.style.width = '180px';
-            targetImg.style.height = '360px';
-            targetImg.style.border = '4px solid #7BE495';
-            targetImg.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-            targetImg.style.borderRadius = '20px';
+            targetImg.style.setProperty('width', '180px', 'important');
+            targetImg.style.setProperty('height', '360px', 'important');
+            targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+            targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+            targetImg.style.setProperty('border-radius', '20px', 'important');
           } else {
-            targetImg.style.width = '256px';
-            targetImg.style.height = '512px';
-            targetImg.style.border = '6px solid #7BE495';
-            targetImg.style.boxShadow = '0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3)';
-            targetImg.style.borderRadius = '24px';
+            targetImg.style.setProperty('width', '256px', 'important');
+            targetImg.style.setProperty('height', '512px', 'important');
+            targetImg.style.setProperty('border', '6px solid #7BE495', 'important');
+            targetImg.style.setProperty('box-shadow', '0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3)', 'important');
+            targetImg.style.setProperty('border-radius', '24px', 'important');
           }
         }
         
@@ -2097,23 +2093,23 @@
        const positions = getPositionForIndex(index);
        
        img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-       img.style.left = positions.left;
-       img.style.top = positions.top;
-       img.style.transform = positions.transform;
-       img.style.zIndex = positions.zIndex;
+       img.style.setProperty('left', positions.left, 'important');
+       img.style.setProperty('top', positions.top, 'important');
+       img.style.setProperty('transform', positions.transform, 'important');
+       img.style.setProperty('z-index', positions.zIndex, 'important');
        
        if (window.innerWidth <= 768) {
-         img.style.width = '90px';
-         img.style.height = '180px';
-         img.style.borderRadius = '16px';
+         img.style.setProperty('width', '90px', 'important');
+         img.style.setProperty('height', '180px', 'important');
+         img.style.setProperty('border-radius', '16px', 'important');
        } else {
-         img.style.width = '160px';
-         img.style.height = 'auto';
-         img.style.borderRadius = '24px';
+         img.style.setProperty('width', '160px', 'important');
+         img.style.setProperty('height', 'auto', 'important');
+         img.style.setProperty('border-radius', '24px', 'important');
        }
        
-       img.style.border = 'none';
-       img.style.boxShadow = 'none';
+       img.style.setProperty('border', 'none', 'important');
+       img.style.setProperty('box-shadow', 'none', 'important');
      }
     
          
@@ -2585,112 +2581,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const hiveImages = document.querySelectorAll('.hive-image');
-      const videoPhone = document.querySelector('.video-phone');
-      if (!videoPhone) return;
 
-      function isMobile() {
-        return window.innerWidth <= 768;
-      }
-
-      // swap 함수: 두 요소의 스타일을 완전히 교환 (모바일 전용)
-      function swapPositions(img, video) {
-        if (window.innerWidth <= 768) {
-          const imgIndex = Array.from(document.querySelectorAll('.hive-image')).indexOf(img);
-          const pos = getPositionForIndex(imgIndex);
-          
-          if (img.classList.contains('active')) {
-            // 활성화된 이미지를 원래 위치로
-            img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            img.style.left = pos.left;
-            img.style.top = pos.top;
-            img.style.transform = pos.transform;
-            img.style.zIndex = pos.zIndex;
-            img.style.width = '90px';
-            img.style.height = '180px';
-            img.style.border = 'none';
-            img.style.borderRadius = '16px';
-            img.style.boxShadow = 'none';
-            
-            // 비디오를 중앙으로
-            video.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            video.style.left = '50%';
-            video.style.top = '50%';
-            video.style.transform = 'translate(-50%, -50%)';
-            video.style.zIndex = '10';
-            video.style.width = '180px';
-            video.style.height = '360px';
-            video.style.border = '4px solid #7BE495';
-            video.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-            video.style.borderRadius = '20px';
-          } else {
-            // 이미지를 중앙으로
-            img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            img.style.left = '50%';
-            img.style.top = '50%';
-            img.style.transform = 'translate(-50%, -50%)';
-            img.style.zIndex = '10';
-            img.style.width = '180px';
-            img.style.height = '360px';
-            img.style.border = '4px solid #7BE495';
-            img.style.borderRadius = '20px';
-            img.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.6)';
-            
-            // 비디오를 클릭된 이미지의 원래 위치로
-            video.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            video.style.left = pos.left;
-            video.style.top = pos.top;
-            video.style.transform = pos.transform;
-            video.style.zIndex = pos.zIndex;
-            video.style.width = '90px';
-            video.style.height = '180px';
-            video.style.border = 'none';
-            video.style.boxShadow = 'none';
-            video.style.borderRadius = '16px';
-          }
-          
-          img.classList.toggle('active');
-        } else {
-          // ... existing PC swap code ...
-        }
-      }
-
-            // getPositionForIndex 함수를 DOMContentLoaded 내부에 정의
-      function getPositionForIndex(index) {
-        if (window.innerWidth <= 768) {
-          // 모바일용 위치 - CSS nth-of-type과 정확히 일치
-          const positions = [
-            { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
-            { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
-            { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
-            { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
-            { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
-            { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
-          ];
-          return positions[index] || positions[0];
-        } else {
-          // PC용 위치 (top: 55%, transform: ... -60%)
-          const positions = [
-            { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
-            { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
-            { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
-            { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
-            { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
-            { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
-          ];
-          return positions[index] || positions[0];
-        }
-      }
-
-
-    });
-  </script>
   <script>
     // 터치 이벤트 처리 추가
     document.addEventListener("DOMContentLoaded", function () {
       const showcase = document.querySelector('.hive-showcase');
+      if (!showcase) return;
+      
       let touchStartX = 0;
       let touchEndX = 0;
 
@@ -2738,99 +2635,5 @@ document.addEventListener('DOMContentLoaded', function() {
       /* video-phone의 크기는 JavaScript에서 동적으로 제어됩니다 */
     }
   </style>
-  <script>
-    function getCurrentStyle(el) {
-      return {
-        left: el.style.left,
-        top: el.style.top,
-        transform: el.style.transform,
-        zIndex: el.style.zIndex,
-        width: el.style.width,
-        height: el.style.height,
-        border: el.style.border,
-        boxShadow: el.style.boxShadow,
-        borderRadius: el.style.borderRadius
-      };
-    }
-    function setStyle(el, styleObj) {
-      for (const key in styleObj) {
-        el.style[key] = styleObj[key];
-      }
-    }
-  </script>
-  <script>
-    let swappedIndex = null;
-    let videoOriginalStyle = null;
-    let imageOriginalStyle = null;
 
-    hiveImages.forEach((img, idx) => {
-      img.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (swappedIndex !== null) return; // 이미 스왑된 상태면 무시
 
-        // 1. 현재 스타일 저장
-        videoOriginalStyle = getCurrentStyle(videoPhone);
-        imageOriginalStyle = getCurrentStyle(img);
-
-        // 2. 스타일 교환
-        setStyle(videoPhone, imageOriginalStyle);
-        setStyle(img, videoOriginalStyle);
-
-        img.classList.add('active');
-        swappedIndex = idx;
-      });
-    });
-
-    // 비디오 클릭 시 복귀
-    videoPhone.addEventListener('click', function(e) {
-      if (swappedIndex === null) return;
-      setStyle(videoPhone, videoOriginalStyle);
-      setStyle(hiveImages[swappedIndex], imageOriginalStyle);
-      hiveImages[swappedIndex].classList.remove('active');
-      swappedIndex = null;
-    });
-  </script>
-  <script>
-function getCurrentStyle(el) {
-  return {
-    left: el.style.left,
-    top: el.style.top,
-    transform: el.style.transform,
-    zIndex: el.style.zIndex,
-    width: el.style.width,
-    height: el.style.height,
-    border: el.style.border,
-    boxShadow: el.style.boxShadow,
-    borderRadius: el.style.borderRadius
-  };
-}
-function setStyleImportant(el, styleObj) {
-  for (const key in styleObj) {
-    const cssKey = key.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
-    el.style.setProperty(cssKey, styleObj[key], 'important');
-  }
-}
-let swappedIndex = null;
-let videoOriginalStyle = null;
-let imageOriginalStyle = null;
-
-hiveImages.forEach((img, idx) => {
-  img.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (swappedIndex !== null) return; // 이미 스왑된 상태면 무시
-    videoOriginalStyle = getCurrentStyle(videoPhone);
-    imageOriginalStyle = getCurrentStyle(img);
-    setStyleImportant(videoPhone, imageOriginalStyle);
-    setStyleImportant(img, videoOriginalStyle);
-    img.classList.add('active');
-    swappedIndex = idx;
-  });
-});
-videoPhone.addEventListener('click', function(e) {
-  if (swappedIndex === null) return;
-  setStyleImportant(videoPhone, videoOriginalStyle);
-  setStyleImportant(hiveImages[swappedIndex], imageOriginalStyle);
-  hiveImages[swappedIndex].classList.remove('active');
-  swappedIndex = null;
-});
-</script>
