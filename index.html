@@ -2877,13 +2877,19 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   /* 무인 출입/이벤트 시스템 연동 박스 1단 세로 쌓기 */
   .neohive-twobox-col > div:last-child > div[style*='background: linear-gradient(135deg, #112921'] {
-    flex-direction: column !important;
+    all: unset !important;
     display: block !important;
-    width: 100% !important;
-    margin-left: 0 !important;
-    padding: 16px 6px !important;
-    box-sizing: border-box !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
     min-width: 0 !important;
+    margin: 0 !important;
+    padding: 12px 2vw !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    background: linear-gradient(135deg, #112921 0%, #0C1612 100%) !important;
+    border-radius: 16px !important;
+    border: 1px solid #7BE495 !important;
+    box-shadow: 0 0 20px rgba(123, 228, 149, 0.15) !important;
   }
   .neohive-twobox-col > div:last-child > div[style*='background: linear-gradient(135deg, #112921'] > div {
     width: 100% !important;
@@ -2891,17 +2897,42 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-bottom: 18px !important;
     padding: 0 !important;
     text-align: left !important;
+    box-sizing: border-box !important;
   }
   .neohive-twobox-col h4 {
     font-size: 1rem !important;
     margin-left: 0 !important;
     margin-bottom: 8px !important;
+    margin-top: 0 !important;
   }
   .neohive-twobox-col ul, .neohive-twobox-col p, .neohive-twobox-col li {
     font-size: 0.85rem !important;
     line-height: 1.4 !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
   }
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth <= 768) {
+    var box = document.querySelector('.neohive-twobox-col > div:last-child > div[style*="background: linear-gradient(135deg, #112921"]');
+    if (box) {
+      box.style.width = '100vw';
+      box.style.maxWidth = '100vw';
+      box.style.marginLeft = '0';
+      box.style.minWidth = '0';
+      box.style.padding = '12px 2vw';
+      box.style.display = 'block';
+      box.style.flexDirection = 'column';
+      box.style.overflowX = 'auto';
+      box.style.background = 'linear-gradient(135deg, #112921 0%, #0C1612 100%)';
+      box.style.borderRadius = '16px';
+      box.style.border = '1px solid #7BE495';
+      box.style.boxShadow = '0 0 20px rgba(123, 228, 149, 0.15)';
+    }
+  }
+});
+</script>
 
 
