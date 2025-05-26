@@ -2738,3 +2738,55 @@ document.addEventListener('DOMContentLoaded', function() {
       /* video-phone의 크기는 JavaScript에서 동적으로 제어됩니다 */
     }
   </style>
+  <script>
+    function getCurrentStyle(el) {
+      return {
+        left: el.style.left,
+        top: el.style.top,
+        transform: el.style.transform,
+        zIndex: el.style.zIndex,
+        width: el.style.width,
+        height: el.style.height,
+        border: el.style.border,
+        boxShadow: el.style.boxShadow,
+        borderRadius: el.style.borderRadius
+      };
+    }
+    function setStyle(el, styleObj) {
+      for (const key in styleObj) {
+        el.style[key] = styleObj[key];
+      }
+    }
+  </script>
+  <script>
+    let swappedIndex = null;
+    let videoOriginalStyle = null;
+    let imageOriginalStyle = null;
+
+    hiveImages.forEach((img, idx) => {
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (swappedIndex !== null) return; // 이미 스왑된 상태면 무시
+
+        // 1. 현재 스타일 저장
+        videoOriginalStyle = getCurrentStyle(videoPhone);
+        imageOriginalStyle = getCurrentStyle(img);
+
+        // 2. 스타일 교환
+        setStyle(videoPhone, imageOriginalStyle);
+        setStyle(img, videoOriginalStyle);
+
+        img.classList.add('active');
+        swappedIndex = idx;
+      });
+    });
+
+    // 비디오 클릭 시 복귀
+    videoPhone.addEventListener('click', function(e) {
+      if (swappedIndex === null) return;
+      setStyle(videoPhone, videoOriginalStyle);
+      setStyle(hiveImages[swappedIndex], imageOriginalStyle);
+      hiveImages[swappedIndex].classList.remove('active');
+      swappedIndex = null;
+    });
+  </script>
