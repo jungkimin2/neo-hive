@@ -2080,7 +2080,21 @@
       }
     }
 
-    // 이미지 클릭 이벤트는 DOMContentLoaded에서 처리됨
+    // 이미지 클릭 이벤트 핸들러 추가
+    hiveImages.forEach((image, idx) => {
+      image.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (isTransitioning) return;
+        
+        const isActive = image.classList.contains('active');
+        if (!isActive) {
+          slideIndex = idx;
+        } else {
+          slideIndex = -1;
+        }
+        showSlide(slideIndex);
+      });
+    });
 
     
     
@@ -2676,20 +2690,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
-      hiveImages.forEach((image, idx) => {
-        image.addEventListener('click', function (e) {
-          e.stopPropagation();
-          if (isTransitioning) return;
-          
-          const isActive = image.classList.contains('active');
-          if (!isActive) {
-            slideIndex = idx;
-          } else {
-            slideIndex = -1;
-          }
-          showSlide(slideIndex);
-        });
-      });
+
     });
   </script>
   <script>
