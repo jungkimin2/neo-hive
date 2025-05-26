@@ -2804,4 +2804,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+<style>
+@media (max-width: 768px) {
+  /* '지역 기반 연결', '팀 기반 시스템' 제목을 한 칸(12px) 아래로 내림 */
+  .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p:first-child {
+    margin-top: 12px !important;
+  }
+}
+</style>
+
 
