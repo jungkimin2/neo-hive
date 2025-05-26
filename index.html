@@ -2827,4 +2827,24 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+<style>
+@media (max-width: 768px) {
+  /* '지역 기반 연결'과 '팀 기반 시스템' 설명문구와 아이콘을 한 칸 위로 올림 */
+  .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div {
+    align-items: flex-start !important;
+    margin-top: 0 !important;
+  }
+  .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div img {
+    margin-top: 0 !important;
+  }
+  .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p + p {
+    margin-top: 0 !important;
+  }
+}
+</style>
+
 
