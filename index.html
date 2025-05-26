@@ -1115,18 +1115,18 @@
                     <div style="width: 40px; height: 40px; border-radius: 50%; background: #7BE395; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
                       <img src="./images/neo40.png" alt="지역 기반 연결 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <div>
-                      <p style="color: #fff; font-weight: bold; margin: 0 0 4px 0;">지역 기반 연결</p>
-                      <p style="color: #ccc; margin: 4px 0 0 0;">가까운 거리의 사용자들과 함께 운동</p>
+                    <div style="display: flex; flex-direction: column;">
+                      <span class="hive-feature-title" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0 0 0 0; padding: 0;">지역 기반 연결</span>
+                      <span class="hive-feature-desc" style="color: #ccc; font-size: 0.85rem; margin: 0; padding: 0;">가까운 거리의 사용자들과 함께 운동</span>
                     </div>
                   </div>
                   <div style="display: flex; align-items: center;">
                     <div style="width: 40px; height: 40px; border-radius: 50%; background: #7BE395; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
                       <img src="./images/neo22.png" alt="팀 기반 시스템" style="width: 24px; height: 24px;">
                     </div>
-                    <div>
-                      <p style="color: #fff; font-weight: bold; margin: 0 0 4px 0;">팀 기반 시스템</p>
-                      <p style="color: #ccc; margin: 4px 0 0 0;">3~4인 팀 구성으로 함께 운동하는 즐거움</p>
+                    <div style="display: flex; flex-direction: column;">
+                      <span class="hive-feature-title" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0 0 0 0; padding: 0;">팀 기반 시스템</span>
+                      <span class="hive-feature-desc" style="color: #ccc; font-size: 0.85rem; margin: 0; padding: 0;">3~4인 팀 구성으로 함께 운동하는 즐거움</span>
                     </div>
                   </div>
                 </div>
@@ -2843,6 +2843,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p + p {
     margin-top: 0 !important;
+  }
+}
+</style>
+
+<style>
+@media (max-width: 768px) {
+  /* '핵심 가치'와 설명을 박스 내에서 한 칸(12px) 아래로 내림 */
+  .neohive-twobox-col h4[style*='핵심 가치'] {
+    margin-top: 12px !important;
+  }
+  .neohive-twobox-col h4[style*='핵심 가치'] + p {
+    margin-top: 12px !important;
   }
 }
 </style>
