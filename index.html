@@ -959,32 +959,32 @@
         <img src="./images/neohive6.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
-             style="position:absolute; left:50%; top:55%; transform:translate(-200%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
+             style="position:absolute; left:50%; top:65%; transform:translate(-200%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s;">
         <img src="./images/neohive9.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
-             style="position:absolute; left:50%; top:55%; transform:translate(-250%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
+             style="position:absolute; left:50%; top:65%; transform:translate(-250%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s;">
         <img src="./images/neohive5.png" loading="lazy"
              class="hive-image slide-in-left animate-on-scroll team-formation"
              data-category="team"
-             style="position:absolute; left:50%; top:55%; transform:translate(-300%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
+             style="position:absolute; left:50%; top:65%; transform:translate(-300%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
 
         <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
         <img src="./images/neohive4.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
-             style="position:absolute; left:50%; top:55%; transform:translate(100%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
+             style="position:absolute; left:50%; top:65%; transform:translate(100%, -60%) scale(0.95); z-index:3; pointer-events:auto; transition-delay:0.12s; width:160px; height:auto;">
         <img src="./images/neohive7.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
-             style="position:absolute; left:50%; top:55%; transform:translate(150%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
+             style="position:absolute; left:50%; top:65%; transform:translate(150%, -60%) scale(0.9); z-index:2; pointer-events:auto; transition-delay:0.24s; width:160px; height:auto;">
         <img src="./images/neohive8.png" loading="lazy"
              class="hive-image slide-in-right animate-on-scroll center-booking"
              data-category="booking"
-             style="position:absolute; left:50%; top:55%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
+             style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
         <!-- Center phone -->
-        <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%) rotate(-2deg)">
+        <div class="video-phone" style="position:absolute; left:50%; top:60%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;" data-original-left="50%" data-original-top="60%" data-original-transform="translate(-50%, -50%) rotate(-2deg)">
           <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
         </div>
       </div>
@@ -1992,7 +1992,7 @@
             if (window.innerWidth <= 768) {
               // 모바일에서만 !important 사용
               videoPhone.style.setProperty('left', '50%', 'important');
-              videoPhone.style.setProperty('top', '50%', 'important');
+              videoPhone.style.setProperty('top', '60%', 'important');
               videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
               videoPhone.style.setProperty('z-index', '10', 'important');
               videoPhone.style.setProperty('width', '180px', 'important');
@@ -2060,7 +2060,7 @@
           if (window.innerWidth <= 768) {
             // 모바일에서만 !important 사용
             targetImg.style.setProperty('left', '50%', 'important');
-            targetImg.style.setProperty('top', '50%', 'important');
+            targetImg.style.setProperty('top', '60%', 'important');
             targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
             targetImg.style.setProperty('z-index', '10', 'important');
             targetImg.style.setProperty('width', '180px', 'important');
@@ -2094,12 +2094,12 @@
       if (window.innerWidth <= 768) {
         // 모바일용 위치 - CSS nth-of-type과 정확히 일치
         const positions = [
-          { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
-          { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
-          { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
-          { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
-          { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
-          { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
+          { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
+          { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
+          { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
+          { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
+          { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
+          { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
         ];
         return positions[index] || positions[0];
       } else {
