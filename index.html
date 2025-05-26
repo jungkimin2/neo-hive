@@ -981,8 +981,8 @@
         </div>
         <!-- Background glow -->
         <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
-        <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10094;</button>
-        <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10095;</button>
+        <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; left:10px; transform:translateY(-50%);">&#10094;</button>
+        <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; right:10px; transform:translateY(-50%);">&#10095;</button>
 
         <!-- Left 3 images stacked behind center (팀 결성 관련) -->
         <img src="./images/neohive6.png" loading="lazy" decoding="async"
@@ -2741,7 +2741,7 @@ document.addEventListener('DOMContentLoaded', function() {
     @media (max-width: 768px) {
       #slide-prev, #slide-next {
         top: auto !important;
-        bottom: 12px !important;
+        bottom: 32px !important;
         left: 50% !important;
         right: auto !important;
         transform: translateX(-50%) !important;
