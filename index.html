@@ -2873,4 +2873,35 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+<style>
+@media (max-width: 768px) {
+  /* 무인 출입/이벤트 시스템 연동 박스 1단 세로 쌓기 */
+  .neohive-twobox-col > div:last-child > div[style*='background: linear-gradient(135deg, #112921'] {
+    flex-direction: column !important;
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 16px 6px !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+  .neohive-twobox-col > div:last-child > div[style*='background: linear-gradient(135deg, #112921'] > div {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-bottom: 18px !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  .neohive-twobox-col h4 {
+    font-size: 1rem !important;
+    margin-left: 0 !important;
+    margin-bottom: 8px !important;
+  }
+  .neohive-twobox-col ul, .neohive-twobox-col p, .neohive-twobox-col li {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+}
+</style>
+
 
