@@ -981,8 +981,8 @@
         </div>
         <!-- Background glow -->
         <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
-        <button id="slide-prev" style="position:absolute; left:calc(50% - 50px); top:100%; transform:translateY(10px); z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10094;</button>
-        <button id="slide-next" style="position:absolute; right:calc(50% - 50px); top:100%; transform:translateY(10px); z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10095;</button>
+        <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10094;</button>
+        <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer;">&#10095;</button>
 
         <!-- Left 3 images stacked behind center (팀 결성 관련) -->
         <img src="./images/neohive6.png" loading="lazy" decoding="async"
@@ -2733,6 +2733,27 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 20px !important;
         box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
         transform: translate(-50%, -50%) !important; /* 모바일에서는 rotate 제거 */
+      }
+    }
+  </style>
+
+  <style>
+    @media (max-width: 768px) {
+      #slide-prev, #slide-next {
+        top: auto !important;
+        bottom: 12px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        margin: 0 !important;
+        position: absolute !important;
+        z-index: 30 !important;
+      }
+      #slide-prev {
+        left: calc(50% - 40px) !important;
+      }
+      #slide-next {
+        left: calc(50% + 40px) !important;
       }
     }
   </style>
