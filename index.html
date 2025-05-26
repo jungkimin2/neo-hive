@@ -784,22 +784,27 @@
         will-change: transform, opacity;
         transform: translateZ(0);
       }
-      
+
       /* 모바일에서 비디오 최적화 */
       video {
         will-change: auto;
         transform: translateZ(0);
       }
-      
+
       /* 모바일에서 이미지 최적화 */
       img {
         will-change: auto;
         transform: translateZ(0);
       }
-      
+
       /* 모바일에서만 Neo Hive 제목 아래로 이동 */
       .neo-hive-title {
         margin-top: 48px !important;
+      }
+
+      /* Move the entire hive showcase down slightly on mobile */
+      #hive .hive-showcase {
+        margin-top: 32px !important;
       }
     }
     p[style*="margin-top: 40px; font-weight: bold;"] {
