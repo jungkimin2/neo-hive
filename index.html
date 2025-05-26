@@ -586,13 +586,7 @@
        }
              .video-phone {
          position: absolute !important;
-         width: 140px !important;
-         height: 280px !important;
-         min-width: 120px !important;
-         min-height: 240px !important;
-         border-width: 3px !important;
          border-radius: 18px !important;
-         z-index: 10 !important;
          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
        }
       #slide-prev {
@@ -1969,7 +1963,7 @@
           if (videoPhone) {
             videoPhone.style.left = '50%';
             videoPhone.style.top = '50%';
-            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
+            videoPhone.style.transform = 'translate(-50%, -50%)' + (window.innerWidth > 768 ? ' rotate(-2deg)' : '');
             videoPhone.style.zIndex = '10';
             if (window.innerWidth <= 768) {
               videoPhone.style.width = '180px';
@@ -2741,23 +2735,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     @media (max-width: 768px) {
-      .video-phone {
-        width: 180px !important;
-        height: 360px !important;
-        border-width: 4px !important;
-        border-radius: 20px !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        /* Remove position fixing styles */
-      }
-      
-      .video-phone.center {
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 180px !important;
-        height: 360px !important;
-        border: 4px solid #7BE495 !important;
-        box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      }
+      /* video-phone의 크기는 JavaScript에서 동적으로 제어됩니다 */
     }
   </style>
