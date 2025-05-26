@@ -2790,3 +2790,47 @@ document.addEventListener('DOMContentLoaded', function() {
       swappedIndex = null;
     });
   </script>
+  <script>
+function getCurrentStyle(el) {
+  return {
+    left: el.style.left,
+    top: el.style.top,
+    transform: el.style.transform,
+    zIndex: el.style.zIndex,
+    width: el.style.width,
+    height: el.style.height,
+    border: el.style.border,
+    boxShadow: el.style.boxShadow,
+    borderRadius: el.style.borderRadius
+  };
+}
+function setStyleImportant(el, styleObj) {
+  for (const key in styleObj) {
+    const cssKey = key.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+    el.style.setProperty(cssKey, styleObj[key], 'important');
+  }
+}
+let swappedIndex = null;
+let videoOriginalStyle = null;
+let imageOriginalStyle = null;
+
+hiveImages.forEach((img, idx) => {
+  img.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (swappedIndex !== null) return; // 이미 스왑된 상태면 무시
+    videoOriginalStyle = getCurrentStyle(videoPhone);
+    imageOriginalStyle = getCurrentStyle(img);
+    setStyleImportant(videoPhone, imageOriginalStyle);
+    setStyleImportant(img, videoOriginalStyle);
+    img.classList.add('active');
+    swappedIndex = idx;
+  });
+});
+videoPhone.addEventListener('click', function(e) {
+  if (swappedIndex === null) return;
+  setStyleImportant(videoPhone, videoOriginalStyle);
+  setStyleImportant(hiveImages[swappedIndex], imageOriginalStyle);
+  hiveImages[swappedIndex].classList.remove('active');
+  swappedIndex = null;
+});
+</script>
