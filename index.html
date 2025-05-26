@@ -2054,12 +2054,12 @@
       if (window.innerWidth <= 768) {
         // 모바일용 위치 - 좀 더 중앙에 가깝게, 겹침 줄임
         const positions = [
-          { left: '50%', top: '50%', transform: 'translate(-150%, -50%) scale(0.9)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(-200%, -50%) scale(0.8)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(-250%, -50%) scale(0.7)', zIndex: 1 },
-          { left: '50%', top: '50%', transform: 'translate(50%, -50%) scale(0.9)', zIndex: 3 },
-          { left: '50%', top: '50%', transform: 'translate(100%, -50%) scale(0.8)', zIndex: 2 },
-          { left: '50%', top: '50%', transform: 'translate(150%, -50%) scale(0.7)', zIndex: 1 }
+          { left: '50%', top: '50%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
+          { left: '50%', top: '50%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
+          { left: '50%', top: '50%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
+          { left: '50%', top: '50%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
+          { left: '50%', top: '50%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
+          { left: '50%', top: '50%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
         ];
         return positions[index] || positions[0];
       } else {
