@@ -985,37 +985,24 @@
   }
 }
   </style>
-  <!-- Add a single, strong rule at the end of <head> -->
   <style>
 @media (max-width: 768px) {
-  .mobile-trial-msg,
-  .mobile-feedback-msg {
+  .mobile-only-trial-feedback {
     font-size: 0.28rem !important;
     line-height: 1.2 !important;
     color: #ccc !important;
-    margin: 0 !important;
+    margin: 12px 0 0 0 !important;
     padding: 0 !important;
     font-weight: 400 !important;
     letter-spacing: -0.01em !important;
     text-align: left !important;
     word-break: keep-all !important;
+    display: block !important;
   }
 }
-  </style>
-  <!-- head의 중복된 모바일 폰트 스타일 모두 삭제 후, 아래 한 번만 남김 -->
-  <style>
-@media (max-width: 768px) {
-  html body .mobile-trial-msg,
-  html body .mobile-feedback-msg {
-    font-size: 0.28rem !important;
-    line-height: 1.2 !important;
-    color: #ccc !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.01em !important;
-    text-align: left !important;
-    word-break: keep-all !important;
+@media (min-width: 769px) {
+  .mobile-only-trial-feedback {
+    display: none !important;
   }
 }
   </style>
@@ -1276,7 +1263,7 @@
                 </div>
               </div>
             </div>
-            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden;">
+            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                   <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
@@ -1328,7 +1315,7 @@
   <style>
     @media (max-width: 768px) {
       .core-value-box-mobile {
-        margin-top: -420px !important;
+        margin-top: -339px !important;  /* -309px에서 30px 더 위로 올림 */
       }
     }
   </style>
@@ -3125,13 +3112,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
-
-<style>
-@media (min-width: 769px) {
-  .core-value-box-mobile {
-    margin-top: 0 !important;
-  }
-}
-</style>
 
 
