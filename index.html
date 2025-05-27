@@ -1002,6 +1002,23 @@
   }
 }
   </style>
+  <!-- head의 중복된 모바일 폰트 스타일 모두 삭제 후, 아래 한 번만 남김 -->
+  <style>
+@media (max-width: 768px) {
+  html body .mobile-trial-msg,
+  html body .mobile-feedback-msg {
+    font-size: 0.28rem !important;
+    line-height: 1.2 !important;
+    color: #ccc !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    text-align: left !important;
+    word-break: keep-all !important;
+  }
+}
+  </style>
 </head>
 <body>
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
