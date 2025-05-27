@@ -1232,14 +1232,7 @@
       .core-value-desktop-text {
         display: none !important;
       }
-      .trial-renewal-msg {
-        font-size: 0.52rem !important;
-        line-height: 1.2 !important;
-      }
-      .feedback-msg {
-        font-size: 0.52rem !important;
-        line-height: 1.2 !important;
-      }
+      /* Removed .trial-renewal-msg and .feedback-msg font-size override for mobile */
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
@@ -1249,11 +1242,12 @@
         display: inline !important;
       }
       .trial-renewal-msg {
-        font-size: 0.79rem !important;
+        font-size: 0.9rem !important;
         font-weight: 500 !important;
       }
       .feedback-msg {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
       }
     }
   </style>
