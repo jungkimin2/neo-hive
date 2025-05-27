@@ -939,6 +939,23 @@
       display: none;
     }
   </style>
+  <style>
+    /* 모바일 메시지 스타일 - 더 강력한 선택자 사용 */
+    @media (max-width: 768px) {
+      body .message-container .mobile-trial-msg,
+      body .message-container .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        word-break: keep-all !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
