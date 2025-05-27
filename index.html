@@ -1,3 +1,38 @@
+  <style>
+    /* 모바일 환경에서 네오 하이브의 팀워크 보상 플로우 박스(1일 무료 입장, 팀 구성/결성, 센터 경험, 팀출석 보상, 커뮤니티 형성, 신규 및 재등록)의 가로 길이, 패딩, 폰트 등 강제 통일 */
+    @media (max-width: 768px) {
+      .neohive-twobox-col > div .team-flow-box,
+      .neohive-twobox-col > div [style*="min-width: 90px"] {
+        min-width: 90px !important;
+        max-width: 100% !important;
+        width: auto !important;
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+        background: rgba(98,210,162,0.15) !important;
+        border: 1px solid rgba(98,210,162,0.3) !important;
+        margin: 0 !important;
+        display: inline-block !important;
+      }
+      /* 신규 및 재등록 박스 네온 스타일도 통일 */
+      .neohive-twobox-col > div [style*="신규 및 재등록"] {
+        min-width: 90px !important;
+        max-width: 100% !important;
+        width: auto !important;
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+        background: #000 !important;
+        border: 1px solid #7BE495 !important;
+        margin: 0 !important;
+        display: inline-block !important;
+      }
+    }
+  </style>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
