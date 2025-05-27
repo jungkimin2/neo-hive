@@ -1178,26 +1178,7 @@
                     <p class="feedback-msg mobile-feedback-msg" style="color: #ccc; margin: 0;">
                       팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
-<style>
-  @media (max-width: 768px) {
-    .trial-renewal-msg,
-    .feedback-msg {
-      font-size: 0.40rem !important;
-      line-height: 1.16 !important;
-      font-weight: 400 !important;
-    }
-  }
-</style>
-<style>
-  @media (max-width: 768px) {
-    .mobile-trial-msg,
-    .mobile-feedback-msg {
-      font-size: 0.42rem !important;
-      line-height: 1.18 !important;
-      font-weight: 400 !important;
-    }
-  }
-</style>
+<!-- mobile font-size overrides for trial-renewal-msg and feedback-msg -->
                   </div>
                 </div>
               </div>
@@ -1232,7 +1213,6 @@
       .core-value-desktop-text {
         display: none !important;
       }
-      /* Removed .trial-renewal-msg and .feedback-msg font-size override for mobile */
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
@@ -3001,3 +2981,15 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
+
+    /* Responsive font-size for trial-renewal-msg, feedback-msg, mobile-trial-msg, mobile-feedback-msg */
+    @media (max-width: 768px) {
+      .trial-renewal-msg,
+      .feedback-msg,
+      .mobile-trial-msg,
+      .mobile-feedback-msg {
+        font-size: 0.72rem !important;
+        line-height: 1.18 !important;
+        font-weight: 400 !important;
+      }
+    }
