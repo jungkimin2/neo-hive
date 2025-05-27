@@ -8,18 +8,6 @@
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
-    /* Fluid typography */
-    html {
-      font-size: clamp(14px, 4vw, 18px);
-    }
-    h1, h2, h3, h4 {
-      /* Scale headings between 1.2rem and 2.2rem based on viewport width */
-      font-size: clamp(1.2rem, 4vw, 2.2rem);
-    }
-    p, .neos-text, .hive-feature-desc {
-      /* Scale body text between 0.9rem and 1.1rem */
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
     hr {
@@ -1190,6 +1178,26 @@
                     <p class="feedback-msg mobile-feedback-msg" style="color: #ccc; margin: 0;">
                       팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
+<style>
+  @media (max-width: 768px) {
+    .trial-renewal-msg,
+    .feedback-msg {
+      font-size: 0.40rem !important;
+      line-height: 1.16 !important;
+      font-weight: 400 !important;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    .mobile-trial-msg,
+    .mobile-feedback-msg {
+      font-size: 0.42rem !important;
+      line-height: 1.18 !important;
+      font-weight: 400 !important;
+    }
+  }
+</style>
                   </div>
                 </div>
               </div>
@@ -1224,6 +1232,14 @@
       .core-value-desktop-text {
         display: none !important;
       }
+      .trial-renewal-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+      }
+      .feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+      }
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
@@ -1232,38 +1248,12 @@
       .core-value-desktop-text {
         display: inline !important;
       }
-    }
-  </style>
-  <!-- Combined mobile font adjustments -->
-  <style>
-    /* Combined mobile font adjustments */
-    @media (max-width: 768px) {
-      .trial-renewal-msg,
-      .feedback-msg,
-      .mobile-trial-msg,
-      .mobile-feedback-msg {
-        /* Use rem units that respect the fluid html font-size */
-        font-size: 1rem !important;
-        line-height: 1.4 !important;
+      .trial-renewal-msg {
+        font-size: 0.79rem !important;
+        font-weight: 500 !important;
       }
-      .core-value-mobile {
-        font-size: 1.2rem !important;
-        line-height: 1.4 !important;
-      }
-      .core-value-mobile .neon-green {
-        font-size: 1.3rem !important;
-      }
-      .core-value-desktop-text {
-        display: none !important;
-      }
-      .core-value-mobile-text {
-        display: inline !important;
-      }
-      /* Ensure any buttons and icons also scale */
-      .hive-showcase .hive-label-left,
-      .hive-showcase .hive-label-right,
-      .btn {
-        font-size: clamp(0.8rem, 2vw, 1rem) !important;
+      .feedback-msg {
+        font-size: 0.85rem !important;
       }
     }
   </style>
