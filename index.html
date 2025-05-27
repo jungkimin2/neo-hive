@@ -957,15 +957,12 @@
     }
   </style>
   <style>
-    /* 모든 기존 모바일 메시지 관련 스타일 초기화 및 재정의 */
+    /* 모바일 메시지 스타일 강제 적용 */
     @media (max-width: 768px) {
-      /* 가장 높은 특정성을 가진 선택자 사용 */
-      html body .message-container .mobile-trial-msg,
-      html body .message-container .mobile-feedback-msg,
-      html body p[class*="mobile-trial-msg"],
-      html body p[class*="mobile-feedback-msg"],
-      html body .trial-renewal-msg,
-      html body .feedback-msg {
+      .trial-renewal-msg,
+      .mobile-trial-msg,
+      .feedback-msg,
+      .mobile-feedback-msg {
         font-size: 0.52rem !important;
         line-height: 1.2 !important;
         font-weight: 400 !important;
@@ -973,46 +970,8 @@
         color: #ccc !important;
         margin: 0 !important;
         padding: 0 !important;
-        text-align: left !important;
-        word-break: keep-all !important;
-        transform: none !important;
-        white-space: normal !important;
       }
     }
-
-    /* PC 환경 스타일 */
-    @media (min-width: 769px) {
-      .trial-renewal-msg,
-      .feedback-msg {
-        font-size: 0.9rem !important;
-        line-height: 1.5 !important;
-      }
-    }
-  </style>
-
-  <!-- 메시지 컨테이너 수정 -->
-  <div class="message-container">
-    <p class="mobile-trial-msg" style="font-size: 0.52rem !important; line-height: 1.2 !important; color: #ccc !important; margin: 0 !important; padding: 0 !important;">
-      1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-      자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-    </p>
-    
-    <p class="mobile-feedback-msg" style="font-size: 0.52rem !important; line-height: 1.2 !important; color: #ccc !important; margin: 0 !important; padding: 0 !important;">
-      팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
-    </p>
-  </div>
-
-  <!-- 기존의 충돌 가능성 있는 스타일 제거 -->
-  <style>
-  @media (max-width: 768px) {
-    /* 이전 스타일 규칙들 제거 */
-    .hive-mobile-msg,
-    [class*="mobile-msg"],
-    .trial-msg,
-    .feedback-msg {
-      all: unset !important;
-    }
-  }
   </style>
 </head>
 <body>
@@ -1255,7 +1214,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="trial-renewal-msg mobile-trial-msg" style="color: #ccc; margin: 0;">
+                    <p class="trial-renewal-msg mobile-trial-msg" style="font-size: 0.52rem; line-height: 1.2; color: #ccc; margin: 0;">
                       1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
                       자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                     </p>
@@ -1264,7 +1223,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="feedback-msg mobile-feedback-msg" style="color: #ccc; margin: 0;">
+                    <p class="feedback-msg mobile-feedback-msg" style="font-size: 0.52rem; line-height: 1.2; color: #ccc; margin: 0;">
                       팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
                   </div>
