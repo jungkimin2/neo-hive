@@ -1190,7 +1190,8 @@
                 <div>
                   <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
                     핵심 가치<br>
-                    <span class="neon-green" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
                   </h4>
                 </div>
               </div>
@@ -1204,6 +1205,20 @@
       .core-value-mobile .neon-green {
         font-size: 0.85rem !important;
         line-height: 1.15 !important;
+      }
+      .core-value-mobile-text {
+        display: inline !important;
+      }
+      .core-value-desktop-text {
+        display: none !important;
+      }
+    }
+    @media (min-width: 769px) {
+      .core-value-mobile-text {
+        display: none !important;
+      }
+      .core-value-desktop-text {
+        display: inline !important;
       }
     }
   </style>
