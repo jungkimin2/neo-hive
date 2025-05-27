@@ -1,37 +1,3 @@
-  <style>
-    /* 모바일 환경에서 네오 하이브의 팀워크 보상 플로우 박스(1일 무료 입장, 팀 구성/결성, 센터 경험, 팀출석 보상, 커뮤니티 형성, 신규 및 재등록)의 가로 길이, 패딩, 폰트 등 강제 통일 */
-    @media (max-width: 768px) {
-      .neohive-twobox-col > div .team-flow-box,
-      .neohive-twobox-col > div [style*="min-width: 90px"] {
-        min-width: 90px !important;
-        max-width: 100% !important;
-        width: auto !important;
-        padding: 6px 14px !important;
-        font-size: 0.75rem !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        border-radius: 8px !important;
-        background: rgba(98,210,162,0.15) !important;
-        border: 1px solid rgba(98,210,162,0.3) !important;
-        margin: 0 !important;
-        display: inline-block !important;
-      }
-      .renewal-box {
-        min-width: 90px !important;
-        max-width: 100% !important;
-        width: auto !important;
-        padding: 6px 14px !important;
-        font-size: 0.75rem !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        border-radius: 8px !important;
-        background: #000 !important;
-        border: 1px solid #7BE495 !important;
-        margin: 0 !important;
-        display: inline-block !important;
-      }
-    }
-  </style>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1190,7 +1156,7 @@
                     <div style="color: #62D2A2; align-self: center;">➔</div>
                     <div style="flex: 1; min-width: 90px; padding: 6px 14px; background: rgba(98,210,162,0.15); border: 1px solid rgba(98,210,162,0.3); border-radius: 8px; text-align: center; font-size: 0.75rem;">커뮤니티 형성</div>
                     <div style="color: #62D2A2; align-self: center;">➔</div>
-                    <div class="renewal-box" style="flex: 1; min-width: 90px; padding: 6px 14px; border-radius: 8px; text-align: center; font-size: 0.72rem;">
+                    <div style="flex: 1; min-width: 90px; padding: 6px 14px; background: #000; border: 1px solid #7BE495; border-radius: 8px; text-align: center; font-size: 0.72rem;">
                       <span class="neon-green" style="color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.72rem;">
                         신규 및 재등록
                       </span>
@@ -1200,61 +1166,43 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="hive-mobile-msg trial-msg">
-1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+                    <p class="trial-renewal-msg mobile-trial-msg" style="color: #ccc; margin: 0;">
+                      1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
+                      자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                     </p>
                   </div>
                   <div style="display: flex; align-items: center; margin-top: 24px;">
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="hive-mobile-msg feedback-msg">
-팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>
-제공합니다.
+                    <p class="feedback-msg mobile-feedback-msg" style="color: #ccc; margin: 0;">
+                      팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
+<style>
+  @media (max-width: 768px) {
+    .trial-renewal-msg,
+    .feedback-msg {
+      font-size: 0.40rem !important;
+      line-height: 1.16 !important;
+      font-weight: 400 !important;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    .mobile-trial-msg,
+    .mobile-feedback-msg {
+      font-size: 0.42rem !important;
+      line-height: 1.18 !important;
+      font-weight: 400 !important;
+    }
+  }
+</style>
                   </div>
-                  <!--
-                  <style>
-@media (max-width: 768px) {
-  .hive-mobile-msg {
-    font-size: 0.55rem !important;
-    line-height: 1.2 !important;
-    color: #ccc !important;
-    margin: 0 0 0 0 !important;
-    padding: 0 !important;
-    font-weight: 400 !important;
-    letter-spacing: 0 !important;
-  }
-}
-</style>
-                  -->
-                  <style>
-@media (max-width: 768px) {
-  .hive-mobile-msg {
-    font-size: 0.44rem !important;
-    line-height: 1.2 !important;
-  }
-  .feedback-msg {
-    font-size: 0.44rem !important;
-    line-height: 1.2 !important;
-    color: #ccc !important;
-    margin: 0 0 0 0 !important;
-    padding: 0 !important;
-    font-weight: 400 !important;
-    letter-spacing: 0 !important;
-    text-align: left !important;
-  }
-  .trial-msg {
-    font-size: 0.44rem !important;
-    line-height: 1.2 !important;
-  }
-}
-</style>
                 </div>
               </div>
             </div>
-            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
+            <div style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                   <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
@@ -1284,8 +1232,13 @@
       .core-value-desktop-text {
         display: none !important;
       }
-      .core-value-box-mobile {
-        margin-top: -207px !important;
+      .trial-renewal-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+      }
+      .feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
       }
     }
     @media (min-width: 769px) {
