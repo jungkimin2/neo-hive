@@ -294,7 +294,7 @@
     @media (max-width: 768px) {
       /* 모바일: 핵심 가치 위치 조정 */
       .neohive-twobox-col > div:nth-child(2) {
-        margin-top: -155px !important;
+        margin-top: 48px !important;
       }
       /* 전체 모바일 레이아웃 기본 설정 */
       body {
@@ -1166,7 +1166,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p style="color: #ccc; font-size: 0.68rem; margin: 0;">
+                    <p class="trial-renewal-msg" style="color: #ccc; font-size: 0.68rem; margin: 0;">
                       1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
                       자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                     </p>
@@ -1211,6 +1211,10 @@
       }
       .core-value-desktop-text {
         display: none !important;
+      }
+      .trial-renewal-msg {
+        font-size: 0.62rem !important;
+        line-height: 1.2 !important;
       }
     }
     @media (min-width: 769px) {
