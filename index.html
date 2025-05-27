@@ -1180,21 +1180,14 @@
                     </p>
 <style>
   @media (max-width: 768px) {
-    .trial-renewal-msg,
-    .feedback-msg {
-      font-size: 0.40rem !important;
-      line-height: 1.16 !important;
-      font-weight: 400 !important;
-    }
-  }
-</style>
-<style>
-  @media (max-width: 768px) {
     .mobile-trial-msg,
     .mobile-feedback-msg {
-      font-size: 0.42rem !important;
-      line-height: 1.18 !important;
+      font-size: 0.64rem !important;
+      line-height: 1.16 !important;
       font-weight: 400 !important;
+      letter-spacing: -0.01em !important;
+      padding-right: 0 !important;
+      margin-bottom: 0 !important;
     }
   }
 </style>
@@ -1232,7 +1225,7 @@
       .core-value-desktop-text {
         display: none !important;
       }
-      /* Removed .trial-renewal-msg and .feedback-msg font-size override for mobile */
+      /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
