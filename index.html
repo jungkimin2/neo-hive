@@ -1,3 +1,21 @@
+    /* "커뮤니티 형성" 박스 width만 90%로 줄임 (마지막 단계 박스에만 적용) */
+    @media (max-width: 768px) {
+      .neohive-twobox-col > div > div > div[style*="커뮤니티 형성"] {
+        width: 90% !important;
+        min-width: unset !important;
+        max-width: 210px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      /* 혹시 위 방식이 작동하지 않으면, 모든 step-box를 90%로 */
+      .neohive-twobox-col > div > div > div[style*="padding: 6px 14px"] {
+        width: 90% !important;
+        min-width: unset !important;
+        max-width: 210px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
 <!DOCTYPE html>
 <html lang="ko">
 <head>
