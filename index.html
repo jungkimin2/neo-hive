@@ -1175,7 +1175,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p style="color: #ccc; font-size: 0.85rem; margin: 0;">
+                    <p class="feedback-msg" style="color: #ccc; font-size: 0.85rem; margin: 0;">
                       팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
                   </div>
@@ -1213,7 +1213,11 @@
         display: none !important;
       }
       .trial-renewal-msg {
-        font-size: 0.62rem !important;
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+      }
+      .feedback-msg {
+        font-size: 0.52rem !important;
         line-height: 1.2 !important;
       }
     }
@@ -1227,6 +1231,9 @@
       .trial-renewal-msg {
         font-size: 1.08rem !important;
         font-weight: 500 !important;
+      }
+      .feedback-msg {
+        font-size: 0.85rem !important;
       }
     }
   </style>
