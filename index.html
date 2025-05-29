@@ -1224,15 +1224,6 @@
                       </p>
                     </div>
                     <!-- 모바일 전용 문구: .mobile-hide 내부에 위치 -->
-                    <div class="mobile-only-text" style="margin-top: 12px;">
-                      <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                        1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                        자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                      </p>
-                      <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                        팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1317,9 +1308,8 @@
   </style>
   <style>
     @media (max-width: 768px) {
-      /* Move 핵심 가치 box upward by ~5 spacing units (e.g., 80px/5rem) on mobile */
       .core-value-box-mobile {
-        margin-top: -500px !important;
+        margin-top: -640px !important;
       }
     }
   </style>
@@ -3109,3 +3099,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 </p>
               </div>
             </div>
+<!-- 모바일 전용 문구: 커뮤니티 형성 UI 바로 아래로 이동 (모바일에서만 표시) -->
+<div class="mobile-only-text" style="margin-top: 12px;">
+  <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
+    1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
+    자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+  </p>
+  <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
+    팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
+  </p>
+</div>
