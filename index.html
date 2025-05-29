@@ -8,15 +8,20 @@
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
-  /* 모바일: .mobile-only-text 내 아이콘 배경색 및 둥근 테두리 적용 */
-  @media (max-width: 768px) {
-    .mobile-only-text img {
-      background: #7BE495 !important;
-      border-radius: 16px !important;
-    }
-  }
     /* Mobile only: smaller font for trial and feedback messages */
-    /* (Moved .mobile-trial-msg, .mobile-feedback-msg block to below) */
+    @media (max-width: 768px) {
+      .mobile-trial-msg,
+      .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+      }
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
     hr {
@@ -934,41 +939,74 @@
       display: none;
     }
   </style>
+  <style>
+    /* 모바일 메시지 스타일 - 더 강력한 선택자 사용 */
+    @media (max-width: 768px) {
+      body .message-container .mobile-trial-msg,
+      body .message-container .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        word-break: keep-all !important;
+      }
+    }
+  </style>
+  <style>
+    /* 모바일 메시지 스타일 강제 적용 */
+    @media (max-width: 768px) {
+      .trial-renewal-msg,
+      .mobile-trial-msg,
+      .feedback-msg,
+      .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+  <style>
+@media (max-width: 768px) {
+  .mobile-trial-msg,
+  .mobile-feedback-msg {
+    font-size: 0.36rem !important;
+    line-height: 1.2 !important;
+    color: #ccc !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+  </style>
+  <style>
+@media (max-width: 768px) {
+  .mobile-only-trial-feedback {
+    font-size: 0.28rem !important;
+    line-height: 1.2 !important;
+    color: #ccc !important;
+    margin: 12px 0 0 0 !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    text-align: left !important;
+    word-break: keep-all !important;
+    display: block !important;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-only-trial-feedback {
+    display: none !important;
+  }
+}
+  </style>
 </head>
-</head>
-<style>
-  @media (max-width: 768px) {
-    .mobile-trial-msg,
-    .mobile-feedback-msg {
-      font-size: 0.48rem !important;
-      line-height: 1.25 !important;
-      font-weight: 400 !important;
-      letter-spacing: -0.01em !important;
-      padding-right: 0 !important;
-      margin-bottom: 0 !important;
-      color: #ccc !important;
-    }
-  }
-  /* 추가: 모바일 전용 문구 스타일 */
-  @media (max-width: 768px) {
-    .mobile-only-text {
-      display: block;
-      padding: 10px 0;
-    }
-    .mobile-trial-msg,
-    .mobile-feedback-msg {
-      font-size: 0.62rem;
-      line-height: 1.4;
-      color: #ccc;
-      margin-bottom: 12px;
-    }
-  }
-  @media (min-width: 769px) {
-    .mobile-only-text {
-      display: none;
-    }
-  }
-</style>
 <body>
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
   
@@ -1184,7 +1222,7 @@
               <div style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); padding: 36px 20px; text-align: left !important; align-items: flex-start !important;">
                   <div style="display: flex; align-items: center;">
                     <img src="./images/neo123.png" alt="팀워크 보상 아이콘" style="width: 42px; height: 42px; margin-right: 8px; vertical-align: middle; margin-top: -24px;">
-                    <h3 style="color: #ffffff; font-size: 0.74rem; font-weight: bold; margin-bottom: 20px;">
+                    <h3 style="color: #ffffff; font-size: 1.05rem; font-weight: bold; margin-bottom: 20px;">
                       <i class="fas fa-sync-alt" style="margin-right: 10px; color: #62D2A2;"></i> 팀워크 보상으로, 신규 유입과 재등록까지 연결
                     </h3>
                   </div>
@@ -1205,33 +1243,37 @@
                       </span>
                     </div>
                   </div>
-                  <div class="mobile-hide">
-                    <div style="display: flex; align-items: center; margin-top: 44px; margin-bottom: 0;">
-                      <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
-                        <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
-                      </div>
-                      <p class="trial-renewal-msg mobile-trial-msg" style="color: #ccc; margin: 0;">
+                  <div style="display: flex; align-items: center; margin-top: 44px; margin-bottom: 0;">
+                    <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                      <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
+                    </div>
+                    <p class="trial-renewal-msg mobile-trial-msg" style="line-height: 1.2; color: #ccc; margin: 0;">
+                      1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
+                      자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+                    </p>
+                  </div>
+                  <div style="display: flex; align-items: center; margin-top: 24px;">
+                    <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                      <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
+                    </div>
+                    <p class="feedback-msg mobile-feedback-msg" style="line-height: 1.2; color: #ccc; margin: 0;">
+                      팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
+                    </p>
+                  </div>
+                  <!-- 모바일 전용 리뉴얼 안내 블록 -->
+                  <div class="mobile-renewal-info">
+                    <div class="mobile-info-row">
+                      <img src="./images/neo125.png" alt="선물 아이콘">
+                      <span>
                         1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
                         자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                      </p>
+                      </span>
                     </div>
-                    <div style="display: flex; align-items: center; margin-top: 24px;">
-                      <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
-                        <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
-                      </div>
-                      <p class="feedback-msg mobile-feedback-msg" style="color: #ccc; margin: 0;">
-                        팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
-                      </p>
-                    </div>
-                    <!-- 모바일 전용 문구: .mobile-hide 내부에 위치 -->
-                    <div class="mobile-only-text" style="margin-top: 12px;">
-                      <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                        1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                        자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                      </p>
-                      <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
+                    <div class="mobile-info-row">
+                      <img src="./images/noes56.png" alt="데이터 아이콘">
+                      <span>
                         팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
-                      </p>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1251,53 +1293,10 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 전용 문구 -->
-            <div class="mobile-only-text">
-            <div>
-              <img src="./images/neo125.png" alt="선물 아이콘" />
-              <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-              </p>
-            </div>
-            <div>
-              <img src="./images/noes56.png" alt="통계 아이콘" />
-              <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
-              </p>
-            </div>
-            </div>
-  <style>
-    @media (max-width: 768px) {
-      .mobile-only-text > div {
-        display: flex !important;
-        align-items: center !important;
-        gap: 12px !important;
-      }
-    }
-    .mobile-only-text img {
-      width: 28px !important;
-      height: 28px !important;
-      padding: 6px !important;
-      background: #7BE495 !important;
-      border-radius: 12px !important;
-      object-fit: contain !important;
-      margin-top: 2px !important;
-      margin-bottom: 2px !important;
-    }
-    @media (max-width: 768px) {
-      .mobile-only-text p {
-        margin: 0 !important;
-        text-align: left !important;
-        display: inline-block !important;
-        line-height: 1.4 !important;
-      }
-    }
-  </style>
   <style>
     @media (max-width: 768px) {
       .core-value-mobile {
-        font-size: 0.68rem !important;
+        font-size: 0.72rem !important;
         line-height: 1.2 !important;
       }
       .core-value-mobile .neon-green {
@@ -1311,7 +1310,6 @@
         display: none !important;
       }
       /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
-      /* 모바일에서만 .mobile-trial-msg, .mobile-feedback-msg 폰트 크기 오버라이드 (moved to <head>) */
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
@@ -1331,10 +1329,40 @@
     }
   </style>
   <style>
+  @media (max-width: 768px) {
+    .mobile-renewal-info {
+      display: block;
+      margin-top: 18px;
+      padding-bottom: 12px;
+    }
+    .mobile-info-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      padding: 8px 0;
+    }
+    .mobile-info-row img {
+      width: 48px;
+      height: 48px;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+    .mobile-info-row span {
+      font-size: 0.94rem;
+      line-height: 1.4;
+      color: #fff;
+      text-align: left;
+      word-break: keep-all;
+    }
+  }
+  @media (min-width: 769px) {
+    .mobile-renewal-info { display: none !important; }
+  }
+  </style>
+  <style>
     @media (max-width: 768px) {
-      /* Move 핵심 가치 box upward by ~5 spacing units (e.g., 80px/5rem) on mobile */
       .core-value-box-mobile {
-        margin-top: -500px !important;
+        margin-top: -339px !important;  /* -309px에서 30px 더 위로 올림 */
       }
     }
   </style>
@@ -1576,11 +1604,6 @@
     color: #7BE495;
     z-index: 5;
     pointer-events: none;
-  }
-  @media (max-width: 768px) {
-    .mobile-hide {
-      display: none !important;
-    }
   }
 </style>
           <!-- SVG circle visually connecting the steps -->
@@ -3092,19 +3115,49 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-
-<!-- 기존 trial/feedback 메시지 모바일 폰트 오버라이드 삭제 (중복 제거) -->
-<!-- 이미 <head>에 동일한 @media (max-width: 768px) 스타일이 있으므로 이 부분은 완전히 삭제해도 됩니다. -->
 <style>
 @media (max-width: 768px) {
-  .trial-renewal-msg,
-  .feedback-msg {
-    font-size: 0.68rem !important;
-    line-height: 1.2 !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.01em !important;
-    margin-bottom: 0 !important;
-    padding-right: 0 !important;
+  .core-value-box {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 24px 0 !important;
+    padding: 16px !important;
+    background: #000 !important;
+    border: 1px solid rgba(123, 228, 149, 0.3) !important;
+    border-radius: 12px !important;
+  }
+
+  .core-value-icon {
+    width: 36px !important;
+    height: 36px !important;
+    margin-right: 12px !important;
+  }
+
+  .core-value-title {
+    font-size: 1.1rem !important;
+    color: #fff !important;
+    margin-bottom: 4px !important;
+  }
+
+  .core-value-text {
+    font-size: 0.9rem !important;
+    color: #7BE495 !important;
+    line-height: 1.4 !important;
   }
 }
 </style>
+
+<!-- 핵심 가치 박스 -->
+<div class="core-value-box" style="display: flex; align-items: flex-start; background: #000; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 16px; margin: 24px 0;">
+  <div style="display: flex; align-items: center;">
+    <div class="core-value-icon" style="margin-right: 12px;">
+      <img src="./images/diamond-hand.svg" alt="핵심 가치 아이콘" style="width: 36px; height: 36px;">
+    </div>
+    <div>
+      <h3 class="core-value-title" style="color: #fff; margin: 0;">핵심 가치</h3>
+      <p class="core-value-text" style="color: #7BE495; margin: 4px 0 0 0;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</p>
+    </div>
+  </div>
+</div>
+
+
