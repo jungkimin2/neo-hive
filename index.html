@@ -1237,20 +1237,6 @@
                 </div>
               </div>
             </div>
-            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
-              <div style="display: flex; align-items: center;">
-                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
-                </div>
-                <div>
-                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
-                    핵심 가치<br>
-                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                  </h4>
-                </div>
-              </div>
-            </div>
             <!-- 모바일 전용 문구 -->
             <div class="mobile-only-text">
               <div style="display: flex; align-items: center; gap: 12px;">
@@ -1265,6 +1251,21 @@
                 <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
                   팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
                 </p>
+              </div>
+            </div>
+            <!-- 핵심 가치: 모바일에서 mobile-only-text 아래로 이동 -->
+            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: 12px;">
+              <div style="display: flex; align-items: center;">
+                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
+                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
+                </div>
+                <div>
+                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
+                    핵심 가치<br>
+                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                  </h4>
+                </div>
               </div>
             </div>
   <style>
@@ -1332,9 +1333,16 @@
   </style>
   <style>
     @media (max-width: 768px) {
-      /* Move 핵심 가치 box upward by ~5 spacing units (e.g., 80px/5rem) on mobile */
+      /* 핵심 가치 박스: 모바일에서 항상 보이도록, margin-top 정상화 */
       .core-value-box-mobile {
-        margin-top: -500px !important;
+        margin-top: 12px !important;
+        display: flex !important;
+      }
+    }
+    @media (min-width: 769px) {
+      /* PC에서 기존 위치 유지 */
+      .core-value-box-mobile {
+        margin-top: -175px;
       }
     }
   </style>
