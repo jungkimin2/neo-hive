@@ -9,17 +9,7 @@
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
     /* Mobile only: smaller font for trial and feedback messages */
-    @media (max-width: 768px) {
-      .mobile-trial-msg,
-      .mobile-feedback-msg {
-        font-size: 0.62rem !important;
-        line-height: 1.16 !important;
-        font-weight: 400 !important;
-        letter-spacing: -0.01em !important;
-        padding-right: 0 !important;
-        margin-bottom: 0 !important;
-      }
-    }
+    /* (Moved .mobile-trial-msg, .mobile-feedback-msg block to below) */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
     hr {
@@ -938,6 +928,20 @@
     }
   </style>
 </head>
+</head>
+<style>
+  @media (max-width: 768px) {
+    .mobile-trial-msg,
+    .mobile-feedback-msg {
+      font-size: 0.56rem !important;
+      line-height: 1.1 !important;
+      font-weight: 400 !important;
+      letter-spacing: -0.01em !important;
+      padding-right: 0 !important;
+      margin-bottom: 0 !important;
+    }
+  }
+</style>
 <body>
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
   
@@ -1225,6 +1229,7 @@
         display: none !important;
       }
       /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
+      /* 모바일에서만 .mobile-trial-msg, .mobile-feedback-msg 폰트 크기 오버라이드 (moved to <head>) */
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
@@ -3000,16 +3005,18 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
-
-    /* 모바일 환경에서 trial/feedback 메시지 더 작게: 기존 오버라이드보다 더 강하게, 맨 마지막에 위치 */
-    @media (max-width: 768px) {
-      .mobile-trial-msg,
-      .mobile-feedback-msg {
-        font-size: 0.56rem !important;
-        line-height: 1.1 !important;
-        font-weight: 400 !important;
-        letter-spacing: -0.01em !important;
-        padding-right: 0 !important;
-        margin-bottom: 0 !important;
-      }
-    }
+<!-- 기존 trial/feedback 메시지 모바일 폰트 오버라이드 삭제 (중복 제거) -->
+<!-- 이미 <head>에 동일한 @media (max-width: 768px) 스타일이 있으므로 이 부분은 완전히 삭제해도 됩니다. -->
+<style>
+@media (max-width: 768px) {
+  .trial-renewal-msg,
+  .feedback-msg {
+    font-size: 0.68rem !important;
+    line-height: 1.2 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+</style>
