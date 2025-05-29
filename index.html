@@ -1252,6 +1252,18 @@
         line-height: 1.4 !important;
       }
     }
+    @media (max-width: 768px) {
+      .mobile-only-text {
+        display: block !important;
+        margin-top: 18px !important;
+        margin-bottom: 0 !important;
+      }
+    }
+    @media (min-width: 769px) {
+      .mobile-only-text {
+        display: none !important;
+      }
+    }
   </style>
   <style>
     @media (max-width: 768px) {
@@ -1296,6 +1308,21 @@
       }
     }
   </style>
+            <!-- 모바일 전용 카드 UI: "1일 무료 체험..." + "팀과 개인의 운동 데이터..." (이동, 중복 제거됨) -->
+            <div class="mobile-only-text" style="margin-top: 18px; margin-bottom: 0;">
+              <div style="margin-bottom: 10px;">
+                <img src="./images/neo20.png" alt="체험 아이콘">
+                <p class="mobile-trial-msg" style="font-size: 0.62rem; color: #ccc;">
+                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고 신규·재등록으로 연결됩니다.
+                </p>
+              </div>
+              <div>
+                <img src="./images/neo21.png" alt="피드백 아이콘">
+                <p class="mobile-feedback-msg" style="font-size: 0.62rem; color: #ccc;">
+                  팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
+                </p>
+              </div>
+            </div>
             <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
             <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
@@ -1573,6 +1600,7 @@
             <div class="neos-text" style="color: #fff; font-size: 0.85rem;">지속적인 콘텐츠 업데이트</div>
           </div>
         </div>
+        <!-- Remove any mobile-only UI card blocks here (moved above) -->
         <!-- 추가 UI: 출입 코드 생성 방식/이벤트 시스템 연동 -->
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin-top: 20px;">
           <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
