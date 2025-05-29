@@ -1247,7 +1247,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/neo125.png" alt="선물 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="trial-renewal-msg mobile-trial-msg" style="line-height: 1.2; color: #ccc; margin: 0;">
+                    <p class="trial-renewal-msg mobile-trial-msg" style="line-height: 1.2; color: #ccc; margin: 0; font-size: 0.68rem;">
                       1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
                       자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                     </p>
@@ -1256,7 +1256,7 @@
                     <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
                       <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
                     </div>
-                    <p class="feedback-msg mobile-feedback-msg" style="line-height: 1.2; color: #ccc; margin: 0;">
+                    <p class="feedback-msg mobile-feedback-msg" style="line-height: 1.2; color: #ccc; margin: 0; font-size: 0.68rem;">
                       팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을<br>제공합니다.
                     </p>
                   </div>
@@ -1294,6 +1294,10 @@
         display: none !important;
       }
       /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
+      .trial-renewal-msg.mobile-trial-msg,
+      .feedback-msg.mobile-feedback-msg {
+        font-size: 0.68rem !important;
+      }
     }
     @media (min-width: 769px) {
       .core-value-mobile-text {
