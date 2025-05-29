@@ -1263,30 +1263,59 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 핵심 가치 박스 구조 변경: 기존 core-value-box-mobile 제거, 아래로 새 구조 추가 -->
-            <div class="core-value-box-mobile-wrapper">
-              <div class="core-value-box-single">
-                <div style="display: flex; align-items: center;">
-                  <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                    <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
-                  </div>
-                  <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0;">
-                    1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                    자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                  </p>
+            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
+              <div style="display: flex; align-items: center;">
+                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
+                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
                 </div>
-              </div>
-              <div class="core-value-box-single">
-                <div style="display: flex; align-items: center;">
-                  <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                    <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 28px; height: 28px;">
-                  </div>
-                  <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0;">
-                    팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
-                  </p>
+                <div>
+                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
+                    핵심 가치<br>
+                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                  </h4>
                 </div>
               </div>
             </div>
+  <style>
+    @media (max-width: 768px) {
+      .core-value-mobile {
+        font-size: 0.72rem !important;
+        line-height: 1.2 !important;
+      }
+      .core-value-mobile .neon-green {
+        font-size: 0.79rem !important;
+        line-height: 1.08 !important;
+      }
+      .core-value-mobile-text {
+        display: inline !important;
+      }
+      .core-value-desktop-text {
+        display: none !important;
+      }
+      /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
+      .trial-renewal-msg.mobile-trial-msg,
+      .feedback-msg.mobile-feedback-msg {
+        font-size: 0.68rem !important;
+      }
+    }
+    @media (min-width: 769px) {
+      .core-value-mobile-text {
+        display: none !important;
+      }
+      .core-value-desktop-text {
+        display: inline !important;
+      }
+      .trial-renewal-msg {
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+      }
+      .feedback-msg {
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+      }
+    }
+  </style>
   <style>
   @media (max-width: 768px) {
     .mobile-renewal-info {
@@ -1318,31 +1347,13 @@
     .mobile-renewal-info { display: none !important; }
   }
   </style>
-</div>
-<!-- 모바일 핵심 가치 박스 전용 스타일 -->
-<style>
-  @media (max-width: 768px) {
-    .core-value-box-mobile-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: -320px;
-      margin-bottom: 24px;
+  <style>
+    @media (max-width: 768px) {
+      .core-value-box-mobile {
+        margin-top: -339px !important;  /* -309px에서 30px 더 위로 올림 */
+      }
     }
-    .core-value-box-single {
-      display: flex;
-      background: #000;
-      border: 1px solid rgba(123, 228, 149, 0.3);
-      border-radius: 12px;
-      padding: 8px 12px;
-    }
-  }
-  @media (min-width: 769px) {
-    .core-value-box-mobile-wrapper {
-      display: none !important;
-    }
-  }
-</style>
+  </style>
             <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
             <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
