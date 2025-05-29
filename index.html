@@ -8,6 +8,20 @@
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
   <style>
+    /* Mobile only: smaller font for trial and feedback messages */
+    @media (max-width: 768px) {
+      .mobile-trial-msg,
+      .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+      }
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* Hide any horizontal rules */
     hr {
@@ -926,10 +940,50 @@
     }
   </style>
   <style>
+    /* 모바일 메시지 스타일 - 더 강력한 선택자 사용 */
+    @media (max-width: 768px) {
+      body .message-container .mobile-trial-msg,
+      body .message-container .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        word-break: keep-all !important;
+      }
+    }
   </style>
   <style>
+    /* 모바일 메시지 스타일 강제 적용 */
+    @media (max-width: 768px) {
+      .trial-renewal-msg,
+      .mobile-trial-msg,
+      .feedback-msg,
+      .mobile-feedback-msg {
+        font-size: 0.52rem !important;
+        line-height: 1.2 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        color: #ccc !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
   </style>
   <style>
+@media (max-width: 768px) {
+  .mobile-trial-msg,
+  .mobile-feedback-msg {
+    font-size: 0.36rem !important;
+    line-height: 1.2 !important;
+    color: #ccc !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
   </style>
   <style>
 @media (max-width: 768px) {
@@ -1209,7 +1263,7 @@
                 </div>
               </div>
             </div>
-            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -235px;">
+            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                   <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
@@ -3095,24 +3149,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
-
-  <!-- Inserted: Mobile-specific override for trial/feedback messages -->
-  <style>
-    @media (max-width: 768px) {
-      .trial-renewal-msg,
-      .feedback-msg,
-      .mobile-trial-msg,
-      .mobile-feedback-msg {
-        font-size: 0.68rem !important;
-        line-height: 1.4 !important;
-        font-weight: 400 !important;
-        letter-spacing: -0.01em !important;
-        color: #ccc !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        text-align: left !important;
-        word-break: keep-all !important;
-        display: block !important;
-      }
-    }
-  </style>
