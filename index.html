@@ -3000,3 +3000,16 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
+
+    /* 모바일 환경에서 trial/feedback 메시지 더 작게: 기존 오버라이드보다 더 강하게, 맨 마지막에 위치 */
+    @media (max-width: 768px) {
+      .mobile-trial-msg,
+      .mobile-feedback-msg {
+        font-size: 0.56rem !important;
+        line-height: 1.1 !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.01em !important;
+        padding-right: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    }
