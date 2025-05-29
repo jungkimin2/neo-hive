@@ -1251,22 +1251,7 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 전용 문구 -->
-            <div class="mobile-only-text">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="./images/neo125.png" alt="선물 아이콘" />
-                <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                  자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                </p>
-              </div>
-              <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
-                <img src="./images/noes56.png" alt="통계 아이콘" />
-                <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
-                  팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
-                </p>
-              </div>
-            </div>
+            <!-- 모바일 전용 문구 이동 위치: 아래로 이동 -->
   <style>
     @media (max-width: 768px) {
       .mobile-only-text > div {
@@ -3108,3 +3093,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
+            <!-- 모바일 전용 문구: "신규 및 재등록" UI 블록 바로 뒤에 위치해야 함 -->
+            <div class="mobile-only-text">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="./images/neo125.png" alt="선물 아이콘" />
+                <p class="mobile-trial-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
+                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
+                  자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
+                <img src="./images/noes56.png" alt="통계 아이콘" />
+                <p class="mobile-feedback-msg" style="font-size: 0.5rem !important; margin-top: 6px;">
+                  팀과 개인의 운동 데이터를 분석하여 맞춤형 피드백과 개선점을 제공합니다.
+                </p>
+              </div>
+            </div>
