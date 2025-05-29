@@ -940,27 +940,42 @@
   @media (max-width: 768px) {
     .mobile-trial-msg,
     .mobile-feedback-msg {
-      font-size: 0.48rem !important;
-      line-height: 1.25 !important;
+      font-size: 0.66rem !important;
+      line-height: 1.5 !important;
       font-weight: 400 !important;
       letter-spacing: -0.01em !important;
       padding-right: 0 !important;
-      margin-bottom: 0 !important;
+      margin: 0 !important;
       color: #ccc !important;
     }
-  }
-  /* 추가: 모바일 전용 문구 스타일 */
-  @media (max-width: 768px) {
+
     .mobile-only-text {
-      display: block;
-      padding: 10px 0;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
     }
-    .mobile-trial-msg,
-    .mobile-feedback-msg {
-      font-size: 0.62rem;
-      line-height: 1.4;
-      color: #ccc;
-      margin-bottom: 12px;
+
+    .mobile-only-text div {
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .mobile-only-text img {
+      width: 24px !important;
+      height: 24px !important;
+      object-fit: contain !important;
+      background: #7BE495 !important;
+      border-radius: 16px !important;
+      margin-right: 12px !important;
+    }
+
+    .mobile-only-text p {
+      margin-top: 6px !important;
+      display: inline-block !important;
+      vertical-align: middle !important;
+      line-height: 1.4 !important;
+      font-size: 0.66rem !important;
+      color: #ccc !important;
     }
   }
   @media (min-width: 769px) {
