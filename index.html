@@ -1189,9 +1189,9 @@
                     </h3>
 <style>
 @media (max-width: 768px) {
-  /* 모바일에서만 해당 h3 폰트 사이즈 약간 축소 */
+  /* 모바일에서만 해당 h3 폰트 사이즈 더 축소 (0.85rem) */
   h3 {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
   }
 }
 </style>
@@ -1299,8 +1299,8 @@
               /* 추가: 모바일에서 .mobile-info-card p 폰트 크기 약간 축소 */
               @media (max-width: 768px) {
                 .mobile-only-boxes .mobile-info-card p,
-                .mobile-only-boxes .mobile-info-card > p {
-                  font-size: 0.52rem !important;
+                .mobile-only-boxes .mobile-info-card p[style] {
+                  font-size: 0.5rem !important;
                   line-height: 1.3 !important;
                 }
               }
