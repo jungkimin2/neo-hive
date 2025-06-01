@@ -1341,7 +1341,7 @@
     }
   });
 </script>
-            <div class="core-value-box-mobile" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
+            <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                   <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
@@ -1355,6 +1355,32 @@
                 </div>
               </div>
             </div>
+            <!-- 모바일 전용 핵심 가치 박스: mobile-moved-boxes 바로 아래에 삽입 -->
+            <div class="core-value-box-mobile core-value-mobile-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top:28px;">
+              <div style="display: flex; align-items: center;">
+                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
+                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
+                </div>
+                <div>
+                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
+                    핵심 가치<br>
+                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+</style>
+<style>
+  @media (max-width: 768px) {
+    .core-value-desktop-only { display: none !important; }
+    .core-value-mobile-only { display: block !important; }
+  }
+  @media (min-width: 769px) {
+    .core-value-desktop-only { display: block !important; }
+    .core-value-mobile-only { display: none !important; }
+  }
+</style>
   <style>
     @media (max-width: 768px) {
       .core-value-mobile {
