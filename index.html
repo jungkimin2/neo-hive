@@ -1264,107 +1264,75 @@
             </div>
             <!-- 모바일 전용: 두 박스는 이곳에서 제거됨(아래로 이동) -->
             <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" 바로 아래에 두 박스 이동 -->
-            <div id="mobile-moved-boxes" class="mobile-moved-boxes" style="display:none;"></div>
+            <!-- 모바일 환경에서만 노출되는 합쳐진 박스 -->
+            <div id="mobile-moved-merged-box" class="mobile-merged-box">
+              <div class="mobile-merged-row">
+                <div class="mobile-merged-icon">
+                  <img src="./images/neo125.png" alt="선물 아이콘" />
+                </div>
+                <div class="mobile-merged-text">
+                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
+                  자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+                </div>
+              </div>
+              <div class="mobile-merged-row">
+                <div class="mobile-merged-icon">
+                  <img src="./images/noes56.png" alt="통계 아이콘" />
+                </div>
+                <div class="mobile-merged-text">
+                  출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
+                  운영 전략에 즉시 반영 가능합니다.
+                </div>
+              </div>
+            </div>
 <style>
-  /* 모바일에서만 보이는 이동된 박스 */
-  @media (max-width: 768px) {
-    .mobile-moved-boxes {
-      display: flex !important;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 16px;
-      margin-bottom: 8px;
-    }
-    .mobile-moved-ui-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background: #141F18;
-      border-radius: 12px;
-      padding: 10px 12px 10px 0;
-      box-shadow: 0 0 8px rgba(123,228,149,0.08);
-    }
-    .mobile-moved-ui-icon {
-      width: 36px;
-      height: 36px;
-      background: #7BE495;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 12px;
-      flex-shrink: 0;
-    }
-    .mobile-moved-ui-icon img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
-    .mobile-moved-ui-text {
-      text-align: left;
-      font-size: 0.74rem;
-      color: #fff;
-      line-height: 1.5;
-      display: flex;
-      align-items: center;
-    }
+@media (max-width: 768px) {
+  .mobile-merged-box {
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    border-radius: 22px;
+    background: #15231a;
+    box-shadow: 0 4px 18px 0 rgba(123,228,149,0.08);
+    padding: 22px 14px;
+    width: 100%;
   }
-  @media (min-width: 769px) {
-    .mobile-moved-boxes {
-      display: none !important;
-    }
+  .mobile-merged-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
   }
+  .mobile-merged-icon {
+    width: 48px;
+    height: 48px;
+    background: #7BE495;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mobile-merged-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+  .mobile-merged-text {
+    text-align: left;
+    font-size: 0.94rem;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-merged-box { display: none !important; }
+}
 </style>
-<script>
-  // DOMContentLoaded로 안전하게 실행
-  document.addEventListener("DOMContentLoaded", function() {
-    // 모바일 환경에서만 동작
-    if (window.innerWidth <= 768) {
-      // "커뮤니티 형성" 박스와 "신규 및 재등록" 박스 위치 찾기
-      var allDivs = document.querySelectorAll('.neohive-twobox-col > div > div > div');
-      var communityDiv = null;
-      for (var i = 0; i < allDivs.length; ++i) {
-        if (allDivs[i].innerText && allDivs[i].innerText.indexOf('커뮤니티 형성') > -1) {
-          communityDiv = allDivs[i];
-          break;
-        }
-      }
-      if (communityDiv) {
-        // 이동 박스 HTML
-        var movedBoxes = document.createElement('div');
-        movedBoxes.className = "mobile-moved-boxes";
-        movedBoxes.innerHTML = `
-          <div class="mobile-moved-ui-row">
-            <div class="mobile-moved-ui-icon">
-              <img src="./images/neo125.png" alt="선물 아이콘" />
-            </div>
-            <div class="mobile-moved-ui-text">
-              1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-              자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-            </div>
-          </div>
-          <div class="mobile-moved-ui-row">
-            <div class="mobile-moved-ui-icon">
-              <img src="./images/noes56.png" alt="통계 아이콘" />
-            </div>
-            <div class="mobile-moved-ui-text">
-              출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
-              운영 전략에 즉시 반영 가능합니다.
-            </div>
-          </div>
-        `;
-        // "커뮤니티 형성" 박스 바로 아래에 삽입
-        if (communityDiv.parentNode) {
-          if (communityDiv.nextSibling) {
-            communityDiv.parentNode.insertBefore(movedBoxes, communityDiv.nextSibling);
-          } else {
-            communityDiv.parentNode.appendChild(movedBoxes);
-          }
-        }
-      }
-    }
-  });
-</script>
             <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
