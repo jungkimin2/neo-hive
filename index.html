@@ -1214,36 +1214,6 @@
                       </span>
                     </div>
                   </div>
-                  <!-- Custom mobile-only two-box UI, shown only on mobile -->
-                  <style>
-                  @media (max-width: 768px) {
-                    .custom-inserted-box {
-                      margin-top: 24px;
-                      display: flex !important;
-                    }
-                  }
-                  @media (min-width: 769px) {
-                    .custom-inserted-box {
-                      display: none !important;
-                    }
-                  }
-                  </style>
-                  <div class="custom-inserted-box" style="display: none; flex-direction: column; gap: 12px;">
-                    <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 0 30px rgba(123, 228, 149, 0.1); background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); padding: 16px; display: flex; align-items: center;">
-                      <img src="./images/neo125.png" alt="선물 아이콘" style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; margin-right: 12px;">
-                      <p style="color: #ccc; font-size: 0.85rem; margin: 0;">
-                        1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-                        자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
-                      </p>
-                    </div>
-                    <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 0 30px rgba(123, 228, 149, 0.1); background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); padding: 16px; display: flex; align-items: center;">
-                      <img src="./images/noes56.png" alt="데이터 아이콘" style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; margin-right: 12px;">
-                      <p style="color: #ccc; font-size: 0.85rem; margin: 0;">
-                        출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
-                        운영 전략에 즉시 반영 가능합니다.
-                      </p>
-                    </div>
-                  </div>
                   <div class="mobile-hide">
                     <div style="display: flex; align-items: center; margin-top: 44px; margin-bottom: 0;">
                       <div style="width: 48px; height: 48px; background: #7BE495; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
@@ -1289,29 +1259,28 @@
                 .mobile-only-boxes {
                   display: flex;
                   flex-direction: column;
-                  gap: 8px !important;
-                  margin-top: 4px !important;
+                  gap: 2px !important;
+                  margin-top: 8px !important;
                 }
                 .mobile-info-card {
-                  display: flex !important;
+                  display: flex;
                   gap: 12px;
                   background: linear-gradient(135deg, #0F1F1A 0%, #0A0F0D 100%);
                   border: 1px solid #7BE495;
                   border-radius: 12px;
-                  padding: 8px 10px !important;
+                  padding: 10px 12px !important;
                   color: #ccc;
                   font-size: 0.7rem;
                   line-height: 1.4;
-                  align-items: flex-start !important;
-                  min-height: 60px !important;
+                  align-items: center !important;
+                  min-height: 80px;
                 }
-              .mobile-info-card img {
-                  width: 28px;
-                  height: 28px;
+                .mobile-info-card img {
+                  width: 36px;
+                  height: 36px;
                   background: #7BE495;
                   border-radius: 12px;
-                  padding: 4px;
-                  margin-right: 8px;
+                  padding: 6px;
                 }
                 .mobile-info-card p {
                   margin: 0 !important;
@@ -1320,23 +1289,20 @@
                   display: flex;
                   align-items: center;
                   height: 100%;
-                  font-size: 0.65rem !important;
-                  line-height: 1.2 !important;
-                  text-align: left !important;
                 }
               }
             </style>
             <div class="mobile-only-boxes">
               <div class="mobile-info-card">
                 <img src="./images/neo125.png" alt="선물 아이콘" />
-                <p style="font-size:0.65rem !important; line-height:1.2 !important; text-align: left !important;">
+                <p style="font-size:0.7rem !important; line-height:1.25 !important; text-align: left !important;">
                   1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
                   자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                 </p>
               </div>
               <div class="mobile-info-card">
                 <img src="./images/noes56.png" alt="통계 아이콘" />
-                <p style="font-size:0.65rem !important; line-height:1.2 !important; text-align: left !important;">
+                <p style="font-size:0.7rem !important; line-height:1.25 !important; text-align: left !important;">
                   출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
                   운영 전략에 즉시 반영 가능합니다.
                 </p>
