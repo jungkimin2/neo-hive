@@ -10,6 +10,17 @@
   <style>
   /* 모바일: .mobile-only-text 내 아이콘 배경색 및 둥근 테두리 적용 */
   @media (max-width: 768px) {
+    /* Flex-align icon-text rows in .mobile-hide for mobile */
+    .mobile-hide > div {
+      display: flex !important;
+      align-items: center !important;
+      margin-top: 0 !important; /* remove any fixed top margins */
+      margin-bottom: 0 !important;
+    }
+    .mobile-hide > div p {
+      margin: 0 !important; /* ensure no extra top margin on the paragraph */
+      padding-top: 4px !important; /* nudge text slightly downward if needed */
+    }
     .mobile-only-text img {
       background: #7BE495 !important;
       border-radius: 16px !important;
