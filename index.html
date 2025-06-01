@@ -1610,6 +1610,15 @@
       display: none !important;
     }
   }
+  /* 모바일에서 .mobile-hide 내부의 콘텐츠를 한 스텝 아래로 내림 */
+  @media (max-width: 768px) {
+    .mobile-hide {
+      padding-top: 8px !important;
+    }
+    .mobile-hide > div:first-child {
+      margin-top: 52px !important;
+    }
+  }
 </style>
           <!-- SVG circle visually connecting the steps -->
           <svg class="circle-lines" viewBox="0 0 580 580" width="580" height="580" style="position:absolute; top:0; left:0; z-index:0;">
