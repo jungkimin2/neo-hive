@@ -1260,7 +1260,7 @@
                   <img src="./images/neo125.png" alt="선물 아이콘" />
                 </div>
                 <div class="mobile-merged-text">
-                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+                  1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터<br>경험을 쌓고,자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
                 </div>
               </div>
               <div class="mobile-merged-row">
@@ -1290,13 +1290,14 @@
     display: flex !important;
     flex-direction: column;
     gap: 24px;
-    margin-top: -232px;
+    margin-top: -328px !important;
     margin-bottom: 8px;
     border-radius: 22px;
     background: #15231a;
     box-shadow: 0 4px 18px 0 rgba(123,228,149,0.08);
     padding: 32px 26px;
     width: 100%;
+    position: relative !important;
   }
   .mobile-merged-row {
     display: flex;
@@ -1304,23 +1305,6 @@
     align-items: flex-start;
     gap: 16px;
   }
-  /* 기존 아이콘 크기 규칙 주석 처리
-  .mobile-merged-icon {
-    width: 48px;
-    height: 48px;
-    background: #7BE495;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .mobile-merged-icon img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-  }
-  */
   .mobile-merged-icon {
     width: 38px;
     height: 38px;
@@ -1344,7 +1328,6 @@
     word-break: keep-all;
     margin-left: 0;
     padding-left: 0;
-    /* 48px(icon) + 16px(gap) */
     font-size: 0.68rem !important;
   }
 }
@@ -1363,10 +1346,11 @@
     border: 2px solid #7BE495;
     border-radius: 17px;
     padding: 13px 8px 13px 8px;
-    margin-top: -70px;
+    margin-top: -134px !important;
     margin-bottom: 6px;
     box-shadow: 0 0 28px 0 rgba(123,228,149,0.17);
     width: 100%;
+    position: relative !important;
   }
   .core-value-fresh-mobile .core-icon {
     width: 38px;
