@@ -1260,7 +1260,7 @@
                   display: flex;
                   flex-direction: column;
                   gap: 2px !important;
-                  margin-top: -48px !important;
+                  margin-top: 20px !important;
                 }
                 .mobile-info-card {
                   display: flex;
@@ -1268,12 +1268,20 @@
                   background: linear-gradient(135deg, #0F1F1A 0%, #0A0F0D 100%);
                   border: 1px solid #7BE495;
                   border-radius: 12px;
-                  padding: 8px 12px 14px !important;
+                  padding: 2px 8px !important;
                   color: #ccc;
                   font-size: 0.7rem;
                   line-height: 1.4;
-                  align-items: flex-start !important;
-                  min-height: 80px;
+                  align-items: center !important;
+                  min-height: 60px;
+                }
+                .mobile-info-card p {
+                  margin: 0 !important;
+                  padding: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;
+                  height: 100% !important;
+                  padding-top: 12px !important;
                 }
                 .mobile-info-card img {
                   width: 36px;
@@ -1282,13 +1290,19 @@
                   border-radius: 12px;
                   padding: 6px;
                 }
-                .mobile-info-card p {
-                  margin: 4px 0 0 0 !important;
-                  padding: 0 0 0 0 !important;
-                  flex: 1;
-                  display: flex;
-                  align-items: flex-start;
-                  height: 100%;
+                /* Remove any additional .mobile-info-card p[style] and margin overrides */
+              }
+              @media (max-width: 768px) {
+                .mobile-trial-msg,
+                .mobile-feedback-msg {
+                  font-size: 0.58rem !important;
+                  line-height: 1.3 !important;
+                }
+                /* Remove any .mobile-info-card p[style] or margin overrides */
+              }
+              @media (max-width: 768px) {
+                .mobile-only-boxes {
+                  margin-top: 40px !important;
                 }
               }
             </style>
@@ -1608,15 +1622,6 @@
   @media (max-width: 768px) {
     .mobile-hide {
       display: none !important;
-    }
-  }
-  /* 모바일에서 .mobile-hide 내부의 콘텐츠를 한 스텝 아래로 내림 */
-  @media (max-width: 768px) {
-    .mobile-hide {
-      padding-top: 8px !important;
-    }
-    .mobile-hide > div:first-child {
-      margin-top: 52px !important;
     }
   }
 </style>
