@@ -14,12 +14,6 @@
       background: #7BE495 !important;
       border-radius: 16px !important;
     }
-    .mobile-flow-rounded-box {
-      border-bottom-left-radius: 38px !important;
-      border-bottom-right-radius: 38px !important;
-      overflow: hidden !important;
-      box-shadow: 0 8px 30px rgba(123, 228, 149, 0.05);
-    }
   }
     /* Mobile only: smaller font for trial and feedback messages */
     /* (Moved .mobile-trial-msg, .mobile-feedback-msg block to below) */
@@ -1254,25 +1248,28 @@
       display: flex !important;
       flex-direction: column;
       gap: 12px;
-      margin-top: -24px;
-      margin-bottom: -16px;
+      margin-top: 16px;
+      margin-bottom: 8px;
     }
     .mobile-moved-ui-row {
       display: flex;
       flex-direction: row;
       align-items: center;
-      /* 박스 관련 스타일 제거: background, border-radius, padding, box-shadow */
+      background: #141F18;
+      border-radius: 12px;
+      padding: 10px 12px 10px 0;
+      box-shadow: 0 0 8px rgba(123,228,149,0.08);
     }
     .mobile-moved-ui-icon {
       width: 36px;
       height: 36px;
-      /* 배경색, border-radius 제거 */
+      background: #7BE495;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 12px;
       flex-shrink: 0;
-      /* background: transparent; */
     }
     .mobile-moved-ui-icon img {
       width: 24px;
