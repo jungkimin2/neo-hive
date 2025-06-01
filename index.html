@@ -1274,16 +1274,15 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 전용: 핵심 가치 박스 (핵심 가치) -->
-            <div class="mobile-core-value-block">
-              <div class="mobile-core-value-icon" style="width:48px;height:48px;background:#7BE495;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
-                <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width:28px;height:28px;">
+            <!-- 모바일 전용: 새로운 핵심 가치 박스 (핵심 가치) -->
+            <!-- 기존 mobile-core-value-block은 아래에서 주석 처리됨 -->
+            <div class="core-value-fresh-mobile">
+              <div class="core-icon">
+                <img src="./images/neohive22.png" alt="핵심가치 아이콘">
               </div>
-              <div class="mobile-core-value-content">
-                <div style="color:#fff;font-size:1.05rem;font-weight:bold;margin-bottom:8px;">핵심 가치</div>
-                <div style="color:#7BE495;font-size:0.96rem;line-height:1.6;text-shadow:0 0 8px #7BE49580;">
-                  함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축
-                </div>
+              <div class="core-text-block">
+                <div class="core-title">핵심 가치</div>
+                <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
               </div>
             </div>
 <style>
@@ -1338,48 +1337,79 @@
 }
   </style>
   <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
-  <style>
-  @media (max-width: 768px) {
-    .mobile-core-value-block {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 16px;
-      margin-top: 16px;
-      border-radius: 18px;
-      background: #131b13;
-      box-shadow: 0 4px 18px 0 rgba(123,228,149,0.13);
-      padding: 20px 18px;
-      width: 100%;
-    }
-    .mobile-core-value-icon {
-      width: 48px;
-      height: 48px;
-      background: #7BE495;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-bottom: 0;
-    }
-    .mobile-core-value-icon img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-    }
-    .mobile-core-value-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-left: 0;
-      padding-left: 0;
-    }
+<style>
+@media (max-width: 768px) {
+  .core-value-fresh-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #0a0a0a;
+    border: 2px solid #7BE495;
+    border-radius: 28px;
+    padding: 22px 18px 22px 18px;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    box-shadow: 0 0 28px 0 rgba(123,228,149,0.17);
+    width: 100%;
   }
-  @media (min-width: 769px) {
-    .mobile-core-value-block { display: none !important; }
+  .core-value-fresh-mobile .core-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 22px;
   }
-  </style>
+  .core-value-fresh-mobile .core-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .core-value-fresh-mobile .core-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .core-value-fresh-mobile .core-title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.18rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-align: left;
+    letter-spacing: -1px;
+  }
+  .core-value-fresh-mobile .core-value-desc {
+    color: #7BE495;
+    font-size: 1.08rem;
+    text-shadow: 0 0 12px #7BE49599;
+    font-weight: 400;
+    text-align: left;
+    line-height: 1.34;
+  }
+  /* 기존 mobile-core-value-block 숨김 (혹시 남아있을 경우) */
+  .mobile-core-value-block {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .core-value-fresh-mobile { display: none !important; }
+}
+</style>
+            <!--
+            <div class="mobile-core-value-block">
+              <div class="mobile-core-value-icon" style="width:48px;height:48px;background:#7BE495;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width:28px;height:28px;">
+              </div>
+              <div class="mobile-core-value-content">
+                <div style="color:#fff;font-size:1.05rem;font-weight:bold;margin-bottom:8px;">핵심 가치</div>
+                <div style="color:#7BE495;font-size:0.96rem;line-height:1.6;text-shadow:0 0 8px #7BE49580;">
+                  함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축
+                </div>
+              </div>
+            </div>
+            -->
 <style>
 @media (min-width: 769px) {
   .trial-renewal-msg, .feedback-msg {
