@@ -1296,18 +1296,16 @@
   document.addEventListener("DOMContentLoaded", function() {
     // 모바일 환경에서만 동작
     if (window.innerWidth <= 768) {
-      // "커뮤니티 형성 → 신규 및 재등록" 박스 아래를 찾음
-      // 해당 박스는 "신규 및 재등록" 텍스트를 포함하는 span이 있음
-      var container = document.querySelector('.neohive-twobox-col > div > div > div');
+      // "커뮤니티 형성" 박스와 "신규 및 재등록" 박스 위치 찾기
       var allDivs = document.querySelectorAll('.neohive-twobox-col > div > div > div');
-      var target = null;
+      var communityDiv = null;
       for (var i = 0; i < allDivs.length; ++i) {
-        if (allDivs[i].innerText && allDivs[i].innerText.indexOf('신규 및 재등록') > -1) {
-          target = allDivs[i];
+        if (allDivs[i].innerText && allDivs[i].innerText.indexOf('커뮤니티 형성') > -1) {
+          communityDiv = allDivs[i];
           break;
         }
       }
-      if (target) {
+      if (communityDiv) {
         // 이동 박스 HTML
         var movedBoxes = document.createElement('div');
         movedBoxes.className = "mobile-moved-boxes";
@@ -1331,13 +1329,12 @@
             </div>
           </div>
         `;
-        // "신규 및 재등록" 박스 바로 아래에 삽입
-        if (target.parentNode) {
-          // 다음 형제로 삽입
-          if (target.nextSibling) {
-            target.parentNode.insertBefore(movedBoxes, target.nextSibling);
+        // "커뮤니티 형성" 박스 바로 아래에 삽입
+        if (communityDiv.parentNode) {
+          if (communityDiv.nextSibling) {
+            communityDiv.parentNode.insertBefore(movedBoxes, communityDiv.nextSibling);
           } else {
-            target.parentNode.appendChild(movedBoxes);
+            communityDiv.parentNode.appendChild(movedBoxes);
           }
         }
       }
