@@ -1354,33 +1354,21 @@
     }
   });
 </script>
-            <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -175px;">
-              <div style="display: flex; align-items: center;">
-                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
-                </div>
-                <div>
-                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
-                    핵심 가치<br>
-                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                  </h4>
-                </div>
+            <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto;">
+              <div style="display: flex; align-items: center; flex-direction: row; gap: 20px;">
+                <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px; vertical-align: middle;">
+                <span style="font-weight: bold; color: #fff; font-size: 1rem; margin-right: 18px; white-space: nowrap;">핵심 가치</span>
+                <span class="neon-green core-value-desktop-text" style="font-weight: normal; font-size: 1rem; white-space: nowrap;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                <span class="neon-green core-value-mobile-text" style="font-weight: normal; font-size: 1rem; white-space: nowrap;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
               </div>
             </div>
-            <!-- 모바일 전용 핵심 가치 박스: mobile-moved-boxes 바로 아래에 삽입 -->
-            <div class="core-value-box-mobile core-value-mobile-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top:28px;">
-              <div style="display: flex; align-items: center;">
-                <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                  <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
-                </div>
-                <div>
-                  <h4 class="core-value-mobile" style="color: #fff; font-weight: bold; font-size: 1rem; margin: 0;">
-                    핵심 가치<br>
-                    <span class="neon-green core-value-desktop-text" style="font-weight:normal;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                    <span class="neon-green core-value-mobile-text" style="font-weight:normal;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
-                  </h4>
-                </div>
+            <!-- 모바일 전용 핵심 가치 박스 (컨테이너 박스 스타일 제거, row 정렬) -->
+            <div class="core-value-box-mobile core-value-mobile-only" style="max-width: 540px; flex: 0 0 auto; margin-top:28px;">
+              <div style="display: flex; align-items: center; flex-direction: row; gap: 18px;">
+                <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 40px; height: 40px; vertical-align: middle;">
+                <span style="font-weight: bold; color: #fff; font-size: 1rem; margin-right: 10px; white-space: nowrap;">핵심 가치</span>
+                <span class="neon-green core-value-desktop-text" style="font-weight: normal; font-size: 1rem; white-space: nowrap;">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</span>
+                <span class="neon-green core-value-mobile-text" style="font-weight: normal; font-size: 1rem; white-space: nowrap;">함께하는 운동 지속적인 동기부여, 건강한 커뮤니티 구축</span>
               </div>
             </div>
 </style>
@@ -1388,56 +1376,52 @@
   @media (max-width: 768px) {
     .core-value-desktop-only { display: none !important; }
     .core-value-mobile-only { display: block !important; }
+    .core-value-box-mobile {
+      margin-top: 80px !important;
+      border: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+    .core-value-box-mobile > div {
+      display: flex !important;
+      align-items: center !important;
+      flex-direction: row !important;
+      gap: 12px !important;
+      justify-content: flex-start !important;
+      width: 100%;
+      text-align: left;
+    }
+    .core-value-box-mobile img {
+      width: 40px !important;
+      height: 40px !important;
+      margin: 0 !important;
+      vertical-align: middle !important;
+    }
+    .core-value-box-mobile span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .core-value-mobile-text {
+      display: inline !important;
+    }
+    .core-value-desktop-text {
+      display: none !important;
+    }
   }
   @media (min-width: 769px) {
     .core-value-desktop-only { display: block !important; }
     .core-value-mobile-only { display: none !important; }
+    .core-value-mobile-text {
+      display: none !important;
+    }
+    .core-value-desktop-text {
+      display: inline !important;
+    }
   }
 </style>
-  <style>
-    @media (max-width: 768px) {
-      .core-value-mobile {
-        font-size: 0.68rem !important;
-        line-height: 1.2 !important;
-      }
-      .core-value-mobile .neon-green {
-        font-size: 0.79rem !important;
-        line-height: 1.08 !important;
-      }
-      .core-value-mobile-text {
-        display: inline !important;
-      }
-      .core-value-desktop-text {
-        display: none !important;
-      }
-      /* .trial-renewal-msg and .feedback-msg: 모바일 폰트 사이즈 오버라이드 제거됨, PC에서만 적용 */
-      /* 모바일에서만 .mobile-trial-msg, .mobile-feedback-msg 폰트 크기 오버라이드 (moved to <head>) */
-    }
-    @media (min-width: 769px) {
-      .core-value-mobile-text {
-        display: none !important;
-      }
-      .core-value-desktop-text {
-        display: inline !important;
-      }
-      .trial-renewal-msg {
-        font-size: 0.9rem !important;
-        font-weight: 500 !important;
-      }
-      .feedback-msg {
-        font-size: 0.9rem !important;
-        font-weight: 500 !important;
-      }
-    }
-  </style>
-  <style>
-    @media (max-width: 768px) {
-      /* Move 핵심 가치 box downward by ~5 spacing units (e.g., 80px/5rem) on mobile */
-      .core-value-box-mobile {
-        margin-top: 80px !important;
-      }
-    }
-  </style>
             <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
             <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
