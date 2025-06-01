@@ -1087,7 +1087,7 @@
       <div class="slide-container p-10" style="margin-top: 24px;">
       </div>
       <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
-      <div class="slide-container p-10" style="margin-top: 64px;">
+      <div class="slide-container p-10 mobile-flow-rounded-box" style="margin-top: 64px;">
         <div class="flex items-center mb-8">
           <h1 class="text-4xl font-bold neon-green" style="text-align: left; margin-top: 48px;">UX 흐름 + 무인 예약 시스템</h1>
           <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
@@ -3181,6 +3181,15 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   .mobile-shrink-heading {
     font-size: 0.78rem !important;
+  }
+}
+</style>
+<style>
+@media (max-width: 768px) {
+  .mobile-flow-rounded-box {
+    border-bottom-left-radius: 28px !important;
+    border-bottom-right-radius: 28px !important;
+    overflow: hidden !important;
   }
 }
 </style>
