@@ -1274,6 +1274,18 @@
                 </div>
               </div>
             </div>
+            <!-- 모바일 전용: 핵심 가치 박스 (핵심 가치) -->
+            <div class="mobile-core-value-block">
+              <div class="mobile-core-value-icon" style="width:48px;height:48px;background:#7BE495;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width:28px;height:28px;">
+              </div>
+              <div class="mobile-core-value-content">
+                <div style="color:#fff;font-size:1.05rem;font-weight:bold;margin-bottom:8px;">핵심 가치</div>
+                <div style="color:#7BE495;font-size:0.96rem;line-height:1.6;text-shadow:0 0 8px #7BE49580;">
+                  함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축
+                </div>
+              </div>
+            </div>
 <style>
 @media (max-width: 768px) {
   .mobile-merged-box {
@@ -1327,7 +1339,50 @@
 @media (min-width: 769px) {
   .mobile-merged-box { display: none !important; }
 }
-</style>
+  </style>
+  <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
+  <style>
+  @media (max-width: 768px) {
+    .mobile-core-value-block {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+      margin-top: 16px;
+      border-radius: 18px;
+      background: #131b13;
+      box-shadow: 0 4px 18px 0 rgba(123,228,149,0.13);
+      padding: 20px 18px;
+      width: 100%;
+    }
+    .mobile-core-value-icon {
+      width: 48px;
+      height: 48px;
+      background: #7BE495;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .mobile-core-value-icon img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    .mobile-core-value-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+  @media (min-width: 769px) {
+    .mobile-core-value-block { display: none !important; }
+  }
+  </style>
 <style>
 @media (min-width: 769px) {
   .trial-renewal-msg, .feedback-msg {
