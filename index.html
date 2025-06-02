@@ -1291,8 +1291,6 @@
                 <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
               </div>
             </div>
-            <!-- 모바일: 무인 출입/이벤트 시스템 UI를 핵심 가치 바로 아래에 이동 -->
-            <div class="mobile-green-info-blocks" style="display: none;"></div>
             <!-- 모바일 전용: 무인 출입 시스템 운영 방식/이벤트 시스템 연동 박스 -->
             <div class="mobile-access-system-box">
               <div class="mobile-access-icon">
@@ -1618,8 +1616,8 @@
     .mobile-core-value-fresh { display: none !important; }
   }
 </style>
-            <!-- 모바일에서만: 이 블록은 위로 이동, PC에서는 기존 위치 유지 -->
-            <div class="mobile-green-info-blocks-original" style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
+            <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
+            <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
                 <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
                   <h4 style="color:#FFFFFF; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; margin-left: -48px;">무인 출입 시스템 운영 방식</h4>
@@ -1645,46 +1643,6 @@
                 </div>
               </div>
             </div>
-<style>
-@media (max-width: 768px) {
-  /* Hide original green info block at bottom for mobile */
-  .mobile-green-info-blocks-original { display: none !important; }
-  /* Show moved green info block after 핵심 가치 for mobile */
-  .mobile-green-info-blocks { display: block !important; }
-  /* Tight margin above for visual 분리 */
-  .mobile-green-info-blocks {
-    margin-top: 18px !important;
-    margin-bottom: 0 !important;
-  }
-}
-@media (min-width: 769px) {
-  .mobile-green-info-blocks { display: none !important; }
-  .mobile-green-info-blocks-original { display: block !important; }
-}
-</style>
-<script>
-// Move the green info block to after 핵심 가치 on mobile only (hydration-safe)
-document.addEventListener('DOMContentLoaded', function() {
-  function moveGreenBlocksMobile() {
-    var mobileBlock = document.querySelector('.mobile-green-info-blocks');
-    var originalBlock = document.querySelector('.mobile-green-info-blocks-original');
-    var coreValueMobile = document.querySelector('.core-value-fresh-mobile');
-    if (window.innerWidth <= 768 && mobileBlock && originalBlock && coreValueMobile) {
-      // Only move if not already moved
-      if (!mobileBlock.hasChildNodes()) {
-        // Clone the original block's HTML
-        mobileBlock.innerHTML = originalBlock.innerHTML;
-      }
-      // Insert after core-value-fresh-mobile if not already there
-      if (coreValueMobile.nextElementSibling !== mobileBlock) {
-        coreValueMobile.parentNode.insertBefore(mobileBlock, coreValueMobile.nextElementSibling);
-      }
-    }
-  }
-  moveGreenBlocksMobile();
-  window.addEventListener('resize', moveGreenBlocksMobile);
-});
-</script>
           </div>
         </div>
       </div>
