@@ -1341,6 +1341,14 @@
 @media (min-width: 769px) {
   .mobile-merged-box { display: none !important; }
 }
+
+@media (max-width: 768px) {
+  #mobile-moved-merged-box {
+    transform: translateY(-72px) !important; /* 명확한 이동을 위해 transform을 사용 */
+    position: relative !important; /* 상대적 위치 지정이 필요 */
+    z-index: 10 !important; /* 다른 요소 위에 보이도록 보장 */
+  }
+}
   </style>
   <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
 <style>
