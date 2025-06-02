@@ -1280,8 +1280,10 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 전용: 두 박스(세로형 UI)는 모바일에서만 숨김 처리 -->
-            <div class="mobile-core-value-and-desc mobile-hide-on-mobile">
+            <!-- 모바일 전용: 두 박스는 이곳에서 제거됨(아래로 이동) -->
+            <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" 바로 아래에 두 박스 이동 -->
+            <!-- 모바일 환경에서만 노출되는 합쳐진 박스 -->
+            <div class="mobile-flex-horizontal-group">
               <div class="core-value-fresh-mobile">
                 <div class="core-icon">
                   <img src="./images/neohive22.png" alt="핵심가치 아이콘">
@@ -1313,16 +1315,6 @@
             </div>
 <style>
 @media (max-width: 768px) {
-  .mobile-core-value-and-desc {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 14px !important;
-    align-items: stretch !important;
-    width: 100%;
-    margin-top: 12px !important;
-    margin-bottom: 8px !important;
-  }
-  .mobile-flex-horizontal-group { display: none !important; }
   .mobile-merged-box {
     display: flex !important;
     flex-direction: column;
@@ -1367,18 +1359,38 @@
     padding-left: 0;
     font-size: 0.68rem !important;
   }
+  /* Remove margin-top from .core-value-fresh-mobile for horizontal group only (handled below) */
   .core-value-fresh-mobile {
     margin-top: 18px !important;
     margin-bottom: 0 !important;
   }
-  /* 모바일에서만 .mobile-hide-on-mobile 클래스를 가진 요소를 숨김 */
-  .mobile-hide-on-mobile { display: none !important; }
 }
 @media (min-width: 769px) {
-  .mobile-core-value-and-desc { display: none !important; }
   .mobile-merged-box { display: none !important; }
-  /* PC에서는 항상 표시 */
-  .mobile-hide-on-mobile { display: block !important; }
+}
+/* New horizontal flex group for mobile two-box UI */
+@media (max-width: 768px) {
+  .mobile-flex-horizontal-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 14px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .mobile-flex-horizontal-group .core-value-fresh-mobile,
+  .mobile-flex-horizontal-group .mobile-merged-box {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    flex: 1 1 0;
+    width: 48%;
+    min-width: 0;
+    max-width: 100%;
+    align-items: center !important;
+    display: flex !important;
+  }
 }
 </style>
   <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
@@ -1464,7 +1476,7 @@
   }
 }
 </style>
-            <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -170px;">
+            <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -215px;">
               <div style="display: flex; align-items: center;">
                 <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                   <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
