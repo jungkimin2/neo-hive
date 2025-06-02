@@ -1344,9 +1344,10 @@
 
 @media (max-width: 768px) {
   #mobile-moved-merged-box {
-    transform: translateY(-72px) !important; /* 명확한 이동을 위해 transform을 사용 */
-    position: relative !important; /* 상대적 위치 지정이 필요 */
-    z-index: 10 !important; /* 다른 요소 위에 보이도록 보장 */
+    transform: translateY(-96px) !important; /* 위로 3칸 (24px*3칸=72px) 이상인 96px로 더 명확하게 이동 */
+    position: relative !important;
+    z-index: 100 !important; /* 더 높은 우선순위 */
+    margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
   }
 }
   </style>
