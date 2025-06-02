@@ -1284,6 +1284,15 @@
             <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" 바로 아래에 두 박스 이동 -->
             <!-- 모바일 환경에서만 노출되는 합쳐진 박스 -->
             <div class="mobile-flex-horizontal-group">
+              <div class="core-value-fresh-mobile">
+                <div class="core-icon">
+                  <img src="./images/neohive22.png" alt="핵심가치 아이콘">
+                </div>
+                <div class="core-text-block">
+                  <div class="core-title">핵심 가치</div>
+                  <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
+                </div>
+              </div>
               <div id="mobile-moved-merged-box" class="mobile-merged-box">
                 <div class="mobile-merged-row">
                   <div class="mobile-merged-icon">
@@ -1301,15 +1310,6 @@
                     출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
                     운영 전략에 즉시 반영 가능합니다.
                   </div>
-                </div>
-              </div>
-              <div class="core-value-fresh-mobile">
-                <div class="core-icon">
-                  <img src="./images/neohive22.png" alt="핵심가치 아이콘">
-                </div>
-                <div class="core-text-block">
-                  <div class="core-title">핵심 가치</div>
-                  <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
                 </div>
               </div>
             </div>
@@ -1372,9 +1372,9 @@
 @media (max-width: 768px) {
   .mobile-flex-horizontal-group {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     gap: 14px !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: stretch !important;
     width: 100%;
     margin-top: 12px !important;
@@ -1385,7 +1385,7 @@
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     flex: 1 1 0;
-    width: 48%;
+    width: 100%;
     min-width: 0;
     max-width: 100%;
   }
