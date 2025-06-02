@@ -1280,11 +1280,8 @@
                 </div>
               </div>
             </div>
-            <!-- 모바일 전용: 두 박스는 이곳에서 제거됨(아래로 이동) -->
-            <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" 바로 아래에 두 박스 이동 -->
-            <!-- 모바일 환경에서만 노출되는 합쳐진 박스 -->
-            <!-- 모바일 세로형 핵심 가치 + 두 박스 UI (768px 이하에서만 노출) -->
-            <div class="mobile-core-value-and-desc">
+            <!-- 모바일 전용: 두 박스(세로형 UI)는 모바일에서만 숨김 처리 -->
+            <div class="mobile-core-value-and-desc mobile-hide-on-mobile">
               <div class="core-value-fresh-mobile">
                 <div class="core-icon">
                   <img src="./images/neohive22.png" alt="핵심가치 아이콘">
@@ -1318,15 +1315,13 @@
 @media (max-width: 768px) {
   .mobile-core-value-and-desc {
     display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
+    flex-direction: column !important;
     gap: 14px !important;
     align-items: stretch !important;
     width: 100%;
     margin-top: 12px !important;
     margin-bottom: 8px !important;
   }
-  /* 기존 .mobile-flex-horizontal-group 숨김 처리 */
   .mobile-flex-horizontal-group { display: none !important; }
   .mobile-merged-box {
     display: flex !important;
@@ -1376,10 +1371,14 @@
     margin-top: 18px !important;
     margin-bottom: 0 !important;
   }
+  /* 모바일에서만 .mobile-hide-on-mobile 클래스를 가진 요소를 숨김 */
+  .mobile-hide-on-mobile { display: none !important; }
 }
 @media (min-width: 769px) {
   .mobile-core-value-and-desc { display: none !important; }
   .mobile-merged-box { display: none !important; }
+  /* PC에서는 항상 표시 */
+  .mobile-hide-on-mobile { display: block !important; }
 }
 </style>
   <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
