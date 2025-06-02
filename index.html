@@ -1291,6 +1291,34 @@
                 <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
               </div>
             </div>
+            <!-- 모바일 전용: 무인 출입 시스템 운영 방식/이벤트 시스템 연동 박스 -->
+            <div class="mobile-access-system-box">
+              <div class="mobile-access-icon">
+                <img src="./images/neo35.png" alt="출입 코드 아이콘">
+              </div>
+              <div class="mobile-access-content">
+                <div class="mobile-access-title">무인 출입 시스템 운영 방식</div>
+                <div class="mobile-access-desc">
+                  <ul>
+                    <li>가상의 회원 등록 (시스템 계정)</li>
+                    <li>핸드폰 뒷자리 <span style="color:#7BE495;">"1234"</span>를 출입 코드로 지정</li>
+                    <li>예약 팀에게 코드 자동 전송</li>
+                  </ul>
+                  <div class="mobile-access-extra">
+                    사용자는 코드만 입력하면 무인 헬스장에 손쉽게 출입할 수 있습니다.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mobile-event-system-box">
+              <div class="mobile-event-title">이벤트 시스템 연동</div>
+              <ul class="mobile-event-list">
+                <li><span class="mobile-dot">•</span> 제휴 헬스장 1곳 한정 이벤트 진행</li>
+                <li><span class="mobile-dot">•</span> 팀원 전원 QR 출석체크 필요 (최소 3명)</li>
+                <li><span class="mobile-dot">•</span> 출석체크 인정 횟수 누적 진행</li>
+                <li><span class="mobile-dot">•</span> 팀장이 인증센터 선택 및 시간대 예약</li>
+              </ul>
+            </div>
 <style>
 @media (max-width: 768px) {
   .mobile-merged-box {
@@ -1411,9 +1439,125 @@
   .mobile-core-value-block {
     display: none !important;
   }
+
+  /* 모바일: 무인 출입 시스템/이벤트 시스템 박스 스타일 */
+  .mobile-access-system-box,
+  .mobile-event-system-box {
+    display: flex !important;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%) !important;
+    border-radius: 17px;
+    border: 2px solid #7BE495;
+    box-shadow: 0 0 18px 0 rgba(123,228,149,0.11);
+    margin-top: 14px;
+    margin-bottom: 8px;
+    padding: 16px 12px;
+    position: relative;
+    font-size: 0.93rem;
+    z-index: 90;
+  }
+  .mobile-access-system-box {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .mobile-access-icon {
+    width: 38px;
+    height: 38px;
+    background: #7BE495;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .mobile-access-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+  }
+  .mobile-access-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+  }
+  .mobile-access-title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .mobile-access-desc ul {
+    margin: 0 0 4px 0;
+    padding-left: 18px;
+    color: #7BE495;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    list-style-type: disc;
+  }
+  .mobile-access-desc ul li {
+    color: #7BE495;
+    font-weight: 500;
+    margin-bottom: 2px;
+    word-break: keep-all;
+  }
+  .mobile-access-extra {
+    color: #fff;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    font-weight: 400;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+  .mobile-event-system-box {
+    flex-direction: column;
+    background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%) !important;
+    border-radius: 17px;
+    border: 2px solid #7BE495;
+    box-shadow: 0 0 18px 0 rgba(123,228,149,0.11);
+    margin-bottom: 8px;
+    margin-top: 0;
+    padding: 18px 16px 14px 16px;
+    font-size: 0.93rem;
+    z-index: 90;
+  }
+  .mobile-event-title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .mobile-event-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    color: #7BE495;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .mobile-event-list li {
+    color: #7BE495;
+    font-weight: 500;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: flex-start;
+    word-break: keep-all;
+  }
+  .mobile-dot {
+    color: #7BE495;
+    font-size: 1.1em;
+    margin-right: 6px;
+    line-height: 1.2;
+  }
 }
 @media (min-width: 769px) {
   .core-value-fresh-mobile { display: none !important; }
+  .mobile-access-system-box,
+  .mobile-event-system-box { display: none !important; }
 }
 </style>
             <!--
