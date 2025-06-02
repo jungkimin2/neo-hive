@@ -1113,22 +1113,20 @@
         <!-- Unified Row: Steps 1 ➔ 2 ➔ 3 ➔ 4 ➔ 5 ➔ 6 (리뉴얼: 스크린샷 스타일) -->
         <div class="flow-step-wrapper" style="display:flex; flex-wrap: nowrap; justify-content:center; gap: 20px; max-width: 100%; overflow-x: visible; margin: 40px auto 28px; padding: 0 12px;">
         <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" flow row 바로 아래에 두 박스 이동 -->
-        <!-- 모바일 전용: 1일 무료 체험/출석 보상 & 출석 변화 박스 (가로 2행) -->
-        <div class="mobile-horizontal-box-group">
-          <div class="mobile-horizontal-box">
-            <div class="icon-area">
+        <div id="mobile-moved-merged-box" class="mobile-merged-box">
+          <div class="mobile-merged-row">
+            <div class="mobile-merged-icon">
               <img src="./images/neo125.png" alt="선물 아이콘" />
             </div>
-            <div class="text-area">
-              1일 무료 체험, 출석 보상으로 시작해 팀 활동과 센터 경험을 쌓고,<br>
-              자연스럽게 커뮤니티에 스며든 사용자는 재등록으로 이어집니다.
+            <div class="mobile-merged-text">
+              1일 무료 체험, 출석 보상으로 팀 활동과 센터<br>경험을 쌓고, 자연스럽게 사용자는 재등록으로 이어집니다.
             </div>
           </div>
-          <div class="mobile-horizontal-box">
-            <div class="icon-area">
+          <div class="mobile-merged-row">
+            <div class="mobile-merged-icon">
               <img src="./images/noes56.png" alt="통계 아이콘" />
             </div>
-            <div class="text-area">
+            <div class="mobile-merged-text">
               출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
               운영 전략에 즉시 반영 가능합니다.
             </div>
@@ -1285,31 +1283,60 @@
             <!-- 모바일 전용: 두 박스는 이곳에서 제거됨(아래로 이동) -->
             <!-- 모바일 전용: "커뮤니티 형성 → 신규 및 재등록" 바로 아래에 두 박스 이동 -->
             <!-- 모바일 환경에서만 노출되는 합쳐진 박스 -->
-            <!-- 기존 모바일 박스 및 그룹 완전 제거됨 -->
+            <div class="mobile-flex-horizontal-group">
+              <div class="core-value-fresh-mobile">
+                <div class="core-icon">
+                  <img src="./images/neohive22.png" alt="핵심가치 아이콘">
+                </div>
+                <div class="core-text-block">
+                  <div class="core-title">핵심 가치</div>
+                  <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
+                </div>
+              </div>
+              <div id="mobile-moved-merged-box" class="mobile-merged-box">
+                <div class="mobile-merged-row">
+                  <div class="mobile-merged-icon">
+                    <img src="./images/neo125.png" alt="선물 아이콘" />
+                  </div>
+                  <div class="mobile-merged-text">
+                    1일 무료 체험, 출석 보상으로 팀 활동과 센터<br>경험을 쌓고, 자연스럽게 사용자는 재등록으로 이어집니다.
+                  </div>
+                </div>
+                <div class="mobile-merged-row">
+                  <div class="mobile-merged-icon">
+                    <img src="./images/noes56.png" alt="통계 아이콘" />
+                  </div>
+                  <div class="mobile-merged-text">
+                    출석 변화를 관리자 페이지에서 한눈에 파악하여<br>
+                    운영 전략에 즉시 반영 가능합니다.
+                  </div>
+                </div>
+              </div>
+            </div>
 <style>
 @media (max-width: 768px) {
-  .mobile-horizontal-box-group {
-    display: flex;
+  .mobile-merged-box {
+    display: flex !important;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+    border-radius: 22px;
+    background: #15231a;
+    box-shadow: 0 4px 18px 0 rgba(123,228,149,0.08);
+    padding: 32px 26px;
     width: 100%;
-    margin: 24px 0 14px 0;
+    position: relative !important;
   }
-  .mobile-horizontal-box {
+  .mobile-merged-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    background: #14231a;
-    border-radius: 24px;
-    box-shadow: 0 4px 18px 0 rgba(123,228,149,0.08);
-    padding: 28px 24px;
-    width: 100%;
-    min-height: 90px;
-    gap: 18px;
+    align-items: flex-start;
+    gap: 16px;
   }
-  .mobile-horizontal-box .icon-area {
-    width: 58px;
-    height: 58px;
+  .mobile-merged-icon {
+    width: 38px;
+    height: 38px;
     background: #7BE495;
     border-radius: 16px;
     display: flex;
@@ -1317,24 +1344,53 @@
     justify-content: center;
     flex-shrink: 0;
   }
-  .mobile-horizontal-box .icon-area img {
-    width: 36px;
-    height: 36px;
+  .mobile-merged-icon img {
+    width: 28px;
+    height: 28px;
     object-fit: contain;
   }
-  .mobile-horizontal-box .text-area {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 500;
+  .mobile-merged-text {
     text-align: left;
+    color: #fff;
     line-height: 1.7;
+    font-weight: 500;
+    word-break: keep-all;
     margin-left: 0;
     padding-left: 0;
-    word-break: keep-all;
+    font-size: 0.68rem !important;
+  }
+  /* Remove margin-top from .core-value-fresh-mobile for horizontal group only (handled below) */
+  .core-value-fresh-mobile {
+    margin-top: 18px !important;
+    margin-bottom: 0 !important;
   }
 }
 @media (min-width: 769px) {
-  .mobile-horizontal-box-group { display: none !important; }
+  .mobile-merged-box { display: none !important; }
+}
+/* New horizontal flex group for mobile two-box UI */
+@media (max-width: 768px) {
+  .mobile-flex-horizontal-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 14px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .mobile-flex-horizontal-group .core-value-fresh-mobile,
+  .mobile-flex-horizontal-group .mobile-merged-box {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    flex: 1 1 0;
+    width: 48%;
+    min-width: 0;
+    max-width: 100%;
+    align-items: center !important;
+    display: flex !important;
+  }
 }
 </style>
   <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
