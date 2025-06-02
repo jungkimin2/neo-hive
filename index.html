@@ -1344,11 +1344,11 @@
 
 @media (max-width: 768px) {
   #mobile-moved-merged-box {
-    /* 핵심 가치 바로 아래 위치 조정 */
-    transform: translateY(-260px) !important;
-    margin-top: 0 !important;
+    /* 기존 -324px에서 12px 내려 조정: -312px */
+    transform: translateY(-312px) !important;
     position: relative !important;
-    z-index: 100 !important;
+    z-index: 100 !important; /* 더 높은 우선순위 */
+    margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
   }
 }
   </style>
@@ -1356,8 +1356,9 @@
 <style>
 @media (max-width: 768px) {
   .core-value-fresh-mobile {
-    margin-top: 8px !important; /* 핵심 가치 UI 위쪽 여백 축소 */
-    transform: translateY(0) !important;
+    margin-top: 32px !important;
+    /* 기존 -344px - 12px 에서 한 칸 더 올려서 -344px - 24px 로 수정 */
+    transform: translateY(calc(-344px - 24px)) !important;
     display: flex;
     flex-direction: row;
     align-items: center;
