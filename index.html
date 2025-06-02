@@ -1295,8 +1295,8 @@
   .mobile-flex-horizontal-group { display: none !important; }
   .mobile-merged-box {
     display: flex !important;
-    flex-direction: column;
-    gap: 24px;
+    flex-direction: row !important;
+    gap: 24px !important;
     margin-top: 12px !important;
     margin-bottom: 8px !important;
     border-radius: 22px;
@@ -1305,6 +1305,8 @@
     padding: 32px 26px;
     width: 100%;
     position: relative !important;
+    flex: 1 1 0 !important;
+    margin: 0 !important;
   }
   .mobile-merged-row {
     display: flex;
@@ -1340,6 +1342,13 @@
   .core-value-fresh-mobile {
     margin-top: 18px !important;
     margin-bottom: 0 !important;
+    flex: 1 1 0 !important;
+    margin: 0 !important;
+  }
+  .neohive-twobox-col {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
   }
 }
 @media (min-width: 769px) {
@@ -1363,6 +1372,8 @@
     position: relative !important;
     margin-top: 18px !important;
     margin-bottom: 0 !important;
+    flex: 1 1 0 !important;
+    margin: 0 !important;
   }
   .core-value-fresh-mobile .core-icon {
     width: 38px;
