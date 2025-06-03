@@ -1473,7 +1473,7 @@
   }
 </style>
             <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
-            <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
+            <div class="pc-wide-system-box" style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
                 <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
                   <h4 style="color:#FFFFFF; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; margin-left: -48px;">무인 출입 시스템 운영 방식</h4>
@@ -1716,6 +1716,21 @@
       display: none !important;
     }
   }
+/* ——— Mobile: reposition the two “무인 출입 시스템 / 이벤트 시스템 연동” boxes just below the 핵심 가치 UI ——— */
+@media (max-width: 768px) {
+  .pc-wide-system-box {
+    position: relative !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 24px !important;   /* small gap under 핵심 가치 */
+    transform: translateY(-312px) !important; /* pull it upward toward 핵심 가치 */
+    border-radius: 20px !important;
+    padding: 24px 18px !important;
+    box-shadow: 0 4px 18px rgba(123,228,149,0.12) !important;
+    z-index: 88 !important;
+  }
+}
+/* ———————————————————————————————————————————————————————————————— */
 </style>
           <!-- SVG circle visually connecting the steps -->
           <svg class="circle-lines" viewBox="0 0 580 580" width="580" height="580" style="position:absolute; top:0; left:0; z-index:0;">
