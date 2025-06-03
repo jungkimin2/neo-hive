@@ -11,6 +11,38 @@
   }
 }
 </style>
+<!-- 모바일 환경 전용 CSS: 핵심가치 UI 및 캡쳐 이미지 UI 위치/정렬 조정 (PC 영향 없음) -->
+<style>
+@media (max-width: 768px) {
+  /* 핵심가치 UI 바로 밑으로 캡쳐 이미지 UI 이동 */
+  .mobile-merged-box {
+    position: relative !important;
+    transform: translateY(0px) !important;
+    margin-top: 12px !important;
+  }
+
+  .core-value-fresh-mobile {
+    margin-top: 32px !important;
+  }
+
+  /* 캡쳐 이미지 UI 조정 */
+  .neohive-flex-row {
+    flex-direction: column !important;
+  }
+
+  .neohive-twobox-col {
+    order: 1 !important;
+  }
+
+  .core-value-fresh-mobile {
+    order: 2 !important;
+  }
+
+  .mobile-merged-box {
+    order: 3 !important;
+  }
+}
+</style>
 <style>
 @media (max-width: 768px) {
   .mobile-merged-box {
