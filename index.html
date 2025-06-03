@@ -2,7 +2,7 @@
 @media (max-width: 768px) {
   .mobile-ui-position-adjustment {
     position: relative !important;
-    transform: translateY(-160px) !important;
+    transform: translateY(-288px) !important; /* 기존 값에서 추가로 상단으로 8칸 올림 */
     margin-top: 0 !important;
     padding-top: 0 !important;
     z-index: 9999 !important;
@@ -22,11 +22,6 @@
   }
 }
 </style>
-@media (min-width: 769px) {
-  .core-value-fresh-mobile {
-    transform: translateY(16px) !important;
-  }
-}
 </body>
 <style>
 @media (max-width: 768px) {
@@ -1488,6 +1483,8 @@
     margin-bottom: 6px;
     box-shadow: 0 0 28px 0 rgba(123,228,149,0.17);
     width: 100%;
+    position: relative !important;
+    z-index: 10000 !important;
     position: relative !important;
   }
   .core-value-fresh-mobile .core-icon {
