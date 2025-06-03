@@ -9,7 +9,7 @@
 @media (max-width: 768px) {
   .mobile-ui-position-adjustment {
     position: relative !important;
-    transform: translateY(-288px) !important; /* 기존 값에서 추가로 상단으로 8칸 올림 */
+    transform: translateY(-352px) !important; /* 기존 -288px에서 4칸(64px) 더 올림 */
     margin-top: 0 !important;
     padding-top: 0 !important;
     z-index: 9999 !important;
@@ -1313,7 +1313,17 @@
                 </div>
               </div>
             </div>
-            <div class="core-value-fresh-mobile">
+            <div class="core-value-fresh-mobile pc-core-value-adjust">
+<style>
+@media (min-width: 769px) {
+  .pc-core-value-adjust {
+    position: relative !important;
+    top: 160px !important; /* 기존 144px에서 한 칸(16px) 더 아래로 */
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+}
+</style>
               <div class="core-icon">
                 <img src="./images/neohive22.png" alt="핵심가치 아이콘">
               </div>
@@ -1477,9 +1487,8 @@
 <style>
 @media (max-width: 768px) {
   .core-value-fresh-mobile {
-    margin-top: 32px !important;
-    /* 모바일 환경에서만 한 칸(16px) 더 올림: -344px - 56px */
-    transform: translateY(calc(-344px - 56px)) !important;
+    margin-top: 16px !important;
+    transform: translateY(-64px) !important;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1491,7 +1500,7 @@
     box-shadow: 0 0 28px 0 rgba(123,228,149,0.17);
     width: 100%;
     position: relative !important;
-    z-index: 10000 !important;
+    z-index: 10001 !important;
     position: relative !important;
   }
   .core-value-fresh-mobile .core-icon {
