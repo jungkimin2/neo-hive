@@ -1447,8 +1447,8 @@
 @media (max-width: 768px) {
   .core-value-fresh-mobile {
     margin-top: 32px !important;
-    /* 기존 -344px - 24px 에서 한 칸 더 올려서 -344px - 40px 로 수정 */
-    transform: translateY(calc(-344px - 40px)) !important;
+    /* 모바일 환경에서만 한 칸(16px) 더 올림: -344px - 56px */
+    transform: translateY(calc(-344px - 56px)) !important;
     display: flex;
     flex-direction: row;
     align-items: center;
