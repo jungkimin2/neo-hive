@@ -1005,10 +1005,10 @@
 </style>
 <!-- 네오 스마트 모바일 위치 조정: 중복 제거 및 단일화 -->
 <style>
-/* 모바일 환경에서만 #smart 섹션의 상단 여백 8칸(약 128px) 삭제 */
+/* 모바일 환경에서만 #smart 섹션의 상단 여백 8칸(약 128px) 삭제 -> 180px로 추가 감소 */
 @media (max-width: 768px) {
   #smart {
-    margin-top: -128px !important;
+    margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
     padding-top: 0 !important;
     transform: none !important;
   }
