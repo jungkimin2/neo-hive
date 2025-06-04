@@ -3,6 +3,15 @@
   .core-value-fresh-mobile .core-title {
     font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
   }
+  /* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
+  .mobile-system-desc {
+    font-size: 0.65rem !important; /* 문구 크기를 더 작게 설정 */
+  }
+  /* 2. .mobile-system-title과 그 하단 설명 전체를 위로 한 칸(16px) 올림 */
+  .mobile-system-title,
+  .mobile-system-list {
+    transform: translateY(-16px) !important; /* 한 칸 위로 조정 */
+  }
 }
 </style>
 <style>
