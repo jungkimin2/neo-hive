@@ -1379,9 +1379,9 @@
                     <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
                     <hr class="mobile-system-divider" />
                     <ul class="mobile-system-list">
-                      <li><span class="mobile-dot"></span> 가상의 회원 등록 (시스템 계정)</li>
-                      <li><span class="mobile-dot"></span> 해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
-                      <li><span class="mobile-dot"></span> 네오 하이브를 통해 예약한 팀에게 코드 전송</li>
+                      <li><span class="mobile-dot mobile-dot--num" style="display:none;"></span> 가상의 회원 등록 (시스템 계정)</li>
+                      <li><span class="mobile-dot mobile-dot--num" style="display:none;"></span> 해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
+                      <li><span class="mobile-dot mobile-dot--num" style="display:none;"></span> 네오 하이브를 통해 예약한 팀에게 코드 전송</li>
                       <li class="mobile-system-desc" style="font-size: 0.7rem; color: #ffffff; margin-top: 8px;">
                         <span class="mobile-only-lock-icon">
                           <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;">
@@ -1445,6 +1445,7 @@
         color: #ccc !important;
         margin-bottom: 8px; /* consistent vertical spacing */
         line-height: 1.5 !important;
+        position: relative;
       }
       .mobile-dot {
         display: inline-block;
@@ -1454,6 +1455,57 @@
         border-radius: 50%;
         margin-top: 7px;
         flex-shrink: 0;
+      }
+      /* 모바일 환경에서만: 첫 3개 리스트의 동그라미를 숫자로 변경 */
+      @media (max-width: 768px) {
+        .mobile-system-list li:nth-child(1) .mobile-dot--num::before {
+          content: "1.";
+          color: #7BE495;
+          font-weight: bold;
+          font-size: 0.95em;
+          margin-right: 2px;
+          display: inline-block;
+          width: auto;
+          height: auto;
+          background: none;
+          border-radius: 0;
+        }
+        .mobile-system-list li:nth-child(2) .mobile-dot--num::before {
+          content: "2.";
+          color: #7BE495;
+          font-weight: bold;
+          font-size: 0.95em;
+          margin-right: 2px;
+          display: inline-block;
+          width: auto;
+          height: auto;
+          background: none;
+          border-radius: 0;
+        }
+        .mobile-system-list li:nth-child(3) .mobile-dot--num::before {
+          content: "3.";
+          color: #7BE495;
+          font-weight: bold;
+          font-size: 0.95em;
+          margin-right: 2px;
+          display: inline-block;
+          width: auto;
+          height: auto;
+          background: none;
+          border-radius: 0;
+        }
+        .mobile-system-list li:nth-child(-n+3) .mobile-dot--num {
+          display: inline-block !important;
+        }
+        .mobile-system-list li:nth-child(-n+3) .mobile-dot--num {
+          width: auto;
+          height: auto;
+          background: none !important;
+          margin-top: 0;
+        }
+        .mobile-system-list li:nth-child(-n+3) .mobile-dot {
+          display: none !important;
+        }
       }
       .mobile-system-desc {
         font-size: 0.7rem !important;
@@ -3483,3 +3535,4 @@
     }
   }
   </style>
+  
