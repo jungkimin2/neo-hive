@@ -3506,16 +3506,24 @@
   /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
   @media (max-width: 768px) {
     #smart {
-      transform: translateY(-80px) !important; /* UI 전체를 5칸(80px) 위로 이동 */
+      transform: translateY(-336px) !important; /* UI 전체를 21칸(336px) 위로 이동 */
+      margin-top: -180px !important;
+      padding-top: 0 !important;
     }
 
     #smart h2 {
-      font-size: 1.4rem !important; /* 기존보다 작게 조정 */
-      transform: none !important; /* 개별 transform 제거, #smart에서 관리 */
+      font-size: 1.4rem !important;
+      transform: none !important;
     }
 
     #smart .hive-showcase,
     #smart p {
-      transform: none !important; /* 개별 transform 제거, #smart에서 관리 */
+      transform: none !important;
+    }
+
+    .smart-caption {
+      margin-top: 12px !important;
     }
   }
+  // ... existing code ...
+  </style>
