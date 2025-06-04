@@ -615,10 +615,10 @@
         .hive-label-right img {
           transition: all 0.5s ease-out !important;
         }
-               /* 모바일 하이브 이미지 기본 설정 */
+         /* 모바일 하이브 이미지 기본 설정: 50% 더 작게 */
          .hive-image {
            position: absolute !important;
-           width: 70px !important;
+           width: 35px !important; /* 기존 70px의 50% */
            height: auto !important;
            border-radius: 12px !important;
            opacity: 1 !important;
@@ -629,7 +629,7 @@
            visibility: visible !important;
          }
          
-         /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 */
+         /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 (scale은 그대로, 위치는 동일) */
          .hive-image:nth-of-type(1) {
            left: 50% !important;
            top: 60% !important;
@@ -667,14 +667,14 @@
            z-index: 1 !important;
          }
          
-         /* 모바일 활성 이미지 */
+         /* 모바일 활성 이미지: 50% 더 작게 */
          .hive-image.active {
            left: 50% !important;
            top: 50% !important;
            transform: translate(-50%, -50%) scale(1.2) !important;
            z-index: 10 !important;
-           width: 140px !important;
-           height: 280px !important;
+           width: 70px !important; /* 기존 140px의 50% */
+           height: 140px !important; /* 기존 280px의 50% */
            border: 3px solid #7BE495 !important;
            box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
            border-radius: 16px !important;
