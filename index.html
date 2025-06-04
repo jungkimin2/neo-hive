@@ -14,6 +14,19 @@
   }
 }
 </style>
+<!-- 모바일 환경에만 적용되는 스타일: 무인 출입 안내 문구 한 칸(16px) 아래로, 박스 하단 여백 16px 줄임 -->
+<style>
+@media (max-width: 768px) {
+  /* 1. '사용자는 코드만 입력하면 ...' 문구+자물쇠 이미지 요소를 한 칸(16px) 아래로 이동 */
+  .mobile-system-desc {
+    transform: translateY(16px) !important;
+  }
+  /* 2. 박스 하단 여백을 한 칸(16px) 줄임 */
+  .mobile-system-box {
+    padding-bottom: 6px !important; /* 기존 padding에서 16px 줄임 */
+  }
+}
+</style>
 <style>
 @media (max-width: 768px) {
   .mobile-ui-position-adjustment {
