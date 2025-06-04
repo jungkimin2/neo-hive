@@ -745,17 +745,7 @@
           margin: 0 !important;
         }
       /* 네오 스마트 섹션 모바일 최적화: 중복 제거 및 명확한 통합 */
-      @media (max-width: 768px) {
-        #smart,
-        #smart h2,
-        #smart p,
-        #smart .hive-showcase {
-          transform: translateY(-112px) !important; /* 상단으로 총 7칸(112px) 올림 */
-        }
-        #smart h2 {
-          font-size: 1.4rem !important;
-        }
-      }
+      /* (중복되는 #smart 미디어 쿼리 제거됨, 아래에 단일화된 버전 추가) */
         
         /* 원형 플로우 컨테이너 */
         .circular-flow-container {
@@ -1012,6 +1002,24 @@
       .label-text-mobile {
         display: none;
       }
+</style>
+<!-- 네오 스마트 모바일 위치 조정: 중복 제거 및 단일화 -->
+<style>
+@media (max-width: 768px) {
+  #smart {
+    transform: translateY(-112px) !important;
+  }
+
+  #smart h2,
+  #smart p,
+  #smart .hive-showcase {
+    transform: none !important; /* 개별 transform 삭제 */
+  }
+
+  #smart h2 {
+    font-size: 1.4rem !important;
+  }
+}
     </style>
   </head>
   </head>
