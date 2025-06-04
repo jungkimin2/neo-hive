@@ -1,10 +1,12 @@
   <style>
   @media (max-width: 768px) {
+    /* 모바일 환경에서만 .neos-wrapper의 위치를 캡쳐 이미지의 뒷면 카드와 동일하게 맞춤 */
     .neos-wrapper {
-      left: 50% !important;
+      position: absolute !important;
+      left: 65% !important; /* 뒷면 카드 위치와 동일하게 맞춤 */
       top: 50% !important;
       transform: translate(-50%, -50%) !important;
-      width: 280px !important; /* 모바일 환경에 맞는 크기 조정 */
+      width: 280px !important;
       z-index: 15 !important;
     }
   }
