@@ -1748,6 +1748,13 @@
       height: auto;
       pointer-events: auto;
     }
+    /* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 명시적으로 축소 (PC는 영향 X) */
+    @media (max-width: 768px) {
+      .flip-container .flipper {
+        transform: scale(0.45) !important; /* 뒷면 UI 사이즈 확실히 축소 */
+        transform-origin: center center !important; /* 중앙 기준 축소 적용 */
+      }
+    }
   
     .flipper {
       position: relative;
