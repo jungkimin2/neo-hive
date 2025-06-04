@@ -1488,8 +1488,8 @@
 @media (max-width: 768px) {
   .core-value-fresh-mobile {
     margin-top: 32px !important;
-    /* 피씨 환경에서는 영향 없음, 모바일에서만 핵심 가치 UI를 한 칸 더 아래로 이동 */
-    transform: translateY(calc(-344px - 56px + 56px)) !important;
+    /* 모바일 환경에서 핵심 가치 UI를 한 칸(약 16px) 아래로 내림 */
+    transform: translateY(-440px) !important;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1503,10 +1503,6 @@
     position: relative !important;
     z-index: 10000 !important;
     position: relative !important;
-  }
-  /* 모바일 환경에서만 핵심 가치 UI를 2칸 위로 추가로 올림 */
-  .core-value-fresh-mobile {
-    transform: translateY(calc(-456px - 56px + 56px)) !important; /* 기존 위치에서 추가로 2칸 위로 조정 */
   }
   .core-value-fresh-mobile .core-icon {
     width: 38px;
