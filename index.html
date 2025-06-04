@@ -993,6 +993,17 @@
         box-shadow: 0 0 12px rgba(123, 228, 149, 0.5) !important;
         transform: translateY(-4px) !important;
       }
+
+      /* 모바일 환경에서만 카드 크기를 줄임 */
+      @media (max-width: 768px) {
+        .neos-card {
+          padding: 1px 6px !important;
+          border-radius: 8px !important;
+          font-size: 0.75rem !important;
+          height: 22px !important;
+          min-height: 22px !important;
+        }
+      }
       
       /* PC에서는 PC용 텍스트만 표시 */
       .label-text-pc {
