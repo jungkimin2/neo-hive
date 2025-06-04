@@ -4,8 +4,23 @@
       left: 50% !important;
       top: 50% !important;
       transform: translate(-50%, -50%) !important;
-      width: 280px !important; /* 모바일 환경에 맞는 크기 조정 */
+      width: 280px !important;
       z-index: 15 !important;
+      height: auto !important;
+    }
+    .flip-container {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(0.45) !important;
+      transform-origin: center center !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    .neo-smart-logo.front, .back {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
     }
   }
   </style>
