@@ -3483,3 +3483,12 @@
     }
   }
   </style>
+  
+  /* 모바일 환경에서만 핵심가치 UI 박스의 배경색, 테두리, 그림자 제거 (PC 영향 없음) */
+  @media (max-width: 768px) {
+    .core-value-fresh-mobile {
+      background: none !important; /* 배경색 완전 제거 */
+      border: none !important; /* 테두리 제거 */
+      box-shadow: none !important; /* 그림자 제거 */
+    }
+  }
