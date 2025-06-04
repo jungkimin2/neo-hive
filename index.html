@@ -2441,6 +2441,15 @@
       // 성능 최적화된 Intersection Observer
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+          // 모바일에서는 스크롤 애니메이션 비활성화
+          if (window.innerWidth <= 768) {
+            entry.target.classList.add("visible");
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "none";
+            observer.unobserve(entry.target);
+            return;
+          }
+
           if (entry.isIntersecting) {
             // requestAnimationFrame으로 애니메이션 최적화
             requestAnimationFrame(() => {
@@ -2455,7 +2464,14 @@
       });
   
       document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
-        observer.observe(el);
+        // 모바일에서는 초기부터 visible 클래스 추가
+        if (window.innerWidth <= 768) {
+          el.classList.add("visible");
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        } else {
+          observer.observe(el);
+        }
       });
     </script>
     <script>
@@ -3536,6 +3552,47 @@
   </style>
   <style>
   @media (max-width: 768px) {
+    .smart-trainer-text {
+      font-size: 1.8rem !important;
+      line-height: 1.2 !important;
+    }
+    
+    #smart {
+      transform: translateY(-384px) !important;
+      margin-top: -180px !important;
+      padding-top: 0 !important;
+    }
+
+    #smart h2 {
+      font-size: 1.4rem !important;
+      transform: none !important;
+    }
+
+    #smart .hive-showcase,
+    #smart p {
+      transform: none !important;
+    }
+
+    .smart-caption {
+      margin-top: 12px !important;
+    }
+  }
+  </style>
+  <style>
+  @media (max-width: 768px) {
+    /* 모바일에서 모든 스크롤 애니메이션 효과 제거 */
+    .animate-on-scroll,
+    .section.animate-on-scroll,
+    .slide-in-left,
+    .slide-in-right,
+    .feature-item {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    /* 기존 모바일 스타일 유지 */
     .smart-trainer-text {
       font-size: 1.8rem !important;
       line-height: 1.2 !important;
