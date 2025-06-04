@@ -12,13 +12,10 @@
     .mobile-system-list {
       transform: translateY(-16px) !important; /* 한 칸 위로 조정 */
     }
-    /* 3. 모바일 환경에서만 .mobile-system-box 하단 여백을 기존보다 32px 추가로 줄여 음수 값 없이 0으로 유지 */
+    /* 3. 모바일 환경에서만 .mobile-system-box 하단 여백을 기존보다 더 줄임 (명확히 2칸 더 줄임) */
     .mobile-system-box {
-      padding-bottom: 0px !important;
-    }
-    /* 만약 이미 0이라면, margin-bottom을 -32px로 설정하여 두 칸만큼 더 줄임 */
-    .mobile-system-box {
-      margin-bottom: -32px !important;
+      padding-bottom: 0 !important;
+      margin-bottom: -64px !important; /* 추가적으로 두 칸 더 줄임 */
     }
   }
   </style>
