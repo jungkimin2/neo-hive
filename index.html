@@ -1405,52 +1405,48 @@
   <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
   <style>
     @media (max-width: 768px) {
-      /* 모바일 전용 시스템 안내 박스 디자인 개선 */
-      .mobile-system-box-wrapper .mobile-system-box {
-        background: rgba(0, 0, 0, 0.5);
-        box-shadow: 0 6px 12px rgba(123, 228, 149, 0.2);
-        border-radius: 20px !important;
-        padding: 20px !important;
-        border-left: 4px solid #7BE495;
+      .mobile-ui-position-adjustment .mobile-system-box {
+        background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
+        border-radius: 22px !important;
+        box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
+        padding: 26px !important; /* slightly increased padding */
         margin-bottom: 16px !important;
-        position: relative;
-        overflow: hidden;
+        border: 1px solid #62D2A2;
       }
-      /* 그림자 효과와 반투명 효과, 왼쪽 초록색 세로 띠 추가 */
-      .mobile-system-box-wrapper .mobile-system-box--merged {
+      .mobile-ui-position-adjustment .mobile-system-box--merged {
         margin-top: 0 !important;
       }
-      .mobile-system-box-wrapper .mobile-system-content {
+      .mobile-system-content {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 12px; /* adjusted gap for better spacing */
         justify-content: center;
         align-items: flex-start;
-        padding-top: 16px !important;
+        padding-top: 16px !important; /* 한 칸(16px) 전체를 아래로 이동 */
       }
-      .mobile-system-box-wrapper .mobile-system-title {
+      .mobile-system-title {
         font-size: 1.05rem !important;
         color: #7BE495;
         text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 10px; /* consistent margin for visual balance */
         text-align: left;
       }
-      .mobile-system-box-wrapper .mobile-system-list {
+      .mobile-system-list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-      .mobile-system-box-wrapper .mobile-system-list li {
-        color: #ffffff;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
+      .mobile-system-list li {
         display: flex;
         align-items: flex-start;
         gap: 7px;
+        font-size: 0.88rem !important;
+        color: #ccc !important;
+        margin-bottom: 8px; /* consistent vertical spacing */
         line-height: 1.5 !important;
       }
-      .mobile-system-box-wrapper .mobile-dot {
+      .mobile-dot {
         display: inline-block;
         width: 7px;
         height: 7px;
@@ -1459,16 +1455,17 @@
         margin-top: 7px;
         flex-shrink: 0;
       }
-      .mobile-system-box-wrapper .mobile-system-desc {
+      .mobile-system-desc {
         font-size: 0.7rem !important;
         color: #ffffff !important;
         margin-top: 10px !important;
         text-align: left;
         line-height: 1.5;
+        text-align: left;
         padding-left: 22px;
         text-indent: -20px;
       }
-      .mobile-system-box-wrapper .mobile-system-divider {
+      .mobile-system-divider {
         border: none;
         border-top: 1px solid rgba(123, 228, 149, 0.4);
         margin: 12px 0 16px 0;
