@@ -1807,6 +1807,18 @@
     .flip-container:hover .flipper {
       transform: rotateY(180deg);
     }
+    /* 모바일 환경에서만 이미지가 기본적으로 사용자에게 보이도록 */
+    @media (max-width: 768px) {
+      .flip-container .flipper {
+        transform: rotateY(0deg) !important; /* 모바일에서는 기본적으로 앞면이 보이도록 */
+      }
+      .flip-container .back-text-overlay {
+        opacity: 0 !important;
+      }
+      .flip-container .front {
+        opacity: 1 !important; /* 앞면 이미지가 항상 보이도록 설정 */
+      }
+    }
   
     .neo-smart-logo.front,
     .back {
