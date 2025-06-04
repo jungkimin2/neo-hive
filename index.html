@@ -490,20 +490,6 @@
           padding: 0 !important;
         }
         
-        /* 네오 스마트 제목 */
-        #smart h2 {
-          font-size: 1.6rem !important;
-          margin: 0 0 16px 0 !important;
-          padding: 0 !important;
-        }
-        
-        /* 네오 스마트 설명 텍스트 */
-        #smart p {
-          font-size: 0.95rem !important;
-          line-height: 1.5 !important;
-          margin: 0 0 24px 0 !important;
-          padding: 0 !important;
-        }
         header .container {
           flex-direction: row;
           justify-content: space-between;
@@ -758,11 +744,19 @@
           line-height: 1.4 !important;
           margin: 0 !important;
         }
-        /* 네오 스마트 섹션 특별 처리 */
-        #smart .hive-showcase {
-          height: 500px !important;
-          margin: 60px 0 40px 0 !important;
-        }
+      /* 네오 스마트 섹션 특별 처리 (중복 및 충돌 방지를 위해 아래 미디어 쿼리로 통합) */
+  /* === 네오 스마트 모바일 최적화: 중복 제거 및 명확한 통합 === */
+  @media (max-width: 768px) {
+    #smart h2 {
+      font-size: 1.4rem !important; /* 기존보다 작게 조정 */
+      transform: translateY(-80px) !important; /* UI 전체적으로 약 5칸(80px) 올림 */
+    }
+    
+    #smart .hive-showcase,
+    #smart p {
+      transform: translateY(-80px) !important; /* 같은 만큼 전체적으로 상향 이동 */
+    }
+  }
         
         /* 원형 플로우 컨테이너 */
         .circular-flow-container {
