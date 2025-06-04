@@ -1,58 +1,38 @@
   <!-- 개선된 모바일 박스 디자인 스타일 적용 -->
+  <!-- 개선된 모바일 박스 디자인 스타일 적용 및 중복/위치 조정, PC 영향 방지 -->
   <style>
   @media (max-width: 768px) {
+    /* 중복된 스타일 제거 및 박스 위치 재설정 */
     .mobile-system-box {
-      background: linear-gradient(135deg, #10221B, #06130F);
-      border: none !important;
-      box-shadow: 0 8px 24px rgba(98, 210, 162, 0.2);
-      padding: 24px !important;
-    }
-
-    .mobile-system-title {
-      font-size: 1.1rem !important;
-      font-weight: bold;
-      color: #7BE495;
-      text-shadow: 0 0 12px rgba(123, 228, 149, 0.9);
-      margin-bottom: 12px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid rgba(123, 228, 149, 0.5);
-    }
-
-    .mobile-system-list li {
-      font-size: 0.9rem !important;
-      line-height: 1.7 !important;
-      color: #ddd !important;
-      margin-bottom: 10px !important;
-      padding-left: 12px !important;
-      position: relative;
-    }
-
-    .mobile-system-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
-      background-color: #7BE495;
-      border-radius: 50%;
-    }
-
-    .mobile-system-desc {
-      font-size: 0.75rem !important;
-      color: #fff !important;
-      background: rgba(123, 228, 149, 0.1);
-      border-radius: 12px;
-      padding: 10px;
-      margin-top: 12px !important;
+      transform: none !important;
+      margin-top: 20px !important;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 16px !important;
     }
-
-    .mobile-system-desc img {
-      width: 20px;
-      height: 20px;
-      margin-right: 6px;
+    /* 중복된 내용 제거 */
+    .mobile-system-content.duplicate {
+      display: none !important;
+    }
+    /* 박스 내부 콘텐츠 재정렬 */
+    .mobile-system-list {
+      margin-bottom: 12px !important;
+    }
+    /* 자물쇠 문구 박스 스타일 명확히 지정 */
+    .mobile-system-desc {
+      padding: 8px 12px !important;
+      background: rgba(123, 228, 149, 0.1) !important;
+      border-radius: 8px !important;
+      font-size: 0.75rem !important;
+      text-align: left !important;
+      margin-top: 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+    }
+    /* 박스 위치 문제 해결 */
+    .mobile-ui-position-adjustment {
+      transform: translateY(0) !important;
     }
   }
   </style>
