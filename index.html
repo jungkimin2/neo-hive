@@ -744,20 +744,18 @@
           line-height: 1.4 !important;
           margin: 0 !important;
         }
-      /* 네오 스마트 섹션 특별 처리 (중복 및 충돌 방지를 위해 아래 미디어 쿼리로 통합) */
-  /* === 네오 스마트 모바일 최적화: 중복 제거 및 명확한 통합 === */
-  @media (max-width: 768px) {
-    /* 네오 스마트 섹션 전체 UI를 5칸(약 80px) 위로 올림 */
-    #smart,
-    #smart h2,
-    #smart p,
-    #smart .hive-showcase {
-      transform: translateY(-80px) !important;
-    }
-    #smart h2 {
-      font-size: 1.4rem !important; /* 기존보다 작게 조정 */
-    }
-  }
+      /* 네오 스마트 섹션 모바일 최적화: 중복 제거 및 명확한 통합 */
+      @media (max-width: 768px) {
+        #smart,
+        #smart h2,
+        #smart p,
+        #smart .hive-showcase {
+          transform: translateY(-112px) !important; /* 상단으로 총 7칸(112px) 올림 */
+        }
+        #smart h2 {
+          font-size: 1.4rem !important;
+        }
+      }
         
         /* 원형 플로우 컨테이너 */
         .circular-flow-container {
