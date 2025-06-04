@@ -1005,34 +1005,26 @@
 </style>
 <!-- 네오 스마트 모바일 위치 조정: 중복 제거 및 단일화 -->
 <style>
+/* 기존 #smart 관련 미디어 쿼리 삭제 및 명확한 모바일용만 유지 */
 @media (max-width: 768px) {
   #smart {
-    transform: translateY(-80px) !important;
-    overflow: visible !important;
+    margin-top: -80px !important;
     padding-top: 0 !important;
-    margin-top: 0 !important;
+    transform: none !important;
   }
 
-  #smart h2,
-  #smart p,
-  #smart .hive-showcase {
+  #smart.section, #smart .container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    overflow: visible !important;
+  }
+
+  #smart h2, #smart p, #smart .hive-showcase {
     transform: none !important;
   }
 
   #smart h2 {
     font-size: 1.4rem !important;
-  }
-
-  #smart.section,
-  #smart .container {
-    overflow: visible !important;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-  }
-  /* 네오 스마트 섹션 상단 여백 5칸(약 80px) 삭제 */
-  #smart.section {
-    padding-top: 0 !important;
-    margin-top: -80px !important;
   }
 }
 </style>
