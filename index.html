@@ -1,71 +1,58 @@
-<style>
-  @media (max-width: 768px) {
-    .core-value-fresh-mobile .core-title {
-      font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
-    }
-    /* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
-    .mobile-system-desc {
-      font-size: 0.65rem !important; /* 문구 크기를 더 작게 설정 */
-    }
-    /* 2. .mobile-system-title과 그 하단 설명 전체를 위로 한 칸(16px) 올림 */
-    .mobile-system-title,
-    .mobile-system-list {
-      transform: translateY(-16px) !important; /* 한 칸 위로 조정 */
-    }
-  }
-  </style>
-  <!-- 모바일 환경에만 적용되는 스타일: 무인 출입 안내 문구 한 칸(16px) 아래로, 박스 하단 여백 16px 줄임 -->
+  <!-- 개선된 모바일 박스 디자인 스타일 적용 -->
   <style>
   @media (max-width: 768px) {
-    /* 1. '사용자는 코드만 입력하면 ...' 문구+자물쇠 이미지 요소를 한 칸(16px) 아래로 이동 */
-    .mobile-system-desc {
-      transform: translateY(16px) !important;
-    }
-    /* 2. 박스 하단 여백을 한 칸(16px) 줄임 */
     .mobile-system-box {
-      padding-bottom: 6px !important; /* 기존 padding에서 16px 줄임 */
+      background: linear-gradient(135deg, #10221B, #06130F);
+      border: none !important;
+      box-shadow: 0 8px 24px rgba(98, 210, 162, 0.2);
+      padding: 24px !important;
     }
-  }
-  </style>
-  <style>
-  @media (max-width: 768px) {
-    .mobile-ui-position-adjustment {
-      position: relative !important;
-      transform: translateY(-416px) !important; /* 기존 -400px에서 한 칸(16px) 더 위로 이동 */
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-      z-index: 9999 !important;
-    }
-  
-    .mobile-system-box {
-      background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
-      border-radius: 22px !important;
-      box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
-      padding: 22px !important;
-      margin-bottom: 16px !important;
-      border: 1px solid #62D2A2;
-    }
-  
+
     .mobile-system-title {
-      font-size: 1.05rem !important;
+      font-size: 1.1rem !important;
+      font-weight: bold;
       color: #7BE495;
-      text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
+      text-shadow: 0 0 12px rgba(123, 228, 149, 0.9);
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(123, 228, 149, 0.5);
     }
-  
+
     .mobile-system-list li {
-      font-size: 0.88rem !important;
-      line-height: 1.6 !important;
-      color: #ccc !important;
+      font-size: 0.9rem !important;
+      line-height: 1.7 !important;
+      color: #ddd !important;
+      margin-bottom: 10px !important;
+      padding-left: 12px !important;
+      position: relative;
     }
-  
-    .mobile-dot {
-      background-color: #7BE495 !important;
+
+    .mobile-system-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background-color: #7BE495;
+      border-radius: 50%;
     }
-  
+
     .mobile-system-desc {
-      font-size: 0.85rem !important;
-      color: #ffffff !important;
-      margin-top: 10px !important;
+      font-size: 0.75rem !important;
+      color: #fff !important;
+      background: rgba(123, 228, 149, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 12px !important;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-system-desc img {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
     }
   }
   </style>
