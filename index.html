@@ -1008,19 +1008,29 @@
 @media (max-width: 768px) {
   #smart {
     transform: translateY(-112px) !important;
+    overflow: visible !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   #smart h2,
   #smart p,
   #smart .hive-showcase {
-    transform: none !important; /* 개별 transform 삭제 */
+    transform: none !important;
   }
 
   #smart h2 {
     font-size: 1.4rem !important;
   }
+
+  #smart.section,
+  #smart .container {
+    overflow: visible !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
 }
-    </style>
+</style>
   </head>
   </head>
     <style>
