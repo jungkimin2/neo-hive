@@ -1,22 +1,20 @@
   <style>
   @media (max-width: 768px) {
     .core-value-fresh-mobile {
-      transform: none !important;
-      position: relative !important;
-      margin-top: 16px !important;
+      position: absolute !important;
+      top: auto !important;
+      bottom: -80px !important; /* "출석 변화를 관리자..." 문구 바로 밑으로 위치 조정 */
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: calc(100% - 32px) !important;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
     .mobile-merged-box {
-      padding-bottom: 64px !important; /* 병합된 핵심가치가 하단에 충분히 위치하도록 추가 여백 */
       position: relative !important;
-    }
-
-    .core-value-fresh-mobile {
-      position: absolute !important;
-      bottom: 16px !important; /* 병합된 박스의 하단에 위치 */
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      width: calc(100% - 32px) !important; /* 좌우 여백 유지 */
+      padding-bottom: 140px !important; /* 하단 공간 확보 */
     }
   }
   </style>
