@@ -1553,9 +1553,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      /* 모바일 환경에서 핵심가치 UI의 검은 배경색을 삭제 */
-      background: none !important;
-      border: 2px solid #7BE495;
+      /* 모바일 환경에서 배경색을 완전히 투명하게 설정 */
+      background: transparent !important;
+      border: none !important; /* 그린색 테두리 삭제 */
       border-radius: 17px;
       padding: 13px 8px 13px 8px;
       margin-bottom: 6px;
@@ -1564,12 +1564,6 @@
       position: relative !important;
       z-index: 10000 !important;
       position: relative !important;
-    }
-    /* 모바일 환경에만 적용되는 핵심 가치 문구 박스의 그린색 테두리 삭제 */
-    @media (max-width: 768px) {
-      .core-value-fresh-mobile {
-        border: none !important; /* 그린색 테두리 삭제 */
-      }
     }
     .core-value-fresh-mobile .core-icon {
       width: 38px;
@@ -1637,7 +1631,7 @@
     }
   }
   </style>
-              <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -223px;">
+              <div class="core-value-box-mobile core-value-desktop-only" style="max-width: 540px; flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; text-align: left; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 12px; padding: 4px 8px; background: #000; height: auto !important; max-height: 100px !important; overflow: hidden; margin-top: -207px;">
                 <div style="display: flex; align-items: center;">
                   <div style="width: 48px; height: 48px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
                     <img src="./images/neohive22.png" alt="핵심 가치 아이콘" style="width: 48px; height: 48px;">
