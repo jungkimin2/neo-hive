@@ -1795,7 +1795,7 @@
       height: auto;
       pointer-events: auto;
     }
-  
+
     .flipper {
       position: relative;
       width: 100%;
@@ -1803,34 +1803,22 @@
       transform-style: preserve-3d;
       transition: transform 0.8s ease;
     }
-  
+
     .flip-container:hover .flipper {
       transform: rotateY(180deg);
     }
-    /* 모바일 환경에서만 이미지가 기본적으로 사용자에게 보이도록 */
-    @media (max-width: 768px) {
-      .flip-container .flipper {
-        transform: rotateY(0deg) !important; /* 모바일에서는 기본적으로 앞면이 보이도록 */
-      }
-      .flip-container .back-text-overlay {
-        opacity: 0 !important;
-      }
-      .flip-container .front {
-        opacity: 1 !important; /* 앞면 이미지가 항상 보이도록 설정 */
-      }
-    }
-  
+
     .neo-smart-logo.front,
     .back {
       width: 100%;
       backface-visibility: hidden;
       border-radius: 16px;
     }
-  
+
     .neo-smart-logo.front {
       display: block;
     }
-  
+
     .back {
       position: absolute;
       top: 0;
@@ -1857,22 +1845,26 @@
       text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
       line-height: 1.6;
     }
-  
+
     .flip-container:hover .back-text-overlay {
       opacity: 1;
     }
     .flip-container:not(:hover) .back-text-overlay {
       transition-delay: 0s !important;
     }
-    /* Show back on mobile by default */
+
+    /* 모바일 환경에서만 앞면이 기본으로 보이도록 명확히 지정 */
     @media (max-width: 768px) {
       .flip-container .flipper {
-        transform: rotateY(180deg) !important;
-      }
-      .flip-container .back-text-overlay {
-        opacity: 1 !important;
+        transform: rotateY(0deg) !important;
       }
       .flip-container .front {
+        opacity: 1 !important;
+      }
+      .flip-container .back {
+        opacity: 0 !important;
+      }
+      .flip-container .back-text-overlay {
         opacity: 0 !important;
       }
     }
