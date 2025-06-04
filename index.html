@@ -615,10 +615,10 @@
         .hive-label-right img {
           transition: all 0.5s ease-out !important;
         }
-         /* 모바일 하이브 이미지 기본 설정: 50% 더 작게 */
+               /* 모바일 하이브 이미지 기본 설정 */
          .hive-image {
            position: absolute !important;
-           width: 35px !important; /* 기존 70px의 50% */
+           width: 70px !important;
            height: auto !important;
            border-radius: 12px !important;
            opacity: 1 !important;
@@ -629,7 +629,7 @@
            visibility: visible !important;
          }
          
-         /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 (scale은 그대로, 위치는 동일) */
+         /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 */
          .hive-image:nth-of-type(1) {
            left: 50% !important;
            top: 60% !important;
@@ -667,14 +667,14 @@
            z-index: 1 !important;
          }
          
-         /* 모바일 활성 이미지: 50% 더 작게 */
+         /* 모바일 활성 이미지 */
          .hive-image.active {
            left: 50% !important;
            top: 50% !important;
            transform: translate(-50%, -50%) scale(1.2) !important;
            z-index: 10 !important;
-           width: 70px !important; /* 기존 140px의 50% */
-           height: 140px !important; /* 기존 280px의 50% */
+           width: 140px !important;
+           height: 280px !important;
            border: 3px solid #7BE495 !important;
            box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
            border-radius: 16px !important;
@@ -992,17 +992,6 @@
       .neos-card:hover {
         box-shadow: 0 0 12px rgba(123, 228, 149, 0.5) !important;
         transform: translateY(-4px) !important;
-      }
-
-      /* 모바일 환경에서만 카드 크기를 줄임 */
-      @media (max-width: 768px) {
-        .neos-card {
-          padding: 1px 6px !important;
-          border-radius: 8px !important;
-          font-size: 0.75rem !important;
-          height: 22px !important;
-          min-height: 22px !important;
-        }
       }
       
       /* PC에서는 PC용 텍스트만 표시 */
@@ -1718,45 +1707,9 @@
     <section id="smart" class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
       <div class="container" style="text-align:center;">
         <h2 style="font-size: 2rem; text-align: left;">
-          <span style="color: #FFFFFF;" class="neohive-smart-title-prefix">네오 스마트 :</span>
-          <span class="neon-green smart-trainer-text neohive-smart-title-main" style="font-size: 2.2rem;">"내 손안의 스마트 트레이너"</span>
-<style>
-  /* 모바일 환경에서만 '내 손안의 스마트 트레이너' 문구 폰트 크기 줄임 */
-  @media (max-width: 768px) {
-    .neohive-smart-title-main {
-      font-size: 1.8rem !important;
-    }
-  }
-</style>
+          <span style="color: #FFFFFF;">네오 스마트 :</span>
+          <span class="neon-green smart-trainer-text" style="font-size: 2.2rem;">"내 손안의 스마트 트레이너"</span>
         </h2>
-<style>
-  @media (max-width: 768px) {
-    /* 모바일에서만 네오 스마트 : 와 내 손안의 스마트 트레이너 줄바꿈 */
-    .neohive-smart-title-prefix {
-      display: inline;
-    }
-    .neohive-smart-title-main {
-      display: block;
-      margin-top: 0.2em;
-    }
-    /* 혹시 줄바꿈이 아닌 <br>을 원한다면 아래를 대신 사용
-    .neohive-smart-title-prefix::after {
-      content: "";
-      display: block;
-    }
-    .neohive-smart-title-main {
-      display: inline;
-    }
-    */
-  }
-  @media (min-width: 769px) {
-    .neohive-smart-title-prefix,
-    .neohive-smart-title-main {
-      display: inline !important;
-      margin-top: 0 !important;
-    }
-  }
-</style>
         <p style="margin: 10px 0 40px; color: #aaa; text-align: left; line-height: 1.6;">
           회원이 언제 어디서나 쉽고 빠르게 복습할 수 있는 시스템<br>
           <span class="neon-green">경쟁 센터와의 차별화를 실현하는 디지털 피트니스 솔루션</span>
@@ -1795,7 +1748,7 @@
       height: auto;
       pointer-events: auto;
     }
-
+  
     .flipper {
       position: relative;
       width: 100%;
@@ -1803,22 +1756,22 @@
       transform-style: preserve-3d;
       transition: transform 0.8s ease;
     }
-
+  
     .flip-container:hover .flipper {
       transform: rotateY(180deg);
     }
-
+  
     .neo-smart-logo.front,
     .back {
       width: 100%;
       backface-visibility: hidden;
       border-radius: 16px;
     }
-
+  
     .neo-smart-logo.front {
       display: block;
     }
-
+  
     .back {
       position: absolute;
       top: 0;
@@ -1845,39 +1798,12 @@
       text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
       line-height: 1.6;
     }
-
+  
     .flip-container:hover .back-text-overlay {
       opacity: 1;
     }
     .flip-container:not(:hover) .back-text-overlay {
       transition-delay: 0s !important;
-    }
-
-    /* 모바일 환경에서만 앞면이 기본으로 보이도록 명확히 지정 */
-    @media (max-width: 768px) {
-      .flip-container .flipper {
-        transform: rotateY(0deg) !important;
-      }
-      .flip-container .front {
-        opacity: 1 !important;
-      }
-      .flip-container .back {
-        opacity: 0 !important;
-      }
-      .flip-container .back-text-overlay {
-        opacity: 0 !important;
-      }
-
-      .neos-wrapper {
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-
-      .neos-wrapper .neo-smart-logo.front {
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-      }
     }
     </style>
           <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
