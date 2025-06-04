@@ -1403,24 +1403,85 @@
               </div>
   </style>
   <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
-  <!-- 모바일 환경에서만 적용되는 명확한 스타일(PC 영향 X) -->
   <style>
     @media (max-width: 768px) {
+      /* 모바일 전용 시스템 안내 박스 디자인 개선 */
       .mobile-system-box-wrapper .mobile-system-box {
-        background: rgba(0, 0, 0, 0.5) !important;
-        box-shadow: 0 6px 12px rgba(123, 228, 149, 0.2) !important;
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 6px 12px rgba(123, 228, 149, 0.2);
         border-radius: 20px !important;
         padding: 20px !important;
-        border-left: 4px solid #7BE495 !important;
+        border-left: 4px solid #7BE495;
+        margin-bottom: 16px !important;
+        position: relative;
+        overflow: hidden;
+      }
+      /* 그림자 효과와 반투명 효과, 왼쪽 초록색 세로 띠 추가 */
+      .mobile-system-box-wrapper .mobile-system-box--merged {
+        margin-top: 0 !important;
+      }
+      .mobile-system-box-wrapper .mobile-system-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 16px !important;
+      }
+      .mobile-system-box-wrapper .mobile-system-title {
+        font-size: 1.05rem !important;
+        color: #7BE495;
+        text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+      .mobile-system-box-wrapper .mobile-system-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
       .mobile-system-box-wrapper .mobile-system-list li {
+        color: #ffffff;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        line-height: 1.5 !important;
+      }
+      .mobile-system-box-wrapper .mobile-dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background-color: #7BE495 !important;
+        border-radius: 50%;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+      .mobile-system-box-wrapper .mobile-system-desc {
+        font-size: 0.7rem !important;
         color: #ffffff !important;
-        font-size: 0.9rem !important;
-        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+        text-align: left;
+        line-height: 1.5;
+        padding-left: 22px;
+        text-indent: -20px;
+      }
+      .mobile-system-box-wrapper .mobile-system-divider {
+        border: none;
+        border-top: 1px solid rgba(123, 228, 149, 0.4);
+        margin: 12px 0 16px 0;
+        width: 100%;
+        background: none;
+        height: 1px;
+        display: block;
       }
     }
     @media (min-width: 769px) {
-      /* PC 환경에서는 영향 없음 */
+      .mobile-system-box {
+        display: none !important;
+      }
     }
   </style>
   <style>
