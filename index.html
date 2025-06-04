@@ -1350,11 +1350,12 @@
                 <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
               </div>
             </div>
-            <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래) -->
+            <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
             <div class="mobile-ui-position-adjustment">
-              <div class="mobile-system-box">
+              <div class="mobile-system-box mobile-system-box--merged">
                 <div class="mobile-system-content">
                   <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
+                  <hr class="mobile-system-divider" />
                   <ul class="mobile-system-list">
                     <li><span class="mobile-dot"></span> 가상의 회원 등록 (시스템 계정)</li>
                     <li><span class="mobile-dot"></span> 해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
@@ -1364,10 +1365,9 @@
                     🔒 사용자는 코드만 입력하면 무인 헬스에 손쉽게 출입할 수 있습니다.
                   </div>
                 </div>
-              </div>
-              <div class="mobile-system-box">
-                <div class="mobile-system-content">
+                <div class="mobile-system-content" style="margin-top: 24px;">
                   <div class="mobile-system-title">이벤트 시스템 연동</div>
+                  <hr class="mobile-system-divider" />
                   <ul class="mobile-system-list">
                     <li><span class="mobile-dot"></span> 제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</li>
                     <li><span class="mobile-dot"></span> 팀원 전원 QR 출석체크 필요 (최소 3명)</li>
@@ -1381,15 +1381,16 @@
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
   @media (max-width: 768px) {
-    .mobile-system-box {
-      display: block;
-      background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%);
-      border-radius: 18px;
-      box-shadow: 0 4px 18px 0 rgba(123,228,149,0.10);
-      padding: 22px 18px 18px 18px;
-      margin-top: 14px;
-      margin-bottom: 10px;
-      width: 100%;
+    .mobile-ui-position-adjustment .mobile-system-box {
+      background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
+      border-radius: 22px !important;
+      box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
+      padding: 22px !important;
+      margin-bottom: 16px !important;
+      border: 1px solid #62D2A2;
+    }
+    .mobile-ui-position-adjustment .mobile-system-box--merged {
+      margin-top: 0 !important;
     }
     .mobile-system-content {
       display: flex;
@@ -1397,8 +1398,9 @@
       gap: 10px;
     }
     .mobile-system-title {
+      font-size: 1.05rem !important;
       color: #7BE495;
-      font-size: 1rem;
+      text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
       font-weight: bold;
       margin-bottom: 8px;
       text-align: left;
@@ -1412,26 +1414,35 @@
       display: flex;
       align-items: flex-start;
       gap: 7px;
-      font-size: 0.88rem;
-      color: #eee;
+      font-size: 0.88rem !important;
+      color: #ccc !important;
       margin-bottom: 5px;
-      line-height: 1.5;
+      line-height: 1.5 !important;
     }
     .mobile-dot {
       display: inline-block;
       width: 7px;
       height: 7px;
-      background: #7BE495;
+      background-color: #7BE495 !important;
       border-radius: 50%;
       margin-top: 7px;
       flex-shrink: 0;
     }
     .mobile-system-desc {
-      color: #fff;
-      font-size: 0.85rem;
-      margin-top: 6px;
+      font-size: 0.85rem !important;
+      color: #ffffff !important;
+      margin-top: 10px !important;
       text-align: left;
       line-height: 1.5;
+    }
+    .mobile-system-divider {
+      border: none;
+      border-top: 1px solid rgba(123, 228, 149, 0.4);
+      margin: 12px 0 16px 0;
+      width: 100%;
+      background: none;
+      height: 1px;
+      display: block;
     }
   }
   @media (min-width: 769px) {
