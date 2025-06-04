@@ -1707,9 +1707,37 @@
     <section id="smart" class="section animate-on-scroll" style="background: #000; padding-top: 80px;">
       <div class="container" style="text-align:center;">
         <h2 style="font-size: 2rem; text-align: left;">
-          <span style="color: #FFFFFF;">네오 스마트 :</span>
-          <span class="neon-green smart-trainer-text" style="font-size: 2.2rem;">"내 손안의 스마트 트레이너"</span>
+          <span style="color: #FFFFFF;" class="neohive-smart-title-prefix">네오 스마트 :</span>
+          <span class="neon-green smart-trainer-text neohive-smart-title-main" style="font-size: 2.2rem;">"내 손안의 스마트 트레이너"</span>
         </h2>
+<style>
+  @media (max-width: 768px) {
+    /* 모바일에서만 네오 스마트 : 와 내 손안의 스마트 트레이너 줄바꿈 */
+    .neohive-smart-title-prefix {
+      display: inline;
+    }
+    .neohive-smart-title-main {
+      display: block;
+      margin-top: 0.2em;
+    }
+    /* 혹시 줄바꿈이 아닌 <br>을 원한다면 아래를 대신 사용
+    .neohive-smart-title-prefix::after {
+      content: "";
+      display: block;
+    }
+    .neohive-smart-title-main {
+      display: inline;
+    }
+    */
+  }
+  @media (min-width: 769px) {
+    .neohive-smart-title-prefix,
+    .neohive-smart-title-main {
+      display: inline !important;
+      margin-top: 0 !important;
+    }
+  }
+</style>
         <p style="margin: 10px 0 40px; color: #aaa; text-align: left; line-height: 1.6;">
           회원이 언제 어디서나 쉽고 빠르게 복습할 수 있는 시스템<br>
           <span class="neon-green">경쟁 센터와의 차별화를 실현하는 디지털 피트니스 솔루션</span>
