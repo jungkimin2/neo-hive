@@ -3504,3 +3504,14 @@
     }
   }
   </style>
+  /* 네오 스마트: 모바일 환경에서 h2, .hive-showcase, p 전체 상향 & 폰트 크기 축소 */
+  @media (max-width: 768px) {
+    #smart h2 {
+      font-size: 1.4rem !important; /* 기존보다 작게 조정 */
+      transform: translateY(-80px) !important; /* UI 전체적으로 약 5칸(80px) 올림 */
+    }
+    #smart .hive-showcase,
+    #smart p {
+      transform: translateY(-80px) !important; /* 같은 만큼 전체적으로 상향 이동 */
+    }
+  }
