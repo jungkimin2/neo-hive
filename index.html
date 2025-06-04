@@ -9,23 +9,41 @@
 @media (max-width: 768px) {
   .mobile-ui-position-adjustment {
     position: relative !important;
-    transform: translateY(-400px) !important; /* 기존 값에서 추가로 4칸(64px) 추가로 상단으로 이동 */
+    transform: translateY(-416px) !important; /* 기존 -400px에서 한 칸(16px) 더 위로 이동 */
     margin-top: 0 !important;
     padding-top: 0 !important;
     z-index: 9999 !important;
   }
 
-  .mobile-system-box-wrapper,
   .mobile-system-box {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
+    border-radius: 22px !important;
+    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
+    padding: 22px !important;
+    margin-bottom: 16px !important;
+    border: 1px solid #62D2A2;
   }
 
-  .neohive-flex-row, 
-  .neohive-twobox-col, 
-  .core-value-fresh-mobile {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+  .mobile-system-title {
+    font-size: 1.05rem !important;
+    color: #7BE495;
+    text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
+  }
+
+  .mobile-system-list li {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+    color: #ccc !important;
+  }
+
+  .mobile-dot {
+    background-color: #7BE495 !important;
+  }
+
+  .mobile-system-desc {
+    font-size: 0.85rem !important;
+    color: #ffffff !important;
+    margin-top: 10px !important;
   }
 }
 </style>
