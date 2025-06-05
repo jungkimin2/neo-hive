@@ -13,10 +13,6 @@
     margin: 0 !important;
     padding: 0 !important;
   }
-
-  .neo-smart-video.tag-slide {
-    display: none !important; /* 순간이동 요소 완전 제거 */
-  }
 }
 </style>
 <style>
@@ -964,6 +960,15 @@
 
       .neo-smart-video.tag-slide {
         animation: slideRightToLeft 2.8s ease-out forwards;
+      }
+
+      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 및 순간 이동 방지 */
+      @media (max-width: 768px) {
+        .neo-smart-video.tag-slide {
+          animation: none !important;
+          transform: translate(-55%, -70%) rotate(-8deg) !important;
+          will-change: unset !important;
+        }
       }
       .floating-video {
         position: absolute;
