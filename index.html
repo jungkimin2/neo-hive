@@ -3764,6 +3764,53 @@
     }
     </style>
     <style>
+    /* 모바일 환경에서 NEO-S 이미지 노출 문제 해결 */
+    @media (max-width: 768px) {
+      .neo-smart-logo {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 100 !important;
+        width: 180px !important;
+        height: auto !important;
+        margin: 0 auto !important;
+      }
+
+      .neo-smart-logo img,
+      .neo-smart-logo.front {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        position: relative !important;
+        z-index: 100 !important;
+      }
+
+      /* 이미지 컨테이너 스타일 */
+      .neos-wrapper {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 100 !important;
+        width: 180px !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        background: transparent !important;
+      }
+
+      /* 기존 숨김 처리된 스타일 덮어쓰기 */
+      .hidden-mobile,
+      .mobile-hidden {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    }
+
     /* 모바일 환경에서 사이드 열 슬라이드 최적화 */
     @media (max-width: 768px) {
       /* 좌우 1열 슬라이드 최적화 */
