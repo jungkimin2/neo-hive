@@ -3678,3 +3678,51 @@
       transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
+  <style>
+  /* 모바일 환경에서 슬라이드 UI 전환 최적화 */
+  @media (max-width: 768px) {
+    /* 이미지 슬라이드 최적화 */
+    .hive-image {
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      -webkit-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      will-change: transform, opacity !important;
+      transform: translateZ(0) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      perspective: 1000px !important;
+    }
+
+    .hive-image.active {
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      -webkit-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      will-change: transform, opacity, box-shadow !important;
+      transform: translateZ(0) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      perspective: 1000px !important;
+    }
+
+    .video-phone {
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      -webkit-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      will-change: transform, opacity !important;
+      transform: translateZ(0) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      perspective: 1000px !important;
+    }
+
+    /* 컨테이너 최적화 */
+    .hive-showcase {
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      -webkit-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      will-change: transform !important;
+      transform: translateZ(0) !important;
+      perspective: 1000px !important;
+    }
+  }
