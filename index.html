@@ -10,6 +10,7 @@
       height: auto !important;
       max-width: 100% !important;
       margin: 0 auto !important;
+      pointer-events: auto !important;
     }
   }
   </style>
@@ -1831,6 +1832,7 @@
         height: auto !important;
         max-width: 100% !important;
         margin: 0 auto !important;
+        pointer-events: auto !important;
       }
     
       .back {
@@ -3961,3 +3963,14 @@
       }
     }
     </style>
+<style>
+@media (max-width: 768px) {
+  .neos-wrapper,
+  .flip-container {
+    pointer-events: auto !important;
+    background: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+}
