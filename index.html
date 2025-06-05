@@ -3654,10 +3654,12 @@
   }
   </style>
 <style>
-@media (max-width: 768px) {
-  .smart-trainer-text {
-    font-size: 1.6rem !important; /* 기존 2.2rem에서 더 작게 조정 */
-  }
+  @media (max-width: 768px) {
+    .smart-trainer-text {
+      font-size: 1.2rem !important; /* 모바일에서 더 작게 조정 */
+      white-space: nowrap !important; /* 한 줄로 표시 */
+      line-height: 1.2 !important; /* 줄 간격 조정 */
+    }
 }
 </style>
   /* 모바일 환경에서 슬라이드 이미지 성능 최적화 및 GPU 가속화 */
