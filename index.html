@@ -3764,6 +3764,57 @@
     }
     </style>
     <style>
+    /* 모바일 환경에서 NEO-S 이미지 강제 노출 */
+    @media (max-width: 768px) {
+      .neo-smart-section .neo-smart-logo,
+      .neo-smart-section .neo-smart-logo.front {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        left: 20% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 180px !important;
+        height: auto !important;
+        z-index: 999 !important;
+        background: url('./images/neost.png') no-repeat center/contain !important;
+      }
+
+      /* 이미지 컨테이너 설정 */
+      .neo-smart-section .neos-wrapper {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        left: 20% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 180px !important;
+        height: auto !important;
+        z-index: 999 !important;
+        pointer-events: auto !important;
+      }
+
+      /* 이미지 요소 설정 */
+      .neo-smart-section .neo-smart-logo img {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      /* 모든 숨김 처리 해제 */
+      .neo-smart-section .hidden,
+      .neo-smart-section .hidden-mobile,
+      .neo-smart-section [class*="hidden"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    }
+
     /* 모바일 환경에서 NEO-S 이미지 노출 문제 해결 */
     @media (max-width: 768px) {
       .neo-smart-logo {
