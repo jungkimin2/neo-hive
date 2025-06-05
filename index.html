@@ -1,26 +1,17 @@
 <style>
+/* 기존 모바일에서 .neo-smart-logo.front 숨김 처리 코드는 삭제됨 */
 @media (max-width: 768px) {
   .neo-smart-logo.front {
-    display: none !important;
-    position: static !important;
-    content: none !important;
-    background: none !important;
-    filter: none !important;
-    animation: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
-  .flip-container {
-    display: none !important;
-  }
-  .flipper {
-    display: none !important;
-  }
-  .wave-background {
-    display: none !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 200px !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 40% !important; /* 중앙에서 약간 좌측 위치로 이동 */
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
   }
 }
 </style>
