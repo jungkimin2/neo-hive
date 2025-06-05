@@ -3727,3 +3727,32 @@
       perspective: 1000px !important;
     }
   }
+  </style>
+  <style>
+  /* 모바일 환경에서 중앙 영상 UI 시작 애니메이션 제거 */
+  @media (max-width: 768px) {
+    .video-phone {
+      animation: none !important;
+      transform: translate(-50%, -50%) !important;
+      top: 50% !important;
+      left: 50% !important;
+    }
+
+    /* 모든 슬라이드 관련 시작 애니메이션 제거 */
+    .slide-in-left,
+    .slide-in-right,
+    .neo-smart-video.tag-slide {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* 기존 애니메이션 키프레임 비활성화 */
+    @keyframes slideRightToLeft {
+      0%, 100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+  </style>
