@@ -1730,16 +1730,21 @@
           <!-- Removed outer box/background for neo-smart-logo; only green glow on image remains -->
           <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10;">
             <div class="wave-background"></div>
+            <!-- 모바일/PC 모두 공통 구조, 모바일에서만 flip 동작 -->
             <div class="flip-container">
               <div class="flipper">
-                <img src="./images/neost.png" alt="NEO-S NFC Sticker" class="neo-smart-logo front"
-                     style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));">
-                <img src="./images/neo121.png" alt="NEO Smart Back Image" class="back"
-                     style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; backface-visibility: hidden; position: absolute; top: 0; left: 12px; transform: rotateY(180deg);" />
+                <div class="front">
+                  <img src="./images/neost.png" alt="NEO-S NFC Sticker" class="neo-smart-logo front"
+                       style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));">
+                </div>
+                <div class="back">
+                  <img src="./images/neo121.png" alt="NEO Smart Back Image"
+                       style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px;">
                   <div class="back-text-overlay" style="left: calc(50% - 100px);">
                     <h3>NEO SMART</h3>
                     <p>1. 기구 사용법<br>2. 체형 교정<br>3. 네오핏 클래스<br><br><br>NFC 태그 하고 운동하세요</p>
                   </div>
+                </div>
               </div>
             </div>
             <div class="neos-category-tags" style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-52%);">
@@ -1766,7 +1771,7 @@
         transform-origin: center center !important; /* 중앙에서 축소 */
       }
     }
-  
+
     .flipper {
       position: relative;
       width: 100%;
@@ -1774,31 +1779,34 @@
       transform-style: preserve-3d;
       transition: transform 0.8s ease;
     }
-  
+
+    /* PC: 마우스 hover로 flip */
     .flip-container:hover .flipper {
       transform: rotateY(180deg);
     }
-  
-    .neo-smart-logo.front,
+
+    .front,
     .back {
       width: 100%;
       backface-visibility: hidden;
       border-radius: 16px;
-    }
-  
-    .neo-smart-logo.front {
-      display: block;
-    }
-  
-    .back {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
+    }
+
+    .front {
+      z-index: 2;
+      transform: rotateY(0deg);
+      position: relative;
+    }
+
+    .back {
       transform: rotateY(180deg);
-      /* Green neon glow */
       filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
     }
+
     .back-text-overlay {
       opacity: 0;
       transition: opacity 0.4s ease-in 0.3s;
@@ -1816,14 +1824,81 @@
       text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
       line-height: 1.6;
     }
-  
+
     .flip-container:hover .back-text-overlay {
       opacity: 1;
     }
     .flip-container:not(:hover) .back-text-overlay {
       transition-delay: 0s !important;
     }
+
+    /* 모바일 flip 카드 효과 및 크기 조정 (PC 영향 X) */
+    @media (max-width: 768px) {
+      .flip-container {
+        perspective: 1000px;
+        width: 250px;
+        margin: auto;
+        transform: none !important;
+      }
+
+      .flipper {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .flip-container.active .flipper {
+        transform: rotateY(180deg);
+      }
+
+      .front,
+      .back {
+        position: absolute;
+        width: 100%;
+        backface-visibility: hidden;
+        top: 0;
+        left: 0;
+      }
+
+      .front {
+        z-index: 2;
+        transform: rotateY(0deg);
+      }
+
+      .back {
+        transform: rotateY(180deg);
+      }
+
+      /* 모바일에서만 hover 효과 제거, 오버레이 항상 보이도록 */
+      .flip-container:hover .back-text-overlay,
+      .flip-container.active .back-text-overlay {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+      .flip-container:not(.active) .back-text-overlay {
+        opacity: 0;
+      }
+      /* 모바일에서만 오버레이의 transition-delay 제거 */
+      .flip-container .back-text-overlay {
+        transition-delay: 0s !important;
+      }
+    }
     </style>
+    <script>
+    // 모바일 환경에서만 카드 클릭 시 flip 동작
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+      window.addEventListener('DOMContentLoaded', function() {
+        var flip = document.querySelector('.flip-container');
+        if (flip) {
+          flip.addEventListener('click', function() {
+            this.classList.toggle('active');
+          });
+        }
+      });
+    }
+    </script>
           <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
             <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
           </div>
