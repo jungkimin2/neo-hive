@@ -3764,36 +3764,40 @@
     }
     </style>
     <style>
-    /* 모바일 환경에서 NEO-S 이미지 강제 노출 */
+    /* 모바일 환경에서 NEO-S 이미지 강제 노출 - 위치 재조정 */
     @media (max-width: 768px) {
-      .neo-smart-section .neo-smart-logo,
-      .neo-smart-section .neo-smart-logo.front {
+      .neo-smart-logo,
+      .neo-smart-logo.front,
+      #neoSmartLogo {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        position: absolute !important;
-        left: 20% !important;
+        position: fixed !important;
+        left: 50px !important;
         top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 180px !important;
+        transform: translateY(-50%) !important;
+        width: 160px !important;
         height: auto !important;
-        z-index: 999 !important;
-        background: url('./images/neost.png') no-repeat center/contain !important;
+        z-index: 999999 !important;
+        pointer-events: auto !important;
+        background: none !important;
       }
 
       /* 이미지 컨테이너 설정 */
-      .neo-smart-section .neos-wrapper {
+      .neos-wrapper,
+      .neo-smart-wrapper {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        position: absolute !important;
-        left: 20% !important;
+        position: fixed !important;
+        left: 50px !important;
         top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 180px !important;
+        transform: translateY(-50%) !important;
+        width: 160px !important;
         height: auto !important;
-        z-index: 999 !important;
+        z-index: 999999 !important;
         pointer-events: auto !important;
+        background: transparent !important;
       }
 
       /* 이미지 요소 설정 */
