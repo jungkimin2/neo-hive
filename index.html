@@ -5,7 +5,11 @@
       opacity: 1 !important;
       visibility: visible !important;
       position: relative !important;
-      z-index: 99999 !important; /* 최고 우선순위 */
+      z-index: 99999 !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
     }
   }
   </style>
@@ -1815,9 +1819,18 @@
         backface-visibility: hidden;
         border-radius: 16px;
       }
-    
+
+      /* Ensure .neo-smart-logo.front is always visible and not overridden */
       .neo-smart-logo.front {
-        display: block;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 99999 !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
       }
     
       .back {
