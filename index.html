@@ -956,12 +956,12 @@
         animation: slideRightToLeft 2.8s ease-out forwards;
       }
 
-      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 및 순간 이동 방지 */
+      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 및 순간 이동 완전 제거 */
       @media (max-width: 768px) {
-        .neo-smart-video.tag-slide {
+        .neo-smart-video {
           animation: none !important;
           transform: translate(-55%, -70%) rotate(-8deg) !important;
-          will-change: unset !important;
+          transition: none !important;
         }
       }
       .floating-video {
