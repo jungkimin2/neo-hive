@@ -11,12 +11,16 @@
     object-fit: contain !important;
     z-index: 20 !important;
     background: none !important;
-    content: url('./images/neost.png');
+    background-image: url('./images/neost.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
     filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));
     animation: none !important; /* 기존 효과 삭제 */
+    content: none !important; /* content 속성을 삭제하여 문제 해결 */
   }
 }
 </style>
