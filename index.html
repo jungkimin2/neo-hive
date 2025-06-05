@@ -1037,22 +1037,17 @@
 </style>
 <style>
 @media (max-width: 768px) {
-  .hive-image {
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-  }
-
+  .hive-image,
   .hive-image.active {
     will-change: transform, opacity;
     transform: translateZ(0);
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out !important;
   }
 
   .video-phone {
     will-change: transform, opacity;
     transform: translateZ(0);
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out !important;
   }
 }
 </style>
