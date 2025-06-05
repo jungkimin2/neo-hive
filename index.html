@@ -1,10 +1,24 @@
 <style>
 @media (max-width: 768px) {
   .neo-smart-logo.front {
+    /* Remove any display: none or hidden styling */
+    display: block !important;
     position: absolute !important;
     left: 40% !important; /* 중앙에서 약간 좌측으로 이동 */
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: contain !important;
+    z-index: 20 !important;
+    background: none !important;
+    /* Explicitly set the image source for mobile */
+    content: url('./images/neost.png');
+    /* Remove any visibility or opacity hiding */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));
   }
 }
 </style>
