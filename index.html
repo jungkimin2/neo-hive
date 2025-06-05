@@ -1,26 +1,21 @@
 <style>
 @media (max-width: 768px) {
   .neo-smart-logo.front {
-    display: block !important;
     position: absolute !important;
-    left: 40% !important; /* 중앙에서 약간 좌측으로 이동 */
+    display: block !important;
+    left: 50% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 120px !important;
-    height: 120px !important;
-    object-fit: contain !important;
-    z-index: 20 !important;
-    background: none !important;
-    background-image: url('./images/neost.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
+    transform: translate(-60%, -50%) !important; /* 중앙에서 좌측으로 약간 이동 */
+    width: 180px !important;
+    height: auto !important;
+    background: url('./images/neost.png') no-repeat center/contain !important;
     opacity: 1 !important;
     visibility: visible !important;
+    z-index: 20 !important;
     pointer-events: auto !important;
     filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));
-    animation: none !important; /* 기존 효과 삭제 */
-    content: none !important; /* content 속성을 삭제하여 문제 해결 */
+    animation: none !important; /* 모든 기존 애니메이션 삭제 */
+    content: none !important; /* 기존 content 속성 삭제 */
   }
 }
 </style>
