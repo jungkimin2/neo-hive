@@ -944,6 +944,14 @@
       .neo-smart-video.tag-slide {
         animation: slideRightToLeft 2.8s ease-out forwards;
       }
+
+      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 삭제 */
+      @media (max-width: 768px) {
+        .neo-smart-video.tag-slide {
+          animation: none !important;
+          transform: none !important;
+        }
+      }
       .floating-video {
         position: absolute;
         top: 50%;
