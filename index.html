@@ -944,14 +944,6 @@
       .neo-smart-video.tag-slide {
         animation: slideRightToLeft 2.8s ease-out forwards;
       }
-
-      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 삭제 */
-      @media (max-width: 768px) {
-        .neo-smart-video.tag-slide {
-          animation: none !important;
-          transform: none !important;
-        }
-      }
       .floating-video {
         position: absolute;
         top: 50%;
@@ -3662,11 +3654,10 @@
   }
   </style>
 <style>
-  @media (max-width: 768px) {
-    .smart-trainer-text {
-      font-size: 1.1rem !important; /* 모바일에서 크기 증가 */
-      white-space: nowrap !important; /* 줄바꿈 방지 */
-    }
+@media (max-width: 768px) {
+  .smart-trainer-text {
+    font-size: 1.6rem !important; /* 기존 2.2rem에서 더 작게 조정 */
+  }
 }
 </style>
   /* 모바일 환경에서 슬라이드 이미지 성능 최적화 및 GPU 가속화 */
@@ -3735,32 +3726,3 @@
       perspective: 1000px !important;
     }
   }
-  </style>
-  <style>
-  /* 모바일 환경에서 중앙 영상 UI 시작 애니메이션 제거 */
-  @media (max-width: 768px) {
-    .video-phone {
-      animation: none !important;
-      transform: translate(-50%, -50%) !important;
-      top: 50% !important;
-      left: 50% !important;
-    }
-
-    /* 모든 슬라이드 관련 시작 애니메이션 제거 */
-    .slide-in-left,
-    .slide-in-right,
-    .neo-smart-video.tag-slide {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-
-    /* 기존 애니메이션 키프레임 비활성화 */
-    @keyframes slideRightToLeft {
-      0%, 100% {
-        opacity: 1;
-        transform: none;
-      }
-    }
-  }
-  </style>
