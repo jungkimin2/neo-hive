@@ -1,3 +1,22 @@
+  <!-- 모바일 환경에서 네오 하이브 슬라이드 UI 부드러운 전환 최적화 -->
+  <style>
+  @media (max-width: 768px) {
+    .hive-image {
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+      will-change: transform, opacity !important;
+    }
+    
+    .hive-image.active {
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out, box-shadow 0.3s ease-out !important;
+      will-change: transform, opacity, box-shadow !important;
+    }
+
+    .video-phone {
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+      will-change: transform, opacity !important;
+    }
+  }
+  </style>
 <style>
   @media (max-width: 768px) {
     .core-value-fresh-mobile .core-title {
