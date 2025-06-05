@@ -3726,3 +3726,14 @@
       perspective: 1000px !important;
     }
   }
+  </style>
+  <style>
+  /* 모바일 환경에서 중앙 영상 UI 시작 애니메이션만 제거 */
+  @media (max-width: 768px) {
+    .video-phone {
+      animation: none !important;
+      transform: translate(-50%, -50%) !important;
+      transition: none !important;
+    }
+  }
+  </style>
