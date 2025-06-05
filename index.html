@@ -1,16 +1,4 @@
 <style>
-@media (max-width: 768px) {
-  .neo-smart-video {
-    animation: none !important; /* 모든 애니메이션 완전 삭제 */
-    transition: none !important; /* 모든 전환 효과 제거 */
-    transform: translate(-55%, -70%) rotate(-8deg) !important; /* 원하는 최종 위치 고정 */
-    left: 55% !important; /* 명확한 위치 고정 */
-    top: 50% !important;
-    position: absolute !important;
-  }
-}
-</style>
-<style>
   @media (max-width: 768px) {
     .core-value-fresh-mobile .core-title {
       font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
@@ -952,17 +940,16 @@
           opacity: 1;
         }
       }
-
+  
       .neo-smart-video.tag-slide {
         animation: slideRightToLeft 2.8s ease-out forwards;
       }
 
-      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 및 순간 이동 완전 제거 */
+      /* 모바일 환경에서 네오 스마트 영상 UI의 슬라이딩 효과 삭제 */
       @media (max-width: 768px) {
-        .neo-smart-video {
+        .neo-smart-video.tag-slide {
           animation: none !important;
-          transform: translate(-55%, -70%) rotate(-8deg) !important;
-          transition: none !important;
+          transform: none !important;
         }
       }
       .floating-video {
