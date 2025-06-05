@@ -1,4 +1,21 @@
 <style>
+@media (max-width: 768px) {
+  .neo-smart-video {
+    transition: none !important; /* 모바일에서 슬라이딩 효과 제거 */
+    transform: translate(-50%, -50%) rotate(0deg) !important; /* 정확한 위치 지정 */
+    left: 50% !important; /* 중앙에 위치 */
+    top: 50% !important; /* 중앙에 위치 */
+  }
+
+  .neos-wrapper {
+    transition: none !important; /* 모바일 환경에서 전환 효과 제거 */
+    transform: translate(-50%, -50%) !important; /* 정확한 위치 지정 */
+    left: 30% !important; /* 안정된 위치 설정 */
+    top: 50% !important; /* 안정된 위치 설정 */
+  }
+}
+</style>
+<style>
   @media (max-width: 768px) {
     .core-value-fresh-mobile .core-title {
       font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
