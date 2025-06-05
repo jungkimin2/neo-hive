@@ -3739,3 +3739,30 @@
     }
   }
   </style>
+  <style>
+  /* 모바일 환경에서 NEOS 카드 이미지 위치 조정 */
+  @media (max-width: 768px) {
+    .neos-wrapper {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 100% !important;
+      max-width: 320px !important;
+      margin: 0 auto !important;
+      z-index: 10 !important;
+    }
+
+    .flip-container {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    .neo-smart-logo {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+  }
+  </style>
