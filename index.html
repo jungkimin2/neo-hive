@@ -1776,7 +1776,8 @@
     }
   
     .flip-container:hover .flipper {
-      transform: rotateY(180deg);
+      transform: none !important; /* 뒤집히는 효과 제거 */
+      pointer-events: none !important; /* 모바일 환경에서만 hover 동작 방지 */
     }
   
     .neo-smart-logo.front,
@@ -3637,3 +3638,9 @@
     }
   }
   </style>
+    /* 모바일 환경에서만 .flip-container:hover .flipper의 뒤집히는 효과 비활성화 */
+    @media (max-width: 768px) {
+      .flip-container:hover .flipper {
+        transform: none !important; /* 뒤집히는 효과 제거 */
+      }
+    }
