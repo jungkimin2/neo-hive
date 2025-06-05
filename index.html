@@ -5,17 +5,28 @@
     display: block !important;
     left: 50% !important;
     top: 50% !important;
-    transform: translate(-60%, -50%) !important; /* 중앙에서 좌측으로 약간 이동 */
+    transform: translate(-60%, -50%) !important;
     width: 180px !important;
     height: auto !important;
-    background: url('./images/neost.png') no-repeat center/contain !important;
+    background-image: url('./images/neost.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
     opacity: 1 !important;
     visibility: visible !important;
     z-index: 20 !important;
     pointer-events: auto !important;
     filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));
-    animation: none !important; /* 모든 기존 애니메이션 삭제 */
-    content: none !important; /* 기존 content 속성 삭제 */
+    animation: none !important;
+    content: none !important;
+  }
+
+  /* 기존의 네오 스마트 영상 슬라이딩 효과를 모바일 환경에서만 비활성화 */
+  .neo-smart-video {
+    animation: none !important;
+    transform: translate(-50%, -50%) rotate(-8deg) !important;
+    left: 80% !important;
+    top: 50% !important;
   }
 }
 </style>
