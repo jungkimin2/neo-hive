@@ -3644,3 +3644,15 @@
         transform: none !important; /* 뒤집히는 효과 제거 */
       }
     }
+  /* 모바일 환경에서 슬라이드 .hive-image의 부드러운 슬라이드 효과 및 GPU 가속 활성화 */
+  @media (max-width: 768px) {
+    .hive-image {
+      will-change: transform, opacity;
+      transform: translateZ(0);
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    }
+    .hive-image.active {
+      transform: translate(-50%, -50%) scale(1.2) translateZ(0);
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    }
+  }
