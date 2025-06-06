@@ -3822,6 +3822,24 @@ h3 {
   transition: left 0.3s ease-out !important;
 }
 
+/* 뒷면 보기 UI 추가 */
+.neo-smart-logo::after {
+  content: "뒷면 보기" !important;
+  position: absolute !important;
+  bottom: -40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #7BE495 !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-size: 0.85rem !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important;
+  white-space: nowrap !important;
+  z-index: 201 !important;
+}
+
 .neo-smart-logo.back {
   left: calc(15% - 272px) !important; /* 왼쪽으로 총 7칸(112px) 이동 */
 }
