@@ -1797,8 +1797,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 /* 모바일 환경에서 .neos-category-tags를 하단으로 6칸(약 96px) 이동 */
 @media (max-width: 768px) {
   .neos-category-tags {
-    /* 기존 위치에서 96px 추가 이동 */
-    transform: translateX(-52%) translateY(96px) !important;
+    position: absolute !important;
+    bottom: -80px !important; /* 이미지 아래로 이동 */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    text-align: center !important;
+    z-index: 201 !important;
   }
 }
 </style>
@@ -3810,11 +3815,11 @@ h3 {
   visibility: visible !important;
   opacity: 1 !important;
   position: absolute !important;
-  left: calc(15% - 112px) !important; /* 왼쪽으로 2칸(32px) 추가 이동 */
+  left: calc(15% - 144px) !important; /* 왼쪽으로 2칸(32px) 추가 이동 */
   top: 50% !important;
   transform: translateY(-50%) !important;
   z-index: 200 !important;
-  width: 450px !important; /* 크기를 450px로 증가 */
+  width: 450px !important;
   height: auto !important;
 }
 
@@ -3836,11 +3841,11 @@ h3 {
   visibility: visible !important;
   opacity: 1 !important;
   position: absolute !important;
-  left: calc(15% - 112px) !important; /* 왼쪽으로 2칸(32px) 추가 이동 */
+  left: calc(15% - 144px) !important; /* 왼쪽으로 2칸(32px) 추가 이동 */
   top: 50% !important;
   transform: translateY(-50%) !important;
   z-index: 200 !important;
-  width: 450px !important; /* 크기를 450px로 증가 */
+  width: 450px !important;
 }
 
 /* 기존 숨김 처리된 스타일 덮어쓰기 */
