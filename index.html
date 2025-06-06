@@ -1,3 +1,12 @@
+      <style>
+        /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
+        @media (max-width: 768px) {
+          .neos-wrapper {
+            left: calc(15% - 64px) !important;
+            transform: translateY(-50%) !important;
+          }
+        }
+      </style>
 <style>
   @media (max-width: 768px) {
     .neo-smart-logo.front {
