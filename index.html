@@ -1794,16 +1794,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           </div>
         </div>
 <style>
-/* 모바일 환경에서 .neos-category-tags를 하단으로 6칸(약 96px) 이동 */
+/* 모바일 환경에서 .neos-category-tags를 NEOS 이미지 하단으로 정렬 */
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    bottom: -80px !important; /* 이미지 아래로 이동 */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    bottom: -40px !important;
+    left: calc(15% - 160px) !important; /* NEOS 이미지와 동일한 left 값 */
+    transform: translateX(50%) !important;
     width: auto !important;
     text-align: center !important;
     z-index: 201 !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
   }
 }
 </style>
