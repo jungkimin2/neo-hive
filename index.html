@@ -1853,6 +1853,12 @@
         /* Green neon glow */
         filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
       }
+      /* 모바일 환경에서 뒷면보기 UI를 좌측으로 16px(한 칸) 이동 */
+      @media (max-width: 768px) {
+        .flipper .back {
+          left: 16px !important;
+        }
+      }
       .back-text-overlay {
         opacity: 0;
         transition: opacity 0.4s ease-in 0.3s;
