@@ -3791,24 +3791,13 @@ h3 {
 }
 </style>
 <style>
-/* 모바일 환경에서 중앙 영상 UI 시작 애니메이션 */
+/* 모바일 환경에서 중앙 영상 UI 시작 애니메이션만 제거 */
 @media (max-width: 768px) {
-  @keyframes slideInFromLeft {
-    0% {
-      left: -30%;
-      opacity: 0;
-    }
-    100% {
-      left: calc(15% - 160px);
-      opacity: 1;
-    }
-  }
-
-  .video-phone {
-    animation: slideInFromLeft 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
-    transform: translateY(-50%) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
+.video-phone {
+  animation: none !important;
+  transform: translate(-50%, -50%) !important;
+  transition: none !important;
+}
 }
 </style>
 <style>
