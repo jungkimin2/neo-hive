@@ -1,3 +1,4 @@
+
 <style>
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
   @media (max-width: 768px) {
@@ -3818,12 +3819,17 @@ h3 {
   visibility: visible !important;
   opacity: 1 !important;
   position: absolute !important;
-  left: calc(15% - 160px) !important; /* 왼쪽으로 1칸(16px) 이동 */
+  left: calc(15% - 160px) !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
   z-index: 200 !important;
   width: 450px !important;
   height: auto !important;
+  transition: left 0.3s ease-out !important;
+}
+
+.neo-smart-logo.back {
+  left: calc(15% - 176px) !important; /* 왼쪽으로 추가 1칸(16px) 이동 */
 }
 
 .neo-smart-logo img,
