@@ -3791,14 +3791,25 @@ h3 {
 }
 </style>
 <style>
-/* 모바일 환경에서 중앙 영상 UI 스타일 */
+/* 모바일 환경에서 중앙 영상 UI 스타일 및 애니메이션 */
 @media (max-width: 768px) {
+  @keyframes smoothCenterIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
   .video-phone {
-    animation: none !important;
     left: 50% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    transition: none !important;
+    opacity: 0;
+    animation: smoothCenterIn 0.8s ease-out forwards !important;
+    animation-delay: 0.2s !important;
   }
 }
 </style>
