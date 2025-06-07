@@ -1820,19 +1820,16 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 /* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 절반 이하로 축소 (PC는 영향 X) */
 @media (max-width: 768px) {
   .flip-container {
-    width: 45% !important; /* 컨테이너 자체의 크기를 45%로 조정 */
-    margin: 0 auto !important; /* 중앙 정렬 */
-    perspective: 2000px !important; /* 3D 효과 강화 */
+    transform: scale(0.45) !important; /* 기존 크기의 45% 수준으로 줄임 */
+    transform-origin: center center !important; /* 중앙에서 축소 */
+  }
+  
+  .flip-container:hover .flipper {
+    transform: rotateY(180deg) scale(1) !important;
   }
   
   .flipper {
     transform-origin: center !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
-  .flip-container:hover .flipper {
-    transform: rotateY(180deg) !important;
   }
 }
 
