@@ -1822,7 +1822,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .flip-container {
     transform: scale(0.45) !important; /* 기존 크기의 45% 수준으로 줄임 */
     transform-origin: center center !important; /* 중앙에서 축소 */
-    perspective-origin: center !important; /* 3D 효과의 시점을 중앙으로 설정 */
   }
 }
 
@@ -1864,8 +1863,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   top: 0;
   left: 0;
   height: 100%;
-  transform: rotateY(180deg) scale(1) !important; /* 뒷면 이미지 크기 유지 */
-  transform-origin: center !important; /* 뒷면 회전 중심점 설정 */
+  transform: rotateY(180deg);
   /* Green neon glow */
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
 }
@@ -1884,13 +1882,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   position: absolute;
   top: 50%;
   left: calc(50% - 50px);
-  transform: translate(-50%, -50%) rotateY(180deg) !important; /* 텍스트 위치 보정 */
+  transform: translate(-50%, -35%) rotateY(180deg);
   color: #7BE495;
   text-align: left;
   font-size: 0.9rem;
   font-weight: bold;
   z-index: 2;
-  width: 80% !important; /* 텍스트 영역 너비 조정 */
+  width: 100%;
   pointer-events: none;
   text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
   line-height: 1.6;
