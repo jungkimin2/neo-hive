@@ -1823,6 +1823,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform: scale(0.45) !important; /* 기존 크기의 45% 수준으로 줄임 */
     transform-origin: center center !important; /* 중앙에서 축소 */
   }
+  
+  .flip-container:hover .flipper {
+    transform: rotateY(180deg) scale(1) !important;
+  }
+  
+  .flipper {
+    transform-origin: center !important;
+  }
 }
 
 .flipper {
@@ -1871,9 +1879,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
   .flipper .back {
     left: 96px !important; /* 우측으로 6칸(96px) 이동 */
+    transform-origin: center center !important;
   }
   .back-text-overlay {
     margin-left: 96px !important; /* 우측으로 6칸(96px) 이동 */
+    transform: translate(-50%, -35%) rotateY(180deg) !important;
+    transform-origin: center center !important;
   }
 }
 .back-text-overlay {
