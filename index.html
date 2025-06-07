@@ -1823,15 +1823,37 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform: scale(0.45) !important;
     transform-origin: center !important;
     perspective: 2000px !important;
+    z-index: 5 !important;
   }
   
   .flipper {
     transform-style: preserve-3d !important;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   
   .flip-container:hover .flipper {
     transform: rotateY(180deg) !important;
+  }
+
+  .front, .back {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+
+  .front {
+    z-index: 2 !important;
+    transform: rotateY(0deg) !important;
+  }
+
+  .back {
+    transform: rotateY(180deg) !important;
+    z-index: 1 !important;
   }
 }
 
@@ -1945,6 +1967,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   100% {
     transform: translate(-50%, -50%) scale(2.2);
     opacity: 0;
+  }
+}
+
+/* 모바일 환경에서 파동 효과 제거 */
+@media (max-width: 768px) {
+  .wave-background {
+    display: none !important;
   }
 }
 </style>
