@@ -1872,6 +1872,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .flipper .back {
     left: 96px !important; /* 우측으로 6칸(96px) 이동 */
   }
+  .back-text-overlay {
+    transform: translate(calc(-50% + 64px), -35%) rotateY(180deg) !important;
+  }
+  .back-text-overlay {
+    left: calc(50% + 64px) !important; /* 우측으로 4칸(64px) 이동 */
+  }
 }
 .back-text-overlay {
   opacity: 0;
@@ -1880,6 +1886,20 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   top: 50%;
   left: calc(50% - 50px);
   transform: translate(-50%, -35%) rotateY(180deg);
+}
+
+/* 모바일 환경에서 뒷면 텍스트 위치 조정 */
+@media (max-width: 768px) {
+  .back-text-overlay {
+    left: calc(50% + 64px) !important;
+  }
+}
+
+/* 모바일 환경에서 뒷면 텍스트 위치 조정 */
+@media (max-width: 768px) {
+  .back-text-overlay {
+    left: calc(50% + 64px) !important; /* 우측으로 4칸(64px) 이동 */
+  }
   color: #7BE495;
   text-align: left;
   font-size: 0.9rem;
