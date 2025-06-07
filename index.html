@@ -1908,28 +1908,18 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 /* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
-  .back {
+  .flipper .back {
     left: 96px !important;
+    transform: rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-    will-change: transform, opacity !important;
   }
   
   .back-text-overlay {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    width: 90% !important;
     margin-left: 96px !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -35%) rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-    transition: opacity 0.3s ease 0.3s !important;
-    opacity: 0 !important;
-  }
-
-  .flip-container:hover .back-text-overlay {
-    opacity: 1 !important;
   }
 }
 .back-text-overlay {
