@@ -1819,19 +1819,39 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 /* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 절반 이하로 축소 (PC는 영향 X) */
 @media (max-width: 768px) {
-  .flip-container {
-    transform: scale(0.45) !important;
+  .neos-wrapper {
+    z-index: 10 !important;
+    transform: translate(-50%, -50%) scale(0.45) !important;
     transform-origin: center !important;
-    perspective: 2000px !important;
+  }
+
+  .flip-container {
+    position: relative !important;
+    perspective: 1000px !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent !important;
   }
   
   .flipper {
     transform-style: preserve-3d !important;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: transform 0.6s ease !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   
   .flip-container:hover .flipper {
     transform: rotateY(180deg) !important;
+  }
+
+  .neo-smart-logo.front {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    background: transparent !important;
   }
 }
 
@@ -1879,18 +1899,28 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 /* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
-  .flipper .back {
+  .back {
+    position: absolute !important;
+    top: 0 !important;
     left: 96px !important;
+    width: 100% !important;
+    height: 100% !important;
     transform: rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
+    background: transparent !important;
   }
   
   .back-text-overlay {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
     margin-left: 96px !important;
-    transform: translate(-50%, -35%) rotateY(180deg) !important;
+    width: 90% !important;
+    transform: translate(-50%, -50%) rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
+    z-index: 2 !important;
   }
 }
 .back-text-overlay {
