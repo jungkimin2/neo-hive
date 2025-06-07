@@ -1867,10 +1867,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   /* Green neon glow */
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
 }
-/* 모바일 환경에서 뒷면보기 UI를 좌측으로 16px(한 칸) 이동 */
+/* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
   .flipper .back {
-    left: 16px !important;
+    left: -24px !important; /* 좌측으로 1.5칸(24px) 이동 */
   }
 }
 .back-text-overlay {
