@@ -1,36 +1,4 @@
 <style>
-@media (max-width: 768px) {
-  .flip-container .flipper .back {
-    transform: translateX(-32px) !important;
-  }
-}
-</style>
-<style>
-/* 모바일 환경에서 flip-container의 뒷면 이미지를 숨기고 버튼 클릭 시에만 나타나도록 */
-@media (max-width: 768px) {
-  .flip-container .flipper .back,
-  .flip-container .flipper .back-text-overlay {
-    display: none !important;
-  }
-  .flip-container.active .flipper .back,
-  .flip-container.active .flipper .back-text-overlay {
-    display: block !important;
-  }
-}
-</style>
-<script>
-// 모바일 환경에서 .neos-category-tags 클릭 시 flip-container에 active 클래스 토글
-document.addEventListener('DOMContentLoaded', function() {
-  var tags = document.querySelector('.neos-category-tags');
-  var flip = document.querySelector('.flip-container');
-  if (tags && flip) {
-    tags.addEventListener('click', function() {
-      flip.classList.toggle('active');
-    });
-  }
-});
-</script>
-<style>
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
   @media (max-width: 768px) {
     .neos-wrapper {
@@ -3873,7 +3841,7 @@ h3 {
   visibility: visible !important;
   opacity: 1 !important;
   position: absolute !important;
-  left: calc(15% - 160px) !important; /* 왼쪽으로 1칸(16px) 이동 */
+  left: calc(15% - 144px) !important; /* 왼쪽으로 2칸(32px) 추가 이동 */
   top: 50% !important;
   transform: translateY(-50%) !important;
   z-index: 200 !important;
