@@ -1822,8 +1822,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .flip-container {
     transform: scale(0.45) !important;
     transform-origin: center !important;
-    perspective: 2000px !important;
-    z-index: 5 !important;
+    perspective: 1000px !important;
+    transform-style: flat !important;
+    position: relative !important;
+    isolation: isolate !important;
   }
   
   .flipper {
@@ -1832,10 +1834,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
+    transform-origin: center center !important;
   }
   
   .flip-container:hover .flipper {
-    transform: rotateY(180deg) !important;
+    transform: rotateY(180deg) scale(1) !important;
   }
 
   .front, .back {
@@ -1844,16 +1847,26 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     height: 100% !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
+    transform-origin: center center !important;
   }
 
   .front {
+    transform: rotateY(0) !important;
+    opacity: 1 !important;
     z-index: 2 !important;
-    transform: rotateY(0deg) !important;
   }
 
   .back {
     transform: rotateY(180deg) !important;
+    opacity: 1 !important;
     z-index: 1 !important;
+  }
+
+  /* 3D 효과를 격리하기 위한 컨테이너 설정 */
+  .neos-wrapper {
+    transform-style: flat !important;
+    position: relative !important;
+    isolation: isolate !important;
   }
 }
 
