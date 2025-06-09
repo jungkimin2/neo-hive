@@ -2423,6 +2423,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .circle-step {
     width: 100px !important;
     height: 100px !important;
+    position: relative !important;
   }
   .circle-step > div[style*="font-weight: bold; color: #fff"] {
     font-size: 0.62rem !important;
@@ -2437,6 +2438,23 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .circle-step img {
     width: 24px !important;
     height: 24px !important;
+  }
+  .circle-step-number {
+    position: absolute !important;
+    top: -10px !important;
+    left: -10px !important;
+    width: 24px !important;
+    height: 24px !important;
+    background: #0A0F0D !important;
+    border: 2px solid #7BE495 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 0.8rem !important;
+    color: #7BE495 !important;
+    box-shadow: 0 0 8px rgba(123, 228, 149, 0.6) !important;
+    z-index: 2 !important;
   }
 }
 </style>
