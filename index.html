@@ -4187,8 +4187,9 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin: 16px 4px 16px 0 !important;
-    transform: translateX(0) !important;
+    margin: 16px auto !important;
+    max-width: 90% !important;
+    transform: none !important;
   }
 
   /* 네오핏 로고 크기 및 정렬 조정 */
@@ -4231,9 +4232,12 @@ document.addEventListener('DOMContentLoaded', function() {
     flex: 1 !important;
   }
 
-  /* 전체 컨테이너 오른쪽으로 약간 이동 */
+  /* 전체 컨테이너 중앙 정렬 */
   .circular-flow-container {
-    transform: translateX(8px) !important;
+    transform: translateX(0) !important;
+    margin: 32px auto !important;
+    left: 0 !important;
+    right: 0 !important;
   }
 }
 </style>
