@@ -1934,7 +1934,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   position: absolute;
   top: 50%;
   left: calc(50% - 50px);
-  transform: translate(calc(-50% - 64px), -35%) rotateY(180deg);
+  transform: translate(calc(-50% - 64px), calc(-35% - 16px)) rotateY(180deg);
   color: #7BE495;
   text-align: left;
   font-size: 0.9rem;
@@ -1964,16 +1964,27 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     opacity: 1 !important;
     left: 50% !important;
     transform: translate(-50%, -50%) rotateY(180deg) !important;
-    text-align: center !important;
-    padding: 0 20px !important;
+    text-align: left !important;
+    padding: 0 48px !important;
   }
   
   .back-text-overlay h3 {
-    margin-bottom: 20px !important;
+    margin-bottom: 24px !important;
+    font-size: 1.5rem !important;
   }
   
   .back-text-overlay p {
     line-height: 2 !important;
+    font-size: 1.1rem !important;
+  }
+
+  .back-text-overlay p br + br {
+    display: none !important;
+  }
+
+  .back-text-overlay p br:last-of-type {
+    margin-bottom: 32px !important;
+    display: block !important;
   }
 }
 </style>
