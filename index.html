@@ -1460,14 +1460,22 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
 @media (max-width: 768px) {
+  .mobile-ui-position-adjustment {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+  
   .mobile-ui-position-adjustment .mobile-system-box {
     background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
     border-radius: 22px !important;
     box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
-    padding: 26px !important; /* slightly increased padding */
-    padding-bottom: 12px !important; /* 모바일에서만 하단 패딩 줄임 */
+    padding: 20px !important;
+    padding-bottom: 12px !important;
     margin-bottom: 0px !important;
     border: 1px solid #62D2A2;
+    width: 100% !important;
   }
   .mobile-ui-position-adjustment .mobile-system-box--merged {
     margin-top: 0 !important;
