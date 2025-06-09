@@ -4008,3 +4008,22 @@ display: block !important;
 }
 }
 </style>
+<script>
+// 모바일 환경에서만 작동하는 카드 뒤집기 스크립트
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    const flipButton = document.querySelector('.neos-category-tags');
+    const flipper = document.querySelector('.flipper');
+    
+    if (flipButton && flipper) {
+      let isFlipped = false;
+      
+      flipButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        isFlipped = !isFlipped;
+        flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+      });
+    }
+  }
+});
+</script>
