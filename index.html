@@ -4119,3 +4119,64 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<style>
+@media (max-width: 768px) {
+  /* 원형 UI 요소 모바일 스타일 */
+  .circular-flow-container {
+    width: 340px !important;
+    height: 340px !important;
+    margin: 32px auto !important;
+  }
+
+  .circle-step {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .circle-step img {
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .circle-step-number {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 0.62rem !important;
+    background: #0A0F0D !important;
+    border: 1.5px solid #7BE495 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: -8px !important;
+  }
+
+  .circle-step div[style*="font-weight: bold"] {
+    font-size: 0.62rem !important;
+    margin-bottom: 1px !important;
+  }
+
+  .circle-step div[style*="font-size: 0.75rem"] {
+    font-size: 0.56rem !important;
+  }
+
+  /* SVG 원형 라인 크기 조정 */
+  .circle-lines {
+    width: 340px !important;
+    height: 340px !important;
+  }
+
+  /* 메뉴 레이아웃 모바일 스타일 */
+  .neos-card-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+
+  .neos-card {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+}
+</style>
