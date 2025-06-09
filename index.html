@@ -1826,6 +1826,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform-style: flat !important;
     position: relative !important;
     isolation: isolate !important;
+    cursor: pointer !important;
   }
   
   .flipper {
@@ -1837,7 +1838,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform-origin: center center !important;
   }
   
-  .flip-container:hover .flipper {
+  .flip-container.is-flipped .flipper {
     transform: rotateY(180deg) scale(1) !important;
   }
 
@@ -4008,3 +4009,80 @@ display: block !important;
 }
 }
 </style>
+<style>
+/* 모바일 환경에서 카드 뒤집기를 위한 클래스 추가 */
+@media (max-width: 768px) {
+  .flip-container.is-flipped .flipper {
+    transform: rotateY(180deg) scale(1) !important;
+  }
+
+  .flip-container {
+    transform: scale(0.45) !important;
+    transform-origin: center !important;
+    perspective: 1000px !important;
+    transform-style: flat !important;
+    position: relative !important;
+    isolation: isolate !important;
+  }
+  
+  .flipper {
+    transform-style: preserve-3d !important;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform-origin: center center !important;
+  }
+
+  .front, .back {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform-origin: center center !important;
+  }
+
+  .front {
+    transform: rotateY(0) !important;
+    opacity: 1 !important;
+    z-index: 2 !important;
+  }
+
+  .back {
+    transform: rotateY(180deg) !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+  }
+
+  .neos-wrapper {
+    transform-style: flat !important;
+    position: relative !important;
+    isolation: isolate !important;
+  }
+}
+</style>
+
+<script>
+// 모바일 환경에서만 작동하는 카드 뒤집기 스크립트
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth <= 768) {
+    const flipButton = document.querySelector('.neos-category-tags');
+    const flipContainer = document.querySelector('.flip-container');
+    
+    if (flipButton && flipContainer) {
+      flipButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        flipContainer.classList.toggle('is-flipped');
+        
+        // 버튼 텍스트 변경
+        const buttonText = flipButton.querySelector('span');
+        if (buttonText) {
+          buttonText.textContent = flipContainer.classList.contains('is-flipped') ? 
+            '앞면 보기' : '뒷면 보기';
+        }
+      });
+    }
+  }
+});
+</script>
