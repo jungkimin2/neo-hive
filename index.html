@@ -2115,36 +2115,29 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 
   .circle-step {
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 12px 8px !important;
-    align-items: center !important;
-    position: relative !important;
+    display: grid !important;
+    grid-template-rows: auto 1fr auto !important;
+    padding: 16px 8px !important;
+    align-items: start !important;
   }
 
   .circle-step-number {
     position: absolute !important;
-    top: -24px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    top: 8px !important;
+    left: 8px !important;
     font-size: 0.9rem !important;
     margin: 0 !important;
-    background: rgba(10, 15, 13, 0.8) !important;
-    padding: 2px 8px !important;
-    border-radius: 12px !important;
   }
 
   .circle-step img {
-    position: absolute !important;
-    top: -32px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
     width: 28px !important;
     height: 28px !important;
-    margin: 0 !important;
+    margin: 0 auto 8px !important;
+    grid-row: 1 !important;
   }
 
   .circle-step > div:nth-of-type(2) {
+    grid-row: 2 !important;
     font-size: 0.85rem !important;
     margin: 4px 0 !important;
     text-align: center !important;
@@ -2152,10 +2145,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 
   .circle-step > div:nth-of-type(3) {
+    grid-row: 3 !important;
     font-size: 0.75rem !important;
     text-align: center !important;
     width: 100% !important;
-    margin-top: 4px !important;
+    margin-top: auto !important;
   }
 }
 </style>
