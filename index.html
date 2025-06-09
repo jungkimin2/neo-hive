@@ -2423,23 +2423,24 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .circle-step {
     width: 70px;
     height: 70px;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
+    position: relative !important;
+  }
+  .circle-step > div:not(.circle-step-number) {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    text-align: center !important;
   }
   .circle-step > div[style*="font-weight: bold; color: #fff"] {
     font-size: 0.58rem !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-    width: 100% !important;
+    margin-top: -6px !important;
   }
   .circle-step > div[style*="color: #ccc"] {
     font-size: 0.52rem !important;
     line-height: 1.2 !important;
-    margin: 2px auto 0 !important;
-    text-align: center !important;
-    width: 100% !important;
+    margin-top: 12px !important;
   }
   .circle-step > div[style*="font-size: 1.7rem"] {
     font-size: 1.1rem !important;
