@@ -1826,7 +1826,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform-style: flat !important;
     position: relative !important;
     isolation: isolate !important;
-    cursor: pointer !important;
   }
   
   .flipper {
@@ -1838,7 +1837,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform-origin: center center !important;
   }
   
-  .flip-container.is-flipped .flipper {
+  .flip-container:hover .flipper {
     transform: rotateY(180deg) scale(1) !important;
   }
 
