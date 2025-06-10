@@ -2197,7 +2197,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             <div style="background: linear-gradient(135deg, #0F1F1A 0%, #0A0F0D 100%); padding: 32px;">
               <h3 style="color: #7BE495; font-size: 1.6rem; font-weight: bold; margin-bottom: 24px; text-align: center; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6);">📢 피트니스 시장의 생존 전략</h3>
               <p style="color: #ccc; font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
-                외산 머신 + 월 2만 원 경쟁에서 벗어나 <span style="color: #7BE495; font-weight: bold;">디지털 혁신</span>으로 전환하세요!
+                <span class="mobile-break">외산 머신 + 월 2만 원 경쟁에서 벗어나
+<span style="color: #7BE495; font-weight: bold;">디지털 혁신</span>으로 전환하세요!</span><span class="desktop-inline">외산 머신 + 월 2만 원 경쟁에서 벗어나 <span style="color: #7BE495; font-weight: bold;">디지털 혁신</span>으로 전환하세요!</span>
               </p>
               <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
                 현재 헬스장 시장은 <span style="color: #7BE495;">비정상적인 가격 경쟁</span>으로 인해 지속 가능한 수익 모델 구축이 어려운 상황입니다.<br><br>
@@ -2230,7 +2231,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
                 <div style="margin: 32px 0 -48px; background: #0F1A1C; border-radius: 12px; border: 1px solid #7BE495; box-shadow: 0 0 16px rgba(123, 228, 149, 0.1); padding: 20px 24px;">
                   <h4 style="color: #7BE495; font-size: 1.2rem; font-weight: bold; margin-bottom: 12px;">월 2만 원 헬스장의 한계:</h4>
                   <ul style="list-style: none; padding-left: 0; color: #ccc; font-size: 0.95rem; line-height: 1.6;">
-                    <li>• 단기 회원 유치에는 성공하나, <span style="color: #7BE495;">지속 가능한 구조 아님</span></li>
+                    <li><span class="mobile-break">• 단기 회원 유치에는 성공하나, 
+<span style="color: #7BE495;">지속 가능한 구조 아님</span></span><span class="desktop-inline">• 단기 회원 유치에는 성공하나, <span style="color: #7BE495;">지속 가능한 구조 아님</span></span></li>
                     <li>• 인건비·운영비 부담 증가로 수익성 악화</li>
                     <li>• 브랜드 차별화 부족 → 회원 이탈 증가</li>
                   </ul>
@@ -4072,7 +4074,18 @@ h3 {
 .swiper-slide-prev {
   -webkit-transform: translate3d(0,0,0) !important;
   transform: translate3d(0,0,0) !important;
+  }
 }
+
+/* 데스크톱에서는 desktop-inline 보이고 mobile-break 숨김 */
+@media (min-width: 769px) {
+  .mobile-break {
+    display: none !important;
+  }
+  
+  .desktop-inline {
+    display: inline !important;
+  }
 }
 </style>
 <style>
@@ -4217,6 +4230,22 @@ document.addEventListener('DOMContentLoaded', function() {
   /* 전체 컨테이너 패딩 조정 */
   div[style*="background: linear-gradient(135deg, #0F1F1A"] {
     padding: 20px 16px !important;
+  }
+  
+  /* 모바일에서는 mobile-break 보이고 desktop-inline 숨김 */
+  .mobile-break {
+    display: inline !important;
+    white-space: pre-line !important;
+  }
+  
+  .desktop-inline {
+    display: none !important;
+  }
+  
+  /* 표 하단 구분선 추가 */
+  table tbody tr:last-child td {
+    border-bottom: 1px solid #333 !important;
+    padding-bottom: 10px !important;
   }
 }
 </style>
