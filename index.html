@@ -4491,39 +4491,69 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 56px !important;
   }
   
-  /* 모바일에서 로고 위치 정확히 수정 */
-  @media (max-width: 768px) {
-    .logo-container {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      margin: 0 !important;
-      padding: 8px 16px !important;
-      margin-left: 0 !important;
-    }
-    
-    .logo-container a {
-      display: block !important;
-    }
-    
-    .logo-container img {
-      height: 26px !important;
-      margin-right: 0 !important;
-    }
-    
-    /* 헤더 컨테이너 정렬 */
-    header .container {
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      max-width: 100% !important;
-    }
-    
-         /* 모바일 네비게이션 위치 조정 */
+     /* 모바일에서 로고 위치 정확히 수정 */
+   @media (max-width: 768px) {
+     /* 헤더 전체 높이 조정 */
+     header {
+       height: 64px !important;
+       display: flex !important;
+       align-items: center !important;
+     }
+     
+     .logo-container {
+       display: flex !important;
+       align-items: center !important;
+       justify-content: flex-start !important;
+       margin: 0 !important;
+       padding: 12px 20px !important;
+       margin-left: 0 !important;
+       height: 100% !important;
+     }
+     
+     .logo-container a {
+       display: block !important;
+     }
+     
+     .logo-container img {
+       height: 28px !important;
+       margin-right: 0 !important;
+     }
+     
+     /* 헤더 컨테이너 정렬 */
+     header .container {
+       display: flex !important;
+       justify-content: space-between !important;
+       align-items: center !important;
+       padding: 0 !important;
+       margin: 0 !important;
+       max-width: 100% !important;
+       height: 100% !important;
+     }
+     
+     /* 햄버거 메뉴 버튼 정렬 */
+     #mobile-nav-toggle {
+       margin-right: 20px !important;
+       height: 40px !important;
+       width: 40px !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+     }
+     
+     /* 모바일 네비게이션 위치 및 여백 조정 */
      #mobile-nav {
-       top: 59px !important;
+       top: 67px !important;
+     }
+     
+     #mobile-nav a {
+       padding: 16px 24px !important;
+       font-size: 1.1rem !important;
+       line-height: 1.4 !important;
+     }
+     
+     /* body 패딩 조정 */
+     body {
+       padding-top: 64px !important;
      }
      
      /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) */
