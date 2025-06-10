@@ -4521,9 +4521,37 @@ document.addEventListener('DOMContentLoaded', function() {
       max-width: 100% !important;
     }
     
-    /* 모바일 네비게이션 위치 조정 */
-    #mobile-nav {
-      top: 59px !important;
-    }
-  }
+         /* 모바일 네비게이션 위치 조정 */
+     #mobile-nav {
+       top: 59px !important;
+     }
+     
+     /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) */
+     p[style*="김포 바키짐 1년 회원권"] {
+       font-size: 0.7rem !important;
+     }
+     
+     p[style*="타센터 1년 회원권 평균 단가"] {
+       font-size: 0.7rem !important;
+     }
+     
+     /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
+     #benefits {
+       margin-top: -80px !important;
+     }
+     
+     #benefits .container {
+       padding-top: 40px !important;
+     }
+     
+     #benefits h2 {
+       font-size: 1.6rem !important;
+       margin-bottom: 20px !important;
+     }
+     
+     #benefits .container > div:first-of-type {
+       font-size: 0.95rem !important;
+       margin-bottom: 32px !important;
+     }
+   }
   </style>
