@@ -4474,7 +4474,7 @@ document.addEventListener('DOMContentLoaded', function() {
    }
   }
   
-  /* 네비게이션 바 스크롤시 고정 */
+  /* 네비게이션 바 스크롤시 고정 - PC용 */
   header {
     position: fixed !important;
     top: 3px !important;
@@ -4487,14 +4487,14 @@ document.addEventListener('DOMContentLoaded', function() {
     border-bottom: 1px solid rgba(123, 228, 149, 0.2) !important;
   }
   
-  /* 헤더 고정으로 인한 콘텐츠 여백 추가 */
+  /* 헤더 고정으로 인한 콘텐츠 여백 추가 - PC용 */
   body {
     padding-top: 56px !important;
   }
   
      /* 모바일에서 로고 위치 정확히 수정 */
    @media (max-width: 768px) {
-     /* 헤더 전체 높이 조정 - 더 컴팩트하게 */
+     /* 헤더 전체 높이 조정 - 더 컴팩트하게 + 스크롤 고정 */
      header {
        height: 48px !important;
        display: flex !important;
@@ -4502,6 +4502,12 @@ document.addEventListener('DOMContentLoaded', function() {
        background: #000000 !important;
        backdrop-filter: none !important;
        border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
+       position: fixed !important;
+       top: 3px !important;
+       left: 0 !important;
+       width: 100% !important;
+       z-index: 1000 !important;
+       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
      }
      
      .logo-container {
@@ -4509,10 +4515,10 @@ document.addEventListener('DOMContentLoaded', function() {
        align-items: flex-end !important;
        justify-content: flex-start !important;
        margin: 0 !important;
-       padding: 4px 16px 8px 16px !important;
+       padding: 4px 16px 12px 16px !important;
        margin-left: 0 !important;
        height: 100% !important;
-       transform: translateY(8px) !important;
+       transform: translateY(12px) !important;
      }
      
      .logo-container a {
