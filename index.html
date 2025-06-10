@@ -4505,13 +4505,13 @@ document.addEventListener('DOMContentLoaded', function() {
      
      .logo-container {
        display: flex !important;
-       align-items: center !important;
+       align-items: flex-end !important;
        justify-content: flex-start !important;
        margin: 0 !important;
-       padding: 6px 16px !important;
+       padding: 4px 16px 8px 16px !important;
        margin-left: 0 !important;
        height: 100% !important;
-       transform: translateY(2px) !important;
+       transform: translateY(6px) !important;
      }
      
      .logo-container a {
@@ -4532,16 +4532,21 @@ document.addEventListener('DOMContentLoaded', function() {
        margin: 0 !important;
        max-width: 100% !important;
        height: 100% !important;
+       width: 100% !important;
      }
      
-     /* 햄버거 메뉴 버튼 정렬 */
+     /* 햄버거 메뉴 버튼 정렬 - 우측 끝으로 */
      #mobile-nav-toggle {
-       margin-right: 16px !important;
+       margin-right: 8px !important;
        height: 36px !important;
        width: 36px !important;
        display: flex !important;
        align-items: center !important;
        justify-content: center !important;
+       position: absolute !important;
+       right: 0 !important;
+       top: 50% !important;
+       transform: translateY(-50%) !important;
      }
      
      /* 모바일 네비게이션 위치 및 여백 조정 */
