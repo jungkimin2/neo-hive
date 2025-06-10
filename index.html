@@ -2196,10 +2196,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 0 30px rgba(123, 228, 149, 0.1);">
             <div style="background: linear-gradient(135deg, #0F1F1A 0%, #0A0F0D 100%); padding: 32px;">
               <h3 style="color: #7BE495; font-size: 1.6rem; font-weight: bold; margin-bottom: 24px; text-align: center; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6);">📢 피트니스 시장의 생존 전략</h3>
-              <p style="color: #ccc; font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
-                <span class="mobile-break">외산 머신 + 월 2만 원 경쟁에서 벗어나
+                              <p style="color: #ccc; font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">
+                  <span class="mobile-break">외산 머신 + 월 2만 원 경쟁에서 벗어나
 <span style="color: #7BE495; font-weight: bold;">디지털 혁신</span>으로 전환하세요!</span><span class="desktop-inline">외산 머신 + 월 2만 원 경쟁에서 벗어나 <span style="color: #7BE495; font-weight: bold;">디지털 혁신</span>으로 전환하세요!</span>
-              </p>
+                </p>
               <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
                 현재 헬스장 시장은 <span style="color: #7BE495;">비정상적인 가격 경쟁</span>으로 인해 지속 가능한 수익 모델 구축이 어려운 상황입니다.<br><br>
                 <strong style="color: #fff;">과거 평균 회원권 가격:</strong><br>
@@ -4294,6 +4294,74 @@ document.addEventListener('DOMContentLoaded', function() {
   ul[style*="list-style: none; padding-left: 0; color: #ccc"] {
     font-size: 0.8rem !important;
     line-height: 1.4 !important;
+  }
+  
+  /* 피트니스 시장의 생존 전략 섹션 전체 최적화 */
+  h3[style*="피트니스 시장의 생존 전략"] {
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+  }
+  
+  /* 메인 문구들 크기 조정 */
+  p[style*="외산 머신"] {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 16px !important;
+    text-align: center !important;
+  }
+  
+  p[style*="현재 헬스장 시장은"] {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+  }
+  
+  /* 표 크기 및 레이아웃 조정 */
+  table {
+    font-size: 0.7rem !important;
+    margin: 12px auto !important;
+    max-width: 100% !important;
+  }
+  
+  table th {
+    padding: 8px 4px !important;
+    font-size: 0.68rem !important;
+    text-align: center !important;
+  }
+  
+  table td {
+    padding: 8px 4px !important;
+    font-size: 0.65rem !important;
+    text-align: center !important;
+  }
+  
+  /* 월 2만 원 한계 박스 최적화 */
+  div[style*="월 2만 원 헬스장의 한계"] {
+    margin: 20px 0 -32px !important;
+    padding: 16px !important;
+    border-radius: 8px !important;
+  }
+  
+  div[style*="월 2만 원 헬스장의 한계"] h4 {
+    font-size: 1rem !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+  }
+  
+  div[style*="월 2만 원 헬스장의 한계"] ul {
+    font-size: 0.75rem !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+  }
+  
+  div[style*="월 2만 원 헬스장의 한계"] li {
+    margin-bottom: 8px !important;
+  }
+  
+  /* 전체 컨테이너 패딩 조정 */
+  div[style*="background: linear-gradient(135deg, #0F1F1A"] {
+    padding: 20px 16px !important;
   }
 }
 </style>
