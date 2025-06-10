@@ -4556,32 +4556,50 @@ document.addEventListener('DOMContentLoaded', function() {
        padding-top: 64px !important;
      }
      
-     /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) */
-     p[style*="김포 바키짐 1년 회원권"] {
-       font-size: 0.7rem !important;
+     /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) - 더 구체적인 선택자 */
+     div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] {
+       font-size: 0.65rem !important;
      }
      
-     p[style*="타센터 1년 회원권 평균 단가"] {
-       font-size: 0.7rem !important;
+     div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] {
+       font-size: 0.65rem !important;
+     }
+     
+     /* 모든 회원권 관련 텍스트 선택자 강화 */
+     p[style*="color: #7BE495"][style*="font-weight: bold"] {
+       font-size: 0.65rem !important;
      }
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
-     #benefits {
-       margin-top: -80px !important;
+     section#benefits {
+       margin-top: -100px !important;
+       position: relative !important;
+       z-index: 10 !important;
      }
      
-     #benefits .container {
-       padding-top: 40px !important;
+     section#benefits .container {
+       padding-top: 60px !important;
+       background: #000 !important;
      }
      
-     #benefits h2 {
-       font-size: 1.6rem !important;
-       margin-bottom: 20px !important;
+     section#benefits h2 {
+       font-size: 1.5rem !important;
+       margin-bottom: 16px !important;
      }
      
-     #benefits .container > div:first-of-type {
-       font-size: 0.95rem !important;
-       margin-bottom: 32px !important;
+     section#benefits .container > div:first-of-type {
+       font-size: 0.9rem !important;
+       margin-bottom: 28px !important;
+       line-height: 1.5 !important;
+     }
+     
+     /* 이전 섹션과의 간격 조정 */
+     section[id="benefits"]:before {
+       content: "" !important;
+       display: block !important;
+       height: 40px !important;
+       background: #000 !important;
+       margin-top: -40px !important;
      }
    }
   </style>
