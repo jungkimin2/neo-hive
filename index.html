@@ -4460,5 +4460,16 @@ document.addEventListener('DOMContentLoaded', function() {
    table tbody tr:first-child td {
      padding-top: 12px !important;
    }
+   
+   /* 모바일에서 NEO HIVE/SMART 제목 줄바꿈 */
+   h4[style*="NEO HIVE 도입 시"] span:first-child::after {
+     content: "\A" !important;
+     white-space: pre !important;
+   }
+   
+   h4[style*="NEO SMART 도입 시"] span:first-child::after {
+     content: "\A" !important;
+     white-space: pre !important;
+   }
   }
   </style>
