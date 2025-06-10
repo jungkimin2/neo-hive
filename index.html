@@ -4106,3 +4106,56 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<style>
+@media (max-width: 768px) {
+  /* 메뉴 카드 레이아웃 개선 */
+  .neos-card-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    margin: 16px 4px 16px 0 !important;
+    max-width: 90% !important;
+    transform: translateX(-25px) !important;
+  }
+
+  /* 네오핏 로고 크기 및 정렬 조정 */
+  .neos-icon img[src*="neo95.png"] {
+    width: 38px !important;
+    height: 38px !important;
+    margin: -2px 0 0 -2px !important;
+  }
+
+  /* 카드 내부 정렬 개선 */
+  .neos-card {
+    width: 100% !important;
+    min-width: unset !important;
+    background: linear-gradient(135deg, rgba(123,228,149,0.1), rgba(62,200,168,0.08)) !important;
+    border: 1px solid rgba(123,228,149,0.3) !important;
+    border-radius: 12px !important;
+    padding: 8px 12px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  .neos-icon {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    margin-right: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .neos-text {
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    flex: 1 !important;
+  }
+}
+</style>
