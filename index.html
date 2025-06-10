@@ -4472,4 +4472,58 @@ document.addEventListener('DOMContentLoaded', function() {
      white-space: pre !important;
    }
   }
+  
+  /* 네비게이션 바 스크롤시 고정 */
+  header {
+    position: fixed !important;
+    top: 3px !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: rgba(17, 17, 17, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: 1000 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(123, 228, 149, 0.2) !important;
+  }
+  
+  /* 헤더 고정으로 인한 콘텐츠 여백 추가 */
+  body {
+    padding-top: 56px !important;
+  }
+  
+  /* 모바일에서 로고 위치 정확히 수정 */
+  @media (max-width: 768px) {
+    .logo-container {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      padding: 8px 16px !important;
+      margin-left: 0 !important;
+    }
+    
+    .logo-container a {
+      display: block !important;
+    }
+    
+    .logo-container img {
+      height: 26px !important;
+      margin-right: 0 !important;
+    }
+    
+    /* 헤더 컨테이너 정렬 */
+    header .container {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+    
+    /* 모바일 네비게이션 위치 조정 */
+    #mobile-nav {
+      top: 59px !important;
+    }
+  }
   </style>
