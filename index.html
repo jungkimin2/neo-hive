@@ -4164,17 +4164,23 @@ document.addEventListener('DOMContentLoaded', function() {
     line-height: 1.5 !important;
   }
   
-  /* 각 운동 기구 관련 텍스트 크기 조정 */
-  div[style*="flex: 1 1 48%"] p {
+  /* 각 운동 기구 관련 텍스트 크기 조정 - 더 구체적인 선택자 */
+  p[style*="color: #62D2A2"][style*="font-size: 1rem"] {
     font-size: 0.54rem !important;
     line-height: 1.15 !important;
   }
   
-  div[style*="flex: 1 1 48%"] p img {
+  p[style*="color: #62D2A2"] img[src*="neo35.png"] {
     width: 22px !important;
     height: 22px !important;
     margin-right: 8px !important;
     margin-left: -16px !important;
+  }
+  
+  /* 백업 선택자 - 위의 선택자가 작동하지 않을 경우 */
+  div[style*="설치 한 번으로"] + div p {
+    font-size: 0.54rem !important;
+    line-height: 1.15 !important;
   }
   
   ul {
