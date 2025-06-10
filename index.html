@@ -2186,7 +2186,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <!-- 네오 스마트 + 네오 하이브 도입 효과 시각화 블록 -->
       <!-- <div id="impact"></div> -->
       <div id="impact" class="animate-on-scroll">
-        <h2 style="font-size: 1.75rem; font-weight: bold; text-align: left; margin-top: 80px; margin-bottom: 12px; color: #FFFFFF;">
+        <h2 style="font-size: 1.75rem; font-weight: bold; text-align: left !important; margin-top: 80px; margin-bottom: 12px; color: #FFFFFF; margin-left: 0 !important; padding-left: 0 !important;">
           헬스장 운영의 패러다임 전환
         </h2>
         <p style="color: #ccc; font-size: 1rem; line-height: 1.6; text-align: left; margin-top: -4px;">
@@ -4248,9 +4248,17 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-bottom: 10px !important;
   }
   
-  /* 헬스장 운영의 패러다임 전환 문구 좌측 정렬 */
-  h2[style*="헬스장 운영의 패러다임 전환"] {
+  /* 헬스장 운영의 패러다임 전환 문구 좌측 정렬 - 최고 우선순위 */
+  body div#impact h2,
+  body #impact h2,
+  body .animate-on-scroll h2,
+  body h2[style*="font-size: 1.75rem"],
+  body h2[style*="헬스장 운영의 패러다임 전환"] {
     text-align: left !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    justify-self: start !important;
+    align-self: start !important;
   }
   
   /* NEO HIVE 도입 시 매출 상승 효과 섹션 최적화 */
