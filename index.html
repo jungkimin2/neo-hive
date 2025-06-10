@@ -4189,7 +4189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 12px !important;
     margin: 16px 4px 16px 0 !important;
     max-width: 90% !important;
-    transform: translateX(-27px) !important;
+    transform: translateX(-25px) !important;
   }
 
   /* 네오핏 로고 크기 및 정렬 조정 */
@@ -4238,6 +4238,21 @@ document.addEventListener('DOMContentLoaded', function() {
     margin: 32px auto !important;
     left: 0 !important;
     right: 0 !important;
+    height: 380px !important;
+  }
+  
+  /* 상단 원들 위치 조정 */
+  .circle-step:nth-child(1),
+  .circle-step:nth-child(2),
+  .circle-step:nth-child(6) {
+    margin-top: -15px !important;
+  }
+  
+  /* 하단 원들 위치 조정 */
+  .circle-step:nth-child(3),
+  .circle-step:nth-child(4),
+  .circle-step:nth-child(5) {
+    margin-top: 15px !important;
   }
 }
 </style>
