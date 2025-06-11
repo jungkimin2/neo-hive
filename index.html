@@ -4579,9 +4579,8 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* body 패딩 조정 - 모바일 고정 헤더용 */
      html body {
-       padding-top: 48px !important;
+       padding-top: 51px !important;
        margin-top: 0 !important;
-       overflow-x: clip !important; /* 가로 스크롤 방지 최종 적용 */
      }
      
      /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) - 더 구체적인 선택자 */
@@ -4649,7 +4648,7 @@ document.addEventListener('DOMContentLoaded', function() {
      body > header,
      html body > header {
        position: fixed !important;
-       top: 0 !important;
+       top: 3px !important;
        left: 0 !important;
        right: 0 !important;
        width: 100% !important;
@@ -4660,11 +4659,6 @@ document.addEventListener('DOMContentLoaded', function() {
        border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
        transform: translate3d(0, 0, 0) !important;
        backface-visibility: hidden !important;
-     }
-
-     body {
-       padding-top: 48px !important;
-       overflow-x: clip !important; /* body 스크롤 문제 해결 */
      }
    }
   </style>
