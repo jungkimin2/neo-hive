@@ -2704,11 +2704,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       const topObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              // 페이지 상단에 있을 때 - 항상 네비게이션 표시
-              mobileNavContainer.style.transform = 'translateY(0)';
-              mobileNavContainer.classList.remove('nav-hidden');
-            }
+            // 항상 네비게이션 표시 - 스크롤 위치와 관계없이 고정
+            mobileNavContainer.style.transform = 'translateY(0)';
+            mobileNavContainer.classList.remove('nav-hidden');
           });
         },
         {
@@ -2718,35 +2716,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       
       topObserver.observe(topSentinel);
       
-      // 스크롤 이벤트 처리
+      // 스크롤 이벤트 처리 - 항상 네비게이션 고정
       function updateNavigation() {
-        const currentScrollY = window.scrollY;
-        
-        // 페이지 상단(50px 이내)에 있으면 항상 표시
-        if (currentScrollY <= 50) {
-          mobileNavContainer.style.transform = 'translateY(0)';
-          mobileNavContainer.classList.remove('nav-hidden');
-          return;
-        }
-        
-        // 스크롤 방향 감지
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          // 아래로 스크롤 - 네비게이션 숨김
-          if (!isScrollingDown) {
-            mobileNavContainer.style.transform = 'translateY(-100%)';
-            mobileNavContainer.classList.add('nav-hidden');
-            isScrollingDown = true;
-          }
-        } else {
-          // 위로 스크롤 - 네비게이션 표시
-          if (isScrollingDown) {
-            mobileNavContainer.style.transform = 'translateY(0)';
-            mobileNavContainer.classList.remove('nav-hidden');
-            isScrollingDown = false;
-          }
-        }
-        
-        lastScrollY = currentScrollY;
+        // 네비게이션을 항상 표시 상태로 고정
+        mobileNavContainer.style.transform = 'translateY(0)';
+        mobileNavContainer.classList.remove('nav-hidden');
         ticking = false;
       }
       
@@ -4748,11 +4722,15 @@ document.addEventListener('DOMContentLoaded', function() {
        background: #000000 !important;
        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
        transform: translateY(0) !important;
+       visibility: visible !important;
+       opacity: 1 !important;
      }
      
-     /* 스크롤시 숨김 상태 */
+     /* 스크롤시 숨김 상태 - 항상 표시되도록 오버라이드 */
      .mobile-nav-container.nav-hidden {
-       transform: translateY(-100%) !important;
+       transform: translateY(0) !important;
+       visibility: visible !important;
+       opacity: 1 !important;
      }
      
      /* Green bar */
