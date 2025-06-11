@@ -1133,16 +1133,50 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <body>
 
 <!-- 모바일 전용 간단한 고정 네비게이션 -->
-<div id="simple-mobile-nav">
-  <div class="nav-bar">
-    <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
-    <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
+<!-- 모바일 전용 하단 고정 네비게이션 -->
+<div id="mobile-bottom-nav">
+  <div class="bottom-nav-container">
+    <a href="#hive" class="nav-item">
+      <div class="nav-icon">🏠</div>
+      <span class="nav-label">하이브</span>
+    </a>
+    <a href="#smart" class="nav-item">
+      <div class="nav-icon">⚡</div>
+      <span class="nav-label">스마트</span>
+    </a>
+    <a href="#impact" class="nav-item">
+      <div class="nav-icon">📊</div>
+      <span class="nav-label">효과</span>
+    </a>
+    <a href="#formModal" onclick="openForm()" class="nav-item">
+      <div class="nav-icon">📝</div>
+      <span class="nav-label">신청</span>
+    </a>
   </div>
-  <div class="nav-menu" id="nav-menu" style="display: none;">
-    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
-    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
-    <a href="#impact" onclick="closeNav()">도입 효과</a>
-    <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
+</div>
+
+<!-- 플로팅 메뉴 버튼 (대안) -->
+<div id="mobile-floating-menu">
+  <button class="floating-btn" onclick="toggleFloatingMenu()">
+    <span class="floating-icon">☰</span>
+  </button>
+  <div id="floating-menu-items" class="floating-menu-items">
+    <a href="#hive" class="floating-item" onclick="closeFloatingMenu()">
+      <span class="floating-item-icon">🏠</span>
+      <span class="floating-item-text">하이브</span>
+    </a>
+    <a href="#smart" class="floating-item" onclick="closeFloatingMenu()">
+      <span class="floating-item-icon">⚡</span>
+      <span class="floating-item-text">스마트</span>
+    </a>
+    <a href="#impact" class="floating-item" onclick="closeFloatingMenu()">
+      <span class="floating-item-icon">📊</span>
+      <span class="floating-item-text">효과</span>
+    </a>
+    <a href="#formModal" onclick="openForm(); closeFloatingMenu()" class="floating-item">
+      <span class="floating-item-icon">📝</span>
+      <span class="floating-item-text">신청</span>
+    </a>
   </div>
 </div>
 
@@ -2673,25 +2707,59 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   });
   
-  // 간단한 모바일 네비게이션 함수들
-  function toggleNav() {
-    const menu = document.getElementById('nav-menu');
+  // 모바일 플로팅 네비게이션 함수들
+  function toggleFloatingMenu() {
+    const menu = document.getElementById('floating-menu-items');
     if (menu) {
-      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+      } else {
+        menu.classList.add('show');
+      }
     }
   }
   
-  function closeNav() {
-    const menu = document.getElementById('nav-menu');
+  function closeFloatingMenu() {
+    const menu = document.getElementById('floating-menu-items');
     if (menu) {
-      menu.style.display = 'none';
+      menu.classList.remove('show');
     }
   }
   
-  // ESC 키로 메뉴 닫기
+  // 하단 네비게이션과 플로팅 메뉴 중 선택
+  function switchToFloatingNav() {
+    const bottomNav = document.getElementById('mobile-bottom-nav');
+    const floatingNav = document.getElementById('mobile-floating-menu');
+    
+    if (bottomNav && floatingNav) {
+      bottomNav.style.display = 'none';
+      floatingNav.style.display = 'block';
+    }
+  }
+  
+  function switchToBottomNav() {
+    const bottomNav = document.getElementById('mobile-bottom-nav');
+    const floatingNav = document.getElementById('mobile-floating-menu');
+    
+    if (bottomNav && floatingNav) {
+      bottomNav.style.display = 'block';
+      floatingNav.style.display = 'none';
+    }
+  }
+  
+  // ESC 키로 플로팅 메뉴 닫기
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      closeNav();
+      closeFloatingMenu();
+    }
+  });
+  
+  // 외부 클릭으로 플로팅 메뉴 닫기
+  document.addEventListener('click', function(e) {
+    const floatingNav = document.getElementById('mobile-floating-menu');
+    const menu = document.getElementById('floating-menu-items');
+    if (floatingNav && menu && !floatingNav.contains(e.target) && menu.classList.contains('show')) {
+      closeFloatingMenu();
     }
   });
 
@@ -4670,82 +4738,161 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-   /* 모바일 전용 간단한 고정 네비게이션 */
-   #simple-mobile-nav {
-     display: none;
-   }
-   
-   @media screen and (max-width: 768px) {
-     /* 기존 네비게이션 숨김 */
-     #nav-container {
-       display: none !important;
-     }
-     
-     /* 새로운 간단한 모바일 네비게이션 */
-     #simple-mobile-nav {
-       display: block !important;
-       position: fixed !important;
-       top: 0 !important;
-       left: 0 !important;
-       right: 0 !important;
-       z-index: 999999 !important;
-       background: #000 !important;
-       border-bottom: 2px solid #7BE495 !important;
-     }
-     
-     .nav-bar {
-       display: flex !important;
-       justify-content: space-between !important;
-       align-items: center !important;
-       padding: 8px 16px !important;
-       height: 50px !important;
-       background: #000 !important;
-     }
-     
-     .nav-logo {
-       height: 30px !important;
-     }
-     
-     .nav-menu-btn {
-       background: none !important;
-       border: none !important;
-       color: #7BE495 !important;
-       font-size: 1.5rem !important;
-       cursor: pointer !important;
-       padding: 5px !important;
-     }
-     
-     .nav-menu {
-       position: fixed !important;
-       top: 60px !important;
-       left: 0 !important;
-       right: 0 !important;
-       background: #111 !important;
-       z-index: 999998 !important;
-       box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
-     }
-     
-     .nav-menu a {
-       display: block !important;
-       padding: 15px 20px !important;
-       color: #7BE495 !important;
-       text-decoration: none !important;
-       border-bottom: 1px solid #333 !important;
-       font-size: 1rem !important;
-     }
-     
-     .nav-menu a:hover {
-       background: #222 !important;
-     }
-     
-     /* Body padding 설정 */
-     body {
-       padding-top: 60px !important;
-     }
-     
-     /* 첫 번째 섹션 상단 여백 조정 */
-     #hive.section {
-       padding-top: 20px !important;
-     }
-   }
+       /* 모바일 전용 플로팅 네비게이션 */
+    #mobile-bottom-nav, #mobile-floating-menu {
+      display: none;
+    }
+    
+    @media screen and (max-width: 768px) {
+      /* 기존 네비게이션 완전 숨김 */
+      #nav-container, #simple-mobile-nav {
+        display: none !important;
+      }
+      
+      /* 하단 고정 네비게이션 바 */
+      #mobile-bottom-nav {
+        display: block !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999999 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(15px) !important;
+        border-top: 2px solid #7BE495 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+      }
+      
+      .bottom-nav-container {
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        padding: 8px 0 !important;
+        max-width: 100% !important;
+      }
+      
+      .nav-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-decoration: none !important;
+        color: #7BE495 !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+        min-width: 60px !important;
+      }
+      
+      .nav-item:hover {
+        background: rgba(123, 228, 149, 0.15) !important;
+        transform: translateY(-2px) !important;
+      }
+      
+      .nav-icon {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+        filter: drop-shadow(0 0 4px rgba(123, 228, 149, 0.6)) !important;
+      }
+      
+      .nav-label {
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        color: #7BE495 !important;
+        text-align: center !important;
+      }
+      
+      /* 플로팅 메뉴 버튼 (우측 하단) */
+      #mobile-floating-menu {
+        display: none !important; /* 기본적으로 숨김, 필요시 활성화 */
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        z-index: 999999 !important;
+      }
+      
+      .floating-btn {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #7BE495, #3AC8A8) !important;
+        border: none !important;
+        box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4) !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      
+      .floating-btn:hover {
+        transform: scale(1.1) !important;
+        box-shadow: 0 6px 25px rgba(123, 228, 149, 0.6) !important;
+      }
+      
+      .floating-icon {
+        font-size: 20px !important;
+        color: #000 !important;
+        font-weight: bold !important;
+      }
+      
+      .floating-menu-items {
+        position: absolute !important;
+        bottom: 70px !important;
+        right: 0 !important;
+        background: rgba(17, 17, 17, 0.95) !important;
+        backdrop-filter: blur(15px) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7) !important;
+        border: 1px solid rgba(123, 228, 149, 0.3) !important;
+        min-width: 140px !important;
+        transform: scale(0) translateY(20px) !important;
+        transform-origin: bottom right !important;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+        opacity: 0 !important;
+      }
+      
+      .floating-menu-items.show {
+        transform: scale(1) translateY(0) !important;
+        opacity: 1 !important;
+      }
+      
+      .floating-item {
+        display: flex !important;
+        align-items: center !important;
+        padding: 12px 16px !important;
+        text-decoration: none !important;
+        color: #7BE495 !important;
+        border-bottom: 1px solid rgba(123, 228, 149, 0.2) !important;
+        transition: all 0.2s ease !important;
+      }
+      
+      .floating-item:last-child {
+        border-bottom: none !important;
+      }
+      
+      .floating-item:hover {
+        background: rgba(123, 228, 149, 0.1) !important;
+      }
+      
+      .floating-item-icon {
+        font-size: 16px !important;
+        margin-right: 10px !important;
+      }
+      
+      .floating-item-text {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+      }
+      
+      /* Body 하단 여백 추가 (하단 네비 공간 확보) */
+      body {
+        padding-bottom: 80px !important;
+        padding-top: 0 !important;
+      }
+      
+      /* 첫 번째 섹션 상단 여백 조정 */
+      #hive.section {
+        padding-top: 40px !important;
+      }
+    }
   </style>
