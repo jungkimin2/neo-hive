@@ -2717,88 +2717,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   });
   
-  // 모바일 하단 스크롤 감지 네비게이션
-  let lastScrollTop = 0;
-  let scrollNavTimeout;
-  const scrollNav = document.getElementById('mobile-scroll-nav');
-  
-  function handleScrollNavigation() {
-    // 모바일에서만 실행
-    if (window.innerWidth > 768 || !scrollNav) return;
-    
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // 페이지 상단 근처에서는 네비게이션 숨김
-    if (scrollTop < 100) {
-      scrollNav.classList.remove('visible');
-      return;
-    }
-    
-    // 스크롤 방향 감지
-    if (scrollTop > lastScrollTop) {
-      // 아래로 스크롤 - 네비게이션 보이기
-      scrollNav.classList.add('visible');
-      
-      // 일정 시간 후 자동으로 숨기기
-      clearTimeout(scrollNavTimeout);
-      scrollNavTimeout = setTimeout(() => {
-        scrollNav.classList.remove('visible');
-      }, 3000); // 3초 후 자동 숨김
-      
-    } else {
-      // 위로 스크롤 - 네비게이션 숨기기
-      clearTimeout(scrollNavTimeout);
-      scrollNav.classList.remove('visible');
-    }
-    
-    lastScrollTop = scrollTop;
-  }
-  
-  // 스크롤 이벤트 리스너 (throttled)
-  let scrollThrottle = false;
-  window.addEventListener('scroll', function() {
-    if (!scrollThrottle) {
-      requestAnimationFrame(function() {
-        handleScrollNavigation();
-        scrollThrottle = false;
-      });
-      scrollThrottle = true;
-    }
-  });
-  
-  // 터치 이벤트 (모바일 터치 감지)
-  let touchStartY = 0;
-  document.addEventListener('touchstart', function(e) {
-    touchStartY = e.touches[0].clientY;
-  });
-  
-  document.addEventListener('touchmove', function(e) {
-    if (window.innerWidth > 768 || !scrollNav) return;
-    
-    const touchCurrentY = e.touches[0].clientY;
-    const touchDiff = touchStartY - touchCurrentY;
-    
-    // 페이지 상단 근처에서는 네비게이션 숨김
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop < 100) {
-      scrollNav.classList.remove('visible');
-      return;
-    }
-    
-    // 터치 스크롤 방향에 따라 네비게이션 표시/숨김
-    if (touchDiff > 10) {
-      // 아래로 스크롤
-      scrollNav.classList.add('visible');
-      clearTimeout(scrollNavTimeout);
-      scrollNavTimeout = setTimeout(() => {
-        scrollNav.classList.remove('visible');
-      }, 3000);
-    } else if (touchDiff < -10) {
-      // 위로 스크롤
-      clearTimeout(scrollNavTimeout);
-      scrollNav.classList.remove('visible');
-    }
-  });
+  // 모바일 하단 고정 네비게이션 (항상 표시)
+  // 스크롤 감지 로직 제거 - 이제 항상 보임
 
 </script>
 <script>
@@ -4858,7 +4778,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding-top: 20px !important;
       }
       
-      /* 하단 스크롤 감지 네비게이션 */
+      /* 하단 고정 네비게이션 (항상 표시) */
       #mobile-scroll-nav {
         display: block !important;
         position: fixed !important;
@@ -4870,12 +4790,8 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop-filter: blur(15px) !important;
         border-top: 2px solid #7BE495 !important;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
-        transform: translateY(100%) !important;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      }
-      
-      #mobile-scroll-nav.visible {
         transform: translateY(0) !important;
+        transition: none !important;
       }
       
       .scroll-nav-container {
@@ -4919,7 +4835,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       /* Body 하단 여백 추가 (하단 네비 공간 확보) */
       body {
-        padding-bottom: 0 !important; /* 스크롤 감지 네비는 필요시에만 나타나므로 기본 여백 없음 */
+        padding-bottom: 80px !important; /* 하단 네비게이션 공간 확보 */
       }
     }
   </style>
