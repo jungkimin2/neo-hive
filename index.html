@@ -426,30 +426,40 @@ pointer-events: auto !important;
     body {
       padding-top: 56px !important;
     }
-    
+
+    /* 고정 헤더: 모바일에서 header 항상 상단 고정 */
+    header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 9999 !important;
+      background-color: #000 !important;
+    }
+
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
     .section {
       padding: 60px 16px 40px 16px !important;
       margin: 0 !important;
     }
-    
+
     /* 첫 번째 섹션(네오 하이브) 특별 처리 */
     #hive.section {
       padding-top: 40px !important;
     }
-    
+
     /* 컨테이너 기본 설정 */
     .container {
       max-width: 100% !important;
       padding: 0 16px !important;
       margin: 0 auto !important;
     }
-    
+
     .neo-smart-video {
       width: 180px !important;
       height: 360px !important;
     }
-    
+
     /* 모바일: 네오 스마트 주요 기능 텍스트 레이아웃 및 가독성 개선 */
     .section:nth-of-type(3) .smart-feature-text {
       margin: 24px 0 !important;
@@ -505,14 +515,14 @@ pointer-events: auto !important;
       word-break: keep-all !important;
       line-height: 1.4 !important;
     }
-    
+
     /* 네오 하이브 제목 */
     #hive h2 {
       font-size: 1.6rem !important;
       margin: 24px 0 16px 0 !important;
       padding: 0 !important;
     }
-    
+
     /* 네오 하이브 설명 텍스트 */
     #hive p {
       font-size: 0.95rem !important;
@@ -520,7 +530,7 @@ pointer-events: auto !important;
       margin: 0 0 24px 0 !important;
       padding: 0 !important;
     }
-    
+
     header .container {
       flex-direction: row;
       justify-content: space-between;
@@ -597,7 +607,7 @@ pointer-events: auto !important;
        height: 350px !important;
        overflow: visible !important;
      }
-    
+
     /* 모바일에서 하이브 라벨 위치 조정 */
     .hive-label-left {
       top: 70px !important;
@@ -606,13 +616,13 @@ pointer-events: auto !important;
       padding: 3px 6px !important;
       z-index: 25 !important;
     }
-    
+
     .hive-label-left img {
       width: 16px !important;
       height: 16px !important;
       margin-right: 3px !important;
     }
-    
+
     .hive-label-right {
       top: 70px !important;
       right: -11px !important;
@@ -620,28 +630,28 @@ pointer-events: auto !important;
       padding: 3px 6px !important;
       z-index: 25 !important;
     }
-    
+
     .hive-label-right img {
       width: 16px !important;
       height: 16px !important;
       margin-right: 3px !important;
     }
-    
+
     /* 모바일에서는 모바일용 텍스트만 표시 */
     .label-text-pc {
       display: none !important;
     }
-    
+
     .label-text-mobile {
       display: inline !important;
     }
-    
+
     /* 모바일에서 라벨 스타일 조정 */
     .hive-label-left,
     .hive-label-right {
       transition: all 0.5s ease-out !important;
     }
-    
+
     .hive-label-left img,
     .hive-label-right img {
       transition: all 0.5s ease-out !important;
@@ -659,7 +669,7 @@ pointer-events: auto !important;
        display: block !important;
        visibility: visible !important;
      }
-     
+
      /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 */
      .hive-image:nth-of-type(1) {
        left: 50% !important;
@@ -697,7 +707,7 @@ pointer-events: auto !important;
        transform: translate(160%, -50%) scale(0.7) !important;
        z-index: 1 !important;
      }
-     
+
      /* 모바일 활성 이미지 */
      .hive-image.active {
        left: 50% !important;
@@ -740,17 +750,17 @@ pointer-events: auto !important;
       z-index: 20 !important;
       position: absolute !important;
     }
-    
+
     #slide-prev {
       left: 50% !important;
       margin-left: -50px !important;
     }
-    
+
     #slide-next {
       right: 50% !important;
       margin-right: -50px !important;
     }
-    
+
     /* 피처 그리드 */
     .features {
       grid-template-columns: 1fr !important;
@@ -758,18 +768,18 @@ pointer-events: auto !important;
       margin: 60px 0 40px 0 !important;
       padding: 0 !important;
     }
-    
+
     .feature-item {
       padding: 16px !important;
       margin: 0 !important;
       text-align: center !important;
     }
-    
+
     .feature-item h3 {
       font-size: 1rem !important;
       margin: 0 0 8px 0 !important;
     }
-    
+
     .feature-item p {
       font-size: 0.85rem !important;
       line-height: 1.4 !important;
@@ -777,26 +787,26 @@ pointer-events: auto !important;
     }
   /* 네오 스마트 섹션 모바일 최적화: 중복 제거 및 명확한 통합 */
   /* (중복되는 #smart 미디어 쿼리 제거됨, 아래에 단일화된 버전 추가) */
-    
+
     /* 원형 플로우 컨테이너 */
     .circular-flow-container {
       width: 100% !important;
       height: 400px !important;
       margin: 60px 0 40px 0 !important;
     }
-    
+
     .circle-center-title {
       width: 120px !important;
       height: 120px !important;
       font-size: 0.9rem !important;
     }
-    
+
     .circle-step {
       width: 80px !important;
       height: 80px !important;
       font-size: 0.7rem !important;
     }
-    
+
     .circle-step img {
       width: 24px !important;
       height: 24px !important;
@@ -806,13 +816,13 @@ pointer-events: auto !important;
     #benefits {
       padding: 60px 16px 40px 16px !important;
     }
-    
+
     #benefits h2 {
       font-size: 1.6rem !important;
       text-align: center !important;
       margin: 0 0 32px 0 !important;
     }
-    
+
     .benefits {
       display: grid !important;
       grid-template-columns: 1fr !important;
@@ -820,32 +830,32 @@ pointer-events: auto !important;
       padding: 0 !important;
       margin: 0 !important;
     }
-    
+
     .benefit-item {
       padding: 20px !important;
       margin: 0 !important;
       text-align: center !important;
       border-radius: 12px !important;
     }
-    
+
     .benefit-item h3 {
       font-size: 1.1rem !important;
       margin: 0 0 12px 0 !important;
     }
-    
+
     .benefit-item p {
       font-size: 0.9rem !important;
       line-height: 1.5 !important;
       margin: 0 !important;
     }
-    
+
     /* 폼 모달 */
     #formModal {
       width: 95% !important;
       max-width: 400px !important;
       padding: 20px !important;
     }
-    
+
     #formModal input, 
     #formModal textarea, 
     #formModal select {
