@@ -1168,11 +1168,97 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
+<script>
+// 모바일 네비게이션 완전 강제 고정 시스템
+function forceMobileNavFixed() {
+  if (window.innerWidth <= 768) {
+    const simpleNav = document.getElementById('simple-mobile-nav');
+    const scrollNav = document.getElementById('mobile-scroll-nav');
+    
+    if (simpleNav) {
+      // 상단 네비게이션 강제 고정
+      simpleNav.style.cssText = `
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        z-index: 2147483647 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 2px solid #7BE495 !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+        transform: translate3d(0, 0, 0) !important;
+        will-change: transform !important;
+        pointer-events: auto !important;
+      `;
+    }
+    
+    if (scrollNav) {
+      // 하단 네비게이션 강제 고정
+      scrollNav.style.cssText = `
+        display: block !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        z-index: 2147483647 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(15px) !important;
+        border-top: 2px solid #7BE495 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+        transform: translateY(0) !important;
+        transition: none !important;
+        pointer-events: auto !important;
+      `;
+    }
+    
+    // Body 여백 강제 적용
+    document.body.style.paddingTop = '70px';
+    document.body.style.paddingBottom = '80px';
+    
+    // 기존 네비게이션 숨김
+    const oldNav = document.getElementById('nav-container');
+    if (oldNav) {
+      oldNav.style.display = 'none';
+    }
+  }
+}
+
+// 메뉴 토글 함수
+function toggleNav() {
+  const menu = document.getElementById('nav-menu');
+  if (menu.style.display === 'none' || !menu.style.display) {
+    menu.style.display = 'block';
+  } else {
+    menu.style.display = 'none';
+  }
+}
+
+function closeNav() {
+  document.getElementById('nav-menu').style.display = 'none';
+}
+
+// 초기화 및 지속적 적용
+document.addEventListener('DOMContentLoaded', function() {
+  forceMobileNavFixed();
+  
+  // 50ms마다 강제 적용
+  setInterval(forceMobileNavFixed, 50);
+  
+  // 모든 이벤트에서 재적용
+  ['scroll', 'resize', 'orientationchange', 'touchstart', 'touchmove'].forEach(event => {
+    window.addEventListener(event, forceMobileNavFixed, { passive: true });
+  });
+});
+</script>
+
 <!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
 <div id="nav-container">
   <!-- 모바일 네비게이션 컨테이너 -->
   <div class="mobile-nav-container">
-    <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
