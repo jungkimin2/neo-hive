@@ -2719,6 +2719,34 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   // 모바일 하단 고정 네비게이션 (항상 표시)
   // 스크롤 감지 로직 제거 - 이제 항상 보임
+  
+  // 모바일 상단 네비게이션 절대 고정 보장
+  function enforceNavPosition() {
+    if (window.innerWidth <= 768) {
+      const nav = document.getElementById('simple-mobile-nav');
+      if (nav) {
+        nav.style.position = 'fixed';
+        nav.style.top = '0px';
+        nav.style.left = '0px';
+        nav.style.right = '0px';
+        nav.style.width = '100vw';
+        nav.style.zIndex = '2147483647';
+        nav.style.transform = 'translate3d(0, 0, 0)';
+      }
+    }
+  }
+  
+  // 주기적으로 위치 확인 및 강제 고정
+  setInterval(enforceNavPosition, 100);
+  
+  // 스크롤, 리사이즈, 오리엔테이션 변경 시에도 강제 고정
+  window.addEventListener('scroll', enforceNavPosition);
+  window.addEventListener('resize', enforceNavPosition);
+  window.addEventListener('orientationchange', enforceNavPosition);
+  
+  // 페이지 로드 시 즉시 실행
+  document.addEventListener('DOMContentLoaded', enforceNavPosition);
+  window.addEventListener('load', enforceNavPosition);
 
 </script>
 <script>
@@ -4711,37 +4739,46 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-           /* 새로운 간단한 모바일 네비게이션 (화면 최상단 완전 고정) */
+           /* 새로운 간단한 모바일 네비게이션 (화면 최상단 절대 고정) */
       #simple-mobile-nav {
         display: block !important;
         position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        z-index: 999999 !important;
+        top: 0px !important;
+        left: 0px !important;
+        right: 0px !important;
+        width: 100vw !important;
+        height: 60px !important;
+        z-index: 2147483647 !important;
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(10px) !important;
         border-bottom: 2px solid #7BE495 !important;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
         transform: translate3d(0, 0, 0) !important;
         will-change: transform !important;
+        pointer-events: auto !important;
+        contain: layout style paint !important;
       }
      
            .nav-bar {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 10px 20px !important;
+        padding: 10px 15px 10px 8px !important;
         height: 60px !important;
         background: transparent !important;
         box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100vw !important;
       }
      
            .nav-logo {
-        height: 35px !important;
+        height: 28px !important;
         width: auto !important;
+        margin-left: 0px !important;
+        margin-right: auto !important;
         filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.5)) !important;
+        flex-shrink: 0 !important;
+        transform: translateX(-5px) !important;
       }
      
            .nav-menu-btn {
@@ -4754,6 +4791,8 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 6px !important;
         transition: all 0.3s ease !important;
         text-shadow: 0 0 8px rgba(123, 228, 149, 0.8) !important;
+        flex-shrink: 0 !important;
+        margin-left: auto !important;
       }
       
       .nav-menu-btn:hover {
@@ -4789,6 +4828,24 @@ document.addEventListener('DOMContentLoaded', function() {
            /* Body padding 설정 (상단 네비 고정 공간 확보) */
       body {
         padding-top: 70px !important;
+      }
+      
+      /* 절대 고정을 위한 추가 강제 스타일 */
+      #simple-mobile-nav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+      
+      /* 다른 요소들이 상단 네비를 덮지 않도록 */
+      * {
+        z-index: auto !important;
+      }
+      
+      #simple-mobile-nav,
+      #simple-mobile-nav * {
+        z-index: 2147483647 !important;
       }
      
            /* 첫 번째 섹션 상단 여백 조정 */
