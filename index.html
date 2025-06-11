@@ -152,26 +152,29 @@ pointer-events: auto !important;
     display: none !important;
   }
   body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #0A0A0A; }
-  header {
-    background: #000;
-    border-bottom: 1px solid rgba(123, 228, 149, 0.3);
-    color: #fff;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: none !important;
-    outline: none !important;
-    background-image: none !important;
-    height: 56px;
-  }
-  header::after {
-    content: none !important;
-    display: none !important;
-  }
-  body {
-    padding-top: 56px !important;
+  /* PC 환경에서만 적용되는 header 스타일 */
+  @media screen and (min-width: 769px) {
+    header {
+      background: #000;
+      border-bottom: 1px solid rgba(123, 228, 149, 0.3);
+      color: #fff;
+      padding: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: none !important;
+      outline: none !important;
+      background-image: none !important;
+      height: 56px;
+    }
+    header::after {
+      content: none !important;
+      display: none !important;
+    }
+    body {
+      padding-top: 56px !important;
+    }
   }
   header .container {
     display: flex;
@@ -2597,17 +2600,23 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </form>
 </div>
 <script>
-  // 페이지 로드 시 스크롤 위치 초기화 - 최적화
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+  // PC에서만 스크롤 제어 적용 (모바일에서는 스크롤 자유롭게 허용)
+  if (window.innerWidth > 768) {
+    // 페이지 로드 시 스크롤 위치 초기화 - 최적화
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // 즉시 스크롤 초기화 (더 빠른 실행)
+    window.scrollTo(0, 0);
   }
-  
-  // 즉시 스크롤 초기화 (더 빠른 실행)
-  window.scrollTo(0, 0);
   
   // DOMContentLoaded로 더 빠른 초기화
   document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 0);
+    // PC에서만 스크롤 초기화
+    if (window.innerWidth > 768) {
+      window.scrollTo(0, 0);
+    }
     
     // 비디오 지연 로딩
     setTimeout(() => {
@@ -2618,8 +2627,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }, 1000);
   });
   
+  // PC에서만 스크롤 초기화
   window.addEventListener('beforeunload', function() {
-    window.scrollTo(0, 0);
+    if (window.innerWidth > 768) {
+      window.scrollTo(0, 0);
+    }
   });
   
   function openForm() {
@@ -2635,28 +2647,30 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   });
   
-  // 네비게이션 링크 클릭 시 정확한 위치로 스크롤
+  // PC에서만 네비게이션 링크 클릭 시 정확한 위치로 스크롤
   document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-          const headerHeight = 56; // 고정 헤더 높이
-          const additionalOffset = 20; // 추가 여백
-          const targetPosition = targetElement.offsetTop - headerHeight - additionalOffset;
+    if (window.innerWidth > 768) {
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
           
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
+          if (targetElement) {
+            const headerHeight = 56; // 고정 헤더 높이
+            const additionalOffset = 20; // 추가 여백
+            const targetPosition = targetElement.offsetTop - headerHeight - additionalOffset;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
       });
-    });
+    }
   });
   
   // 간단한 모바일 네비게이션 함수들
