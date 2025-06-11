@@ -1180,84 +1180,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   #mobile-nav a:active, #mobile-nav a:focus { background:#222; color:#fff; }
 </style>
 
-<script>
-// 모바일 스크롤 방향 감지 네비게이션 - 수정된 버전
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('스크롤 네비게이션 스크립트 시작'); // 디버깅용
-  
-  let lastScrollTop = 0;
-  let isScrolling = false;
-  
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-  
-  if (!isMobile()) {
-    console.log('데스크톱 환경 - 스크립트 종료');
-    return;
-  }
-  
-  const navContainer = document.getElementById('nav-container');
-  const mobileNav = document.getElementById('mobile-nav');
-  
-  if (!navContainer) {
-    console.log('nav-container를 찾을 수 없음');
-    return;
-  }
-  
-  console.log('네비게이션 요소 발견:', navContainer);
-  
-     // 초기 상태 설정 - 보이는 상태로 시작
-   navContainer.classList.remove('nav-hidden');
-   
-   function handleScroll() {
-     if (isScrolling) return;
-     isScrolling = true;
-     
-     setTimeout(() => {
-       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-       console.log('현재 스크롤:', currentScroll, '이전 스크롤:', lastScrollTop);
-       
-       // 최상단에서는 항상 보이기
-       if (currentScroll <= 50) {
-         navContainer.classList.remove('nav-hidden');
-         navContainer.classList.add('nav-top');
-         console.log('최상단 - 네비게이션 보임');
-       } else {
-         navContainer.classList.remove('nav-top');
-         
-         // 스크롤 방향 감지 (더 민감하게)
-         if (currentScroll < lastScrollTop - 3) {
-           // 위로 스크롤
-           navContainer.classList.remove('nav-hidden');
-           console.log('위로 스크롤 - 네비게이션 보임');
-         } else if (currentScroll > lastScrollTop + 10) {
-           // 아래로 스크롤 (더 많이 스크롤해야 숨김)
-           navContainer.classList.add('nav-hidden');
-           console.log('아래로 스크롤 - 네비게이션 숨김');
-         }
-       }
-       
-       lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-       isScrolling = false;
-     }, 5);
-   }
-  
-  // 스크롤 이벤트 등록
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  
-  // 윈도우 리사이즈 시 모바일 체크
-  window.addEventListener('resize', function() {
-    if (!isMobile()) {
-      navContainer.classList.remove('nav-visible', 'nav-top');
-    } else {
-      handleScroll();
-    }
-  });
-  
-  console.log('스크롤 이벤트 리스너 등록 완료');
-});
-</script>
+<!-- 스크롤 방향 감지 스크립트 제거 - 단순 고정 방식으로 변경 -->
 <!-- <div id="features"></div> -->
 <section id="hive" class="section animate-on-scroll" style="background:#000; padding-top:24px;">
   <div class="container" style="text-align:center; padding-top:0;">
@@ -4737,7 +4660,7 @@ document.addEventListener('DOMContentLoaded', function() {
        border-bottom: none !important;
      }
      
-     /* nav-container - 스크롤 방향 감지 방식 */
+     /* nav-container - 항상 고정 방식 */
      #nav-container {
        position: fixed !important;
        top: 0 !important;
@@ -4745,30 +4668,9 @@ document.addEventListener('DOMContentLoaded', function() {
        right: 0 !important;
        width: 100vw !important;
        z-index: 999999 !important;
-       transform: translateY(0) !important; /* 기본적으로 보이게 시작 */
-       transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-       will-change: transform !important;
        background: rgba(0, 0, 0, 1) !important;
-       backdrop-filter: blur(15px) !important;
-       -webkit-backdrop-filter: blur(15px) !important;
-     }
-     
-     /* 네비게이션을 숨길 때 */
-     #nav-container.nav-hidden {
-       transform: translateY(-100%) !important;
-     }
-     
-     /* 네비게이션이 보일 때 */
-     #nav-container.nav-visible {
-       transform: translateY(0) !important;
-       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-     }
-     
-     /* 페이지 최상단에서는 항상 보이기 */
-     #nav-container.nav-top {
-       transform: translateY(0) !important;
-       background: rgba(0, 0, 0, 1) !important;
-       backdrop-filter: none !important;
+       transform: none !important;
+       will-change: auto !important;
      }
      
      #nav-container header {
@@ -4785,14 +4687,14 @@ document.addEventListener('DOMContentLoaded', function() {
        align-items: center !important;
      }
      
-            /* body 패딩 제거 - 네비게이션이 숨겨지므로 */
+            /* body 패딩 - 네비게이션 바 높이만큼 */
        body {
-         padding-top: 0 !important;
+         padding-top: 51px !important;
        }
        
-       /* 첫 번째 섹션 상단 여백 조정 - 두칸(32px) 아래로 */
+       /* 첫 번째 섹션 상단 여백 조정 - 한칸 줄임 */
        #hive.section {
-         padding-top: 56px !important;
+         padding-top: 40px !important;
        }
      
      /* 모바일 네비게이션 메뉴 위치 조정 */
