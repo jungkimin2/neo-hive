@@ -1128,10 +1128,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 </style>
 <body>
-<div style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); z-index: 1001; box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
-
-<!-- <div style="position: fixed; top: 8px; left: 0; width: 100%; height: 2px; background: #000; z-index: 1001;"></div> -->
-<header>
+<!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
+<div id="nav-container" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 999999;">
+  <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
+  <header style="position: relative; top: 0; left: 0; width: 100%;">
   <div class="container">
     <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
       <a href="#" style="display:block;">
@@ -1156,7 +1156,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <a href="#impact" onclick="closeMobileNav()" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem; border-bottom:1px solid #222;">도입 효과</a>
     <a href="#formModal" onclick="openForm();closeMobileNav();" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem;">무료 신청</a>
   </nav>
-</header>
+  </header>
+</div>
+<!-- nav-container 끝 -->
 <style>
   /* 모바일 네비게이션 햄버거 버튼 노출 */
   @media (max-width: 768px) {
@@ -4577,11 +4579,7 @@ document.addEventListener('DOMContentLoaded', function() {
        border-bottom: 1px solid #222 !important;
      }
      
-     /* body 패딩 조정 - 모바일 고정 헤더용 */
-     html body {
-       padding-top: 51px !important;
-       margin-top: 0 !important;
-     }
+     /* 중복 body 패딩 - 맨 아래 최종 규칙으로 대체됨 */
      
      /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) - 더 구체적인 선택자 */
      div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] {
@@ -4642,23 +4640,36 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-   /* 모바일 헤더 고정 - 최종 강제 적용 */
+   /* 모바일 네비게이션 컨테이너 고정 - 최종 강제 적용 */
    @media screen and (max-width: 768px) {
-     header,
-     body > header,
-     html body > header {
+     #nav-container {
        position: fixed !important;
-       top: 3px !important;
+       top: 0 !important;
+       left: 0 !important;
+       right: 0 !important;
+       width: 100% !important;
+       z-index: 999999 !important;
+       transform: translate3d(0, 0, 0) !important;
+       backface-visibility: hidden !important;
+     }
+     
+     #nav-container header {
+       position: relative !important;
+       top: 0 !important;
        left: 0 !important;
        right: 0 !important;
        width: 100% !important;
        height: 48px !important;
-       z-index: 999999 !important;
        background: #000000 !important;
        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
        border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
-       transform: translate3d(0, 0, 0) !important;
-       backface-visibility: hidden !important;
+       display: flex !important;
+       align-items: center !important;
+     }
+     
+     /* body 패딩을 그린바(3px) + 헤더(48px) = 51px로 조정 */
+     body {
+       padding-top: 51px !important;
      }
    }
   </style>
