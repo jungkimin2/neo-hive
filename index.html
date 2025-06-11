@@ -2696,23 +2696,35 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     });
   });
   
-  // 새로운 모바일 전용 네비게이션 관리
-  document.addEventListener('DOMContentLoaded', function() {
+  // 새로운 모바일 전용 네비게이션 관리 - 강화 버전
+  function ensureMobileNavFixed() {
     const mobileOnlyNav = document.querySelector('.mobile-only-nav');
     
-    // 모바일 환경에서만 새 네비게이션 표시
     if (window.innerWidth <= 768 && mobileOnlyNav) {
-      mobileOnlyNav.style.display = 'block';
+      // 강제로 고정 스타일 적용
+      mobileOnlyNav.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100vw !important; z-index: 9999999 !important; background: #000000 !important; display: block !important; visibility: visible !important; opacity: 1 !important; transform: none !important; transition: none !important;';
+      
+      // 개별 속성도 강제 설정
+      mobileOnlyNav.style.setProperty('position', 'fixed', 'important');
+      mobileOnlyNav.style.setProperty('top', '0', 'important');
+      mobileOnlyNav.style.setProperty('z-index', '9999999', 'important');
+      mobileOnlyNav.style.setProperty('display', 'block', 'important');
+    } else if (window.innerWidth > 768 && mobileOnlyNav) {
+      mobileOnlyNav.style.display = 'none';
     }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    ensureMobileNavFixed();
     
     // 화면 크기 변경시 처리
-    window.addEventListener('resize', function() {
-      if (window.innerWidth <= 768) {
-        if (mobileOnlyNav) mobileOnlyNav.style.display = 'block';
-      } else {
-        if (mobileOnlyNav) mobileOnlyNav.style.display = 'none';
-      }
-    });
+    window.addEventListener('resize', ensureMobileNavFixed);
+    
+    // 스크롤 이벤트에서도 강제 고정 유지
+    window.addEventListener('scroll', ensureMobileNavFixed, { passive: true });
+    
+    // 주기적으로 고정 상태 확인 및 유지
+    setInterval(ensureMobileNavFixed, 100);
   });
   
   // 모바일 메뉴 토글 함수
@@ -4730,24 +4742,54 @@ document.addEventListener('DOMContentLoaded', function() {
        padding-top: 51px !important;
      }
      
-     /* 새로운 모바일 전용 네비게이션 바 */
+     /* 새로운 모바일 전용 네비게이션 바 - 완전 고정 */
      .mobile-only-nav {
        position: fixed !important;
        top: 0 !important;
        left: 0 !important;
        right: 0 !important;
-       width: 100% !important;
-       z-index: 999999 !important;
+       width: 100vw !important;
+       max-width: 100vw !important;
+       z-index: 9999999 !important;
        background: #000000 !important;
+       transform: translateZ(0) !important;
+       will-change: transform !important;
+       backface-visibility: hidden !important;
+       -webkit-transform: translateZ(0) !important;
+       -webkit-backface-visibility: hidden !important;
+     }
+     
+     /* 모든 가능한 상태에서 고정 보장 */
+     .mobile-only-nav,
+     .mobile-only-nav[style],
+     body .mobile-only-nav,
+     html .mobile-only-nav {
+       position: fixed !important;
+       top: 0 !important;
+       left: 0 !important;
+       right: 0 !important;
+       width: 100vw !important;
+       z-index: 9999999 !important;
+       display: block !important;
+       visibility: visible !important;
+       opacity: 1 !important;
+       transform: none !important;
+       transition: none !important;
      }
      
      .mobile-only-nav .green-bar {
+       position: relative !important;
        height: 3px !important;
        background: linear-gradient(to right, #7BE495, #3AC8A8) !important;
        width: 100% !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       display: block !important;
+       box-shadow: 0 0 8px rgba(123, 228, 149, 0.4) !important;
      }
      
      .mobile-only-nav .nav-header {
+       position: relative !important;
        height: 48px !important;
        background: #000000 !important;
        border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
@@ -4756,6 +4798,10 @@ document.addEventListener('DOMContentLoaded', function() {
        justify-content: space-between !important;
        padding: 0 16px !important;
        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+       margin: 0 !important;
+       width: 100% !important;
+       transform: none !important;
+       transition: none !important;
      }
      
      .mobile-only-nav .logo {
@@ -4777,8 +4823,12 @@ document.addEventListener('DOMContentLoaded', function() {
        width: 100% !important;
        background: #111 !important;
        display: none !important;
-       z-index: 999998 !important;
+       z-index: 9999998 !important;
        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       transform: none !important;
+       transition: none !important;
      }
      
      .mobile-only-nav .mobile-menu a {
