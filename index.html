@@ -2717,10 +2717,92 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   });
   
-  // 모바일 하단 고정 네비게이션 (항상 표시)
+    // 모바일 하단 고정 네비게이션 (항상 표시)
   // 스크롤 감지 로직 제거 - 이제 항상 보임
+  
+  // 새로운 접근: JavaScript로 모바일 상단 네비게이션 강제 생성
+  function createMobileTopNav() {
+    // 모바일에서만 실행
+    if (window.innerWidth > 768) return;
+    
+    // 기존 네비게이션 제거
+    const existingNavs = document.querySelectorAll('#simple-mobile-nav, #nav-container, header');
+    existingNavs.forEach(nav => {
+      if (nav) nav.style.display = 'none';
+    });
+    
+    // 새로운 네비게이션 생성
+    const nav = document.createElement('div');
+    nav.id = 'js-mobile-nav';
+    nav.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; height: 50px;">
+        <img src="./images/neohive3.png" alt="NeoHive" style="height: 28px; width: auto;">
+        <button onclick="toggleJSNav()" style="background: none; border: none; color: #7BE495; font-size: 24px; cursor: pointer; padding: 8px;">☰</button>
+      </div>
+      <div id="js-nav-menu" style="display: none; background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(10px);">
+        <a href="#hive" onclick="closeJSNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">하이브 시스템</a>
+        <a href="#smart" onclick="closeJSNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">스마트 시스템</a>
+        <a href="#impact" onclick="closeJSNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">도입 효과</a>
+        <a href="#formModal" onclick="openForm(); closeJSNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none;">무료 신청</a>
+      </div>
+    `;
+    
+    // 강력한 CSS 스타일 직접 적용
+    nav.style.cssText = `
+      position: fixed !important;
+      top: 0px !important;
+      left: 0px !important;
+      right: 0px !important;
+      width: 100% !important;
+      z-index: 2147483647 !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      border-bottom: 2px solid #7BE495 !important;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+      transform: translate3d(0, 0, 0) !important;
+      will-change: transform !important;
+      pointer-events: auto !important;
+    `;
+    
+    // body 최상단에 삽입
+    document.body.insertBefore(nav, document.body.firstChild);
+    
+    // body 패딩 조정
+    document.body.style.paddingTop = '60px';
+  }
+  
+  // 네비게이션 토글 함수들
+  window.toggleJSNav = function() {
+    const menu = document.getElementById('js-nav-menu');
+    if (menu) {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  };
+  
+  window.closeJSNav = function() {
+    const menu = document.getElementById('js-nav-menu');
+    if (menu) {
+      menu.style.display = 'none';
+    }
+  };
+  
+  // 페이지 로드 시 즉시 실행
+  document.addEventListener('DOMContentLoaded', createMobileTopNav);
+  window.addEventListener('load', createMobileTopNav);
+  
+  // 주기적으로 위치 재확인 및 강제
+  setInterval(function() {
+    const nav = document.getElementById('js-mobile-nav');
+    if (nav && window.innerWidth <= 768) {
+      nav.style.position = 'fixed';
+      nav.style.top = '0px';
+      nav.style.left = '0px';
+      nav.style.right = '0px';
+      nav.style.zIndex = '2147483647';
+    }
+  }, 500);
 
-</script>
+  </script>
 <script>
   // 성능 최적화된 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
