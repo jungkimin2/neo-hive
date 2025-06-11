@@ -1129,7 +1129,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 <!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
-<div id="nav-container" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 999999;">
+<div id="nav-container">
   <!-- 모바일 네비게이션 컨테이너 -->
   <div class="mobile-nav-container">
     <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
@@ -2685,7 +2685,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 768) {
       const mobileNavContainer = document.querySelector('.mobile-nav-container');
-      if (!mobileNavContainer) return;
+      const navContainer = document.querySelector('#nav-container');
+      if (!mobileNavContainer || !navContainer) return;
+      
+      // 강제로 네비게이션 고정 스타일 적용
+      navContainer.style.position = 'fixed';
+      navContainer.style.top = '0';
+      navContainer.style.left = '0';
+      navContainer.style.width = '100%';
+      navContainer.style.zIndex = '999999';
+      
+      mobileNavContainer.style.position = 'relative';
+      mobileNavContainer.style.transform = 'translateY(0)';
+      mobileNavContainer.classList.remove('nav-hidden');
       
       let lastScrollY = window.scrollY;
       let isScrollingDown = false;
@@ -4704,11 +4716,37 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
+   /* PC 환경 네비게이션 설정 */
+   @media screen and (min-width: 769px) {
+     #nav-container {
+       position: fixed !important;
+       top: 0 !important;
+       left: 0 !important;
+       width: 100% !important;
+       z-index: 999999 !important;
+     }
+     
+     .mobile-nav-container {
+       position: relative !important;
+       width: 100% !important;
+       background: #000000 !important;
+     }
+   }
+   
    /* 모바일 네비게이션 - IntersectionObserver 방식 */
    @media screen and (max-width: 768px) {
      /* Body padding 설정 */
      body {
        padding-top: 51px !important;
+     }
+     
+     /* Nav container 기본 설정 */
+     #nav-container {
+       position: fixed !important;
+       top: 0 !important;
+       left: 0 !important;
+       width: 100% !important;
+       z-index: 999999 !important;
      }
      
      /* 네비게이션 컨테이너 - 기본 상태 */
