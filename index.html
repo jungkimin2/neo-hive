@@ -2681,69 +2681,27 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     });
   });
   
-  // IntersectionObserver를 사용한 모바일 네비게이션 - 더 안정적인 방법
+  // 모바일 네비게이션 완전 고정 - 단순화
   document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 768) {
-      const mobileNavContainer = document.querySelector('.mobile-nav-container');
       const navContainer = document.querySelector('#nav-container');
-      if (!mobileNavContainer || !navContainer) return;
+      const mobileNavContainer = document.querySelector('.mobile-nav-container');
       
-      // 강제로 네비게이션 고정 스타일 적용
-      navContainer.style.position = 'fixed';
-      navContainer.style.top = '0';
-      navContainer.style.left = '0';
-      navContainer.style.width = '100%';
-      navContainer.style.zIndex = '999999';
-      
-      mobileNavContainer.style.position = 'relative';
-      mobileNavContainer.style.transform = 'translateY(0)';
-      mobileNavContainer.classList.remove('nav-hidden');
-      
-      let lastScrollY = window.scrollY;
-      let isScrollingDown = false;
-      let ticking = false;
-      
-      // 페이지 상단에 있는지 감지하는 Intersection Observer
-      const topSentinel = document.createElement('div');
-      topSentinel.style.height = '1px';
-      topSentinel.style.position = 'absolute';
-      topSentinel.style.top = '0';
-      topSentinel.style.left = '0';
-      topSentinel.style.width = '100%';
-      topSentinel.style.pointerEvents = 'none';
-      document.body.prepend(topSentinel);
-      
-      const topObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            // 항상 네비게이션 표시 - 스크롤 위치와 관계없이 고정
-            mobileNavContainer.style.transform = 'translateY(0)';
-            mobileNavContainer.classList.remove('nav-hidden');
-          });
-        },
-        {
-          rootMargin: '0px 0px -99% 0px'
-        }
-      );
-      
-      topObserver.observe(topSentinel);
-      
-      // 스크롤 이벤트 처리 - 항상 네비게이션 고정
-      function updateNavigation() {
-        // 네비게이션을 항상 표시 상태로 고정
-        mobileNavContainer.style.transform = 'translateY(0)';
+      if (navContainer && mobileNavContainer) {
+        // 네비게이션 완전 고정
+        navContainer.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important;';
+        mobileNavContainer.style.cssText = 'position: relative !important; transform: translateY(0) !important; visibility: visible !important; opacity: 1 !important;';
+        
+        // 클래스 제거
         mobileNavContainer.classList.remove('nav-hidden');
-        ticking = false;
+        
+        // 주기적으로 고정 상태 유지
+        setInterval(() => {
+          navContainer.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important;';
+          mobileNavContainer.style.cssText = 'position: relative !important; transform: translateY(0) !important; visibility: visible !important; opacity: 1 !important;';
+          mobileNavContainer.classList.remove('nav-hidden');
+        }, 100);
       }
-      
-      function requestTick() {
-        if (!ticking) {
-          requestAnimationFrame(updateNavigation);
-          ticking = true;
-        }
-      }
-      
-      window.addEventListener('scroll', requestTick, { passive: true });
     }
   });
 </script>
@@ -4740,48 +4698,57 @@ document.addEventListener('DOMContentLoaded', function() {
        padding-top: 51px !important;
      }
      
-     /* Nav container 기본 설정 */
+     /* Nav container - 모바일에서 완전 고정 */
      #nav-container {
        position: fixed !important;
        top: 0 !important;
        left: 0 !important;
-       width: 100% !important;
+       right: 0 !important;
+       width: 100vw !important;
        z-index: 999999 !important;
+       background: transparent !important;
      }
      
-     /* 네비게이션 컨테이너 - 기본 상태 */
+     /* 네비게이션 컨테이너 - 완전 고정 */
      .mobile-nav-container {
-       position: fixed !important;
+       position: relative !important;
        top: 0 !important;
        left: 0 !important;
        right: 0 !important;
        width: 100% !important;
-       z-index: 999999 !important;
        background: #000000 !important;
-       transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-       transform: translateY(0) !important;
+       transform: none !important;
+       transition: none !important;
        visibility: visible !important;
        opacity: 1 !important;
+       display: block !important;
      }
      
-     /* 스크롤시 숨김 상태 - 항상 표시되도록 오버라이드 */
-     .mobile-nav-container.nav-hidden {
-       transform: translateY(0) !important;
+     /* 모든 숨김 상태 무효화 */
+     .mobile-nav-container.nav-hidden,
+     .mobile-nav-container[style*="translateY(-100%)"],
+     .mobile-nav-container[style*="transform: translateY(-100%)"] {
+       transform: none !important;
        visibility: visible !important;
        opacity: 1 !important;
+       display: block !important;
      }
      
-     /* Green bar */
-     .mobile-nav-container #green-bar {
+     /* Green bar - 완전 고정 */
+     .mobile-nav-container #green-bar,
+     #green-bar {
        height: 3px !important;
-       background: #7BE495 !important;
+       background: linear-gradient(to right, #7BE495, #3AC8A8) !important;
        width: 100% !important;
        margin: 0 !important;
        padding: 0 !important;
+       position: relative !important;
+       display: block !important;
      }
      
-     /* Header 스타일 */
-     .mobile-nav-container header {
+     /* Header 스타일 - 완전 고정 */
+     .mobile-nav-container header,
+     #nav-container header {
        position: relative !important;
        top: 0 !important;
        left: 0 !important;
@@ -4795,6 +4762,8 @@ document.addEventListener('DOMContentLoaded', function() {
        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
        margin: 0 !important;
        padding: 0 !important;
+       transform: none !important;
+       transition: none !important;
      }
      
      /* 첫 번째 섹션 상단 여백 조정 */
