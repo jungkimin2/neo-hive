@@ -1146,6 +1146,28 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
+<!-- 모바일 전용 하단 스크롤 감지 네비게이션 -->
+<div id="mobile-scroll-nav">
+  <div class="scroll-nav-container">
+    <a href="#hive" class="scroll-nav-item">
+      <div class="scroll-nav-icon">🏠</div>
+      <span class="scroll-nav-label">하이브</span>
+    </a>
+    <a href="#smart" class="scroll-nav-item">
+      <div class="scroll-nav-icon">⚡</div>
+      <span class="scroll-nav-label">스마트</span>
+    </a>
+    <a href="#impact" class="scroll-nav-item">
+      <div class="scroll-nav-icon">📊</div>
+      <span class="scroll-nav-label">효과</span>
+    </a>
+    <a href="#formModal" onclick="openForm()" class="scroll-nav-item">
+      <div class="scroll-nav-icon">📝</div>
+      <span class="scroll-nav-label">신청</span>
+    </a>
+  </div>
+</div>
+
 <!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
 <div id="nav-container">
   <!-- 모바일 네비게이션 컨테이너 -->
@@ -2692,6 +2714,89 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeNav();
+    }
+  });
+  
+  // 모바일 하단 스크롤 감지 네비게이션
+  let lastScrollTop = 0;
+  let scrollNavTimeout;
+  const scrollNav = document.getElementById('mobile-scroll-nav');
+  
+  function handleScrollNavigation() {
+    // 모바일에서만 실행
+    if (window.innerWidth > 768 || !scrollNav) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 페이지 상단 근처에서는 네비게이션 숨김
+    if (scrollTop < 100) {
+      scrollNav.classList.remove('visible');
+      return;
+    }
+    
+    // 스크롤 방향 감지
+    if (scrollTop > lastScrollTop) {
+      // 아래로 스크롤 - 네비게이션 보이기
+      scrollNav.classList.add('visible');
+      
+      // 일정 시간 후 자동으로 숨기기
+      clearTimeout(scrollNavTimeout);
+      scrollNavTimeout = setTimeout(() => {
+        scrollNav.classList.remove('visible');
+      }, 3000); // 3초 후 자동 숨김
+      
+    } else {
+      // 위로 스크롤 - 네비게이션 숨기기
+      clearTimeout(scrollNavTimeout);
+      scrollNav.classList.remove('visible');
+    }
+    
+    lastScrollTop = scrollTop;
+  }
+  
+  // 스크롤 이벤트 리스너 (throttled)
+  let scrollThrottle = false;
+  window.addEventListener('scroll', function() {
+    if (!scrollThrottle) {
+      requestAnimationFrame(function() {
+        handleScrollNavigation();
+        scrollThrottle = false;
+      });
+      scrollThrottle = true;
+    }
+  });
+  
+  // 터치 이벤트 (모바일 터치 감지)
+  let touchStartY = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+  });
+  
+  document.addEventListener('touchmove', function(e) {
+    if (window.innerWidth > 768 || !scrollNav) return;
+    
+    const touchCurrentY = e.touches[0].clientY;
+    const touchDiff = touchStartY - touchCurrentY;
+    
+    // 페이지 상단 근처에서는 네비게이션 숨김
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop < 100) {
+      scrollNav.classList.remove('visible');
+      return;
+    }
+    
+    // 터치 스크롤 방향에 따라 네비게이션 표시/숨김
+    if (touchDiff > 10) {
+      // 아래로 스크롤
+      scrollNav.classList.add('visible');
+      clearTimeout(scrollNavTimeout);
+      scrollNavTimeout = setTimeout(() => {
+        scrollNav.classList.remove('visible');
+      }, 3000);
+    } else if (touchDiff < -10) {
+      // 위로 스크롤
+      clearTimeout(scrollNavTimeout);
+      scrollNav.classList.remove('visible');
     }
   });
 
@@ -4670,10 +4775,15 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-   /* 모바일 전용 간단한 고정 네비게이션 */
-   #simple-mobile-nav {
-     display: none;
-   }
+       /* 모바일 전용 간단한 고정 네비게이션 */
+    #simple-mobile-nav {
+      display: none;
+    }
+    
+    /* 모바일 전용 하단 스크롤 감지 네비게이션 */
+    #mobile-scroll-nav {
+      display: none;
+    }
    
    @media screen and (max-width: 768px) {
      /* 기존 네비게이션 숨김 */
@@ -4743,9 +4853,73 @@ document.addEventListener('DOMContentLoaded', function() {
        padding-top: 60px !important;
      }
      
-     /* 첫 번째 섹션 상단 여백 조정 */
-     #hive.section {
-       padding-top: 20px !important;
-     }
-   }
+           /* 첫 번째 섹션 상단 여백 조정 */
+      #hive.section {
+        padding-top: 20px !important;
+      }
+      
+      /* 하단 스크롤 감지 네비게이션 */
+      #mobile-scroll-nav {
+        display: block !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999999 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(15px) !important;
+        border-top: 2px solid #7BE495 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      
+      #mobile-scroll-nav.visible {
+        transform: translateY(0) !important;
+      }
+      
+      .scroll-nav-container {
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        padding: 8px 0 !important;
+        max-width: 100% !important;
+      }
+      
+      .scroll-nav-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-decoration: none !important;
+        color: #7BE495 !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+        min-width: 60px !important;
+      }
+      
+      .scroll-nav-item:hover,
+      .scroll-nav-item:active {
+        background: rgba(123, 228, 149, 0.15) !important;
+        transform: translateY(-2px) !important;
+      }
+      
+      .scroll-nav-icon {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+        filter: drop-shadow(0 0 4px rgba(123, 228, 149, 0.6)) !important;
+      }
+      
+      .scroll-nav-label {
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        color: #7BE495 !important;
+        text-align: center !important;
+      }
+      
+      /* Body 하단 여백 추가 (하단 네비 공간 확보) */
+      body {
+        padding-bottom: 0 !important; /* 스크롤 감지 네비는 필요시에만 나타나므로 기본 여백 없음 */
+      }
+    }
   </style>
