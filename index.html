@@ -4573,6 +4573,11 @@ document.addEventListener('DOMContentLoaded', function() {
     body {
       padding-top: 56px !important;
     }
+    
+    /* PC에서 첫 번째 섹션 상단 여백 조정 - 한칸 아래로 */
+    #hive.section {
+      padding-top: 40px !important;
+    }
   }
   
      /* 모바일에서 로고 위치 정확히 수정 */
@@ -4785,9 +4790,9 @@ document.addEventListener('DOMContentLoaded', function() {
          padding-top: 0 !important;
        }
        
-       /* 첫 번째 섹션 상단 여백 조정 - 두칸 아래로 */
+       /* 첫 번째 섹션 상단 여백 조정 - 두칸(32px) 아래로 */
        #hive.section {
-         padding-top: 40px !important;
+         padding-top: 56px !important;
        }
      
      /* 모바일 네비게이션 메뉴 위치 조정 */
