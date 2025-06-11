@@ -1179,6 +1179,82 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
   #mobile-nav a:active, #mobile-nav a:focus { background:#222; color:#fff; }
 </style>
+
+<script>
+// 모바일 스크롤 방향 감지 네비게이션
+(function() {
+  // 모바일 체크
+  if (window.innerWidth > 768) return;
+  
+  let lastScrollTop = 0;
+  let ticking = false;
+  const navContainer = document.getElementById('nav-container');
+  const mobileNav = document.getElementById('mobile-nav');
+  
+  if (!navContainer) return;
+  
+  // 페이지 로드 시 최상단이면 네비게이션 보이기
+  if (window.scrollY <= 10) {
+    navContainer.classList.add('nav-top');
+  }
+  
+  function updateNavigation() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    
+    // 최상단 근처에서는 항상 보이기
+    if (scrollTop <= 10) {
+      navContainer.classList.add('nav-top');
+      navContainer.classList.remove('nav-visible');
+      if (mobileNav) mobileNav.classList.remove('nav-visible');
+    } else {
+      navContainer.classList.remove('nav-top');
+      
+      // 스크롤 방향 감지
+      if (scrollTop < lastScrollTop) {
+        // 위로 스크롤 - 네비게이션 보이기
+        navContainer.classList.add('nav-visible');
+        if (mobileNav && mobileNav.style.display !== 'none') {
+          mobileNav.classList.add('nav-visible');
+        }
+      } else {
+        // 아래로 스크롤 - 네비게이션 숨기기
+        navContainer.classList.remove('nav-visible');
+        if (mobileNav) mobileNav.classList.remove('nav-visible');
+      }
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateNavigation);
+      ticking = true;
+    }
+  }
+  
+  // 스크롤 이벤트 리스너
+  window.addEventListener('scroll', requestTick, { passive: true });
+  
+  // 초기 실행
+  updateNavigation();
+  
+  // 모바일 메뉴 토글 시 위치 동기화
+  const mobileToggle = document.getElementById('mobile-nav-toggle');
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener('click', function() {
+      if (mobileNav.style.display === 'none' || !mobileNav.style.display) {
+        if (navContainer.classList.contains('nav-visible') || navContainer.classList.contains('nav-top')) {
+          mobileNav.classList.add('nav-visible');
+        }
+      } else {
+        mobileNav.classList.remove('nav-visible');
+      }
+    });
+  }
+})();
+</script>
 <!-- <div id="features"></div> -->
 <section id="hive" class="section animate-on-scroll" style="background:#000; padding-top:24px;">
   <div class="container" style="text-align:center; padding-top:0;">
@@ -4640,7 +4716,7 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-   /* 모바일 네비게이션 컨테이너 고정 - 최종 강제 적용 */
+   /* 모바일 스크롤 방향 감지 네비게이션 - 새로운 방식 */
    @media screen and (max-width: 768px) {
      /* 기존 헤더 스타일 완전 무효화 */
      header {
@@ -4653,7 +4729,7 @@ document.addEventListener('DOMContentLoaded', function() {
        border-bottom: none !important;
      }
      
-     /* nav-container만 고정되도록 설정 */
+     /* nav-container - 스크롤 방향 감지 방식 */
      #nav-container {
        position: fixed !important;
        top: 0 !important;
@@ -4661,9 +4737,21 @@ document.addEventListener('DOMContentLoaded', function() {
        right: 0 !important;
        width: 100vw !important;
        z-index: 999999 !important;
-       transform: translate3d(0, 0, 0) !important;
-       backface-visibility: hidden !important;
+       transform: translateY(-100%) !important; /* 처음에는 숨김 */
+       transition: transform 0.3s ease-in-out !important;
        will-change: transform !important;
+       background: rgba(0, 0, 0, 0.95) !important;
+       backdrop-filter: blur(10px) !important;
+     }
+     
+     /* 네비게이션이 보일 때 */
+     #nav-container.nav-visible {
+       transform: translateY(0) !important;
+     }
+     
+     /* 페이지 최상단에서는 항상 보이기 */
+     #nav-container.nav-top {
+       transform: translateY(0) !important;
      }
      
      #nav-container header {
@@ -4673,16 +4761,27 @@ document.addEventListener('DOMContentLoaded', function() {
        right: 0 !important;
        width: 100% !important;
        height: 48px !important;
-       background: #000000 !important;
-       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+       background: transparent !important;
+       box-shadow: none !important;
        border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
        display: flex !important;
        align-items: center !important;
      }
      
-     /* body 패딩을 그린바(3px) + 헤더(48px) = 51px에서 여백 조정 */
+     /* body 패딩 제거 - 네비게이션이 숨겨지므로 */
      body {
-       padding-top: 45px !important;
+       padding-top: 0 !important;
+     }
+     
+     /* 모바일 네비게이션 메뉴 위치 조정 */
+     #mobile-nav {
+       top: 51px !important;
+       transform: translateY(-100%) !important;
+       transition: transform 0.3s ease-in-out !important;
+     }
+     
+     #mobile-nav.nav-visible {
+       transform: translateY(0) !important;
      }
    }
   </style>
