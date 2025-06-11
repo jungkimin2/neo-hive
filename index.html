@@ -2681,7 +2681,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     });
   });
   
-  // 모바일 네비게이션 완전 고정 - 최강화 버전
+  // 모바일 네비게이션 완전 고정 - 궁극 버전 (MutationObserver 추가)
   function forceNavFixed() {
     if (window.innerWidth <= 768) {
       const navContainer = document.querySelector('#nav-container');
@@ -2689,27 +2689,71 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       
       if (navContainer) {
         navContainer.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100vw !important; z-index: 999999 !important; background: transparent !important; display: block !important;';
+        
+        // 추가 속성들도 강제 설정
+        navContainer.style.setProperty('position', 'fixed', 'important');
+        navContainer.style.setProperty('top', '0', 'important');
+        navContainer.style.setProperty('z-index', '999999', 'important');
       }
       
       if (mobileNavContainer) {
         mobileNavContainer.style.cssText = 'position: relative !important; transform: none !important; visibility: visible !important; opacity: 1 !important; display: block !important; background: #000 !important;';
         mobileNavContainer.classList.remove('nav-hidden');
+        
+        // 추가 속성들도 강제 설정
+        mobileNavContainer.style.setProperty('transform', 'none', 'important');
+        mobileNavContainer.style.setProperty('visibility', 'visible', 'important');
+        mobileNavContainer.style.setProperty('opacity', '1', 'important');
+        mobileNavContainer.style.setProperty('display', 'block', 'important');
+        
         // 모든 가능한 클래스 제거
         mobileNavContainer.className = mobileNavContainer.className.replace(/nav-hidden/g, '').replace(/hidden/g, '');
       }
     }
   }
 
+  // MutationObserver로 실시간 DOM 변경 감지
+  const navObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && 
+          (mutation.target.id === 'nav-container' || 
+           mutation.target.classList.contains('mobile-nav-container'))) {
+        forceNavFixed();
+      }
+    });
+  });
+
   // 여러 시점에서 실행
-  document.addEventListener('DOMContentLoaded', forceNavFixed);
+  document.addEventListener('DOMContentLoaded', function() {
+    forceNavFixed();
+    
+    // MutationObserver 시작
+    const navContainer = document.querySelector('#nav-container');
+    const mobileNavContainer = document.querySelector('.mobile-nav-container');
+    
+    if (navContainer) {
+      navObserver.observe(navContainer, { attributes: true, attributeFilter: ['style', 'class'] });
+    }
+    if (mobileNavContainer) {
+      navObserver.observe(mobileNavContainer, { attributes: true, attributeFilter: ['style', 'class'] });
+    }
+  });
+  
   window.addEventListener('load', forceNavFixed);
   window.addEventListener('resize', forceNavFixed);
   
   // 주기적으로 강제 실행 (더 짧은 간격)
-  setInterval(forceNavFixed, 50);
+  setInterval(forceNavFixed, 30);
   
   // 스크롤 이벤트에서도 강제 실행
   window.addEventListener('scroll', forceNavFixed, { passive: true });
+  
+  // requestAnimationFrame으로도 지속적으로 체크
+  function checkNavFixed() {
+    forceNavFixed();
+    requestAnimationFrame(checkNavFixed);
+  }
+  requestAnimationFrame(checkNavFixed);
 </script>
 <script>
   // 성능 최적화된 Intersection Observer
@@ -4699,9 +4743,9 @@ document.addEventListener('DOMContentLoaded', function() {
    
    /* 모바일 네비게이션 - IntersectionObserver 방식 */
    @media screen and (max-width: 768px) {
-     /* Body padding 설정 */
+     /* Body padding 설정 (네비게이션 높이에 맞춤) */
      body {
-       padding-top: 51px !important;
+       padding-top: 43px !important;
      }
      
      /* Nav container - 모바일에서 완전 고정 - 최강화 */
@@ -4779,34 +4823,34 @@ document.addEventListener('DOMContentLoaded', function() {
        display: block !important;
      }
      
-     /* Header 스타일 - 완전 고정 */
-     .mobile-nav-container header,
-     #nav-container header {
-       position: relative !important;
-       top: 0 !important;
-       left: 0 !important;
-       right: 0 !important;
-       width: 100% !important;
-       height: 48px !important;
-       background: #000000 !important;
-       border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
-       display: flex !important;
-       align-items: center !important;
-       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-       margin: 0 !important;
-       padding: 0 !important;
-       transform: none !important;
-       transition: none !important;
-     }
+            /* Header 스타일 - 완전 고정 (높이 줄임) */
+       .mobile-nav-container header,
+       #nav-container header {
+         position: relative !important;
+         top: 0 !important;
+         left: 0 !important;
+         right: 0 !important;
+         width: 100% !important;
+         height: 40px !important;
+         background: #000000 !important;
+         border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
+         display: flex !important;
+         align-items: center !important;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+         margin: 0 !important;
+         padding: 0 !important;
+         transform: none !important;
+         transition: none !important;
+       }
      
-     /* 첫 번째 섹션 상단 여백 조정 */
+     /* 첫 번째 섹션 상단 여백 조정 (네비게이션과 거리 2칸 늘림) */
      #hive.section {
-       padding-top: 16px !important;
+       padding-top: 48px !important;
      }
      
-     /* 모바일 네비게이션 메뉴 위치 조정 */
+     /* 모바일 네비게이션 메뉴 위치 조정 (네비게이션 높이에 맞춤) */
      #mobile-nav {
-       top: 51px !important;
+       top: 43px !important;
      }
    }
   </style>
