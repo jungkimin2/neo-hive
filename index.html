@@ -2701,206 +2701,149 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-           // 모바일 네비게이션 완전 재생성 - 절대 실패하지 않는 방법
-     function createAbsoluteFixedNav() {
-       console.log('=== 모바일 네비게이션 생성 시작 ===');
-       console.log('Screen width:', window.innerWidth);
-       console.log('User agent:', navigator.userAgent);
+     // 모바일 네비게이션 강제 설정 - 최종 해결책
+   function forceMobileNavigation() {
+     console.log('Screen width:', window.innerWidth);
+     console.log('Document ready state:', document.readyState);
+     
+     if (window.innerWidth <= 768) {
+       const mobileNav = document.getElementById('mobile-top-nav-fixed');
+       const pcNav = document.getElementById('pc-nav-container');
        
-       if (window.innerWidth <= 768) {
-         console.log('모바일 환경 감지됨');
-         
-         // 1. 기존 모든 모바일 네비게이션 완전 제거
-         const existingNavs = document.querySelectorAll('#mobile-top-nav-fixed, #mobile-nav-ultimate');
-         existingNavs.forEach(nav => {
-           console.log('기존 네비게이션 제거:', nav.id);
-           nav.remove();
-         });
-         
-         // 2. PC 네비게이션 숨김
-         const pcNav = document.getElementById('pc-nav-container');
-         if (pcNav) {
-           pcNav.style.display = 'none';
-           console.log('PC 네비게이션 숨김');
+       console.log('Mobile nav element:', mobileNav);
+       console.log('PC nav element:', pcNav);
+       
+       if (mobileNav) {
+         // 1. 먼저 body 최상단으로 이동
+         if (mobileNav.parentNode !== document.body) {
+           document.body.insertBefore(mobileNav, document.body.firstChild);
+           console.log('Mobile nav moved to body top');
          }
          
-         // 3. 완전히 새로운 네비게이션 생성
-         const ultimateNav = document.createElement('div');
-         ultimateNav.id = 'mobile-nav-ultimate';
+         // 2. 부모 요소들의 position 체크
+         let parent = mobileNav.parentElement;
+         while (parent && parent !== document.documentElement) {
+           const computedStyle = window.getComputedStyle(parent);
+           if (computedStyle.position === 'relative' || computedStyle.position === 'absolute') {
+             parent.style.position = 'static';
+             console.log('Parent position changed to static:', parent);
+           }
+           parent = parent.parentElement;
+         }
          
-         // 4. HTML 구조 생성
-         ultimateNav.innerHTML = `
-           <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; height: 60px; background: #000; width: 100%;">
-             <img src="./images/neohive3.png" alt="NeoHive" style="height: 28px; width: auto;">
-             <button onclick="window.toggleUltimateNav()" style="background: none; border: none; color: #7BE495; font-size: 1.5rem; cursor: pointer; padding: 8px;">&#9776;</button>
-           </div>
-           <div id="ultimate-nav-menu" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #111; z-index: 999999; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-bottom: 2px solid #7BE495;">
-             <a href="#hive" onclick="window.closeUltimateNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">하이브 시스템</a>
-             <a href="#smart" onclick="window.closeUltimateNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">스마트 시스템</a>
-             <a href="#impact" onclick="window.closeUltimateNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">도입 효과</a>
-             <a href="#formModal" onclick="if(window.openForm) window.openForm(); window.closeUltimateNav();" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; font-size: 1rem; font-weight: 500;">무료 신청</a>
-           </div>
-         `;
-         
-         // 5. 절대 변경되지 않는 스타일 속성 설정
-         Object.assign(ultimateNav.style, {
-           position: 'fixed',
-           top: '0px',
-           left: '0px',
-           right: '0px',
-           width: '100%',
-           zIndex: '2147483647',
-           background: '#000',
-           borderBottom: '2px solid #7BE495',
-           boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
-           display: 'block',
-           visibility: 'visible',
-           opacity: '1',
-           transform: 'translateZ(0)',
-           willChange: 'transform',
-           webkitBackfaceVisibility: 'hidden',
-           backfaceVisibility: 'hidden'
-         });
-         
-         // 6. CSS 속성을 속성값으로도 직접 설정 (우선순위 최고)
-         ultimateNav.setAttribute('style', `
+         // 3. 강력한 CSS 적용
+         mobileNav.style.cssText = `
+           display: block !important;
            position: fixed !important;
            top: 0px !important;
            left: 0px !important;
            right: 0px !important;
            width: 100% !important;
-           z-index: 2147483647 !important;
            background: rgb(0, 0, 0) !important;
            border-bottom: 2px solid rgb(123, 228, 149) !important;
-           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-           display: block !important;
+           z-index: 2147483647 !important;
+           height: auto !important;
            visibility: visible !important;
            opacity: 1 !important;
            transform: translateZ(0) !important;
+           -webkit-transform: translateZ(0) !important;
            will-change: transform !important;
            -webkit-backface-visibility: hidden !important;
            backface-visibility: hidden !important;
-         `);
+           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+         `;
          
-         // 7. HTML head에 있는 모든 요소보다 앞에 삽입
-         const htmlElement = document.documentElement;
-         const bodyElement = document.body;
-         
-         // body의 맨 첫 번째 자식으로 삽입
-         if (bodyElement.firstChild) {
-           bodyElement.insertBefore(ultimateNav, bodyElement.firstChild);
-         } else {
-           bodyElement.appendChild(ultimateNav);
+         // 4. 모든 자식 요소도 강제 설정
+         const navBar = mobileNav.querySelector('.nav-bar');
+         if (navBar) {
+           navBar.style.cssText = `
+             display: flex !important;
+             justify-content: space-between !important;
+             align-items: center !important;
+             padding: 8px 12px !important;
+             height: 60px !important;
+             background: rgb(0, 0, 0) !important;
+             width: 100% !important;
+             position: relative !important;
+           `;
          }
          
-         console.log('새로운 네비게이션 생성 완료');
-         console.log('DOM에 추가됨:', document.contains(ultimateNav));
-         console.log('위치:', ultimateNav.getBoundingClientRect());
-         
-         // 8. body 여백 설정
+         // 5. body 상단 여백 설정
          document.body.style.setProperty('padding-top', '60px', 'important');
+         document.body.style.setProperty('margin-top', '0px', 'important');
          
-         // 9. 최종 확인
-         setTimeout(() => {
-           const computedStyle = window.getComputedStyle(ultimateNav);
-           console.log('=== 최종 스타일 확인 ===');
-           console.log('Position:', computedStyle.position);
-           console.log('Top:', computedStyle.top);
-           console.log('Z-index:', computedStyle.zIndex);
-           console.log('Display:', computedStyle.display);
-           console.log('Visibility:', computedStyle.visibility);
-         }, 100);
-         
+         console.log('Mobile nav fully configured');
+         console.log('Final position:', window.getComputedStyle(mobileNav).position);
+         console.log('Final top:', window.getComputedStyle(mobileNav).top);
+         console.log('Final z-index:', window.getComputedStyle(mobileNav).zIndex);
        } else {
-         // PC 환경
-         console.log('PC 환경 - 모바일 네비게이션 숨김');
-         const mobileNav = document.getElementById('mobile-nav-ultimate');
-         const pcNav = document.getElementById('pc-nav-container');
-         
-         if (mobileNav) {
-           mobileNav.style.display = 'none';
-         }
-         if (pcNav) {
-           pcNav.style.display = 'block';
-         }
+         console.error('Mobile nav element not found!');
        }
        
-       console.log('=== 네비게이션 설정 완료 ===');
+       if (pcNav) {
+         pcNav.style.setProperty('display', 'none', 'important');
+         console.log('PC nav hidden');
+       }
+     } else {
+       // PC 환경
+       const mobileNav = document.getElementById('mobile-top-nav-fixed');
+       const pcNav = document.getElementById('pc-nav-container');
+       
+       if (mobileNav) {
+         mobileNav.style.setProperty('display', 'none', 'important');
+       }
+       if (pcNav) {
+         pcNav.style.setProperty('display', 'block', 'important');
+       }
      }
+   }
    
-       // 새로운 네비게이션 메뉴 토글 함수들
-    window.toggleUltimateNav = function() {
-      const menu = document.getElementById('ultimate-nav-menu');
-      if (menu) {
-        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-        console.log('Ultimate menu toggled:', menu.style.display);
-      }
-    };
-    
-    window.closeUltimateNav = function() {
-      const menu = document.getElementById('ultimate-nav-menu');
-      if (menu) {
-        menu.style.display = 'none';
-        console.log('Ultimate menu closed');
-      }
-    };
-    
-    // 기존 함수들과의 호환성 유지
-    window.toggleNav = window.toggleUltimateNav;
-    window.closeNav = window.closeUltimateNav;
-    
-    // 절대 실패하지 않는 실행 방식
-    function executeNavCreation() {
-      try {
-        createAbsoluteFixedNav();
-      } catch (error) {
-        console.error('네비게이션 생성 오류:', error);
-        // 오류 발생 시 1초 후 재시도
-        setTimeout(executeNavCreation, 1000);
-      }
-    }
-    
-    // 즉시 실행
-    executeNavCreation();
-    
-    // DOM 준비 완료 시 실행
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', executeNavCreation);
-    }
-    
-    // 페이지 로드 완료 시 실행
-    window.addEventListener('load', executeNavCreation);
-    
-    // 화면 크기 변경 시 실행
-    window.addEventListener('resize', executeNavCreation);
-    
-    // 추가 안전장치들 - 여러 시점에서 실행
-    setTimeout(executeNavCreation, 100);
-    setTimeout(executeNavCreation, 500);
-    setTimeout(executeNavCreation, 1000);
-    setTimeout(executeNavCreation, 2000);
-    setTimeout(executeNavCreation, 3000);
-    
-    // 스크롤 시에도 네비게이션 상태 확인
-    let scrollCheckTimer;
-    window.addEventListener('scroll', function() {
-      if (window.innerWidth <= 768) {
-        clearTimeout(scrollCheckTimer);
-        scrollCheckTimer = setTimeout(() => {
-          const ultimateNav = document.getElementById('mobile-nav-ultimate');
-          if (ultimateNav) {
-            const computedStyle = window.getComputedStyle(ultimateNav);
-            if (computedStyle.position !== 'fixed' || computedStyle.top !== '0px') {
-              console.log('네비게이션 위치 이상 감지, 재생성...');
-              executeNavCreation();
-            }
-          } else {
-            console.log('네비게이션 요소 없음, 재생성...');
-            executeNavCreation();
-          }
-        }, 200);
-      }
-    });
+   // 네비게이션 메뉴 토글 함수들
+   window.toggleNav = function() {
+     const menu = document.getElementById('nav-menu');
+     if (menu) {
+       menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+       console.log('Menu toggled:', menu.style.display);
+     }
+   };
+   
+   window.closeNav = function() {
+     const menu = document.getElementById('nav-menu');
+     if (menu) {
+       menu.style.display = 'none';
+       console.log('Menu closed');
+     }
+   };
+   
+   // 여러 시점에서 강제 적용
+   if (document.readyState === 'loading') {
+     document.addEventListener('DOMContentLoaded', forceMobileNavigation);
+   } else {
+     forceMobileNavigation();
+   }
+   
+   window.addEventListener('load', forceMobileNavigation);
+   window.addEventListener('resize', forceMobileNavigation);
+   
+   // 추가 안전장치들
+   setTimeout(forceMobileNavigation, 500);
+   setTimeout(forceMobileNavigation, 1000);
+   setTimeout(forceMobileNavigation, 2000);
+   
+   // 스크롤 시에도 위치 확인
+   let scrollCheckTimer;
+   window.addEventListener('scroll', function() {
+     if (window.innerWidth <= 768) {
+       clearTimeout(scrollCheckTimer);
+       scrollCheckTimer = setTimeout(() => {
+         const mobileNav = document.getElementById('mobile-top-nav-fixed');
+         if (mobileNav && window.getComputedStyle(mobileNav).position !== 'fixed') {
+           console.log('Position lost during scroll, reapplying...');
+           forceMobileNavigation();
+         }
+       }, 100);
+     }
+   });
   
   // ESC 키로 메뉴 닫기
   document.addEventListener('keydown', function(e) {
