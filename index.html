@@ -2734,60 +2734,118 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
   </script>
 
-  <!-- 모바일 네비게이션 Sticky + 스크롤 추적 방식 -->
+  <!-- 완전 새로운 JavaScript 기반 모바일 네비게이션 -->
   <script>
-    let lastScrollTop = 0;
+    let mobileNavCreated = false;
     
-    function handleMobileNavScroll() {
+    function createFloatingMobileNav() {
+      if (window.innerWidth > 768 || mobileNavCreated) return;
+      
+      // 기존 모든 네비게이션 숨김
+      const existingNavs = document.querySelectorAll('#nav-container, #simple-mobile-nav, #mobile-scroll-nav');
+      existingNavs.forEach(nav => {
+        if (nav) nav.style.display = 'none';
+      });
+      
+      // 새로운 플로팅 네비게이션 생성
+      const floatingNav = document.createElement('div');
+      floatingNav.id = 'floating-mobile-nav';
+      floatingNav.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; height: 50px;">
+          <img src="./images/neohive3.png" alt="NeoHive" style="height: 24px; width: auto;">
+          <button onclick="toggleFloatingMenu()" style="background: none; border: none; color: #7BE495; font-size: 20px; cursor: pointer; padding: 8px;">☰</button>
+        </div>
+        <div id="floating-menu" style="display: none; background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(10px);">
+          <a href="#hive" onclick="closeFloatingMenu()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">하이브 시스템</a>
+          <a href="#smart" onclick="closeFloatingMenu()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">스마트 시스템</a>
+          <a href="#impact" onclick="closeFloatingMenu()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333;">도입 효과</a>
+          <a href="#formModal" onclick="openForm(); closeFloatingMenu()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none;">무료 신청</a>
+        </div>
+      `;
+      
+      // 스타일 직접 적용 (CSS 우회)
+      Object.assign(floatingNav.style, {
+        position: 'fixed',
+        top: '0px',
+        left: '0px',
+        right: '0px',
+        width: '100%',
+        zIndex: '999999',
+        background: 'rgba(0, 0, 0, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '2px solid #7BE495',
+        boxShadow: '0 2px 15px rgba(0, 0, 0, 0.8)',
+        transform: 'translate3d(0, 0, 0)',
+        willChange: 'transform'
+      });
+      
+      // body 최상단에 삽입
+      document.body.insertBefore(floatingNav, document.body.firstChild);
+      
+      // body 패딩 조정
+      document.body.style.paddingTop = '60px';
+      
+      mobileNavCreated = true;
+    }
+    
+    // 메뉴 토글 함수들
+    window.toggleFloatingMenu = function() {
+      const menu = document.getElementById('floating-menu');
+      if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      }
+    };
+    
+    window.closeFloatingMenu = function() {
+      const menu = document.getElementById('floating-menu');
+      if (menu) {
+        menu.style.display = 'none';
+      }
+    };
+    
+    // 스크롤시 위치 재확인
+    function maintainFloatingNav() {
       if (window.innerWidth <= 768) {
-        const navContainer = document.getElementById('nav-container');
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (navContainer) {
-          // Sticky 속성 강화
-          navContainer.style.position = '-webkit-sticky';
-          navContainer.style.position = 'sticky';
-          navContainer.style.top = '0px';
-          navContainer.style.zIndex = '9999';
-          navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
-          navContainer.style.backdropFilter = 'blur(10px)';
-          navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
-          navContainer.style.width = '100%';
-          
-          // 스크롤 방향에 따른 효과 (선택사항)
-          if (currentScroll > lastScrollTop) {
-            // 아래로 스크롤
-            navContainer.style.transform = 'translateY(0)';
-          } else {
-            // 위로 스크롤
-            navContainer.style.transform = 'translateY(0)';
-          }
+        const floatingNav = document.getElementById('floating-mobile-nav');
+        if (floatingNav) {
+          // 위치 강제 재설정
+          floatingNav.style.position = 'fixed';
+          floatingNav.style.top = '0px';
+          floatingNav.style.left = '0px';
+          floatingNav.style.right = '0px';
+          floatingNav.style.zIndex = '999999';
+        } else {
+          // 네비게이션이 없으면 다시 생성
+          mobileNavCreated = false;
+          createFloatingMobileNav();
         }
-        
-        // 기존 중복 네비게이션들 숨김
-        const simpleMobileNav = document.getElementById('simple-mobile-nav');
-        const mobileScrollNav = document.getElementById('mobile-scroll-nav');
-        
-        if (simpleMobileNav) {
-          simpleMobileNav.style.display = 'none';
-        }
-        if (mobileScrollNav) {
-          mobileScrollNav.style.display = 'none';
-        }
-        
-        lastScrollTop = currentScroll;
       }
     }
-
-    // 즉시 실행
-    handleMobileNavScroll();
     
-    // 이벤트 리스너 등록
-    document.addEventListener('DOMContentLoaded', handleMobileNavScroll);
-    window.addEventListener('load', handleMobileNavScroll);
-    window.addEventListener('resize', handleMobileNavScroll);
-    window.addEventListener('scroll', handleMobileNavScroll, { passive: true });
-    window.addEventListener('orientationchange', handleMobileNavScroll);
+    // 페이지 로드 시 즉시 실행
+    createFloatingMobileNav();
+    
+    // 이벤트 리스너
+    document.addEventListener('DOMContentLoaded', createFloatingMobileNav);
+    window.addEventListener('load', createFloatingMobileNav);
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const floatingNav = document.getElementById('floating-mobile-nav');
+        if (floatingNav) {
+          floatingNav.remove();
+          mobileNavCreated = false;
+          document.body.style.paddingTop = '0';
+        }
+      } else {
+        createFloatingMobileNav();
+      }
+    });
+    
+    // 스크롤시 위치 유지
+    window.addEventListener('scroll', maintainFloatingNav, { passive: true });
+    
+    // 주기적으로 위치 체크 (500ms마다)
+    setInterval(maintainFloatingNav, 500);
   </script>
 
   <script>
