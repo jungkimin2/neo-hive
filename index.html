@@ -1133,21 +1133,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 
-<!-- 모바일 전용 간단한 고정 네비게이션 -->
-<div id="simple-mobile-nav">
-  <div class="nav-bar">
-    <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
-    <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
-  </div>
-  <div class="nav-menu" id="nav-menu" style="display: none;">
-    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
-    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
-    <a href="#impact" onclick="closeNav()">도입 효과</a>
-    <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
-  </div>
-</div>
-
-<!-- 모바일 전용 하단 스크롤 감지 네비게이션 -->
+<!-- 모바일 전용 하단 고정 네비게이션 -->
 <div id="mobile-scroll-nav">
   <div class="scroll-nav-container">
     <a href="#hive" class="scroll-nav-item">
@@ -1168,6 +1154,22 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </a>
   </div>
 </div>
+
+<!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
+<div id="scrollable-content">
+  <!-- 모바일 전용 상단 네비게이션 (스크롤과 함께 움직임) -->
+  <div id="mobile-top-nav">
+    <div class="nav-bar">
+      <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
+      <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
+    </div>
+    <div class="nav-menu" id="nav-menu" style="display: none;">
+      <a href="#hive" onclick="closeNav()">하이브 시스템</a>
+      <a href="#smart" onclick="closeNav()">스마트 시스템</a>
+      <a href="#impact" onclick="closeNav()">도입 효과</a>
+      <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
+    </div>
+  </div>
 
 <!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
 <div id="nav-container">
@@ -4680,14 +4682,20 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-       /* 모바일 전용 간단한 고정 네비게이션 */
-    #simple-mobile-nav {
+       /* 모바일 전용 상단 네비게이션 */
+    #mobile-top-nav {
       display: none;
     }
     
-    /* 모바일 전용 하단 스크롤 감지 네비게이션 */
+    /* 모바일 전용 하단 고정 네비게이션 */
     #mobile-scroll-nav {
       display: none;
+    }
+    
+    /* 스크롤 콘텐츠 컨테이너 */
+    #scrollable-content {
+      position: relative;
+      width: 100%;
     }
    
    @media screen and (max-width: 768px) {
@@ -4702,10 +4710,10 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-           /* 새로운 간단한 모바일 네비게이션 (스크롤과 함께 움직임) */
-      #simple-mobile-nav {
+           /* 새로운 모바일 상단 네비게이션 (스크롤과 함께 움직임) */
+      #mobile-top-nav {
         display: block !important;
-        position: relative !important; /* fixed에서 relative로 변경 */
+        position: relative !important; /* 스크롤과 함께 움직임 */
         top: 0 !important;
         left: 0 !important;
         right: 0 !important;
@@ -4713,6 +4721,13 @@ document.addEventListener('DOMContentLoaded', function() {
         z-index: 999999 !important;
         background: #000 !important;
         border-bottom: 2px solid #7BE495 !important;
+      }
+      
+      /* 스크롤 콘텐츠 컨테이너 */
+      #scrollable-content {
+        position: relative !important;
+        width: 100% !important;
+        min-height: 100vh !important;
       }
      
            .nav-bar {
@@ -4840,3 +4855,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   </style>
+
+</div> <!-- scrollable-content 끝 -->
