@@ -2789,41 +2789,78 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 모바일 네비게이션 강제 고정 설정 - 더 강력한 방법
-  function fixMobileNav() {
+  // 모바일 네비게이션 완전 재생성 방법
+  function createFixedMobileNav() {
     if (window.innerWidth <= 768) {
-      const mobileNav = document.getElementById('mobile-top-nav');
-      if (mobileNav) {
-        // 인라인 스타일로 강제 적용
-        mobileNav.setAttribute('style', 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; height: 60px !important; z-index: 2147483647 !important; background: #000 !important; border-bottom: 2px solid #7BE495 !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; display: block !important;');
-        
-        // body padding 조정
-        document.body.style.paddingTop = '60px';
-        
-        // 부모 요소들의 position 확인 및 수정
-        let parent = mobileNav.parentElement;
-        while (parent && parent !== document.body) {
-          const computedStyle = window.getComputedStyle(parent);
-          if (computedStyle.position === 'relative' || computedStyle.position === 'absolute') {
-            parent.style.position = 'static';
-          }
-          parent = parent.parentElement;
-        }
+      // 기존 모바일 네비게이션 제거
+      const existingNav = document.getElementById('mobile-top-nav');
+      if (existingNav) {
+        existingNav.remove();
       }
+      
+      // 새로운 모바일 네비게이션 생성
+      const newMobileNav = document.createElement('div');
+      newMobileNav.id = 'mobile-top-nav-fixed';
+      newMobileNav.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; height: 60px; background: #000;">
+          <img src="./images/neohive3.png" alt="NeoHive" style="height: 28px; width: auto;">
+          <button onclick="toggleMobileNav()" style="background: none; border: none; color: #7BE495; font-size: 1.5rem; cursor: pointer; padding: 8px; border-radius: 4px;">&#9776;</button>
+        </div>
+        <div id="mobile-nav-menu-fixed" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #111; z-index: 999998; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-bottom: 2px solid #7BE495;">
+          <a href="#hive" onclick="closeMobileNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">하이브 시스템</a>
+          <a href="#smart" onclick="closeMobileNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">스마트 시스템</a>
+          <a href="#impact" onclick="closeMobileNav()" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; border-bottom: 1px solid #333; font-size: 1rem; font-weight: 500;">도입 효과</a>
+          <a href="#formModal" onclick="openForm();closeMobileNav();" style="display: block; padding: 15px 20px; color: #7BE495; text-decoration: none; font-size: 1rem; font-weight: 500;">무료 신청</a>
+        </div>
+      `;
+      
+      // 스타일 강제 적용
+      newMobileNav.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 60px !important;
+        z-index: 2147483647 !important;
+        background: #000 !important;
+        border-bottom: 2px solid #7BE495 !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+        display: block !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        will-change: transform !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+      `;
+      
+      // body 최상위에 추가
+      document.body.insertBefore(newMobileNav, document.body.firstChild);
+      
+      // body padding 조정
+      document.body.style.paddingTop = '60px';
+      
+      // 메뉴 토글 함수 재정의
+      window.toggleMobileNav = function() {
+        const menu = document.getElementById('mobile-nav-menu-fixed');
+        if (menu) {
+          menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+      };
+      
+      window.closeMobileNav = function() {
+        const menu = document.getElementById('mobile-nav-menu-fixed');
+        if (menu) {
+          menu.style.display = 'none';
+        }
+      };
     }
   }
   
   // 여러 시점에서 실행
-  document.addEventListener('DOMContentLoaded', fixMobileNav);
-  window.addEventListener('load', fixMobileNav);
-  window.addEventListener('resize', fixMobileNav);
-  
-  // 스크롤 시에도 확인
-  let scrollTimer;
-  window.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(fixMobileNav, 100);
-  });
+  document.addEventListener('DOMContentLoaded', createFixedMobileNav);
+  window.addEventListener('load', createFixedMobileNav);
+  window.addEventListener('resize', createFixedMobileNav);
   
   // 모바일 네비게이션 메뉴 토글
   function toggleMobileNav() {
