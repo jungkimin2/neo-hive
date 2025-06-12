@@ -1147,65 +1147,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- 모바일 전용 플로팅 액션 버튼 (무료 신청) -->
-<div id="mobile-floating-btn" onclick="openForm()" style="
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #7BE495 0%, #3AC8A8 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999998;
-  box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4), 0 0 20px rgba(123, 228, 149, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  animation: float 3s ease-in-out infinite;
-">
-  <div style="
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-  ">무료<br>신청</div>
-</div>
-
-<!-- 모바일 전용 빠른 네비게이션 힌트 -->
-<div id="mobile-nav-hint" style="
-  position: fixed;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(123, 228, 149, 0.9);
-  color: #000;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  z-index: 999997;
-  animation: slideDown 0.5s ease-out, fadeOut 4s ease-out 2s forwards;
-  pointer-events: none;
-">
-  📱 하단 메뉴로 빠른 이동 가능
-</div>
-
-<!-- 모바일 전용 스크롤 진행률 표시기 -->
-<div id="mobile-scroll-progress" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #7BE495 0%, #3AC8A8 100%);
-  z-index: 999999;
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
-"></div>
-
 <!-- 모바일 전용 하단 고정 네비게이션 -->
 <div id="mobile-scroll-nav">
   <div class="scroll-nav-container">
@@ -2818,85 +2759,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 즉시 실행 (DOM이 준비되기 전에도)
   forceMobileNavigation();
   
-     // 추가 안전장치 - 1초 후 다시 실행
-   setTimeout(forceMobileNavigation, 1000);
-   
-   // 모바일 전용 UX 개선 기능들
-   if (window.innerWidth <= 768) {
-     // 스크롤 진행률 업데이트
-     function updateScrollProgress() {
-       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-       const progress = (scrollTop / scrollHeight) * 100;
-       
-       const progressBar = document.getElementById('mobile-scroll-progress');
-       if (progressBar) {
-         progressBar.style.width = progress + '%';
-       }
-     }
-     
-     // 스크롤 이벤트 리스너
-     window.addEventListener('scroll', updateScrollProgress);
-     
-     // 플로팅 버튼 인터랙션 개선
-     const floatingBtn = document.getElementById('mobile-floating-btn');
-     if (floatingBtn) {
-       // 터치 피드백
-       floatingBtn.addEventListener('touchstart', function() {
-         this.style.transform = 'scale(0.9)';
-       });
-       
-       floatingBtn.addEventListener('touchend', function() {
-         this.style.transform = 'scale(1)';
-         // 햅틱 피드백 (지원하는 디바이스에서)
-         if (navigator.vibrate) {
-           navigator.vibrate(50);
-         }
-       });
-     }
-     
-     // 하단 네비게이션 아이템에 클릭 피드백 추가
-     const navItems = document.querySelectorAll('.scroll-nav-item');
-     navItems.forEach(item => {
-       item.addEventListener('click', function() {
-         // 클릭 시 시각적 피드백
-         this.style.transform = 'translateY(-2px) scale(0.95)';
-         setTimeout(() => {
-           this.style.transform = 'translateY(-2px) scale(1)';
-         }, 150);
-         
-         // 햅틱 피드백
-         if (navigator.vibrate) {
-           navigator.vibrate(30);
-         }
-       });
-     });
-     
-     // 섹션 이동 시 부드러운 스크롤
-     function smoothScrollToSection(targetId) {
-       const target = document.getElementById(targetId.replace('#', ''));
-       if (target) {
-         const offsetTop = target.offsetTop - 80; // 여백 고려
-         window.scrollTo({
-           top: offsetTop,
-           behavior: 'smooth'
-         });
-       }
-     }
-     
-     // 네비게이션 링크에 부드러운 스크롤 적용
-     document.querySelectorAll('a[href^="#"]').forEach(link => {
-       link.addEventListener('click', function(e) {
-         e.preventDefault();
-         const targetId = this.getAttribute('href');
-         smoothScrollToSection(targetId);
-       });
-     });
-     
-     console.log('모바일 UX 개선 기능 활성화됨');
-   }
-   
-   // ESC 키로 메뉴 닫기
+  // 추가 안전장치 - 1초 후 다시 실행
+  setTimeout(forceMobileNavigation, 1000);
+  
+  // ESC 키로 메뉴 닫기
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeNav();
@@ -3633,48 +3499,6 @@ if (video) {
       margin-top: 100px !important;
       padding: 0 16px !important;
       touch-action: pan-x pinch-zoom !important;
-    }
-  }
-  
-  /* 모바일 전용 플로팅 버튼과 힌트 애니메이션 */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateX(-50%) translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0px);
-    }
-  }
-  
-  @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
-  
-  /* 모바일에서만 플로팅 요소들 표시 */
-  @media (max-width: 768px) {
-    #mobile-floating-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 30px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.5);
-    }
-    
-    #mobile-floating-btn:active {
-      transform: scale(0.95);
-    }
-  }
-  
-  /* PC에서는 플로팅 요소들 숨김 */
-  @media (min-width: 769px) {
-    #mobile-floating-btn,
-    #mobile-nav-hint {
-      display: none !important;
     }
   }
 </style>
@@ -5027,70 +4851,22 @@ document.addEventListener('DOMContentLoaded', function() {
         padding-top: 0 !important;
       }
       
-             /* 하단 고정 네비게이션 강화 - 더 눈에 띄고 사용하기 쉽게 */
-       #mobile-scroll-nav {
-         display: block !important;
-         position: fixed !important;
-         bottom: 0 !important;
-         left: 0 !important;
-         right: 0 !important;
-         z-index: 999999 !important;
-         background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%) !important;
-         backdrop-filter: blur(20px) !important;
-         border-top: 3px solid #7BE495 !important;
-         box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.9), 0 -2px 16px rgba(123, 228, 149, 0.3) !important;
-         transform: translateY(0) !important;
-         opacity: 1 !important;
-         transition: none !important;
-         height: 70px !important; /* 높이 증가 */
-         padding: 8px 0 !important;
-       }
-       
-       /* 하단 네비게이션 컨테이너 개선 */
-       .scroll-nav-container {
-         display: flex !important;
-         justify-content: space-around !important;
-         align-items: center !important;
-         height: 100% !important;
-         padding: 0 8px !important;
-       }
-       
-       /* 네비게이션 아이템 개선 */
-       .scroll-nav-item {
-         display: flex !important;
-         flex-direction: column !important;
-         align-items: center !important;
-         justify-content: center !important;
-         text-decoration: none !important;
-         color: #7BE495 !important;
-         padding: 4px 8px !important;
-         border-radius: 12px !important;
-         transition: all 0.3s ease !important;
-         min-width: 60px !important;
-         position: relative !important;
-       }
-       
-       .scroll-nav-item:hover,
-       .scroll-nav-item:active {
-         background: rgba(123, 228, 149, 0.2) !important;
-         transform: translateY(-2px) !important;
-         box-shadow: 0 4px 12px rgba(123, 228, 149, 0.4) !important;
-       }
-       
-       /* 아이콘 개선 */
-       .scroll-nav-icon {
-         font-size: 1.5rem !important;
-         margin-bottom: 2px !important;
-         filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) !important;
-       }
-       
-       /* 라벨 개선 */
-       .scroll-nav-label {
-         font-size: 0.7rem !important;
-         font-weight: 600 !important;
-         text-shadow: 0 0 4px rgba(123, 228, 149, 0.8) !important;
-         letter-spacing: 0.5px !important;
-       }
+      /* 하단 고정 네비게이션 (항상 화면 하단에 고정) */
+      #mobile-scroll-nav {
+        display: block !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999999 !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(15px) !important;
+        border-top: 2px solid #7BE495 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
+        transform: translateY(0) !important; /* 항상 표시 */
+        opacity: 1 !important;
+        transition: none !important;
+      }
       
       .scroll-nav-container {
         display: flex !important;
