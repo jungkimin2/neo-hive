@@ -1171,9 +1171,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
   </div>
 
-<!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
-<div id="nav-container">
-  <!-- 모바일 네비게이션 컨테이너 -->
+<!-- PC 전용 네비게이션 바 -->
+<div id="pc-nav-container">
   <div class="mobile-nav-container">
     <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
     <header style="position: relative; top: 0; left: 0; width: 100%;">
@@ -1189,22 +1188,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <a href="#impact">도입 효과</a>
         <a href="#formModal" onclick="openForm()">무료 신청</a>
       </nav>
-      <!-- 햄버거 메뉴 버튼 (모바일용) -->
-      <button id="mobile-nav-toggle" aria-label="메뉴 열기" style="display:none; background:none; border:none; color:#7BE495; font-size:2rem; cursor:pointer; z-index:1100;">
-        &#9776;
-      </button>
     </div>
-    <!-- 모바일 네비게이션 메뉴 -->
-    <nav id="mobile-nav" style="display:none; position:fixed; top:51px; left:0; width:100vw; background:#111; z-index:1099; box-shadow:0 4px 16px #000a;">
-      <a href="#hive" onclick="closeMobileNav()" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem; border-bottom:1px solid #222;">하이브 시스템</a>
-      <a href="#smart" onclick="closeMobileNav()" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem; border-bottom:1px solid #222;">스마트 시스템</a>
-      <a href="#impact" onclick="closeMobileNav()" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem; border-bottom:1px solid #222;">도입 효과</a>
-      <a href="#formModal" onclick="openForm();closeMobileNav();" style="display:block; padding:18px 24px; color:#7BE495; font-size:1.2rem;">무료 신청</a>
-    </nav>
     </header>
   </div>
 </div>
-<!-- nav-container 끝 -->
 
 
 <!-- 스크롤 방향 감지 스크립트 제거 - 단순 고정 방식으로 변경 -->
@@ -4667,12 +4654,16 @@ document.addEventListener('DOMContentLoaded', function() {
    
    /* PC 환경 네비게이션 설정 */
    @media screen and (min-width: 769px) {
-     #nav-container {
+     #pc-nav-container {
        position: fixed !important;
        top: 0 !important;
        left: 0 !important;
        width: 100% !important;
        z-index: 999999 !important;
+     }
+     
+     #mobile-top-nav {
+       display: none !important;
      }
      
      .mobile-nav-container {
@@ -4705,12 +4696,12 @@ document.addEventListener('DOMContentLoaded', function() {
        overflow-x: hidden !important;
      }
      
-     /* 기존 네비게이션 숨김 */
-     #nav-container {
+     /* PC 네비게이션 숨김 */
+     #pc-nav-container {
        display: none !important;
      }
      
-           /* 새로운 모바일 상단 네비게이션 (스크롤과 함께 움직임) */
+           /* 모바일 상단 네비게이션 (스크롤과 함께 움직임) */
       #mobile-top-nav {
         display: block !important;
         position: relative !important; /* 스크롤과 함께 움직임 */
@@ -4718,7 +4709,7 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
-        z-index: 999999 !important;
+        z-index: 1000 !important;
         background: #000 !important;
         border-bottom: 2px solid #7BE495 !important;
       }
@@ -4759,12 +4750,12 @@ document.addEventListener('DOMContentLoaded', function() {
      }
      
      .nav-menu {
-       position: fixed !important;
-       top: 60px !important;
+       position: absolute !important;
+       top: 100% !important;
        left: 0 !important;
        right: 0 !important;
        background: #111 !important;
-       z-index: 999998 !important;
+       z-index: 999 !important;
        box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
      }
      
