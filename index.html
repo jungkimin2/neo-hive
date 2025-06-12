@@ -1155,22 +1155,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
-<div id="scrollable-content">
-  <!-- 모바일 전용 상단 네비게이션 (스크롤과 함께 움직임) -->
-  <div id="mobile-top-nav">
-    <div class="nav-bar">
-      <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
-      <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
-    </div>
-    <div class="nav-menu" id="nav-menu" style="display: none;">
-      <a href="#hive" onclick="closeNav()">하이브 시스템</a>
-      <a href="#smart" onclick="closeNav()">스마트 시스템</a>
-      <a href="#impact" onclick="closeNav()">도입 효과</a>
-      <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
-    </div>
-  </div>
-
 <!-- PC 전용 네비게이션 바 -->
 <div id="pc-nav-container">
   <div class="mobile-nav-container">
@@ -1192,6 +1176,22 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </header>
   </div>
 </div>
+
+<!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
+<div id="scrollable-content">
+  <!-- 모바일 전용 상단 네비게이션 (스크롤과 함께 움직임) -->
+  <div id="mobile-top-nav">
+    <div class="nav-bar">
+      <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
+      <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
+    </div>
+    <div class="nav-menu" id="nav-menu" style="display: none;">
+      <a href="#hive" onclick="closeNav()">하이브 시스템</a>
+      <a href="#smart" onclick="closeNav()">스마트 시스템</a>
+      <a href="#impact" onclick="closeNav()">도입 효과</a>
+      <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
+    </div>
+  </div>
 
 
 <!-- 스크롤 방향 감지 스크립트 제거 - 단순 고정 방식으로 변경 -->
@@ -2699,6 +2699,31 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       menu.style.display = 'none';
     }
   }
+  
+  // 모바일 네비게이션 강제 설정
+  function forceMobileNavigation() {
+    if (window.innerWidth <= 768) {
+      const mobileNav = document.getElementById('mobile-top-nav');
+      const pcNav = document.getElementById('pc-nav-container');
+      
+      if (mobileNav) {
+        mobileNav.style.setProperty('display', 'block', 'important');
+        mobileNav.style.setProperty('position', 'relative', 'important');
+        mobileNav.style.setProperty('width', '100%', 'important');
+        mobileNav.style.setProperty('background', '#000', 'important');
+        mobileNav.style.setProperty('border-bottom', '2px solid #7BE495', 'important');
+        mobileNav.style.setProperty('z-index', '1000', 'important');
+      }
+      
+      if (pcNav) {
+        pcNav.style.setProperty('display', 'none', 'important');
+      }
+    }
+  }
+  
+  // 페이지 로드 시 강제 적용
+  document.addEventListener('DOMContentLoaded', forceMobileNavigation);
+  window.addEventListener('resize', forceMobileNavigation);
   
   // ESC 키로 메뉴 닫기
   document.addEventListener('keydown', function(e) {
