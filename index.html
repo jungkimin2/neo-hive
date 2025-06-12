@@ -422,22 +422,25 @@ pointer-events: auto !important;
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
     }
-    /* 모바일 헤더/네비게이션 고정 및 스타일 */
-    header,
-    .mobile-nav,
-    nav,
-    .navbar {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      z-index: 9999 !important;
-      background-color: #fff !important;
-    }
-    body {
-      padding-top: 70px !important;
-    }
+         /* 모바일 네비게이션 스크롤 따라오기 (sticky) */
+     #nav-container {
+       position: sticky !important;
+       top: 0 !important;
+       z-index: 9999 !important;
+       background: rgba(0, 0, 0, 0.95) !important;
+       backdrop-filter: blur(10px) !important;
+       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+     }
+     
+     .mobile-nav-container {
+       position: relative !important;
+       width: 100% !important;
+     }
+     
+     /* body 패딩 제거 - sticky는 공간을 차지하므로 불필요 */
+     body {
+       padding-top: 0 !important;
+     }
 
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
     .section {
@@ -2732,9 +2735,56 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 모바일 하단 고정 네비게이션 (항상 표시)
   // 스크롤 감지 로직 제거 - 이제 항상 보임
 
-</script>
-<script>
-  // 성능 최적화된 Intersection Observer
+  </script>
+
+  <!-- 모바일 네비게이션 스크롤 따라오기 스크립트 -->
+  <script>
+    function enhanceStickyNav() {
+      if (window.innerWidth <= 768) {
+        const navContainer = document.getElementById('nav-container');
+        if (navContainer) {
+          // sticky 속성 강화
+          navContainer.style.position = 'sticky';
+          navContainer.style.top = '0px';
+          navContainer.style.zIndex = '9999';
+          navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
+          navContainer.style.backdropFilter = 'blur(10px)';
+          navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
+          navContainer.style.width = '100%';
+        }
+        
+        // 기존 모바일 네비게이션들 숨김
+        const simpleMobileNav = document.getElementById('simple-mobile-nav');
+        const mobileScrollNav = document.getElementById('mobile-scroll-nav');
+        
+        if (simpleMobileNav) {
+          simpleMobileNav.style.display = 'none';
+        }
+        if (mobileScrollNav) {
+          mobileScrollNav.style.display = 'none';
+        }
+      }
+    }
+
+    // 페이지 로드시 실행
+    document.addEventListener('DOMContentLoaded', enhanceStickyNav);
+    window.addEventListener('load', enhanceStickyNav);
+    window.addEventListener('resize', enhanceStickyNav);
+    
+    // 스크롤시에도 지속적으로 적용
+    window.addEventListener('scroll', function() {
+      if (window.innerWidth <= 768) {
+        const navContainer = document.getElementById('nav-container');
+        if (navContainer) {
+          navContainer.style.position = 'sticky';
+          navContainer.style.top = '0px';
+        }
+      }
+    });
+  </script>
+
+  <script>
+    // 성능 최적화된 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // 모바일에서는 스크롤 애니메이션 비활성화
