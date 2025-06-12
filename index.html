@@ -3966,24 +3966,6 @@ h3 {
 }
 }
 </style>
-/* 모바일 환경에서 슬라이드 이미지 성능 최적화 및 GPU 가속화 */
-@media (max-width: 768px) {
-.hive-image {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-}
-.hive-image.active {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-}
-.video-phone {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-}
-}
 <style>
 /* 모바일 환경에서 슬라이드 UI 전환 최적화 */
 @media (max-width: 768px) {
