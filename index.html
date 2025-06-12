@@ -1190,9 +1190,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
-      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
+      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 8px; margin-left: -20px;">
         <a href="#" style="display:block;">
-          <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
+          <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 22px; margin-right: 0;">
         </a>
       </div>
       <nav class="desktop-nav">
@@ -1202,7 +1202,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <a href="#formModal" onclick="openForm()">무료 신청</a>
       </nav>
       <!-- 햄버거 메뉴 버튼 (모바일용) -->
-      <button id="mobile-nav-toggle" aria-label="메뉴 열기" style="display:none; background:none; border:none; color:#7BE495; font-size:2rem; cursor:pointer; z-index:1100;">
+      <button id="mobile-nav-toggle" aria-label="메뉴 열기" style="display:none; background:none; border:none; color:#7BE495; font-size:1.5rem; cursor:pointer; z-index:1100; padding: 4px;">
         &#9776;
       </button>
     </div>
@@ -2737,20 +2737,24 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
   </script>
 
-  <!-- 모바일 네비게이션 스크롤 따라오기 스크립트 -->
+  <!-- 모바일 네비게이션 완전 고정 스크립트 -->
   <script>
-    function enhanceStickyNav() {
+    function forceMobileNavSticky() {
       if (window.innerWidth <= 768) {
         const navContainer = document.getElementById('nav-container');
         if (navContainer) {
-          // sticky 속성 강화
-          navContainer.style.position = 'sticky';
-          navContainer.style.top = '0px';
-          navContainer.style.zIndex = '9999';
-          navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
-          navContainer.style.backdropFilter = 'blur(10px)';
-          navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
-          navContainer.style.width = '100%';
+          // 강력한 sticky 적용
+          navContainer.style.cssText = `
+            position: -webkit-sticky !important;
+            position: sticky !important;
+            top: 0px !important;
+            z-index: 9999 !important;
+            background: rgba(0, 0, 0, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+            width: 100% !important;
+            display: block !important;
+          `;
         }
         
         // 기존 모바일 네비게이션들 숨김
@@ -2766,21 +2770,18 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       }
     }
 
-    // 페이지 로드시 실행
-    document.addEventListener('DOMContentLoaded', enhanceStickyNav);
-    window.addEventListener('load', enhanceStickyNav);
-    window.addEventListener('resize', enhanceStickyNav);
+    // 즉시 실행
+    forceMobileNavSticky();
     
-    // 스크롤시에도 지속적으로 적용
-    window.addEventListener('scroll', function() {
-      if (window.innerWidth <= 768) {
-        const navContainer = document.getElementById('nav-container');
-        if (navContainer) {
-          navContainer.style.position = 'sticky';
-          navContainer.style.top = '0px';
-        }
-      }
-    });
+    // 모든 이벤트에서 재적용
+    document.addEventListener('DOMContentLoaded', forceMobileNavSticky);
+    window.addEventListener('load', forceMobileNavSticky);
+    window.addEventListener('resize', forceMobileNavSticky);
+    window.addEventListener('scroll', forceMobileNavSticky);
+    window.addEventListener('orientationchange', forceMobileNavSticky);
+    
+    // 주기적으로 강제 적용 (100ms마다)
+    setInterval(forceMobileNavSticky, 100);
   </script>
 
   <script>
