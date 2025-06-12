@@ -2766,8 +2766,29 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 즉시 실행 (DOM이 준비되기 전에도)
   forceMobileNavigation();
   
-  // 추가 안전장치 - 1초 후 다시 실행
+  // 추가 안전장치 - 여러 시점에서 재실행
+  setTimeout(forceMobileNavigation, 100);
+  setTimeout(forceMobileNavigation, 500);
   setTimeout(forceMobileNavigation, 1000);
+  setTimeout(forceMobileNavigation, 2000);
+  
+  // 모바일에서 주기적으로 네비게이션 고정 확인
+  if (window.innerWidth <= 768) {
+    setInterval(function() {
+      const mobileNav = document.getElementById('mobile-top-nav-fixed');
+      if (mobileNav) {
+        const navStyles = window.getComputedStyle(mobileNav);
+        if (navStyles.position !== 'fixed') {
+          console.log('Periodic check: Navigation not fixed!');
+          mobileNav.style.setProperty('position', 'fixed', 'important');
+          mobileNav.style.setProperty('top', '0px', 'important');
+          mobileNav.style.setProperty('z-index', '2147483647', 'important');
+          mobileNav.style.setProperty('transform', 'translateZ(0)', 'important');
+          mobileNav.style.setProperty('transform-style', 'preserve-3d', 'important');
+        }
+      }
+    }, 2000); // 2초마다 확인
+  }
   
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
@@ -2780,14 +2801,21 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         
         // 네비게이션이 고정되어 있는지 확인
         const navStyles = window.getComputedStyle(mobileNav);
-        if (navStyles.position !== 'fixed') {
+        if (navStyles.position !== 'fixed' || navStyles.top !== '0px') {
           console.log('Navigation not fixed! Fixing now...');
+          
+          // 즉시 고정 속성 강제 적용
+          mobileNav.style.setProperty('position', 'fixed', 'important');
+          mobileNav.style.setProperty('top', '0px', 'important');
+          mobileNav.style.setProperty('left', '0px', 'important');
+          mobileNav.style.setProperty('right', '0px', 'important');
+          mobileNav.style.setProperty('width', '100%', 'important');
+          mobileNav.style.setProperty('z-index', '2147483647', 'important');
+          mobileNav.style.setProperty('transform', 'translateZ(0)', 'important');
+          mobileNav.style.setProperty('transform-style', 'preserve-3d', 'important');
+          
           forceMobileNavigation();
         }
-        
-        // 네비게이션이 항상 최상단에 있도록 보장
-        mobileNav.style.top = '0px';
-        mobileNav.style.position = 'fixed';
         
         lastScrollTop = currentScrollTop;
       }
@@ -5064,7 +5092,11 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: auto !important;
   }
   
-  #mobile-top-nav-fixed {
+  /* 네비게이션은 예외 - 최상위 z-index 유지 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed *,
+  #mobile-top-nav-fixed .nav-bar,
+  #mobile-top-nav-fixed .nav-menu {
     z-index: 2147483647 !important;
   }
   
@@ -5076,12 +5108,38 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: flat !important;
   }
   
-  /* 네비게이션 고정 강화 */
+  /* 네비게이션은 예외 - 3D 변환 허용 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed * {
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 고정 강화 (최강력) */
   #mobile-top-nav-fixed {
     position: -webkit-sticky !important;
     position: sticky !important;
     position: fixed !important;
     top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 2147483647 !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 부모 요소들의 transform 제거 (네비게이션 고정 보장) */
+  body > #mobile-top-nav-fixed,
+  html > body > #mobile-top-nav-fixed {
+    position: fixed !important;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 }
 </style>
