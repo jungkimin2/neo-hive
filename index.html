@@ -2769,6 +2769,37 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            mobileScrollNav.style.display = 'none';
          }
          
+         // 모바일 메뉴 버튼 이벤트 리스너 추가
+         const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+         const mobileNav = document.getElementById('mobile-nav');
+         
+         if (mobileNavToggle && mobileNav) {
+           // 기존 이벤트 리스너 제거 후 새로 추가
+           mobileNavToggle.onclick = function() {
+             if (mobileNav.style.display === 'none' || mobileNav.style.display === '') {
+               mobileNav.style.display = 'block';
+               mobileNav.style.position = 'fixed';
+               mobileNav.style.top = '60px';
+               mobileNav.style.left = '0';
+               mobileNav.style.width = '100%';
+               mobileNav.style.zIndex = '999998';
+               mobileNav.style.background = '#111';
+               mobileNav.style.boxShadow = '0 4px 16px rgba(0,0,0,0.8)';
+             } else {
+               mobileNav.style.display = 'none';
+             }
+           };
+           
+           // 메뉴 외부 클릭시 닫기
+           document.addEventListener('click', function(e) {
+             if (mobileNav.style.display === 'block' && 
+                 !mobileNav.contains(e.target) && 
+                 !mobileNavToggle.contains(e.target)) {
+               mobileNav.style.display = 'none';
+             }
+           });
+         }
+         
          // body 패딩 조정
          document.body.style.paddingTop = '60px';
          document.body.style.marginTop = '0px';
@@ -2791,6 +2822,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     
          // 주기적으로 강제 적용 (100ms마다)
      setInterval(ensureMobileNavFixed, 100);
+     
+     // 모바일 메뉴 닫기 함수
+     window.closeMobileNav = function() {
+       const mobileNav = document.getElementById('mobile-nav');
+       if (mobileNav) {
+         mobileNav.style.display = 'none';
+       }
+     };
      
      // 추가 보강: 스크롤 이벤트에서 즉시 재적용
      let scrollTimeout;
