@@ -955,15 +955,40 @@ pointer-events: auto !important;
   }
 
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
-  /* 네오 스마트 비디오 - 모바일에서 애니메이션 제거 */
+  /* 네오 스마트 비디오 - 모바일에서 부드러운 등장 애니메이션 */
   @media (max-width: 768px) {
     .neo-smart-video {
       left: 50% !important;
       top: 50% !important;
-      transform: translate(-50%, -50%) !important;
+      transform: translate(-50%, -50%) scale(0.8) !important;
+      opacity: 0 !important;
+      z-index: 5 !important;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      animation: none !important;
+    }
+    
+    .neo-smart-video.mobile-appear {
+      transform: translate(-50%, -50%) scale(1) !important;
       opacity: 1 !important;
       z-index: 15 !important;
-      animation: none !important;
+    }
+  }
+  
+  /* 모바일 부드러운 등장 키프레임 */
+  @keyframes mobileVideoAppear {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      z-index: 5;
+    }
+    60% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      z-index: 15;
     }
   }
   
@@ -3182,8 +3207,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <script>
 window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
-  // 모바일에서는 슬라이드 애니메이션 제거
-  if (window.innerWidth > 768) {
+  
+  if (window.innerWidth <= 768) {
+    // 모바일에서는 부드러운 등장 애니메이션
+    setTimeout(() => {
+      video.classList.add('mobile-appear');
+    }, 1000);
+  } else {
+    // PC에서는 기존 슬라이드 애니메이션
     setTimeout(() => {
       video.classList.add('tag-slide');
     }, 800);
@@ -5225,16 +5256,34 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
   }
   
-  /* 네오 스마트 비디오 모바일 최전면 고정 */
-  .neo-smart-video {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 15 !important;
-    opacity: 1 !important;
-    animation: none !important;
-    transition: none !important;
+  /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
+  @media (max-width: 768px) {
+    .neo-smart-video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(0.8) !important;
+      z-index: 5 !important;
+      opacity: 0 !important;
+      animation: none !important;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    /* 모바일에서 등장 후 최종 상태 */
+    .neo-smart-video.mobile-appear {
+      transform: translate(-50%, -50%) scale(1) !important;
+      z-index: 15 !important;
+      opacity: 1 !important;
+    }
+  }
+  
+  /* PC 환경에서는 기존 스타일 유지 */
+  @media (min-width: 769px) {
+    .neo-smart-video {
+      position: absolute !important;
+      z-index: 30 !important;
+      opacity: 1 !important;
+    }
   }
   
   /* overflow 문제 해결 */
