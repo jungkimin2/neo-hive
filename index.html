@@ -4711,67 +4711,49 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-           /* 새로운 간단한 모바일 네비게이션 (화면 최상단 완전 고정) */
-      #simple-mobile-nav {
-        display: block !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        z-index: 999999 !important;
-        background: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border-bottom: 2px solid #7BE495 !important;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
-        transform: translate3d(0, 0, 0) !important;
-        will-change: transform !important;
-      }
+     /* 새로운 간단한 모바일 네비게이션 */
+     #simple-mobile-nav {
+       display: block !important;
+       position: fixed !important;
+       top: 0 !important;
+       left: 0 !important;
+       right: 0 !important;
+       z-index: 999999 !important;
+       background: #000 !important;
+       border-bottom: 2px solid #7BE495 !important;
+     }
      
-           .nav-bar {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 10px 20px !important;
-        height: 60px !important;
-        background: transparent !important;
-        box-sizing: border-box !important;
-      }
+     .nav-bar {
+       display: flex !important;
+       justify-content: space-between !important;
+       align-items: center !important;
+       padding: 8px 16px !important;
+       height: 50px !important;
+       background: #000 !important;
+     }
      
-           .nav-logo {
-        height: 35px !important;
-        width: auto !important;
-        filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.5)) !important;
-      }
+     .nav-logo {
+       height: 30px !important;
+     }
      
-           .nav-menu-btn {
-        background: none !important;
-        border: none !important;
-        color: #7BE495 !important;
-        font-size: 1.8rem !important;
-        cursor: pointer !important;
-        padding: 8px !important;
-        border-radius: 6px !important;
-        transition: all 0.3s ease !important;
-        text-shadow: 0 0 8px rgba(123, 228, 149, 0.8) !important;
-      }
-      
-      .nav-menu-btn:hover {
-        background: rgba(123, 228, 149, 0.1) !important;
-        transform: scale(1.05) !important;
-      }
+     .nav-menu-btn {
+       background: none !important;
+       border: none !important;
+       color: #7BE495 !important;
+       font-size: 1.5rem !important;
+       cursor: pointer !important;
+       padding: 5px !important;
+     }
      
-           .nav-menu {
-        position: fixed !important;
-        top: 60px !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: rgba(17, 17, 17, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        z-index: 999998 !important;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7) !important;
-        border-top: 1px solid rgba(123, 228, 149, 0.3) !important;
-      }
+     .nav-menu {
+       position: fixed !important;
+       top: 60px !important;
+       left: 0 !important;
+       right: 0 !important;
+       background: #111 !important;
+       z-index: 999998 !important;
+       box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+     }
      
      .nav-menu a {
        display: block !important;
@@ -4786,10 +4768,10 @@ document.addEventListener('DOMContentLoaded', function() {
        background: #222 !important;
      }
      
-           /* Body padding 설정 (상단 네비 고정 공간 확보) */
-      body {
-        padding-top: 70px !important;
-      }
+     /* Body padding 설정 */
+     body {
+       padding-top: 60px !important;
+     }
      
            /* 첫 번째 섹션 상단 여백 조정 */
       #hive.section {
