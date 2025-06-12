@@ -422,21 +422,21 @@ pointer-events: auto !important;
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
     }
-         /* 모바일 네비게이션 Sticky 방식 */
+         /* 모바일 네비게이션 스크롤 고정 설정 */
      #nav-container {
-       position: -webkit-sticky !important;
-       position: sticky !important;
+       position: fixed !important;
        top: 0 !important;
+       left: 0 !important;
+       right: 0 !important;
+       width: 100% !important;
        z-index: 9999 !important;
        background: rgba(0, 0, 0, 0.95) !important;
        backdrop-filter: blur(10px) !important;
        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
-       width: 100% !important;
      }
      
-     /* Sticky는 공간을 차지하므로 body 패딩 불필요 */
      body {
-       padding-top: 0 !important;
+       padding-top: 60px !important;
      }
     
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
@@ -2734,174 +2734,56 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
   </script>
 
-  <!-- 하단 고정 네비게이션 바 (Instagram 스타일) -->
+  <!-- 모바일 네비게이션 스크롤 고정 스크립트 -->
   <script>
-    let bottomNavCreated = false;
-    
-    function createBottomNav() {
-      if (window.innerWidth > 768 || bottomNavCreated) return;
-      
-      // 하단 네비게이션 생성
-      const bottomNav = document.createElement('div');
-      bottomNav.id = 'bottom-fixed-nav';
-      bottomNav.innerHTML = `
-        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0; height: 60px;">
-          <a href="#hive" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #7BE495; padding: 8px;">
-            <div style="font-size: 20px; margin-bottom: 4px;">🏠</div>
-            <span style="font-size: 11px;">홈</span>
-          </a>
-          <a href="#smart" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #7BE495; padding: 8px;">
-            <div style="font-size: 20px; margin-bottom: 4px;">⚡</div>
-            <span style="font-size: 11px;">스마트</span>
-          </a>
-          <a href="#impact" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #7BE495; padding: 8px;">
-            <div style="font-size: 20px; margin-bottom: 4px;">📊</div>
-            <span style="font-size: 11px;">효과</span>
-          </a>
-          <a href="#formModal" onclick="openForm()" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #7BE495; padding: 8px;">
-            <div style="font-size: 20px; margin-bottom: 4px;">📝</div>
-            <span style="font-size: 11px;">신청</span>
-          </a>
-        </div>
-      `;
-      
-      // 하단 고정 스타일 적용
-      Object.assign(bottomNav.style, {
-        position: 'fixed',
-        bottom: '0px',
-        left: '0px',
-        right: '0px',
-        width: '100%',
-        zIndex: '999999',
-        background: 'rgba(0, 0, 0, 0.95)',
-        backdropFilter: 'blur(15px)',
-        borderTop: '2px solid #7BE495',
-        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.8)',
-        transform: 'translate3d(0, 0, 0)',
-        willChange: 'transform'
-      });
-      
-      // body에 추가
-      document.body.appendChild(bottomNav);
-      
-      // body 하단 패딩 추가
-      document.body.style.paddingBottom = '80px';
-      
-      bottomNavCreated = true;
-    }
-    
-    // 스크롤 감지 상단 미니 네비게이션
-    function createScrollTopNav() {
-      if (window.innerWidth > 768) return;
-      
-      let isScrollNavVisible = false;
-      let lastScrollTop = 0;
-      
-      // 미니 상단 네비게이션 생성
-      const scrollNav = document.createElement('div');
-      scrollNav.id = 'scroll-top-nav';
-      scrollNav.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; height: 40px;">
-          <img src="./images/neohive3.png" alt="NeoHive" style="height: 20px; width: auto;">
-          <button onclick="scrollToTop()" style="background: none; border: none; color: #7BE495; font-size: 16px; cursor: pointer; padding: 4px;">↑</button>
-        </div>
-      `;
-      
-      // 초기에는 숨김
-      Object.assign(scrollNav.style, {
-        position: 'fixed',
-        top: '-50px',
-        left: '0px',
-        right: '0px',
-        width: '100%',
-        zIndex: '999998',
-        background: 'rgba(0, 0, 0, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid #7BE495',
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.6)',
-        transition: 'top 0.3s ease',
-        transform: 'translate3d(0, 0, 0)',
-        willChange: 'transform'
-      });
-      
-      document.body.appendChild(scrollNav);
-      
-      // 스크롤 감지
-      window.addEventListener('scroll', function() {
-        if (window.innerWidth > 768) return;
-        
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (currentScroll > 200 && !isScrollNavVisible) {
-          // 200px 이상 스크롤하면 나타남
-          scrollNav.style.top = '0px';
-          isScrollNavVisible = true;
-        } else if (currentScroll <= 100 && isScrollNavVisible) {
-          // 100px 이하로 올라가면 숨김
-          scrollNav.style.top = '-50px';
-          isScrollNavVisible = false;
-        }
-        
-        lastScrollTop = currentScroll;
-      }, { passive: true });
-    }
-    
-    // 상단으로 스크롤
-    window.scrollToTop = function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    
-    // 위치 유지 함수
-    function maintainBottomNav() {
+    function ensureMobileNavFixed() {
       if (window.innerWidth <= 768) {
-        const bottomNav = document.getElementById('bottom-fixed-nav');
-        if (bottomNav) {
-          // 위치 강제 재설정
-          bottomNav.style.position = 'fixed';
-          bottomNav.style.bottom = '0px';
-          bottomNav.style.left = '0px';
-          bottomNav.style.right = '0px';
-          bottomNav.style.zIndex = '999999';
-        } else if (!bottomNavCreated) {
-          createBottomNav();
+        const navContainer = document.getElementById('nav-container');
+        if (navContainer) {
+          // 강력한 고정 스타일 적용
+          navContainer.style.cssText = `
+            position: fixed !important;
+            top: 0px !important;
+            left: 0px !important;
+            right: 0px !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+            background: rgba(0, 0, 0, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+            transform: translate3d(0, 0, 0) !important;
+            will-change: transform !important;
+          `;
         }
+        
+        // 기존 중복 네비게이션들 숨김
+        const simpleMobileNav = document.getElementById('simple-mobile-nav');
+        const mobileScrollNav = document.getElementById('mobile-scroll-nav');
+        
+        if (simpleMobileNav) {
+          simpleMobileNav.style.display = 'none';
+        }
+        if (mobileScrollNav) {
+          mobileScrollNav.style.display = 'none';
+        }
+        
+        // body 패딩 조정
+        document.body.style.paddingTop = '60px';
       }
     }
+
+    // 즉시 실행
+    ensureMobileNavFixed();
     
-    // 초기화
-    function initMobileNav() {
-      if (window.innerWidth <= 768) {
-        createBottomNav();
-        createScrollTopNav();
-      }
-    }
+    // 모든 이벤트에서 재적용
+    document.addEventListener('DOMContentLoaded', ensureMobileNavFixed);
+    window.addEventListener('load', ensureMobileNavFixed);
+    window.addEventListener('resize', ensureMobileNavFixed);
+    window.addEventListener('scroll', ensureMobileNavFixed);
+    window.addEventListener('orientationchange', ensureMobileNavFixed);
     
-    // 페이지 로드 시 즉시 실행
-    initMobileNav();
-    
-    // 이벤트 리스너
-    document.addEventListener('DOMContentLoaded', initMobileNav);
-    window.addEventListener('load', initMobileNav);
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        // PC 환경에서는 모든 모바일 네비게이션 제거
-        const bottomNav = document.getElementById('bottom-fixed-nav');
-        const scrollNav = document.getElementById('scroll-top-nav');
-        if (bottomNav) {
-          bottomNav.remove();
-          bottomNavCreated = false;
-        }
-        if (scrollNav) {
-          scrollNav.remove();
-        }
-        document.body.style.paddingBottom = '0';
-      } else {
-        initMobileNav();
-      }
-    });
-    
-    // 주기적으로 위치 체크
-    setInterval(maintainBottomNav, 1000);
+    // 주기적으로 강제 적용 (200ms마다)
+    setInterval(ensureMobileNavFixed, 200);
   </script>
 
   <script>
