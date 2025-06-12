@@ -1132,8 +1132,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 
-<!-- 모바일 전용 간단한 고정 네비게이션 -->
-<div id="simple-mobile-nav">
+<!-- 모바일 전용 배경 레이어 네비게이션 (완전 분리) -->
+<div id="mobile-background-nav">
   <div class="nav-bar">
     <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
@@ -1146,8 +1146,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- 모바일 전용 하단 스크롤 감지 네비게이션 -->
-<div id="mobile-scroll-nav">
+<!-- 모바일 전용 하단 배경 레이어 네비게이션 -->
+<div id="mobile-bottom-nav">
   <div class="scroll-nav-container">
     <a href="#hive" class="scroll-nav-item">
       <div class="scroll-nav-icon">🏠</div>
@@ -1167,6 +1167,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </a>
   </div>
 </div>
+
+<!-- 페이지 콘텐츠 컨테이너 (네비게이션과 완전 분리) -->
+<div id="page-content-container">
 
 <!-- 네비게이션 바와 그린바를 하나로 묶은 컨테이너 -->
 <div id="nav-container">
@@ -4679,32 +4682,53 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-       /* 모바일 전용 간단한 고정 네비게이션 */
-    #simple-mobile-nav {
+       /* 모바일 전용 배경 레이어 네비게이션 */
+    #mobile-background-nav {
       display: none;
     }
     
-    /* 모바일 전용 하단 스크롤 감지 네비게이션 */
-    #mobile-scroll-nav {
+    /* 모바일 전용 하단 배경 레이어 네비게이션 */
+    #mobile-bottom-nav {
       display: none;
+    }
+    
+    /* 페이지 콘텐츠 컨테이너 */
+    #page-content-container {
+      position: relative;
+      z-index: 1;
     }
    
    @media screen and (max-width: 768px) {
+     /* HTML과 body 기본 설정 */
+     html, body {
+       position: relative !important;
+       overflow-x: hidden !important;
+     }
+     
      /* 기존 네비게이션 숨김 */
      #nav-container {
        display: none !important;
      }
      
-     /* 새로운 간단한 모바일 네비게이션 */
-     #simple-mobile-nav {
+     /* 모바일 배경 레이어 네비게이션 (완전 분리된 고정 레이어) */
+     #mobile-background-nav {
        display: block !important;
        position: fixed !important;
        top: 0 !important;
        left: 0 !important;
        right: 0 !important;
-       z-index: 999999 !important;
+       width: 100vw !important;
+       height: 60px !important;
+       z-index: 2147483647 !important; /* 최대 z-index */
        background: #000 !important;
        border-bottom: 2px solid #7BE495 !important;
+       transform: translate3d(0, 0, 0) !important;
+       will-change: transform !important;
+       backface-visibility: hidden !important;
+       -webkit-transform: translate3d(0, 0, 0) !important;
+       -webkit-backface-visibility: hidden !important;
+       pointer-events: auto !important;
+       contain: layout style paint !important;
      }
      
            .nav-bar {
@@ -4714,6 +4738,10 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 8px 12px 8px 8px !important;
         height: 50px !important;
         background: #000 !important;
+        width: 100% !important;
+        position: relative !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
       }
      
            .nav-logo {
@@ -4754,9 +4782,24 @@ document.addEventListener('DOMContentLoaded', function() {
        background: #222 !important;
      }
      
-     /* Body padding 설정 */
+     /* 페이지 콘텐츠 컨테이너 (네비게이션과 완전 분리) */
+     #page-content-container {
+       position: relative !important;
+       z-index: 1 !important;
+       padding-top: 60px !important; /* 상단 네비게이션 공간 */
+       padding-bottom: 80px !important; /* 하단 네비게이션 공간 */
+       min-height: 100vh !important;
+       background: #0A0A0A !important;
+       transform: translate3d(0, 0, 0) !important;
+       -webkit-transform: translate3d(0, 0, 0) !important;
+     }
+     
+     /* Body 설정 (패딩 제거) */
      body {
-       padding-top: 60px !important;
+       padding: 0 !important;
+       margin: 0 !important;
+       position: relative !important;
+       overflow-x: hidden !important;
      }
      
            /* 첫 번째 섹션 상단 여백 조정 */
@@ -4764,21 +4807,27 @@ document.addEventListener('DOMContentLoaded', function() {
         padding-top: 20px !important;
       }
       
-      /* 하단 고정 네비게이션 (항상 화면 하단에 고정) */
-      #mobile-scroll-nav {
+      /* 하단 배경 레이어 네비게이션 (완전 분리된 고정 레이어) */
+      #mobile-bottom-nav {
         display: block !important;
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        z-index: 999999 !important;
+        width: 100vw !important;
+        height: 80px !important;
+        z-index: 2147483647 !important; /* 최대 z-index */
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(15px) !important;
         border-top: 2px solid #7BE495 !important;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
-        transform: translateY(0) !important; /* 항상 표시 */
-        opacity: 1 !important;
-        transition: none !important;
+        transform: translate3d(0, 0, 0) !important;
+        will-change: transform !important;
+        backface-visibility: hidden !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        pointer-events: auto !important;
+        contain: layout style paint !important;
       }
       
       .scroll-nav-container {
@@ -4820,9 +4869,8 @@ document.addEventListener('DOMContentLoaded', function() {
         text-align: center !important;
       }
       
-      /* Body 하단 여백 추가 (하단 네비 공간 확보) */
-      body {
-        padding-bottom: 80px !important; /* 하단 네비게이션 공간 확보 */
-      }
+
     }
   </style>
+
+</div> <!-- page-content-container 끝 -->
