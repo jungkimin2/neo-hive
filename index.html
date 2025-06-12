@@ -2736,41 +2736,48 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
   <!-- 모바일 네비게이션 스크롤 고정 스크립트 -->
   <script>
-    function ensureMobileNavFixed() {
-      if (window.innerWidth <= 768) {
-        const navContainer = document.getElementById('nav-container');
-        if (navContainer) {
-          // 강력한 고정 스타일 적용
-          navContainer.style.cssText = `
-            position: fixed !important;
-            top: 0px !important;
-            left: 0px !important;
-            right: 0px !important;
-            width: 100% !important;
-            z-index: 9999 !important;
-            background: rgba(0, 0, 0, 0.95) !important;
-            backdrop-filter: blur(10px) !important;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
-            transform: translate3d(0, 0, 0) !important;
-            will-change: transform !important;
-          `;
-        }
-        
-        // 기존 중복 네비게이션들 숨김
-        const simpleMobileNav = document.getElementById('simple-mobile-nav');
-        const mobileScrollNav = document.getElementById('mobile-scroll-nav');
-        
-        if (simpleMobileNav) {
-          simpleMobileNav.style.display = 'none';
-        }
-        if (mobileScrollNav) {
-          mobileScrollNav.style.display = 'none';
-        }
-        
-        // body 패딩 조정
-        document.body.style.paddingTop = '60px';
-      }
-    }
+         function ensureMobileNavFixed() {
+       if (window.innerWidth <= 768) {
+         const navContainer = document.getElementById('nav-container');
+         if (navContainer) {
+           // 매우 강력한 고정 스타일 적용
+           navContainer.style.position = 'fixed';
+           navContainer.style.top = '0px';
+           navContainer.style.left = '0px';
+           navContainer.style.right = '0px';
+           navContainer.style.width = '100%';
+           navContainer.style.zIndex = '999999';
+           navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
+           navContainer.style.backdropFilter = 'blur(10px)';
+           navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
+           navContainer.style.transform = 'translate3d(0, 0, 0)';
+           navContainer.style.willChange = 'transform';
+           navContainer.style.display = 'block';
+           
+           // 추가 강제 속성들
+           navContainer.setAttribute('style', navContainer.getAttribute('style') + '; position: fixed !important; top: 0px !important;');
+         }
+         
+         // 기존 중복 네비게이션들 숨김
+         const simpleMobileNav = document.getElementById('simple-mobile-nav');
+         const mobileScrollNav = document.getElementById('mobile-scroll-nav');
+         
+         if (simpleMobileNav) {
+           simpleMobileNav.style.display = 'none';
+         }
+         if (mobileScrollNav) {
+           mobileScrollNav.style.display = 'none';
+         }
+         
+         // body 패딩 조정
+         document.body.style.paddingTop = '60px';
+         document.body.style.marginTop = '0px';
+         
+         // HTML과 body의 스크롤 속성 확인
+         document.documentElement.style.position = 'relative';
+         document.body.style.position = 'relative';
+       }
+     }
 
     // 즉시 실행
     ensureMobileNavFixed();
@@ -2782,8 +2789,18 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     window.addEventListener('scroll', ensureMobileNavFixed);
     window.addEventListener('orientationchange', ensureMobileNavFixed);
     
-    // 주기적으로 강제 적용 (200ms마다)
-    setInterval(ensureMobileNavFixed, 200);
+         // 주기적으로 강제 적용 (100ms마다)
+     setInterval(ensureMobileNavFixed, 100);
+     
+     // 추가 보강: 스크롤 이벤트에서 즉시 재적용
+     let scrollTimeout;
+     window.addEventListener('scroll', function() {
+       if (window.innerWidth <= 768) {
+         clearTimeout(scrollTimeout);
+         ensureMobileNavFixed(); // 즉시 실행
+         scrollTimeout = setTimeout(ensureMobileNavFixed, 50); // 50ms 후 한번 더
+       }
+     }, { passive: true });
   </script>
 
   <script>
