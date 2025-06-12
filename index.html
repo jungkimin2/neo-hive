@@ -2738,9 +2738,21 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       }
       
       // 모든 transform 속성 제거 (position: fixed 충돌 방지)
+      // 단, 네비게이션과 특정 UI 요소들은 예외 처리
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
-        if (styles.transform !== 'none' && el.id !== 'mobile-top-nav-fixed') {
+        
+        // 네비게이션 관련 요소들은 제외
+        if (el.id === 'mobile-top-nav-fixed' || 
+            el.closest('#mobile-top-nav-fixed') ||
+            el.classList.contains('neo-smart-video') ||
+            el.closest('.neo-smart-video') ||
+            el.classList.contains('video-container') ||
+            el.closest('.video-container')) {
+          return; // 이 요소들은 transform 유지
+        }
+        
+        if (styles.transform !== 'none') {
           el.style.transform = 'none';
         }
       });
@@ -5009,6 +5021,16 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 1 !important;
     transform: none !important;
   }
+  
+  /* 특정 UI 요소들은 원래 기능 유지 */
+  .neo-smart-video,
+  .video-container,
+  [class*="video"],
+  [class*="animation"],
+  [class*="slide"] {
+    transform: unset !important;
+    z-index: unset !important;
+  }
 
   /* 첫 번째 섹션 여백 조정 */
   #hive.section {
@@ -5053,6 +5075,26 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
   }
   
+  /* 특정 UI 요소들은 원래 기능 유지 */
+  .neo-smart-video,
+  .video-container,
+  [class*="video"],
+  [class*="animation"],
+  [class*="slide"],
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed * {
+    transform: unset !important;
+    -webkit-transform: unset !important;
+    position: unset !important;
+  }
+  
+  /* 네비게이션만 다시 강제 고정 */
+  #mobile-top-nav-fixed {
+    position: fixed !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+  }
+  
   /* overflow 문제 해결 */
   html, body {
     overflow-x: hidden !important;
@@ -5064,7 +5106,11 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: auto !important;
   }
   
-  #mobile-top-nav-fixed {
+  /* 네비게이션은 예외 - 최상위 z-index 유지 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed *,
+  #mobile-top-nav-fixed .nav-bar,
+  #mobile-top-nav-fixed .nav-menu {
     z-index: 2147483647 !important;
   }
   
@@ -5076,12 +5122,38 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: flat !important;
   }
   
-  /* 네비게이션 고정 강화 */
+  /* 네비게이션은 예외 - 3D 변환 허용 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed * {
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 고정 강화 (최강력) */
   #mobile-top-nav-fixed {
     position: -webkit-sticky !important;
     position: sticky !important;
     position: fixed !important;
     top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 2147483647 !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 부모 요소들의 transform 제거 (네비게이션 고정 보장) */
+  body > #mobile-top-nav-fixed,
+  html > body > #mobile-top-nav-fixed {
+    position: fixed !important;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 }
 </style>
