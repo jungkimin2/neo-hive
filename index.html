@@ -176,32 +176,6 @@ pointer-events: auto !important;
       padding-top: 56px !important;
     }
   }
-  
-  /* 모바일 환경에서 header 스타일 - PC와 동일한 구조 */
-  @media screen and (max-width: 768px) {
-    header {
-      background: #000 !important;
-      border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
-      color: #fff !important;
-      padding: 0 !important;
-      position: fixed !important;
-      top: 0 !important;
-      width: 100% !important;
-      z-index: 1000 !important;
-      box-shadow: none !important;
-      outline: none !important;
-      background-image: none !important;
-      height: 60px !important;
-      display: block !important;
-    }
-    header::after {
-      content: none !important;
-      display: none !important;
-    }
-    body {
-      padding-top: 60px !important;
-    }
-  }
   header .container {
     display: flex;
     justify-content: space-between;
@@ -234,64 +208,6 @@ pointer-events: auto !important;
   .desktop-nav {
     display: flex;
     gap: 20px;
-  }
-  
-  /* 모바일에서 PC 네비게이션 숨기고 햄버거 메뉴 표시 */
-  @media screen and (max-width: 768px) {
-    header .container {
-      height: 60px !important;
-      padding: 0 15px !important;
-    }
-    
-    .desktop-nav {
-      display: none !important;
-    }
-    
-    .mobile-menu-btn {
-      display: block !important;
-      background: none !important;
-      border: none !important;
-      color: #7BE495 !important;
-      font-size: 1.5rem !important;
-      cursor: pointer !important;
-      padding: 8px !important;
-      border-radius: 4px !important;
-      transition: background-color 0.3s ease !important;
-    }
-    
-    .mobile-menu-btn:hover {
-      background: rgba(123, 228, 149, 0.1) !important;
-    }
-    
-    .mobile-header-dropdown {
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      right: 0 !important;
-      background: #111 !important;
-      z-index: 999 !important;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
-      border-bottom: 2px solid #7BE495 !important;
-    }
-    
-    .mobile-header-dropdown a {
-      display: block !important;
-      padding: 15px 20px !important;
-      color: #7BE495 !important;
-      text-decoration: none !important;
-      border-bottom: 1px solid #333 !important;
-      font-size: 1rem !important;
-      font-weight: 500 !important;
-      transition: background-color 0.3s ease !important;
-    }
-    
-    .mobile-header-dropdown a:hover {
-      background: #222 !important;
-    }
-    
-    .mobile-header-dropdown a:last-child {
-      border-bottom: none !important;
-    }
   }
   .hero {
     padding: 60px 20px 40px 20px;
@@ -944,45 +860,6 @@ pointer-events: auto !important;
     overflow-x: hidden;
   }
   
-  /* 모바일에서만 스크롤 고정 네비게이션을 위한 추가 설정 */
-  @media only screen and (max-width: 768px) {
-    html {
-      position: relative !important;
-      height: 100% !important;
-    }
-    
-    body {
-      position: relative !important;
-      min-height: 100% !important;
-      padding-top: 60px !important; /* 상단 네비게이션 공간 확보 */
-    }
-    
-    /* 모바일 상단 네비게이션 강제 고정 */
-    #mobile-top-nav {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      height: 60px !important;
-      z-index: 2147483647 !important; /* 최대값 */
-      display: block !important;
-    }
-  }
-  
-  /* PC에서는 기본 설정 유지 */
-  @media only screen and (min-width: 769px) {
-    html, body {
-      /* PC에서는 기본값 유지 */
-      position: static;
-      height: auto;
-    }
-    
-    #mobile-top-nav {
-      display: none !important;
-    }
-  }
-  
   /* 스크롤 위치 안정화 */
   html {
     scroll-behavior: auto;
@@ -1256,44 +1133,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 
-<!-- 모바일 전용 상단 고정 네비게이션 -->
-<style>
-/* 모바일 네비게이션 즉시 적용 스타일 */
-@media screen and (max-width: 768px) {
-  #mobile-top-nav {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 60px !important;
-    z-index: 2147483647 !important;
-    background: #000 !important;
-    border-bottom: 2px solid #7BE495 !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-    display: block !important;
-  }
-}
-@media screen and (min-width: 769px) {
-  #mobile-top-nav {
-    display: none !important;
-  }
-}
-</style>
-<div id="mobile-top-nav">
-  <div class="mobile-nav-container">
-    <img src="./images/neohive3.png" alt="NeoHive" class="mobile-nav-logo">
-    <button class="mobile-nav-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
+<!-- 모바일 전용 상단 고정 네비게이션 (독립) -->
+<div id="mobile-top-nav-fixed">
+  <div class="nav-bar">
+    <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
+    <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
   </div>
-  <div class="mobile-nav-menu" id="mobile-nav-menu" style="display: none;">
-    <a href="#hive" onclick="closeMobileNav()">하이브 시스템</a>
-    <a href="#smart" onclick="closeMobileNav()">스마트 시스템</a>
-    <a href="#impact" onclick="closeMobileNav()">도입 효과</a>
-    <a href="#formModal" onclick="openForm();closeMobileNav();">무료 신청</a>
+  <div class="nav-menu" id="nav-menu" style="display: none;">
+    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
+    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
+    <a href="#impact" onclick="closeNav()">도입 효과</a>
+    <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
   </div>
 </div>
-
-
 
 <!-- 모바일 전용 하단 고정 네비게이션 -->
 <div id="mobile-scroll-nav">
@@ -1317,33 +1169,27 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- 공통 네비게이션 바 (PC + 모바일) -->
-<div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
-<header style="position: relative; top: 0; left: 0; width: 100%;">
-  <div class="container">
-    <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-      <a href="#" style="display:block;">
-        <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
-      </a>
+<!-- PC 전용 네비게이션 바 -->
+<div id="pc-nav-container">
+  <div class="mobile-nav-container">
+    <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
+    <header style="position: relative; top: 0; left: 0; width: 100%;">
+    <div class="container">
+      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
+        <a href="#" style="display:block;">
+          <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
+        </a>
+      </div>
+      <nav class="desktop-nav">
+        <a href="#hive">하이브 시스템</a>
+        <a href="#smart">스마트 시스템</a>
+        <a href="#impact">도입 효과</a>
+        <a href="#formModal" onclick="openForm()">무료 신청</a>
+      </nav>
     </div>
-    <!-- PC 네비게이션 -->
-    <nav class="desktop-nav">
-      <a href="#hive">하이브 시스템</a>
-      <a href="#smart">스마트 시스템</a>
-      <a href="#impact">도입 효과</a>
-      <a href="#formModal" onclick="openForm()">무료 신청</a>
-    </nav>
-    <!-- 모바일 햄버거 메뉴 -->
-    <button class="mobile-menu-btn" onclick="toggleMobileHeaderMenu()" style="display: none;">&#9776;</button>
+    </header>
   </div>
-  <!-- 모바일 드롭다운 메뉴 -->
-  <div id="mobile-header-menu" class="mobile-header-dropdown" style="display: none;">
-    <a href="#hive" onclick="closeMobileHeaderMenu()">하이브 시스템</a>
-    <a href="#smart" onclick="closeMobileHeaderMenu()">스마트 시스템</a>
-    <a href="#impact" onclick="closeMobileHeaderMenu()">도입 효과</a>
-    <a href="#formModal" onclick="openForm();closeMobileHeaderMenu();">무료 신청</a>
-  </div>
-</header>
+</div>
 
 <!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
 <div id="scrollable-content">
@@ -2855,68 +2701,71 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 이제 PC와 동일한 header 구조를 사용하므로 별도의 모바일 네비게이션 생성 불필요
-  // header가 CSS에 의해 자동으로 고정됨
-  
-  // 모바일 헤더 메뉴 제어 함수들 (PC와 동일한 header 구조 사용)
-  function toggleMobileHeaderMenu() {
-    const menu = document.getElementById('mobile-header-menu');
-    if (menu) {
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-      console.log('모바일 헤더 메뉴 토글:', menu.style.display);
-    }
-  }
-
-  function closeMobileHeaderMenu() {
-    const menu = document.getElementById('mobile-header-menu');
-    if (menu) {
-      menu.style.display = 'none';
-      console.log('모바일 헤더 메뉴 닫기');
-    }
-  }
-  
-  // 기존 함수들을 새로운 헤더 구조로 연결 (호환성 유지)
-  function toggleMobileNav() {
-    // 기존 방식 시도
-    const oldMenu = document.getElementById('mobile-nav-menu');
-    if (oldMenu) {
-      if (oldMenu.style.display === 'none' || oldMenu.style.display === '') {
-        oldMenu.style.display = 'block';
+  // 모바일 네비게이션 강제 설정
+  function forceMobileNavigation() {
+    console.log('Screen width:', window.innerWidth);
+    
+    if (window.innerWidth <= 768) {
+      const mobileNav = document.getElementById('mobile-top-nav-fixed');
+      const pcNav = document.getElementById('pc-nav-container');
+      
+      console.log('Mobile nav element:', mobileNav);
+      console.log('PC nav element:', pcNav);
+      
+      if (mobileNav) {
+        // 모든 CSS 속성을 강제로 설정
+        mobileNav.style.cssText = `
+          display: block !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          background: #000 !important;
+          border-bottom: 2px solid #7BE495 !important;
+          z-index: 999999 !important;
+          height: auto !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        `;
+        
+        console.log('Mobile nav styles applied:', mobileNav.style.cssText);
       } else {
-        oldMenu.style.display = 'none';
+        console.error('Mobile nav element not found!');
+      }
+      
+      if (pcNav) {
+        pcNav.style.setProperty('display', 'none', 'important');
+        console.log('PC nav hidden');
       }
     } else {
-      // 새로운 헤더 방식 사용
-      toggleMobileHeaderMenu();
+      // PC 환경
+      const mobileNav = document.getElementById('mobile-top-nav-fixed');
+      const pcNav = document.getElementById('pc-nav-container');
+      
+      if (mobileNav) {
+        mobileNav.style.setProperty('display', 'none', 'important');
+      }
+      if (pcNav) {
+        pcNav.style.setProperty('display', 'block', 'important');
+      }
     }
   }
   
-  function closeMobileNav() {
-    // 기존 방식 시도
-    const oldMenu = document.getElementById('mobile-nav-menu');
-    if (oldMenu) {
-      oldMenu.style.display = 'none';
-    } else {
-      // 새로운 헤더 방식 사용
-      closeMobileHeaderMenu();
-    }
-  }
+  // 페이지 로드 시 강제 적용
+  document.addEventListener('DOMContentLoaded', forceMobileNavigation);
+  window.addEventListener('resize', forceMobileNavigation);
+  
+  // 즉시 실행 (DOM이 준비되기 전에도)
+  forceMobileNavigation();
+  
+  // 추가 안전장치 - 1초 후 다시 실행
+  setTimeout(forceMobileNavigation, 1000);
   
   // ESC 키로 메뉴 닫기
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeNav();
-      closeMobileNav();
-    }
-  });
-  
-  // 메뉴 외부 클릭시 닫기
-  document.addEventListener('click', function(e) {
-    const nav = document.getElementById('mobile-top-nav');
-    const menu = document.getElementById('mobile-nav-menu');
-    
-    if (nav && !nav.contains(e.target)) {
-      closeMobileNav();
     }
   });
   
@@ -3654,6 +3503,9 @@ if (video) {
   }
 </style>
 <style>
+  body {
+    padding-top: 56px !important;
+  }
   @media (max-width: 768px) {
     body {
       padding-top: 56px !important;
@@ -4872,7 +4724,9 @@ document.addEventListener('DOMContentLoaded', function() {
        z-index: 999999 !important;
      }
      
-
+     #mobile-top-nav-fixed {
+       display: none !important;
+     }
      
      /* 모바일 하단 네비게이션은 PC에서 숨김 */
      #mobile-scroll-nav {
@@ -4886,7 +4740,10 @@ document.addEventListener('DOMContentLoaded', function() {
      }
    }
    
-
+       /* 모바일 전용 상단 고정 네비게이션 */
+    #mobile-top-nav-fixed {
+      display: none;
+    }
     
     /* 모바일 전용 하단 고정 네비게이션 */
     #mobile-scroll-nav {
@@ -4901,24 +4758,97 @@ document.addEventListener('DOMContentLoaded', function() {
    
    @media screen and (max-width: 768px) {
      /* HTML과 body 기본 설정 */
-     html {
+     html, body {
+       position: relative !important;
        overflow-x: hidden !important;
-     }
-     
-     body {
-       overflow-x: hidden !important;
-       padding-top: 60px !important; /* 모바일 네비게이션 공간 */
      }
      
      /* PC 네비게이션 숨김 */
      #pc-nav-container {
        display: none !important;
      }
+     
+           /* 모바일 상단 고정 네비게이션 (항상 상단에 고정) */
+      #mobile-top-nav-fixed {
+        display: block !important;
+        position: fixed !important; /* 상단에 고정 */
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 999999 !important;
+        background: #000 !important;
+        border-bottom: 2px solid #7BE495 !important;
+      }
+      
       /* 스크롤 콘텐츠 컨테이너 */
       #scrollable-content {
         position: relative !important;
         width: 100% !important;
         min-height: 100vh !important;
+      }
+     
+           .nav-bar {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 8px 12px 8px 8px !important;
+        height: 50px !important;
+        background: #000 !important;
+        width: 100% !important;
+        position: relative !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+      }
+     
+           .nav-logo {
+        height: 24px !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+     
+     .nav-menu-btn {
+       background: none !important;
+       border: none !important;
+       color: #7BE495 !important;
+       font-size: 1.5rem !important;
+       cursor: pointer !important;
+       padding: 5px !important;
+     }
+     
+     .nav-menu {
+       position: absolute !important;
+       top: 100% !important;
+       left: 0 !important;
+       right: 0 !important;
+       background: #111 !important;
+       z-index: 999 !important;
+       box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+     }
+     
+     .nav-menu a {
+       display: block !important;
+       padding: 15px 20px !important;
+       color: #7BE495 !important;
+       text-decoration: none !important;
+       border-bottom: 1px solid #333 !important;
+       font-size: 1rem !important;
+     }
+     
+     .nav-menu a:hover {
+       background: #222 !important;
+     }
+     
+           /* Body 설정 (상단 고정 네비게이션 공간 확보) */
+      body {
+        padding-top: 60px !important; /* 상단 네비게이션 공간 확보 */
+        margin-top: 0 !important;
+        position: relative !important;
+      }
+     
+           /* 첫 번째 섹션 상단 여백 조정 */
+      #hive.section {
+        padding-top: 0 !important;
       }
       
       /* 하단 고정 네비게이션 (항상 화면 하단에 고정) */
@@ -4928,7 +4858,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        z-index: 999998 !important;
+        z-index: 999999 !important;
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(15px) !important;
         border-top: 2px solid #7BE495 !important;
@@ -4980,7 +4910,6 @@ document.addEventListener('DOMContentLoaded', function() {
       /* Body 하단 여백 추가 (하단 네비 공간 확보) */
       body {
         padding-bottom: 80px !important; /* 하단 네비게이션 공간 확보 */
-        padding-top: 60px !important; /* 상단 네비게이션 공간 확보 */
       }
       
       /* 모바일에서 하이브 섹션 위치 조정 */
@@ -4994,110 +4923,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   </style>
 
-  </div> <!-- scrollable-content 끝 -->
-
+</div> <!-- scrollable-content 끝 -->
 <style>
-/* 모바일 전용 스타일 */
-@media only screen and (max-width: 768px) {
-  /* 기존 모바일 네비게이션 스타일은 HTML 내 인라인으로 처리 */
-  
-  /* 네비게이션 컨테이너 */
-  .mobile-nav-container {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 10px 15px !important;
-    height: 60px !important;
-    background: #000 !important;
-  }
-  
-  /* 로고 스타일 */
-  .mobile-nav-logo {
-    height: 28px !important;
-    width: auto !important;
-  }
-  
-  /* 햄버거 메뉴 버튼 */
-  .mobile-nav-menu-btn {
-    background: none !important;
-    border: none !important;
-    color: #7BE495 !important;
-    font-size: 1.5rem !important;
-    cursor: pointer !important;
-    padding: 8px !important;
-    border-radius: 4px !important;
-    transition: background-color 0.3s ease !important;
-  }
-  
-  .mobile-nav-menu-btn:hover {
-    background: rgba(123, 228, 149, 0.1) !important;
-  }
-  
-  /* 드롭다운 메뉴 */
-  .mobile-nav-menu {
-    position: absolute !important;
-    top: 100% !important;
+/* 모바일 환경에서 상단 네비게이션 바 완전 고정 */
+@media (max-width: 768px) {
+  /* 네비게이션 바 최상단 고정 */
+  #mobile-top-nav-fixed {
+    position: fixed !important;
+    top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    background: #111 !important;
-    z-index: 999998 !important;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+    width: 100vw !important;
+    z-index: 999999 !important;
+    background: #000 !important;
     border-bottom: 2px solid #7BE495 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+    transform: translateZ(0) !important; /* GPU 가속 활성화 */
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
   }
-  
-  /* 메뉴 링크 */
-  .mobile-nav-menu a {
-    display: block !important;
-    padding: 15px 20px !important;
-    color: #7BE495 !important;
-    text-decoration: none !important;
-    border-bottom: 1px solid #333 !important;
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    transition: background-color 0.3s ease !important;
+
+  /* 네비게이션 바 내부 요소들 */
+  #mobile-top-nav-fixed .nav-bar {
+    height: 60px !important;
+    min-height: 60px !important;
+    max-height: 60px !important;
+    background: #000 !important;
+    position: relative !important;
   }
-  
-  .mobile-nav-menu a:hover {
-    background: #222 !important;
-  }
-  
-  .mobile-nav-menu a:last-child {
-    border-bottom: none !important;
-  }
-  
-  /* 모바일에서 body 상단 여백 */
+
+  /* Body와 콘텐츠 상단 여백 */
   body {
     padding-top: 60px !important;
-  }
-  
-  /* 스크롤 컨텐츠 조정 */
-  #scrollable-content {
     margin-top: 0 !important;
+  }
+  
+  #scrollable-content {
     padding-top: 0 !important;
+    margin-top: 0 !important;
   }
-  
-  /* PC 네비게이션 숨김 */
-  #pc-nav-container {
-    display: none !important;
-  }
-}
 
-/* PC 전용 스타일 */
-@media only screen and (min-width: 769px) {
-  /* 모바일 네비게이션 숨김 */
-  #mobile-top-nav {
-    display: none !important;
+  /* 모든 다른 요소들이 네비바 아래 위치하도록 */
+  .section, .container, main {
+    position: relative !important;
+    z-index: 1 !important;
   }
-  
-  /* PC 네비게이션 표시 */
-  #pc-nav-container {
-    display: block !important;
-  }
-  
-  /* PC에서는 body padding-top 제거 */
-  body {
-    padding-top: 56px !important; /* PC header 높이 */
+
+  /* 추가 안정성을 위한 스타일 */
+  html {
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
   }
 }
 </style>
-
