@@ -177,27 +177,29 @@ pointer-events: auto !important;
     }
   }
   
-  /* 모바일 환경에서 header 스타일 - 스크롤 고정 */
+  /* 모바일 환경에서 header 스타일 - PC와 동일한 구조 */
   @media screen and (max-width: 768px) {
     header {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      z-index: 999999 !important;
       background: #000 !important;
       border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
-      height: 48px !important;
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
-      will-change: transform !important;
-      -webkit-backface-visibility: hidden !important;
-      backface-visibility: hidden !important;
+      color: #fff !important;
+      padding: 0 !important;
+      position: fixed !important;
+      top: 0 !important;
+      width: 100% !important;
+      z-index: 1000 !important;
+      box-shadow: none !important;
+      outline: none !important;
+      background-image: none !important;
+      height: 60px !important;
+      display: block !important;
     }
-    
+    header::after {
+      content: none !important;
+      display: none !important;
+    }
     body {
-      padding-top: 48px !important;
+      padding-top: 60px !important;
     }
   }
   header .container {
@@ -232,6 +234,64 @@ pointer-events: auto !important;
   .desktop-nav {
     display: flex;
     gap: 20px;
+  }
+  
+  /* 모바일에서 PC 네비게이션 숨기고 햄버거 메뉴 표시 */
+  @media screen and (max-width: 768px) {
+    header .container {
+      height: 60px !important;
+      padding: 0 15px !important;
+    }
+    
+    .desktop-nav {
+      display: none !important;
+    }
+    
+    .mobile-menu-btn {
+      display: block !important;
+      background: none !important;
+      border: none !important;
+      color: #7BE495 !important;
+      font-size: 1.5rem !important;
+      cursor: pointer !important;
+      padding: 8px !important;
+      border-radius: 4px !important;
+      transition: background-color 0.3s ease !important;
+    }
+    
+    .mobile-menu-btn:hover {
+      background: rgba(123, 228, 149, 0.1) !important;
+    }
+    
+    .mobile-header-dropdown {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: #111 !important;
+      z-index: 999 !important;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+      border-bottom: 2px solid #7BE495 !important;
+    }
+    
+    .mobile-header-dropdown a {
+      display: block !important;
+      padding: 15px 20px !important;
+      color: #7BE495 !important;
+      text-decoration: none !important;
+      border-bottom: 1px solid #333 !important;
+      font-size: 1rem !important;
+      font-weight: 500 !important;
+      transition: background-color 0.3s ease !important;
+    }
+    
+    .mobile-header-dropdown a:hover {
+      background: #222 !important;
+    }
+    
+    .mobile-header-dropdown a:last-child {
+      border-bottom: none !important;
+    }
   }
   .hero {
     padding: 60px 20px 40px 20px;
@@ -1257,27 +1317,33 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- PC 전용 네비게이션 바 -->
-<div id="pc-nav-container">
-  <div class="mobile-nav-container">
-    <div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
-    <header style="position: relative; top: 0; left: 0; width: 100%;">
-    <div class="container">
-      <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-        <a href="#" style="display:block;">
-          <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
-        </a>
-      </div>
-      <nav class="desktop-nav">
-        <a href="#hive">하이브 시스템</a>
-        <a href="#smart">스마트 시스템</a>
-        <a href="#impact">도입 효과</a>
-        <a href="#formModal" onclick="openForm()">무료 신청</a>
-      </nav>
+<!-- 공통 네비게이션 바 (PC + 모바일) -->
+<div id="green-bar" style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
+<header style="position: relative; top: 0; left: 0; width: 100%;">
+  <div class="container">
+    <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
+      <a href="#" style="display:block;">
+        <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
+      </a>
     </div>
-    </header>
+    <!-- PC 네비게이션 -->
+    <nav class="desktop-nav">
+      <a href="#hive">하이브 시스템</a>
+      <a href="#smart">스마트 시스템</a>
+      <a href="#impact">도입 효과</a>
+      <a href="#formModal" onclick="openForm()">무료 신청</a>
+    </nav>
+    <!-- 모바일 햄버거 메뉴 -->
+    <button class="mobile-menu-btn" onclick="toggleMobileHeaderMenu()" style="display: none;">&#9776;</button>
   </div>
-</div>
+  <!-- 모바일 드롭다운 메뉴 -->
+  <div id="mobile-header-menu" class="mobile-header-dropdown" style="display: none;">
+    <a href="#hive" onclick="closeMobileHeaderMenu()">하이브 시스템</a>
+    <a href="#smart" onclick="closeMobileHeaderMenu()">스마트 시스템</a>
+    <a href="#impact" onclick="closeMobileHeaderMenu()">도입 효과</a>
+    <a href="#formModal" onclick="openForm();closeMobileHeaderMenu();">무료 신청</a>
+  </div>
+</header>
 
 <!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
 <div id="scrollable-content">
@@ -2789,151 +2855,51 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 모바일 네비게이션 강제 생성 - 최종 방법
-  function forceCreateMobileNav() {
-    // 모바일 환경에서만 실행
-    if (window.innerWidth <= 768) {
-      console.log('모바일 네비게이션 생성 시작');
-      
-      // 기존 모든 모바일 네비게이션 제거
-      const existingNavs = document.querySelectorAll('#mobile-top-nav, #mobile-top-nav-fixed, .mobile-nav-container');
-      existingNavs.forEach(nav => nav.remove());
-      
-      // CSS 스타일을 head에 직접 추가
-      const style = document.createElement('style');
-      style.textContent = `
-        #final-mobile-nav {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100% !important;
-          height: 60px !important;
-          z-index: 2147483647 !important;
-          background: #000 !important;
-          border-bottom: 2px solid #7BE495 !important;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-          display: block !important;
-          transform: translateZ(0) !important;
-        }
-        #final-mobile-nav .nav-container {
-          display: flex !important;
-          justify-content: space-between !important;
-          align-items: center !important;
-          padding: 10px 15px !important;
-          height: 60px !important;
-          background: #000 !important;
-        }
-        #final-mobile-nav .nav-logo {
-          height: 28px !important;
-          width: auto !important;
-        }
-        #final-mobile-nav .nav-menu-btn {
-          background: none !important;
-          border: none !important;
-          color: #7BE495 !important;
-          font-size: 1.5rem !important;
-          cursor: pointer !important;
-          padding: 8px !important;
-          border-radius: 4px !important;
-        }
-        #final-mobile-nav .nav-menu {
-          position: absolute !important;
-          top: 100% !important;
-          left: 0 !important;
-          right: 0 !important;
-          background: #111 !important;
-          z-index: 999998 !important;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
-          border-bottom: 2px solid #7BE495 !important;
-        }
-        #final-mobile-nav .nav-menu a {
-          display: block !important;
-          padding: 15px 20px !important;
-          color: #7BE495 !important;
-          text-decoration: none !important;
-          border-bottom: 1px solid #333 !important;
-          font-size: 1rem !important;
-          font-weight: 500 !important;
-        }
-        @media (min-width: 769px) {
-          #final-mobile-nav { display: none !important; }
-        }
-      `;
-      document.head.appendChild(style);
-      
-      // 새로운 모바일 네비게이션 HTML 생성
-      const finalMobileNav = document.createElement('div');
-      finalMobileNav.id = 'final-mobile-nav';
-      finalMobileNav.innerHTML = `
-        <div class="nav-container">
-          <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
-          <button class="nav-menu-btn" onclick="window.toggleFinalMobileNav()">&#9776;</button>
-        </div>
-        <div id="final-mobile-menu" class="nav-menu" style="display: none;">
-          <a href="#hive" onclick="window.closeFinalMobileNav()">하이브 시스템</a>
-          <a href="#smart" onclick="window.closeFinalMobileNav()">스마트 시스템</a>
-          <a href="#impact" onclick="window.closeFinalMobileNav()">도입 효과</a>
-          <a href="#formModal" onclick="if(window.openForm) window.openForm(); window.closeFinalMobileNav();">무료 신청</a>
-        </div>
-      `;
-      
-      // body 최상위에 강제 삽입
-      if (document.body.firstChild) {
-        document.body.insertBefore(finalMobileNav, document.body.firstChild);
-      } else {
-        document.body.appendChild(finalMobileNav);
-      }
-      
-      // body padding 조정
-      document.body.style.paddingTop = '60px !important';
-      
-      // 새로운 함수들 정의
-      window.toggleFinalMobileNav = function() {
-        const menu = document.getElementById('final-mobile-menu');
-        if (menu) {
-          menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-          console.log('메뉴 토글:', menu.style.display);
-        }
-      };
-      
-      window.closeFinalMobileNav = function() {
-        const menu = document.getElementById('final-mobile-menu');
-        if (menu) {
-          menu.style.display = 'none';
-          console.log('메뉴 닫기');
-        }
-      };
-      
-      console.log('모바일 네비게이션 생성 완료');
+  // 이제 PC와 동일한 header 구조를 사용하므로 별도의 모바일 네비게이션 생성 불필요
+  // header가 CSS에 의해 자동으로 고정됨
+  
+  // 모바일 헤더 메뉴 제어 함수들 (PC와 동일한 header 구조 사용)
+  function toggleMobileHeaderMenu() {
+    const menu = document.getElementById('mobile-header-menu');
+    if (menu) {
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+      console.log('모바일 헤더 메뉴 토글:', menu.style.display);
     }
   }
-  
-  // 즉시 실행
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', forceCreateMobileNav);
-  } else {
-    forceCreateMobileNav();
-  }
-  
-  // 추가 보장을 위해 load 이벤트에서도 실행
-  window.addEventListener('load', forceCreateMobileNav);
-  window.addEventListener('resize', forceCreateMobileNav);
-  
-  // 모바일 네비게이션 메뉴 토글
-  function toggleMobileNav() {
-    const menu = document.getElementById('mobile-nav-menu');
-    if (menu.style.display === 'none' || menu.style.display === '') {
-      menu.style.display = 'block';
-    } else {
+
+  function closeMobileHeaderMenu() {
+    const menu = document.getElementById('mobile-header-menu');
+    if (menu) {
       menu.style.display = 'none';
+      console.log('모바일 헤더 메뉴 닫기');
     }
   }
   
-  // 모바일 네비게이션 메뉴 닫기
+  // 기존 함수들을 새로운 헤더 구조로 연결 (호환성 유지)
+  function toggleMobileNav() {
+    // 기존 방식 시도
+    const oldMenu = document.getElementById('mobile-nav-menu');
+    if (oldMenu) {
+      if (oldMenu.style.display === 'none' || oldMenu.style.display === '') {
+        oldMenu.style.display = 'block';
+      } else {
+        oldMenu.style.display = 'none';
+      }
+    } else {
+      // 새로운 헤더 방식 사용
+      toggleMobileHeaderMenu();
+    }
+  }
+  
   function closeMobileNav() {
-    const menu = document.getElementById('mobile-nav-menu');
-    menu.style.display = 'none';
+    // 기존 방식 시도
+    const oldMenu = document.getElementById('mobile-nav-menu');
+    if (oldMenu) {
+      oldMenu.style.display = 'none';
+    } else {
+      // 새로운 헤더 방식 사용
+      closeMobileHeaderMenu();
+    }
   }
   
   // ESC 키로 메뉴 닫기
