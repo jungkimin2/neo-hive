@@ -1142,7 +1142,69 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
+
+<!-- 모바일 전용 최상위 네비게이션 CSS -->
+<style>
+@media (max-width: 768px) {
+  #mobile-top-nav {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    background: #000 !important;
+  }
+  
+  /* 기존 네비게이션들 숨김 */
+  #simple-mobile-nav,
+  #mobile-scroll-nav,
+  #nav-container {
+    display: none !important;
+  }
+  
+  /* body에 상단 여백 추가 */
+  body {
+    padding-top: 50px !important;
+  }
+}
+
+/* PC 환경에서는 완전히 숨김 */
+@media (min-width: 769px) {
+  #mobile-top-nav {
+    display: none !important;
+  }
+}
+</style>
+
 <body>
+
+<!-- 모바일 전용 최상위 고정 네비게이션 (완전 독립) -->
+<div id="mobile-top-nav" style="display: none;">
+  <!-- 그린 바 -->
+  <div style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
+  
+  <!-- 네비게이션 바 -->
+  <div style="background: #000; padding: 8px 0; display: flex; justify-content: space-between; align-items: center; padding-left: 12px; padding-right: 16px;">
+    <!-- 로고 -->
+    <div style="display: flex; align-items: center;">
+      <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 22px;">
+    </div>
+    
+    <!-- 햄버거 메뉴 버튼 -->
+    <button id="mobile-top-menu-btn" style="background: none; border: none; color: #7BE495; font-size: 1.5rem; cursor: pointer; padding: 4px;">
+      &#9776;
+    </button>
+  </div>
+  
+  <!-- 드롭다운 메뉴 -->
+  <div id="mobile-top-menu" style="display: none; background: #111; box-shadow: 0 4px 16px rgba(0,0,0,0.8);">
+    <a href="#hive" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">하이브 시스템</a>
+    <a href="#smart" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">스마트 시스템</a>
+    <a href="#impact" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">도입 효과</a>
+    <a href="#formModal" onclick="openForm()" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; text-decoration: none;">무료 신청</a>
+  </div>
+</div>
 
 <!-- 모바일 전용 간단한 고정 네비게이션 -->
 <div id="simple-mobile-nav">
@@ -2830,6 +2892,51 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
          mobileNav.style.display = 'none';
        }
      };
+     
+     // 새로운 최상위 모바일 네비게이션 함수들
+     window.toggleMobileTopMenu = function() {
+       const menu = document.getElementById('mobile-top-menu');
+       if (menu) {
+         if (menu.style.display === 'none' || menu.style.display === '') {
+           menu.style.display = 'block';
+         } else {
+           menu.style.display = 'none';
+         }
+       }
+     };
+     
+     window.closeMobileTopMenu = function() {
+       const menu = document.getElementById('mobile-top-menu');
+       if (menu) {
+         menu.style.display = 'none';
+       }
+     };
+     
+     // 최상위 모바일 네비게이션 이벤트 리스너 설정
+     const mobileTopMenuBtn = document.getElementById('mobile-top-menu-btn');
+     if (mobileTopMenuBtn) {
+       mobileTopMenuBtn.onclick = toggleMobileTopMenu;
+     }
+     
+     // 메뉴 항목 클릭시 메뉴 닫기
+     const mobileTopMenuLinks = document.querySelectorAll('#mobile-top-menu a');
+     mobileTopMenuLinks.forEach(link => {
+       link.addEventListener('click', function() {
+         closeMobileTopMenu();
+       });
+     });
+     
+     // 외부 클릭시 메뉴 닫기
+     document.addEventListener('click', function(e) {
+       const menu = document.getElementById('mobile-top-menu');
+       const btn = document.getElementById('mobile-top-menu-btn');
+       const nav = document.getElementById('mobile-top-nav');
+       
+       if (menu && menu.style.display === 'block' && 
+           !nav.contains(e.target)) {
+         menu.style.display = 'none';
+       }
+     });
      
      // 추가 보강: 스크롤 이벤트에서 즉시 재적용
      let scrollTimeout;
