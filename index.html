@@ -422,21 +422,21 @@ pointer-events: auto !important;
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
     }
-         /* 모바일 네비게이션 스크롤 고정 설정 */
+         /* 모바일 네비게이션 Sticky 방식 */
      #nav-container {
-       position: fixed !important;
+       position: -webkit-sticky !important;
+       position: sticky !important;
        top: 0 !important;
-       left: 0 !important;
-       right: 0 !important;
-       width: 100% !important;
        z-index: 9999 !important;
        background: rgba(0, 0, 0, 0.95) !important;
        backdrop-filter: blur(10px) !important;
        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
+       width: 100% !important;
      }
      
+     /* Sticky는 공간을 차지하므로 body 패딩 불필요 */
      body {
-       padding-top: 60px !important;
+       padding-top: 0 !important;
      }
     
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
@@ -2734,26 +2734,34 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
   </script>
 
-  <!-- 모바일 네비게이션 스크롤 고정 스크립트 -->
+  <!-- 모바일 네비게이션 Sticky + 스크롤 추적 방식 -->
   <script>
-    function ensureMobileNavFixed() {
+    let lastScrollTop = 0;
+    
+    function handleMobileNavScroll() {
       if (window.innerWidth <= 768) {
         const navContainer = document.getElementById('nav-container');
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
         if (navContainer) {
-          // 강력한 고정 스타일 적용
-          navContainer.style.cssText = `
-            position: fixed !important;
-            top: 0px !important;
-            left: 0px !important;
-            right: 0px !important;
-            width: 100% !important;
-            z-index: 9999 !important;
-            background: rgba(0, 0, 0, 0.95) !important;
-            backdrop-filter: blur(10px) !important;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
-            transform: translate3d(0, 0, 0) !important;
-            will-change: transform !important;
-          `;
+          // Sticky 속성 강화
+          navContainer.style.position = '-webkit-sticky';
+          navContainer.style.position = 'sticky';
+          navContainer.style.top = '0px';
+          navContainer.style.zIndex = '9999';
+          navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
+          navContainer.style.backdropFilter = 'blur(10px)';
+          navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
+          navContainer.style.width = '100%';
+          
+          // 스크롤 방향에 따른 효과 (선택사항)
+          if (currentScroll > lastScrollTop) {
+            // 아래로 스크롤
+            navContainer.style.transform = 'translateY(0)';
+          } else {
+            // 위로 스크롤
+            navContainer.style.transform = 'translateY(0)';
+          }
         }
         
         // 기존 중복 네비게이션들 숨김
@@ -2767,23 +2775,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           mobileScrollNav.style.display = 'none';
         }
         
-        // body 패딩 조정
-        document.body.style.paddingTop = '60px';
+        lastScrollTop = currentScroll;
       }
     }
 
     // 즉시 실행
-    ensureMobileNavFixed();
+    handleMobileNavScroll();
     
-    // 모든 이벤트에서 재적용
-    document.addEventListener('DOMContentLoaded', ensureMobileNavFixed);
-    window.addEventListener('load', ensureMobileNavFixed);
-    window.addEventListener('resize', ensureMobileNavFixed);
-    window.addEventListener('scroll', ensureMobileNavFixed);
-    window.addEventListener('orientationchange', ensureMobileNavFixed);
-    
-    // 주기적으로 강제 적용 (200ms마다)
-    setInterval(ensureMobileNavFixed, 200);
+    // 이벤트 리스너 등록
+    document.addEventListener('DOMContentLoaded', handleMobileNavScroll);
+    window.addEventListener('load', handleMobileNavScroll);
+    window.addEventListener('resize', handleMobileNavScroll);
+    window.addEventListener('scroll', handleMobileNavScroll, { passive: true });
+    window.addEventListener('orientationchange', handleMobileNavScroll);
   </script>
 
   <script>
