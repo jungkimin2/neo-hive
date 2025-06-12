@@ -422,22 +422,10 @@ pointer-events: auto !important;
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
     }
-         /* 모바일 네비게이션 스크롤 고정 설정 */
-     #nav-container {
-       position: fixed !important;
-       top: 0 !important;
-       left: 0 !important;
-       right: 0 !important;
-       width: 100% !important;
-       z-index: 9999 !important;
-       background: rgba(0, 0, 0, 0.95) !important;
-       backdrop-filter: blur(10px) !important;
-       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
-     }
-     
-     body {
-       padding-top: 60px !important;
-     }
+    /* 전체 모바일 레이아웃 기본 설정 */
+    body {
+      padding-top: 56px !important;
+    }
     
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
     .section {
@@ -1142,69 +1130,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
-
-<!-- 모바일 전용 최상위 네비게이션 CSS -->
-<style>
-@media (max-width: 768px) {
-  #mobile-top-nav {
-    display: block !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 999999 !important;
-    background: #000 !important;
-  }
-  
-  /* 기존 네비게이션들 숨김 */
-  #simple-mobile-nav,
-  #mobile-scroll-nav,
-  #nav-container {
-    display: none !important;
-  }
-  
-  /* body에 상단 여백 추가 */
-  body {
-    padding-top: 50px !important;
-  }
-}
-
-/* PC 환경에서는 완전히 숨김 */
-@media (min-width: 769px) {
-  #mobile-top-nav {
-    display: none !important;
-  }
-}
-</style>
-
 <body>
-
-<!-- 모바일 전용 최상위 고정 네비게이션 (완전 독립) -->
-<div id="mobile-top-nav" style="display: none;">
-  <!-- 그린 바 -->
-  <div style="width: 100%; height: 3px; background: linear-gradient(to right, #7BE495, #3AC8A8); box-shadow: 0 0 8px rgba(123, 228, 149, 0.4);"></div>
-  
-  <!-- 네비게이션 바 -->
-  <div style="background: #000; padding: 8px 0; display: flex; justify-content: space-between; align-items: center; padding-left: 12px; padding-right: 16px;">
-    <!-- 로고 -->
-    <div style="display: flex; align-items: center;">
-      <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 22px;">
-    </div>
-    
-    <!-- 햄버거 메뉴 버튼 -->
-    <button id="mobile-top-menu-btn" onclick="toggleMobileTopMenu()" style="background: none; border: none; color: #7BE495; font-size: 1.5rem; cursor: pointer; padding: 4px;">
-      &#9776;
-    </button>
-  </div>
-  
-  <!-- 드롭다운 메뉴 -->
-  <div id="mobile-top-menu" style="display: none; background: #111; box-shadow: 0 4px 16px rgba(0,0,0,0.8);">
-    <a href="#hive" onclick="closeMobileTopMenu()" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">하이브 시스템</a>
-    <a href="#smart" onclick="closeMobileTopMenu()" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">스마트 시스템</a>
-    <a href="#impact" onclick="closeMobileTopMenu()" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; border-bottom: 1px solid #222; text-decoration: none;">도입 효과</a>
-    <a href="#formModal" onclick="openForm(); closeMobileTopMenu()" style="display: block; padding: 18px 24px; color: #7BE495; font-size: 1.2rem; text-decoration: none;">무료 신청</a>
-  </div>
-</div>
 
 <!-- 모바일 전용 간단한 고정 네비게이션 -->
 <div id="simple-mobile-nav">
@@ -2794,175 +2720,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 모바일 하단 고정 네비게이션 (항상 표시)
   // 스크롤 감지 로직 제거 - 이제 항상 보임
 
-  </script>
-
-  <!-- 모바일 네비게이션 스크롤 고정 스크립트 -->
-  <script>
-         function ensureMobileNavFixed() {
-       if (window.innerWidth <= 768) {
-         const navContainer = document.getElementById('nav-container');
-         if (navContainer) {
-           // 매우 강력한 고정 스타일 적용
-           navContainer.style.position = 'fixed';
-           navContainer.style.top = '0px';
-           navContainer.style.left = '0px';
-           navContainer.style.right = '0px';
-           navContainer.style.width = '100%';
-           navContainer.style.zIndex = '999999';
-           navContainer.style.background = 'rgba(0, 0, 0, 0.95)';
-           navContainer.style.backdropFilter = 'blur(10px)';
-           navContainer.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.8)';
-           navContainer.style.transform = 'translate3d(0, 0, 0)';
-           navContainer.style.willChange = 'transform';
-           navContainer.style.display = 'block';
-           
-           // 추가 강제 속성들
-           navContainer.setAttribute('style', navContainer.getAttribute('style') + '; position: fixed !important; top: 0px !important;');
-         }
-         
-         // 기존 중복 네비게이션들 숨김
-         const simpleMobileNav = document.getElementById('simple-mobile-nav');
-         const mobileScrollNav = document.getElementById('mobile-scroll-nav');
-         
-         if (simpleMobileNav) {
-           simpleMobileNav.style.display = 'none';
-         }
-         if (mobileScrollNav) {
-           mobileScrollNav.style.display = 'none';
-         }
-         
-         // 모바일 메뉴 버튼 이벤트 리스너 추가
-         const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-         const mobileNav = document.getElementById('mobile-nav');
-         
-         if (mobileNavToggle && mobileNav) {
-           // 기존 이벤트 리스너 제거 후 새로 추가
-           mobileNavToggle.onclick = function() {
-             if (mobileNav.style.display === 'none' || mobileNav.style.display === '') {
-               mobileNav.style.display = 'block';
-               mobileNav.style.position = 'fixed';
-               mobileNav.style.top = '60px';
-               mobileNav.style.left = '0';
-               mobileNav.style.width = '100%';
-               mobileNav.style.zIndex = '999998';
-               mobileNav.style.background = '#111';
-               mobileNav.style.boxShadow = '0 4px 16px rgba(0,0,0,0.8)';
-             } else {
-               mobileNav.style.display = 'none';
-             }
-           };
-           
-           // 메뉴 외부 클릭시 닫기
-           document.addEventListener('click', function(e) {
-             if (mobileNav.style.display === 'block' && 
-                 !mobileNav.contains(e.target) && 
-                 !mobileNavToggle.contains(e.target)) {
-               mobileNav.style.display = 'none';
-             }
-           });
-         }
-         
-         // body 패딩 조정
-         document.body.style.paddingTop = '60px';
-         document.body.style.marginTop = '0px';
-         
-         // HTML과 body의 스크롤 속성 확인
-         document.documentElement.style.position = 'relative';
-         document.body.style.position = 'relative';
-       }
-     }
-
-    // 즉시 실행
-    ensureMobileNavFixed();
-    
-    // 모든 이벤트에서 재적용
-    document.addEventListener('DOMContentLoaded', ensureMobileNavFixed);
-    window.addEventListener('load', ensureMobileNavFixed);
-    window.addEventListener('resize', ensureMobileNavFixed);
-    window.addEventListener('scroll', ensureMobileNavFixed);
-    window.addEventListener('orientationchange', ensureMobileNavFixed);
-    
-         // 주기적으로 강제 적용 (100ms마다)
-     setInterval(ensureMobileNavFixed, 100);
-     
-     // 모바일 메뉴 닫기 함수
-     window.closeMobileNav = function() {
-       const mobileNav = document.getElementById('mobile-nav');
-       if (mobileNav) {
-         mobileNav.style.display = 'none';
-       }
-     };
-     
-     // 새로운 최상위 모바일 네비게이션 함수들
-     window.toggleMobileTopMenu = function() {
-       const menu = document.getElementById('mobile-top-menu');
-       if (menu) {
-         if (menu.style.display === 'none' || menu.style.display === '') {
-           menu.style.display = 'block';
-         } else {
-           menu.style.display = 'none';
-         }
-       }
-     };
-     
-     window.closeMobileTopMenu = function() {
-       const menu = document.getElementById('mobile-top-menu');
-       if (menu) {
-         menu.style.display = 'none';
-       }
-     };
-     
-     // 최상위 모바일 네비게이션 이벤트 리스너 설정 (DOMContentLoaded 후)
-     document.addEventListener('DOMContentLoaded', function() {
-       const mobileTopMenuBtn = document.getElementById('mobile-top-menu-btn');
-       if (mobileTopMenuBtn) {
-         mobileTopMenuBtn.onclick = toggleMobileTopMenu;
-         console.log('Mobile top menu button event listener added');
-       }
-       
-       // 메뉴 항목 클릭시 메뉴 닫기
-       const mobileTopMenuLinks = document.querySelectorAll('#mobile-top-menu a');
-       mobileTopMenuLinks.forEach(link => {
-         link.addEventListener('click', function() {
-           closeMobileTopMenu();
-         });
-       });
-       
-       // 외부 클릭시 메뉴 닫기
-       document.addEventListener('click', function(e) {
-         const menu = document.getElementById('mobile-top-menu');
-         const btn = document.getElementById('mobile-top-menu-btn');
-         const nav = document.getElementById('mobile-top-nav');
-         
-         if (menu && menu.style.display === 'block' && 
-             !nav.contains(e.target)) {
-           menu.style.display = 'none';
-         }
-       });
-     });
-     
-     // 즉시 실행 함수로도 설정 (백업)
-     setTimeout(function() {
-       const mobileTopMenuBtn = document.getElementById('mobile-top-menu-btn');
-       if (mobileTopMenuBtn && !mobileTopMenuBtn.onclick) {
-         mobileTopMenuBtn.onclick = toggleMobileTopMenu;
-         console.log('Mobile top menu button event listener added (backup)');
-       }
-     }, 100);
-     
-     // 추가 보강: 스크롤 이벤트에서 즉시 재적용
-     let scrollTimeout;
-     window.addEventListener('scroll', function() {
-       if (window.innerWidth <= 768) {
-         clearTimeout(scrollTimeout);
-         ensureMobileNavFixed(); // 즉시 실행
-         scrollTimeout = setTimeout(ensureMobileNavFixed, 50); // 50ms 후 한번 더
-       }
-     }, { passive: true });
-  </script>
-
-  <script>
-    // 성능 최적화된 Intersection Observer
+</script>
+<script>
+  // 성능 최적화된 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // 모바일에서는 스크롤 애니메이션 비활성화
@@ -4951,46 +4711,37 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-           /* 새로운 간단한 모바일 네비게이션 (화면 최상단 절대 고정) */
+           /* 새로운 간단한 모바일 네비게이션 (화면 최상단 완전 고정) */
       #simple-mobile-nav {
         display: block !important;
         position: fixed !important;
-        top: 0px !important;
-        left: 0px !important;
-        right: 0px !important;
-        width: 100vw !important;
-        height: 60px !important;
-        z-index: 2147483647 !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 999999 !important;
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(10px) !important;
         border-bottom: 2px solid #7BE495 !important;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8) !important;
         transform: translate3d(0, 0, 0) !important;
         will-change: transform !important;
-        pointer-events: auto !important;
-        contain: layout style paint !important;
       }
      
            .nav-bar {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 10px 15px 10px 8px !important;
+        padding: 10px 20px !important;
         height: 60px !important;
         background: transparent !important;
         box-sizing: border-box !important;
-        width: 100% !important;
-        max-width: 100vw !important;
       }
      
            .nav-logo {
-        height: 28px !important;
+        height: 35px !important;
         width: auto !important;
-        margin-left: 0px !important;
-        margin-right: auto !important;
         filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.5)) !important;
-        flex-shrink: 0 !important;
-        transform: translateX(-5px) !important;
       }
      
            .nav-menu-btn {
@@ -5042,7 +4793,7 @@ document.addEventListener('DOMContentLoaded', function() {
      
            /* 첫 번째 섹션 상단 여백 조정 */
       #hive.section {
-        padding-top: 30px !important;
+        padding-top: 20px !important;
       }
       
       /* 하단 고정 네비게이션 (항상 표시) */
