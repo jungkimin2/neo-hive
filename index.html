@@ -1146,27 +1146,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   </div>
 </div>
 
-<!-- 모바일 전용 하단 고정 네비게이션 -->
-<div id="mobile-scroll-nav">
-  <div class="scroll-nav-container">
-    <a href="#hive" class="scroll-nav-item">
-      <div class="scroll-nav-icon">🏠</div>
-      <span class="scroll-nav-label">하이브</span>
-    </a>
-    <a href="#smart" class="scroll-nav-item">
-      <div class="scroll-nav-icon">⚡</div>
-      <span class="scroll-nav-label">스마트</span>
-    </a>
-    <a href="#impact" class="scroll-nav-item">
-      <div class="scroll-nav-icon">📊</div>
-      <span class="scroll-nav-label">효과</span>
-    </a>
-    <a href="#formModal" onclick="openForm()" class="scroll-nav-item">
-      <div class="scroll-nav-icon">📝</div>
-      <span class="scroll-nav-label">신청</span>
-    </a>
-  </div>
-</div>
+
 
 <!-- PC 전용 네비게이션 바 -->
 <div id="pc-nav-container">
@@ -2738,6 +2718,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         
         // body 스타일 확인 및 설정
         body.style.paddingTop = '60px';
+        body.style.paddingBottom = '0';
         body.style.position = 'relative';
         body.style.margin = '0';
         
@@ -4787,10 +4768,7 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-     /* 모바일 하단 네비게이션은 PC에서 숨김 */
-     #mobile-scroll-nav {
-       display: none !important;
-     }
+
      
      .mobile-nav-container {
        position: relative !important;
@@ -4804,10 +4782,7 @@ document.addEventListener('DOMContentLoaded', function() {
       display: none;
     }
     
-    /* 모바일 전용 하단 고정 네비게이션 */
-    #mobile-scroll-nav {
-      display: none;
-    }
+
     
     /* 스크롤 콘텐츠 컨테이너 */
     #scrollable-content {
@@ -4910,66 +4885,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding-top: 0 !important;
       }
       
-      /* 하단 고정 네비게이션 (항상 화면 하단에 고정) */
-      #mobile-scroll-nav {
-        display: block !important;
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 999999 !important;
-        background: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: blur(15px) !important;
-        border-top: 2px solid #7BE495 !important;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8) !important;
-        transform: translateY(0) !important; /* 항상 표시 */
-        opacity: 1 !important;
-        transition: none !important;
-      }
-      
-      .scroll-nav-container {
-        display: flex !important;
-        justify-content: space-around !important;
-        align-items: center !important;
-        padding: 8px 0 !important;
-        max-width: 100% !important;
-      }
-      
-      .scroll-nav-item {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: #7BE495 !important;
-        padding: 8px 12px !important;
-        border-radius: 8px !important;
-        transition: all 0.3s ease !important;
-        min-width: 60px !important;
-      }
-      
-      .scroll-nav-item:hover,
-      .scroll-nav-item:active {
-        background: rgba(123, 228, 149, 0.15) !important;
-        transform: translateY(-2px) !important;
-      }
-      
-      .scroll-nav-icon {
-        font-size: 20px !important;
-        margin-bottom: 4px !important;
-        filter: drop-shadow(0 0 4px rgba(123, 228, 149, 0.6)) !important;
-      }
-      
-      .scroll-nav-label {
-        font-size: 11px !important;
-        font-weight: 500 !important;
-        color: #7BE495 !important;
-        text-align: center !important;
-      }
-      
-      /* Body 하단 여백 추가 (하단 네비 공간 확보) */
-      body {
-        padding-bottom: 80px !important; /* 하단 네비게이션 공간 확보 */
-      }
+
       
       /* 모바일에서 하이브 섹션 위치 조정 */
       #hive.section {
@@ -5100,21 +5016,7 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 20px !important;
   }
 
-  /* 하단 네비게이션도 확실히 고정 */
-  #mobile-scroll-nav {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 2147483646 !important;
-    transform: translateZ(0) !important;
-    -webkit-transform: translateZ(0) !important;
-  }
 
-  /* Body 하단 여백 */
-  body {
-    padding-bottom: 80px !important;
-  }
 }
 
 /* 모바일에서 PC 네비게이션 완전 숨김 */
@@ -5130,8 +5032,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /* PC 환경 보호 (769px 이상) */
 @media only screen and (min-width: 769px) {
   /* 기존 PC 스타일 유지 */
-  #mobile-top-nav-fixed,
-  #mobile-scroll-nav {
+  #mobile-top-nav-fixed {
     display: none !important;
   }
   
@@ -5167,9 +5068,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483647 !important;
   }
   
-  #mobile-scroll-nav {
-    z-index: 2147483646 !important;
-  }
+
   
   /* 3D 변환 컨텍스트 제거 */
   * {
