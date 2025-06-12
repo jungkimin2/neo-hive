@@ -957,14 +957,32 @@ pointer-events: auto !important;
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
   /* 네오 스마트 비디오 - 모바일에서 처음부터 정렬된 상태 */
   @media (max-width: 768px) {
-    .neo-smart-video {
+    .neo-smart-video,
+    .floating-video {
+      position: absolute !important;
       left: 50% !important;
       top: 50% !important;
       transform: translate(-50%, -50%) scale(1) !important;
+      -webkit-transform: translate(-50%, -50%) scale(1) !important;
       opacity: 1 !important;
       z-index: 15 !important;
       transition: none !important;
       animation: none !important;
+      transform-style: preserve-3d !important;
+      -webkit-transform-style: preserve-3d !important;
+      will-change: auto !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+    
+    /* 강제로 다른 CSS 규칙 무시 */
+    body .neo-smart-video,
+    body .floating-video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
     }
   }
   
@@ -2764,6 +2782,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             el.closest('#mobile-top-nav-fixed') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
+            el.classList.contains('floating-video') ||
+            el.closest('.floating-video') ||
             el.classList.contains('video-container') ||
             el.closest('.video-container') ||
             el.classList.contains('hive-image') ||
@@ -2775,7 +2795,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             el.classList.contains('slide-in-left') ||
             el.classList.contains('slide-in-right') ||
             el.closest('.hive-image') ||
-            el.closest('.video-phone')) {
+            el.closest('.video-phone') ||
+            el.tagName === 'VIDEO') {
           return; // 이 요소들은 transform 유지
         }
         
@@ -5134,20 +5155,48 @@ document.addEventListener('DOMContentLoaded', function() {
     position: unset !important;
   }
   
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
-  .hive-showcase,
-  .video-phone,
-  .slide-in-left,
-  .slide-in-right,
-  [class*="slide"],
-  .swiper-container,
-  .swiper-wrapper,
-  .swiper-slide {
-    transform: initial !important;
-    -webkit-transform: initial !important;
-    position: initial !important;
-  }
+     /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
+   .hive-image,
+   .hive-showcase,
+   .video-phone,
+   .slide-in-left,
+   .slide-in-right,
+   [class*="slide"],
+   .swiper-container,
+   .swiper-wrapper,
+   .swiper-slide {
+     transform: initial !important;
+     -webkit-transform: initial !important;
+     position: initial !important;
+   }
+   
+   /* 네오 스마트 비디오 완전 독립 처리 */
+   .neo-smart-video,
+   .floating-video {
+     position: absolute !important;
+     left: 50% !important;
+     top: 50% !important;
+     transform: translate(-50%, -50%) !important;
+     -webkit-transform: translate(-50%, -50%) !important;
+     z-index: 15 !important;
+     opacity: 1 !important;
+     animation: none !important;
+     transition: none !important;
+     will-change: auto !important;
+     transform-style: preserve-3d !important;
+     -webkit-transform-style: preserve-3d !important;
+   }
+   
+   /* 네오 스마트 비디오 내부 video 태그도 보호 */
+   .neo-smart-video video,
+   .floating-video video {
+     position: relative !important;
+     width: 100% !important;
+     height: 100% !important;
+     object-fit: contain !important;
+     transform: none !important;
+     -webkit-transform: none !important;
+   }
   
   /* 네비게이션만 다시 강제 고정 */
   #mobile-top-nav-fixed,
@@ -5234,15 +5283,31 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 모바일 환경에서 네오 스마트 비디오 처음부터 정렬된 상태 */
   @media (max-width: 768px) {
-    .neo-smart-video {
+    .neo-smart-video,
+    .floating-video {
       position: absolute !important;
       left: 50% !important;
       top: 50% !important;
       transform: translate(-50%, -50%) scale(1) !important;
+      -webkit-transform: translate(-50%, -50%) scale(1) !important;
       z-index: 15 !important;
       opacity: 1 !important;
       animation: none !important;
       transition: none !important;
+      transform-style: preserve-3d !important;
+      -webkit-transform-style: preserve-3d !important;
+    }
+    
+    /* 최고 우선순위로 강제 적용 */
+    html body .hive-showcase .neo-smart-video,
+    html body .hive-showcase .floating-video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
+      z-index: 15 !important;
+      opacity: 1 !important;
     }
   }
   
