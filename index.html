@@ -5036,19 +5036,22 @@ document.addEventListener('DOMContentLoaded', function() {
   .neo-smart-video,
   .video-container,
   [class*="video"],
-  [class*="animation"],
-  [class*="slide"],
-  .hive-image,
-  .hive-showcase,
-  .video-phone,
-  .swiper-container,
-  .swiper-wrapper,
-  .swiper-slide,
-  .slide-in-left,
-  .slide-in-right {
+  [class*="animation"] {
     transform: unset !important;
     z-index: unset !important;
     position: unset !important;
+  }
+  
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
+  .hive-image,
+  .hive-showcase,
+  .video-phone,
+  .slide-in-left,
+  .slide-in-right,
+  [class*="slide"] {
+    transform: initial !important;
+    z-index: initial !important;
+    position: initial !important;
   }
 
   /* 첫 번째 섹션 여백 조정 */
@@ -5084,11 +5087,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 */
+  /* 모든 부모 요소의 transform 제거 (슬라이드 제외) */
   #scrollable-content,
-  #scrollable-content > *,
-  .section,
-  .container {
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone),
+  .section:not(#hive),
+  .container:not(.hive-showcase *) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
@@ -5098,16 +5101,28 @@ document.addEventListener('DOMContentLoaded', function() {
   .neo-smart-video,
   .video-container,
   [class*="video"],
-  [class*="animation"],
-  [class*="slide"],
+  [class*="animation"] {
+    transform: unset !important;
+    -webkit-transform: unset !important;
+    position: unset !important;
+  }
+  
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
   .hive-image,
   .hive-showcase,
   .video-phone,
-  .swiper-container,
-  .swiper-wrapper,
-  .swiper-slide,
   .slide-in-left,
   .slide-in-right,
+  [class*="slide"],
+  .swiper-container,
+  .swiper-wrapper,
+  .swiper-slide {
+    transform: initial !important;
+    -webkit-transform: initial !important;
+    position: initial !important;
+  }
+  
+  /* 네비게이션만 다시 강제 고정 */
   #mobile-top-nav-fixed,
   #mobile-top-nav-fixed * {
     transform: unset !important;
@@ -5115,11 +5130,79 @@ document.addEventListener('DOMContentLoaded', function() {
     position: unset !important;
   }
   
-  /* 네비게이션만 다시 강제 고정 */
   #mobile-top-nav-fixed {
     position: fixed !important;
     transform: translateZ(0) !important;
     -webkit-transform: translateZ(0) !important;
+  }
+  
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 */
+  .hive-image:nth-of-type(1) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-160%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(2) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-210%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(3) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-260%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(4) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(60%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(5) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(110%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(6) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(160%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+  }
+  
+  .hive-image.active {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(1.2) !important;
+    z-index: 10 !important;
+    width: 140px !important;
+    height: 280px !important;
+    border: 3px solid #7BE495 !important;
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
+    border-radius: 16px !important;
+    position: absolute !important;
+  }
+  
+  .video-phone {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 180px !important;
+    height: 360px !important;
+    border: 4px solid #7BE495 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
   }
   
   /* overflow 문제 해결 */
