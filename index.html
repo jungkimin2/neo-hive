@@ -1197,6 +1197,29 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <body>
 
 <!-- 모바일 전용 상단 고정 네비게이션 -->
+<style>
+/* 모바일 네비게이션 즉시 적용 스타일 */
+@media screen and (max-width: 768px) {
+  #mobile-top-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 60px !important;
+    z-index: 2147483647 !important;
+    background: #000 !important;
+    border-bottom: 2px solid #7BE495 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+    display: block !important;
+  }
+}
+@media screen and (min-width: 769px) {
+  #mobile-top-nav {
+    display: none !important;
+  }
+}
+</style>
 <div id="mobile-top-nav">
   <div class="mobile-nav-container">
     <img src="./images/neohive3.png" alt="NeoHive" class="mobile-nav-logo">
@@ -2766,24 +2789,40 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 모바일 네비게이션 강제 고정 설정
-  document.addEventListener('DOMContentLoaded', function() {
+  // 모바일 네비게이션 강제 고정 설정 - 더 강력한 방법
+  function fixMobileNav() {
     if (window.innerWidth <= 768) {
       const mobileNav = document.getElementById('mobile-top-nav');
       if (mobileNav) {
-        // 스타일 강제 적용
-        mobileNav.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; height: 60px !important; z-index: 2147483647 !important; background: #000 !important; border-bottom: 2px solid #7BE495 !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; display: block !important;';
+        // 인라인 스타일로 강제 적용
+        mobileNav.setAttribute('style', 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; height: 60px !important; z-index: 2147483647 !important; background: #000 !important; border-bottom: 2px solid #7BE495 !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; display: block !important;');
         
         // body padding 조정
         document.body.style.paddingTop = '60px';
         
-        // 스크롤 이벤트에서도 위치 유지
-        window.addEventListener('scroll', function() {
-          mobileNav.style.position = 'fixed';
-          mobileNav.style.top = '0';
-        });
+        // 부모 요소들의 position 확인 및 수정
+        let parent = mobileNav.parentElement;
+        while (parent && parent !== document.body) {
+          const computedStyle = window.getComputedStyle(parent);
+          if (computedStyle.position === 'relative' || computedStyle.position === 'absolute') {
+            parent.style.position = 'static';
+          }
+          parent = parent.parentElement;
+        }
       }
     }
+  }
+  
+  // 여러 시점에서 실행
+  document.addEventListener('DOMContentLoaded', fixMobileNav);
+  window.addEventListener('load', fixMobileNav);
+  window.addEventListener('resize', fixMobileNav);
+  
+  // 스크롤 시에도 확인
+  let scrollTimer;
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(fixMobileNav, 100);
   });
   
   // 모바일 네비게이션 메뉴 토글
@@ -4801,9 +4840,13 @@ document.addEventListener('DOMContentLoaded', function() {
    
    @media screen and (max-width: 768px) {
      /* HTML과 body 기본 설정 */
-     html, body {
-       position: relative !important;
+     html {
        overflow-x: hidden !important;
+     }
+     
+     body {
+       overflow-x: hidden !important;
+       padding-top: 60px !important; /* 모바일 네비게이션 공간 */
      }
      
      /* PC 네비게이션 숨김 */
@@ -4824,7 +4867,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        z-index: 999999 !important;
+        z-index: 999998 !important;
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(15px) !important;
         border-top: 2px solid #7BE495 !important;
@@ -4895,25 +4938,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* 모바일 전용 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모바일 상단 네비게이션 바 - 스크롤시에도 고정 */
-  #mobile-top-nav {
-    display: block !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 60px !important;
-    z-index: 2147483647 !important; /* 최대 z-index */
-    background: #000 !important;
-    border-bottom: 2px solid #7BE495 !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-    transform: translateZ(0) !important;
-    -webkit-transform: translateZ(0) !important;
-    will-change: transform !important;
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
-  }
+  /* 기존 모바일 네비게이션 스타일은 HTML 내 인라인으로 처리 */
   
   /* 네비게이션 컨테이너 */
   .mobile-nav-container {
