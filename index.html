@@ -2716,18 +2716,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
         `;
         
-        // body 스타일 확인 및 설정
+        // body 스타일 확인 및 설정 (최소한)
         body.style.paddingTop = '60px';
         body.style.paddingBottom = '0';
-        body.style.position = 'relative';
-        body.style.margin = '0';
-        
-        // 스크롤 가능 콘텐츠 설정
-        if (scrollableContent) {
-          scrollableContent.style.position = 'relative';
-          scrollableContent.style.zIndex = '1';
-          scrollableContent.style.transform = 'none';
-        }
         
         console.log('Mobile nav fixed successfully');
       }
@@ -2736,14 +2727,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       if (pcNav) {
         pcNav.style.display = 'none';
       }
-      
-      // 모든 transform 속성 제거 (position: fixed 충돌 방지)
-      document.querySelectorAll('*').forEach(el => {
-        const styles = window.getComputedStyle(el);
-        if (styles.transform !== 'none' && el.id !== 'mobile-top-nav-fixed') {
-          el.style.transform = 'none';
-        }
-      });
       
     } else {
       // PC 환경
@@ -4902,20 +4885,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* 모바일 환경 최우선 네비게이션 고정 스타일 */
 @media only screen and (max-width: 768px) {
-  /* HTML과 Body 기본 설정 - 스크롤 컨텍스트 확립 */
+  /* HTML 기본 설정 (최소한) */
   html {
-    height: 100%;
-    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
   
   body {
-    min-height: 100%;
-    position: relative;
-    margin: 0;
-    padding: 0;
     padding-top: 60px !important; /* 네비게이션 공간 확보 */
-    overflow-x: hidden;
   }
 
   /* 모바일 상단 네비게이션 - 최상위 고정 */
@@ -4995,20 +4971,12 @@ document.addEventListener('DOMContentLoaded', function() {
     background: #222 !important;
   }
 
-  /* 스크롤 가능한 콘텐츠 영역 */
+  /* 스크롤 가능한 콘텐츠 영역 (최소한의 변경) */
   #scrollable-content {
     position: relative !important;
-    z-index: 1 !important;
-    min-height: 100vh !important;
-    transform: none !important;
   }
 
-  /* 모든 섹션들이 네비게이션 아래에 위치하도록 */
-  .section, .container, main, div[class*="section"] {
-    position: relative !important;
-    z-index: 1 !important;
-    transform: none !important;
-  }
+  /* 첫 번째 섹션만 조정 (다른 섹션들은 원래대로) */
 
   /* 첫 번째 섹션 여백 조정 */
   #hive.section {
@@ -5041,47 +5009,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 네비게이션 충돌 방지 추가 스타일 */
+/* 모바일 네비게이션만을 위한 최소한의 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 */
-  #scrollable-content,
-  #scrollable-content > *,
-  .section,
-  .container {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: relative !important;
-  }
-  
-  /* overflow 문제 해결 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
-  
-  /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
-    z-index: auto !important;
-  }
-  
+  /* 네비게이션 고정 강화 (다른 요소에 영향 없이) */
   #mobile-top-nav-fixed {
-    z-index: 2147483647 !important;
-  }
-  
-
-  
-  /* 3D 변환 컨텍스트 제거 */
-  * {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
-  }
-  
-  /* 네비게이션 고정 강화 */
-  #mobile-top-nav-fixed {
-    position: -webkit-sticky !important;
-    position: sticky !important;
     position: fixed !important;
     top: 0 !important;
+    z-index: 2147483647 !important;
   }
 }
 </style>
