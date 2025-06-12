@@ -2701,66 +2701,149 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 모바일 네비게이션 강제 설정
-  function forceMobileNavigation() {
-    console.log('Screen width:', window.innerWidth);
-    
-    if (window.innerWidth <= 768) {
-      const mobileNav = document.getElementById('mobile-top-nav-fixed');
-      const pcNav = document.getElementById('pc-nav-container');
-      
-      console.log('Mobile nav element:', mobileNav);
-      console.log('PC nav element:', pcNav);
-      
-      if (mobileNav) {
-        // 모든 CSS 속성을 강제로 설정
-        mobileNav.style.cssText = `
-          display: block !important;
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100% !important;
-          background: #000 !important;
-          border-bottom: 2px solid #7BE495 !important;
-          z-index: 999999 !important;
-          height: auto !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-        `;
-        
-        console.log('Mobile nav styles applied:', mobileNav.style.cssText);
-      } else {
-        console.error('Mobile nav element not found!');
-      }
-      
-      if (pcNav) {
-        pcNav.style.setProperty('display', 'none', 'important');
-        console.log('PC nav hidden');
-      }
-    } else {
-      // PC 환경
-      const mobileNav = document.getElementById('mobile-top-nav-fixed');
-      const pcNav = document.getElementById('pc-nav-container');
-      
-      if (mobileNav) {
-        mobileNav.style.setProperty('display', 'none', 'important');
-      }
-      if (pcNav) {
-        pcNav.style.setProperty('display', 'block', 'important');
-      }
-    }
-  }
-  
-  // 페이지 로드 시 강제 적용
-  document.addEventListener('DOMContentLoaded', forceMobileNavigation);
-  window.addEventListener('resize', forceMobileNavigation);
-  
-  // 즉시 실행 (DOM이 준비되기 전에도)
-  forceMobileNavigation();
-  
-  // 추가 안전장치 - 1초 후 다시 실행
-  setTimeout(forceMobileNavigation, 1000);
+     // 모바일 네비게이션 강제 설정 - 최종 해결책
+   function forceMobileNavigation() {
+     console.log('Screen width:', window.innerWidth);
+     console.log('Document ready state:', document.readyState);
+     
+     if (window.innerWidth <= 768) {
+       const mobileNav = document.getElementById('mobile-top-nav-fixed');
+       const pcNav = document.getElementById('pc-nav-container');
+       
+       console.log('Mobile nav element:', mobileNav);
+       console.log('PC nav element:', pcNav);
+       
+       if (mobileNav) {
+         // 1. 먼저 body 최상단으로 이동
+         if (mobileNav.parentNode !== document.body) {
+           document.body.insertBefore(mobileNav, document.body.firstChild);
+           console.log('Mobile nav moved to body top');
+         }
+         
+         // 2. 부모 요소들의 position 체크
+         let parent = mobileNav.parentElement;
+         while (parent && parent !== document.documentElement) {
+           const computedStyle = window.getComputedStyle(parent);
+           if (computedStyle.position === 'relative' || computedStyle.position === 'absolute') {
+             parent.style.position = 'static';
+             console.log('Parent position changed to static:', parent);
+           }
+           parent = parent.parentElement;
+         }
+         
+         // 3. 강력한 CSS 적용
+         mobileNav.style.cssText = `
+           display: block !important;
+           position: fixed !important;
+           top: 0px !important;
+           left: 0px !important;
+           right: 0px !important;
+           width: 100% !important;
+           background: rgb(0, 0, 0) !important;
+           border-bottom: 2px solid rgb(123, 228, 149) !important;
+           z-index: 2147483647 !important;
+           height: auto !important;
+           visibility: visible !important;
+           opacity: 1 !important;
+           transform: translateZ(0) !important;
+           -webkit-transform: translateZ(0) !important;
+           will-change: transform !important;
+           -webkit-backface-visibility: hidden !important;
+           backface-visibility: hidden !important;
+           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+         `;
+         
+         // 4. 모든 자식 요소도 강제 설정
+         const navBar = mobileNav.querySelector('.nav-bar');
+         if (navBar) {
+           navBar.style.cssText = `
+             display: flex !important;
+             justify-content: space-between !important;
+             align-items: center !important;
+             padding: 8px 12px !important;
+             height: 60px !important;
+             background: rgb(0, 0, 0) !important;
+             width: 100% !important;
+             position: relative !important;
+           `;
+         }
+         
+         // 5. body 상단 여백 설정
+         document.body.style.setProperty('padding-top', '60px', 'important');
+         document.body.style.setProperty('margin-top', '0px', 'important');
+         
+         console.log('Mobile nav fully configured');
+         console.log('Final position:', window.getComputedStyle(mobileNav).position);
+         console.log('Final top:', window.getComputedStyle(mobileNav).top);
+         console.log('Final z-index:', window.getComputedStyle(mobileNav).zIndex);
+       } else {
+         console.error('Mobile nav element not found!');
+       }
+       
+       if (pcNav) {
+         pcNav.style.setProperty('display', 'none', 'important');
+         console.log('PC nav hidden');
+       }
+     } else {
+       // PC 환경
+       const mobileNav = document.getElementById('mobile-top-nav-fixed');
+       const pcNav = document.getElementById('pc-nav-container');
+       
+       if (mobileNav) {
+         mobileNav.style.setProperty('display', 'none', 'important');
+       }
+       if (pcNav) {
+         pcNav.style.setProperty('display', 'block', 'important');
+       }
+     }
+   }
+   
+   // 네비게이션 메뉴 토글 함수들
+   window.toggleNav = function() {
+     const menu = document.getElementById('nav-menu');
+     if (menu) {
+       menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+       console.log('Menu toggled:', menu.style.display);
+     }
+   };
+   
+   window.closeNav = function() {
+     const menu = document.getElementById('nav-menu');
+     if (menu) {
+       menu.style.display = 'none';
+       console.log('Menu closed');
+     }
+   };
+   
+   // 여러 시점에서 강제 적용
+   if (document.readyState === 'loading') {
+     document.addEventListener('DOMContentLoaded', forceMobileNavigation);
+   } else {
+     forceMobileNavigation();
+   }
+   
+   window.addEventListener('load', forceMobileNavigation);
+   window.addEventListener('resize', forceMobileNavigation);
+   
+   // 추가 안전장치들
+   setTimeout(forceMobileNavigation, 500);
+   setTimeout(forceMobileNavigation, 1000);
+   setTimeout(forceMobileNavigation, 2000);
+   
+   // 스크롤 시에도 위치 확인
+   let scrollCheckTimer;
+   window.addEventListener('scroll', function() {
+     if (window.innerWidth <= 768) {
+       clearTimeout(scrollCheckTimer);
+       scrollCheckTimer = setTimeout(() => {
+         const mobileNav = document.getElementById('mobile-top-nav-fixed');
+         if (mobileNav && window.getComputedStyle(mobileNav).position !== 'fixed') {
+           console.log('Position lost during scroll, reapplying...');
+           forceMobileNavigation();
+         }
+       }, 100);
+     }
+   });
   
   // ESC 키로 메뉴 닫기
   document.addEventListener('keydown', function(e) {
