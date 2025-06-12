@@ -1087,21 +1087,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
 </style>
-<style>
-  /* Mobile-only: fix nav-container as background and offset content */
-  @media (max-width: 768px) {
-    #nav-container {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      z-index: 1100 !important;
-    }
-    body {
-      margin-top: 56px !important; /* same height as fixed nav */
-    }
-  }
-</style>
+
 </head>
 <style>
 @media (max-width: 768px) {
@@ -4716,23 +4702,18 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-     /* 새로운 간단한 모바일 네비게이션 (완전 고정) */
-     #simple-mobile-nav {
-       display: block !important;
-       position: fixed !important;
-       top: 0 !important;
-       left: 0 !important;
-       right: 0 !important;
-       width: 100% !important;
-       z-index: 999999 !important;
-       background: #000 !important;
-       border-bottom: 2px solid #7BE495 !important;
-       transform: translate3d(0, 0, 0) !important; /* GPU 가속으로 고정 강화 */
-       will-change: auto !important;
-       backface-visibility: hidden !important;
-       -webkit-transform: translate3d(0, 0, 0) !important;
-       -webkit-backface-visibility: hidden !important;
-     }
+           /* 새로운 간단한 모바일 네비게이션 (스크롤과 함께 움직임) */
+      #simple-mobile-nav {
+        display: block !important;
+        position: relative !important; /* fixed에서 relative로 변경 */
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 999999 !important;
+        background: #000 !important;
+        border-bottom: 2px solid #7BE495 !important;
+      }
      
            .nav-bar {
         display: flex !important;
@@ -4785,16 +4766,16 @@ document.addEventListener('DOMContentLoaded', function() {
        background: #222 !important;
      }
      
-     /* Body padding 설정 (상단 네비게이션 공간 확보) */
-     body {
-       padding-top: 60px !important;
-       margin-top: 0 !important;
-       position: relative !important;
-     }
+           /* Body 설정 (패딩 제거 - 네비게이션이 스크롤과 함께 움직임) */
+      body {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        position: relative !important;
+      }
      
            /* 첫 번째 섹션 상단 여백 조정 */
       #hive.section {
-        padding-top: 20px !important;
+        padding-top: 0 !important;
       }
       
       /* 하단 고정 네비게이션 (항상 화면 하단에 고정) */
