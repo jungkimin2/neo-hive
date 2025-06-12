@@ -2776,35 +2776,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         pcNav.style.display = 'none';
       }
       
-      // 모든 transform 속성 제거 (position: fixed 충돌 방지)
-      // 단, 네비게이션과 특정 UI 요소들은 예외 처리
-      document.querySelectorAll('*').forEach(el => {
-        const styles = window.getComputedStyle(el);
-        
-        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
-        if (el.id === 'mobile-top-nav-fixed' || 
-            el.closest('#mobile-top-nav-fixed') ||
-            el.classList.contains('neo-smart-video') ||
-            el.closest('.neo-smart-video') ||
-            el.classList.contains('video-container') ||
-            el.closest('.video-container') ||
-            el.classList.contains('hive-image') ||
-            el.closest('.hive-showcase') ||
-            el.classList.contains('video-phone') ||
-            el.classList.contains('swiper-container') ||
-            el.classList.contains('swiper-wrapper') ||
-            el.classList.contains('swiper-slide') ||
-            el.classList.contains('slide-in-left') ||
-            el.classList.contains('slide-in-right') ||
-            el.closest('.hive-image') ||
-            el.closest('.video-phone')) {
-          return; // 이 요소들은 transform 유지
-        }
-        
-        if (styles.transform !== 'none') {
-          el.style.transform = 'none';
-        }
-      });
+      // transform 속성 제거 (특정 요소만 - UI 위치 보존)
+      // 네비게이션 고정에 방해되는 특정 요소만 처리
+      const navParent = mobileNav.parentElement;
+      if (navParent && navParent.style.transform) {
+        navParent.style.transform = 'none';
+      }
       
     } else {
       // PC 환경
@@ -5076,34 +5053,11 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: none !important;
   }
 
-  /* 모든 섹션들이 네비게이션 아래에 위치하도록 */
-  .section, .container, main, div[class*="section"] {
-    position: relative !important;
-    z-index: 1 !important;
-    transform: none !important;
-  }
+  /* 네비게이션과 충돌하는 특정 요소만 조정 */
+  /* 다른 UI 위치는 원래대로 유지 */
   
-  /* 특정 UI 요소들은 원래 기능 유지 */
-  .neo-smart-video,
-  .video-container,
-  [class*="video"],
-  [class*="animation"] {
-    transform: unset !important;
-    z-index: unset !important;
-    position: unset !important;
-  }
-  
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
-  .hive-showcase,
-  .video-phone,
-  .slide-in-left,
-  .slide-in-right,
-  [class*="slide"] {
-    transform: initial !important;
-    z-index: initial !important;
-    position: initial !important;
-  }
+  /* 모든 UI 요소들은 원래 기능 유지 */
+  /* 광범위한 CSS 규칙 제거로 자연스럽게 복구 */
 
   /* 첫 번째 섹션 여백 조정 */
   #hive.section {
@@ -5138,53 +5092,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 (슬라이드 제외) */
-  #scrollable-content,
-  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone),
-  .section:not(#hive),
-  .container:not(.hive-showcase *) {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: relative !important;
-  }
+  /* 네비게이션 고정에 방해되는 특정 요소만 조정 */
+  /* 다른 UI 위치는 원래대로 유지 */
   
-  /* 특정 UI 요소들은 원래 기능 유지 */
-  .neo-smart-video,
-  .video-container,
-  [class*="video"],
-  [class*="animation"] {
-    transform: unset !important;
-    -webkit-transform: unset !important;
-    position: unset !important;
-  }
+  /* 모든 UI 요소들은 원래 기능 유지 */
+  /* 광범위한 CSS 규칙 제거로 자연스럽게 복구 */
   
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
-  .hive-showcase,
-  .video-phone,
-  .slide-in-left,
-  .slide-in-right,
-  [class*="slide"],
-  .swiper-container,
-  .swiper-wrapper,
-  .swiper-slide {
-    transform: initial !important;
-    -webkit-transform: initial !important;
-    position: initial !important;
-  }
-  
-  /* 네비게이션만 다시 강제 고정 */
-  #mobile-top-nav-fixed,
-  #mobile-top-nav-fixed * {
-    transform: unset !important;
-    -webkit-transform: unset !important;
-    position: unset !important;
-  }
-  
+  /* 네비게이션만 강제 고정 유지 */
   #mobile-top-nav-fixed {
     position: fixed !important;
     transform: translateZ(0) !important;
     -webkit-transform: translateZ(0) !important;
+    z-index: 2147483647 !important;
   }
   
   /* 네오 하이브 슬라이드 원래 위치 강제 복구 */
@@ -5286,16 +5205,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* overflow 문제 해결 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
+  /* overflow 문제 해결 (네비게이션 고정 유지) */
+  /* 기존 overflow 설정 유지 */
   
   /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
-    z-index: auto !important;
-  }
+  /* * 규칙 제거 - 다른 UI 위치 문제 해결 */
   
   /* 네비게이션은 예외 - 최상위 z-index 유지 */
   #mobile-top-nav-fixed,
@@ -5308,10 +5222,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   /* 3D 변환 컨텍스트 제거 */
-  * {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
-  }
+  /* * 규칙 제거 - 다른 UI 위치 문제 해결 */
   
   /* 네비게이션은 예외 - 3D 변환 허용 */
   #mobile-top-nav-fixed,
