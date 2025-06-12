@@ -4924,3 +4924,21 @@ document.addEventListener('DOMContentLoaded', function() {
   </style>
 
 </div> <!-- scrollable-content 끝 -->
+<style>
+/* 모바일 환경에서 상단 네비게이션 바 고정 */
+@media (max-width: 768px) {
+  #mobile-top-nav-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10000 !important;
+    background: #000 !important; /* 네비게이션 바 배경 명확하게 처리 */
+  }
+
+  /* 콘텐츠가 네비게이션 바에 가려지지 않도록 상단 여백 추가 */
+  body, #scrollable-content {
+    padding-top: 56px !important; /* 네비게이션 바 높이와 일치 */
+  }
+}
+</style>
