@@ -975,15 +975,27 @@ pointer-events: auto !important;
       -webkit-backface-visibility: hidden !important;
     }
     
-    /* 강제로 다른 CSS 규칙 무시 */
-    body .neo-smart-video,
-    body .floating-video {
-      position: absolute !important;
-      left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      -webkit-transform: translate(-50%, -50%) !important;
-    }
+         /* 강제로 다른 CSS 규칙 무시 - 처음부터 최전면 */
+     body .neo-smart-video,
+     body .floating-video {
+       position: absolute !important;
+       left: 50% !important;
+       top: 50% !important;
+       transform: translate(-50%, -50%) !important;
+       -webkit-transform: translate(-50%, -50%) !important;
+       z-index: 2147483646 !important;
+       opacity: 1 !important;
+       visibility: visible !important;
+       display: block !important;
+     }
+     
+     /* 페이지 로딩 시에도 즉시 표시 */
+     .neo-smart-video,
+     .floating-video {
+       visibility: visible !important;
+       opacity: 1 !important;
+       z-index: 2147483646 !important;
+     }
   }
   
   /* 모바일에서는 키프레임 애니메이션 불필요 */
@@ -2032,7 +2044,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3209,7 +3221,16 @@ window.addEventListener('load', () => {
   
   if (window.innerWidth <= 768) {
     // 모바일에서는 애니메이션 없이 처음부터 정렬된 상태
-    // 아무것도 하지 않음 - CSS에서 이미 최종 위치로 설정됨
+    // 강제로 올바른 위치 설정
+    if (video) {
+      video.style.setProperty('position', 'absolute', 'important');
+      video.style.setProperty('left', '50%', 'important');
+      video.style.setProperty('top', '50%', 'important');
+      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      video.style.setProperty('z-index', '2147483646', 'important');
+      video.style.setProperty('opacity', '1', 'important');
+      video.style.setProperty('visibility', 'visible', 'important');
+    }
   } else {
     // PC에서는 기존 슬라이드 애니메이션
     setTimeout(() => {
@@ -5298,17 +5319,19 @@ document.addEventListener('DOMContentLoaded', function() {
       -webkit-transform-style: preserve-3d !important;
     }
     
-    /* 최고 우선순위로 강제 적용 */
-    html body .hive-showcase .neo-smart-video,
-    html body .hive-showcase .floating-video {
-      position: absolute !important;
-      left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      -webkit-transform: translate(-50%, -50%) !important;
-      z-index: 15 !important;
-      opacity: 1 !important;
-    }
+         /* 최고 우선순위로 강제 적용 - 인라인 스타일도 덮어쓰기 */
+     html body .hive-showcase .neo-smart-video[style],
+     html body .hive-showcase .floating-video[style] {
+       position: absolute !important;
+       left: 50% !important;
+       top: 50% !important;
+       transform: translate(-50%, -50%) !important;
+       -webkit-transform: translate(-50%, -50%) !important;
+       z-index: 2147483646 !important;
+       opacity: 1 !important;
+       visibility: visible !important;
+       display: block !important;
+     }
   }
   
   /* PC 환경에서는 기존 스타일 유지 */
@@ -5326,26 +5349,35 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow-y: auto !important;
   }
   
-  /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
-    z-index: auto !important;
-  }
+     /* 네비게이션 위의 요소가 없도록 보장 (네오 하이브 영상 제외) */
+   *:not(.neo-smart-video):not(.floating-video):not(.hive-showcase *):not(.video-phone) {
+     z-index: auto !important;
+   }
   
-  /* 네비게이션은 예외 - 최상위 z-index 유지 */
-  #mobile-top-nav-fixed,
-  #mobile-top-nav-fixed *,
-  #mobile-top-nav-fixed .nav-bar,
-  #mobile-top-nav-fixed .nav-menu {
-    z-index: 2147483647 !important;
-  }
+     /* 네비게이션은 예외 - 최상위 z-index 유지 */
+   #mobile-top-nav-fixed,
+   #mobile-top-nav-fixed *,
+   #mobile-top-nav-fixed .nav-bar,
+   #mobile-top-nav-fixed .nav-menu {
+     z-index: 2147483647 !important;
+   }
+   
+   /* 네오 하이브 영상은 네비게이션 다음으로 높은 z-index */
+   .neo-smart-video,
+   .floating-video {
+     z-index: 2147483646 !important;
+     position: absolute !important;
+     transform-style: preserve-3d !important;
+     -webkit-transform-style: preserve-3d !important;
+   }
   
 
   
-  /* 3D 변환 컨텍스트 제거 */
-  * {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
-  }
+     /* 3D 변환 컨텍스트 제거 (네오 하이브 영상 제외) */
+   *:not(.neo-smart-video):not(.floating-video):not(.hive-showcase *):not(.video-phone) {
+     transform-style: flat !important;
+     -webkit-transform-style: flat !important;
+   }
   
   /* 네비게이션은 예외 - 3D 변환 허용 */
   #mobile-top-nav-fixed,
