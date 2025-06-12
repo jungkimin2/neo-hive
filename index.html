@@ -422,10 +422,22 @@ pointer-events: auto !important;
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
     }
-         /* 모바일에서 fixed 헤더 오프셋 보정 */
-     body {
-       padding-top: 60px !important;
-     }
+    /* 모바일 헤더/네비게이션 고정 및 스타일 */
+    header,
+    .mobile-nav,
+    nav,
+    .navbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 9999 !important;
+      background-color: #fff !important;
+    }
+    body {
+      padding-top: 70px !important;
+    }
 
     /* 모바일에서 전체 섹션들의 상단 여백 조정 */
     .section {
