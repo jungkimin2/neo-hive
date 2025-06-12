@@ -2742,13 +2742,23 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
         
-        // 네비게이션 관련 요소들은 제외
+        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
             el.closest('#mobile-top-nav-fixed') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
-            el.closest('.video-container')) {
+            el.closest('.video-container') ||
+            el.classList.contains('hive-image') ||
+            el.closest('.hive-showcase') ||
+            el.classList.contains('video-phone') ||
+            el.classList.contains('swiper-container') ||
+            el.classList.contains('swiper-wrapper') ||
+            el.classList.contains('swiper-slide') ||
+            el.classList.contains('slide-in-left') ||
+            el.classList.contains('slide-in-right') ||
+            el.closest('.hive-image') ||
+            el.closest('.video-phone')) {
           return; // 이 요소들은 transform 유지
         }
         
@@ -5027,9 +5037,18 @@ document.addEventListener('DOMContentLoaded', function() {
   .video-container,
   [class*="video"],
   [class*="animation"],
-  [class*="slide"] {
+  [class*="slide"],
+  .hive-image,
+  .hive-showcase,
+  .video-phone,
+  .swiper-container,
+  .swiper-wrapper,
+  .swiper-slide,
+  .slide-in-left,
+  .slide-in-right {
     transform: unset !important;
     z-index: unset !important;
+    position: unset !important;
   }
 
   /* 첫 번째 섹션 여백 조정 */
@@ -5081,6 +5100,14 @@ document.addEventListener('DOMContentLoaded', function() {
   [class*="video"],
   [class*="animation"],
   [class*="slide"],
+  .hive-image,
+  .hive-showcase,
+  .video-phone,
+  .swiper-container,
+  .swiper-wrapper,
+  .swiper-slide,
+  .slide-in-left,
+  .slide-in-right,
   #mobile-top-nav-fixed,
   #mobile-top-nav-fixed * {
     transform: unset !important;
