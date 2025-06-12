@@ -2722,12 +2722,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         body.style.position = 'relative';
         body.style.margin = '0';
         
-        // 스크롤 가능 콘텐츠 설정
-        if (scrollableContent) {
-          scrollableContent.style.position = 'relative';
-          scrollableContent.style.zIndex = '1';
-          scrollableContent.style.transform = 'none';
-        }
+                 // 스크롤 가능 콘텐츠 설정 (최소한만)
         
         console.log('Mobile nav fixed successfully');
       }
@@ -2737,13 +2732,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         pcNav.style.display = 'none';
       }
       
-      // 모든 transform 속성 제거 (position: fixed 충돌 방지)
-      document.querySelectorAll('*').forEach(el => {
-        const styles = window.getComputedStyle(el);
-        if (styles.transform !== 'none' && el.id !== 'mobile-top-nav-fixed') {
-          el.style.transform = 'none';
-        }
-      });
+             // 네비게이션 고정에 필요한 최소한의 처리만 (모든 요소 변경 제거)
       
     } else {
       // PC 환경
@@ -4995,20 +4984,12 @@ document.addEventListener('DOMContentLoaded', function() {
     background: #222 !important;
   }
 
-  /* 스크롤 가능한 콘텐츠 영역 */
+  /* 스크롤 가능한 콘텐츠 영역 (최소한만) */
   #scrollable-content {
     position: relative !important;
-    z-index: 1 !important;
-    min-height: 100vh !important;
-    transform: none !important;
   }
 
-  /* 모든 섹션들이 네비게이션 아래에 위치하도록 */
-  .section, .container, main, div[class*="section"] {
-    position: relative !important;
-    z-index: 1 !important;
-    transform: none !important;
-  }
+  /* 첫 번째 섹션만 조정 (다른 섹션은 원래대로) */
 
   /* 첫 번째 섹션 여백 조정 */
   #hive.section {
@@ -5043,26 +5024,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 */
-  #scrollable-content,
-  #scrollable-content > *,
-  .section,
-  .container {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: relative !important;
-  }
+  /* 부모 요소의 transform 제거 (선택적으로만) */
   
-  /* overflow 문제 해결 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
+  /* overflow 문제 해결 (최소한만) */
   
-  /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
-    z-index: auto !important;
-  }
+  /* 네비게이션 위의 요소가 없도록 보장 (광범위한 * 규칙 제거) */
   
   #mobile-top-nav-fixed {
     z-index: 2147483647 !important;
@@ -5070,11 +5036,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   
-  /* 3D 변환 컨텍스트 제거 */
-  * {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
-  }
+  /* 3D 변환 컨텍스트 제거 (광범위한 * 규칙 제거) */
   
   /* 네비게이션 고정 강화 */
   #mobile-top-nav-fixed {
