@@ -884,8 +884,8 @@ pointer-events: auto !important;
     overflow-x: hidden;
   }
   
-  /* 모바일에서 스크롤 고정 네비게이션을 위한 추가 설정 */
-  @media (max-width: 768px) {
+  /* 모바일에서만 스크롤 고정 네비게이션을 위한 추가 설정 */
+  @media only screen and (max-width: 768px) {
     html {
       position: relative !important;
       height: 100% !important;
@@ -906,6 +906,20 @@ pointer-events: auto !important;
       width: 100% !important;
       height: 60px !important;
       z-index: 2147483647 !important; /* 최대값 */
+      display: block !important;
+    }
+  }
+  
+  /* PC에서는 기본 설정 유지 */
+  @media only screen and (min-width: 769px) {
+    html, body {
+      /* PC에서는 기본값 유지 */
+      position: static;
+      height: auto;
+    }
+    
+    #mobile-top-nav {
+      display: none !important;
     }
   }
   
@@ -1183,7 +1197,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <body>
 
 <!-- 모바일 전용 상단 고정 네비게이션 -->
-<div id="mobile-top-nav" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 999999 !important;">
+<div id="mobile-top-nav">
   <div class="mobile-nav-container">
     <img src="./images/neohive3.png" alt="NeoHive" class="mobile-nav-logo">
     <button class="mobile-nav-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
@@ -2752,8 +2766,25 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
   
-  // 모바일 네비게이션 강제 설정
-
+  // 모바일 네비게이션 강제 고정 설정
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 768) {
+      const mobileNav = document.getElementById('mobile-top-nav');
+      if (mobileNav) {
+        // 스타일 강제 적용
+        mobileNav.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; height: 60px !important; z-index: 2147483647 !important; background: #000 !important; border-bottom: 2px solid #7BE495 !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; display: block !important;';
+        
+        // body padding 조정
+        document.body.style.paddingTop = '60px';
+        
+        // 스크롤 이벤트에서도 위치 유지
+        window.addEventListener('scroll', function() {
+          mobileNav.style.position = 'fixed';
+          mobileNav.style.top = '0';
+        });
+      }
+    }
+  });
   
   // 모바일 네비게이션 메뉴 토글
   function toggleMobileNav() {
@@ -3523,9 +3554,6 @@ if (video) {
   }
 </style>
 <style>
-  body {
-    padding-top: 56px !important;
-  }
   @media (max-width: 768px) {
     body {
       padding-top: 56px !important;
@@ -4865,19 +4893,18 @@ document.addEventListener('DOMContentLoaded', function() {
   </div> <!-- scrollable-content 끝 -->
 
 <style>
-/* 모바일 상단 네비게이션 바 - 스크롤시에도 고정 */
-@media (max-width: 768px) {
-  /* 상단 네비게이션 바 고정 - 최우선 적용 */
+/* 모바일 전용 스타일 */
+@media only screen and (max-width: 768px) {
+  /* 모바일 상단 네비게이션 바 - 스크롤시에도 고정 */
   #mobile-top-nav {
+    display: block !important;
     position: fixed !important;
-    position: -webkit-sticky !important;
-    position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    width: 100vw !important;
-    z-index: 999999 !important;
+    height: 60px !important;
+    z-index: 2147483647 !important; /* 최대 z-index */
     background: #000 !important;
     border-bottom: 2px solid #7BE495 !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
@@ -4952,7 +4979,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-bottom: none !important;
   }
   
-  /* 컨텐츠가 네비바에 가려지지 않도록 상단 여백 추가 */
+  /* 모바일에서 body 상단 여백 */
   body {
     padding-top: 60px !important;
   }
@@ -4962,12 +4989,28 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 0 !important;
     padding-top: 0 !important;
   }
+  
+  /* PC 네비게이션 숨김 */
+  #pc-nav-container {
+    display: none !important;
+  }
 }
 
-/* PC 환경에서는 모바일 네비게이션 숨김 */
-@media (min-width: 769px) {
+/* PC 전용 스타일 */
+@media only screen and (min-width: 769px) {
+  /* 모바일 네비게이션 숨김 */
   #mobile-top-nav {
     display: none !important;
+  }
+  
+  /* PC 네비게이션 표시 */
+  #pc-nav-container {
+    display: block !important;
+  }
+  
+  /* PC에서는 body padding-top 제거 */
+  body {
+    padding-top: 56px !important; /* PC header 높이 */
   }
 }
 </style>
