@@ -1206,36 +1206,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
 "></div>
 
-<!-- 모바일 전용 맨 위로 버튼 -->
-<div id="mobile-scroll-to-top" onclick="scrollToTop()" style="
-  position: fixed;
-  bottom: 160px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #7BE495;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999997;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(123, 228, 149, 0.2);
-">
-  <div style="
-    color: #7BE495;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transform: translateY(-2px);
-  ">↑</div>
-</div>
-
 <!-- 모바일 전용 하단 고정 네비게이션 -->
 <div id="mobile-scroll-nav">
   <div class="scroll-nav-container">
@@ -2853,53 +2823,17 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
    
    // 모바일 전용 UX 개선 기능들
    if (window.innerWidth <= 768) {
-     // 스크롤 진행률 업데이트 및 맨 위로 버튼 제어
+     // 스크롤 진행률 업데이트
      function updateScrollProgress() {
        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
        const progress = (scrollTop / scrollHeight) * 100;
        
-       // 진행률 바 업데이트
        const progressBar = document.getElementById('mobile-scroll-progress');
        if (progressBar) {
          progressBar.style.width = progress + '%';
        }
-       
-       // 맨 위로 버튼 표시/숨김 제어
-       const scrollToTopBtn = document.getElementById('mobile-scroll-to-top');
-       if (scrollToTopBtn) {
-         if (scrollTop > 300) { // 300px 이상 스크롤했을 때 표시
-           scrollToTopBtn.classList.add('show');
-         } else {
-           scrollToTopBtn.classList.remove('show');
-         }
-       }
      }
-     
-     // 맨 위로 스크롤 함수
-     window.scrollToTop = function() {
-       // 부드러운 스크롤로 맨 위로 이동
-       window.scrollTo({
-         top: 0,
-         behavior: 'smooth'
-       });
-       
-       // 햅틱 피드백
-       if (navigator.vibrate) {
-         navigator.vibrate(50);
-       }
-       
-       // 버튼 클릭 효과
-       const btn = document.getElementById('mobile-scroll-to-top');
-       if (btn) {
-         btn.style.transform = 'translateY(-1px) scale(0.9)';
-         setTimeout(() => {
-           btn.style.transform = 'translateY(0) scale(1)';
-         }, 150);
-       }
-       
-       console.log('맨 위로 스크롤 실행');
-     };
      
      // 스크롤 이벤트 리스너
      window.addEventListener('scroll', updateScrollProgress);
@@ -2918,31 +2852,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
          if (navigator.vibrate) {
            navigator.vibrate(50);
          }
-       });
-     }
-     
-     // 맨 위로 버튼 터치 인터랙션
-     const scrollToTopBtn = document.getElementById('mobile-scroll-to-top');
-     if (scrollToTopBtn) {
-       scrollToTopBtn.addEventListener('touchstart', function() {
-         this.style.transform = 'translateY(-1px) scale(0.9)';
-       });
-       
-       scrollToTopBtn.addEventListener('touchend', function() {
-         this.style.transform = 'translateY(0) scale(1)';
-       });
-       
-       // 더블 탭으로 빠른 스크롤 (선택사항)
-       let lastTap = 0;
-       scrollToTopBtn.addEventListener('touchend', function(e) {
-         const currentTime = new Date().getTime();
-         const tapLength = currentTime - lastTap;
-         if (tapLength < 500 && tapLength > 0) {
-           // 더블 탭 시 즉시 스크롤 (애니메이션 없이)
-           window.scrollTo({ top: 0, behavior: 'auto' });
-           console.log('더블 탭으로 즉시 스크롤');
-         }
-         lastTap = currentTime;
        });
      }
      
@@ -3759,42 +3668,12 @@ if (video) {
     #mobile-floating-btn:active {
       transform: scale(0.95);
     }
-    
-    /* 맨 위로 버튼 스타일 */
-    #mobile-scroll-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    #mobile-scroll-to-top:hover {
-      background: rgba(123, 228, 149, 0.1);
-      border-color: #7BE495;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 25px rgba(123, 228, 149, 0.4);
-    }
-    
-    #mobile-scroll-to-top:active {
-      transform: translateY(-1px) scale(0.95);
-    }
-    
-    /* 맨 위로 버튼 펄스 애니메이션 */
-    @keyframes pulse {
-      0% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(123, 228, 149, 0.2); }
-      50% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(123, 228, 149, 0.4); }
-      100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(123, 228, 149, 0.2); }
-    }
-    
-    #mobile-scroll-to-top.show {
-      animation: pulse 2s ease-in-out infinite;
-    }
   }
   
   /* PC에서는 플로팅 요소들 숨김 */
   @media (min-width: 769px) {
     #mobile-floating-btn,
-    #mobile-nav-hint,
-    #mobile-scroll-to-top {
+    #mobile-nav-hint {
       display: none !important;
     }
   }
