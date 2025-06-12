@@ -2737,13 +2737,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         pcNav.style.display = 'none';
       }
       
-      // 모든 transform 속성 제거 (position: fixed 충돌 방지)
-      document.querySelectorAll('*').forEach(el => {
-        const styles = window.getComputedStyle(el);
-        if (styles.transform !== 'none' && el.id !== 'mobile-top-nav-fixed') {
-          el.style.transform = 'none';
-        }
-      });
+      // transform 속성 제거 (특정 요소만 - UI 위치 보존)
+      // 네비게이션 고정에 방해되는 특정 요소만 처리
+      const navParent = mobileNav.parentElement;
+      if (navParent && navParent.style.transform) {
+        navParent.style.transform = 'none';
+      }
       
     } else {
       // PC 환경
@@ -5039,26 +5038,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 */
-  #scrollable-content,
-  #scrollable-content > *,
-  .section,
-  .container {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: relative !important;
-  }
+  /* 네비게이션 고정에 방해되는 특정 요소만 조정 */
+  /* 다른 UI 위치는 원래대로 유지 */
   
-  /* overflow 문제 해결 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-  }
+  /* overflow 문제 해결 (네비게이션 고정 유지) */
+  /* 기존 overflow 설정 유지 */
   
-  /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
-    z-index: auto !important;
-  }
+     /* 네비게이션 위의 요소가 없도록 보장 */
+   /* * 규칙 제거 - 다른 UI 위치 문제 해결 */
   
   #mobile-top-nav-fixed {
     z-index: 2147483647 !important;
@@ -5066,11 +5053,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   
-  /* 3D 변환 컨텍스트 제거 */
-  * {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
-  }
+     /* 3D 변환 컨텍스트 제거 (네비게이션만) */
+   #mobile-top-nav-fixed, #mobile-top-nav-fixed * {
+     transform-style: flat !important;
+     -webkit-transform-style: flat !important;
+   }
   
   /* 네비게이션 고정 강화 */
   #mobile-top-nav-fixed {
