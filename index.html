@@ -176,6 +176,30 @@ pointer-events: auto !important;
       padding-top: 56px !important;
     }
   }
+  
+  /* 모바일 환경에서 header 스타일 - 스크롤 고정 */
+  @media screen and (max-width: 768px) {
+    header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 999999 !important;
+      background: #000 !important;
+      border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
+      height: 48px !important;
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+      will-change: transform !important;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+    }
+    
+    body {
+      padding-top: 48px !important;
+    }
+  }
   header .container {
     display: flex;
     justify-content: space-between;
@@ -860,6 +884,31 @@ pointer-events: auto !important;
     overflow-x: hidden;
   }
   
+  /* 모바일에서 스크롤 고정 네비게이션을 위한 추가 설정 */
+  @media (max-width: 768px) {
+    html {
+      position: relative !important;
+      height: 100% !important;
+    }
+    
+    body {
+      position: relative !important;
+      min-height: 100% !important;
+      padding-top: 60px !important; /* 상단 네비게이션 공간 확보 */
+    }
+    
+    /* 모바일 상단 네비게이션 강제 고정 */
+    #mobile-top-nav {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 60px !important;
+      z-index: 2147483647 !important; /* 최대값 */
+    }
+  }
+  
   /* 스크롤 위치 안정화 */
   html {
     scroll-behavior: auto;
@@ -1134,7 +1183,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <body>
 
 <!-- 모바일 전용 상단 고정 네비게이션 -->
-<div id="mobile-top-nav">
+<div id="mobile-top-nav" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 999999 !important;">
   <div class="mobile-nav-container">
     <img src="./images/neohive3.png" alt="NeoHive" class="mobile-nav-logo">
     <button class="mobile-nav-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
@@ -4818,17 +4867,25 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* 모바일 상단 네비게이션 바 - 스크롤시에도 고정 */
 @media (max-width: 768px) {
-  /* 상단 네비게이션 바 고정 */
+  /* 상단 네비게이션 바 고정 - 최우선 적용 */
   #mobile-top-nav {
     position: fixed !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
+    width: 100% !important;
     width: 100vw !important;
     z-index: 999999 !important;
     background: #000 !important;
     border-bottom: 2px solid #7BE495 !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
   }
   
   /* 네비게이션 컨테이너 */
