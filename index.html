@@ -955,25 +955,39 @@ pointer-events: auto !important;
   }
 
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
-  /* 네오 스마트 비디오 슬라이드 애니메이션 */
-  @keyframes slideRightToLeft {
-    0% {
-      left: 88%;
-      opacity: 0;
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      left: 73%;
-      top: calc(50% + 40px);
-      transform: translate(-50%, -50%) rotate(-8deg);
-      opacity: 1;
+  /* 네오 스마트 비디오 - 모바일에서 애니메이션 제거 */
+  @media (max-width: 768px) {
+    .neo-smart-video {
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      opacity: 1 !important;
+      z-index: 15 !important;
+      animation: none !important;
     }
   }
+  
+  /* PC에서만 슬라이드 애니메이션 유지 */
+  @media (min-width: 769px) {
+    @keyframes slideRightToLeft {
+      0% {
+        left: 88%;
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        left: 73%;
+        top: calc(50% + 40px);
+        transform: translate(-50%, -50%) rotate(-8deg);
+        opacity: 1;
+      }
+    }
 
-  .neo-smart-video.tag-slide {
-    animation: slideRightToLeft 2.8s ease-out forwards;
+    .neo-smart-video.tag-slide {
+      animation: slideRightToLeft 2.8s ease-out forwards;
+    }
   }
   .floating-video {
     position: absolute;
@@ -3168,21 +3182,27 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <script>
 window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
-  setTimeout(() => {
-    video.classList.add('tag-slide');
-  }, 800);
+  // 모바일에서는 슬라이드 애니메이션 제거
+  if (window.innerWidth > 768) {
+    setTimeout(() => {
+      video.classList.add('tag-slide');
+    }, 800);
+  }
 });
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 const video = document.querySelector('.neo-smart-video');
 if (video) {
-  video.addEventListener('animationend', () => {
-    video.classList.remove('tag-slide');
-    video.style.left = '73%';
-    video.style.top = 'calc(50% + 40px)';
-    video.style.transform = 'translate(-50%, -50%) rotate(-8deg)';
-  });
+  // 모바일에서는 애니메이션 이벤트 리스너 제거
+  if (window.innerWidth > 768) {
+    video.addEventListener('animationend', () => {
+      video.classList.remove('tag-slide');
+      video.style.left = '73%';
+      video.style.top = 'calc(50% + 40px)';
+      video.style.transform = 'translate(-50%, -50%) rotate(-8deg)';
+    });
+  }
 }
 });
 </script>
@@ -5203,6 +5223,18 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 4px solid #7BE495 !important;
     border-radius: 20px !important;
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+  }
+  
+  /* 네오 스마트 비디오 모바일 최전면 고정 */
+  .neo-smart-video {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 15 !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
   }
   
   /* overflow 문제 해결 */
