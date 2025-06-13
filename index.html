@@ -13,8 +13,8 @@
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
   .mobile-ui-position-adjustment {
-    transform: translateY(-448px) !important; /* -416px → -448px (2칸 더 위로) */
-    -webkit-transform: translateY(-448px) !important;
+    transform: translateY(-480px) !important; /* -448px → -480px (2칸 더 위로) */
+    -webkit-transform: translateY(-480px) !important;
     position: relative !important;
     z-index: 9999 !important;
     opacity: 1 !important;
@@ -22,8 +22,8 @@
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-344px) !important; /* -312px → -344px (2칸 더 위로) */
-    -webkit-transform: translateY(-344px) !important;
+    transform: translateY(-376px) !important; /* -344px → -376px (2칸 더 위로) */
+    -webkit-transform: translateY(-376px) !important;
     position: relative !important;
     z-index: 10 !important;
     opacity: 1 !important;
@@ -31,8 +31,8 @@
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-408px) !important; /* -376px → -408px (2칸 더 위로) */
-    -webkit-transform: translateY(-408px) !important;
+    transform: translateY(-440px) !important; /* -408px → -440px (2칸 더 위로) */
+    -webkit-transform: translateY(-440px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -43,16 +43,16 @@
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-632px) !important; /* -600px → -632px (2칸 더 위로) */
-    -webkit-transform: translateY(-632px) !important;
+    transform: translateY(-664px) !important; /* -632px → -664px (2칸 더 위로) */
+    -webkit-transform: translateY(-664px) !important;
     position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
   
   #smart {
-    transform: translateY(-480px) !important; /* -448px → -480px (2칸 더 위로) */
-    -webkit-transform: translateY(-480px) !important;
+    transform: translateY(-512px) !important; /* -480px → -512px (2칸 더 위로) */
+    -webkit-transform: translateY(-512px) !important;
     position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -5833,11 +5833,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 모바일 전용 스타일 적용 함수
     function applyMobileStyles() {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-448px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-344px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-408px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-632px)' },
-        { selector: '#smart', transform: 'translateY(-480px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-480px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-376px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-440px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-664px)' },
+        { selector: '#smart', transform: 'translateY(-512px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
