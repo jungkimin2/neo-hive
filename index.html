@@ -2878,25 +2878,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 추가 안전장치 - 1초 후 다시 실행
   setTimeout(forceMobileNavigation, 1000);
   
-  // 네오 스마트 섹션 위치 강제 설정 함수
-  function forceSmartSectionPosition() {
-    if (window.innerWidth <= 768) {
-      const smartSection = document.querySelector('#smart');
-      if (smartSection) {
-        smartSection.style.setProperty('transform', 'translateY(-464px)', 'important');
-        smartSection.style.setProperty('margin-top', '-180px', 'important');
-        smartSection.style.setProperty('padding-top', '0', 'important');
-        smartSection.style.setProperty('position', 'relative', 'important');
-      }
-    }
-  }
-  
-  // 네오 스마트 섹션 위치 강제 설정 실행
-  document.addEventListener('DOMContentLoaded', forceSmartSectionPosition);
-  setTimeout(forceSmartSectionPosition, 100);
-  setTimeout(forceSmartSectionPosition, 500);
-  setTimeout(forceSmartSectionPosition, 1000);
-  
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
     let lastScrollTop = 0;
@@ -5332,9 +5313,6 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
-    z-index: 100 !important; /* 다른 요소들보다 위에 표시 */
-    background: transparent !important;
-    overflow: visible !important;
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
