@@ -76,7 +76,7 @@ pointer-events: auto !important;
 
 .mobile-ui-position-adjustment {
   position: relative !important;
-  transform: translateY(-416px) !important; /* 기존 -400px에서 한 칸(16px) 더 위로 이동 */
+  transform: translateY(-480px) !important; /* 4칸(64px) 추가로 위로 이동: -416px → -480px */
   margin-top: 0 !important;
   padding-top: 0 !important;
   z-index: 9999 !important;
@@ -1673,8 +1673,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
 @media (max-width: 768px) {
 #mobile-moved-merged-box {
-  /* 기존 -324px에서 12px 내려 조정: -312px */
-  transform: translateY(-312px) !important;
+  /* 4칸(64px) 추가로 위로 이동: -312px → -376px */
+  transform: translateY(-376px) !important;
   position: relative !important;
   z-index: 100 !important; /* 더 높은 우선순위 */
   margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
@@ -1686,9 +1686,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
 .core-value-fresh-mobile {
   margin-top: 32px !important;
-  /* 모바일 환경에서 핵심 가치 UI를 한 칸(약 16px) 아래로 내림 */
-  /* 기존 translateY(-392px)에서 16px 더 아래로 translateY(-376px)로 조정 */
-  transform: translateY(-376px) !important;
+  /* 4칸(64px) 추가로 위로 이동: -376px → -440px */
+  transform: translateY(-440px) !important;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -4102,7 +4101,7 @@ h3 {
   display: block !important;
   width: 100%;
   position: relative !important;
-  transform: translateY(-600px); /* 핵심 가치 UI 바로 밑으로 이동 (값은 필요시 조정) */
+  transform: translateY(-664px); /* 4칸(64px) 추가로 위로 이동: -600px → -664px */
   margin-bottom: 24px;
   z-index: 101;
 }
@@ -4138,7 +4137,7 @@ h3 {
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
 #smart {
-  transform: translateY(-464px) !important; /* UI 전체를 29칸(464px) 위로 이동 - 5칸 추가 */
+  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4174,7 +4173,7 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-464px) !important;
+  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4215,7 +4214,7 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-464px) !important;
+  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5298,10 +5297,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 네오 스마트 섹션은 독립적으로 처리 - transform 보존 */
   #smart {
-    transform: translateY(-464px) !important; /* 5칸(80px) 추가로 위로 이동 */
+    transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
+    z-index: 50 !important; /* 다른 UI 요소들과의 충돌 방지 */
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
@@ -5586,6 +5586,67 @@ document.addEventListener('DOMContentLoaded', function() {
     position: fixed !important;
     transform: none !important;
     -webkit-transform: none !important;
+  }
+  
+  /* UI 요소들 간 간격 조정 및 가시성 보장 */
+  /* 각 UI 요소들의 z-index 계층 정리 */
+  .mobile-ui-position-adjustment {
+    z-index: 120 !important;
+  }
+  
+  #mobile-moved-merged-box {
+    z-index: 110 !important;
+  }
+  
+  .core-value-fresh-mobile {
+    z-index: 105 !important;
+  }
+  
+  .mobile-system-box-wrapper {
+    z-index: 115 !important;
+  }
+  
+  #smart {
+    z-index: 50 !important;
+  }
+  
+  /* UI 요소들 간 최소 간격 보장 */
+  .mobile-ui-position-adjustment + * {
+    margin-top: 20px !important;
+  }
+  
+  #mobile-moved-merged-box + * {
+    margin-top: 20px !important;
+  }
+  
+  .core-value-fresh-mobile + * {
+    margin-top: 20px !important;
+  }
+  
+  .mobile-system-box-wrapper + * {
+    margin-top: 20px !important;
+  }
+  
+  /* 모든 UI 요소들의 가시성 강제 보장 */
+  .mobile-ui-position-adjustment,
+  #mobile-moved-merged-box,
+  .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
+  #smart {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  
+  /* 텍스트 요소들의 가독성 보장 */
+  .mobile-ui-position-adjustment *,
+  #mobile-moved-merged-box *,
+  .core-value-fresh-mobile *,
+  .mobile-system-box-wrapper *,
+  #smart * {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 </style>
