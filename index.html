@@ -955,50 +955,42 @@ pointer-events: auto !important;
   }
 
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
-  /* 네오 스마트 비디오 - 모바일에서 처음부터 가운데 고정 */
+  /* 네오 스마트 비디오 - 모바일에서 부드러운 등장 애니메이션 */
   @media (max-width: 768px) {
-    .neo-smart-video,
-    .floating-video {
-      position: absolute !important;
+    .neo-smart-video {
       left: 50% !important;
       top: 50% !important;
-      transform: translate(-50%, -50%) scale(1) !important;
-      -webkit-transform: translate(-50%, -50%) scale(1) !important;
-      opacity: 1 !important;
-      z-index: 15 !important;
-      transition: none !important;
+      transform: translate(-50%, -50%) scale(0.8) !important;
+      opacity: 0 !important;
+      z-index: 5 !important;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
       animation: none !important;
-      transform-style: preserve-3d !important;
-      -webkit-transform-style: preserve-3d !important;
-      will-change: auto !important;
-      backface-visibility: hidden !important;
-      -webkit-backface-visibility: hidden !important;
     }
     
-         /* 강제로 다른 CSS 규칙 무시 - 처음부터 가운데 최전면 */
-     body .neo-smart-video,
-     body .floating-video {
-       position: absolute !important;
-       left: 50% !important;
-       top: 50% !important;
-       transform: translate(-50%, -50%) !important;
-       -webkit-transform: translate(-50%, -50%) !important;
-       z-index: 2147483646 !important;
-       opacity: 1 !important;
-       visibility: visible !important;
-       display: block !important;
-     }
-     
-     /* 페이지 로딩 시에도 즉시 표시 */
-     .neo-smart-video,
-     .floating-video {
-       visibility: visible !important;
-       opacity: 1 !important;
-       z-index: 2147483646 !important;
-     }
+    .neo-smart-video.mobile-appear {
+      transform: translate(-50%, -50%) scale(1) !important;
+      opacity: 1 !important;
+      z-index: 15 !important;
+    }
   }
   
-  /* 모바일에서는 키프레임 애니메이션 불필요 */
+  /* 모바일 부드러운 등장 키프레임 */
+  @keyframes mobileVideoAppear {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      z-index: 5;
+    }
+    60% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      z-index: 15;
+    }
+  }
   
   /* PC에서만 슬라이드 애니메이션 유지 */
   @media (min-width: 769px) {
@@ -2044,7 +2036,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
+      <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -2112,31 +2104,31 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.9rem;">NFC 운동 가이드</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">태그 한 번으로<br>간편하게 학습</div>
         </div>
-          <div class="circle-step" style="position: absolute; left: 85%; top: 15%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+          <div class="circle-step" style="position: absolute; left: 85%; top: 12%; transform: translate(-50%, 0); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">2</div>
           <img src="./images/neo100.png" alt="숏폼 영상 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">이해하기 쉬운 숏폼</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">1분 이내, 핵심만 담은<br>숏폼 영상</div>
         </div>
-          <div class="circle-step" style="position: absolute; left: 85%; top: 50%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+          <div class="circle-step" style="position: absolute; left: 85%; top: 68%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">3</div>
           <img src="./images/soo11.png" alt="트레이너 보조 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.9rem;">트레이너 시간 절약</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">교육 시간 절감,<br>매출·개인레슨 집중</div>
         </div>
-        <div class="circle-step" style="position: absolute; left: 50%; top: 85%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+        <div class="circle-step" style="position: absolute; left: 50%; top: 98%; transform: translate(-50%, -100%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">4</div>
           <img src="./images/sso1.png" alt="자기 주도 운동 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">자기 주도 운동</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">회원이 직접 스캔<br>자율 운동 지원</div>
         </div>
-        <div class="circle-step" style="position: absolute; left: 15%; top: 50%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+        <div class="circle-step" style="position: absolute; left: 15%; top: 68%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">5</div>
           <img src="./images/soo1.png" alt="운영 효율 향상 아이콘" style="width: 42px; height: 42px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">운영 효율 향상</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">무인 가이드로<br>인력 최소화</div>
         </div>
-        <div class="circle-step" style="position: absolute; left: 15%; top: 15%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+        <div class="circle-step" style="position: absolute; left: 15%; top: 12%; transform: translate(-50%, 0); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">6</div>
           <img src="./images/neo123.png" alt="매출 증대 그래프 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">매출 증대 효과</div>
@@ -2475,7 +2467,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
   .circle-center-title {
     width: 130px;
-    height: 130px;
     font-size: 1.05rem;
     padding: 0;
   }
@@ -2483,39 +2474,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     width: 100px !important;
     height: 100px !important;
   }
-  
-  /* 모바일에서 원형 다이어그램 위치 재조정 */
-  .circle-step:nth-child(2) { /* 1번 - 상단 */
-    left: 50% !important;
-    top: 5% !important;
-    transform: translate(-50%, 0) !important;
-  }
-  .circle-step:nth-child(3) { /* 2번 - 우상단 */
-    left: 80% !important;
-    top: 20% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  .circle-step:nth-child(4) { /* 3번 - 우측 */
-    left: 80% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  .circle-step:nth-child(5) { /* 4번 - 하단 */
-    left: 50% !important;
-    top: 80% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  .circle-step:nth-child(6) { /* 5번 - 좌측 */
-    left: 20% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  .circle-step:nth-child(7) { /* 6번 - 좌상단 */
-    left: 20% !important;
-    top: 20% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
   .circle-step > div[style*="font-weight: bold; color: #fff"] {
     font-size: 0.62rem !important;
   }
@@ -2828,8 +2786,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             el.closest('#mobile-top-nav-fixed') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
-            el.classList.contains('floating-video') ||
-            el.closest('.floating-video') ||
             el.classList.contains('video-container') ||
             el.closest('.video-container') ||
             el.classList.contains('hive-image') ||
@@ -2841,8 +2797,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             el.classList.contains('slide-in-left') ||
             el.classList.contains('slide-in-right') ||
             el.closest('.hive-image') ||
-            el.closest('.video-phone') ||
-            el.tagName === 'VIDEO') {
+            el.closest('.video-phone')) {
           return; // 이 요소들은 transform 유지
         }
         
@@ -3254,17 +3209,10 @@ window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
   if (window.innerWidth <= 768) {
-    // 모바일에서는 애니메이션 없이 처음부터 가운데 고정
-    // 강제로 가운데 위치 설정
-    if (video) {
-      video.style.setProperty('position', 'absolute', 'important');
-      video.style.setProperty('left', '50%', 'important');
-      video.style.setProperty('top', '50%', 'important');
-      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '2147483646', 'important');
-      video.style.setProperty('opacity', '1', 'important');
-      video.style.setProperty('visibility', 'visible', 'important');
-    }
+    // 모바일에서는 부드러운 등장 애니메이션
+    setTimeout(() => {
+      video.classList.add('mobile-appear');
+    }, 1000);
   } else {
     // PC에서는 기존 슬라이드 애니메이션
     setTimeout(() => {
@@ -4174,7 +4122,7 @@ h3 {
   backface-visibility: hidden !important;
   -webkit-transform-style: preserve-3d !important;
   transform-style: preserve-3d !important;
-          will-change: transform !important;
+  will-change: transform !important;
   transform: translateZ(0) !important;
   perspective: 1000px !important;
 }
@@ -4268,8 +4216,8 @@ h3 {
 .side-column .swiper-slide {
   -webkit-transform: translateZ(0) !important;
   transform: translateZ(0) !important;
-          -webkit-backface-visibility: hidden !important;
-          backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
   transition: all 0.25s ease-out !important;
   will-change: transform, opacity !important;
   opacity: 0.8 !important;
@@ -4342,7 +4290,7 @@ h3 {
 @media (max-width: 768px) {
 .neos-wrapper,
 .flip-container {
-          pointer-events: auto !important;
+pointer-events: auto !important;
 background: none !important;
 opacity: 1 !important;
 visibility: visible !important;
@@ -5025,7 +4973,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div> <!-- scrollable-content 끝 -->
 <style>
-/* 모바일 환경 최우선 네비게이션 고정 스타일 - 강화된 버전 */
+/* 모바일 환경 최우선 네비게이션 고정 스타일 */
 @media only screen and (max-width: 768px) {
   /* HTML과 Body 기본 설정 - 스크롤 컨텍스트 확립 */
   html {
@@ -5043,16 +4991,13 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow-x: hidden;
   }
 
-  /* 모바일 상단 네비게이션 - 최상위 고정 (강화) */
+  /* 모바일 상단 네비게이션 - 최상위 고정 */
   #mobile-top-nav-fixed {
     position: fixed !important;
-    position: -webkit-sticky !important;
-    position: sticky !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    max-width: 100vw !important;
     height: 60px !important;
     background: #000 !important;
     border-bottom: 2px solid #7BE495 !important;
@@ -5066,114 +5011,6 @@ document.addEventListener('DOMContentLoaded', function() {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    contain: layout style paint !important;
-    /* 추가 고정 속성들 */
-    -webkit-position: fixed !important;
-    -moz-position: fixed !important;
-    -ms-position: fixed !important;
-    -o-position: fixed !important;
-    pointer-events: auto !important;
-    isolation: isolate !important;
-  }
-  
-  /* 인라인 스타일 변경에도 대응 - 강화된 버전 */
-  #mobile-top-nav-fixed[style*="position"],
-  #mobile-top-nav-fixed[style*="display"],
-  #mobile-top-nav-fixed[style*="top"],
-  #mobile-top-nav-fixed[style*="visibility"],
-  #mobile-top-nav-fixed[style*="opacity"],
-  #mobile-top-nav-fixed[style*="z-index"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 2147483647 !important;
-    width: 100% !important;
-    height: 60px !important;
-  }
-  
-  /* 모든 상황에서 네비게이션 강제 표시 */
-  html body #mobile-top-nav-fixed,
-  html body div#mobile-top-nav-fixed,
-  body #mobile-top-nav-fixed,
-  div#mobile-top-nav-fixed,
-  #mobile-top-nav-fixed {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 2147483647 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    height: 60px !important;
-    background: #000 !important;
-    border-bottom: 2px solid #7BE495 !important;
-  }
-  
-  /* 네비게이션을 숨기려는 모든 시도 차단 */
-  #mobile-top-nav-fixed[style*="display: none"],
-  #mobile-top-nav-fixed[style*="visibility: hidden"],
-  #mobile-top-nav-fixed[style*="opacity: 0"],
-  #mobile-top-nav-fixed[style*="transform: translate"],
-  #mobile-top-nav-fixed[style*="top: -"],
-  #mobile-top-nav-fixed[style*="position: absolute"],
-  #mobile-top-nav-fixed[style*="position: relative"],
-  #mobile-top-nav-fixed[style*="position: static"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: translateZ(0) !important;
-    z-index: 2147483647 !important;
-  }
-  
-  /* 강제 고정 클래스 */
-  .force-fixed,
-  #mobile-top-nav-fixed.force-fixed {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 60px !important;
-    z-index: 2147483647 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: #000 !important;
-    border-bottom: 2px solid #7BE495 !important;
-    transform: translateZ(0) !important;
-  }
-  
-  /* 모든 상황에서 네비게이션 최우선 표시 */
-  html #mobile-top-nav-fixed,
-  html body #mobile-top-nav-fixed,
-  html body div#mobile-top-nav-fixed,
-  html body * #mobile-top-nav-fixed {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 2147483647 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  /* 모든 부모 요소의 transform 제거 */
-  body > *, 
-  #scrollable-content,
-  #scrollable-content > * {
-    transform: none !important;
-    -webkit-transform: none !important;
   }
 
   /* 네비게이션 바 내부 */
@@ -5243,6 +5080,29 @@ document.addEventListener('DOMContentLoaded', function() {
   .section, .container, main, div[class*="section"] {
     position: relative !important;
     z-index: 1 !important;
+    transform: none !important;
+  }
+  
+  /* 특정 UI 요소들은 원래 기능 유지 */
+  .neo-smart-video,
+  .video-container,
+  [class*="video"],
+  [class*="animation"] {
+    transform: unset !important;
+    z-index: unset !important;
+    position: unset !important;
+  }
+  
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
+  .hive-image,
+  .hive-showcase,
+  .video-phone,
+  .slide-in-left,
+  .slide-in-right,
+  [class*="slide"] {
+    transform: initial !important;
+    z-index: initial !important;
+    position: initial !important;
   }
 
   /* 첫 번째 섹션 여백 조정 */
@@ -5250,6 +5110,8 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 0 !important;
     padding-top: 20px !important;
   }
+
+
 }
 
 /* 모바일에서 PC 네비게이션 완전 숨김 */
@@ -5273,248 +5135,216 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 56px !important;
   }
 }
+
+/* 모바일 네비게이션 충돌 방지 추가 스타일 */
+@media only screen and (max-width: 768px) {
+  /* 모든 부모 요소의 transform 제거 (슬라이드 제외) */
+  #scrollable-content,
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone),
+  .section:not(#hive),
+  .container:not(.hive-showcase *) {
+    transform: none !important;
+    -webkit-transform: none !important;
+    position: relative !important;
+  }
+  
+  /* 특정 UI 요소들은 원래 기능 유지 */
+  .neo-smart-video,
+  .video-container,
+  [class*="video"],
+  [class*="animation"] {
+    transform: unset !important;
+    -webkit-transform: unset !important;
+    position: unset !important;
+  }
+  
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
+  .hive-image,
+  .hive-showcase,
+  .video-phone,
+  .slide-in-left,
+  .slide-in-right,
+  [class*="slide"],
+  .swiper-container,
+  .swiper-wrapper,
+  .swiper-slide {
+    transform: initial !important;
+    -webkit-transform: initial !important;
+    position: initial !important;
+  }
+  
+  /* 네비게이션만 다시 강제 고정 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed * {
+    transform: unset !important;
+    -webkit-transform: unset !important;
+    position: unset !important;
+  }
+  
+  #mobile-top-nav-fixed {
+    position: fixed !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+  }
+  
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 */
+  .hive-image:nth-of-type(1) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-160%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(2) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-210%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(3) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-260%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(4) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(60%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(5) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(110%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+  }
+  .hive-image:nth-of-type(6) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(160%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+  }
+  
+  .hive-image.active {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(1.2) !important;
+    z-index: 10 !important;
+    width: 140px !important;
+    height: 280px !important;
+    border: 3px solid #7BE495 !important;
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
+    border-radius: 16px !important;
+    position: absolute !important;
+  }
+  
+  .video-phone {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 180px !important;
+    height: 360px !important;
+    border: 4px solid #7BE495 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+  }
+  
+  /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
+  @media (max-width: 768px) {
+    .neo-smart-video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(0.8) !important;
+      z-index: 5 !important;
+      opacity: 0 !important;
+      animation: none !important;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    /* 모바일에서 등장 후 최종 상태 */
+    .neo-smart-video.mobile-appear {
+      transform: translate(-50%, -50%) scale(1) !important;
+      z-index: 15 !important;
+      opacity: 1 !important;
+    }
+  }
+  
+  /* PC 환경에서는 기존 스타일 유지 */
+  @media (min-width: 769px) {
+    .neo-smart-video {
+      position: absolute !important;
+      z-index: 30 !important;
+      opacity: 1 !important;
+    }
+  }
+  
+  /* overflow 문제 해결 */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  
+  /* 네비게이션 위의 요소가 없도록 보장 */
+  * {
+    z-index: auto !important;
+  }
+  
+  /* 네비게이션은 예외 - 최상위 z-index 유지 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed *,
+  #mobile-top-nav-fixed .nav-bar,
+  #mobile-top-nav-fixed .nav-menu {
+    z-index: 2147483647 !important;
+  }
+  
+
+  
+  /* 3D 변환 컨텍스트 제거 */
+  * {
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+  }
+  
+  /* 네비게이션은 예외 - 3D 변환 허용 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed * {
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 고정 강화 (최강력) */
+  #mobile-top-nav-fixed {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 2147483647 !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: transform !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네비게이션 부모 요소들의 transform 제거 (네비게이션 고정 보장) */
+  body > #mobile-top-nav-fixed,
+  html > body > #mobile-top-nav-fixed {
+    position: fixed !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+}
 </style>
-
-<script>
-// 최강력 모바일 네비게이션 고정 함수
-function superForceNavigationFixed() {
-  if (window.innerWidth <= 768) {
-    const mobileNav = document.getElementById('mobile-top-nav-fixed');
-    if (mobileNav) {
-      // 모든 가능한 방법으로 네비게이션 고정
-      const fixedStyles = {
-        'position': 'fixed',
-        'top': '0px',
-        'left': '0px',
-        'right': '0px',
-        'width': '100%',
-        'max-width': '100vw',
-        'height': '60px',
-        'z-index': '2147483647',
-        'display': 'block',
-        'visibility': 'visible',
-        'opacity': '1',
-        'background': '#000',
-        'border-bottom': '2px solid #7BE495',
-        'box-shadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
-        'transform': 'translateZ(0)',
-        '-webkit-transform': 'translateZ(0)',
-        '-webkit-backface-visibility': 'hidden',
-        'backface-visibility': 'hidden',
-        'will-change': 'transform',
-        'contain': 'layout style paint',
-        'pointer-events': 'auto',
-        'isolation': 'isolate'
-      };
-      
-      // CSS 스타일 강제 적용 (모든 방법 동원)
-      Object.keys(fixedStyles).forEach(property => {
-        mobileNav.style.setProperty(property, fixedStyles[property], 'important');
-        mobileNav.style[property] = fixedStyles[property];
-      });
-      
-      // 인라인 스타일로도 강제 적용
-      mobileNav.setAttribute('style', 
-        'position: fixed !important; ' +
-        'top: 0px !important; ' +
-        'left: 0px !important; ' +
-        'right: 0px !important; ' +
-        'width: 100% !important; ' +
-        'height: 60px !important; ' +
-        'z-index: 2147483647 !important; ' +
-        'display: block !important; ' +
-        'visibility: visible !important; ' +
-        'opacity: 1 !important; ' +
-        'background: #000 !important; ' +
-        'border-bottom: 2px solid #7BE495 !important; ' +
-        'transform: translateZ(0) !important;'
-      );
-      
-      // 추가 보안: 클래스와 속성 강제 설정
-      mobileNav.setAttribute('data-fixed', 'true');
-      mobileNav.classList.add('force-fixed');
-      
-      // 전체 DOM 트리에서 transform 제거 (네비게이션 방해 요소 제거)
-      document.querySelectorAll('*').forEach(el => {
-        if (el.id !== 'mobile-top-nav-fixed' && !el.closest('#mobile-top-nav-fixed')) {
-          const computedStyle = window.getComputedStyle(el);
-          if (computedStyle.transform !== 'none' && computedStyle.transform !== 'matrix(1, 0, 0, 1, 0, 0)') {
-            el.style.setProperty('transform', 'none', 'important');
-            el.style.setProperty('-webkit-transform', 'none', 'important');
-          }
-        }
-      });
-      
-      // body와 html 설정
-      document.body.style.setProperty('padding-top', '60px', 'important');
-      document.documentElement.style.setProperty('position', 'relative', 'important');
-      document.body.style.setProperty('position', 'relative', 'important');
-    }
-  }
-}
-
-// 극강 네비게이션 상태 감시 함수
-function ultraWatchNavigationState() {
-  if (window.innerWidth <= 768) {
-    const mobileNav = document.getElementById('mobile-top-nav-fixed');
-    if (mobileNav) {
-      const computedStyle = window.getComputedStyle(mobileNav);
-      const rect = mobileNav.getBoundingClientRect();
-      
-      // 네비게이션이 화면에서 사라졌거나 위치가 틀어진 경우
-      if (computedStyle.position !== 'fixed' || 
-          computedStyle.top !== '0px' || 
-          computedStyle.zIndex < '2147483647' ||
-          computedStyle.display === 'none' ||
-          computedStyle.visibility === 'hidden' ||
-          parseFloat(computedStyle.opacity) < 1 ||
-          rect.top !== 0 ||
-          rect.left !== 0) {
-        
-        console.log('Critical navigation issue detected! Emergency fix...');
-        superForceNavigationFixed();
-        
-        // 추가 복구 시도
-        setTimeout(superForceNavigationFixed, 10);
-        setTimeout(superForceNavigationFixed, 50);
-      }
-    }
-  }
-}
-
-// 스크롤 이벤트 핸들러 (더 강화)
-let scrollTimeout;
-let lastScrollY = 0;
-function handleScroll(e) {
-  // 스크롤 방향과 관계없이 항상 네비게이션 고정
-  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-  
-  // 즉시 실행
-  superForceNavigationFixed();
-  
-  // 스크롤 방향 감지 후 추가 보정
-  if (currentScrollY !== lastScrollY) {
-    setTimeout(superForceNavigationFixed, 1);
-    setTimeout(ultraWatchNavigationState, 5);
-  }
-  
-  lastScrollY = currentScrollY;
-  
-  // 기존 타임아웃 클리어
-  if (scrollTimeout) {
-    clearTimeout(scrollTimeout);
-  }
-  
-  // 추가 안전장치
-  scrollTimeout = setTimeout(() => {
-    superForceNavigationFixed();
-    ultraWatchNavigationState();
-  }, 20);
-}
-
-// 터치 이벤트 핸들러 (강화)
-function handleTouch(e) {
-  superForceNavigationFixed();
-  setTimeout(ultraWatchNavigationState, 1);
-  setTimeout(superForceNavigationFixed, 5);
-}
-
-// 최강 초기화 함수
-function superInitMobileNavigation() {
-  if (window.innerWidth <= 768) {
-    // 즉시 네비게이션 고정
-    superForceNavigationFixed();
-    
-    // 극도로 빈번한 감시 (20ms마다)
-    const ultraWatchInterval = setInterval(ultraWatchNavigationState, 20);
-    
-    // 모든 스크롤 관련 이벤트 리스너
-    window.addEventListener('scroll', handleScroll, { passive: false });
-    window.addEventListener('wheel', handleScroll, { passive: false });
-    window.addEventListener('touchmove', handleScroll, { passive: false });
-    
-    // 모든 터치 이벤트 리스너
-    document.addEventListener('touchstart', handleTouch, { passive: false });
-    document.addEventListener('touchmove', handleTouch, { passive: false });
-    document.addEventListener('touchend', handleTouch, { passive: false });
-    document.addEventListener('touchcancel', handleTouch, { passive: false });
-    
-    // 추가 이벤트들
-    window.addEventListener('orientationchange', () => {
-      setTimeout(superForceNavigationFixed, 50);
-      setTimeout(superForceNavigationFixed, 100);
-      setTimeout(superForceNavigationFixed, 200);
-    });
-    
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 768) {
-        superForceNavigationFixed();
-        setTimeout(superForceNavigationFixed, 50);
-      }
-    });
-    
-    // 페이지 상태 변경 이벤트
-    window.addEventListener('focus', superForceNavigationFixed);
-    window.addEventListener('blur', superForceNavigationFixed);
-    window.addEventListener('pageshow', superForceNavigationFixed);
-    window.addEventListener('pagehide', superForceNavigationFixed);
-    document.addEventListener('visibilitychange', superForceNavigationFixed);
-    
-    // 강화된 MutationObserver
-    const ultraObserver = new MutationObserver((mutations) => {
-      let needsFix = false;
-      mutations.forEach((mutation) => {
-        if (mutation.target.id === 'mobile-top-nav-fixed' || 
-            mutation.target.contains(document.getElementById('mobile-top-nav-fixed')) ||
-            mutation.type === 'attributes' && mutation.attributeName === 'style') {
-          needsFix = true;
-        }
-      });
-      
-      if (needsFix) {
-        superForceNavigationFixed();
-        setTimeout(ultraWatchNavigationState, 1);
-      }
-    });
-    
-    ultraObserver.observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['style', 'class', 'id'],
-      characterData: true
-    });
-    
-    // 추가 안전장치: RAF를 이용한 지속적 체크
-    function rafCheck() {
-      if (window.innerWidth <= 768) {
-        ultraWatchNavigationState();
-        requestAnimationFrame(rafCheck);
-      }
-    }
-    requestAnimationFrame(rafCheck);
-  }
-}
-
-// 페이지 로드 완료 후 실행
-document.addEventListener('DOMContentLoaded', superInitMobileNavigation);
-
-// 추가 안전장치: 다양한 시점에서 실행
-window.addEventListener('load', () => {
-  setTimeout(superInitMobileNavigation, 50);
-  setTimeout(superForceNavigationFixed, 100);
-  setTimeout(superForceNavigationFixed, 200);
-  setTimeout(superForceNavigationFixed, 500);
-  setTimeout(superForceNavigationFixed, 1000);
-  setTimeout(superForceNavigationFixed, 2000);
-});
-
-// 즉시 실행 (스크립트 로드와 동시에)
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', superInitMobileNavigation);
-} else {
-  superInitMobileNavigation();
-}
-</script>
-
-</html>
