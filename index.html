@@ -5634,28 +5634,25 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: preserve-3d !important;
   }
   
-  /* 모바일에서만 .hive-image.active 스타일 적용 */
-  @media (max-width: 768px) {
-    .hive-image.active,
-    .hive-showcase .hive-image.active,
-    html body .hive-showcase .hive-image.active {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(-50%, -50%) !important;
-      -webkit-transform: translate(-50%, -50%) !important;
-      z-index: 10 !important;
-      width: 180px !important;
-      height: 360px !important;
-      border: 4px solid #7BE495 !important;
-      box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      border-radius: 20px !important;
-      position: absolute !important;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      will-change: transform, left, top, width, height, border, box-shadow !important;
-      transform-style: preserve-3d !important;
-      -webkit-transform-style: preserve-3d !important;
-    }
+  .hive-image.active,
+  .hive-showcase .hive-image.active,
+  html body .hive-showcase .hive-image.active {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    z-index: 10 !important;
+    width: 180px !important;
+    height: 360px !important;
+    border: 4px solid #7BE495 !important;
+    box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+    border-radius: 20px !important;
+    position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
   
   .video-phone,
@@ -5691,15 +5688,13 @@ document.addEventListener('DOMContentLoaded', function() {
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
   }
   
-  /* 모바일에서만 비디오가 이미지 위치로 이동했을 때 스타일 */
-  @media (max-width: 768px) {
-    .video-phone.moved-to-position-1 { left: 50% !important; top: 60% !important; transform: translate(-160%, -50%) scale(0.9) !important; -webkit-transform: translate(-160%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-    .video-phone.moved-to-position-2 { left: 50% !important; top: 60% !important; transform: translate(-210%, -50%) scale(0.8) !important; -webkit-transform: translate(-210%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-    .video-phone.moved-to-position-3 { left: 50% !important; top: 60% !important; transform: translate(-260%, -50%) scale(0.7) !important; -webkit-transform: translate(-260%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-    .video-phone.moved-to-position-4 { left: 50% !important; top: 60% !important; transform: translate(60%, -50%) scale(0.9) !important; -webkit-transform: translate(60%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-    .video-phone.moved-to-position-5 { left: 50% !important; top: 60% !important; transform: translate(110%, -50%) scale(0.8) !important; -webkit-transform: translate(110%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-    .video-phone.moved-to-position-6 { left: 50% !important; top: 60% !important; transform: translate(160%, -50%) scale(0.7) !important; -webkit-transform: translate(160%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  }
+  /* 비디오가 이미지 위치로 이동했을 때 스타일 */
+  .video-phone.moved-to-position-1 { left: 50% !important; top: 60% !important; transform: translate(-160%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  .video-phone.moved-to-position-2 { left: 50% !important; top: 60% !important; transform: translate(-210%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  .video-phone.moved-to-position-3 { left: 50% !important; top: 60% !important; transform: translate(-260%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  .video-phone.moved-to-position-4 { left: 50% !important; top: 60% !important; transform: translate(60%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  .video-phone.moved-to-position-5 { left: 50% !important; top: 60% !important; transform: translate(110%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  .video-phone.moved-to-position-6 { left: 50% !important; top: 60% !important; transform: translate(160%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
   
   /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
   @media (max-width: 768px) {
