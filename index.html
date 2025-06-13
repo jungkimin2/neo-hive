@@ -1286,7 +1286,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
       <!-- Center phone -->
-      <div class="video-phone" style="position:absolute; left:50%; top:60%; transform:translate(-50%, -50%) rotate(-2deg); width: 256px; height: 512px; border-radius: 32px; overflow: hidden; border: 10px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3); z-index: 10;" data-original-left="50%" data-original-top="60%" data-original-transform="translate(-50%, -50%) rotate(-2deg)">
+      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)">
         <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div>
@@ -3226,49 +3226,70 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </script>
 </body>
 <script>
-// 즉시 실행 - DOM 파싱 전에도 실행
+// 즉시 실행 - DOM 파싱 전에도 실행 (네오 스마트 + 네오 하이브 영상 모두 처리)
 (function() {
-  function forceVideoCenter() {
+  function forceVideosCenter() {
     if (window.innerWidth <= 768) {
-      const video = document.querySelector('.neo-smart-video');
-      if (video) {
-        video.style.setProperty('position', 'absolute', 'important');
-        video.style.setProperty('left', '50%', 'important');
-        video.style.setProperty('top', '50%', 'important');
-        video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        video.style.setProperty('z-index', '2147483647', 'important');
-        video.style.setProperty('opacity', '1', 'important');
-        video.style.setProperty('visibility', 'visible', 'important');
-        video.style.setProperty('display', 'block', 'important');
-        video.style.setProperty('animation', 'none', 'important');
-        video.style.setProperty('transition', 'none', 'important');
+      // 네오 스마트 비디오 처리
+      const neoSmartVideo = document.querySelector('.neo-smart-video');
+      if (neoSmartVideo) {
+        neoSmartVideo.style.setProperty('position', 'absolute', 'important');
+        neoSmartVideo.style.setProperty('left', '50%', 'important');
+        neoSmartVideo.style.setProperty('top', '50%', 'important');
+        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        neoSmartVideo.style.setProperty('z-index', '2147483647', 'important');
+        neoSmartVideo.style.setProperty('opacity', '1', 'important');
+        neoSmartVideo.style.setProperty('visibility', 'visible', 'important');
+        neoSmartVideo.style.setProperty('display', 'block', 'important');
+        neoSmartVideo.style.setProperty('animation', 'none', 'important');
+        neoSmartVideo.style.setProperty('transition', 'none', 'important');
+      }
+      
+      // 네오 하이브 비디오 처리
+      const videoPhone = document.querySelector('.video-phone');
+      if (videoPhone) {
+        videoPhone.style.setProperty('position', 'absolute', 'important');
+        videoPhone.style.setProperty('left', '50%', 'important');
+        videoPhone.style.setProperty('top', '50%', 'important');
+        videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        videoPhone.style.setProperty('z-index', '2147483646', 'important');
+        videoPhone.style.setProperty('opacity', '1', 'important');
+        videoPhone.style.setProperty('visibility', 'visible', 'important');
+        videoPhone.style.setProperty('display', 'block', 'important');
+        videoPhone.style.setProperty('animation', 'none', 'important');
+        videoPhone.style.setProperty('transition', 'none', 'important');
+        videoPhone.style.setProperty('width', '180px', 'important');
+        videoPhone.style.setProperty('height', '360px', 'important');
+        videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
+        videoPhone.style.setProperty('border-radius', '20px', 'important');
+        videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
       }
     }
   }
   
   // 즉시 실행
-  forceVideoCenter();
+  forceVideosCenter();
   
   // DOM 준비 시 실행
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', forceVideoCenter);
+    document.addEventListener('DOMContentLoaded', forceVideosCenter);
   } else {
-    forceVideoCenter();
+    forceVideosCenter();
   }
   
   // 페이지 로드 완료 시 실행
-  window.addEventListener('load', forceVideoCenter);
+  window.addEventListener('load', forceVideosCenter);
   
-  // 추가 안전장치 - 100ms마다 체크 (처음 1초간)
+  // 추가 안전장치 - 50ms마다 체크 (처음 1초간)
   if (window.innerWidth <= 768) {
     let checkCount = 0;
     const checkInterval = setInterval(() => {
-      forceVideoCenter();
+      forceVideosCenter();
       checkCount++;
-      if (checkCount >= 10) { // 1초 후 중단
+      if (checkCount >= 20) { // 1초 후 중단
         clearInterval(checkInterval);
       }
-    }, 100);
+    }, 50);
   }
 })();
 
@@ -4205,12 +4226,36 @@ h3 {
 }
 </style>
 <style>
-/* 모바일 환경에서 중앙 영상 UI 시작 애니메이션만 제거 */
+/* 모바일 환경에서 중앙 영상 UI 처음부터 가운데 최전면 고정 */
 @media (max-width: 768px) {
 .video-phone {
-  animation: none !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
   transform: translate(-50%, -50%) !important;
+  z-index: 2147483646 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  animation: none !important;
   transition: none !important;
+  width: 180px !important;
+  height: 360px !important;
+  border: 4px solid #7BE495 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+}
+
+/* 최고 우선순위로 강제 적용 - 인라인 스타일도 덮어쓰기 */
+html body .hive-showcase .video-phone[style] {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 2147483646 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }
 }
 </style>
@@ -5368,8 +5413,8 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow-y: auto !important;
   }
   
-  /* 네비게이션 위의 요소가 없도록 보장 */
-  * {
+  /* 네비게이션 위의 요소가 없도록 보장 (네오 하이브/스마트 영상 제외) */
+  *:not(.video-phone):not(.neo-smart-video):not(.floating-video):not(.hive-showcase *) {
     z-index: auto !important;
   }
   
@@ -5381,10 +5426,20 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483647 !important;
   }
   
+  /* 네오 하이브/스마트 영상은 네비게이션 다음으로 높은 z-index */
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
+    z-index: 2147483646 !important;
+    position: absolute !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
 
   
-  /* 3D 변환 컨텍스트 제거 */
-  * {
+  /* 3D 변환 컨텍스트 제거 (네오 하이브/스마트 영상 제외) */
+  *:not(.video-phone):not(.neo-smart-video):not(.floating-video):not(.hive-showcase *) {
     transform-style: flat !important;
     -webkit-transform-style: flat !important;
   }
@@ -5392,6 +5447,14 @@ document.addEventListener('DOMContentLoaded', function() {
   /* 네비게이션은 예외 - 3D 변환 허용 */
   #mobile-top-nav-fixed,
   #mobile-top-nav-fixed * {
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 네오 하이브/스마트 영상도 3D 변환 허용 */
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
     transform-style: preserve-3d !important;
     -webkit-transform-style: preserve-3d !important;
   }
