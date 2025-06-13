@@ -1133,7 +1133,7 @@ pointer-events: auto !important;
 #smart {
 margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
 padding-top: 0 !important;
-transform: none !important;
+transform: translateY(-464px) !important; /* 5칸 추가로 위로 이동 */
 }
 
 #smart.section, #smart .container {
@@ -2827,9 +2827,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
         
-        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
+        // 네비게이션 관련 요소들과 슬라이드 요소들, 그리고 #smart 섹션은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
             el.closest('#mobile-top-nav-fixed') ||
+            el.id === 'smart' ||
+            el.closest('#smart') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
@@ -2875,6 +2877,25 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   // 추가 안전장치 - 1초 후 다시 실행
   setTimeout(forceMobileNavigation, 1000);
+  
+  // 네오 스마트 섹션 위치 강제 설정 함수
+  function forceSmartSectionPosition() {
+    if (window.innerWidth <= 768) {
+      const smartSection = document.querySelector('#smart');
+      if (smartSection) {
+        smartSection.style.setProperty('transform', 'translateY(-464px)', 'important');
+        smartSection.style.setProperty('margin-top', '-180px', 'important');
+        smartSection.style.setProperty('padding-top', '0', 'important');
+        smartSection.style.setProperty('position', 'relative', 'important');
+      }
+    }
+  }
+  
+  // 네오 스마트 섹션 위치 강제 설정 실행
+  document.addEventListener('DOMContentLoaded', forceSmartSectionPosition);
+  setTimeout(forceSmartSectionPosition, 100);
+  setTimeout(forceSmartSectionPosition, 500);
+  setTimeout(forceSmartSectionPosition, 1000);
   
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
@@ -3255,6 +3276,15 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 (function() {
   function forceVideosCenter() {
     if (window.innerWidth <= 768) {
+      // 네오 스마트 섹션 위치 강제 설정
+      const smartSection = document.querySelector('#smart');
+      if (smartSection) {
+        smartSection.style.setProperty('transform', 'translateY(-464px)', 'important');
+        smartSection.style.setProperty('margin-top', '-180px', 'important');
+        smartSection.style.setProperty('padding-top', '0', 'important');
+        smartSection.style.setProperty('position', 'relative', 'important');
+      }
+      
       // 네오 스마트 비디오 처리
       const neoSmartVideo = document.querySelector('.neo-smart-video');
       if (neoSmartVideo) {
@@ -4138,7 +4168,7 @@ h3 {
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
 #smart {
-  transform: translateY(-384px) !important; /* UI 전체를 24칸(384px) 위로 이동 */
+  transform: translateY(-464px) !important; /* UI 전체를 29칸(464px) 위로 이동 - 5칸 추가 */
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4174,7 +4204,7 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-384px) !important;
+  transform: translateY(-464px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4215,7 +4245,7 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-384px) !important;
+  transform: translateY(-464px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5279,8 +5309,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: none !important;
   }
 
-  /* 모든 섹션들이 네비게이션 아래에 위치하도록 */
-  .section, .container, main, div[class*="section"] {
+  /* 모든 섹션들이 네비게이션 아래에 위치하도록 (네오 스마트 섹션 제외) */
+  .section:not(#smart), .container:not(#smart .container), main, div[class*="section"]:not(#smart) {
     position: relative !important;
     z-index: 1 !important;
     transform: none !important;
@@ -5294,6 +5324,14 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: unset !important;
     z-index: unset !important;
     position: unset !important;
+  }
+  
+  /* 네오 스마트 섹션은 독립적으로 처리 - transform 보존 */
+  #smart {
+    transform: translateY(-464px) !important; /* 5칸(80px) 추가로 위로 이동 */
+    margin-top: -180px !important;
+    padding-top: 0 !important;
+    position: relative !important;
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
