@@ -43,28 +43,8 @@
   }
   
   #smart {
-    transform: translateY(-432px) !important; /* 한 칸(16px) 위로 이동: -416px → -432px */
-    -webkit-transform: translateY(-432px) !important;
-    position: relative !important;
-  }
-  
-  /* 최고 우선순위로 #smart 위치 강제 적용 */
-  html body section#smart.section.animate-on-scroll.mobile-transform-target,
-  html body section#smart.section.animate-on-scroll,
-  html body section#smart.section,
-  html body section#smart,
-  body section#smart.section.animate-on-scroll.mobile-transform-target,
-  body section#smart.section.animate-on-scroll,
-  body section#smart.section,
-  body section#smart,
-  section#smart.section.animate-on-scroll.mobile-transform-target,
-  section#smart.section.animate-on-scroll,
-  section#smart.section,
-  section#smart {
-    transform: translateY(-432px) !important;
-    -webkit-transform: translateY(-432px) !important;
-    margin-top: -180px !important;
-    padding-top: 0 !important;
+    transform: translateY(-416px) !important;
+    -webkit-transform: translateY(-416px) !important;
     position: relative !important;
   }
 
@@ -4272,8 +4252,8 @@ html body .mobile-system-box-wrapper {
 @media (max-width: 768px) {
 body #smart,
 html body #smart {
-  transform: translateY(-432px) !important; /* 한 칸(16px) 위로 이동: -512px → -432px */
-  -webkit-transform: translateY(-432px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4313,8 +4293,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-432px) !important; /* 한 칸(16px) 위로 이동: -512px → -432px */
-  -webkit-transform: translateY(-432px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4359,8 +4339,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-432px) !important; /* 한 칸(16px) 위로 이동: -512px → -432px */
-  -webkit-transform: translateY(-432px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5847,7 +5827,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-432px)' }
+        { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
