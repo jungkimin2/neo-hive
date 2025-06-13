@@ -5514,13 +5514,12 @@ document.addEventListener('DOMContentLoaded', function() {
     position: unset !important;
   }
   
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 (hive-image 제외) */
   .hive-showcase,
   .video-phone,
   .slide-in-left,
   .slide-in-right,
-  [class*="slide"],
+  [class*="slide"]:not(.hive-image),
   .swiper-container,
   .swiper-wrapper,
   .swiper-slide {
@@ -5550,6 +5549,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-160%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(2) {
     left: 50% !important;
@@ -5557,6 +5558,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-210%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(3) {
     left: 50% !important;
@@ -5564,6 +5567,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-260%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(4) {
     left: 50% !important;
@@ -5571,6 +5576,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(60%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(5) {
     left: 50% !important;
@@ -5578,6 +5585,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(110%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(6) {
     left: 50% !important;
@@ -5585,6 +5594,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(160%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   
   .hive-image.active {
@@ -5598,6 +5609,8 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
     border-radius: 16px !important;
     position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   
   .video-phone {
