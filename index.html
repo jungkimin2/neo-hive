@@ -5740,30 +5740,30 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateY(-512px) !important;
   }
   
-  /* 모바일 전용 transform 클래스 */
+  /* 모바일 전용 transform 클래스 - 한칸 더 내림 (총 2칸) */
   .mobile-transform-target.mobile-ui-position-adjustment {
-    transform: translateY(-464px) !important;
-    -webkit-transform: translateY(-464px) !important;
+    transform: translateY(-448px) !important; /* -464px → -448px (16px 더 내림) */
+    -webkit-transform: translateY(-448px) !important;
   }
   
   .mobile-transform-target#mobile-moved-merged-box {
-    transform: translateY(-360px) !important;
-    -webkit-transform: translateY(-360px) !important;
+    transform: translateY(-344px) !important; /* -360px → -344px (16px 더 내림) */
+    -webkit-transform: translateY(-344px) !important;
   }
   
   .mobile-transform-target.core-value-fresh-mobile {
-    transform: translateY(-424px) !important;
-    -webkit-transform: translateY(-424px) !important;
+    transform: translateY(-408px) !important; /* -424px → -408px (16px 더 내림) */
+    -webkit-transform: translateY(-408px) !important;
   }
   
   .mobile-transform-target.mobile-system-box-wrapper {
-    transform: translateY(-648px) !important;
-    -webkit-transform: translateY(-648px) !important;
+    transform: translateY(-632px) !important; /* -648px → -632px (16px 더 내림) */
+    -webkit-transform: translateY(-632px) !important;
   }
   
   .mobile-transform-target#smart {
-    transform: translateY(-512px) !important;
-    -webkit-transform: translateY(-512px) !important;
+    transform: translateY(-496px) !important; /* -512px → -496px (16px 더 내림) */
+    -webkit-transform: translateY(-496px) !important;
   }
 }
 
@@ -5785,43 +5785,43 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isMobile) {
       console.log('Applying mobile transforms...');
       
-      // mobile-ui-position-adjustment
+      // mobile-ui-position-adjustment (한칸 더 내림)
       const mobileUI = document.querySelector('.mobile-ui-position-adjustment');
       if (mobileUI) {
-        mobileUI.style.setProperty('transform', 'translateY(-464px)', 'important');
-        mobileUI.style.setProperty('-webkit-transform', 'translateY(-464px)', 'important');
+        mobileUI.style.setProperty('transform', 'translateY(-448px)', 'important');
+        mobileUI.style.setProperty('-webkit-transform', 'translateY(-448px)', 'important');
         mobileUI.style.setProperty('position', 'relative', 'important');
       }
       
-      // mobile-moved-merged-box
+      // mobile-moved-merged-box (한칸 더 내림)
       const mergedBox = document.querySelector('#mobile-moved-merged-box');
       if (mergedBox) {
-        mergedBox.style.setProperty('transform', 'translateY(-360px)', 'important');
-        mergedBox.style.setProperty('-webkit-transform', 'translateY(-360px)', 'important');
+        mergedBox.style.setProperty('transform', 'translateY(-344px)', 'important');
+        mergedBox.style.setProperty('-webkit-transform', 'translateY(-344px)', 'important');
         mergedBox.style.setProperty('position', 'relative', 'important');
       }
       
-      // core-value-fresh-mobile
+      // core-value-fresh-mobile (한칸 더 내림)
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
-        coreValue.style.setProperty('transform', 'translateY(-424px)', 'important');
-        coreValue.style.setProperty('-webkit-transform', 'translateY(-424px)', 'important');
+        coreValue.style.setProperty('transform', 'translateY(-408px)', 'important');
+        coreValue.style.setProperty('-webkit-transform', 'translateY(-408px)', 'important');
         coreValue.style.setProperty('position', 'relative', 'important');
       }
       
-      // mobile-system-box-wrapper
+      // mobile-system-box-wrapper (한칸 더 내림)
       const systemBox = document.querySelector('.mobile-system-box-wrapper');
       if (systemBox) {
-        systemBox.style.setProperty('transform', 'translateY(-648px)', 'important');
-        systemBox.style.setProperty('-webkit-transform', 'translateY(-648px)', 'important');
+        systemBox.style.setProperty('transform', 'translateY(-632px)', 'important');
+        systemBox.style.setProperty('-webkit-transform', 'translateY(-632px)', 'important');
         systemBox.style.setProperty('position', 'relative', 'important');
       }
       
-      // smart section
+      // smart section (한칸 더 내림)
       const smartSection = document.querySelector('#smart');
       if (smartSection) {
-        smartSection.style.setProperty('transform', 'translateY(-512px)', 'important');
-        smartSection.style.setProperty('-webkit-transform', 'translateY(-512px)', 'important');
+        smartSection.style.setProperty('transform', 'translateY(-496px)', 'important');
+        smartSection.style.setProperty('-webkit-transform', 'translateY(-496px)', 'important');
         smartSection.style.setProperty('position', 'relative', 'important');
       }
     } else {
@@ -5868,11 +5868,11 @@ window.addEventListener('load', function() {
   setTimeout(function() {
     if (window.innerWidth <= 768) {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-464px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-360px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-424px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-648px)' },
-        { selector: '#smart', transform: 'translateY(-512px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-448px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-344px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-408px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-632px)' },
+        { selector: '#smart', transform: 'translateY(-496px)' }
       ];
       
       elements.forEach(function(item) {
