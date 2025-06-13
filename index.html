@@ -78,6 +78,16 @@
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
+  
+  /* 모바일 전용 페이지 로딩 시 깜빡임 방지 */
+  body {
+    opacity: 0 !important;
+    transition: opacity 0.1s ease-in !important;
+  }
+  
+  body.mobile-loaded {
+    opacity: 1 !important;
+  }
 }
 
 /* PC 환경에서는 모든 transform 제거 */
@@ -5855,23 +5865,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 모바일 페이지 로딩 완료 처리
+    function showMobilePage() {
+      forceApplyMobileStyles();
+      adjustMobileIcons();
+      
+      // 페이지 표시
+      setTimeout(() => {
+        document.body.classList.add('mobile-loaded');
+      }, 50);
+    }
+    
     // 즉시 실행 (HTML 파싱과 동시에)
-    forceApplyMobileStyles();
-    adjustMobileIcons();
+    showMobilePage();
     
     // DOM 준비 시 재실행 (보험)
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-      });
+      document.addEventListener('DOMContentLoaded', showMobilePage);
     }
     
     // 페이지 완전 로드 시 재실행 (최종 보험)
-    window.addEventListener('load', function() {
-      forceApplyMobileStyles();
-      adjustMobileIcons();
-    });
+    window.addEventListener('load', showMobilePage);
     
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
@@ -5905,6 +5919,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
     }
+  } else {
+    // PC 환경에서는 body 즉시 표시
+    document.body.style.opacity = '1';
   }
 })();
 </script>
