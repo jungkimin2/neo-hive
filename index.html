@@ -4382,8 +4382,8 @@ html body #smart p {
   -webkit-transform-style: preserve-3d !important;
   transform-style: preserve-3d !important;
   will-change: transform, opacity !important;
-  transform: translateZ(0) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   perspective: 1000px !important;
 }
 
@@ -4393,8 +4393,8 @@ html body #smart p {
   -webkit-transform-style: preserve-3d !important;
   transform-style: preserve-3d !important;
   will-change: transform, opacity, box-shadow !important;
-  transform: translateZ(0) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   perspective: 1000px !important;
 }
 
@@ -5439,10 +5439,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 + 부드러운 전환 효과 */
-  .hive-image {
+  .hive-image,
+  html body .hive-image,
+  .hive-showcase .hive-image {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform: initial !important;
     z-index: initial !important;
     position: initial !important;
   }
