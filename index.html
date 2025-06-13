@@ -5827,7 +5827,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-432px)' }
+        { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -5838,17 +5838,6 @@ document.addEventListener('DOMContentLoaded', function() {
           element.style.setProperty('position', 'relative', 'important');
           element.style.setProperty('opacity', '1', 'important');
           element.style.setProperty('visibility', 'visible', 'important');
-          
-          // #smart 요소에 대해서는 추가 강제 적용
-          if (selector === '#smart') {
-            element.style.setProperty('margin-top', '-180px', 'important');
-            element.style.setProperty('padding-top', '0px', 'important');
-            // 인라인 스타일로도 강제 설정
-            element.setAttribute('style', 
-              element.getAttribute('style') + 
-              '; transform: ' + transform + ' !important; -webkit-transform: ' + transform + ' !important;'
-            );
-          }
         }
       });
     }
@@ -5897,20 +5886,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
-    
-    // #smart 요소 전용 강제 적용 (100ms 간격으로 3초간)
-    let smartForceCount = 0;
-    const smartForceInterval = setInterval(() => {
-      const smartElement = document.getElementById('smart');
-      if (smartElement) {
-        smartElement.style.setProperty('transform', 'translateY(-432px)', 'important');
-        smartElement.style.setProperty('-webkit-transform', 'translateY(-432px)', 'important');
-      }
-      smartForceCount++;
-      if (smartForceCount >= 30) { // 3초 후 중지
-        clearInterval(smartForceInterval);
-      }
-    }, 100);
     
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
