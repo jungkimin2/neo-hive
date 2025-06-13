@@ -57,20 +57,6 @@
     opacity: 1 !important;
     visibility: visible !important;
   }
-  
-  /* 최고 우선순위로 #smart 위치 강제 적용 */
-  html body section#smart.section.animate-on-scroll.mobile-transform-target,
-  html body section#smart,
-  body section#smart.section.animate-on-scroll.mobile-transform-target,
-  body section#smart,
-  section#smart.section.animate-on-scroll.mobile-transform-target,
-  section#smart {
-    transform: translateY(-300px) !important;
-    -webkit-transform: translateY(-300px) !important;
-    margin-top: -180px !important;
-    padding-top: 0 !important;
-    position: relative !important;
-  }
 
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
   .neos-wrapper {
@@ -4276,8 +4262,8 @@ html body .mobile-system-box-wrapper {
 @media (max-width: 768px) {
 body #smart,
 html body #smart {
-  transform: translateY(-300px) !important; /* 캡처 이미지 위치로 조정 */
-  -webkit-transform: translateY(-300px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4317,8 +4303,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-300px) !important; /* 캡처 이미지 위치로 조정 */
-  -webkit-transform: translateY(-300px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4363,8 +4349,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-300px) !important; /* 캡처 이미지 위치로 조정 */
-  -webkit-transform: translateY(-300px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
