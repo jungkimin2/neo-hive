@@ -1135,7 +1135,7 @@ html body .mobile-ui-position-adjustment {
 #smart {
 margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
 padding-top: 0 !important;
-transform: translateY(-464px) !important; /* 5칸 추가로 위로 이동 */
+transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
 }
 
 #smart.section, #smart .container {
@@ -5702,5 +5702,96 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translateY(-512px) !important;
     -webkit-transform: translateY(-512px) !important;
   }
+  
+  /* 극강 우선순위 - 모든 가능한 선택자 조합 */
+  html body div.mobile-ui-position-adjustment,
+  html body div#mobile-moved-merged-box,
+  html body div.core-value-fresh-mobile,
+  html body div.mobile-system-box-wrapper,
+  html body section#smart {
+    transform: translateY(-464px) !important;
+    -webkit-transform: translateY(-464px) !important;
+  }
+  
+  html body div#mobile-moved-merged-box {
+    transform: translateY(-360px) !important;
+    -webkit-transform: translateY(-360px) !important;
+  }
+  
+  html body div.core-value-fresh-mobile {
+    transform: translateY(-424px) !important;
+    -webkit-transform: translateY(-424px) !important;
+  }
+  
+  html body div.mobile-system-box-wrapper {
+    transform: translateY(-648px) !important;
+    -webkit-transform: translateY(-648px) !important;
+  }
+  
+  html body section#smart {
+    transform: translateY(-512px) !important;
+    -webkit-transform: translateY(-512px) !important;
+  }
 }
 </style>
+
+<!-- JavaScript로 강제 적용하는 스크립트 추가 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function forceUIPositions() {
+    if (window.innerWidth <= 768) {
+      // mobile-ui-position-adjustment
+      const mobileUI = document.querySelector('.mobile-ui-position-adjustment');
+      if (mobileUI) {
+        mobileUI.style.transform = 'translateY(-464px)';
+        mobileUI.style.webkitTransform = 'translateY(-464px)';
+        mobileUI.style.setProperty('transform', 'translateY(-464px)', 'important');
+      }
+      
+      // mobile-moved-merged-box
+      const mergedBox = document.querySelector('#mobile-moved-merged-box');
+      if (mergedBox) {
+        mergedBox.style.transform = 'translateY(-360px)';
+        mergedBox.style.webkitTransform = 'translateY(-360px)';
+        mergedBox.style.setProperty('transform', 'translateY(-360px)', 'important');
+      }
+      
+      // core-value-fresh-mobile
+      const coreValue = document.querySelector('.core-value-fresh-mobile');
+      if (coreValue) {
+        coreValue.style.transform = 'translateY(-424px)';
+        coreValue.style.webkitTransform = 'translateY(-424px)';
+        coreValue.style.setProperty('transform', 'translateY(-424px)', 'important');
+      }
+      
+      // mobile-system-box-wrapper
+      const systemBox = document.querySelector('.mobile-system-box-wrapper');
+      if (systemBox) {
+        systemBox.style.transform = 'translateY(-648px)';
+        systemBox.style.webkitTransform = 'translateY(-648px)';
+        systemBox.style.setProperty('transform', 'translateY(-648px)', 'important');
+      }
+      
+      // smart section
+      const smartSection = document.querySelector('#smart');
+      if (smartSection) {
+        smartSection.style.transform = 'translateY(-512px)';
+        smartSection.style.webkitTransform = 'translateY(-512px)';
+        smartSection.style.setProperty('transform', 'translateY(-512px)', 'important');
+      }
+    }
+  }
+  
+  // 즉시 실행
+  forceUIPositions();
+  
+  // 100ms마다 실행하여 확실히 적용
+  setInterval(forceUIPositions, 100);
+  
+  // 리사이즈 시에도 실행
+  window.addEventListener('resize', forceUIPositions);
+  
+  // 스크롤 시에도 실행
+  window.addEventListener('scroll', forceUIPositions);
+});
+</script>
