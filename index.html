@@ -77,8 +77,8 @@ pointer-events: auto !important;
 body .mobile-ui-position-adjustment,
 html body .mobile-ui-position-adjustment {
   position: relative !important;
-  transform: translateY(-480px) !important; /* 4칸(64px) 추가로 위로 이동: -416px → -480px */
-  -webkit-transform: translateY(-480px) !important;
+  transform: translateY(-464px) !important; /* 1칸(16px) 아래로 이동: -480px → -464px */
+  -webkit-transform: translateY(-464px) !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
   z-index: 9999 !important;
@@ -1676,9 +1676,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
 body #mobile-moved-merged-box,
 html body #mobile-moved-merged-box {
-  /* 4칸(64px) 추가로 위로 이동: -312px → -376px */
-  transform: translateY(-376px) !important;
-  -webkit-transform: translateY(-376px) !important;
+  /* 1칸(16px) 아래로 이동: -376px → -360px */
+  transform: translateY(-360px) !important;
+  -webkit-transform: translateY(-360px) !important;
   position: relative !important;
   z-index: 100 !important; /* 더 높은 우선순위 */
   margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
@@ -1691,9 +1691,9 @@ html body #mobile-moved-merged-box {
 body .core-value-fresh-mobile,
 html body .core-value-fresh-mobile {
   margin-top: 32px !important;
-  /* 4칸(64px) 추가로 위로 이동: -376px → -440px */
-  transform: translateY(-440px) !important;
-  -webkit-transform: translateY(-440px) !important;
+  /* 1칸(16px) 아래로 이동: -440px → -424px */
+  transform: translateY(-424px) !important;
+  -webkit-transform: translateY(-424px) !important;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -4108,8 +4108,8 @@ html body .mobile-system-box-wrapper {
   display: block !important;
   width: 100%;
   position: relative !important;
-  transform: translateY(-664px) !important; /* 4칸(64px) 추가로 위로 이동: -600px → -664px */
-  -webkit-transform: translateY(-664px) !important;
+  transform: translateY(-648px) !important; /* 1칸(16px) 아래로 이동: -664px → -648px */
+  -webkit-transform: translateY(-648px) !important;
   margin-bottom: 24px;
   z-index: 101;
 }
@@ -4146,8 +4146,8 @@ html body .mobile-system-box-wrapper {
 @media (max-width: 768px) {
 body #smart,
 html body #smart {
-  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
-  -webkit-transform: translateY(-528px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4187,8 +4187,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
-  -webkit-transform: translateY(-528px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4233,8 +4233,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
-  -webkit-transform: translateY(-528px) !important;
+  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+  -webkit-transform: translateY(-512px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5324,8 +5324,8 @@ document.addEventListener('DOMContentLoaded', function() {
   /* 네오 스마트 섹션은 독립적으로 처리 - transform 보존 */
   body #smart,
   html body #smart {
-    transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
-    -webkit-transform: translateY(-528px) !important;
+    transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+    -webkit-transform: translateY(-512px) !important;
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
@@ -5679,28 +5679,28 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 최강력 CSS 우선순위로 UI 위치 강제 적용 */
   html body .mobile-ui-position-adjustment[class] {
-    transform: translateY(-480px) !important;
-    -webkit-transform: translateY(-480px) !important;
+    transform: translateY(-464px) !important;
+    -webkit-transform: translateY(-464px) !important;
   }
   
   html body #mobile-moved-merged-box[id] {
-    transform: translateY(-376px) !important;
-    -webkit-transform: translateY(-376px) !important;
+    transform: translateY(-360px) !important;
+    -webkit-transform: translateY(-360px) !important;
   }
   
   html body .core-value-fresh-mobile[class] {
-    transform: translateY(-440px) !important;
-    -webkit-transform: translateY(-440px) !important;
+    transform: translateY(-424px) !important;
+    -webkit-transform: translateY(-424px) !important;
   }
   
   html body .mobile-system-box-wrapper[class] {
-    transform: translateY(-664px) !important;
-    -webkit-transform: translateY(-664px) !important;
+    transform: translateY(-648px) !important;
+    -webkit-transform: translateY(-648px) !important;
   }
   
   html body #smart[id] {
-    transform: translateY(-528px) !important;
-    -webkit-transform: translateY(-528px) !important;
+    transform: translateY(-512px) !important;
+    -webkit-transform: translateY(-512px) !important;
   }
 }
 </style>
