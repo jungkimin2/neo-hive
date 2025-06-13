@@ -13,49 +13,39 @@
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
   .mobile-ui-position-adjustment {
-    transform: translateY(-448px) !important; /* -416px → -448px (2칸 더 위로) */
-    -webkit-transform: translateY(-448px) !important;
+    transform: translateY(-384px) !important;
+    -webkit-transform: translateY(-384px) !important;
     position: relative !important;
     z-index: 9999 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-344px) !important; /* -312px → -344px (2칸 더 위로) */
-    -webkit-transform: translateY(-344px) !important;
+    transform: translateY(-280px) !important;
+    -webkit-transform: translateY(-280px) !important;
     position: relative !important;
     z-index: 10 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-408px) !important; /* -376px → -408px (2칸 더 위로) */
-    -webkit-transform: translateY(-408px) !important;
+    transform: translateY(-344px) !important;
+    -webkit-transform: translateY(-344px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-632px) !important; /* -600px → -632px (2칸 더 위로) */
-    -webkit-transform: translateY(-632px) !important;
+    transform: translateY(-568px) !important;
+    -webkit-transform: translateY(-568px) !important;
     position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   #smart {
-    transform: translateY(-480px) !important; /* -448px → -480px (2칸 더 위로) */
-    -webkit-transform: translateY(-480px) !important;
+    transform: translateY(-416px) !important;
+    -webkit-transform: translateY(-416px) !important;
     position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
 
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
@@ -87,16 +77,6 @@
     will-change: auto !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-  }
-  
-  /* 모바일 전용 페이지 로딩 시 깜빡임 방지 */
-  body {
-    opacity: 0 !important;
-    transition: opacity 0.1s ease-in !important;
-  }
-  
-  body.mobile-loaded {
-    opacity: 1 !important;
   }
 }
 
@@ -5822,7 +5802,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
-// 모바일 환경에서만 페이지 로딩 시 깜빡임 방지 - PC 환경 완전 보호
+// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
 (function() {
   // 모바일 환경 체크 (더 엄격한 조건)
   const isMobile = window.innerWidth <= 768 && 
@@ -5830,14 +5810,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i));
   
   if (isMobile) {
-    // 모바일 전용 스타일 적용 함수
-    function applyMobileStyles() {
+    // 즉시 실행 함수로 스타일 강제 적용
+    function forceApplyMobileStyles() {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-416px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-376px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
-        { selector: '#smart', transform: 'translateY(-448px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
+        { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -5852,10 +5832,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     
-    // 모바일 아이콘 정렬 함수
+    // 아이콘 정렬 함수
     function adjustMobileIcons() {
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
+        // 가로 정렬 강제 적용
         coreValue.style.setProperty('display', 'flex', 'important');
         coreValue.style.setProperty('flex-direction', 'row', 'important');
         coreValue.style.setProperty('align-items', 'center', 'important');
@@ -5874,31 +5855,56 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리
-    function showMobilePage() {
-      applyMobileStyles();
-      adjustMobileIcons();
-      
-      // 페이지 표시
-      setTimeout(() => {
-        document.body.classList.add('mobile-loaded');
-      }, 50);
-    }
+    // 즉시 실행 (HTML 파싱과 동시에)
+    forceApplyMobileStyles();
+    adjustMobileIcons();
     
-    // 즉시 실행
-    showMobilePage();
-    
-    // DOM 준비 시 재실행
+    // DOM 준비 시 재실행 (보험)
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', showMobilePage);
+      document.addEventListener('DOMContentLoaded', function() {
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+      });
     }
     
-    // 페이지 완전 로드 시 재실행
-    window.addEventListener('load', showMobilePage);
+    // 페이지 완전 로드 시 재실행 (최종 보험)
+    window.addEventListener('load', function() {
+      forceApplyMobileStyles();
+      adjustMobileIcons();
+    });
     
-  } else {
-    // PC 환경에서는 body 즉시 표시
-    document.body.style.opacity = '1';
+    // MutationObserver로 DOM 변경 감지 시 재적용
+    const observer = new MutationObserver(function(mutations) {
+      let shouldReapply = false;
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          shouldReapply = true;
+        }
+      });
+      if (shouldReapply) {
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+      }
+    });
+    
+    // DOM 감시 시작
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+      });
+    }
   }
 })();
 </script>
