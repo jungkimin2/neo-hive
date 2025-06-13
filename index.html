@@ -5438,8 +5438,15 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 50 !important; /* 다른 UI 요소들과의 충돌 방지 */
   }
   
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 + 부드러운 전환 효과 */
+  .hive-image {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: initial !important;
+    z-index: initial !important;
+    position: initial !important;
+  }
+  
   .hive-showcase,
   .video-phone,
   .slide-in-left,
@@ -5550,6 +5557,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-160%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image:nth-of-type(2) {
     left: 50% !important;
@@ -5557,6 +5566,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-210%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image:nth-of-type(3) {
     left: 50% !important;
@@ -5564,6 +5575,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(-260%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image:nth-of-type(4) {
     left: 50% !important;
@@ -5571,6 +5584,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(60%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image:nth-of-type(5) {
     left: 50% !important;
@@ -5578,6 +5593,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(110%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image:nth-of-type(6) {
     left: 50% !important;
@@ -5585,6 +5602,8 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translate(160%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   
   .hive-image.active {
@@ -5598,6 +5617,8 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
     border-radius: 16px !important;
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   
   .video-phone {
@@ -5827,7 +5848,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-416px)' }
+        { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
