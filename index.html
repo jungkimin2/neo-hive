@@ -2827,11 +2827,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
         
-        // 네비게이션 관련 요소들과 슬라이드 요소들, 그리고 #smart 섹션은 제외
+        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
             el.closest('#mobile-top-nav-fixed') ||
-            el.id === 'smart' ||
-            el.closest('#smart') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
