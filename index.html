@@ -3120,10 +3120,8 @@ html body .core-value-fresh-mobile {
     const container = document.querySelector('.hive-showcase');
     if (!container) return;
 
-    requestAnimationFrame(() => {
-      // CSS에서 이미 트랜지션이 설정되어 있으므로 별도 설정 불필요
-      
-      if (idx === -1) {
+    // requestAnimationFrame 제거하여 CSS 트랜지션이 작동하도록 함
+    if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
         hiveImages.forEach((img, index) => {
           img.classList.remove('active');
@@ -3221,11 +3219,10 @@ html body .core-value-fresh-mobile {
         }
       }
       
-      // 전환 완료 후 플래그 리셋
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 400);
-    });
+    // 전환 완료 후 플래그 리셋
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 400);
   }
   
   // 인덱스에 따른 위치 정보 반환 함수
