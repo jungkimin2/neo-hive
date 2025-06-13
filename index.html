@@ -955,17 +955,22 @@ pointer-events: auto !important;
   }
 
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
-  /* 네오 스마트 비디오 - 모바일에서 처음부터 가운데 고정 */
+  /* 네오 스마트 비디오 - 모바일에서 처음부터 가운데 최전면 고정 */
   @media (max-width: 768px) {
+    /* 최고 우선순위로 강제 적용 - 모든 선택자 조합 */
     .neo-smart-video,
-    .floating-video {
+    .floating-video,
+    div.neo-smart-video,
+    div.floating-video,
+    .hive-showcase .neo-smart-video,
+    .hive-showcase .floating-video {
       position: absolute !important;
       left: 50% !important;
       top: 50% !important;
-      transform: translate(-50%, -50%) scale(1) !important;
-      -webkit-transform: translate(-50%, -50%) scale(1) !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
       opacity: 1 !important;
-      z-index: 15 !important;
+      z-index: 2147483647 !important;
       transition: none !important;
       animation: none !important;
       transform-style: preserve-3d !important;
@@ -977,26 +982,34 @@ pointer-events: auto !important;
       display: block !important;
     }
     
-    /* 강제로 다른 CSS 규칙 무시 - 처음부터 가운데 최전면 */
-    body .neo-smart-video,
-    body .floating-video {
+    /* 인라인 스타일도 덮어쓰기 */
+    html body .hive-showcase .neo-smart-video[style],
+    html body .hive-showcase .floating-video[style],
+    html body div.neo-smart-video[style],
+    html body div.floating-video[style] {
       position: absolute !important;
       left: 50% !important;
       top: 50% !important;
       transform: translate(-50%, -50%) !important;
       -webkit-transform: translate(-50%, -50%) !important;
-      z-index: 2147483646 !important;
+      z-index: 2147483647 !important;
       opacity: 1 !important;
       visibility: visible !important;
       display: block !important;
     }
     
-    /* 페이지 로딩 시에도 즉시 표시 */
-    .neo-smart-video,
-    .floating-video {
-      visibility: visible !important;
+    /* 페이지 로딩 전부터 즉시 표시 - 초기 상태 강제 */
+    .neo-smart-video:not(.loaded),
+    .floating-video:not(.loaded) {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
       opacity: 1 !important;
-      z-index: 2147483646 !important;
+      z-index: 2147483647 !important;
+      visibility: visible !important;
+      display: block !important;
     }
   }
   
@@ -2044,7 +2057,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3213,6 +3226,52 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </script>
 </body>
 <script>
+// 즉시 실행 - DOM 파싱 전에도 실행
+(function() {
+  function forceVideoCenter() {
+    if (window.innerWidth <= 768) {
+      const video = document.querySelector('.neo-smart-video');
+      if (video) {
+        video.style.setProperty('position', 'absolute', 'important');
+        video.style.setProperty('left', '50%', 'important');
+        video.style.setProperty('top', '50%', 'important');
+        video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        video.style.setProperty('z-index', '2147483647', 'important');
+        video.style.setProperty('opacity', '1', 'important');
+        video.style.setProperty('visibility', 'visible', 'important');
+        video.style.setProperty('display', 'block', 'important');
+        video.style.setProperty('animation', 'none', 'important');
+        video.style.setProperty('transition', 'none', 'important');
+      }
+    }
+  }
+  
+  // 즉시 실행
+  forceVideoCenter();
+  
+  // DOM 준비 시 실행
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forceVideoCenter);
+  } else {
+    forceVideoCenter();
+  }
+  
+  // 페이지 로드 완료 시 실행
+  window.addEventListener('load', forceVideoCenter);
+  
+  // 추가 안전장치 - 100ms마다 체크 (처음 1초간)
+  if (window.innerWidth <= 768) {
+    let checkCount = 0;
+    const checkInterval = setInterval(() => {
+      forceVideoCenter();
+      checkCount++;
+      if (checkCount >= 10) { // 1초 후 중단
+        clearInterval(checkInterval);
+      }
+    }, 100);
+  }
+})();
+
 window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
@@ -3223,7 +3282,7 @@ window.addEventListener('load', () => {
       video.style.setProperty('left', '50%', 'important');
       video.style.setProperty('top', '50%', 'important');
       video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '2147483646', 'important');
+      video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
       video.style.setProperty('display', 'block', 'important');
@@ -3235,23 +3294,6 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       video.classList.add('tag-slide');
     }, 800);
-  }
-});
-
-// 모바일에서 페이지 로딩 즉시 가운데 고정 (추가 안전장치)
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.innerWidth <= 768) {
-    const video = document.querySelector('.neo-smart-video');
-    if (video) {
-      video.style.setProperty('position', 'absolute', 'important');
-      video.style.setProperty('left', '50%', 'important');
-      video.style.setProperty('top', '50%', 'important');
-      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '2147483646', 'important');
-      video.style.setProperty('opacity', '1', 'important');
-      video.style.setProperty('visibility', 'visible', 'important');
-      video.style.setProperty('display', 'block', 'important');
-    }
   }
 });
 </script>
