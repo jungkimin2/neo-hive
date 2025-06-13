@@ -51,7 +51,7 @@ pointer-events: auto !important;
 @media (max-width: 768px) {
 .mobile-ui-position-adjustment {
   position: relative !important;
-  transform: translateY(-300px) !important; /* 적절한 위치로 조정 (기존 -416px에서 -300px로) */
+  transform: translateY(-416px) !important; /* 기존 -400px에서 한 칸(16px) 더 위로 이동 */
   margin-top: 0 !important;
   padding-top: 0 !important;
   z-index: 9999 !important;
@@ -1103,11 +1103,11 @@ pointer-events: auto !important;
 </style>
 <!-- 네오 스마트 모바일 위치 조정: 중복 제거 및 단일화 -->
 <style>
-/* 모바일 환경에서만 #smart 섹션의 상단 여백 조정 */
+/* 모바일 환경에서만 #smart 섹션의 상단 여백 8칸(약 128px) 삭제 -> 180px로 추가 감소 */
 @media (max-width: 768px) {
 #smart {
-margin-top: -50px !important; /* 적절한 간격으로 조정 */
-padding-top: 20px !important; /* 상단 패딩 추가 */
+margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
+padding-top: 0 !important;
 transform: none !important;
 }
 
@@ -1648,8 +1648,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
 @media (max-width: 768px) {
 #mobile-moved-merged-box {
-  /* 적절한 위치로 조정 */
-  transform: translateY(-200px) !important;
+  /* 기존 -324px에서 12px 내려 조정: -312px */
+  transform: translateY(-312px) !important;
   position: relative !important;
   z-index: 100 !important; /* 더 높은 우선순위 */
   margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
@@ -1661,8 +1661,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
 .core-value-fresh-mobile {
   margin-top: 32px !important;
-  /* 모바일 환경에서 핵심 가치 UI 위치 조정 */
-  transform: translateY(-250px) !important;
+  /* 모바일 환경에서 핵심 가치 UI를 한 칸(약 16px) 아래로 내림 */
+  /* 기존 translateY(-392px)에서 16px 더 아래로 translateY(-376px)로 조정 */
+  transform: translateY(-376px) !important;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -4012,7 +4013,7 @@ h3 {
   display: block !important;
   width: 100%;
   position: relative !important;
-  transform: translateY(-400px); /* 적절한 위치로 조정 */
+  transform: translateY(-600px); /* 핵심 가치 UI 바로 밑으로 이동 (값은 필요시 조정) */
   margin-bottom: 24px;
   z-index: 101;
 }
@@ -4048,8 +4049,8 @@ h3 {
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
 #smart {
-  transform: translateY(-200px) !important; /* UI 전체를 적절히 위로 이동 (기존 -384px에서 -200px로 조정) */
-  margin-top: -80px !important; /* 기존 -180px에서 -80px로 조정 */
+  transform: translateY(-384px) !important; /* UI 전체를 24칸(384px) 위로 이동 */
+  margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
@@ -4084,8 +4085,8 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-200px) !important;
-  margin-top: -80px !important;
+  transform: translateY(-384px) !important;
+  margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
@@ -4125,8 +4126,8 @@ h3 {
 }
 
 #smart {
-  transform: translateY(-200px) !important;
-  margin-top: -80px !important;
+  transform: translateY(-384px) !important;
+  margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
