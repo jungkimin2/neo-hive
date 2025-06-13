@@ -955,40 +955,48 @@ pointer-events: auto !important;
   }
 
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
-  /* 네오 스마트 비디오 - 모바일에서 부드러운 등장 애니메이션 */
+  /* 네오 스마트 비디오 - 모바일에서 처음부터 가운데 고정 */
   @media (max-width: 768px) {
-    .neo-smart-video {
+    .neo-smart-video,
+    .floating-video {
+      position: absolute !important;
       left: 50% !important;
       top: 50% !important;
-      transform: translate(-50%, -50%) scale(0.8) !important;
-      opacity: 0 !important;
-      z-index: 5 !important;
-      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      animation: none !important;
-    }
-    
-    .neo-smart-video.mobile-appear {
       transform: translate(-50%, -50%) scale(1) !important;
+      -webkit-transform: translate(-50%, -50%) scale(1) !important;
       opacity: 1 !important;
       z-index: 15 !important;
+      transition: none !important;
+      animation: none !important;
+      transform-style: preserve-3d !important;
+      -webkit-transform-style: preserve-3d !important;
+      will-change: auto !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      visibility: visible !important;
+      display: block !important;
     }
-  }
-  
-  /* 모바일 부드러운 등장 키프레임 */
-  @keyframes mobileVideoAppear {
-    0% {
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0;
-      z-index: 5;
+    
+    /* 강제로 다른 CSS 규칙 무시 - 처음부터 가운데 최전면 */
+    body .neo-smart-video,
+    body .floating-video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
+      z-index: 2147483646 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
-    60% {
-      transform: translate(-50%, -50%) scale(1.05);
-      opacity: 0.8;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-      z-index: 15;
+    
+    /* 페이지 로딩 시에도 즉시 표시 */
+    .neo-smart-video,
+    .floating-video {
+      visibility: visible !important;
+      opacity: 1 !important;
+      z-index: 2147483646 !important;
     }
   }
   
@@ -2036,7 +2044,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 83%; z-index: 30; top: calc(50% + 40px); transform: translate(-50%, -50%) rotate(-8deg);">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3209,15 +3217,41 @@ window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
   if (window.innerWidth <= 768) {
-    // 모바일에서는 부드러운 등장 애니메이션
-    setTimeout(() => {
-      video.classList.add('mobile-appear');
-    }, 1000);
+    // 모바일에서는 애니메이션 없이 처음부터 가운데 고정
+    if (video) {
+      video.style.setProperty('position', 'absolute', 'important');
+      video.style.setProperty('left', '50%', 'important');
+      video.style.setProperty('top', '50%', 'important');
+      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      video.style.setProperty('z-index', '2147483646', 'important');
+      video.style.setProperty('opacity', '1', 'important');
+      video.style.setProperty('visibility', 'visible', 'important');
+      video.style.setProperty('display', 'block', 'important');
+      video.style.setProperty('animation', 'none', 'important');
+      video.style.setProperty('transition', 'none', 'important');
+    }
   } else {
     // PC에서는 기존 슬라이드 애니메이션
     setTimeout(() => {
       video.classList.add('tag-slide');
     }, 800);
+  }
+});
+
+// 모바일에서 페이지 로딩 즉시 가운데 고정 (추가 안전장치)
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 768) {
+    const video = document.querySelector('.neo-smart-video');
+    if (video) {
+      video.style.setProperty('position', 'absolute', 'important');
+      video.style.setProperty('left', '50%', 'important');
+      video.style.setProperty('top', '50%', 'important');
+      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      video.style.setProperty('z-index', '2147483646', 'important');
+      video.style.setProperty('opacity', '1', 'important');
+      video.style.setProperty('visibility', 'visible', 'important');
+      video.style.setProperty('display', 'block', 'important');
+    }
   }
 });
 </script>
