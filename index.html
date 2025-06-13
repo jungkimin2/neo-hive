@@ -43,8 +43,8 @@
   }
   
   #smart {
-    transform: translateY(-200px) !important;
-    -webkit-transform: translateY(-200px) !important;
+    transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
+    -webkit-transform: translateY(-248px) !important;
     position: relative !important;
   }
 
@@ -1229,7 +1229,7 @@ pointer-events: auto !important;
 #smart {
 margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
 padding-top: 0 !important;
-transform: translateY(-200px) !important; /* 두 번째 캡처 위치로 조정 */
+transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
 }
 
 #smart.section, #smart .container {
@@ -4252,8 +4252,8 @@ html body .mobile-system-box-wrapper {
 @media (max-width: 768px) {
 body #smart,
 html body #smart {
-  transform: translateY(-200px) !important; /* 두 번째 캡처 위치로 조정 */
-  -webkit-transform: translateY(-200px) !important;
+  transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
+  -webkit-transform: translateY(-248px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4293,8 +4293,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-200px) !important; /* 두 번째 캡처 위치로 조정 */
-  -webkit-transform: translateY(-200px) !important;
+  transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
+  -webkit-transform: translateY(-248px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4339,8 +4339,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-200px) !important; /* 두 번째 캡처 위치로 조정 */
-  -webkit-transform: translateY(-200px) !important;
+  transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
+  -webkit-transform: translateY(-248px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5430,8 +5430,8 @@ document.addEventListener('DOMContentLoaded', function() {
   /* 네오 스마트 섹션은 독립적으로 처리 - transform 보존 */
   body #smart,
   html body #smart {
-    transform: translateY(-200px) !important; /* 두 번째 캡처 위치로 조정 */
-    -webkit-transform: translateY(-200px) !important;
+    transform: translateY(-248px) !important; /* -200px에서 3칸(48px) 더 위로 */
+    -webkit-transform: translateY(-248px) !important;
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
@@ -5827,7 +5827,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-200px)' }
+        { selector: '#smart', transform: 'translateY(-248px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
