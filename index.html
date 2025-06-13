@@ -2057,7 +2057,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3236,7 +3236,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         video.style.setProperty('left', '50%', 'important');
         video.style.setProperty('top', '50%', 'important');
         video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        video.style.setProperty('z-index', '2147483646', 'important');
+        video.style.setProperty('z-index', '2147483647', 'important');
         video.style.setProperty('opacity', '1', 'important');
         video.style.setProperty('visibility', 'visible', 'important');
         video.style.setProperty('display', 'block', 'important');
@@ -3282,7 +3282,7 @@ window.addEventListener('load', () => {
       video.style.setProperty('left', '50%', 'important');
       video.style.setProperty('top', '50%', 'important');
       video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '2147483646', 'important');
+      video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
       video.style.setProperty('display', 'block', 'important');
@@ -5224,26 +5224,11 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
   }
   
-  /* 네오 스마트 비디오는 독립적으로 처리 - 가운데 고정 유지 */
+  /* 특정 UI 요소들은 원래 기능 유지 */
   .neo-smart-video,
-  .floating-video {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    z-index: 2147483646 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  /* 기타 비디오 요소들은 원래 기능 유지 */
-  .video-container:not(.neo-smart-video):not(.floating-video),
-  [class*="video"]:not(.neo-smart-video):not(.floating-video),
-  [class*="animation"]:not(.neo-smart-video):not(.floating-video) {
+  .video-container,
+  [class*="video"],
+  [class*="animation"] {
     transform: unset !important;
     -webkit-transform: unset !important;
     position: unset !important;
@@ -5347,37 +5332,24 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
   }
   
-  /* 모바일 환경에서 네오 스마트 비디오 처음부터 최전면 고정 */
+  /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
   @media (max-width: 768px) {
-    .neo-smart-video,
-    .floating-video {
+    .neo-smart-video {
       position: absolute !important;
       left: 50% !important;
       top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      -webkit-transform: translate(-50%, -50%) !important;
-      z-index: 2147483646 !important;
-      opacity: 1 !important;
+      transform: translate(-50%, -50%) scale(0.8) !important;
+      z-index: 5 !important;
+      opacity: 0 !important;
       animation: none !important;
-      transition: none !important;
-      transform-style: preserve-3d !important;
-      -webkit-transform-style: preserve-3d !important;
-      visibility: visible !important;
-      display: block !important;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
-    /* 인라인 스타일도 덮어쓰기 */
-    html body .hive-showcase .neo-smart-video[style],
-    html body .hive-showcase .floating-video[style] {
-      position: absolute !important;
-      left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      -webkit-transform: translate(-50%, -50%) !important;
-      z-index: 2147483646 !important;
+    /* 모바일에서 등장 후 최종 상태 */
+    .neo-smart-video.mobile-appear {
+      transform: translate(-50%, -50%) scale(1) !important;
+      z-index: 15 !important;
       opacity: 1 !important;
-      visibility: visible !important;
-      display: block !important;
     }
   }
   
@@ -5396,8 +5368,8 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow-y: auto !important;
   }
   
-  /* 네비게이션 위의 요소가 없도록 보장 (네오 스마트 비디오 제외) */
-  *:not(.neo-smart-video):not(.floating-video):not(.hive-showcase *):not(.video-phone) {
+  /* 네비게이션 위의 요소가 없도록 보장 */
+  * {
     z-index: auto !important;
   }
   
@@ -5409,17 +5381,10 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483647 !important;
   }
   
-  /* 네오 스마트 비디오는 네비게이션 다음으로 높은 z-index */
-  .neo-smart-video,
-  .floating-video {
-    z-index: 2147483646 !important;
-    position: absolute !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
-  }
+
   
-  /* 3D 변환 컨텍스트 제거 (네오 스마트 비디오 제외) */
-  *:not(.neo-smart-video):not(.floating-video):not(.hive-showcase *):not(.video-phone) {
+  /* 3D 변환 컨텍스트 제거 */
+  * {
     transform-style: flat !important;
     -webkit-transform-style: flat !important;
   }
