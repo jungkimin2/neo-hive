@@ -3130,8 +3130,21 @@ html body .core-value-fresh-mobile {
           resetImageToOriginalPosition(img, index);
         });
         if (videoPhone) {
-          // 모든 위치 클래스 제거하여 기본 중앙 위치로 복귀
-          videoPhone.className = videoPhone.className.replace(/moved-to-position-\d+/g, '');
+          if (window.innerWidth <= 768) {
+            // 모바일에서는 CSS 클래스 제거하여 기본 중앙 위치로 복귀
+            videoPhone.className = videoPhone.className.replace(/moved-to-position-\d+/g, '');
+          } else {
+            // PC에서는 일반 스타일 적용
+            videoPhone.style.left = '50%';
+            videoPhone.style.top = '50%';
+            videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
+            videoPhone.style.zIndex = '10';
+            videoPhone.style.width = '256px';
+            videoPhone.style.height = '512px';
+            videoPhone.style.border = '10px solid #7BE495';
+            videoPhone.style.boxShadow = '0 0 80px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.3)';
+            videoPhone.style.borderRadius = '32px';
+          }
         }
       } else if (hiveImages[idx]) {
         // 클릭된 이미지가 중앙으로, 비디오는 그 이미지의 원래 위치로
@@ -3146,17 +3159,43 @@ html body .core-value-fresh-mobile {
           }
         });
 
-        // 비디오를 클릭된 이미지의 원래 위치로 이동 - CSS 클래스 사용
+        // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
-          // 모든 위치 클래스 제거
-          videoPhone.className = videoPhone.className.replace(/moved-to-position-\d+/g, '');
-          // 새로운 위치 클래스 추가
-          videoPhone.classList.add(`moved-to-position-${idx + 1}`);
+          if (window.innerWidth <= 768) {
+            // 모바일에서는 CSS 클래스 사용 (트랜지션을 위해)
+            videoPhone.className = videoPhone.className.replace(/moved-to-position-\d+/g, '');
+            videoPhone.classList.add(`moved-to-position-${idx + 1}`);
+          } else {
+            // PC에서는 일반 스타일 적용
+            videoPhone.style.left = targetPosition.left;
+            videoPhone.style.top = targetPosition.top;
+            videoPhone.style.transform = targetPosition.transform;
+            videoPhone.style.zIndex = targetPosition.zIndex;
+            videoPhone.style.width = '160px';
+            videoPhone.style.height = '320px';
+            videoPhone.style.border = 'none';
+            videoPhone.style.boxShadow = 'none';
+            videoPhone.style.borderRadius = '24px';
+          }
         }
 
-        // 클릭된 이미지를 중앙으로 이동 - CSS 클래스 사용
+        // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
-        // JavaScript 인라인 스타일 제거하여 CSS 트랜지션이 작동하도록 함
+        if (window.innerWidth <= 768) {
+          // 모바일에서는 CSS 클래스만 사용 (트랜지션을 위해)
+          // .hive-image.active CSS에서 스타일 처리
+        } else {
+          // PC에서는 일반 스타일 적용
+          targetImg.style.left = '50%';
+          targetImg.style.top = '50%';
+          targetImg.style.transform = 'translate(-50%, -50%)';
+          targetImg.style.zIndex = '10';
+          targetImg.style.width = '256px';
+          targetImg.style.height = '512px';
+          targetImg.style.border = '6px solid #7BE495';
+          targetImg.style.boxShadow = '0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3)';
+          targetImg.style.borderRadius = '24px';
+        }
       }
       
       // 전환 완료 후 플래그 리셋
@@ -5595,25 +5634,28 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: preserve-3d !important;
   }
   
-  .hive-image.active,
-  .hive-showcase .hive-image.active,
-  html body .hive-showcase .hive-image.active {
-    left: 50% !important;
-    top: 60% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    z-index: 10 !important;
-    width: 180px !important;
-    height: 360px !important;
-    border: 4px solid #7BE495 !important;
-    box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-    border-radius: 20px !important;
-    position: absolute !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, left, top, width, height, border, box-shadow !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
+  /* 모바일에서만 .hive-image.active 스타일 적용 */
+  @media (max-width: 768px) {
+    .hive-image.active,
+    .hive-showcase .hive-image.active,
+    html body .hive-showcase .hive-image.active {
+      left: 50% !important;
+      top: 60% !important;
+      transform: translate(-50%, -50%) !important;
+      -webkit-transform: translate(-50%, -50%) !important;
+      z-index: 10 !important;
+      width: 180px !important;
+      height: 360px !important;
+      border: 4px solid #7BE495 !important;
+      box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+      border-radius: 20px !important;
+      position: absolute !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      will-change: transform, left, top, width, height, border, box-shadow !important;
+      transform-style: preserve-3d !important;
+      -webkit-transform-style: preserve-3d !important;
+    }
   }
   
   .video-phone,
@@ -5649,13 +5691,15 @@ document.addEventListener('DOMContentLoaded', function() {
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
   }
   
-  /* 비디오가 이미지 위치로 이동했을 때 스타일 */
-  .video-phone.moved-to-position-1 { left: 50% !important; top: 60% !important; transform: translate(-160%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  .video-phone.moved-to-position-2 { left: 50% !important; top: 60% !important; transform: translate(-210%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  .video-phone.moved-to-position-3 { left: 50% !important; top: 60% !important; transform: translate(-260%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  .video-phone.moved-to-position-4 { left: 50% !important; top: 60% !important; transform: translate(60%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  .video-phone.moved-to-position-5 { left: 50% !important; top: 60% !important; transform: translate(110%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
-  .video-phone.moved-to-position-6 { left: 50% !important; top: 60% !important; transform: translate(160%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  /* 모바일에서만 비디오가 이미지 위치로 이동했을 때 스타일 */
+  @media (max-width: 768px) {
+    .video-phone.moved-to-position-1 { left: 50% !important; top: 60% !important; transform: translate(-160%, -50%) scale(0.9) !important; -webkit-transform: translate(-160%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+    .video-phone.moved-to-position-2 { left: 50% !important; top: 60% !important; transform: translate(-210%, -50%) scale(0.8) !important; -webkit-transform: translate(-210%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+    .video-phone.moved-to-position-3 { left: 50% !important; top: 60% !important; transform: translate(-260%, -50%) scale(0.7) !important; -webkit-transform: translate(-260%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+    .video-phone.moved-to-position-4 { left: 50% !important; top: 60% !important; transform: translate(60%, -50%) scale(0.9) !important; -webkit-transform: translate(60%, -50%) scale(0.9) !important; z-index: 3 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+    .video-phone.moved-to-position-5 { left: 50% !important; top: 60% !important; transform: translate(110%, -50%) scale(0.8) !important; -webkit-transform: translate(110%, -50%) scale(0.8) !important; z-index: 2 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+    .video-phone.moved-to-position-6 { left: 50% !important; top: 60% !important; transform: translate(160%, -50%) scale(0.7) !important; -webkit-transform: translate(160%, -50%) scale(0.7) !important; z-index: 1 !important; width: 90px !important; height: 180px !important; border: none !important; box-shadow: none !important; border-radius: 16px !important; }
+  }
   
   /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
   @media (max-width: 768px) {
