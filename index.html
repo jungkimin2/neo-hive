@@ -5752,28 +5752,28 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateY(-512px) !important;
   }
   
-  /* 모바일 전용 transform 클래스 - 4칸 더 내림 (총 6칸) */
-  .mobile-transform-target.mobile-ui-position-adjustment {
+  /* 모바일 전용 transform 클래스 - 4칸 더 내림 (총 6칸) - 즉시 적용 */
+  .mobile-ui-position-adjustment {
     transform: translateY(-384px) !important; /* -400px → -384px (16px 더 내림) */
     -webkit-transform: translateY(-384px) !important;
   }
   
-  .mobile-transform-target#mobile-moved-merged-box {
+  #mobile-moved-merged-box {
     transform: translateY(-280px) !important; /* -296px → -280px (16px 더 내림) */
     -webkit-transform: translateY(-280px) !important;
   }
   
-  .mobile-transform-target.core-value-fresh-mobile {
+  .core-value-fresh-mobile {
     transform: translateY(-344px) !important; /* -360px → -344px (16px 더 내림) */
     -webkit-transform: translateY(-344px) !important;
   }
   
-  .mobile-transform-target.mobile-system-box-wrapper {
+  .mobile-system-box-wrapper {
     transform: translateY(-568px) !important; /* -584px → -568px (16px 더 내림) */
     -webkit-transform: translateY(-568px) !important;
   }
   
-  .mobile-transform-target#smart {
+  #smart {
     transform: translateY(-416px) !important; /* -432px → -416px (16px 더 내림) */
     -webkit-transform: translateY(-416px) !important;
   }
@@ -5781,16 +5781,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* PC 환경에서는 transform 제거 */
 @media (min-width: 769px) {
-  .mobile-transform-target {
+  .mobile-ui-position-adjustment,
+  #mobile-moved-merged-box,
+  .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
+  #smart {
     transform: none !important;
     -webkit-transform: none !important;
   }
 }
 </style>
 
-<!-- 모바일 전용 UI 위치 조정 스크립트 -->
+<!-- 모바일 전용 UI 위치 조정 스크립트 - 즉시 실행 -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// 즉시 실행 함수로 페이지 로드와 동시에 적용
+(function() {
   function applyMobileOnlyTransforms() {
     const isMobile = window.innerWidth <= 768;
     
@@ -5884,8 +5889,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // 즉시 실행
+  // 즉시 실행 (페이지 로드와 동시에)
   applyMobileOnlyTransforms();
+  
+  // DOM이 준비되면 다시 한번 실행
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyMobileOnlyTransforms);
+  } else {
+    applyMobileOnlyTransforms();
+  }
   
   // 리사이즈 시 실행 (모바일/PC 전환 시)
   window.addEventListener('resize', function() {
@@ -5899,18 +5911,18 @@ document.addEventListener('DOMContentLoaded', function() {
       applyMobileOnlyTransforms();
     }
   }, 100);
-});
+})();
 
 // 페이지 로드 완료 후에도 실행
 window.addEventListener('load', function() {
   setTimeout(function() {
     if (window.innerWidth <= 768) {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-400px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-360px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-584px)' },
-        { selector: '#smart', transform: 'translateY(-432px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
+        { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
       elements.forEach(function(item) {
