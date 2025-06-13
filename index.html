@@ -17,8 +17,6 @@
     -webkit-transform: translateY(-384px) !important;
     position: relative !important;
     z-index: 9999 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   #mobile-moved-merged-box {
@@ -26,8 +24,6 @@
     -webkit-transform: translateY(-280px) !important;
     position: relative !important;
     z-index: 10 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   .core-value-fresh-mobile {
@@ -38,24 +34,18 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   .mobile-system-box-wrapper {
     transform: translateY(-568px) !important;
     -webkit-transform: translateY(-568px) !important;
     position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   #smart {
     transform: translateY(-416px) !important;
     -webkit-transform: translateY(-416px) !important;
     position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
 
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
@@ -87,16 +77,6 @@
     will-change: auto !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-  }
-  
-  /* 모바일 전용 페이지 로딩 시 깜빡임 방지 */
-  body {
-    opacity: 0 !important;
-    transition: opacity 0.1s ease-in !important;
-  }
-  
-  body.mobile-loaded {
-    opacity: 1 !important;
   }
 }
 
@@ -1578,7 +1558,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           </div>
           <!-- 모바일 전용: 새로운 핵심 가치 박스 (핵심 가치) -->
           <!-- 기존 mobile-core-value-block은 아래에서 주석 처리됨 -->
-          <div id="mobile-moved-merged-box" class="mobile-merged-box mobile-transform-target" style="transform: translateY(-280px) !important; -webkit-transform: translateY(-280px) !important; position: relative !important; z-index: 10 !important;" data-mobile-transform="translateY(-280px)">
+          <div id="mobile-moved-merged-box" class="mobile-merged-box mobile-transform-target">
             <div class="mobile-merged-row">
               <div class="mobile-merged-icon">
                 <img src="./images/neo125.png" alt="선물 아이콘" />
