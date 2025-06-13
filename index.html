@@ -149,9 +149,10 @@ html body .mobile-ui-position-adjustment {
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
 
-<!-- 모바일 UI 즉시 정렬 - 페이지 로드와 동시에 적용 -->
+<!-- 모바일 UI 즉시 정렬 - 모바일 전용 -->
 <style>
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  /* 모바일에서만 즉시 적용 */
   .mobile-ui-position-adjustment {
     transform: translateY(-384px) !important;
     -webkit-transform: translateY(-384px) !important;
@@ -163,10 +164,6 @@ html body .mobile-ui-position-adjustment {
     -webkit-transform: translateY(-280px) !important;
     position: relative !important;
     z-index: 10 !important;
-    margin-top: -40px !important;
-    margin-bottom: 36px !important;
-    padding: 36px 28px !important;
-    gap: 32px !important;
   }
   
   .core-value-fresh-mobile {
@@ -189,6 +186,18 @@ html body .mobile-ui-position-adjustment {
     transform: translateY(-416px) !important;
     -webkit-transform: translateY(-416px) !important;
     position: relative !important;
+  }
+}
+
+/* PC 환경에서는 transform 완전 제거 */
+@media screen and (min-width: 769px) {
+  .mobile-ui-position-adjustment,
+  #mobile-moved-merged-box,
+  .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
+  #smart {
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 }
 </style>
@@ -1558,7 +1567,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             </div>
           </div>
           <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
-          <div class="mobile-ui-position-adjustment mobile-transform-target">
+          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-384px) !important; -webkit-transform: translateY(-384px) !important; position: relative !important;">
             <div class="mobile-system-box mobile-system-box--merged">
               <div class="mobile-system-content">
                 <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
@@ -5837,28 +5846,24 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 전용 UI 위치 조정 스크립트 - 보조 지원 -->
+<!-- 모바일 전용 UI 위치 조정 스크립트 - 아이콘 정렬만 -->
 <script>
-// CSS가 주로 처리하고, JavaScript는 보조적으로 지원
+// 모바일에서만 아이콘 정렬 보조
 (function() {
-  function ensureMobileTransforms() {
+  function adjustMobileIcons() {
+    // 모바일에서만 실행
     if (window.innerWidth <= 768) {
-      // Core value 아이콘 정렬만 JavaScript로 보강
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
         const coreIcon = coreValue.querySelector('.core-icon');
         if (coreIcon) {
           coreIcon.style.setProperty('margin-right', '12px', 'important');
-          coreIcon.style.setProperty('margin-top', '0', 'important');
-          coreIcon.style.setProperty('margin-bottom', '0', 'important');
           coreIcon.style.setProperty('flex-shrink', '0', 'important');
         }
         
         const textBlock = coreValue.querySelector('.core-text-block');
         if (textBlock) {
           textBlock.style.setProperty('flex', '1', 'important');
-          textBlock.style.setProperty('margin-top', '0', 'important');
-          textBlock.style.setProperty('margin-bottom', '0', 'important');
         }
       }
     }
@@ -5866,16 +5871,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // DOM 준비 시 실행
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ensureMobileTransforms);
+    document.addEventListener('DOMContentLoaded', adjustMobileIcons);
   } else {
-    ensureMobileTransforms();
+    adjustMobileIcons();
   }
-  
-  // 리사이즈 시 실행
-  window.addEventListener('resize', function() {
-    clearTimeout(window.resizeTimeout);
-    window.resizeTimeout = setTimeout(ensureMobileTransforms, 100);
-  });
 })();
 
 
