@@ -149,59 +149,76 @@ html body .mobile-ui-position-adjustment {
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
 
-<!-- 모바일 UI 즉시 정렬 - 깜빡임 방지 포함 -->
+<!-- 모바일 UI 즉시 정렬 - 최강 우선순위 -->
 <style>
-/* 모바일에서 CSS 로딩 중 깜빡임 방지 */
+/* 모바일 전용 - 즉시 적용 */
 @media screen and (max-width: 768px) {
-  /* 로딩 중에는 특정 요소들만 숨김 */
-  .mobile-ui-position-adjustment:not(.css-loaded),
-  #mobile-moved-merged-box:not(.css-loaded),
-  .core-value-fresh-mobile:not(.css-loaded),
-  .mobile-system-box-wrapper:not(.css-loaded),
-  #smart:not(.css-loaded) {
-    opacity: 0;
-    transition: opacity 0.1s ease;
-  }
-  
-  /* CSS 로딩 완료 후 즉시 정렬된 상태로 표시 */
-  .mobile-ui-position-adjustment {
+  /* 극강 우선순위 - 모든 가능한 선택자 조합 */
+  html body div.mobile-ui-position-adjustment,
+  html body .mobile-ui-position-adjustment,
+  body .mobile-ui-position-adjustment,
+  .mobile-ui-position-adjustment,
+  [class*="mobile-ui-position-adjustment"] {
     transform: translateY(-384px) !important;
     -webkit-transform: translateY(-384px) !important;
+    -moz-transform: translateY(-384px) !important;
+    -ms-transform: translateY(-384px) !important;
     position: relative !important;
-    opacity: 1;
   }
   
-  #mobile-moved-merged-box {
+  html body div#mobile-moved-merged-box,
+  html body #mobile-moved-merged-box,
+  body #mobile-moved-merged-box,
+  #mobile-moved-merged-box,
+  [id*="mobile-moved-merged-box"] {
     transform: translateY(-280px) !important;
     -webkit-transform: translateY(-280px) !important;
+    -moz-transform: translateY(-280px) !important;
+    -ms-transform: translateY(-280px) !important;
     position: relative !important;
     z-index: 10 !important;
-    opacity: 1;
   }
   
-  .core-value-fresh-mobile {
+  html body div.core-value-fresh-mobile,
+  html body .core-value-fresh-mobile,
+  body .core-value-fresh-mobile,
+  .core-value-fresh-mobile,
+  [class*="core-value-fresh-mobile"] {
     transform: translateY(-344px) !important;
     -webkit-transform: translateY(-344px) !important;
+    -moz-transform: translateY(-344px) !important;
+    -ms-transform: translateY(-344px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    opacity: 1;
   }
   
-  .mobile-system-box-wrapper {
+  html body div.mobile-system-box-wrapper,
+  html body .mobile-system-box-wrapper,
+  body .mobile-system-box-wrapper,
+  .mobile-system-box-wrapper,
+  [class*="mobile-system-box-wrapper"] {
     transform: translateY(-568px) !important;
     -webkit-transform: translateY(-568px) !important;
+    -moz-transform: translateY(-568px) !important;
+    -ms-transform: translateY(-568px) !important;
     position: relative !important;
-    opacity: 1;
   }
   
-  #smart {
+  html body section#smart,
+  html body #smart,
+  body section#smart,
+  body #smart,
+  section#smart,
+  #smart,
+  [id*="smart"] {
     transform: translateY(-416px) !important;
     -webkit-transform: translateY(-416px) !important;
+    -moz-transform: translateY(-416px) !important;
+    -ms-transform: translateY(-416px) !important;
     position: relative !important;
-    opacity: 1;
   }
 }
 
@@ -214,7 +231,6 @@ html body .mobile-ui-position-adjustment {
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
-    opacity: 1 !important;
   }
 }
 </style>
@@ -1545,7 +1561,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           </div>
           <!-- 모바일 전용: 새로운 핵심 가치 박스 (핵심 가치) -->
           <!-- 기존 mobile-core-value-block은 아래에서 주석 처리됨 -->
-          <div id="mobile-moved-merged-box" class="mobile-merged-box mobile-transform-target">
+          <div id="mobile-moved-merged-box" class="mobile-merged-box mobile-transform-target" style="transform: translateY(-280px) !important; -webkit-transform: translateY(-280px) !important; position: relative !important; z-index: 10 !important;">
             <div class="mobile-merged-row">
               <div class="mobile-merged-icon">
                 <img src="./images/neo125.png" alt="선물 아이콘" />
@@ -1564,7 +1580,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
               </div>
             </div>
           </div>
-                                  <div class="core-value-fresh-mobile pc-core-value-adjust mobile-transform-target">
+                                  <div class="core-value-fresh-mobile pc-core-value-adjust mobile-transform-target" style="transform: translateY(-344px) !important; -webkit-transform: translateY(-344px) !important; position: relative !important; display: flex !important; flex-direction: row !important; align-items: center !important;">
 <style>
 @media (min-width: 769px) {
 .pc-core-value-adjust {
@@ -1894,7 +1910,7 @@ html body .core-value-fresh-mobile {
 }
 </style>
           <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
-                                  <div class="mobile-system-box-wrapper mobile-ui-position-adjustment mobile-transform-target">
+                                  <div class="mobile-system-box-wrapper mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-568px) !important; -webkit-transform: translateY(-568px) !important; position: relative !important;">
             <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
                 <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
@@ -1930,7 +1946,7 @@ html body .core-value-fresh-mobile {
 
 
 <!-- <div id="hive"></div> -->
-          <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px;">
+          <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px; transform: translateY(-416px) !important; -webkit-transform: translateY(-416px) !important; position: relative !important;">
   <div class="container" style="text-align:center;">
     <h2 style="font-size: 2rem; text-align: left;">
       <span style="color: #FFFFFF;">네오 스마트 :</span>
@@ -5863,51 +5879,33 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 UI 즉시 표시 및 조정 스크립트 -->
+<!-- 모바일 아이콘 정렬만 처리 -->
 <script>
-// CSS 로딩 완료 표시 및 모바일 UI 조정
+// 모바일에서만 아이콘 정렬 (최소한의 JavaScript)
 (function() {
-  function initializePage() {
-    // CSS 로딩 완료 표시
-    const elements = [
-      '.mobile-ui-position-adjustment',
-      '#mobile-moved-merged-box', 
-      '.core-value-fresh-mobile',
-      '.mobile-system-box-wrapper',
-      '#smart'
-    ];
-    
-    elements.forEach(selector => {
-      const element = document.querySelector(selector);
-      if (element) {
-        element.classList.add('css-loaded');
-      }
-    });
-    
-    // 모바일에서만 아이콘 정렬 보조
-    if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 768) {
+    function adjustIcons() {
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
         const coreIcon = coreValue.querySelector('.core-icon');
         if (coreIcon) {
-          coreIcon.style.setProperty('margin-right', '12px', 'important');
-          coreIcon.style.setProperty('flex-shrink', '0', 'important');
+          coreIcon.style.marginRight = '12px';
+          coreIcon.style.flexShrink = '0';
         }
         
         const textBlock = coreValue.querySelector('.core-text-block');
         if (textBlock) {
-          textBlock.style.setProperty('flex', '1', 'important');
+          textBlock.style.flex = '1';
         }
       }
     }
-  }
-  
-  // 즉시 실행
-  initializePage();
-  
-  // DOM 준비 시에도 실행 (보험)
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePage);
+    
+    // DOM 준비 시 실행
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', adjustIcons);
+    } else {
+      adjustIcons();
+    }
   }
 })();
 
