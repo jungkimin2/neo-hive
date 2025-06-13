@@ -5332,6 +5332,9 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
+    z-index: 100 !important; /* 다른 요소들보다 위에 표시 */
+    background: transparent !important;
+    overflow: visible !important;
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
