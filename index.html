@@ -2117,16 +2117,8 @@ html body .core-value-fresh-mobile {
   /* Green neon glow */
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
 }
-/* 모바일 환경에서 앞면과 뒷면 이미지 위치 동일하게 조정 */
+/* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
-  .flipper .neo-smart-logo.front {
-    left: 96px !important;
-    position: relative !important;
-    transform: rotateY(0deg) !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
   .flipper .back {
     left: 96px !important;
     transform: rotateY(180deg) !important;
