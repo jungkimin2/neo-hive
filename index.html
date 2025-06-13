@@ -2827,9 +2827,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
         
-        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
+        // 네비게이션 관련 요소들과 슬라이드 요소들, 그리고 네오 스마트 섹션은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
             el.closest('#mobile-top-nav-fixed') ||
+            el.id === 'smart' ||
+            el.closest('#smart') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
@@ -2876,6 +2878,51 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   // 추가 안전장치 - 1초 후 다시 실행
   setTimeout(forceMobileNavigation, 1000);
   
+  // 네오 스마트 섹션 위치 및 가시성 강제 설정 함수
+  function forceSmartSectionVisibility() {
+    if (window.innerWidth <= 768) {
+      const smartSection = document.querySelector('#smart');
+      if (smartSection) {
+        // 네오 스마트 섹션 자체 설정
+        smartSection.style.setProperty('transform', 'translateY(-464px)', 'important');
+        smartSection.style.setProperty('margin-top', '-180px', 'important');
+        smartSection.style.setProperty('padding-top', '0', 'important');
+        smartSection.style.setProperty('position', 'relative', 'important');
+        smartSection.style.setProperty('z-index', '100', 'important');
+        smartSection.style.setProperty('opacity', '1', 'important');
+        smartSection.style.setProperty('visibility', 'visible', 'important');
+        smartSection.style.setProperty('display', 'block', 'important');
+        smartSection.style.setProperty('overflow', 'visible', 'important');
+        
+        // 네오 스마트 섹션 내부 모든 요소들 가시성 보장
+        const smartElements = smartSection.querySelectorAll('*');
+        smartElements.forEach(el => {
+          el.style.setProperty('position', 'relative', 'important');
+          el.style.setProperty('z-index', '101', 'important');
+          el.style.setProperty('opacity', '1', 'important');
+          el.style.setProperty('visibility', 'visible', 'important');
+          
+          // 텍스트 요소들은 display 보장
+          if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || 
+              el.tagName === 'P' || el.tagName === 'SPAN' || el.tagName === 'DIV') {
+            if (el.tagName === 'SPAN') {
+              el.style.setProperty('display', 'inline', 'important');
+            } else {
+              el.style.setProperty('display', 'block', 'important');
+            }
+          }
+        });
+      }
+    }
+  }
+  
+  // 네오 스마트 섹션 가시성 강제 설정 실행
+  document.addEventListener('DOMContentLoaded', forceSmartSectionVisibility);
+  setTimeout(forceSmartSectionVisibility, 100);
+  setTimeout(forceSmartSectionVisibility, 500);
+  setTimeout(forceSmartSectionVisibility, 1000);
+  setTimeout(forceSmartSectionVisibility, 2000);
+  
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
     let lastScrollTop = 0;
@@ -2896,6 +2943,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         mobileNav.style.top = '0px';
         mobileNav.style.position = 'fixed';
         
+        // 네오 스마트 섹션 가시성도 함께 확인
+        forceSmartSectionVisibility();
+        
         lastScrollTop = currentScrollTop;
       }
     }, { passive: true });
@@ -2906,6 +2956,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       if (mobileNav && window.getComputedStyle(mobileNav).position !== 'fixed') {
         forceMobileNavigation();
       }
+      // 네오 스마트 섹션 가시성도 함께 확인
+      forceSmartSectionVisibility();
     }, { passive: true });
   }
   
@@ -3255,13 +3307,27 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 (function() {
   function forceVideosCenter() {
     if (window.innerWidth <= 768) {
-      // 네오 스마트 섹션 위치 강제 설정
+      // 네오 스마트 섹션 위치 및 가시성 강제 설정
       const smartSection = document.querySelector('#smart');
       if (smartSection) {
         smartSection.style.setProperty('transform', 'translateY(-464px)', 'important');
         smartSection.style.setProperty('margin-top', '-180px', 'important');
         smartSection.style.setProperty('padding-top', '0', 'important');
         smartSection.style.setProperty('position', 'relative', 'important');
+        smartSection.style.setProperty('z-index', '100', 'important');
+        smartSection.style.setProperty('opacity', '1', 'important');
+        smartSection.style.setProperty('visibility', 'visible', 'important');
+        smartSection.style.setProperty('display', 'block', 'important');
+        smartSection.style.setProperty('overflow', 'visible', 'important');
+        
+        // 네오 스마트 섹션 내부 모든 요소들 가시성 보장
+        const smartElements = smartSection.querySelectorAll('*');
+        smartElements.forEach(el => {
+          el.style.setProperty('position', 'relative', 'important');
+          el.style.setProperty('z-index', '101', 'important');
+          el.style.setProperty('opacity', '1', 'important');
+          el.style.setProperty('visibility', 'visible', 'important');
+        });
       }
       
       // 네오 스마트 비디오 처리
@@ -5293,6 +5359,43 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
     z-index: 1 !important;
     transform: none !important;
+  }
+  
+  /* 네오 스마트 섹션은 완전히 독립적으로 처리 */
+  #smart {
+    position: relative !important;
+    z-index: 100 !important;
+  }
+  
+  #smart * {
+    position: relative !important;
+    z-index: 101 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 네오 스마트 섹션 텍스트 요소들 강제 표시 */
+  #smart h1, #smart h2, #smart h3, #smart h4, #smart h5, #smart h6,
+  #smart p, #smart span, #smart div {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 102 !important;
+  }
+  
+  #smart span {
+    display: inline !important;
+  }
+  
+  /* 네오 스마트 컨테이너들 */
+  #smart .container,
+  #smart .hive-showcase,
+  #smart .slide-container {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    overflow: visible !important;
   }
   
   /* 특정 UI 요소들은 원래 기능 유지 */
