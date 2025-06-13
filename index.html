@@ -5523,18 +5523,32 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
-  .hive-image,
   .hive-showcase,
   .video-phone,
   .slide-in-left,
   .slide-in-right,
-  [class*="slide"],
+  [class*="slide"]:not(.hive-image),
   .swiper-container,
   .swiper-wrapper,
   .swiper-slide {
     transform: initial !important;
     -webkit-transform: initial !important;
     position: initial !important;
+  }
+  
+  /* hive-image는 별도로 처리하여 transition 보장 */
+  .hive-image {
+    position: initial !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* 최고 우선순위로 hive-image transition 강제 적용 */
+  html body .hive-showcase .hive-image,
+  html body section .hive-image,
+  html body .hive-image {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   
   /* 네비게이션만 다시 강제 고정 */
