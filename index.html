@@ -5118,7 +5118,51 @@ document.addEventListener('DOMContentLoaded', function() {
   /* 네비게이션을 숨기려는 모든 시도 차단 */
   #mobile-top-nav-fixed[style*="display: none"],
   #mobile-top-nav-fixed[style*="visibility: hidden"],
-  #mobile-top-nav-fixed[style*="opacity: 0"] {
+  #mobile-top-nav-fixed[style*="opacity: 0"],
+  #mobile-top-nav-fixed[style*="transform: translate"],
+  #mobile-top-nav-fixed[style*="top: -"],
+  #mobile-top-nav-fixed[style*="position: absolute"],
+  #mobile-top-nav-fixed[style*="position: relative"],
+  #mobile-top-nav-fixed[style*="position: static"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateZ(0) !important;
+    z-index: 2147483647 !important;
+  }
+  
+  /* 강제 고정 클래스 */
+  .force-fixed,
+  #mobile-top-nav-fixed.force-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 60px !important;
+    z-index: 2147483647 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #000 !important;
+    border-bottom: 2px solid #7BE495 !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* 모든 상황에서 네비게이션 최우선 표시 */
+  html #mobile-top-nav-fixed,
+  html body #mobile-top-nav-fixed,
+  html body div#mobile-top-nav-fixed,
+  html body * #mobile-top-nav-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2147483647 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -5232,8 +5276,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 <script>
-// 강화된 모바일 네비게이션 고정 함수
-function forceNavigationFixed() {
+// 최강력 모바일 네비게이션 고정 함수
+function superForceNavigationFixed() {
   if (window.innerWidth <= 768) {
     const mobileNav = document.getElementById('mobile-top-nav-fixed');
     if (mobileNav) {
@@ -5244,6 +5288,7 @@ function forceNavigationFixed() {
         'left': '0px',
         'right': '0px',
         'width': '100%',
+        'max-width': '100vw',
         'height': '60px',
         'z-index': '2147483647',
         'display': 'block',
@@ -5257,140 +5302,219 @@ function forceNavigationFixed() {
         '-webkit-backface-visibility': 'hidden',
         'backface-visibility': 'hidden',
         'will-change': 'transform',
-        'contain': 'layout style paint'
+        'contain': 'layout style paint',
+        'pointer-events': 'auto',
+        'isolation': 'isolate'
       };
       
-      // CSS 스타일 강제 적용
+      // CSS 스타일 강제 적용 (모든 방법 동원)
       Object.keys(fixedStyles).forEach(property => {
         mobileNav.style.setProperty(property, fixedStyles[property], 'important');
+        mobileNav.style[property] = fixedStyles[property];
       });
+      
+      // 인라인 스타일로도 강제 적용
+      mobileNav.setAttribute('style', 
+        'position: fixed !important; ' +
+        'top: 0px !important; ' +
+        'left: 0px !important; ' +
+        'right: 0px !important; ' +
+        'width: 100% !important; ' +
+        'height: 60px !important; ' +
+        'z-index: 2147483647 !important; ' +
+        'display: block !important; ' +
+        'visibility: visible !important; ' +
+        'opacity: 1 !important; ' +
+        'background: #000 !important; ' +
+        'border-bottom: 2px solid #7BE495 !important; ' +
+        'transform: translateZ(0) !important;'
+      );
       
       // 추가 보안: 클래스와 속성 강제 설정
       mobileNav.setAttribute('data-fixed', 'true');
+      mobileNav.classList.add('force-fixed');
       
-      // 부모 요소들의 transform 제거 (fixed position 방해 요소 제거)
-      let parent = mobileNav.parentElement;
-      while (parent && parent !== document.body) {
-        if (parent.style.transform && parent.style.transform !== 'none') {
-          parent.style.setProperty('transform', 'none', 'important');
+      // 전체 DOM 트리에서 transform 제거 (네비게이션 방해 요소 제거)
+      document.querySelectorAll('*').forEach(el => {
+        if (el.id !== 'mobile-top-nav-fixed' && !el.closest('#mobile-top-nav-fixed')) {
+          const computedStyle = window.getComputedStyle(el);
+          if (computedStyle.transform !== 'none' && computedStyle.transform !== 'matrix(1, 0, 0, 1, 0, 0)') {
+            el.style.setProperty('transform', 'none', 'important');
+            el.style.setProperty('-webkit-transform', 'none', 'important');
+          }
         }
-        if (parent.style.webkitTransform && parent.style.webkitTransform !== 'none') {
-          parent.style.setProperty('-webkit-transform', 'none', 'important');
-        }
-        parent = parent.parentElement;
-      }
+      });
       
-      // body의 padding-top 확보
+      // body와 html 설정
       document.body.style.setProperty('padding-top', '60px', 'important');
+      document.documentElement.style.setProperty('position', 'relative', 'important');
+      document.body.style.setProperty('position', 'relative', 'important');
     }
   }
 }
 
-// 네비게이션 상태 감시 및 복구 함수
-function watchNavigationState() {
+// 극강 네비게이션 상태 감시 함수
+function ultraWatchNavigationState() {
   if (window.innerWidth <= 768) {
     const mobileNav = document.getElementById('mobile-top-nav-fixed');
     if (mobileNav) {
       const computedStyle = window.getComputedStyle(mobileNav);
+      const rect = mobileNav.getBoundingClientRect();
       
-      // 네비게이션이 고정되지 않은 경우 즉시 수정
+      // 네비게이션이 화면에서 사라졌거나 위치가 틀어진 경우
       if (computedStyle.position !== 'fixed' || 
           computedStyle.top !== '0px' || 
           computedStyle.zIndex < '2147483647' ||
           computedStyle.display === 'none' ||
           computedStyle.visibility === 'hidden' ||
-          parseFloat(computedStyle.opacity) < 1) {
+          parseFloat(computedStyle.opacity) < 1 ||
+          rect.top !== 0 ||
+          rect.left !== 0) {
         
-        console.log('Navigation position issue detected, forcing fix...');
-        forceNavigationFixed();
+        console.log('Critical navigation issue detected! Emergency fix...');
+        superForceNavigationFixed();
+        
+        // 추가 복구 시도
+        setTimeout(superForceNavigationFixed, 10);
+        setTimeout(superForceNavigationFixed, 50);
       }
     }
   }
 }
 
-// 스크롤 이벤트 핸들러 (throttled)
+// 스크롤 이벤트 핸들러 (더 강화)
 let scrollTimeout;
-function handleScroll() {
+let lastScrollY = 0;
+function handleScroll(e) {
+  // 스크롤 방향과 관계없이 항상 네비게이션 고정
+  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  
+  // 즉시 실행
+  superForceNavigationFixed();
+  
+  // 스크롤 방향 감지 후 추가 보정
+  if (currentScrollY !== lastScrollY) {
+    setTimeout(superForceNavigationFixed, 1);
+    setTimeout(ultraWatchNavigationState, 5);
+  }
+  
+  lastScrollY = currentScrollY;
+  
+  // 기존 타임아웃 클리어
   if (scrollTimeout) {
     clearTimeout(scrollTimeout);
   }
   
-  // 즉시 실행
-  forceNavigationFixed();
-  
-  // 추가 안전장치 (50ms 후 다시 체크)
+  // 추가 안전장치
   scrollTimeout = setTimeout(() => {
-    forceNavigationFixed();
-    watchNavigationState();
-  }, 50);
+    superForceNavigationFixed();
+    ultraWatchNavigationState();
+  }, 20);
 }
 
-// 터치 이벤트 핸들러
-function handleTouch() {
-  forceNavigationFixed();
-  setTimeout(watchNavigationState, 10);
+// 터치 이벤트 핸들러 (강화)
+function handleTouch(e) {
+  superForceNavigationFixed();
+  setTimeout(ultraWatchNavigationState, 1);
+  setTimeout(superForceNavigationFixed, 5);
 }
 
-// 초기화 함수
-function initMobileNavigation() {
+// 최강 초기화 함수
+function superInitMobileNavigation() {
   if (window.innerWidth <= 768) {
     // 즉시 네비게이션 고정
-    forceNavigationFixed();
+    superForceNavigationFixed();
     
-    // 지속적인 감시 시작
-    const watchInterval = setInterval(watchNavigationState, 50); // 50ms마다 체크
+    // 극도로 빈번한 감시 (20ms마다)
+    const ultraWatchInterval = setInterval(ultraWatchNavigationState, 20);
     
-    // 스크롤 이벤트 리스너
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // 모든 스크롤 관련 이벤트 리스너
+    window.addEventListener('scroll', handleScroll, { passive: false });
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    window.addEventListener('touchmove', handleScroll, { passive: false });
     
-    // 터치 이벤트 리스너들
-    document.addEventListener('touchstart', handleTouch, { passive: true });
-    document.addEventListener('touchmove', handleTouch, { passive: true });
-    document.addEventListener('touchend', handleTouch, { passive: true });
+    // 모든 터치 이벤트 리스너
+    document.addEventListener('touchstart', handleTouch, { passive: false });
+    document.addEventListener('touchmove', handleTouch, { passive: false });
+    document.addEventListener('touchend', handleTouch, { passive: false });
+    document.addEventListener('touchcancel', handleTouch, { passive: false });
     
     // 추가 이벤트들
     window.addEventListener('orientationchange', () => {
-      setTimeout(forceNavigationFixed, 100);
+      setTimeout(superForceNavigationFixed, 50);
+      setTimeout(superForceNavigationFixed, 100);
+      setTimeout(superForceNavigationFixed, 200);
     });
     
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 768) {
-        forceNavigationFixed();
+        superForceNavigationFixed();
+        setTimeout(superForceNavigationFixed, 50);
       }
     });
     
-    // 페이지 포커스/블러 이벤트
-    window.addEventListener('focus', forceNavigationFixed);
-    window.addEventListener('pageshow', forceNavigationFixed);
+    // 페이지 상태 변경 이벤트
+    window.addEventListener('focus', superForceNavigationFixed);
+    window.addEventListener('blur', superForceNavigationFixed);
+    window.addEventListener('pageshow', superForceNavigationFixed);
+    window.addEventListener('pagehide', superForceNavigationFixed);
+    document.addEventListener('visibilitychange', superForceNavigationFixed);
     
-    // MutationObserver로 DOM 변경 감시
-    const observer = new MutationObserver((mutations) => {
+    // 강화된 MutationObserver
+    const ultraObserver = new MutationObserver((mutations) => {
+      let needsFix = false;
       mutations.forEach((mutation) => {
         if (mutation.target.id === 'mobile-top-nav-fixed' || 
-            mutation.target.contains(document.getElementById('mobile-top-nav-fixed'))) {
-          setTimeout(forceNavigationFixed, 10);
+            mutation.target.contains(document.getElementById('mobile-top-nav-fixed')) ||
+            mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          needsFix = true;
         }
       });
+      
+      if (needsFix) {
+        superForceNavigationFixed();
+        setTimeout(ultraWatchNavigationState, 1);
+      }
     });
     
-    observer.observe(document.body, {
+    ultraObserver.observe(document.documentElement, {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['style', 'class']
+      attributeFilter: ['style', 'class', 'id'],
+      characterData: true
     });
+    
+    // 추가 안전장치: RAF를 이용한 지속적 체크
+    function rafCheck() {
+      if (window.innerWidth <= 768) {
+        ultraWatchNavigationState();
+        requestAnimationFrame(rafCheck);
+      }
+    }
+    requestAnimationFrame(rafCheck);
   }
 }
 
 // 페이지 로드 완료 후 실행
-document.addEventListener('DOMContentLoaded', initMobileNavigation);
+document.addEventListener('DOMContentLoaded', superInitMobileNavigation);
 
-// 추가 안전장치: 페이지 로드 후에도 실행
+// 추가 안전장치: 다양한 시점에서 실행
 window.addEventListener('load', () => {
-  setTimeout(initMobileNavigation, 100);
-  setTimeout(forceNavigationFixed, 500);
-  setTimeout(forceNavigationFixed, 1000);
+  setTimeout(superInitMobileNavigation, 50);
+  setTimeout(superForceNavigationFixed, 100);
+  setTimeout(superForceNavigationFixed, 200);
+  setTimeout(superForceNavigationFixed, 500);
+  setTimeout(superForceNavigationFixed, 1000);
+  setTimeout(superForceNavigationFixed, 2000);
 });
+
+// 즉시 실행 (스크립트 로드와 동시에)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', superInitMobileNavigation);
+} else {
+  superInitMobileNavigation();
+}
 </script>
 
 </html>
