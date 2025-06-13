@@ -660,7 +660,7 @@ pointer-events: auto !important;
        visibility: visible !important;
      }
      
-     /* 모바일 중앙 기점 좌우 배치 - 네오 스마트 영상보다 낮은 z-index */
+     /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 */
      .hive-image:nth-of-type(1) {
        left: 50% !important;
        top: 60% !important;
@@ -698,12 +698,12 @@ pointer-events: auto !important;
        z-index: 1 !important;
      }
      
-     /* 모바일 활성 이미지 - 네오 스마트 영상보다 낮은 z-index */
+     /* 모바일 활성 이미지 */
      .hive-image.active {
        left: 50% !important;
        top: 50% !important;
        transform: translate(-50%, -50%) scale(1.2) !important;
-       z-index: 50 !important; /* 네오 스마트 영상(z-index: 100)보다 낮게 설정 */
+       z-index: 10 !important;
        width: 140px !important;
        height: 280px !important;
        border: 3px solid #7BE495 !important;
@@ -714,7 +714,6 @@ pointer-events: auto !important;
        position: absolute !important;
        border-radius: 18px !important;
        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-       z-index: 30 !important; /* 네오 스마트 영상보다 낮게 설정 */
      }
     #slide-prev {
       left: 10px !important;
@@ -966,7 +965,7 @@ pointer-events: auto !important;
       transform: translate(-50%, -50%) scale(1) !important;
       -webkit-transform: translate(-50%, -50%) scale(1) !important;
       opacity: 1 !important;
-      z-index: 100 !important; /* 첫 번째 순서로 높은 z-index */
+      z-index: 15 !important;
       transition: none !important;
       animation: none !important;
       transform-style: preserve-3d !important;
@@ -984,7 +983,7 @@ pointer-events: auto !important;
        top: 50% !important;
        transform: translate(-50%, -50%) !important;
        -webkit-transform: translate(-50%, -50%) !important;
-       z-index: 100 !important;
+       z-index: 2147483646 !important;
        opacity: 1 !important;
        visibility: visible !important;
        display: block !important;
@@ -995,7 +994,7 @@ pointer-events: auto !important;
      .floating-video {
        visibility: visible !important;
        opacity: 1 !important;
-       z-index: 100 !important;
+       z-index: 2147483646 !important;
      }
   }
   
@@ -2045,7 +2044,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 100; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483646; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3262,7 +3261,7 @@ window.addEventListener('load', () => {
       video.style.setProperty('left', '50%', 'important');
       video.style.setProperty('top', '50%', 'important');
       video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '100', 'important');
+      video.style.setProperty('z-index', '2147483646', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
     }
