@@ -114,6 +114,41 @@ pointer-events: auto !important;
 }
 }
 </style>
+<style>
+/* 네오 스마트 섹션 모든 하위 요소들 z-index 보장 */
+@media (max-width: 768px) {
+#smart * {
+  position: relative !important;
+  z-index: 101 !important;
+}
+
+#smart .container,
+#smart .section,
+#smart .smart-feature-text,
+#smart .neo-smart-features,
+#smart .neo-smart-caption-wrapper {
+  position: relative !important;
+  z-index: 101 !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+/* 네오 스마트 텍스트 요소들 강제 표시 */
+#smart h1, #smart h2, #smart h3, #smart h4, #smart h5, #smart h6,
+#smart p, #smart span, #smart div {
+  position: relative !important;
+  z-index: 102 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* 네오 스마트 인라인 요소들 */
+#smart span {
+  display: inline !important;
+}
+}
+</style>
 </body>
 <style>
 @media (max-width: 768px) {
@@ -1134,16 +1169,24 @@ pointer-events: auto !important;
 margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
 padding-top: 0 !important;
 transform: translateY(-464px) !important; /* 5칸 추가로 위로 이동 */
+position: relative !important;
+z-index: 100 !important; /* 다른 요소들보다 위에 표시 */
+background: transparent !important;
+overflow: visible !important;
 }
 
 #smart.section, #smart .container {
 margin-top: 0 !important;
 padding-top: 0 !important;
 overflow: visible !important;
+position: relative !important;
+z-index: 100 !important;
 }
 
 #smart h2, #smart p, #smart .hive-showcase {
 transform: none !important;
+position: relative !important;
+z-index: 101 !important;
 }
 
 #smart h2 {
@@ -2887,6 +2930,16 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         smartSection.style.setProperty('margin-top', '-180px', 'important');
         smartSection.style.setProperty('padding-top', '0', 'important');
         smartSection.style.setProperty('position', 'relative', 'important');
+        smartSection.style.setProperty('z-index', '100', 'important');
+        smartSection.style.setProperty('background', 'transparent', 'important');
+        smartSection.style.setProperty('overflow', 'visible', 'important');
+        
+        // 네오 스마트 섹션 내부 요소들도 z-index 설정
+        const smartElements = smartSection.querySelectorAll('h2, p, .hive-showcase, .smart-caption, .smart-trainer-text');
+        smartElements.forEach(el => {
+          el.style.setProperty('position', 'relative', 'important');
+          el.style.setProperty('z-index', '101', 'important');
+        });
       }
     }
   }
@@ -3283,6 +3336,16 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         smartSection.style.setProperty('margin-top', '-180px', 'important');
         smartSection.style.setProperty('padding-top', '0', 'important');
         smartSection.style.setProperty('position', 'relative', 'important');
+        smartSection.style.setProperty('z-index', '100', 'important');
+        smartSection.style.setProperty('background', 'transparent', 'important');
+        smartSection.style.setProperty('overflow', 'visible', 'important');
+        
+        // 네오 스마트 섹션 내부 요소들도 z-index 설정
+        const smartElements = smartSection.querySelectorAll('h2, p, .hive-showcase, .smart-caption, .smart-trainer-text');
+        smartElements.forEach(el => {
+          el.style.setProperty('position', 'relative', 'important');
+          el.style.setProperty('z-index', '101', 'important');
+        });
       }
       
       // 네오 스마트 비디오 처리
@@ -4171,20 +4234,30 @@ h3 {
   transform: translateY(-464px) !important; /* UI 전체를 29칸(464px) 위로 이동 - 5칸 추가 */
   margin-top: -180px !important;
   padding-top: 0 !important;
+  position: relative !important;
+  z-index: 100 !important;
+  background: transparent !important;
+  overflow: visible !important;
 }
 
 #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 #smart .hive-showcase,
 #smart p {
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 .smart-caption {
   margin-top: 12px !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 }
 </style>
@@ -4201,26 +4274,38 @@ h3 {
 .smart-trainer-text {
   font-size: 0.9rem !important;
   line-height: 1.2 !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 #smart {
   transform: translateY(-464px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
+  position: relative !important;
+  z-index: 100 !important;
+  background: transparent !important;
+  overflow: visible !important;
 }
 
 #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 #smart .hive-showcase,
 #smart p {
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 .smart-caption {
   margin-top: 12px !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 }
 </style>
@@ -4242,26 +4327,38 @@ h3 {
 .smart-trainer-text {
   font-size: 1.8rem !important;
   line-height: 1.2 !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 #smart {
   transform: translateY(-464px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
+  position: relative !important;
+  z-index: 100 !important;
+  background: transparent !important;
+  overflow: visible !important;
 }
 
 #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 #smart .hive-showcase,
 #smart p {
   transform: none !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 .smart-caption {
   margin-top: 12px !important;
+  position: relative !important;
+  z-index: 101 !important;
 }
 }
 </style>
@@ -5316,6 +5413,11 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: none !important;
   }
   
+  /* 네오 스마트 섹션 위의 다른 섹션들은 더 낮은 z-index */
+  #hive.section, #hive .container {
+    z-index: 50 !important;
+  }
+  
   /* 특정 UI 요소들은 원래 기능 유지 */
   .neo-smart-video,
   .video-container,
@@ -5332,6 +5434,9 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
+    z-index: 100 !important; /* 다른 요소들보다 위에 표시 */
+    background: transparent !important;
+    overflow: visible !important;
   }
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
