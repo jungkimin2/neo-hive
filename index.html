@@ -17,6 +17,8 @@
     -webkit-transform: translateY(-384px) !important;
     position: relative !important;
     z-index: 9999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   #mobile-moved-merged-box {
@@ -24,6 +26,8 @@
     -webkit-transform: translateY(-280px) !important;
     position: relative !important;
     z-index: 10 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .core-value-fresh-mobile {
@@ -34,18 +38,24 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .mobile-system-box-wrapper {
     transform: translateY(-568px) !important;
     -webkit-transform: translateY(-568px) !important;
     position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   #smart {
     transform: translateY(-416px) !important;
     -webkit-transform: translateY(-416px) !important;
     position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
@@ -78,6 +88,16 @@
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
+  
+  /* 모바일 전용 페이지 로딩 시 깜빡임 방지 */
+  body {
+    opacity: 0 !important;
+    transition: opacity 0.1s ease-in !important;
+  }
+  
+  body.mobile-loaded {
+    opacity: 1 !important;
+  }
 }
 
 /* PC 환경에서는 모든 transform 제거 */
@@ -87,16 +107,6 @@
   .core-value-fresh-mobile,
   .mobile-system-box-wrapper,
   #smart {
-    transform: none !important;
-    -webkit-transform: none !important;
-  }
-  
-  /* PC 환경에서 인라인 스타일도 무효화 */
-  .mobile-ui-position-adjustment[style*="translateY"],
-  #mobile-moved-merged-box[style*="translateY"],
-  .core-value-fresh-mobile[style*="translateY"],
-  .mobile-system-box-wrapper[style*="translateY"],
-  #smart[style*="translateY"] {
     transform: none !important;
     -webkit-transform: none !important;
   }
@@ -1587,7 +1597,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
               </div>
             </div>
           </div>
-                                  <div class="core-value-fresh-mobile pc-core-value-adjust mobile-transform-target" style="transform: translateY(-344px) !important; -webkit-transform: translateY(-344px) !important; position: relative !important; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important;" data-mobile-transform="translateY(-344px)">
+                                  <div class="core-value-fresh-mobile pc-core-value-adjust mobile-transform-target">
 <style>
 @media (min-width: 769px) {
 .pc-core-value-adjust {
@@ -1917,7 +1927,7 @@ html body .core-value-fresh-mobile {
 }
 </style>
           <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
-                                  <div class="mobile-system-box-wrapper mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-568px) !important; -webkit-transform: translateY(-568px) !important; position: relative !important;" data-mobile-transform="translateY(-568px)">
+                                  <div class="mobile-system-box-wrapper mobile-ui-position-adjustment mobile-transform-target">
             <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
               <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
                 <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
@@ -1953,7 +1963,7 @@ html body .core-value-fresh-mobile {
 
 
 <!-- <div id="hive"></div> -->
-          <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px; transform: translateY(-416px) !important; -webkit-transform: translateY(-416px) !important; position: relative !important;" data-mobile-transform="translateY(-416px)">
+          <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px;">
   <div class="container" style="text-align:center;">
     <h2 style="font-size: 2rem; text-align: left;">
       <span style="color: #FFFFFF;">네오 스마트 :</span>
@@ -5812,7 +5822,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
-// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용 - 인라인 스타일 보강
+// 모바일 환경에서만 페이지 로딩 시 깜빡임 방지 - PC 환경 완전 보호
 (function() {
   // 모바일 환경 체크 (더 엄격한 조건)
   const isMobile = window.innerWidth <= 768 && 
@@ -5820,8 +5830,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i));
   
   if (isMobile) {
-    // 즉시 실행 함수로 스타일 강제 적용 - 인라인 스타일 확인 및 보강
-    function forceApplyMobileStyles() {
+    // 모바일 전용 스타일 적용 함수
+    function applyMobileStyles() {
       const elements = [
         { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
@@ -5833,94 +5843,62 @@ document.addEventListener('DOMContentLoaded', function() {
       elements.forEach(({ selector, transform }) => {
         const element = document.querySelector(selector);
         if (element) {
-          // 인라인 스타일이 없거나 잘못된 경우 강제 적용
-          const currentTransform = element.style.transform;
-          if (!currentTransform || !currentTransform.includes(transform)) {
-            element.style.setProperty('transform', transform, 'important');
-            element.style.setProperty('-webkit-transform', transform, 'important');
-            element.style.setProperty('position', 'relative', 'important');
-            element.style.setProperty('opacity', '1', 'important');
-            element.style.setProperty('visibility', 'visible', 'important');
-          }
+          element.style.setProperty('transform', transform, 'important');
+          element.style.setProperty('-webkit-transform', transform, 'important');
+          element.style.setProperty('position', 'relative', 'important');
+          element.style.setProperty('opacity', '1', 'important');
+          element.style.setProperty('visibility', 'visible', 'important');
         }
       });
     }
     
-    // 아이콘 정렬 함수 - 인라인 스타일 확인 및 보강
+    // 모바일 아이콘 정렬 함수
     function adjustMobileIcons() {
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
-        // 현재 스타일 확인 후 필요시 보강
-        if (!coreValue.style.display || coreValue.style.display !== 'flex') {
-          coreValue.style.setProperty('display', 'flex', 'important');
-          coreValue.style.setProperty('flex-direction', 'row', 'important');
-          coreValue.style.setProperty('align-items', 'center', 'important');
-          coreValue.style.setProperty('justify-content', 'flex-start', 'important');
-        }
+        coreValue.style.setProperty('display', 'flex', 'important');
+        coreValue.style.setProperty('flex-direction', 'row', 'important');
+        coreValue.style.setProperty('align-items', 'center', 'important');
+        coreValue.style.setProperty('justify-content', 'flex-start', 'important');
         
         const coreIcon = coreValue.querySelector('.core-icon');
-        if (coreIcon && !coreIcon.style.marginRight) {
+        if (coreIcon) {
           coreIcon.style.setProperty('margin-right', '12px', 'important');
           coreIcon.style.setProperty('flex-shrink', '0', 'important');
         }
         
         const textBlock = coreValue.querySelector('.core-text-block');
-        if (textBlock && !textBlock.style.flex) {
+        if (textBlock) {
           textBlock.style.setProperty('flex', '1', 'important');
         }
       }
     }
     
-    // 즉시 실행 (HTML 파싱과 동시에)
-    forceApplyMobileStyles();
-    adjustMobileIcons();
-    
-    // DOM 준비 시 재실행 (보험)
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-      });
-    }
-    
-    // 페이지 완전 로드 시 재실행 (최종 보험)
-    window.addEventListener('load', function() {
-      forceApplyMobileStyles();
+    // 모바일 페이지 로딩 완료 처리
+    function showMobilePage() {
+      applyMobileStyles();
       adjustMobileIcons();
-    });
-    
-    // MutationObserver로 DOM 변경 감지 시 재적용
-    const observer = new MutationObserver(function(mutations) {
-      let shouldReapply = false;
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-          shouldReapply = true;
-        }
-      });
-      if (shouldReapply) {
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-      }
-    });
-    
-    // DOM 감시 시작
-    if (document.body) {
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['style', 'class']
-        });
-      });
+      
+      // 페이지 표시
+      setTimeout(() => {
+        document.body.classList.add('mobile-loaded');
+      }, 50);
     }
+    
+    // 즉시 실행
+    showMobilePage();
+    
+    // DOM 준비 시 재실행
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', showMobilePage);
+    }
+    
+    // 페이지 완전 로드 시 재실행
+    window.addEventListener('load', showMobilePage);
+    
+  } else {
+    // PC 환경에서는 body 즉시 표시
+    document.body.style.opacity = '1';
   }
 })();
 </script>
