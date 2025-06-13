@@ -5457,14 +5457,17 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 네오 하이브 슬라이드는 원래 transform 값 보존 */
   .hive-image,
-  .hive-showcase,
-  .video-phone,
   .slide-in-left,
   .slide-in-right,
-  [class*="slide"] {
+  [class*="slide"]:not(.hive-image):not(.video-phone) {
     transform: initial !important;
     z-index: initial !important;
     position: initial !important;
+  }
+  
+  /* hive-showcase와 video-phone은 transform 허용 */
+  .hive-showcase {
+    position: relative !important;
   }
 
   /* 첫 번째 섹션 여백 조정 */
@@ -5531,18 +5534,21 @@ document.addEventListener('DOMContentLoaded', function() {
     position: unset !important;
   }
   
-  /* 네오 하이브 슬라이드는 원래 transform 값 보존 (hive-image 제외) */
-  .hive-showcase,
-  .video-phone,
+  /* 네오 하이브 슬라이드는 원래 transform 값 보존 (hive-image와 video-phone 제외) */
   .slide-in-left,
   .slide-in-right,
-  [class*="slide"]:not(.hive-image),
+  [class*="slide"]:not(.hive-image):not(.video-phone),
   .swiper-container,
   .swiper-wrapper,
   .swiper-slide {
     transform: initial !important;
     -webkit-transform: initial !important;
     position: initial !important;
+  }
+  
+  /* hive-showcase와 video-phone은 transform 허용 */
+  .hive-showcase {
+    position: relative !important;
   }
   
   /* 네비게이션만 다시 강제 고정 */
@@ -5559,66 +5565,105 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 원래 위치 강제 복구 */
-  .hive-image:nth-of-type(1) {
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
+  .hive-image:nth-of-type(1),
+  .hive-showcase .hive-image:nth-of-type(1),
+  html body .hive-showcase .hive-image:nth-of-type(1) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(-160%, -50%) scale(0.9) !important;
+    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  .hive-image:nth-of-type(2) {
+  .hive-image:nth-of-type(2),
+  .hive-showcase .hive-image:nth-of-type(2),
+  html body .hive-showcase .hive-image:nth-of-type(2) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(-210%, -50%) scale(0.8) !important;
+    -webkit-transform: translate(-210%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  .hive-image:nth-of-type(3) {
+  .hive-image:nth-of-type(3),
+  .hive-showcase .hive-image:nth-of-type(3),
+  html body .hive-showcase .hive-image:nth-of-type(3) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(-260%, -50%) scale(0.7) !important;
+    -webkit-transform: translate(-260%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  .hive-image:nth-of-type(4) {
+  .hive-image:nth-of-type(4),
+  .hive-showcase .hive-image:nth-of-type(4),
+  html body .hive-showcase .hive-image:nth-of-type(4) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(60%, -50%) scale(0.9) !important;
+    -webkit-transform: translate(60%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  .hive-image:nth-of-type(5) {
+  .hive-image:nth-of-type(5),
+  .hive-showcase .hive-image:nth-of-type(5),
+  html body .hive-showcase .hive-image:nth-of-type(5) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(110%, -50%) scale(0.8) !important;
+    -webkit-transform: translate(110%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  .hive-image:nth-of-type(6) {
+  .hive-image:nth-of-type(6),
+  .hive-showcase .hive-image:nth-of-type(6),
+  html body .hive-showcase .hive-image:nth-of-type(6) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(160%, -50%) scale(0.7) !important;
+    -webkit-transform: translate(160%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
   
-  .hive-image.active {
+  .hive-image.active,
+  .hive-showcase .hive-image.active,
+  html body .hive-showcase .hive-image.active {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) scale(1.2) !important;
+    -webkit-transform: translate(-50%, -50%) scale(1.2) !important;
     z-index: 10 !important;
     width: 140px !important;
     height: 280px !important;
@@ -5626,12 +5671,28 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 0 15px rgba(123, 228, 149, 0.6), 0 0 30px rgba(123, 228, 149, 0.3) !important;
     border-radius: 16px !important;
     position: absolute !important;
-    transition: all 0.4s ease-out !important;
-    -webkit-transition: all 0.4s ease-out !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
   
-  .video-phone {
+  .video-phone,
+  .hive-showcase .video-phone,
+  html body .hive-showcase .video-phone {
     position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 트랜지션 최우선 */
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 기본 video-phone 스타일 */
+  .video-phone {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
@@ -5646,13 +5707,8 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
     display: block !important;
     animation: none !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 트랜지션 복구 */
-    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
     overflow: hidden !important;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
-    will-change: transform, left, top, width, height, border, box-shadow !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
   }
   
   /* 모바일 환경에서만 네오 스마트 비디오 초기 상태 */
