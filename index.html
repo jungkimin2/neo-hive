@@ -148,6 +148,51 @@ html body .mobile-ui-position-adjustment {
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
+
+<!-- 모바일 UI 즉시 정렬 - 페이지 로드와 동시에 적용 -->
+<style>
+@media (max-width: 768px) {
+  .mobile-ui-position-adjustment {
+    transform: translateY(-384px) !important;
+    -webkit-transform: translateY(-384px) !important;
+    position: relative !important;
+  }
+  
+  #mobile-moved-merged-box {
+    transform: translateY(-280px) !important;
+    -webkit-transform: translateY(-280px) !important;
+    position: relative !important;
+    z-index: 10 !important;
+    margin-top: -40px !important;
+    margin-bottom: 36px !important;
+    padding: 36px 28px !important;
+    gap: 32px !important;
+  }
+  
+  .core-value-fresh-mobile {
+    transform: translateY(-344px) !important;
+    -webkit-transform: translateY(-344px) !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+  
+  .mobile-system-box-wrapper {
+    transform: translateY(-568px) !important;
+    -webkit-transform: translateY(-568px) !important;
+    position: relative !important;
+  }
+  
+  #smart {
+    transform: translateY(-416px) !important;
+    -webkit-transform: translateY(-416px) !important;
+    position: relative !important;
+  }
+}
+</style>
+
 <style>
 /* 모바일: .mobile-only-text 내 아이콘 배경색 및 둥근 테두리 적용 */
 @media (max-width: 768px) {
@@ -5792,49 +5837,15 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 전용 UI 위치 조정 스크립트 - 즉시 실행 -->
+<!-- 모바일 전용 UI 위치 조정 스크립트 - 보조 지원 -->
 <script>
-// 즉시 실행 함수로 페이지 로드와 동시에 적용
+// CSS가 주로 처리하고, JavaScript는 보조적으로 지원
 (function() {
-  function applyMobileOnlyTransforms() {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-      console.log('Applying mobile transforms...');
-      
-      // mobile-ui-position-adjustment (4칸 더 내림)
-      const mobileUI = document.querySelector('.mobile-ui-position-adjustment');
-      if (mobileUI) {
-        mobileUI.style.setProperty('transform', 'translateY(-384px)', 'important');
-        mobileUI.style.setProperty('-webkit-transform', 'translateY(-384px)', 'important');
-        mobileUI.style.setProperty('position', 'relative', 'important');
-      }
-      
-      // mobile-moved-merged-box (4칸 더 내림)
-      const mergedBox = document.querySelector('#mobile-moved-merged-box');
-      if (mergedBox) {
-        mergedBox.style.setProperty('transform', 'translateY(-280px)', 'important');
-        mergedBox.style.setProperty('-webkit-transform', 'translateY(-280px)', 'important');
-        mergedBox.style.setProperty('position', 'relative', 'important');
-        mergedBox.style.setProperty('z-index', '10', 'important');
-        mergedBox.style.setProperty('margin-top', '-40px', 'important');
-        mergedBox.style.setProperty('margin-bottom', '36px', 'important');
-        mergedBox.style.setProperty('padding', '36px 28px', 'important');
-        mergedBox.style.setProperty('gap', '32px', 'important');
-      }
-      
-      // core-value-fresh-mobile (4칸 더 내림)
+  function ensureMobileTransforms() {
+    if (window.innerWidth <= 768) {
+      // Core value 아이콘 정렬만 JavaScript로 보강
       const coreValue = document.querySelector('.core-value-fresh-mobile');
       if (coreValue) {
-        coreValue.style.setProperty('transform', 'translateY(-344px)', 'important');
-        coreValue.style.setProperty('-webkit-transform', 'translateY(-344px)', 'important');
-        coreValue.style.setProperty('position', 'relative', 'important');
-        coreValue.style.setProperty('display', 'flex', 'important');
-        coreValue.style.setProperty('flex-direction', 'row', 'important');
-        coreValue.style.setProperty('align-items', 'center', 'important');
-        coreValue.style.setProperty('justify-content', 'flex-start', 'important');
-        
-        // 아이콘 정렬 강제 적용
         const coreIcon = coreValue.querySelector('.core-icon');
         if (coreIcon) {
           coreIcon.style.setProperty('margin-right', '12px', 'important');
@@ -5843,7 +5854,6 @@ document.addEventListener('DOMContentLoaded', function() {
           coreIcon.style.setProperty('flex-shrink', '0', 'important');
         }
         
-        // 텍스트 블록 정렬 강제 적용
         const textBlock = coreValue.querySelector('.core-text-block');
         if (textBlock) {
           textBlock.style.setProperty('flex', '1', 'important');
@@ -5851,89 +5861,22 @@ document.addEventListener('DOMContentLoaded', function() {
           textBlock.style.setProperty('margin-bottom', '0', 'important');
         }
       }
-      
-      // mobile-system-box-wrapper (4칸 더 내림)
-      const systemBox = document.querySelector('.mobile-system-box-wrapper');
-      if (systemBox) {
-        systemBox.style.setProperty('transform', 'translateY(-568px)', 'important');
-        systemBox.style.setProperty('-webkit-transform', 'translateY(-568px)', 'important');
-        systemBox.style.setProperty('position', 'relative', 'important');
-      }
-      
-      // smart section (4칸 더 내림)
-      const smartSection = document.querySelector('#smart');
-      if (smartSection) {
-        smartSection.style.setProperty('transform', 'translateY(-416px)', 'important');
-        smartSection.style.setProperty('-webkit-transform', 'translateY(-416px)', 'important');
-        smartSection.style.setProperty('position', 'relative', 'important');
-      }
-    } else {
-      console.log('Removing mobile transforms for PC...');
-      
-      // PC 환경에서는 transform 제거
-      const elements = [
-        document.querySelector('.mobile-ui-position-adjustment'),
-        document.querySelector('#mobile-moved-merged-box'),
-        document.querySelector('.core-value-fresh-mobile'),
-        document.querySelector('.mobile-system-box-wrapper'),
-        document.querySelector('#smart')
-      ];
-      
-      elements.forEach(function(el) {
-        if (el) {
-          el.style.removeProperty('transform');
-          el.style.removeProperty('-webkit-transform');
-          // position은 유지 (다른 스타일에 영향을 줄 수 있음)
-        }
-      });
     }
   }
   
-  // 즉시 실행 (페이지 로드와 동시에)
-  applyMobileOnlyTransforms();
-  
-  // DOM이 준비되면 다시 한번 실행
+  // DOM 준비 시 실행
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyMobileOnlyTransforms);
+    document.addEventListener('DOMContentLoaded', ensureMobileTransforms);
   } else {
-    applyMobileOnlyTransforms();
+    ensureMobileTransforms();
   }
   
-  // 리사이즈 시 실행 (모바일/PC 전환 시)
+  // 리사이즈 시 실행
   window.addEventListener('resize', function() {
     clearTimeout(window.resizeTimeout);
-    window.resizeTimeout = setTimeout(applyMobileOnlyTransforms, 100);
+    window.resizeTimeout = setTimeout(ensureMobileTransforms, 100);
   });
-  
-  // 모바일에서만 주기적으로 실행
-  setInterval(function() {
-    if (window.innerWidth <= 768) {
-      applyMobileOnlyTransforms();
-    }
-  }, 100);
 })();
 
-// 페이지 로드 완료 후에도 실행
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    if (window.innerWidth <= 768) {
-      const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-416px)' }
-      ];
-      
-      elements.forEach(function(item) {
-        const el = document.querySelector(item.selector);
-        if (el) {
-          el.style.setProperty('transform', item.transform, 'important');
-          el.style.setProperty('-webkit-transform', item.transform, 'important');
-          el.style.setProperty('position', 'relative', 'important');
-        }
-      });
-    }
-  }, 300);
-});
+
 </script>
