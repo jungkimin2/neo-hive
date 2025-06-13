@@ -51,8 +51,8 @@
   }
   
   #smart {
-    transform: translateY(-300px) !important; /* 캡처 이미지 위치로 조정 */
-    -webkit-transform: translateY(-300px) !important;
+    transform: translateY(-544px) !important; /* -512px → -544px (2칸 더 위로) */
+    -webkit-transform: translateY(-544px) !important;
     position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -1239,7 +1239,7 @@ pointer-events: auto !important;
 #smart {
 margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -128px에서 -180px로 변경) */
 padding-top: 0 !important;
-transform: translateY(-300px) !important; /* 캡처 이미지 위치로 조정 */
+transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
 }
 
 #smart.section, #smart .container {
@@ -5837,7 +5837,7 @@ document.addEventListener('DOMContentLoaded', function() {
           { selector: '#mobile-moved-merged-box', transform: 'translateY(-344px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-408px)' },
           { selector: '.mobile-system-box-wrapper', transform: 'translateY(-632px)' },
-          { selector: '#smart', transform: 'translateY(-300px)' }
+          { selector: '#smart', transform: 'translateY(-480px)' }
         ];
       
       elements.forEach(({ selector, transform }) => {
