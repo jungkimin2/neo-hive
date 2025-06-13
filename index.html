@@ -43,8 +43,28 @@
   }
   
   #smart {
-    transform: translateY(-416px) !important;
-    -webkit-transform: translateY(-416px) !important;
+    transform: translateY(-448px) !important; /* 한 칸(16px) 더 위로 이동: -432px → -448px */
+    -webkit-transform: translateY(-448px) !important;
+    position: relative !important;
+  }
+  
+  /* 최고 우선순위로 #smart 위치 강제 적용 */
+  html body section#smart.section.animate-on-scroll.mobile-transform-target,
+  html body section#smart.section.animate-on-scroll,
+  html body section#smart.section,
+  html body section#smart,
+  body section#smart.section.animate-on-scroll.mobile-transform-target,
+  body section#smart.section.animate-on-scroll,
+  body section#smart.section,
+  body section#smart,
+  section#smart.section.animate-on-scroll.mobile-transform-target,
+  section#smart.section.animate-on-scroll,
+  section#smart.section,
+  section#smart {
+    transform: translateY(-448px) !important;
+    -webkit-transform: translateY(-448px) !important;
+    margin-top: -180px !important;
+    padding-top: 0 !important;
     position: relative !important;
   }
 
@@ -4252,8 +4272,8 @@ html body .mobile-system-box-wrapper {
 @media (max-width: 768px) {
 body #smart,
 html body #smart {
-  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
-  -webkit-transform: translateY(-512px) !important;
+  transform: translateY(-448px) !important; /* 한 칸(16px) 더 위로 이동: -432px → -448px */
+  -webkit-transform: translateY(-448px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4293,8 +4313,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
-  -webkit-transform: translateY(-512px) !important;
+  transform: translateY(-448px) !important; /* 한 칸(16px) 더 위로 이동: -432px → -448px */
+  -webkit-transform: translateY(-448px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -4339,8 +4359,8 @@ html body #smart p {
 
 body #smart,
 html body #smart {
-  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
-  -webkit-transform: translateY(-512px) !important;
+  transform: translateY(-448px) !important; /* 한 칸(16px) 더 위로 이동: -432px → -448px */
+  -webkit-transform: translateY(-448px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
@@ -5827,7 +5847,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-416px)' }
+        { selector: '#smart', transform: 'translateY(-448px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -5865,10 +5885,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 강제로 #smart 위치 적용하는 함수
+    function forceSmartPosition() {
+      const smartElement = document.getElementById('smart');
+      if (smartElement) {
+                 // 인라인 스타일 직접 설정
+         smartElement.setAttribute('style', 
+           'background: #000; padding-top: 0px !important; transform: translateY(-448px) !important; -webkit-transform: translateY(-448px) !important; margin-top: -180px !important; position: relative !important;'
+         );
+         
+         // CSS 속성 강제 설정
+         smartElement.style.setProperty('transform', 'translateY(-448px)', 'important');
+         smartElement.style.setProperty('-webkit-transform', 'translateY(-448px)', 'important');
+        smartElement.style.setProperty('margin-top', '-180px', 'important');
+        smartElement.style.setProperty('padding-top', '0px', 'important');
+        smartElement.style.setProperty('position', 'relative', 'important');
+      }
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
+      forceSmartPosition();
       
       // 페이지 표시
       setTimeout(() => {
@@ -5887,6 +5926,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
+    // 25ms 간격으로 #smart 위치 강제 적용 (처음 1초간)
+    let forceCount = 0;
+    const forceInterval = setInterval(() => {
+      forceSmartPosition();
+      forceCount++;
+      if (forceCount >= 40) { // 1초 후 중지
+        clearInterval(forceInterval);
+      }
+    }, 25);
+    
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
@@ -5898,6 +5947,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
+        forceSmartPosition();
       }
     });
     
