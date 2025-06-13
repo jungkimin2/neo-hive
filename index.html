@@ -1694,9 +1694,10 @@ html body .core-value-fresh-mobile {
   /* 1칸(16px) 아래로 이동: -440px → -424px */
   transform: translateY(-424px) !important;
   -webkit-transform: translateY(-424px) !important;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
   /* 모바일 환경에서 배경색을 완전히 삭제 */
   background: none !important;
   border: none !important; /* 그린색 테두리 삭제 */
@@ -1707,26 +1708,33 @@ html body .core-value-fresh-mobile {
   width: 100%;
   position: relative !important;
   z-index: 10000 !important;
-  position: relative !important;
 }
 .core-value-fresh-mobile .core-icon {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
+  width: 38px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 12px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
 }
 .core-value-fresh-mobile .core-icon img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  display: block !important;
 }
 .core-value-fresh-mobile .core-text-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  flex: 1 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 .core-value-fresh-mobile .core-title {
   color: #fff;
@@ -5807,6 +5815,27 @@ document.addEventListener('DOMContentLoaded', function() {
         coreValue.style.setProperty('transform', 'translateY(-408px)', 'important');
         coreValue.style.setProperty('-webkit-transform', 'translateY(-408px)', 'important');
         coreValue.style.setProperty('position', 'relative', 'important');
+        coreValue.style.setProperty('display', 'flex', 'important');
+        coreValue.style.setProperty('flex-direction', 'row', 'important');
+        coreValue.style.setProperty('align-items', 'center', 'important');
+        coreValue.style.setProperty('justify-content', 'flex-start', 'important');
+        
+        // 아이콘 정렬 강제 적용
+        const coreIcon = coreValue.querySelector('.core-icon');
+        if (coreIcon) {
+          coreIcon.style.setProperty('margin-right', '12px', 'important');
+          coreIcon.style.setProperty('margin-top', '0', 'important');
+          coreIcon.style.setProperty('margin-bottom', '0', 'important');
+          coreIcon.style.setProperty('flex-shrink', '0', 'important');
+        }
+        
+        // 텍스트 블록 정렬 강제 적용
+        const textBlock = coreValue.querySelector('.core-text-block');
+        if (textBlock) {
+          textBlock.style.setProperty('flex', '1', 'important');
+          textBlock.style.setProperty('margin-top', '0', 'important');
+          textBlock.style.setProperty('margin-bottom', '0', 'important');
+        }
       }
       
       // mobile-system-box-wrapper (한칸 더 내림)
