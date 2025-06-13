@@ -74,9 +74,11 @@ pointer-events: auto !important;
   -webkit-backface-visibility: hidden !important;
 }
 
-.mobile-ui-position-adjustment {
+body .mobile-ui-position-adjustment,
+html body .mobile-ui-position-adjustment {
   position: relative !important;
   transform: translateY(-480px) !important; /* 4칸(64px) 추가로 위로 이동: -416px → -480px */
+  -webkit-transform: translateY(-480px) !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
   z-index: 9999 !important;
@@ -1672,9 +1674,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 @media (max-width: 768px) {
-#mobile-moved-merged-box {
+body #mobile-moved-merged-box,
+html body #mobile-moved-merged-box {
   /* 4칸(64px) 추가로 위로 이동: -312px → -376px */
   transform: translateY(-376px) !important;
+  -webkit-transform: translateY(-376px) !important;
   position: relative !important;
   z-index: 100 !important; /* 더 높은 우선순위 */
   margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
@@ -1684,10 +1688,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용: 핵심 가치 박스 스타일 -->
 <style>
 @media (max-width: 768px) {
-.core-value-fresh-mobile {
+body .core-value-fresh-mobile,
+html body .core-value-fresh-mobile {
   margin-top: 32px !important;
   /* 4칸(64px) 추가로 위로 이동: -376px → -440px */
   transform: translateY(-440px) !important;
+  -webkit-transform: translateY(-440px) !important;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -4097,11 +4103,13 @@ h3 {
 <style>
 /* 모바일 환경에서만 시스템/이벤트 박스를 핵심 가치 UI 밑으로 이동 */
 @media (max-width: 768px) {
-.mobile-system-box-wrapper {
+body .mobile-system-box-wrapper,
+html body .mobile-system-box-wrapper {
   display: block !important;
   width: 100%;
   position: relative !important;
-  transform: translateY(-664px); /* 4칸(64px) 추가로 위로 이동: -600px → -664px */
+  transform: translateY(-664px) !important; /* 4칸(64px) 추가로 위로 이동: -600px → -664px */
+  -webkit-transform: translateY(-664px) !important;
   margin-bottom: 24px;
   z-index: 101;
 }
@@ -4136,19 +4144,24 @@ h3 {
 <style>
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
-#smart {
+body #smart,
+html body #smart {
   transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
+  -webkit-transform: translateY(-528px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
-#smart h2 {
+body #smart h2,
+html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
 
-#smart .hive-showcase,
-#smart p {
+body #smart .hive-showcase,
+body #smart p,
+html body #smart .hive-showcase,
+html body #smart p {
   transform: none !important;
 }
 
@@ -4172,19 +4185,24 @@ h3 {
   line-height: 1.2 !important;
 }
 
-#smart {
+body #smart,
+html body #smart {
   transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
+  -webkit-transform: translateY(-528px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
-#smart h2 {
+body #smart h2,
+html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
 
-#smart .hive-showcase,
-#smart p {
+body #smart .hive-showcase,
+body #smart p,
+html body #smart .hive-showcase,
+html body #smart p {
   transform: none !important;
 }
 
@@ -4195,12 +4213,12 @@ h3 {
 </style>
 <style>
 @media (max-width: 768px) {
-/* 모바일에서 모든 스크롤 애니메이션 효과 제거 */
-.animate-on-scroll,
-.section.animate-on-scroll,
-.slide-in-left,
-.slide-in-right,
-.feature-item {
+/* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -4213,19 +4231,24 @@ h3 {
   line-height: 1.2 !important;
 }
 
-#smart {
+body #smart,
+html body #smart {
   transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
+  -webkit-transform: translateY(-528px) !important;
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
 
-#smart h2 {
+body #smart h2,
+html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
 
-#smart .hive-showcase,
-#smart p {
+body #smart .hive-showcase,
+body #smart p,
+html body #smart .hive-showcase,
+html body #smart p {
   transform: none !important;
 }
 
@@ -5278,8 +5301,11 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: none !important;
   }
 
-  /* 모든 섹션들이 네비게이션 아래에 위치하도록 (네오 스마트 섹션 제외) */
-  .section:not(#smart), .container:not(#smart .container), main, div[class*="section"]:not(#smart) {
+  /* 모든 섹션들이 네비게이션 아래에 위치하도록 (특정 UI 요소들 제외) */
+  .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  main:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  div[class*="section"]:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper) {
     position: relative !important;
     z-index: 1 !important;
     transform: none !important;
@@ -5296,8 +5322,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 네오 스마트 섹션은 독립적으로 처리 - transform 보존 */
-  #smart {
+  body #smart,
+  html body #smart {
     transform: translateY(-528px) !important; /* 4칸(64px) 추가로 위로 이동: -464px → -528px */
+    -webkit-transform: translateY(-528px) !important;
     margin-top: -180px !important;
     padding-top: 0 !important;
     position: relative !important;
@@ -5349,11 +5377,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
-  /* 모든 부모 요소의 transform 제거 (슬라이드 제외) */
+  /* 모든 부모 요소의 transform 제거 (슬라이드 및 특정 UI 요소들 제외) */
   #scrollable-content,
-  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone),
-  .section:not(#hive),
-  .container:not(.hive-showcase *) {
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper),
+  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart .container) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
@@ -5647,6 +5675,32 @@ document.addEventListener('DOMContentLoaded', function() {
   #smart * {
     opacity: 1 !important;
     visibility: visible !important;
+  }
+  
+  /* 최강력 CSS 우선순위로 UI 위치 강제 적용 */
+  html body .mobile-ui-position-adjustment[class] {
+    transform: translateY(-480px) !important;
+    -webkit-transform: translateY(-480px) !important;
+  }
+  
+  html body #mobile-moved-merged-box[id] {
+    transform: translateY(-376px) !important;
+    -webkit-transform: translateY(-376px) !important;
+  }
+  
+  html body .core-value-fresh-mobile[class] {
+    transform: translateY(-440px) !important;
+    -webkit-transform: translateY(-440px) !important;
+  }
+  
+  html body .mobile-system-box-wrapper[class] {
+    transform: translateY(-664px) !important;
+    -webkit-transform: translateY(-664px) !important;
+  }
+  
+  html body #smart[id] {
+    transform: translateY(-528px) !important;
+    -webkit-transform: translateY(-528px) !important;
   }
 }
 </style>
