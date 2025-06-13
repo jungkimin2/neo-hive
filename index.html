@@ -1303,57 +1303,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 </style>
 <body>
-<!-- 모바일 전용 즉시 적용 인라인 스타일 -->
-<style>
-@media screen and (max-width: 768px) {
-  /* 페이지 로딩과 동시에 즉시 적용 - 최고 우선순위 */
-  .mobile-ui-position-adjustment {
-    transform: translateY(-384px) !important;
-    -webkit-transform: translateY(-384px) !important;
-    position: relative !important;
-    z-index: 9999 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  #mobile-moved-merged-box {
-    transform: translateY(-280px) !important;
-    -webkit-transform: translateY(-280px) !important;
-    position: relative !important;
-    z-index: 10 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .core-value-fresh-mobile {
-    transform: translateY(-344px) !important;
-    -webkit-transform: translateY(-344px) !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .mobile-system-box-wrapper {
-    transform: translateY(-568px) !important;
-    -webkit-transform: translateY(-568px) !important;
-    position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  #smart {
-    transform: translateY(-416px) !important;
-    -webkit-transform: translateY(-416px) !important;
-    position: relative !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-}
-</style>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
   <div class="nav-bar">
@@ -5853,7 +5802,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
-// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용 - 최강력 버전
+// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
 (function() {
   // 모바일 환경 체크 (더 엄격한 조건)
   const isMobile = window.innerWidth <= 768 && 
@@ -5861,7 +5810,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i));
   
   if (isMobile) {
-    // 즉시 실행 함수로 스타일 강제 적용 - 더 강력한 버전
+    // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
       const elements = [
         { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
@@ -5872,83 +5821,49 @@ document.addEventListener('DOMContentLoaded', function() {
       ];
       
       elements.forEach(({ selector, transform }) => {
-        // querySelectorAll로 모든 해당 요소 찾기
-        const elementList = document.querySelectorAll(selector);
-        elementList.forEach(element => {
-          if (element) {
-            // 인라인 스타일로 강제 적용
-            element.style.cssText += `
-              transform: ${transform} !important;
-              -webkit-transform: ${transform} !important;
-              position: relative !important;
-              opacity: 1 !important;
-              visibility: visible !important;
-              z-index: ${selector === '.mobile-ui-position-adjustment' ? '9999' : '10'} !important;
-            `;
-            
-            // 추가 보험: setAttribute로도 적용
-            element.setAttribute('style', element.getAttribute('style') + `
-              transform: ${transform} !important;
-              -webkit-transform: ${transform} !important;
-              position: relative !important;
-            `);
-          }
-        });
-      });
-    }
-    
-    // 아이콘 정렬 함수 - 더 강력한 버전
-    function adjustMobileIcons() {
-      const coreValueList = document.querySelectorAll('.core-value-fresh-mobile');
-      coreValueList.forEach(coreValue => {
-        if (coreValue) {
-          // 인라인 스타일로 강제 적용
-          coreValue.style.cssText += `
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            justify-content: flex-start !important;
-            transform: translateY(-344px) !important;
-            -webkit-transform: translateY(-344px) !important;
-          `;
-          
-          const coreIcon = coreValue.querySelector('.core-icon');
-          if (coreIcon) {
-            coreIcon.style.cssText += `
-              margin-right: 12px !important;
-              flex-shrink: 0 !important;
-            `;
-          }
-          
-          const textBlock = coreValue.querySelector('.core-text-block');
-          if (textBlock) {
-            textBlock.style.cssText += `flex: 1 !important;`;
-          }
+        const element = document.querySelector(selector);
+        if (element) {
+          element.style.setProperty('transform', transform, 'important');
+          element.style.setProperty('-webkit-transform', transform, 'important');
+          element.style.setProperty('position', 'relative', 'important');
+          element.style.setProperty('opacity', '1', 'important');
+          element.style.setProperty('visibility', 'visible', 'important');
         }
       });
     }
     
-    // 즉시 실행 (HTML 파싱과 동시에) - 여러 번 실행
+    // 아이콘 정렬 함수
+    function adjustMobileIcons() {
+      const coreValue = document.querySelector('.core-value-fresh-mobile');
+      if (coreValue) {
+        // 가로 정렬 강제 적용
+        coreValue.style.setProperty('display', 'flex', 'important');
+        coreValue.style.setProperty('flex-direction', 'row', 'important');
+        coreValue.style.setProperty('align-items', 'center', 'important');
+        coreValue.style.setProperty('justify-content', 'flex-start', 'important');
+        
+        const coreIcon = coreValue.querySelector('.core-icon');
+        if (coreIcon) {
+          coreIcon.style.setProperty('margin-right', '12px', 'important');
+          coreIcon.style.setProperty('flex-shrink', '0', 'important');
+        }
+        
+        const textBlock = coreValue.querySelector('.core-text-block');
+        if (textBlock) {
+          textBlock.style.setProperty('flex', '1', 'important');
+        }
+      }
+    }
+    
+    // 즉시 실행 (HTML 파싱과 동시에)
     forceApplyMobileStyles();
     adjustMobileIcons();
-    
-    // 0.1초 후 재실행 (보험)
-    setTimeout(() => {
-      forceApplyMobileStyles();
-      adjustMobileIcons();
-    }, 100);
     
     // DOM 준비 시 재실행 (보험)
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        
-        // DOM 로드 후 0.1초 뒤에도 재실행
-        setTimeout(() => {
-          forceApplyMobileStyles();
-          adjustMobileIcons();
-        }, 100);
       });
     }
     
@@ -5958,21 +5873,18 @@ document.addEventListener('DOMContentLoaded', function() {
       adjustMobileIcons();
     });
     
-    // 지속적인 감시 및 재적용 (25ms 간격)
-    const intervalId = setInterval(() => {
-      forceApplyMobileStyles();
-      adjustMobileIcons();
-    }, 25);
-    
-    // 5초 후 interval 정리 (성능 최적화)
-    setTimeout(() => {
-      clearInterval(intervalId);
-    }, 5000);
-    
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
-      forceApplyMobileStyles();
-      adjustMobileIcons();
+      let shouldReapply = false;
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          shouldReapply = true;
+        }
+      });
+      if (shouldReapply) {
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+      }
     });
     
     // DOM 감시 시작
