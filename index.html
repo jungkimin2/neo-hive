@@ -3121,10 +3121,7 @@ html body .core-value-fresh-mobile {
     if (!container) return;
 
     requestAnimationFrame(() => {
-      // 비디오에 트랜지션 적용
-      if (videoPhone) {
-        videoPhone.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-      }
+      // CSS에서 이미 트랜지션이 설정되어 있으므로 별도 설정 불필요
       
       if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
@@ -3172,7 +3169,6 @@ html body .core-value-fresh-mobile {
 
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
-          videoPhone.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
           if (window.innerWidth <= 768) {
             // 모바일에서만 !important 사용
             videoPhone.style.setProperty('left', targetPosition.left, 'important');
@@ -3200,7 +3196,6 @@ html body .core-value-fresh-mobile {
 
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
-        targetImg.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
         if (window.innerWidth <= 768) {
           // 모바일에서만 !important 사용
           targetImg.style.setProperty('left', '50%', 'important');
@@ -3281,8 +3276,6 @@ html body .core-value-fresh-mobile {
        // 이미지를 원래 위치로 복귀시키는 함수
    function resetImageToOriginalPosition(img, index) {
      const positions = getPositionForIndex(index);
-     
-     img.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
      
      if (window.innerWidth <= 768) {
        // 모바일에서만 !important 사용
@@ -3497,13 +3490,15 @@ if (video) {
     width: 160px; /* Default PC width, JS might override for mobile */
     height: auto; /* Default PC height, JS might override for mobile */
     border-radius: 12px;
-    /* transition: transform 0.4s ease-out, opacity 0.4s ease-out; */ /* Removed to rely on JS transition */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 모바일 트랜지션 복구 */
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
     opacity: 0; /* Initial state for animation */
     border: none;
     box-shadow: none;
     will-change: transform, opacity, width, height, left, top;
     transform: translateZ(0); /* Hardware acceleration */
     backface-visibility: hidden; /* Smoother animations */
+    -webkit-backface-visibility: hidden; /* iOS Safari 지원 */
   }
   .hive-image.visible {
     opacity: 1;
@@ -5629,10 +5624,11 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
     display: block !important;
     animation: none !important;
-    transition: none !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 트랜지션 복구 */
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
     overflow: hidden !important;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
-    will-change: auto !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
