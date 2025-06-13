@@ -13,8 +13,8 @@
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
   .mobile-ui-position-adjustment {
-    transform: translateY(-384px) !important;
-    -webkit-transform: translateY(-384px) !important;
+    transform: translateY(-416px) !important; /* -384px → -416px (2칸 위로) */
+    -webkit-transform: translateY(-416px) !important;
     position: relative !important;
     z-index: 9999 !important;
     opacity: 1 !important;
@@ -22,8 +22,8 @@
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-280px) !important;
-    -webkit-transform: translateY(-280px) !important;
+    transform: translateY(-312px) !important; /* -280px → -312px (2칸 위로) */
+    -webkit-transform: translateY(-312px) !important;
     position: relative !important;
     z-index: 10 !important;
     opacity: 1 !important;
@@ -31,8 +31,8 @@
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-344px) !important;
-    -webkit-transform: translateY(-344px) !important;
+    transform: translateY(-376px) !important; /* -344px → -376px (2칸 위로) */
+    -webkit-transform: translateY(-376px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -43,16 +43,16 @@
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-568px) !important;
-    -webkit-transform: translateY(-568px) !important;
+    transform: translateY(-600px) !important; /* -568px → -600px (2칸 위로) */
+    -webkit-transform: translateY(-600px) !important;
     position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
   
   #smart {
-    transform: translateY(-416px) !important;
-    -webkit-transform: translateY(-416px) !important;
+    transform: translateY(-448px) !important; /* -416px → -448px (2칸 위로) */
+    -webkit-transform: translateY(-448px) !important;
     position: relative !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -5833,11 +5833,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 모바일 전용 스타일 적용 함수
     function applyMobileStyles() {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-416px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-416px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-376px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
+        { selector: '#smart', transform: 'translateY(-448px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
