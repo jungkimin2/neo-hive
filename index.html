@@ -1795,24 +1795,37 @@ html body #mobile-moved-merged-box {
 @media (max-width: 768px) {
 body .core-value-fresh-mobile,
 html body .core-value-fresh-mobile {
-  margin-top: 52px !important; /* 40px → 52px로 상단 간격 더 증가 */
-  /* 1칸(16px) 아래로 이동: -440px → -424px */
-  transform: translateY(-424px) !important;
-  -webkit-transform: translateY(-424px) !important;
+  margin-top: 52px !important;
+  /* 0.3칸(4.8px) 위로 이동: -424px → -364.8px (이전 수정 반영) */
+  transform: translateY(-364.8px) !important;
+  -webkit-transform: translateY(-364.8px) !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  /* 모바일 환경에서 배경색을 완전히 삭제 */
-  background: none !important;
-  border: none !important; /* 그린색 테두리 삭제 */
-  border-radius: 17px;
-  padding: 20px 8px 20px 8px !important; /* 16px → 20px로 패딩 더 증가 */
-  margin-bottom: 24px !important; /* 16px → 24px로 하단 간격 더 증가 */
-  box-shadow: 0 0 28px 0 rgba(123,228,149,0.17);
+  /* 글래스모피즘 배경 */
+  background: linear-gradient(135deg, 
+    rgba(12, 31, 19, 0.85) 0%, 
+    rgba(4, 18, 10, 0.9) 50%, 
+    rgba(12, 31, 19, 0.8) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  /* 글라스 테두리 효과 */
+  border: 1px solid rgba(123, 228, 149, 0.4) !important;
+  border-radius: 20px !important;
+  padding: 20px 8px 20px 8px !important;
+  margin-bottom: 24px !important;
+  /* 글라스 효과를 위한 다중 그림자 */
+  box-shadow: 
+    0 8px 32px rgba(123, 228, 149, 0.25),
+    0 4px 16px rgba(123, 228, 149, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(123, 228, 149, 0.2) !important;
   width: 100%;
   position: relative !important;
   z-index: 10000 !important;
+  overflow: hidden !important;
 }
 .core-value-fresh-mobile .core-icon {
   width: 38px !important;
@@ -1849,7 +1862,9 @@ html body .core-value-fresh-mobile {
   line-height: 1.2;
   text-align: left;
   letter-spacing: -1px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
   position: relative;
   z-index: 2;
 }
@@ -1857,8 +1872,9 @@ html body .core-value-fresh-mobile {
   color: #7BE495;
   font-size: 0.75rem;
   text-shadow: 
-    0 0 12px rgba(123, 228, 149, 0.6),
-    0 2px 4px rgba(0, 0, 0, 0.3);
+    0 0 16px rgba(123, 228, 149, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(123, 228, 149, 0.4);
   font-weight: 400;
   text-align: left;
   line-height: 1.2;
@@ -1866,6 +1882,59 @@ html body .core-value-fresh-mobile {
   z-index: 2;
   opacity: 0.95;
 }
+/* 글래스 효과를 위한 가상 요소 */
+.core-value-fresh-mobile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  z-index: 1;
+}
+
+.core-value-fresh-mobile::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 20%, 
+    rgba(123, 228, 149, 0.15) 0%, 
+    transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 아이콘과 텍스트가 글라스 효과 위에 표시되도록 */
+.core-value-fresh-mobile .core-icon,
+.core-value-fresh-mobile .core-text-block {
+  position: relative;
+  z-index: 2;
+}
+
+/* 아이콘에 글로우 효과 추가 */
+.core-value-fresh-mobile .core-icon img {
+  filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 터치 효과 */
+.core-value-fresh-mobile:active {
+  transform: translateY(-366.8px) !important; /* 터치 시 살짝 위로 */
+  box-shadow: 
+    0 12px 40px rgba(123, 228, 149, 0.3),
+    0 6px 20px rgba(123, 228, 149, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(123, 228, 149, 0.25) !important;
+}
+
 /* 기존 mobile-core-value-block 숨김 (혹시 남아있을 경우) */
 .mobile-core-value-block {
   display: none !important;
