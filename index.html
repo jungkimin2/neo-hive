@@ -2461,33 +2461,38 @@ html body .core-value-fresh-mobile {
           <circle cx="290" cy="290" r="235" fill="none" stroke="#7BE495" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="6,6"/>
         </svg>
       </div>
-      <!-- NEO SMART 카드형 주요 UI -->
-      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 192px !important; transform: translateY(32px) !important;">
-        <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
-          <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
-            <img src="./images/neo98.png" alt="기구 사용법" style="width: 30px; height: 30px;">
-          </div>
-          <div class="neos-text" style="color: #fff; font-size: 1rem;">기구 사용법</div>
+    </div>
+    
+    <!-- NEO SMART 카드형 주요 UI - 컨테이너 밖으로 이동 -->
+    <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 64px !important; padding: 0 2.5rem;">
+      <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
+        <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
+          <img src="./images/neo98.png" alt="기구 사용법" style="width: 30px; height: 30px;">
         </div>
-        <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
-          <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
-            <img src="./images/neo97.png" alt="체형 교정 영상" style="width: 32px; height: 32px;">
-          </div>
-          <div class="neos-text" style="color: #fff; font-size: 1rem;">체형 교정 영상</div>
-        </div>
-        <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
-          <div class="neos-icon" style="width: 42px; height: 42px; margin-right: 12px;">
-            <img src="./images/neo95.png" alt="네오핏 루틴" style="width: 44px; height: 44px; margin-top: 2px;">
-          </div>
-          <div class="neos-text" style="color: #fff; font-size: 1rem;">네오핏 온라인 클래스</div>
-        </div>
-        <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
-          <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
-            <img src="./images/neo93.png" alt="지속적인 콘텐츠 업데이트" style="width: 24px; height: 24px;">
-          </div>
-          <div class="neos-text" style="color: #fff; font-size: 0.85rem;">지속적인 콘텐츠 업데이트</div>
-        </div>
+        <div class="neos-text" style="color: #fff; font-size: 1rem;">기구 사용법</div>
       </div>
+      <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
+        <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
+          <img src="./images/neo97.png" alt="체형 교정 영상" style="width: 32px; height: 32px;">
+        </div>
+        <div class="neos-text" style="color: #fff; font-size: 1rem;">체형 교정 영상</div>
+      </div>
+      <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
+        <div class="neos-icon" style="width: 42px; height: 42px; margin-right: 12px;">
+          <img src="./images/neo95.png" alt="네오핏 루틴" style="width: 44px; height: 44px; margin-top: 2px;">
+        </div>
+        <div class="neos-text" style="color: #fff; font-size: 1rem;">네오핏 온라인 클래스</div>
+      </div>
+      <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
+        <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
+          <img src="./images/neo93.png" alt="지속적인 콘텐츠 업데이트" style="width: 24px; height: 24px;">
+        </div>
+        <div class="neos-text" style="color: #fff; font-size: 0.85rem;">지속적인 콘텐츠 업데이트</div>
+      </div>
+    </div>
+    
+    <!-- 추가 UI 컨테이너 시작 -->
+    <div style="padding: 0 2.5rem;">
       <!-- 추가 UI: 출입 코드 생성 방식/이벤트 시스템 연동 -->
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin-top: 20px;">
         <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
@@ -4853,12 +4858,12 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin-top: 192px !important; /* 2칸 더 아래로 */
+    margin-top: 96px !important; /* 2칸 아래로 (32px * 3 = 96px) */
     margin-right: 4px !important;
     margin-bottom: 16px !important;
     margin-left: 0 !important;
     max-width: 90% !important;
-    transform: translateX(-25px) translateY(32px) !important; /* Y축으로 추가 이동 */
+    transform: translateX(-25px) !important;
     position: relative !important;
     z-index: 10 !important;
   }
