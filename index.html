@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -3516,8 +3516,8 @@ html body .core-value-fresh-mobile {
       const neoSmartVideo = document.querySelector('.neo-smart-video');
       if (neoSmartVideo) {
         neoSmartVideo.style.setProperty('position', 'absolute', 'important');
-        neoSmartVideo.style.setProperty('left', '65%', 'important'); /* 모바일에서만 우측 이동 */
-        neoSmartVideo.style.setProperty('top', '66%', 'important'); /* 모바일에서만 한 칸 위로 이동 */
+        neoSmartVideo.style.setProperty('left', '73%', 'important'); /* 모바일에서만 우측으로 0.5칸 더 이동 */
+        neoSmartVideo.style.setProperty('top', '50%', 'important'); /* 모바일에서만 한 칸 더 위로 이동 */
         neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important'); /* 좌측으로 8도 기울기 */
         neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
         neoSmartVideo.style.setProperty('z-index', '2147483647', 'important');
@@ -3608,8 +3608,8 @@ window.addEventListener('load', () => {
     // 모바일에서는 애니메이션 없이 처음부터 우측 하단에 고정
     if (video) {
       video.style.setProperty('position', 'absolute', 'important');
-      video.style.setProperty('left', '65%', 'important'); /* 모바일에서만 우측 이동 */
-      video.style.setProperty('top', '66%', 'important'); /* 모바일에서만 한 칸 위로 이동 */
+      video.style.setProperty('left', '73%', 'important'); /* 모바일에서만 우측으로 0.5칸 더 이동 */
+      video.style.setProperty('top', '50%', 'important'); /* 모바일에서만 한 칸 더 위로 이동 */
       video.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important'); /* 좌측으로 8도 기울기 */
       video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
@@ -3696,8 +3696,8 @@ if (video) {
     
     /* 모바일 환경에서만 Neo Smart 영상 UI 조정 */
     .neo-smart-video {
-      left: 65% !important; /* 우측으로 이동 */
-      top: 66% !important; /* 82% → 66%로 한 칸 위로 이동 */
+      left: 73% !important; /* 65% → 73%로 우측으로 0.5칸(8%) 더 이동 */
+      top: 50% !important; /* 66% → 50%로 한 칸 더 위로 이동 */
       width: 160px !important; /* 사이즈 축소 */
       height: 320px !important; /* 사이즈 축소 */
       border-radius: 16px !important;
@@ -4848,7 +4848,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin: 16px 4px 16px 0 !important;
+    margin: 80px 4px 16px 0 !important; /* 48px → 80px로 2칸(32px) 더 아래로 이동 */
     max-width: 90% !important;
     transform: translateX(-25px) !important;
   }
