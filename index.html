@@ -1607,7 +1607,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             </div>
           </div>
           <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
-          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-400px) !important; -webkit-transform: translateY(-400px) !important; position: relative !important;">
+          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-436px) !important; -webkit-transform: translateY(-436px) !important; position: relative !important;">
             <div class="mobile-system-box mobile-system-box--merged">
               <div class="mobile-system-content">
                 <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
@@ -1639,6 +1639,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
 @media (max-width: 768px) {
+  /* 강제 위치 조정 - 브라우저 캐시 무력화 */
+  .mobile-ui-position-adjustment.mobile-transform-target {
+    transform: translateY(-436px) !important;
+    -webkit-transform: translateY(-436px) !important;
+    position: relative !important;
+  }
+  
   .mobile-ui-position-adjustment .mobile-system-box {
     background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
     border-radius: 22px !important;
