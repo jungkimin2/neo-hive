@@ -3517,9 +3517,9 @@ html body .core-value-fresh-mobile {
       if (neoSmartVideo) {
         neoSmartVideo.style.setProperty('position', 'absolute', 'important');
         neoSmartVideo.style.setProperty('left', '65%', 'important'); /* 모바일에서만 우측 이동 */
-        neoSmartVideo.style.setProperty('top', '82%', 'important'); /* 모바일에서만 2칸 아래 이동 */
-        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+        neoSmartVideo.style.setProperty('top', '66%', 'important'); /* 모바일에서만 한 칸 위로 이동 */
+        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important'); /* 좌측으로 8도 기울기 */
+        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
         neoSmartVideo.style.setProperty('z-index', '2147483647', 'important');
         neoSmartVideo.style.setProperty('opacity', '1', 'important');
         neoSmartVideo.style.setProperty('visibility', 'visible', 'important');
@@ -3609,8 +3609,8 @@ window.addEventListener('load', () => {
     if (video) {
       video.style.setProperty('position', 'absolute', 'important');
       video.style.setProperty('left', '65%', 'important'); /* 모바일에서만 우측 이동 */
-      video.style.setProperty('top', '82%', 'important'); /* 모바일에서만 2칸 아래 이동 */
-      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      video.style.setProperty('top', '66%', 'important'); /* 모바일에서만 한 칸 위로 이동 */
+      video.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important'); /* 좌측으로 8도 기울기 */
       video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
@@ -3697,12 +3697,14 @@ if (video) {
     /* 모바일 환경에서만 Neo Smart 영상 UI 조정 */
     .neo-smart-video {
       left: 65% !important; /* 우측으로 이동 */
-      top: 82% !important; /* 2칸 아래로 이동 */
+      top: 66% !important; /* 82% → 66%로 한 칸 위로 이동 */
       width: 160px !important; /* 사이즈 축소 */
       height: 320px !important; /* 사이즈 축소 */
       border-radius: 16px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
+      transform: translate(-50%, -50%) rotate(-8deg) !important; /* 좌측으로 8도 기울기 */
+      -webkit-transform: translate(-50%, -50%) rotate(-8deg) !important;
     }
     
     /* 모바일 환경에서 Neo Hive 트랜지션 강화 */
