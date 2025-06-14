@@ -1607,7 +1607,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             </div>
           </div>
           <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
-          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-436px) !important; -webkit-transform: translateY(-436px) !important; position: relative !important;">
+          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-420px) !important; -webkit-transform: translateY(-420px) !important; position: relative !important;">
             <div class="mobile-system-box mobile-system-box--merged">
               <div class="mobile-system-content">
                 <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
@@ -1641,8 +1641,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
   /* 강제 위치 조정 - 브라우저 캐시 무력화 */
   .mobile-ui-position-adjustment.mobile-transform-target {
-    transform: translateY(-436px) !important;
-    -webkit-transform: translateY(-436px) !important;
+    transform: translateY(-420px) !important;
+    -webkit-transform: translateY(-420px) !important;
     position: relative !important;
   }
   
@@ -5931,7 +5931,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-436px)' },
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-420px)' },
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
