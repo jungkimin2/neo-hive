@@ -1834,7 +1834,6 @@ html body .core-value-fresh-mobile {
   align-items: center !important;
   justify-content: center !important;
   margin-right: 12px !important;
-  margin-left: 16px !important; /* 오른쪽으로 한 칸(16px) 이동 */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   flex-shrink: 0 !important;
@@ -1873,7 +1872,9 @@ html body .core-value-fresh-mobile {
   color: #7BE495;
   font-size: 0.75rem;
   text-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.5); /* 그린 발광 효과 제거, 기본 그림자만 유지 */
+    0 0 16px rgba(123, 228, 149, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(123, 228, 149, 0.4);
   font-weight: 400;
   text-align: left;
   line-height: 1.2;
@@ -1903,7 +1904,9 @@ html body .core-value-fresh-mobile {
   left: 0;
   width: 100%;
   height: 100%;
-  background: none; /* 그린 발광 효과 제거 */
+  background: radial-gradient(circle at 20% 20%, 
+    rgba(123, 228, 149, 0.15) 0%, 
+    transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
@@ -1915,9 +1918,9 @@ html body .core-value-fresh-mobile {
   z-index: 2;
 }
 
-/* 아이콘 글로우 효과 제거 */
+/* 아이콘에 글로우 효과 추가 */
 .core-value-fresh-mobile .core-icon img {
-  filter: none !important; /* 글로우 효과 제거 */
+  filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) !important;
   transition: all 0.3s ease !important;
 }
 
@@ -2340,7 +2343,7 @@ html body .core-value-fresh-mobile {
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483645; top: 35%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: fixed; display: block; width: 220px; height: 440px; border-radius: 20px; border: 4px solid #7BE495; box-shadow: 0 0 25px rgba(123, 228, 149, 0.7);">
+      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -3514,21 +3517,16 @@ html body .core-value-fresh-mobile {
       // 네오 스마트 비디오 처리
       const neoSmartVideo = document.querySelector('.neo-smart-video');
       if (neoSmartVideo) {
-        neoSmartVideo.style.setProperty('position', 'fixed', 'important');
+        neoSmartVideo.style.setProperty('position', 'absolute', 'important');
         neoSmartVideo.style.setProperty('left', '50%', 'important');
-        neoSmartVideo.style.setProperty('top', '35%', 'important'); /* 50% → 35%로 위로 이동 */
+        neoSmartVideo.style.setProperty('top', '50%', 'important');
         neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
         neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
-        neoSmartVideo.style.setProperty('z-index', '2147483645', 'important');
+        neoSmartVideo.style.setProperty('z-index', '2147483647', 'important');
         neoSmartVideo.style.setProperty('opacity', '1', 'important');
         neoSmartVideo.style.setProperty('visibility', 'visible', 'important');
         neoSmartVideo.style.setProperty('display', 'block', 'important');
         neoSmartVideo.style.setProperty('animation', 'none', 'important');
-        neoSmartVideo.style.setProperty('width', '220px', 'important');
-        neoSmartVideo.style.setProperty('height', '440px', 'important');
-        neoSmartVideo.style.setProperty('border-radius', '20px', 'important');
-        neoSmartVideo.style.setProperty('border', '4px solid #7BE495', 'important');
-        neoSmartVideo.style.setProperty('box-shadow', '0 0 25px rgba(123, 228, 149, 0.7)', 'important');
         // transition은 CSS에서 관리하므로 제거
       }
       
@@ -3604,22 +3602,17 @@ window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
   if (window.innerWidth <= 768) {
-    // 모바일에서는 애니메이션 없이 처음부터 화면 중앙 상단에 고정
+    // 모바일에서는 애니메이션 없이 처음부터 가운데 고정
     if (video) {
-      video.style.setProperty('position', 'fixed', 'important');
+      video.style.setProperty('position', 'absolute', 'important');
       video.style.setProperty('left', '50%', 'important');
-      video.style.setProperty('top', '35%', 'important'); /* 50% → 35%로 위로 이동 */
+      video.style.setProperty('top', '50%', 'important');
       video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      video.style.setProperty('z-index', '2147483645', 'important');
+      video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
       video.style.setProperty('display', 'block', 'important');
       video.style.setProperty('animation', 'none', 'important');
-      video.style.setProperty('width', '220px', 'important');
-      video.style.setProperty('height', '440px', 'important');
-      video.style.setProperty('border-radius', '20px', 'important');
-      video.style.setProperty('border', '4px solid #7BE495', 'important');
-      video.style.setProperty('box-shadow', '0 0 25px rgba(123, 228, 149, 0.7)', 'important');
       // transition은 CSS에서 관리하므로 제거
     }
   } else {
