@@ -27,8 +27,8 @@
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-360px) !important;
-    -webkit-transform: translateY(-360px) !important;
+    transform: translateY(-364.8px) !important;
+    -webkit-transform: translateY(-364.8px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -1781,9 +1781,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (max-width: 768px) {
 body #mobile-moved-merged-box,
 html body #mobile-moved-merged-box {
-  /* 1칸(16px) 아래로 이동: -376px → -360px */
-  transform: translateY(-360px) !important;
-  -webkit-transform: translateY(-360px) !important;
+  /* 0.3칸(4.8px) 위로 이동: -360px → -364.8px */
+  transform: translateY(-364.8px) !important;
+  -webkit-transform: translateY(-364.8px) !important;
   position: relative !important;
   z-index: 100 !important; /* 더 높은 우선순위 */
   margin-top: 0 !important; /* 기존 margin과 충돌 방지 */
@@ -6007,7 +6007,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const elements = [
         { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-420px)' },
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-360px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-364.8px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
         { selector: '#smart', transform: 'translateY(-416px)' }
       ];
