@@ -2462,7 +2462,7 @@ html body .core-value-fresh-mobile {
         </svg>
       </div>
       <!-- NEO SMART 카드형 주요 UI -->
-      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 112px;">
+      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 160px;">
         <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
           <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
             <img src="./images/neo98.png" alt="기구 사용법" style="width: 30px; height: 30px;">
@@ -4853,7 +4853,10 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin: 112px 4px 16px 0 !important; /* 80px → 112px로 2칸(32px) 더 아래로 이동 */
+    margin-top: 160px !important; /* 더 큰 값으로 강제 적용 */
+    margin-right: 4px !important;
+    margin-bottom: 16px !important;
+    margin-left: 0 !important;
     max-width: 90% !important;
     transform: translateX(-25px) !important;
   }
