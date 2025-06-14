@@ -37,8 +37,8 @@
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-584px) !important;
-    -webkit-transform: translateY(-584px) !important;
+    transform: translateY(-568px) !important;
+    -webkit-transform: translateY(-568px) !important;
     position: relative !important;
   }
   
@@ -1607,7 +1607,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             </div>
           </div>
           <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
-          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-400px) !important; -webkit-transform: translateY(-400px) !important; position: relative !important;">
+          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-384px) !important; -webkit-transform: translateY(-384px) !important; position: relative !important;">
             <div class="mobile-system-box mobile-system-box--merged">
               <div class="mobile-system-content">
                 <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
@@ -5852,15 +5852,6 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 115 !important;
   }
   
-  /* mobile-system-box-wrapper 최고 우선순위 위치 설정 */
-  html body .mobile-system-box-wrapper.mobile-ui-position-adjustment.mobile-transform-target,
-  body .mobile-system-box-wrapper.mobile-ui-position-adjustment,
-  .mobile-system-box-wrapper {
-    transform: translateY(-584px) !important;
-    -webkit-transform: translateY(-584px) !important;
-    position: relative !important;
-  }
-  
   #smart {
     z-index: 50 !important;
   }
@@ -5932,26 +5923,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (isMobile) {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
-      // mobile-system-box-wrapper를 가장 먼저 처리 (최고 우선순위)
-      const systemBoxWrapper = document.querySelector('.mobile-system-box-wrapper');
-      if (systemBoxWrapper) {
-        console.log('Applying -584px to mobile-system-box-wrapper');
-        systemBoxWrapper.style.setProperty('transform', 'translateY(-584px)', 'important');
-        systemBoxWrapper.style.setProperty('-webkit-transform', 'translateY(-584px)', 'important');
-        systemBoxWrapper.style.setProperty('position', 'relative', 'important');
-        systemBoxWrapper.style.setProperty('opacity', '1', 'important');
-        systemBoxWrapper.style.setProperty('visibility', 'visible', 'important');
-        // 클래스 기반 스타일도 강제 제거
-        systemBoxWrapper.setAttribute('style', 
-          systemBoxWrapper.getAttribute('style') + 
-          '; transform: translateY(-584px) !important; -webkit-transform: translateY(-584px) !important;'
-        );
-      }
-      
       const elements = [
-        { selector: '.mobile-ui-position-adjustment:not(.mobile-system-box-wrapper)', transform: 'translateY(-384px)' },
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-384px)' },
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-280px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-344px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
         { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
@@ -6011,19 +5987,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
-    
-    // 추가 보험: 1초마다 mobile-system-box-wrapper 위치 강제 확인
-    setInterval(() => {
-      const systemBoxWrapper = document.querySelector('.mobile-system-box-wrapper');
-      if (systemBoxWrapper) {
-        const currentTransform = window.getComputedStyle(systemBoxWrapper).transform;
-        if (!currentTransform.includes('translateY(-584px)') && !currentTransform.includes('matrix(1, 0, 0, 1, 0, -584)')) {
-          console.log('Re-applying -584px to mobile-system-box-wrapper');
-          systemBoxWrapper.style.setProperty('transform', 'translateY(-584px)', 'important');
-          systemBoxWrapper.style.setProperty('-webkit-transform', 'translateY(-584px)', 'important');
-        }
-      }
-    }, 1000);
     
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
