@@ -2341,7 +2341,7 @@ html body .core-value-fresh-mobile {
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
+      <div class="floating-video neo-smart-video" style="left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -4825,7 +4825,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin: 16px 4px 16px 0 !important;
+    margin: 80px 4px 16px 0 !important; /* 16px → 80px로 아래로 2칸(64px) 더 이동 */
     max-width: 90% !important;
     transform: translateX(-25px) !important;
   }
@@ -5945,26 +5945,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* PC에서는 낮은 z-index로 네비게이션을 가리지 않음 */
+  /* PC 환경에서 네비게이션 z-index를 최상위로 설정 */
   @media (min-width: 769px) {
+    /* PC 네비게이션을 가장 앞으로 */
+    #pc-nav-container,
+    #pc-nav-container header,
+    #pc-nav-container .desktop-nav,
+    .mobile-nav-container,
+    .mobile-nav-container header {
+      z-index: 2147483648 !important; /* 모든 요소보다 높은 최상위 값 */
+      position: relative !important;
+    }
+    
+    /* PC에서 네오 스마트 영상 UI z-index를 낮춤 */
     .video-phone,
     .neo-smart-video,
     .floating-video {
-      z-index: 100 !important; /* 네비게이션보다 훨씬 낮은 값 */
+      z-index: 50 !important; /* 네비게이션보다 훨씬 낮게 */
     }
   }
   
   /* 모바일 환경에서만 네오 스마트 영상 UI 크기 및 위치 조정 (다른 UI에 영향 없이) */
   @media (max-width: 768px) {
-    .neo-smart-video {
+    /* 인라인 스타일보다 우선순위를 높이기 위해 더 구체적인 선택자 사용 */
+    html body div.floating-video.neo-smart-video[style],
+    html body .neo-smart-video[style],
+    .floating-video.neo-smart-video {
       width: 180px !important; /* 기본 크기보다 축소 */
       height: 360px !important; /* 기본 크기보다 축소 */
       border-radius: 18px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      /* 위치 조정: 우측으로 1칸, 아래로 1칸 */
-      left: calc(50% + 16px) !important; /* 기본 50%에서 우측으로 16px 이동 */
-      top: calc(50% + 16px) !important; /* 기본 50%에서 아래로 16px 이동 */
+      /* 위치 조정: 우측으로 2칸, 아래로 2칸 */
+      left: calc(50% + 64px) !important; /* 32px → 64px로 우측으로 한칸 더 이동 */
+      top: calc(50% + 64px) !important; /* 32px → 64px로 아래로 한칸 더 이동 */
+      /* 좌측으로 기울기 적용 */
+      transform: translate(-50%, -50%) rotate(-8deg) !important; /* 좌측으로 8도 기울기 */
+      -webkit-transform: translate(-50%, -50%) rotate(-8deg) !important;
       position: absolute !important; /* 절대 위치로 다른 요소에 영향 없음 */
     }
   }
@@ -6126,6 +6143,33 @@ document.addEventListener('DOMContentLoaded', function() {
           element.style.setProperty('visibility', 'visible', 'important');
         }
       });
+      
+      // 네오 스마트 영상 UI 위치 강제 적용 (모바일 전용)
+      const neoSmartVideo = document.querySelector('.neo-smart-video');
+      if (neoSmartVideo) {
+        neoSmartVideo.style.setProperty('left', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('top', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('width', '180px', 'important');
+        neoSmartVideo.style.setProperty('height', '360px', 'important');
+        neoSmartVideo.style.setProperty('position', 'absolute', 'important');
+        neoSmartVideo.style.setProperty('border-radius', '18px', 'important');
+        neoSmartVideo.style.setProperty('border', '3px solid #7BE495', 'important');
+        neoSmartVideo.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+      }
+      
+      // neos 카드 위치 강제 적용 (모바일 전용 - 아래로 2칸 이동)
+      const neosCardList = document.querySelector('.neos-card-list');
+      if (neosCardList) {
+        neosCardList.style.setProperty('margin-top', '80px', 'important');
+        neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
+        neosCardList.style.setProperty('gap', '8px', 'important');
+        neosCardList.style.setProperty('padding', '12px', 'important');
+        neosCardList.style.setProperty('margin', '80px 4px 16px 0', 'important');
+        neosCardList.style.setProperty('max-width', '90%', 'important');
+        neosCardList.style.setProperty('transform', 'translateX(-25px)', 'important');
+      }
     }
     
     // 아이콘 정렬 함수
