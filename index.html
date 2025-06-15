@@ -2257,9 +2257,9 @@ html body .core-value-fresh-mobile {
   
   .back-text-overlay {
     margin-left: -102px !important; /* -112px에서 -102px로 변경 */
-    transform: translate(-50%, -35%) rotateY(180deg) !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
+    transform: translate(-50%, -35%) rotateY(0deg) !important; /* 모바일에서는 텍스트를 뒤집지 않음 */
+    backface-visibility: visible !important; /* 모바일에서는 항상 보이도록 */
+    -webkit-backface-visibility: visible !important;
   }
 }
 .back-text-overlay {
@@ -2305,7 +2305,7 @@ html body .core-value-fresh-mobile {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(calc(-50% - 230px), -50%) rotateY(180deg) !important; /* -240px에서 -230px로 변경 (10px 우측 이동) */
+    transform: translate(calc(-50% - 230px), -50%) rotateY(0deg) !important; /* 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시 */
     text-align: center !important; /* 중앙 정렬로 변경 */
     padding: 25px 20px !important; /* 모바일 전용: 패딩 증가 */
     z-index: 99999 !important; /* 모바일 전용: 최상위 표시 */
@@ -4862,12 +4862,25 @@ document.addEventListener('DOMContentLoaded', function() {
             // 뒷면 보기: 앞면 숨기고 뒷면 보이기
             frontImage.style.setProperty('transform', 'rotateY(-180deg)', 'important');
             backImage.style.setProperty('transform', 'rotateY(0deg)', 'important');
-            console.log('Mobile: Showing back side');
+            
+            // 텍스트 오버레이도 뒷면과 함께 표시
+            if (backTextOverlay) {
+              backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
+              backTextOverlay.style.setProperty('opacity', '1', 'important');
+              backTextOverlay.style.setProperty('visibility', 'visible', 'important');
+            }
+            console.log('Mobile: Showing back side with text');
           } else {
             // 앞면 보기: 앞면 보이고 뒷면 숨기기
             frontImage.style.setProperty('transform', 'rotateY(0deg)', 'important');
             backImage.style.setProperty('transform', 'rotateY(180deg)', 'important');
-            console.log('Mobile: Showing front side');
+            
+            // 텍스트 오버레이도 숨기기
+            if (backTextOverlay) {
+              backTextOverlay.style.setProperty('opacity', '0', 'important');
+              backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
+            }
+            console.log('Mobile: Showing front side, hiding text');
           }
         }
       } else {
@@ -4888,7 +4901,8 @@ document.addEventListener('DOMContentLoaded', function() {
           // 모바일 환경에서만 추가 강화
           if (isMobile) {
             backTextOverlay.style.setProperty('z-index', '99999', 'important');
-            backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(180deg)', 'important');
+            // 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시
+            backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
             backTextOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.95)', 'important');
             backTextOverlay.style.setProperty('border', '3px solid #7BE495', 'important');
             backTextOverlay.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 1)', 'important');
