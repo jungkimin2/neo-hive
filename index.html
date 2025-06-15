@@ -2166,9 +2166,8 @@ html body .core-value-fresh-mobile {
     transform: scale(0.45) !important;
     transform-origin: center !important;
     perspective: 1000px !important;
-    transform-style: flat !important;
+    transform-style: preserve-3d !important; /* 3D 효과 활성화 */
     position: relative !important;
-    isolation: isolate !important;
   }
   
   .flipper {
@@ -2203,11 +2202,10 @@ html body .core-value-fresh-mobile {
     z-index: 1 !important;
   }
 
-  /* 3D 효과를 격리하기 위한 컨테이너 설정 */
+  /* 3D 효과를 지원하기 위한 컨테이너 설정 */
   .neos-wrapper {
-    transform-style: flat !important;
+    transform-style: preserve-3d !important; /* 3D 효과 활성화 */
     position: relative !important;
-    isolation: isolate !important;
   }
 }
 
@@ -4823,23 +4821,34 @@ document.addEventListener('DOMContentLoaded', function() {
       isFlipped = !isFlipped;
       console.log('Flip triggered, isFlipped:', isFlipped, 'isMobile:', isMobile); // 디버깅용
       
+      // 3D 효과 강제 활성화
+      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+      flipper.style.setProperty('backface-visibility', 'hidden', 'important');
+      flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+      
       // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용 (5칸 = 160px)
       if (isMobile) {
-        flipper.style.setProperty('transform', isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)', 'important');
+        const transform = isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)';
+        flipper.style.setProperty('transform', transform, 'important');
+        console.log('Mobile transform applied:', transform);
       } else {
         // PC 환경에서는 뒤집기만 적용
-        flipper.style.setProperty('transform', isFlipped ? 'rotateY(180deg)' : '', 'important');
+        const transform = isFlipped ? 'rotateY(180deg)' : '';
+        flipper.style.setProperty('transform', transform, 'important');
+        console.log('PC transform applied:', transform);
       }
       
       // 텍스트 오버레이 표시/숨김 (강제 적용)
       if (backTextOverlay) {
         backTextOverlay.style.setProperty('opacity', isFlipped ? '1' : '0', 'important');
+        console.log('Text overlay opacity:', isFlipped ? '1' : '0');
       }
       
       // 버튼 텍스트 변경
       const buttonText = flipButton.querySelector('span');
       if (buttonText) {
         buttonText.textContent = isFlipped ? '앞면 보기' : '뒷면 보기';
+        console.log('Button text changed to:', buttonText.textContent);
       }
     }
     
@@ -4886,14 +4895,22 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 페이지 로드 시 모바일에서 초기 위치 설정 (5칸 = 160px)
+    // 페이지 로드 시 초기 설정
+    // 3D 효과 강제 활성화
+    flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+    flipper.style.setProperty('backface-visibility', 'hidden', 'important');
+    flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+    
+    // 모바일에서 초기 위치 설정 (5칸 = 160px)
     if (isMobile) {
       flipper.style.setProperty('transform', 'translateY(160px)', 'important');
+      console.log('Mobile initial position set: translateY(160px)');
     }
     
     // 초기 텍스트 오버레이 숨김 (강제 적용)
     if (backTextOverlay) {
       backTextOverlay.style.setProperty('opacity', '0', 'important');
+      console.log('Initial text overlay hidden');
     }
     
     // PC에서 버튼에 호버 효과 추가
