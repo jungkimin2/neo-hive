@@ -4836,10 +4836,15 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin-top: 88px !important; /* 기본 56px에서 88px로 변경 (32px 더 아래로) */
+    margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
     max-width: 90% !important;
-    transform: translateX(-25px) translateY(32px) !important; /* 추가로 32px 아래로 */
+    transform: translateX(-25px) !important; /* translateY 제거하고 margin-top만 사용 */
     position: relative !important;
+  }
+  
+  /* 더 간단한 선택자로 추가 보강 */
+  .neos-card-list {
+    margin-top: 120px !important;
   }
 
   /* 네오핏 로고 크기 및 정렬 조정 */
