@@ -5967,15 +5967,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 모바일 환경에서만 네오 스마트 영상 UI 크기 및 위치 조정 (다른 UI에 영향 없이) */
   @media (max-width: 768px) {
-    .neo-smart-video {
+    /* 인라인 스타일보다 우선순위를 높이기 위해 더 구체적인 선택자 사용 */
+    html body div.floating-video.neo-smart-video[style],
+    html body .neo-smart-video[style],
+    .floating-video.neo-smart-video {
       width: 180px !important; /* 기본 크기보다 축소 */
       height: 360px !important; /* 기본 크기보다 축소 */
       border-radius: 18px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      /* 위치 조정: 우측으로 1칸 더, 아래로 1칸 더 */
-      left: calc(50% + 32px) !important; /* 16px → 32px로 우측으로 더 이동 */
-      top: calc(50% + 32px) !important; /* 16px → 32px로 아래로 더 이동 */
+      /* 위치 조정: 우측으로 2칸, 아래로 2칸 */
+      left: calc(50% + 64px) !important; /* 32px → 64px로 우측으로 한칸 더 이동 */
+      top: calc(50% + 64px) !important; /* 32px → 64px로 아래로 한칸 더 이동 */
       /* 좌측으로 기울기 적용 */
       transform: translate(-50%, -50%) rotate(-8deg) !important; /* 좌측으로 8도 기울기 */
       -webkit-transform: translate(-50%, -50%) rotate(-8deg) !important;
@@ -6140,6 +6143,21 @@ document.addEventListener('DOMContentLoaded', function() {
           element.style.setProperty('visibility', 'visible', 'important');
         }
       });
+      
+      // 네오 스마트 영상 UI 위치 강제 적용 (모바일 전용)
+      const neoSmartVideo = document.querySelector('.neo-smart-video');
+      if (neoSmartVideo) {
+        neoSmartVideo.style.setProperty('left', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('top', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('width', '180px', 'important');
+        neoSmartVideo.style.setProperty('height', '360px', 'important');
+        neoSmartVideo.style.setProperty('position', 'absolute', 'important');
+        neoSmartVideo.style.setProperty('border-radius', '18px', 'important');
+        neoSmartVideo.style.setProperty('border', '3px solid #7BE495', 'important');
+        neoSmartVideo.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+      }
     }
     
     // 아이콘 정렬 함수
