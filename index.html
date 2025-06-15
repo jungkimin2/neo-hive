@@ -5945,12 +5945,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* PC에서는 z-index를 1로 설정하여 네비게이션을 절대 가리지 않음 */
+  /* PC 환경에서 네비게이션 z-index 강화 및 영상 UI z-index 조정 */
   @media (min-width: 769px) {
+    /* PC 네비게이션 z-index 강화 */
+    #pc-nav-container,
+    #pc-nav-container header,
+    #pc-nav-container .desktop-nav,
+    .mobile-nav-container,
+    .mobile-nav-container header {
+      z-index: 9999 !important;
+      position: relative !important;
+    }
+    
+    /* 영상 UI는 네비게이션보다 낮게 */
     .video-phone,
     .neo-smart-video,
     .floating-video {
-      z-index: 1 !important; /* 최소값으로 설정 */
+      z-index: 100 !important; /* 네비게이션보다 낮지만 다른 요소보다는 높게 */
     }
   }
   
