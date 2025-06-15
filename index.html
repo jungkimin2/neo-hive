@@ -5927,14 +5927,31 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483647 !important;
   }
   
-  /* 네오 하이브/스마트 영상은 네비게이션 다음으로 높은 z-index */
+  /* 네오 하이브/스마트 영상은 네비게이션 다음으로 높은 z-index (모바일만) */
   .video-phone,
   .neo-smart-video,
   .floating-video {
-    z-index: 2147483646 !important;
     position: absolute !important;
     transform-style: preserve-3d !important;
     -webkit-transform-style: preserve-3d !important;
+  }
+  
+  /* 모바일에서만 높은 z-index 적용 */
+  @media (max-width: 768px) {
+    .video-phone,
+    .neo-smart-video,
+    .floating-video {
+      z-index: 2147483646 !important;
+    }
+  }
+  
+  /* PC에서는 낮은 z-index로 네비게이션을 가리지 않음 */
+  @media (min-width: 769px) {
+    .video-phone,
+    .neo-smart-video,
+    .floating-video {
+      z-index: 100 !important; /* 네비게이션보다 훨씬 낮은 값 */
+    }
   }
   
   /* 모바일 환경에서만 네오 스마트 영상 UI 크기 및 위치 조정 (다른 UI에 영향 없이) */
