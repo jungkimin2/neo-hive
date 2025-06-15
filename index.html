@@ -2242,14 +2242,14 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
   .flipper .back {
-    left: -32px !important; /* 96px에서 -32px로 변경 (128px 좌측 이동) */
+    left: -128px !important; /* -32px에서 -128px로 변경 (96px 추가 좌측 이동) */
     transform: rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
   
   .back-text-overlay {
-    margin-left: -32px !important; /* 96px에서 -32px로 변경 */
+    margin-left: -128px !important; /* -32px에서 -128px로 변경 */
     transform: translate(-50%, -35%) rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
@@ -2294,16 +2294,22 @@ html body .core-value-fresh-mobile {
   .back-text-overlay {
     /* opacity는 JavaScript에서 제어하므로 !important 제거 */
     left: 50% !important;
-    transform: translate(calc(-50% - 160px), -50%) rotateY(180deg) !important; /* -32px에서 -160px로 변경 (128px 추가 좌측 이동) */
+    transform: translate(calc(-50% - 256px), -50%) rotateY(180deg) !important; /* -160px에서 -256px로 변경 (96px 추가 좌측 이동) */
     text-align: left !important;
     padding: 0 48px !important;
+    z-index: 10 !important; /* z-index 추가 */
+    pointer-events: none !important;
+    width: 200px !important; /* 명시적 너비 설정 */
   }
   
   .back-text-overlay h3 {
     margin-top: 16px !important;
     margin-bottom: 24px !important;
-    font-size: 0.95rem !important;
+    font-size: 1.1rem !important; /* 0.95rem에서 1.1rem로 증가 */
     letter-spacing: 0.5px !important;
+    color: #7BE495 !important;
+    text-shadow: 0 0 8px rgba(123, 228, 149, 0.8) !important;
+    font-weight: bold !important;
   }
   
   /* 모바일에서는 pc-text 숨기고 mobile-text 보이기 */
@@ -2313,8 +2319,11 @@ html body .core-value-fresh-mobile {
   
   .mobile-text {
     display: block !important;
-    line-height: 2 !important;
-    font-size: 1.1rem !important;
+    line-height: 2.2 !important; /* 2에서 2.2로 증가 */
+    font-size: 1.2rem !important; /* 1.1rem에서 1.2rem로 증가 */
+    color: #7BE495 !important;
+    text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important;
+    font-weight: 600 !important;
   }
 
   .mobile-text br:last-of-type {
