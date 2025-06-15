@@ -5962,9 +5962,12 @@ document.addEventListener('DOMContentLoaded', function() {
       border-radius: 18px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      /* 위치 조정: 우측으로 1칸, 아래로 1칸 */
-      left: calc(50% + 16px) !important; /* 기본 50%에서 우측으로 16px 이동 */
-      top: calc(50% + 16px) !important; /* 기본 50%에서 아래로 16px 이동 */
+      /* 위치 조정: 우측으로 1칸 더, 아래로 1칸 더 */
+      left: calc(50% + 32px) !important; /* 16px → 32px로 우측으로 더 이동 */
+      top: calc(50% + 32px) !important; /* 16px → 32px로 아래로 더 이동 */
+      /* 좌측으로 기울기 적용 */
+      transform: translate(-50%, -50%) rotate(-8deg) !important; /* 좌측으로 8도 기울기 */
+      -webkit-transform: translate(-50%, -50%) rotate(-8deg) !important;
       position: absolute !important; /* 절대 위치로 다른 요소에 영향 없음 */
     }
   }
