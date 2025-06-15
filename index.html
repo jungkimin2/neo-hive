@@ -2180,9 +2180,7 @@ html body .core-value-fresh-mobile {
     transform-origin: center center !important;
   }
   
-  .flip-container:hover .flipper {
-    transform: rotateY(180deg) scale(1) !important;
-  }
+  /* 모바일 CSS hover 효과도 제거 - JavaScript에서 완전히 제어 */
 
   .front, .back {
     position: absolute !important;
@@ -2221,9 +2219,7 @@ html body .core-value-fresh-mobile {
   transition: transform 0.8s ease;
 }
 
-.flip-container:hover .flipper {
-  transform: rotateY(180deg);
-}
+/* CSS hover 효과 제거 - JavaScript에서 완전히 제어 */
 
 .neo-smart-logo.front,
 .back {
@@ -2298,9 +2294,7 @@ html body .core-value-fresh-mobile {
   line-height: 1.8;
 }
 
-.flip-container:hover .back-text-overlay {
-  opacity: 1;
-}
+/* 텍스트 오버레이도 JavaScript에서 제어 */
 
 /* PC 환경에서는 mobile-text 숨기기 */
 .mobile-text {
@@ -4815,13 +4809,18 @@ display: block !important;
 document.addEventListener('DOMContentLoaded', function() {
   const flipButton = document.querySelector('.neos-category-tags');
   const flipper = document.querySelector('.flipper');
+  const backTextOverlay = document.querySelector('.back-text-overlay');
   
   if (flipButton && flipper) {
     let isFlipped = false;
     
+    // 클릭 이벤트 추가
     flipButton.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      
       isFlipped = !isFlipped;
+      console.log('Flip clicked, isFlipped:', isFlipped); // 디버깅용
       
       // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용 (5칸 = 160px)
       if (window.innerWidth <= 768) {
@@ -4830,11 +4829,52 @@ document.addEventListener('DOMContentLoaded', function() {
         // PC 환경에서는 뒤집기만 적용
         flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
       }
+      
+      // 텍스트 오버레이 표시/숨김
+      if (backTextOverlay) {
+        backTextOverlay.style.opacity = isFlipped ? '1' : '0';
+      }
+      
+      // 버튼 텍스트 변경
+      const buttonText = flipButton.querySelector('span');
+      if (buttonText) {
+        buttonText.textContent = isFlipped ? '앞면 보기' : '뒷면 보기';
+      }
+    });
+    
+    // 터치 이벤트도 추가 (모바일 호환성)
+    flipButton.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // 클릭 이벤트와 동일한 로직
+      isFlipped = !isFlipped;
+      console.log('Touch flip, isFlipped:', isFlipped); // 디버깅용
+      
+      if (window.innerWidth <= 768) {
+        flipper.style.transform = isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)';
+      } else {
+        flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+      }
+      
+      if (backTextOverlay) {
+        backTextOverlay.style.opacity = isFlipped ? '1' : '0';
+      }
+      
+      const buttonText = flipButton.querySelector('span');
+      if (buttonText) {
+        buttonText.textContent = isFlipped ? '앞면 보기' : '뒷면 보기';
+      }
     });
     
     // 페이지 로드 시 모바일에서 초기 위치 설정 (5칸 = 160px)
     if (window.innerWidth <= 768) {
       flipper.style.transform = 'translateY(160px)';
+    }
+    
+    // 초기 텍스트 오버레이 숨김
+    if (backTextOverlay) {
+      backTextOverlay.style.opacity = '0';
     }
   }
 });
@@ -6196,6 +6236,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (flipper) {
         flipper.style.setProperty('transform', 'translateY(160px)', 'important');
         flipper.style.setProperty('position', 'relative', 'important');
+      }
+      
+      // 텍스트 오버레이 초기 숨김
+      const backTextOverlay = document.querySelector('.back-text-overlay');
+      if (backTextOverlay) {
+        backTextOverlay.style.setProperty('opacity', '0', 'important');
       }
       
       // NEOS 카드 리스트는 기본 모바일 스타일만 적용
