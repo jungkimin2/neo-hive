@@ -5937,7 +5937,7 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: preserve-3d !important;
   }
   
-  /* 모바일 환경에서만 네오 스마트 영상 UI 크기 조정 (다른 UI에 영향 없이) */
+  /* 모바일 환경에서만 네오 스마트 영상 UI 크기 및 위치 조정 (다른 UI에 영향 없이) */
   @media (max-width: 768px) {
     .neo-smart-video {
       width: 180px !important; /* 기본 크기보다 축소 */
@@ -5945,7 +5945,10 @@ document.addEventListener('DOMContentLoaded', function() {
       border-radius: 18px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      /* 위치나 다른 속성은 건드리지 않음 */
+      /* 위치 조정: 우측으로 1칸, 아래로 1칸 */
+      left: calc(50% + 16px) !important; /* 기본 50%에서 우측으로 16px 이동 */
+      top: calc(50% + 16px) !important; /* 기본 50%에서 아래로 16px 이동 */
+      position: absolute !important; /* 절대 위치로 다른 요소에 영향 없음 */
     }
   }
   
