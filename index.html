@@ -2242,14 +2242,14 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
   .flipper .back {
-    left: -128px !important; /* -32px에서 -128px로 변경 (96px 추가 좌측 이동) */
+    left: -112px !important; /* -128px에서 -112px로 변경 (16px 우측 이동) */
     transform: rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
   
   .back-text-overlay {
-    margin-left: -128px !important; /* -32px에서 -128px로 변경 */
+    margin-left: -112px !important; /* -128px에서 -112px로 변경 */
     transform: translate(-50%, -35%) rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
@@ -2257,7 +2257,9 @@ html body .core-value-fresh-mobile {
 }
 .back-text-overlay {
   opacity: 0;
-  transition: opacity 0.4s ease-in 0.3s;
+  visibility: hidden;
+  display: block;
+  transition: opacity 0.4s ease-in 0.3s, visibility 0.4s ease-in 0.3s;
   position: absolute;
   top: 50%;
   left: calc(50% - 50px);
@@ -2294,7 +2296,7 @@ html body .core-value-fresh-mobile {
   .back-text-overlay {
     /* opacity는 JavaScript에서 제어하므로 !important 제거 */
     left: 50% !important;
-    transform: translate(calc(-50% - 256px), -50%) rotateY(180deg) !important; /* -160px에서 -256px로 변경 (96px 추가 좌측 이동) */
+    transform: translate(calc(-50% - 240px), -50%) rotateY(180deg) !important; /* -256px에서 -240px로 변경 (16px 우측 이동) */
     text-align: left !important;
     padding: 0 48px !important;
     z-index: 10 !important; /* z-index 추가 */
@@ -4851,7 +4853,14 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 텍스트 오버레이 표시/숨김 (강제 적용)
       if (backTextOverlay) {
-        backTextOverlay.style.setProperty('opacity', isFlipped ? '1' : '0', 'important');
+        if (isFlipped) {
+          backTextOverlay.style.setProperty('opacity', '1', 'important');
+          backTextOverlay.style.setProperty('visibility', 'visible', 'important');
+          backTextOverlay.style.setProperty('display', 'block', 'important');
+        } else {
+          backTextOverlay.style.setProperty('opacity', '0', 'important');
+          backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
+        }
         console.log('Text overlay opacity:', isFlipped ? '1' : '0');
       }
       
@@ -4930,6 +4939,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 초기 텍스트 오버레이 숨김 (강제 적용)
     if (backTextOverlay) {
       backTextOverlay.style.setProperty('opacity', '0', 'important');
+      backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
+      backTextOverlay.style.setProperty('display', 'block', 'important');
       console.log('Initial text overlay hidden');
     }
     
