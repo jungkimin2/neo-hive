@@ -2341,7 +2341,7 @@ html body .core-value-fresh-mobile {
   }
 }
 </style>
-      <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
+      <div class="floating-video neo-smart-video" style="left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
@@ -5945,23 +5945,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* PC 환경에서 네비게이션 z-index 강화 및 영상 UI z-index 조정 */
+  /* PC 환경에서 네비게이션 z-index를 최상위로 설정 */
   @media (min-width: 769px) {
-    /* PC 네비게이션 z-index 강화 */
+    /* PC 네비게이션을 가장 앞으로 */
     #pc-nav-container,
     #pc-nav-container header,
     #pc-nav-container .desktop-nav,
     .mobile-nav-container,
     .mobile-nav-container header {
-      z-index: 9999 !important;
+      z-index: 2147483648 !important; /* 모든 요소보다 높은 최상위 값 */
       position: relative !important;
     }
     
-    /* 영상 UI는 네비게이션보다 낮게 */
+    /* PC에서 네오 스마트 영상 UI z-index를 낮춤 */
     .video-phone,
     .neo-smart-video,
     .floating-video {
-      z-index: 100 !important; /* 네비게이션보다 낮지만 다른 요소보다는 높게 */
+      z-index: 50 !important; /* 네비게이션보다 훨씬 낮게 */
     }
   }
   
