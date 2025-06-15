@@ -2137,6 +2137,13 @@ html body .core-value-fresh-mobile {
           </div>
         </div>
 <style>
+/* PC 환경에서 .neos-category-tags를 좌측으로 0.6칸(20px) 이동 */
+@media (min-width: 769px) {
+  .neos-category-tags {
+    transform: translateX(calc(-52% - 20px)) !important; /* 기존 -52%에서 20px 더 좌측으로 (26px에서 6px 우측 이동) */
+  }
+}
+
 /* 모바일 환경에서 .neos-category-tags를 하단으로 8칸(약 160px) 이동 */
 @media (max-width: 768px) {
   .neos-category-tags {
