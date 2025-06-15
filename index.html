@@ -2137,11 +2137,11 @@ html body .core-value-fresh-mobile {
           </div>
         </div>
 <style>
-/* 모바일 환경에서 .neos-category-tags를 하단으로 6칸(약 96px) 이동 */
+/* 모바일 환경에서 .neos-category-tags를 하단으로 8칸(약 160px) 이동 */
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    top: 232px !important; /* 상단에서 14.5칸(232px) 아래로 이동 */
+    top: 296px !important; /* 232px에서 296px로 변경 (64px 더 아래로 = 2칸) */
     left: calc(50% - 48px) !important; /* 중앙에서 3칸(48px) 왼쪽으로 이동 */
     transform: translateX(-50%) !important;
     width: auto !important;
@@ -2242,14 +2242,14 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경에서 뒷면 이미지 위치 조정 */
 @media (max-width: 768px) {
   .flipper .back {
-    left: -112px !important; /* -128px에서 -112px로 변경 (16px 우측 이동) */
+    left: -102px !important; /* -112px에서 -102px로 변경 (10px 우측 이동) */
     transform: rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
   
   .back-text-overlay {
-    margin-left: -112px !important; /* -128px에서 -112px로 변경 */
+    margin-left: -102px !important; /* -112px에서 -102px로 변경 */
     transform: translate(-50%, -35%) rotateY(180deg) !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
@@ -2296,7 +2296,7 @@ html body .core-value-fresh-mobile {
   .back-text-overlay {
     /* opacity는 JavaScript에서 제어하므로 !important 제거 */
     left: 50% !important;
-    transform: translate(calc(-50% - 240px), -50%) rotateY(180deg) !important; /* -256px에서 -240px로 변경 (16px 우측 이동) */
+    transform: translate(calc(-50% - 230px), -50%) rotateY(180deg) !important; /* -240px에서 -230px로 변경 (10px 우측 이동) */
     text-align: left !important;
     padding: 0 48px !important;
     z-index: 10 !important; /* z-index 추가 */
