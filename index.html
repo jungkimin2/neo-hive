@@ -2179,27 +2179,17 @@ html body .core-value-fresh-mobile {
     transform-origin: center center !important;
   }
   
-  /* 모바일 CSS hover 효과도 제거 - JavaScript에서 완전히 제어 */
-
-  .front, .back {
-    position: absolute !important;
-    width: 100% !important;
-    height: 100% !important;
+  /* 모바일 전용: 개별 이미지에 transition 추가 */
+  .neo-smart-logo.front {
+    transition: transform 0.6s ease !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-    transform-origin: center center !important;
   }
-
-  .front {
-    transform: rotateY(0) !important;
-    opacity: 1 !important;
-    z-index: 2 !important;
-  }
-
-  .back {
-    transform: rotateY(180deg) !important;
-    opacity: 1 !important;
-    z-index: 1 !important;
+  
+  .flipper .back {
+    transition: transform 0.6s ease !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
   }
 
   /* 3D 효과를 지원하기 위한 컨테이너 설정 */
@@ -4821,18 +4811,30 @@ document.addEventListener('DOMContentLoaded', function() {
       isFlipped = !isFlipped;
       console.log('Flip triggered, isFlipped:', isFlipped, 'isMobile:', isMobile); // 디버깅용
       
-      // 3D 효과 강제 활성화
-      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-      flipper.style.setProperty('backface-visibility', 'hidden', 'important');
-      flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-      
-      // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용 (5칸 = 160px)
       if (isMobile) {
-        const transform = isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)';
-        flipper.style.setProperty('transform', transform, 'important');
-        console.log('Mobile transform applied:', transform);
+        // 모바일 전용: 개별 이미지 제어 (위치는 그대로, 뒤집기만)
+        const frontImage = document.querySelector('.neo-smart-logo.front');
+        const backImage = document.querySelector('.flipper .back');
+        
+        if (frontImage && backImage) {
+          // 3D 효과 활성화
+          flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+          
+          if (isFlipped) {
+            // 뒷면 보기: 앞면 숨기고 뒷면 보이기
+            frontImage.style.setProperty('transform', 'rotateY(-180deg)', 'important');
+            backImage.style.setProperty('transform', 'rotateY(0deg)', 'important');
+            console.log('Mobile: Showing back side');
+          } else {
+            // 앞면 보기: 앞면 보이고 뒷면 숨기기
+            frontImage.style.setProperty('transform', 'rotateY(0deg)', 'important');
+            backImage.style.setProperty('transform', 'rotateY(180deg)', 'important');
+            console.log('Mobile: Showing front side');
+          }
+        }
       } else {
-        // PC 환경에서는 뒤집기만 적용
+        // PC 환경: 기존 방식 그대로 유지
+        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
         const transform = isFlipped ? 'rotateY(180deg)' : '';
         flipper.style.setProperty('transform', transform, 'important');
         console.log('PC transform applied:', transform);
@@ -4896,15 +4898,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 페이지 로드 시 초기 설정
-    // 3D 효과 강제 활성화
-    flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-    flipper.style.setProperty('backface-visibility', 'hidden', 'important');
-    flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-    
-    // 모바일에서 초기 위치 설정 (5칸 = 160px)
     if (isMobile) {
-      flipper.style.setProperty('transform', 'translateY(160px)', 'important');
-      console.log('Mobile initial position set: translateY(160px)');
+      // 모바일 전용: 개별 이미지 초기 상태 설정
+      const frontImage = document.querySelector('.neo-smart-logo.front');
+      const backImage = document.querySelector('.flipper .back');
+      
+      if (frontImage && backImage) {
+        // 3D 효과 활성화
+        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+        
+        // 초기 상태: 앞면 보이기, 뒷면 숨기기 (위치는 CSS에서 관리)
+        frontImage.style.setProperty('transform', 'rotateY(0deg)', 'important');
+        backImage.style.setProperty('transform', 'rotateY(180deg)', 'important');
+        console.log('Mobile initial state: front visible, back hidden');
+      }
+    } else {
+      // PC 환경: 기존 방식 그대로 유지
+      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+      console.log('PC 3D effects enabled');
     }
     
     // 초기 텍스트 오버레이 숨김 (강제 적용)
