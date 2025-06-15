@@ -2301,29 +2301,39 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경 스타일 */
 @media (max-width: 768px) {
   .back-text-overlay {
-    /* opacity는 JavaScript에서 제어하므로 !important 제거 */
+    /* 모바일 전용: 텍스트 오버레이 강화 */
+    position: absolute !important;
+    top: 50% !important;
     left: 50% !important;
     transform: translate(calc(-50% - 230px), -50%) rotateY(180deg) !important; /* -240px에서 -230px로 변경 (10px 우측 이동) */
-    text-align: left !important;
-    padding: 15px 20px !important; /* 모바일 전용: 상하 패딩 추가 */
-    z-index: 9999 !important; /* 모바일 전용: 최상위 표시 */
+    text-align: center !important; /* 중앙 정렬로 변경 */
+    padding: 25px 20px !important; /* 모바일 전용: 패딩 증가 */
+    z-index: 99999 !important; /* 모바일 전용: 최상위 표시 */
     pointer-events: none !important;
-    width: 280px !important; /* 모바일 전용: 너비 더 확장 */
-    background: rgba(0, 0, 0, 0.9) !important; /* 모바일 전용: 배경 더 진하게 */
-    border-radius: 12px !important; /* 모바일 전용: 모서리 더 둥글게 */
-    border: 2px solid rgba(123, 228, 149, 0.5) !important; /* 모바일 전용: 녹색 테두리 */
+    width: 320px !important; /* 모바일 전용: 너비 더 확장 */
+    height: auto !important;
+    background: rgba(0, 0, 0, 0.95) !important; /* 모바일 전용: 배경 더 진하게 */
+    border-radius: 15px !important; /* 모바일 전용: 모서리 더 둥글게 */
+    border: 3px solid #7BE495 !important; /* 모바일 전용: 밝은 녹색 테두리 */
+    box-shadow: 0 0 30px rgba(123, 228, 149, 1) !important; /* 모바일 전용: 강한 글로우 */
+    opacity: 0 !important; /* JavaScript에서 제어 */
+    visibility: hidden !important;
+    display: block !important;
   }
   
   .back-text-overlay h3 {
     margin-top: 0 !important;
     margin-bottom: 20px !important;
-    font-size: 1.5rem !important; /* 모바일 전용: 제목 크기 대폭 증가 */
-    letter-spacing: 1px !important;
+    font-size: 2rem !important; /* 모바일 전용: 제목 크기 더 크게 */
+    letter-spacing: 2px !important;
     color: #7BE495 !important;
-    text-shadow: 0 0 15px rgba(123, 228, 149, 1), 0 0 30px rgba(123, 228, 149, 0.8) !important; /* 모바일 전용: 이중 그림자 */
+    text-shadow: 0 0 25px rgba(123, 228, 149, 1), 0 0 50px rgba(123, 228, 149, 0.8) !important; /* 모바일 전용: 더 강한 그림자 */
     font-weight: 900 !important; /* 모바일 전용: 폰트 굵기 최대 */
     text-align: center !important; /* 모바일 전용: 제목 중앙 정렬 */
     text-transform: uppercase !important; /* 모바일 전용: 대문자 */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
   }
   
   /* 모바일에서는 pc-text 숨기고 mobile-text 보이기 */
@@ -2333,14 +2343,16 @@ html body .core-value-fresh-mobile {
   
   .mobile-text {
     display: block !important;
-    line-height: 2 !important; /* 모바일 전용: 줄간격 증가 */
-    font-size: 1.3rem !important; /* 모바일 전용: 폰트 크기 대폭 증가 */
+    line-height: 2.2 !important; /* 모바일 전용: 줄간격 더 증가 */
+    font-size: 1.5rem !important; /* 모바일 전용: 폰트 크기 더 크게 */
     color: #7BE495 !important;
-    text-shadow: 0 0 12px rgba(123, 228, 149, 1), 0 0 24px rgba(123, 228, 149, 0.6) !important; /* 모바일 전용: 이중 그림자 */
-    font-weight: 700 !important; /* 모바일 전용: 폰트 굵기 증가 */
+    text-shadow: 0 0 20px rgba(123, 228, 149, 1), 0 0 40px rgba(123, 228, 149, 0.8) !important; /* 모바일 전용: 더 강한 그림자 */
+    font-weight: 800 !important; /* 모바일 전용: 폰트 굵기 더 증가 */
     margin: 0 !important;
     padding: 0 !important;
     text-align: left !important; /* 모바일 전용: 본문 좌측 정렬 */
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .mobile-text br:last-of-type {
@@ -4875,29 +4887,44 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // 모바일 환경에서만 추가 강화
           if (isMobile) {
-            backTextOverlay.style.setProperty('z-index', '9999', 'important');
+            backTextOverlay.style.setProperty('z-index', '99999', 'important');
             backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(180deg)', 'important');
+            backTextOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.95)', 'important');
+            backTextOverlay.style.setProperty('border', '3px solid #7BE495', 'important');
+            backTextOverlay.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 1)', 'important');
+            
             // 모든 자식 요소도 강제로 보이게 설정
             const h3 = backTextOverlay.querySelector('h3');
             const mobileText = backTextOverlay.querySelector('.mobile-text');
+            
             if (h3) {
               h3.style.setProperty('opacity', '1', 'important');
               h3.style.setProperty('visibility', 'visible', 'important');
               h3.style.setProperty('display', 'block', 'important');
               h3.style.setProperty('color', '#7BE495', 'important');
-              h3.style.setProperty('font-size', '1.5rem', 'important');
+              h3.style.setProperty('font-size', '2rem', 'important');
               h3.style.setProperty('font-weight', '900', 'important');
-              h3.style.setProperty('text-shadow', '0 0 15px rgba(123, 228, 149, 1), 0 0 30px rgba(123, 228, 149, 0.8)', 'important');
+              h3.style.setProperty('text-shadow', '0 0 25px rgba(123, 228, 149, 1), 0 0 50px rgba(123, 228, 149, 0.8)', 'important');
+              h3.style.setProperty('text-align', 'center', 'important');
+              h3.style.setProperty('margin-bottom', '20px', 'important');
+              h3.style.setProperty('letter-spacing', '2px', 'important');
+              console.log('H3 element styled:', h3.textContent);
             }
+            
             if (mobileText) {
               mobileText.style.setProperty('opacity', '1', 'important');
               mobileText.style.setProperty('visibility', 'visible', 'important');
               mobileText.style.setProperty('display', 'block', 'important');
               mobileText.style.setProperty('color', '#7BE495', 'important');
-              mobileText.style.setProperty('font-size', '1.3rem', 'important');
-              mobileText.style.setProperty('font-weight', '700', 'important');
-              mobileText.style.setProperty('text-shadow', '0 0 12px rgba(123, 228, 149, 1), 0 0 24px rgba(123, 228, 149, 0.6)', 'important');
+              mobileText.style.setProperty('font-size', '1.5rem', 'important');
+              mobileText.style.setProperty('font-weight', '800', 'important');
+              mobileText.style.setProperty('text-shadow', '0 0 20px rgba(123, 228, 149, 1), 0 0 40px rgba(123, 228, 149, 0.8)', 'important');
+              mobileText.style.setProperty('line-height', '2.2', 'important');
+              mobileText.style.setProperty('text-align', 'left', 'important');
+              console.log('Mobile text element styled:', mobileText.textContent);
             }
+            
+            console.log('Mobile text overlay fully styled and visible');
           }
         } else {
           backTextOverlay.style.setProperty('opacity', '0', 'important');
