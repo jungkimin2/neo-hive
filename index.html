@@ -2727,10 +2727,6 @@ html body .core-value-fresh-mobile {
     height: 380px !important;
     min-width: 180px;
     position: relative !important;
-    /* 상위 #smart 섹션의 transform 영향을 상쇄하기 위한 조정 */
-    transform: translateY(416px) !important;
-    -webkit-transform: translateY(416px) !important;
-    z-index: 200 !important;
   }
   .circle-lines {
     width: 340px !important;
@@ -2776,41 +2772,6 @@ html body .core-value-fresh-mobile {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
-}
-
-/* 모바일 환경에서 원형 다이어그램 섹션 전체 위치 조정 */
-@media (max-width: 768px) {
-  #smart .circular-flow-container {
-    /* #smart 섹션의 translateY(-416px) 영향을 완전히 상쇄 */
-    transform: translateY(416px) !important;
-    -webkit-transform: translateY(416px) !important;
-    position: relative !important;
-    z-index: 200 !important;
-    margin-top: 56px !important;
-    margin-bottom: 36px !important;
-  }
-  
-  /* 원형 다이어그램 주변 요소들도 함께 조정 */
-  #smart .circular-bg-glow {
-    transform: translate(-50%, -50%) translateY(416px) !important;
-    -webkit-transform: translate(-50%, -50%) translateY(416px) !important;
-  }
-  
-  /* NEOS 카드 리스트도 함께 조정 */
-  #smart .neos-card-list {
-    transform: translateY(416px) !important;
-    -webkit-transform: translateY(416px) !important;
-    position: relative !important;
-    z-index: 200 !important;
-  }
-  
-  /* 추가 UI 박스들도 함께 조정 */
-  #smart > div[style*="display: flex; flex-direction: row"] {
-    transform: translateY(416px) !important;
-    -webkit-transform: translateY(416px) !important;
-    position: relative !important;
-    z-index: 200 !important;
   }
 }
 </style>
