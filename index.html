@@ -4831,14 +4831,16 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-  /* 메뉴 카드 레이아웃 개선 */
-  .neos-card-list {
+  /* 메뉴 카드 레이아웃 개선 - 더 구체적인 선택자로 강화 */
+  html body .neos-card-list,
+  body .neos-card-list,
+  div.neos-card-list {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
     margin: 48px 4px 16px 0 !important; /* 상단 마진을 16px에서 48px로 변경 (아래로 2칸 이동) */
     max-width: 90% !important;
-    transform: translateX(-25px) !important;
+    transform: translateX(-25px) translateY(32px) !important; /* translateY 추가로 확실히 아래로 2칸 이동 */
   }
 
   /* 네오핏 로고 크기 및 정렬 조정 */
@@ -6105,6 +6107,23 @@ document.addEventListener('DOMContentLoaded', function() {
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
+  }
+}
+</style>
+
+<!-- 모바일 환경에서 NEOS 카드 위치 강제 조정 (다른 UI 영향 없음) -->
+<style>
+@media (max-width: 768px) {
+  /* NEOS 카드만 아래로 2칸 이동 - 최고 우선순위 */
+  html body div.neos-card-list[style*="display: grid"] {
+    margin-top: 80px !important; /* 기본 24px에서 80px로 변경 (56px 아래로 이동) */
+    transform: translateX(-25px) translateY(32px) !important; /* 추가로 32px 더 아래로 */
+  }
+  
+  /* 인라인 스타일도 덮어쓰기 */
+  html body div[class="neos-card-list"] {
+    margin-top: 80px !important;
+    transform: translateX(-25px) translateY(32px) !important;
   }
 }
 </style>
