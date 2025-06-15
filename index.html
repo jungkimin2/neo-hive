@@ -4823,8 +4823,20 @@ document.addEventListener('DOMContentLoaded', function() {
       flipButton.addEventListener('click', function(e) {
         e.preventDefault();
         isFlipped = !isFlipped;
-        flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+        
+        // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용
+        if (window.innerWidth <= 768) {
+          flipper.style.transform = isFlipped ? 'rotateY(180deg) translateY(64px)' : 'translateY(64px)';
+        } else {
+          // PC 환경에서는 뒤집기만 적용
+          flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+        }
       });
+      
+      // 페이지 로드 시 모바일에서 초기 위치 설정
+      if (window.innerWidth <= 768) {
+        flipper.style.transform = 'translateY(64px)';
+      }
     }
   }
 });
@@ -6112,31 +6124,19 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 환경에서 NEOS 카드만 독립적으로 2칸 아래로 이동 - 뒤집기 애니메이션 보존 -->
+<!-- 모바일 환경에서 뒤집기 효과 안의 NEOS 이미지만 2칸 아래로 이동 -->
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 정확히 타겟팅 - 뒤집기 효과와 완전 분리 */
+  /* NEOS 카드 리스트는 원래 위치 유지 */
   div.neos-card-list[style*="margin-top: 120px"] {
-    margin-top: 184px !important; /* 120px + 64px(2칸) = 184px */
+    margin-top: 120px !important; /* 원래 값으로 복원 */
     position: relative !important;
-    z-index: 15 !important; /* 뒤집기 효과보다 위에 */
+    z-index: 15 !important;
   }
   
-  /* 뒤집기 효과 요소들의 z-index 명확히 분리 */
-  .neos-wrapper {
-    z-index: 5 !important;
-  }
-  
+  /* 뒤집기 컨테이너의 위치 이동은 JavaScript에서 처리 */
   .flip-container {
-    z-index: 6 !important;
-  }
-  
-  .flipper {
-    z-index: 7 !important;
-  }
-  
-  .neos-category-tags {
-    z-index: 201 !important; /* 기존 값 유지 */
+    position: relative !important;
   }
 }
 </style>
@@ -6193,18 +6193,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // NEOS 카드만 독립적으로 2칸 아래로 이동 - 뒤집기 애니메이션 보존
+      // 뒤집기 컨테이너 전체를 2칸 아래로 이동 (JavaScript 뒤집기 효과와 연동)
+      const flipper = document.querySelector('.flipper');
+      if (flipper) {
+        flipper.style.setProperty('transform', 'translateY(64px)', 'important');
+        flipper.style.setProperty('position', 'relative', 'important');
+      }
+      
+      // NEOS 카드 리스트는 기본 모바일 스타일만 적용
       const neosCardList = document.querySelector('div.neos-card-list[style*="margin-top: 120px"]');
       if (neosCardList) {
-        // 뒤집기 애니메이션에 영향주지 않도록 transform 사용 안함
-        neosCardList.style.setProperty('margin-top', '184px', 'important'); // 120px + 64px(2칸) = 184px
+        neosCardList.style.setProperty('margin-top', '120px', 'important'); // 원래 값 유지
         neosCardList.style.setProperty('position', 'relative', 'important');
-        neosCardList.style.setProperty('z-index', '15', 'important'); // 뒤집기 효과보다 위에
+        neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
         neosCardList.style.setProperty('gap', '8px', 'important');
         neosCardList.style.setProperty('padding', '12px', 'important');
         neosCardList.style.setProperty('max-width', '90%', 'important');
-        neosCardList.style.setProperty('margin-left', '-25px', 'important'); // transform 대신 margin 사용
+        neosCardList.style.setProperty('margin-left', '-25px', 'important');
       }
     }
     
