@@ -4821,18 +4821,33 @@ document.addEventListener('DOMContentLoaded', function() {
       isFlipped = !isFlipped;
       console.log('Flip triggered, isFlipped:', isFlipped, 'isMobile:', isMobile); // 디버깅용
       
-      // 3D 효과 강제 활성화
-      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-      flipper.style.setProperty('backface-visibility', 'hidden', 'important');
-      flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-      
-      // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용 (5칸 = 160px)
       if (isMobile) {
-        const transform = isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)';
-        flipper.style.setProperty('transform', transform, 'important');
-        console.log('Mobile transform applied:', transform);
+        // 모바일: CSS 고정값을 덮어쓰기 위해 개별 이미지 제어
+        const frontImage = document.querySelector('.neo-smart-logo.front');
+        const backImage = document.querySelector('.flipper .back');
+        
+        if (frontImage && backImage) {
+          // 3D 효과 강제 활성화
+          flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+          frontImage.style.setProperty('backface-visibility', 'hidden', 'important');
+          frontImage.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+          backImage.style.setProperty('backface-visibility', 'hidden', 'important');
+          backImage.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+          
+          if (isFlipped) {
+            // 뒷면 보기: 앞면 숨기고 뒷면 보이기 (위치는 그대로 유지)
+            frontImage.style.setProperty('transform', 'rotateY(-180deg) translateY(160px)', 'important');
+            backImage.style.setProperty('transform', 'rotateY(0deg) translateY(160px)', 'important');
+          } else {
+            // 앞면 보기: 앞면 보이고 뒷면 숨기기 (위치는 그대로 유지)
+            frontImage.style.setProperty('transform', 'rotateY(0deg) translateY(160px)', 'important');
+            backImage.style.setProperty('transform', 'rotateY(180deg) translateY(160px)', 'important');
+          }
+          console.log('Mobile individual transforms applied, isFlipped:', isFlipped);
+        }
       } else {
-        // PC 환경에서는 뒤집기만 적용
+        // PC 환경: 기존 방식 유지
+        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
         const transform = isFlipped ? 'rotateY(180deg)' : '';
         flipper.style.setProperty('transform', transform, 'important');
         console.log('PC transform applied:', transform);
@@ -4896,15 +4911,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 페이지 로드 시 초기 설정
-    // 3D 효과 강제 활성화
-    flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-    flipper.style.setProperty('backface-visibility', 'hidden', 'important');
-    flipper.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-    
-    // 모바일에서 초기 위치 설정 (5칸 = 160px)
     if (isMobile) {
-      flipper.style.setProperty('transform', 'translateY(160px)', 'important');
-      console.log('Mobile initial position set: translateY(160px)');
+      // 모바일: 개별 이미지 초기 상태 설정 (위치 그대로 유지)
+      const frontImage = document.querySelector('.neo-smart-logo.front');
+      const backImage = document.querySelector('.flipper .back');
+      
+      if (frontImage && backImage) {
+        // 3D 효과 활성화
+        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+        frontImage.style.setProperty('backface-visibility', 'hidden', 'important');
+        frontImage.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+        backImage.style.setProperty('backface-visibility', 'hidden', 'important');
+        backImage.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+        
+        // 초기 상태: 앞면 보이기, 뒷면 숨기기 (위치는 그대로)
+        frontImage.style.setProperty('transform', 'rotateY(0deg) translateY(160px)', 'important');
+        backImage.style.setProperty('transform', 'rotateY(180deg) translateY(160px)', 'important');
+        console.log('Mobile initial state: front visible, back hidden, position maintained');
+      }
+    } else {
+      // PC: 기존 방식 유지
+      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
+      console.log('PC 3D effects enabled');
     }
     
     // 초기 텍스트 오버레이 숨김 (강제 적용)
