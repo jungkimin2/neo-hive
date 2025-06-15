@@ -3512,14 +3512,19 @@ html body .core-value-fresh-mobile {
 (function() {
   function forceVideosCenter() {
     if (window.innerWidth <= 768) {
-      // 네오 스마트 비디오 처리
+      // 네오 스마트 비디오 처리 - 캡처 이미지 기준 위치로 조정
       const neoSmartVideo = document.querySelector('.neo-smart-video');
       if (neoSmartVideo) {
         neoSmartVideo.style.setProperty('position', 'absolute', 'important');
-        neoSmartVideo.style.setProperty('left', '50%', 'important');
-        neoSmartVideo.style.setProperty('top', '50%', 'important');
-        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+        neoSmartVideo.style.setProperty('left', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('top', 'calc(50% + 64px)', 'important');
+        neoSmartVideo.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+        neoSmartVideo.style.setProperty('width', '180px', 'important');
+        neoSmartVideo.style.setProperty('height', '360px', 'important');
+        neoSmartVideo.style.setProperty('border-radius', '18px', 'important');
+        neoSmartVideo.style.setProperty('border', '3px solid #7BE495', 'important');
+        neoSmartVideo.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
         neoSmartVideo.style.setProperty('z-index', '2147483647', 'important');
         neoSmartVideo.style.setProperty('opacity', '1', 'important');
         neoSmartVideo.style.setProperty('visibility', 'visible', 'important');
@@ -3600,12 +3605,18 @@ window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
   if (window.innerWidth <= 768) {
-    // 모바일에서는 애니메이션 없이 처음부터 가운데 고정
+    // 모바일에서는 애니메이션 없이 처음부터 조정된 위치에 고정
     if (video) {
       video.style.setProperty('position', 'absolute', 'important');
-      video.style.setProperty('left', '50%', 'important');
-      video.style.setProperty('top', '50%', 'important');
-      video.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      video.style.setProperty('left', 'calc(50% + 64px)', 'important');
+      video.style.setProperty('top', 'calc(50% + 64px)', 'important');
+      video.style.setProperty('transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+      video.style.setProperty('-webkit-transform', 'translate(-50%, -50%) rotate(-8deg)', 'important');
+      video.style.setProperty('width', '180px', 'important');
+      video.style.setProperty('height', '360px', 'important');
+      video.style.setProperty('border-radius', '18px', 'important');
+      video.style.setProperty('border', '3px solid #7BE495', 'important');
+      video.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
       video.style.setProperty('z-index', '2147483647', 'important');
       video.style.setProperty('opacity', '1', 'important');
       video.style.setProperty('visibility', 'visible', 'important');
@@ -5962,10 +5973,12 @@ document.addEventListener('DOMContentLoaded', function() {
       border-radius: 18px !important;
       border: 3px solid #7BE495 !important;
       box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
-      /* 위치 조정: 우측으로 1칸, 아래로 1칸 */
-      left: calc(50% + 16px) !important; /* 기본 50%에서 우측으로 16px 이동 */
-      top: calc(50% + 16px) !important; /* 기본 50%에서 아래로 16px 이동 */
+      /* 위치 조정: 우측으로 4칸, 아래로 4칸 (캡처 이미지 기준) */
+      left: calc(50% + 64px) !important; /* 기본 50%에서 우측으로 64px 이동 */
+      top: calc(50% + 64px) !important; /* 기본 50%에서 아래로 64px 이동 */
       position: absolute !important; /* 절대 위치로 다른 요소에 영향 없음 */
+      transform: translate(-50%, -50%) rotate(-8deg) !important; /* 중앙 정렬 + 약간 회전 */
+      -webkit-transform: translate(-50%, -50%) rotate(-8deg) !important;
     }
   }
   
