@@ -6114,39 +6114,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- 모바일 환경에서 NEOS 카드 위치 강제 조정 (다른 UI 영향 없음) -->
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 아래로 2칸 이동 - 최고 우선순위 - 완전 분리 방식 */
+  /* NEOS 카드만 아래로 2칸 이동 - 최고 우선순위 */
   html body div.neos-card-list[style*="display: grid"],
   html body div[class="neos-card-list"],
   div.neos-card-list[style*="margin-top"],
-  .neos-card-list,
-  section#smart .neos-card-list,
-  #smart .neos-card-list,
-  div[style*="grid-template-columns"] {
-    position: absolute !important; /* relative 대신 absolute로 완전 분리 */
-    top: 580px !important; /* 위에서 580px 지점에 고정 배치 */
-    left: 50% !important;
-    transform: translateX(-50%) !important; /* X축만 중앙 정렬 */
-    margin-top: 0 !important; /* margin 초기화 */
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 90% !important;
-    max-width: 350px !important;
-    z-index: 9999 !important; /* 최상위 레이어 */
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
+  .neos-card-list {
+    margin-top: 88px !important; /* 기본 56px에서 88px로 변경 (32px 더 아래로) */
+    transform: translateX(-25px) translateY(448px) !important; /* 섹션의 -416px을 상쇄하고 추가로 32px 아래로 */
+    position: relative !important;
   }
   
-  /* 더 구체적한 선택자로 강제 적용 */
+  /* 더 구체적인 선택자로 강제 적용 */
   html body div[style*="grid-template-columns: repeat(4, 1fr)"][class="neos-card-list"] {
-    position: absolute !important;
-    top: 580px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    width: 90% !important;
-    max-width: 350px !important;
-    z-index: 9999 !important;
+    margin-top: 88px !important;
+    transform: translateX(-25px) translateY(448px) !important;
   }
 }
 </style>
@@ -6203,22 +6184,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // NEOS 카드 위치 강제 적용 (모바일 전용 - 완전 분리 방식으로 아래로 2칸 이동)
+      // NEOS 카드 위치 강제 적용 (모바일 전용 - 아래로 2칸 이동)
       const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
-        neosCardList.style.setProperty('position', 'absolute', 'important');
-        neosCardList.style.setProperty('top', '580px', 'important'); // 고정 위치
-        neosCardList.style.setProperty('left', '50%', 'important');
-        neosCardList.style.setProperty('transform', 'translateX(-50%)', 'important'); // 중앙 정렬만
-        neosCardList.style.setProperty('margin-top', '0', 'important'); // margin 초기화
-        neosCardList.style.setProperty('margin-left', '0', 'important');
-        neosCardList.style.setProperty('margin-right', '0', 'important');
-        neosCardList.style.setProperty('width', '90%', 'important');
-        neosCardList.style.setProperty('max-width', '350px', 'important');
-        neosCardList.style.setProperty('z-index', '9999', 'important'); // 최상위
+        neosCardList.style.setProperty('margin-top', '120px', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
         neosCardList.style.setProperty('gap', '8px', 'important');
         neosCardList.style.setProperty('padding', '12px', 'important');
+        neosCardList.style.setProperty('max-width', '90%', 'important');
+        neosCardList.style.setProperty('transform', 'translateX(-25px) translateY(448px)', 'important'); // 섹션의 -416px 상쇄 + 32px 추가
+        neosCardList.style.setProperty('position', 'relative', 'important');
       }
     }
     
@@ -6267,43 +6242,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용 (NEOS 카드 강화 감시)
+    // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
-      let neosCardChanged = false;
-      
       mutations.forEach(function(mutation) {
         if (mutation.type === 'childList' || mutation.type === 'attributes') {
           shouldReapply = true;
-          
-          // NEOS 카드 관련 변경사항 특별 감지
-          if (mutation.target.className && mutation.target.className.includes('neos-card-list')) {
-            neosCardChanged = true;
-          }
-          
-          if (mutation.target.querySelector && mutation.target.querySelector('.neos-card-list')) {
-            neosCardChanged = true;
-          }
         }
       });
-      
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        
-        // NEOS 카드 변경이 감지되면 즉시 강제 재적용
-        if (neosCardChanged) {
-          setTimeout(() => {
-            const neosCardList = document.querySelector('.neos-card-list');
-            if (neosCardList) {
-              neosCardList.style.setProperty('position', 'absolute', 'important');
-              neosCardList.style.setProperty('top', '580px', 'important');
-              neosCardList.style.setProperty('left', '50%', 'important');
-              neosCardList.style.setProperty('transform', 'translateX(-50%)', 'important');
-              neosCardList.style.setProperty('z-index', '9999', 'important');
-            }
-          }, 10);
-        }
       }
     });
     
@@ -6325,34 +6274,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
     }
-    
-    // 추가 보험책: 주기적 NEOS 카드 위치 체크 및 강제 적용 (모바일만)
-    setInterval(() => {
-      const neosCardList = document.querySelector('.neos-card-list');
-      if (neosCardList) {
-        const computedStyle = window.getComputedStyle(neosCardList);
-        const currentPosition = computedStyle.position;
-        const currentTop = computedStyle.top;
-        
-        // position이 absolute가 아니거나 top이 580px가 아니면 강제 재적용
-        if (currentPosition !== 'absolute' || currentTop !== '580px') {
-          neosCardList.style.setProperty('position', 'absolute', 'important');
-          neosCardList.style.setProperty('top', '580px', 'important');
-          neosCardList.style.setProperty('left', '50%', 'important');
-          neosCardList.style.setProperty('transform', 'translateX(-50%)', 'important');
-          neosCardList.style.setProperty('margin-top', '0', 'important');
-          neosCardList.style.setProperty('margin-left', '0', 'important');
-          neosCardList.style.setProperty('margin-right', '0', 'important');
-          neosCardList.style.setProperty('width', '90%', 'important');
-          neosCardList.style.setProperty('max-width', '350px', 'important');
-          neosCardList.style.setProperty('z-index', '9999', 'important');
-          neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
-          neosCardList.style.setProperty('gap', '8px', 'important');
-          neosCardList.style.setProperty('padding', '12px', 'important');
-        }
-      }
-    }, 100); // 0.1초마다 체크
-    
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.opacity = '1';
