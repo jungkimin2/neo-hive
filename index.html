@@ -6096,6 +6096,27 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+<!-- PC 환경에서 네오 스마트 영상이 네비게이션 가리지 않도록 z-index 조정 -->
+<style>
+/* PC 환경에서는 네오 스마트 영상 z-index 낮추기 */
+@media (min-width: 769px) {
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
+    z-index: 50 !important; /* 네비게이션보다 낮은 값으로 설정 */
+  }
+}
+
+/* 모바일 환경에서는 높은 z-index 유지 */
+@media (max-width: 768px) {
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
+    z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
+  }
+}
+</style>
+
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
 // 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
