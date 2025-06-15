@@ -4811,32 +4811,30 @@ display: block !important;
 }
 </style>
 <script>
-// 모바일 환경에서만 작동하는 카드 뒤집기 스크립트
+// PC와 모바일 모두에서 작동하는 카드 뒤집기 스크립트
 document.addEventListener('DOMContentLoaded', function() {
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    const flipButton = document.querySelector('.neos-category-tags');
-    const flipper = document.querySelector('.flipper');
+  const flipButton = document.querySelector('.neos-category-tags');
+  const flipper = document.querySelector('.flipper');
+  
+  if (flipButton && flipper) {
+    let isFlipped = false;
     
-    if (flipButton && flipper) {
-      let isFlipped = false;
+    flipButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      isFlipped = !isFlipped;
       
-      flipButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        isFlipped = !isFlipped;
-        
-        // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용
-        if (window.innerWidth <= 768) {
-          flipper.style.transform = isFlipped ? 'rotateY(180deg) translateY(64px)' : 'translateY(64px)';
-        } else {
-          // PC 환경에서는 뒤집기만 적용
-          flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
-        }
-      });
-      
-      // 페이지 로드 시 모바일에서 초기 위치 설정
+      // 모바일 환경에서는 뒤집기 + 위치 이동을 함께 적용 (5칸 = 160px)
       if (window.innerWidth <= 768) {
-        flipper.style.transform = 'translateY(64px)';
+        flipper.style.transform = isFlipped ? 'rotateY(180deg) translateY(160px)' : 'translateY(160px)';
+      } else {
+        // PC 환경에서는 뒤집기만 적용
+        flipper.style.transform = isFlipped ? 'rotateY(180deg)' : '';
       }
+    });
+    
+    // 페이지 로드 시 모바일에서 초기 위치 설정 (5칸 = 160px)
+    if (window.innerWidth <= 768) {
+      flipper.style.transform = 'translateY(160px)';
     }
   }
 });
@@ -6193,10 +6191,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // 뒤집기 컨테이너 전체를 2칸 아래로 이동 (JavaScript 뒤집기 효과와 연동)
+      // 뒤집기 컨테이너 전체를 5칸 아래로 이동 (JavaScript 뒤집기 효과와 연동)
       const flipper = document.querySelector('.flipper');
       if (flipper) {
-        flipper.style.setProperty('transform', 'translateY(64px)', 'important');
+        flipper.style.setProperty('transform', 'translateY(160px)', 'important');
         flipper.style.setProperty('position', 'relative', 'important');
       }
       
