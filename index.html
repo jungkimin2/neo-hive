@@ -2298,20 +2298,23 @@ html body .core-value-fresh-mobile {
     left: 50% !important;
     transform: translate(calc(-50% - 230px), -50%) rotateY(180deg) !important; /* -240px에서 -230px로 변경 (10px 우측 이동) */
     text-align: left !important;
-    padding: 0 48px !important;
-    z-index: 10 !important; /* z-index 추가 */
+    padding: 0 20px !important; /* 모바일 전용: 텍스트 공간 확보 */
+    z-index: 1000 !important; /* 모바일 전용: 다른 요소 위에 표시 */
     pointer-events: none !important;
-    width: 200px !important; /* 명시적 너비 설정 */
+    width: 250px !important; /* 모바일 전용: 너비 확장 */
+    background: rgba(0, 0, 0, 0.8) !important; /* 모바일 전용: 배경 추가 */
+    border-radius: 8px !important; /* 모바일 전용: 모서리 둥글게 */
   }
   
   .back-text-overlay h3 {
-    margin-top: 16px !important;
-    margin-bottom: 24px !important;
-    font-size: 1.1rem !important; /* 0.95rem에서 1.1rem로 증가 */
+    margin-top: 12px !important;
+    margin-bottom: 16px !important;
+    font-size: 1.3rem !important; /* 모바일 전용: 제목 크기 증가 */
     letter-spacing: 0.5px !important;
     color: #7BE495 !important;
-    text-shadow: 0 0 8px rgba(123, 228, 149, 0.8) !important;
+    text-shadow: 0 0 10px rgba(123, 228, 149, 1) !important; /* 모바일 전용: 그림자 강화 */
     font-weight: bold !important;
+    text-align: center !important; /* 모바일 전용: 제목 중앙 정렬 */
   }
   
   /* 모바일에서는 pc-text 숨기고 mobile-text 보이기 */
@@ -2321,11 +2324,13 @@ html body .core-value-fresh-mobile {
   
   .mobile-text {
     display: block !important;
-    line-height: 2.2 !important; /* 2에서 2.2로 증가 */
-    font-size: 1.2rem !important; /* 1.1rem에서 1.2rem로 증가 */
+    line-height: 1.8 !important; /* 모바일 전용: 줄간격 조정 */
+    font-size: 1.1rem !important; /* 모바일 전용: 폰트 크기 조정 */
     color: #7BE495 !important;
-    text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important;
+    text-shadow: 0 0 8px rgba(123, 228, 149, 0.9) !important; /* 모바일 전용: 그림자 강화 */
     font-weight: 600 !important;
+    margin: 0 !important;
+    padding: 8px 0 12px 0 !important; /* 모바일 전용: 상하 패딩 */
   }
 
   .mobile-text br:last-of-type {
@@ -4857,6 +4862,24 @@ document.addEventListener('DOMContentLoaded', function() {
           backTextOverlay.style.setProperty('opacity', '1', 'important');
           backTextOverlay.style.setProperty('visibility', 'visible', 'important');
           backTextOverlay.style.setProperty('display', 'block', 'important');
+          
+          // 모바일 환경에서만 추가 강화
+          if (isMobile) {
+            backTextOverlay.style.setProperty('z-index', '1000', 'important');
+            // 모든 자식 요소도 강제로 보이게 설정
+            const h3 = backTextOverlay.querySelector('h3');
+            const mobileText = backTextOverlay.querySelector('.mobile-text');
+            if (h3) {
+              h3.style.setProperty('opacity', '1', 'important');
+              h3.style.setProperty('visibility', 'visible', 'important');
+              h3.style.setProperty('display', 'block', 'important');
+            }
+            if (mobileText) {
+              mobileText.style.setProperty('opacity', '1', 'important');
+              mobileText.style.setProperty('visibility', 'visible', 'important');
+              mobileText.style.setProperty('display', 'block', 'important');
+            }
+          }
         } else {
           backTextOverlay.style.setProperty('opacity', '0', 'important');
           backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
