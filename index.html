@@ -2123,9 +2123,6 @@ html body .core-value-fresh-mobile {
             <img src="./images/neo121.png" alt="NEO Smart Back Image" class="back"
                  style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; backface-visibility: hidden; position: absolute; top: 0; left: 12px; transform: rotateY(180deg);" />
               <div class="back-text-overlay">
-                <h3>NEO SMART</h3>
-                <p class="mobile-text">1. 기구 사용법<br>2. 체형 교정<br>3. 네오핏 클래스<br><br>NFC 태그 하고 운동하세요</p>
-                <p class="pc-text">1. 기구 사용법<br>2. 체형 교정<br>3. 네오핏 클래스<br><br><br>NFC 태그 하고 운동하세요</p>
               </div>
           </div>
         </div>
@@ -2282,21 +2279,7 @@ html body .core-value-fresh-mobile {
   line-height: 1.6;
 }
 
-.back-text-overlay h3 {
-  margin-bottom: 16px;
-  font-size: 1.2rem;
-}
-
-.back-text-overlay p {
-  line-height: 1.8;
-}
-
-/* 텍스트 오버레이도 JavaScript에서 제어 */
-
-/* PC 환경에서는 mobile-text 숨기기 */
-.mobile-text {
-  display: none;
-}
+/* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
 
 /* 모바일 환경 스타일 */
 @media (max-width: 768px) {
@@ -2321,44 +2304,7 @@ html body .core-value-fresh-mobile {
     display: block !important;
   }
   
-  .back-text-overlay h3 {
-    margin-top: 0 !important;
-    margin-bottom: 20px !important;
-    font-size: 2rem !important; /* 모바일 전용: 제목 크기 더 크게 */
-    letter-spacing: 2px !important;
-    color: #7BE495 !important;
-    text-shadow: 0 0 25px rgba(123, 228, 149, 1), 0 0 50px rgba(123, 228, 149, 0.8) !important; /* 모바일 전용: 더 강한 그림자 */
-    font-weight: 900 !important; /* 모바일 전용: 폰트 굵기 최대 */
-    text-align: center !important; /* 모바일 전용: 제목 중앙 정렬 */
-    text-transform: uppercase !important; /* 모바일 전용: 대문자 */
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-  }
-  
-  /* 모바일에서는 pc-text 숨기고 mobile-text 보이기 */
-  .pc-text {
-    display: none !important;
-  }
-  
-  .mobile-text {
-    display: block !important;
-    line-height: 2.2 !important; /* 모바일 전용: 줄간격 더 증가 */
-    font-size: 1.5rem !important; /* 모바일 전용: 폰트 크기 더 크게 */
-    color: #7BE495 !important;
-    text-shadow: 0 0 20px rgba(123, 228, 149, 1), 0 0 40px rgba(123, 228, 149, 0.8) !important; /* 모바일 전용: 더 강한 그림자 */
-    font-weight: 800 !important; /* 모바일 전용: 폰트 굵기 더 증가 */
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important; /* 모바일 전용: 본문 좌측 정렬 */
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  .mobile-text br:last-of-type {
-    margin-bottom: 32px !important;
-    display: block !important;
-  }
+  /* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
 }
 </style>
       <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
@@ -4907,38 +4853,7 @@ document.addEventListener('DOMContentLoaded', function() {
             backTextOverlay.style.setProperty('border', '3px solid #7BE495', 'important');
             backTextOverlay.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 1)', 'important');
             
-            // 모든 자식 요소도 강제로 보이게 설정
-            const h3 = backTextOverlay.querySelector('h3');
-            const mobileText = backTextOverlay.querySelector('.mobile-text');
-            
-            if (h3) {
-              h3.style.setProperty('opacity', '1', 'important');
-              h3.style.setProperty('visibility', 'visible', 'important');
-              h3.style.setProperty('display', 'block', 'important');
-              h3.style.setProperty('color', '#7BE495', 'important');
-              h3.style.setProperty('font-size', '2rem', 'important');
-              h3.style.setProperty('font-weight', '900', 'important');
-              h3.style.setProperty('text-shadow', '0 0 25px rgba(123, 228, 149, 1), 0 0 50px rgba(123, 228, 149, 0.8)', 'important');
-              h3.style.setProperty('text-align', 'center', 'important');
-              h3.style.setProperty('margin-bottom', '20px', 'important');
-              h3.style.setProperty('letter-spacing', '2px', 'important');
-              console.log('H3 element styled:', h3.textContent);
-            }
-            
-            if (mobileText) {
-              mobileText.style.setProperty('opacity', '1', 'important');
-              mobileText.style.setProperty('visibility', 'visible', 'important');
-              mobileText.style.setProperty('display', 'block', 'important');
-              mobileText.style.setProperty('color', '#7BE495', 'important');
-              mobileText.style.setProperty('font-size', '1.5rem', 'important');
-              mobileText.style.setProperty('font-weight', '800', 'important');
-              mobileText.style.setProperty('text-shadow', '0 0 20px rgba(123, 228, 149, 1), 0 0 40px rgba(123, 228, 149, 0.8)', 'important');
-              mobileText.style.setProperty('line-height', '2.2', 'important');
-              mobileText.style.setProperty('text-align', 'left', 'important');
-              console.log('Mobile text element styled:', mobileText.textContent);
-            }
-            
-            console.log('Mobile text overlay fully styled and visible');
+            console.log('Mobile text overlay container ready (no text content)');
           }
         } else {
           backTextOverlay.style.setProperty('opacity', '0', 'important');
