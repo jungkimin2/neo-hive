@@ -2462,7 +2462,7 @@ html body .core-value-fresh-mobile {
         </svg>
       </div>
       <!-- NEO SMART 카드형 주요 UI -->
-      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 120px;">
+      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 56px;">
         <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
           <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
             <img src="./images/neo98.png" alt="기구 사용법" style="width: 30px; height: 30px;">
@@ -6117,6 +6117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   /* Smart 섹션의 -416px 이동을 고려한 NEOS 카드 위치 조정 */
   #smart .neos-card-list {
+    margin-top: 120px !important; /* 56px + 64px(2칸) = 120px */
     transform: translateX(-25px) translateY(416px) !important; /* Smart 섹션의 -416px를 상쇄 */
     position: relative !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -6183,6 +6184,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // NEOS 카드 최종 위치 조정 - Smart 섹션 이동 고려
       const neosCardList = document.querySelector('#smart .neos-card-list');
       if (neosCardList) {
+        neosCardList.style.setProperty('margin-top', '120px', 'important'); // 56px + 64px(2칸)
         neosCardList.style.setProperty('transform', 'translateX(-25px) translateY(416px)', 'important'); // Smart 섹션 -416px 상쇄
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
