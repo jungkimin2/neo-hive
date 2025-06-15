@@ -2727,6 +2727,11 @@ html body .core-value-fresh-mobile {
     height: 380px !important;
     min-width: 180px;
     position: relative !important;
+    /* 다이어그램만 중앙 정렬 - 상위 코드 영향 차단 */
+    margin: 56px auto 36px auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    -webkit-transform: translateX(-50%) !important;
   }
   .circle-lines {
     width: 340px !important;
@@ -2772,6 +2777,21 @@ html body .core-value-fresh-mobile {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+}
+
+/* 모바일 환경에서 다이어그램만 중앙 정렬 (다른 UI는 건드리지 않음) */
+@media (max-width: 768px) {
+  .circular-flow-container {
+    /* 상위 #smart 섹션의 transform 영향을 무시하고 독립적으로 중앙 정렬 */
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    -webkit-transform: translateX(-50%) !important;
+    z-index: 100 !important;
+    margin: 56px 0 36px 0 !important;
+    width: 90vw !important;
+    max-width: 400px !important;
   }
 }
 </style>
