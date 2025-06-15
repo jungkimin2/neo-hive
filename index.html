@@ -6110,24 +6110,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 환경에서 NEOS 카드만 정확히 2칸 아래로 이동 (인라인 스타일 덮어쓰기) -->
+<!-- 모바일 환경에서 NEOS 카드만 정확히 2칸 아래로 이동 (다른 UI 영향 없음) -->
 <style>
 @media (max-width: 768px) {
-  /* 인라인 스타일보다 높은 우선순위로 강제 적용 */
-  #smart .neos-card-list {
+  /* 매우 구체적인 선택자로 NEOS 카드만 타겟팅 */
+  section#smart div.neos-card-list[style*="display: grid"][style*="grid-template-columns: repeat(4, 1fr)"][style*="margin-top: 56px"] {
     margin-top: 88px !important; /* 56px에서 88px로 변경 (32px 더 아래로) */
     transform: translateX(-25px) translateY(32px) !important; /* 추가로 32px 아래로 */
-    position: relative !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
-    max-width: 90% !important;
-  }
-  
-  /* 더 강력한 선택자로 확실히 적용 */
-  section#smart div[class="neos-card-list"] {
-    margin-top: 88px !important;
-    transform: translateX(-25px) translateY(32px) !important;
     position: relative !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
@@ -6189,25 +6178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // NEOS 카드 인라인 스타일 직접 덮어쓰기로 확실히 2칸 아래로 이동
-      const neosCardList = document.querySelector('#smart .neos-card-list');
+      // NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 (다른 UI 영향 없음)
+      const neosCardList = document.querySelector('section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"]');
       if (neosCardList) {
-        // 인라인 스타일 직접 수정
-        neosCardList.setAttribute('style', 
-          'display: grid; ' +
-          'grid-template-columns: repeat(2, 1fr); ' +
-          'gap: 8px; ' +
-          'justify-items: center; ' +
-          'margin-top: 88px; ' + // 56px에서 88px로 변경 (32px 더 아래로)
-          'transform: translateX(-25px) translateY(32px); ' + // 추가로 32px 아래로
-          'position: relative; ' +
-          'padding: 12px; ' +
-          'max-width: 90%;'
-        );
-        
-        // setProperty로도 추가 보강
-        neosCardList.style.setProperty('margin-top', '88px', 'important');
-        neosCardList.style.setProperty('transform', 'translateX(-25px) translateY(32px)', 'important');
+        neosCardList.style.setProperty('margin-top', '88px', 'important'); // 56px에서 88px로 (32px 더 아래로)
+        neosCardList.style.setProperty('transform', 'translateX(-25px) translateY(32px)', 'important'); // 추가로 32px 아래로
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
         neosCardList.style.setProperty('gap', '8px', 'important');
@@ -6261,71 +6236,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용 + NEOS 카드 특별 감시
+    // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
-      let neosCardChanged = false;
-      
       mutations.forEach(function(mutation) {
         if (mutation.type === 'childList' || mutation.type === 'attributes') {
           shouldReapply = true;
-          
-          // NEOS 카드 관련 변경 감지
-          if (mutation.target && mutation.target.classList && mutation.target.classList.contains('neos-card-list')) {
-            neosCardChanged = true;
-          }
         }
       });
-      
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        
-        // NEOS 카드가 변경되었으면 즉시 재적용
-        if (neosCardChanged) {
-          setTimeout(() => {
-            const neosCardList = document.querySelector('#smart .neos-card-list');
-            if (neosCardList) {
-              neosCardList.setAttribute('style', 
-                'display: grid; ' +
-                'grid-template-columns: repeat(2, 1fr); ' +
-                'gap: 8px; ' +
-                'justify-items: center; ' +
-                'margin-top: 88px; ' +
-                'transform: translateX(-25px) translateY(32px); ' +
-                'position: relative; ' +
-                'padding: 12px; ' +
-                'max-width: 90%;'
-              );
-            }
-          }, 10);
-        }
       }
     });
-    
-    // 추가 보험책: 주기적으로 NEOS 카드 위치 강제 유지
-    setInterval(() => {
-      const neosCardList = document.querySelector('#smart .neos-card-list');
-      if (neosCardList) {
-        const currentMarginTop = neosCardList.style.marginTop;
-        const currentTransform = neosCardList.style.transform;
-        
-        // margin-top이 88px가 아니거나 transform이 올바르지 않으면 재적용
-        if (currentMarginTop !== '88px' || !currentTransform.includes('translateY(32px)')) {
-          neosCardList.setAttribute('style', 
-            'display: grid; ' +
-            'grid-template-columns: repeat(2, 1fr); ' +
-            'gap: 8px; ' +
-            'justify-items: center; ' +
-            'margin-top: 88px; ' +
-            'transform: translateX(-25px) translateY(32px); ' +
-            'position: relative; ' +
-            'padding: 12px; ' +
-            'max-width: 90%;'
-          );
-        }
-      }
-    }, 500); // 0.5초마다 체크
     
     // DOM 감시 시작
     if (document.body) {
