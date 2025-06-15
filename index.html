@@ -5945,12 +5945,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* PC에서는 매우 낮은 z-index로 네비게이션을 절대 가리지 않음 */
+  /* PC에서는 z-index를 1로 설정하여 네비게이션을 절대 가리지 않음 */
   @media (min-width: 769px) {
     .video-phone,
     .neo-smart-video,
     .floating-video {
-      z-index: 10 !important; /* 네비게이션보다 훨씬 낮은 값으로 더 감소 */
+      z-index: 1 !important; /* 최소값으로 설정 */
     }
   }
   
