@@ -4825,7 +4825,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin: 16px 4px 16px 0 !important;
+    margin: 80px 4px 16px 0 !important; /* 16px → 80px로 아래로 2칸(64px) 더 이동 */
     max-width: 90% !important;
     transform: translateX(-25px) !important;
   }
@@ -6157,6 +6157,18 @@ document.addEventListener('DOMContentLoaded', function() {
         neoSmartVideo.style.setProperty('border-radius', '18px', 'important');
         neoSmartVideo.style.setProperty('border', '3px solid #7BE495', 'important');
         neoSmartVideo.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+      }
+      
+      // neos 카드 위치 강제 적용 (모바일 전용 - 아래로 2칸 이동)
+      const neosCardList = document.querySelector('.neos-card-list');
+      if (neosCardList) {
+        neosCardList.style.setProperty('margin-top', '80px', 'important');
+        neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
+        neosCardList.style.setProperty('gap', '8px', 'important');
+        neosCardList.style.setProperty('padding', '12px', 'important');
+        neosCardList.style.setProperty('margin', '80px 4px 16px 0', 'important');
+        neosCardList.style.setProperty('max-width', '90%', 'important');
+        neosCardList.style.setProperty('transform', 'translateX(-25px)', 'important');
       }
     }
     
