@@ -2887,6 +2887,18 @@ html body .core-value-fresh-mobile {
     content: "\A" !important;
     white-space: pre !important;
   }
+  
+  /* 모바일에서 "NEO SMART 도입 시 비용 절감 효과" 텍스트 줄바꿈 */
+  h4[style*="margin-top: 0px"] {
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.3 !important;
+  }
+  
+  h4[style*="margin-top: 0px"] span:first-child::after {
+    content: "\A" !important;
+    white-space: pre !important;
+  }
 }
 </style>
     </div>
