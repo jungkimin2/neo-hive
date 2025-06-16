@@ -2820,13 +2820,14 @@ html body .core-value-fresh-mobile {
   pointer-events: none;
 }
 
-/* 모바일 환경에서 발광효과를 NEO SMART 핵심 흐름 텍스트 중앙으로 이동 */
+/* 모바일 환경에서 발광효과를 다이어그램 정중앙(NEO SMART 핵심 흐름 위치)으로 이동 */
 @media (max-width: 600px) {
   .circular-bg-glow {
-    top: calc(50% + 43px) !important; /* 텍스트와 같은 세로 위치 */
-    left: calc(65% - 5px) !important; /* 텍스트와 같은 가로 위치 */
-    width: 300px !important;
-    height: 300px !important;
+    top: calc(50% + 40px) !important; /* 다이어그램 중앙 */
+    left: calc(65% - 5px) !important; /* 다이어그램 중앙 */
+    width: 400px !important;
+    height: 400px !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
 </style>
