@@ -2735,6 +2735,7 @@ html body .core-value-fresh-mobile {
     min-width: 180px;
     position: relative !important;
     left: -50px !important;
+    top: -40px !important; /* NEO SMART의 핵심 흐름 UI를 2칸 위로 */
   }
   .circle-lines {
     width: 360px !important;
@@ -2743,6 +2744,10 @@ html body .core-value-fresh-mobile {
     top: calc(50% + 10px) !important;
     left: 65% !important;
     transform: translate(-50%, -50%) !important;
+  }
+  /* 4번 다이어그램(SELF 자기주도 운동)을 위로 2칸 이동 */
+  .circle-step:nth-child(4) {
+    top: calc(98% - 40px) !important;
   }
   
   .circle-center-title {
