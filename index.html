@@ -3355,11 +3355,16 @@ html body .core-value-fresh-mobile {
   });
 
   document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
-    // 모바일에서는 초기부터 visible 클래스 추가
+    // 모바일에서는 초기부터 visible 클래스 추가 (benefits 섹션 제외)
     if (window.innerWidth <= 768) {
-      el.classList.add("visible");
-      el.style.opacity = "1";
-      el.style.transform = "none";
+      if (el.id === 'benefits') {
+        // benefits 섹션은 모바일에서도 스크롤 애니메이션 유지
+        observer.observe(el);
+      } else {
+        el.classList.add("visible");
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      }
     } else {
       observer.observe(el);
     }
@@ -4648,11 +4653,11 @@ html body #smart p {
 <style>
 @media (max-width: 768px) {
 /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -5609,6 +5614,22 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: -100px !important;
        position: relative !important;
        z-index: 10 !important;
+       overflow: hidden !important;
+       transform: translateY(0) !important;
+       transition: transform 0.8s ease-out !important;
+     }
+     
+     /* Benefits 섹션 초기 상태 */
+     section#benefits.animate-on-scroll {
+       opacity: 0 !important;
+       transform: translateY(50px) !important;
+       transition: all 0.8s ease-out !important;
+     }
+     
+     /* Benefits 섹션 슬라이드 애니메이션 활성화 */
+     section#benefits.animate-on-scroll.visible {
+       opacity: 1 !important;
+       transform: translateY(0) !important;
      }
      
      section#benefits .container {
