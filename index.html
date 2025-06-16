@@ -2838,19 +2838,19 @@ html body .core-value-fresh-mobile {
   #smart .circular-flow-container .circle-step:nth-child(1) {
     position: absolute !important;
     left: 50% !important;
-    top: 5% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
+    top: 0% !important;
+    transform: translate(-50%, 0%) !important;
+    -webkit-transform: translate(-50%, 0%) !important;
     z-index: 10 !important;
   }
   
-  /* 1번 원 인라인 스타일 강제 덮어쓰기 */
-  #smart .circular-flow-container div.circle-step:nth-child(1)[style] {
+  /* 1번 원 인라인 스타일 강제 덮어쓰기 - 더 구체적인 선택자 */
+  html body #smart .circular-flow-container div.circle-step:nth-child(1)[style*="position"] {
     position: absolute !important;
     left: 50% !important;
-    top: 5% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
+    top: 0% !important;
+    transform: translate(-50%, 0%) !important;
+    -webkit-transform: translate(-50%, 0%) !important;
   }
   
   /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 우상단 */
