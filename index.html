@@ -2875,6 +2875,12 @@ html body .core-value-fresh-mobile {
   .circle-step div[style*="font-size: 0.75rem"] {
     font-size: 0.6rem !important; /* 설명 텍스트 크기 줄임 */
   }
+  
+  /* 모바일에서 "NEO HIVE 도입 시 매출 상승 효과" 텍스트 줄바꿈 */
+  h4[style*="NEO HIVE 도입 시"] span:first-child::after {
+    content: " \A ";
+    white-space: pre;
+  }
 }
 </style>
     </div>
