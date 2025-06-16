@@ -43,8 +43,8 @@
   }
   
   #smart {
-    transform: translateY(-416px) !important;
-    -webkit-transform: translateY(-416px) !important;
+    transform: translateY(-456px) !important;
+    -webkit-transform: translateY(-456px) !important;
     position: relative !important;
   }
 
@@ -2735,6 +2735,7 @@ html body .core-value-fresh-mobile {
     min-width: 180px;
     position: relative !important;
     left: -50px !important;
+    top: -80px !important; /* NEO SMART UI를 4칸 위로 */
   }
   .circle-lines {
     width: 360px !important;
@@ -6302,7 +6303,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-364.8px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-416px)' }
+        { selector: '#smart', transform: 'translateY(-456px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
