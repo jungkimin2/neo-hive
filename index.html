@@ -2818,7 +2818,7 @@ html body .core-value-fresh-mobile {
     width: 130px !important;
     height: 130px !important;
     text-align: center !important;
-    font-size: 1.05rem !important;
+    font-size: 0.9rem !important;
     z-index: 10 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -2842,6 +2842,15 @@ html body .core-value-fresh-mobile {
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
     z-index: 10 !important;
+  }
+  
+  /* 1번 원 인라인 스타일 강제 덮어쓰기 */
+  #smart .circular-flow-container div.circle-step:nth-child(1)[style] {
+    position: absolute !important;
+    left: 50% !important;
+    top: 5% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
   }
   
   /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 우상단 */
