@@ -2985,20 +2985,37 @@ html body .core-value-fresh-mobile {
         padding: 24px 10px 18px 16px !important;
       }
       
-      /* 모바일에서 회색 박스 제거 - 섹션을 4칸 위로 끌어올리기 */
-      #benefits {
-        overflow: hidden !important;
-        margin-top: -120px !important;
-        position: relative !important;
-        z-index: 100 !important;
-        padding-top: 60px !important;
-        background: #000 !important;
+      /* 모바일에서 회색 박스 완전 제거 및 benefits 섹션 최적화 */
+      body {
+        overflow-x: hidden !important;
       }
       
-      /* benefits 섹션의 제목도 추가로 위로 올리기 */
-      #benefits h2 {
-        margin-top: -20px !important;
-        padding-top: 20px !important;
+      /* 모든 이전 섹션들을 완전히 숨기기 */
+      section:not(#benefits),
+      div:not(.container):not(.testimonial-card):not([id*="formModal"]):not([style*="text-align:right"]) {
+        display: none !important;
+      }
+      
+      /* benefits 섹션만 보이도록 강제 설정 */
+      #benefits {
+        position: fixed !important;
+        top: 56px !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: calc(100vh - 56px) !important;
+        z-index: 9999 !important;
+        background: #000 !important;
+        overflow-y: auto !important;
+        padding: 40px 16px !important;
+        margin: 0 !important;
+      }
+      
+      /* 헤더는 유지 */
+      header {
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 10000 !important;
       }
     }
   </style>
