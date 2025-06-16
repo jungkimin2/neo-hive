@@ -2744,6 +2744,7 @@ html body .core-value-fresh-mobile {
     top: calc(50% + 40px) !important; /* 2칸 아래로 */
     left: calc(65% - 5px) !important; /* 좌측으로 0.3칸 */
     transform: translate(-50%, -50%) !important;
+    z-index: 1 !important; /* 점선을 다이어그램들 뒤로 */
   }
   
   .circle-center-title {
@@ -2754,6 +2755,7 @@ html body .core-value-fresh-mobile {
     top: calc(50% + 43px) !important; /* 중앙에서 2칸 더 아래로 */
     left: calc(65% - 5px) !important; /* 좌측으로 0.3칸 */
     transform: translate(-50%, -50%) !important;
+    z-index: 4 !important; /* 중앙 텍스트를 가장 앞으로 */
   }
   /* 2번 다이어그램(이해하기 쉬운 숏폼) - 우측 상단 위치 */
   .circle-step[style*="left: 85%; top: 12%"] {
@@ -2774,6 +2776,7 @@ html body .core-value-fresh-mobile {
   .circle-step {
     width: 100px !important;
     height: 100px !important;
+    z-index: 3 !important; /* 다이어그램들을 점선 앞으로 */
   }
   .circle-step > div[style*="font-weight: bold; color: #fff"] {
     font-size: 0.62rem !important;
