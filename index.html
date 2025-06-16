@@ -2991,11 +2991,49 @@ html body .core-value-fresh-mobile {
     window.scrollTo(0, 0);
   }
   
+  // 모바일에서 z-index 강제 적용
+  if (window.innerWidth <= 600) {
+    const circleLines = document.querySelector('.circle-lines');
+    const circleSteps = document.querySelectorAll('.circle-step');
+    const centerTitle = document.querySelector('.center-title');
+    
+    if (circleLines) {
+      circleLines.style.zIndex = '1';
+    }
+    
+    circleSteps.forEach(step => {
+      step.style.zIndex = '3';
+    });
+    
+    if (centerTitle) {
+      centerTitle.style.zIndex = '4';
+    }
+  }
+  
   // DOMContentLoaded로 더 빠른 초기화
   document.addEventListener('DOMContentLoaded', function() {
     // PC에서만 스크롤 초기화
     if (window.innerWidth > 768) {
       window.scrollTo(0, 0);
+    }
+    
+    // 모바일에서 z-index 강제 적용 (DOM 로드 후)
+    if (window.innerWidth <= 600) {
+      const circleLines = document.querySelector('.circle-lines');
+      const circleSteps = document.querySelectorAll('.circle-step');
+      const centerTitle = document.querySelector('.center-title');
+      
+      if (circleLines) {
+        circleLines.style.zIndex = '1';
+      }
+      
+      circleSteps.forEach(step => {
+        step.style.zIndex = '3';
+      });
+      
+      if (centerTitle) {
+        centerTitle.style.zIndex = '4';
+      }
     }
     
     // 비디오 지연 로딩
@@ -3005,6 +3043,27 @@ html body .core-value-fresh-mobile {
         video.preload = 'metadata';
       });
     }, 1000);
+  });
+  
+  // 윈도우 리사이즈 시에도 z-index 적용
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 600) {
+      const circleLines = document.querySelector('.circle-lines');
+      const circleSteps = document.querySelectorAll('.circle-step');
+      const centerTitle = document.querySelector('.center-title');
+      
+      if (circleLines) {
+        circleLines.style.zIndex = '1';
+      }
+      
+      circleSteps.forEach(step => {
+        step.style.zIndex = '3';
+      });
+      
+      if (centerTitle) {
+        centerTitle.style.zIndex = '4';
+      }
+    }
   });
   
   // PC에서만 스크롤 초기화
