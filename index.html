@@ -3269,7 +3269,7 @@ html body .core-value-fresh-mobile {
             videoPhone.style.left = '50%';
             videoPhone.style.top = '50%';
             videoPhone.style.transform = 'translate(-50%, -50%) rotate(-2deg)';
-            videoPhone.style.zIndex = '10';
+            videoPhone.style.setProperty('z-index', '10', 'important'); // !important로 강제 적용
             videoPhone.style.width = '256px';
             videoPhone.style.height = '512px';
             videoPhone.style.border = '10px solid #7BE495';
@@ -3306,11 +3306,11 @@ html body .core-value-fresh-mobile {
             videoPhone.style.setProperty('box-shadow', 'none', 'important');
             videoPhone.style.setProperty('border-radius', '16px', 'important');
           } else {
-            // PC에서는 일반 스타일 적용 - 비디오는 해당 위치의 z-index에서 -1
+            // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
             videoPhone.style.top = targetPosition.top;
             videoPhone.style.transform = targetPosition.transform;
-            videoPhone.style.zIndex = Math.max(targetPosition.zIndex - 1, 0); // 클릭된 이미지 위치보다 낮게
+            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important'); // !important로 강제 적용
             videoPhone.style.width = '160px';
             videoPhone.style.height = '320px';
             videoPhone.style.border = 'none';
@@ -3339,7 +3339,7 @@ html body .core-value-fresh-mobile {
           targetImg.style.left = '50%';
           targetImg.style.top = '50%';
           targetImg.style.transform = 'translate(-50%, -50%)';
-          targetImg.style.zIndex = '10';
+          targetImg.style.setProperty('z-index', '100', 'important'); // 클릭된 이미지는 항상 가장 앞에
           targetImg.style.width = '256px';
           targetImg.style.height = '512px';
           targetImg.style.border = '6px solid #7BE495';
@@ -3354,28 +3354,28 @@ html body .core-value-fresh-mobile {
     }, 400);
   }
   
-  // 인덱스에 따른 위치 정보 반환 함수
+  // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - CSS nth-of-type과 정확히 일치
+      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
-        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
-        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
-        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
-        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
-        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
+        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
       ];
       return positions[index] || positions[0];
     } else {
-      // PC용 위치
+      // PC용 위치 - CSS nth-of-type(1~6)과 정확히 일치
       const positions = [
-        { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
-        { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
-        { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
-        { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
-        { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
-        { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
+        { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
+        { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },  // nth-of-type(2) - z-index: 2
+        { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
+        { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
+        { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },  // nth-of-type(5) - z-index: 2
+        { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
       ];
       return positions[index] || positions[0];
     }
@@ -3421,7 +3421,7 @@ html body .core-value-fresh-mobile {
        img.style.left = positions.left;
        img.style.top = positions.top;
        img.style.transform = positions.transform;
-       img.style.zIndex = positions.zIndex;
+       img.style.setProperty('z-index', positions.zIndex, 'important'); // !important로 강제 적용
        img.style.width = '160px';
        img.style.height = 'auto';
        img.style.borderRadius = '24px';
