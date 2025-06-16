@@ -2833,58 +2833,75 @@ html body .core-value-fresh-mobile {
     height: 100px !important;
   }
   
-  /* 모바일에서 6개 원들을 2번째 캡처 이미지처럼 번호 순서대로 균등 배치 */
-  /* 1번 원 (NFC 운동 가이드) - 12시 방향 상단 중앙 - 최강 우선순위 */
-  html body #smart .circular-flow-container .circle-step:nth-child(1),
-  html body #smart .circular-flow-container div.circle-step:nth-child(1),
-  #smart .circular-flow-container .circle-step:nth-child(1)[style],
-  #smart .circular-flow-container div.circle-step:nth-child(1)[style] {
+  /* 모바일에서 6개 원들을 캡처 이미지처럼 완벽한 원형 배치 */
+  /* 모든 circle-step 공통 설정 */
+  #smart .circular-flow-container .circle-step,
+  html body #smart .circular-flow-container .circle-step,
+  #smart .circular-flow-container div.circle-step,
+  html body #smart .circular-flow-container div.circle-step {
     position: absolute !important;
-    left: 50% !important;
-    top: 0% !important;
-    transform: translate(-50%, 0%) !important;
-    -webkit-transform: translate(-50%, 0%) !important;
     z-index: 10 !important;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
+    transform-origin: center center !important;
+    width: 100px !important;
+    height: 100px !important;
   }
   
-  /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 우상단 */
-  #smart .circular-flow-container .circle-step:nth-child(2) {
-    left: 85% !important;
-    top: 25% !important;
+  /* 1번 원 (NFC 운동 가이드) - 12시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(1),
+  #smart .circular-flow-container .circle-step:nth-child(1)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(1) {
+    left: 50% !important;
+    top: 8% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 3번 원 (트레이너 시간 절약) - 4시 방향 우하단 */
-  #smart .circular-flow-container .circle-step:nth-child(3) {
-    left: 85% !important;
-    top: 75% !important;
+  /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(2),
+  #smart .circular-flow-container .circle-step:nth-child(2)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(2) {
+    left: 86% !important;
+    top: 30% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 4번 원 (자기 주도 운동) - 6시 방향 하단 중앙 */
-  #smart .circular-flow-container .circle-step:nth-child(4) {
+  /* 3번 원 (트레이너 시간 절약) - 4시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(3),
+  #smart .circular-flow-container .circle-step:nth-child(3)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(3) {
+    left: 86% !important;
+    top: 70% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+  }
+  
+  /* 4번 원 (자기 주도 운동) - 6시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(4),
+  #smart .circular-flow-container .circle-step:nth-child(4)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(4) {
     left: 50% !important;
     top: 92% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 5번 원 (운영 효율 향상) - 8시 방향 좌하단 */
-  #smart .circular-flow-container .circle-step:nth-child(5) {
-    left: 15% !important;
-    top: 75% !important;
+  /* 5번 원 (운영 효율 향상) - 8시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(5),
+  #smart .circular-flow-container .circle-step:nth-child(5)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(5) {
+    left: 14% !important;
+    top: 70% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 6번 원 (매출 증대 효과) - 10시 방향 좌상단 */
-  #smart .circular-flow-container .circle-step:nth-child(6) {
-    left: 15% !important;
-    top: 25% !important;
+  /* 6번 원 (매출 증대 효과) - 10시 방향 */
+  html body #smart .circular-flow-container .circle-step:nth-child(6),
+  #smart .circular-flow-container .circle-step:nth-child(6)[style],
+  #smart .circular-flow-container div.circle-step:nth-child(6) {
+    left: 14% !important;
+    top: 30% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
   }
@@ -6429,18 +6446,30 @@ document.addEventListener('DOMContentLoaded', function() {
         flipper.style.setProperty('position', 'relative', 'important');
       }
       
-      // 모바일에서 1번 원 강제로 12시 방향으로 이동
-      const circleStep1 = document.querySelector('#smart .circular-flow-container .circle-step:nth-child(1)');
-      if (circleStep1) {
-        circleStep1.style.setProperty('position', 'absolute', 'important');
-        circleStep1.style.setProperty('left', '50%', 'important');
-        circleStep1.style.setProperty('top', '0%', 'important');
-        circleStep1.style.setProperty('transform', 'translate(-50%, 0%)', 'important');
-        circleStep1.style.setProperty('-webkit-transform', 'translate(-50%, 0%)', 'important');
-        circleStep1.style.setProperty('z-index', '10', 'important');
-        circleStep1.style.setProperty('margin-top', '0', 'important');
-        circleStep1.style.setProperty('margin-left', '0', 'important');
-      }
+      // 모바일에서 6개 원들을 캡처 이미지처럼 완벽한 원형 배치
+      const circlePositions = [
+        { selector: 1, left: '50%', top: '8%' },   // 12시 방향
+        { selector: 2, left: '86%', top: '30%' },  // 2시 방향
+        { selector: 3, left: '86%', top: '70%' },  // 4시 방향
+        { selector: 4, left: '50%', top: '92%' },  // 6시 방향
+        { selector: 5, left: '14%', top: '70%' },  // 8시 방향
+        { selector: 6, left: '14%', top: '30%' }   // 10시 방향
+      ];
+      
+      circlePositions.forEach(pos => {
+        const circleStep = document.querySelector(`#smart .circular-flow-container .circle-step:nth-child(${pos.selector})`);
+        if (circleStep) {
+          circleStep.style.setProperty('position', 'absolute', 'important');
+          circleStep.style.setProperty('left', pos.left, 'important');
+          circleStep.style.setProperty('top', pos.top, 'important');
+          circleStep.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          circleStep.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+          circleStep.style.setProperty('z-index', '10', 'important');
+          circleStep.style.setProperty('width', '100px', 'important');
+          circleStep.style.setProperty('height', '100px', 'important');
+          circleStep.style.setProperty('margin', '0', 'important');
+        }
+      });
       
       // 텍스트 오버레이 초기 숨김
       const backTextOverlay = document.querySelector('.back-text-overlay');
