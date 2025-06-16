@@ -2789,20 +2789,6 @@ html body .core-value-fresh-mobile {
   filter: blur(80px);
   pointer-events: none;
 }
-
-/* 모바일에서만 점선 원 중앙 정렬 */
-@media (max-width: 768px) {
-  #smart .circular-flow-container .circle-lines {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    width: 340px !important;
-    height: 340px !important;
-    z-index: 1 !important;
-  }
-}
 </style>
     </div>
   </div>
@@ -6371,26 +6357,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 점선 원 중앙 정렬 함수 (안전한 방법)
-    function centerCircleLines() {
-      const circleLines = document.querySelector('#smart .circular-flow-container .circle-lines');
-      if (circleLines) {
-        circleLines.style.setProperty('position', 'absolute', 'important');
-        circleLines.style.setProperty('top', '50%', 'important');
-        circleLines.style.setProperty('left', '50%', 'important');
-        circleLines.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        circleLines.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
-        circleLines.style.setProperty('width', '340px', 'important');
-        circleLines.style.setProperty('height', '340px', 'important');
-        circleLines.style.setProperty('z-index', '1', 'important');
-      }
-    }
-    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
-      centerCircleLines(); // 점선 원 중앙 정렬
       
       // 페이지 표시
       setTimeout(() => {
@@ -6420,7 +6390,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        centerCircleLines(); // 점선 원 중앙 정렬
       }
     });
     
