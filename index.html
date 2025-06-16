@@ -2832,6 +2832,40 @@ html body .core-value-fresh-mobile {
     height: 400px !important;
     transform: translate(-50%, -50%) !important;
   }
+  
+  /* 모바일에서 투명도 겹치기 효과 적용 - dotted lines는 뒤로, 다이어그램 circles는 앞으로 */
+  .circle-lines {
+    z-index: 1 !important; /* 점선 원은 배경으로 */
+  }
+  
+  .circle-step {
+    z-index: 3 !important; /* 다이어그램 원들은 앞으로 */
+  }
+  
+  .center-title {
+    z-index: 4 !important; /* 중앙 텍스트는 최상단 */
+    top: calc(50% + 43px) !important; /* 중앙 텍스트 위치 */
+    left: calc(65% - 5px) !important;
+  }
+  
+  /* 다이어그램 원들 모바일 위치 조정 */
+  .circle-step[style*="left: 85%; top: 12%"],
+  .circle-step[style*="left: 15%; top: 12%"] {
+    top: calc(12% + 30px) !important; /* 2번째, 6번째 다이어그램 */
+  }
+  
+  .circle-step[style*="left: 85%; top: 68%"],
+  .circle-step[style*="left: 15%; top: 68%"] {
+    top: calc(68% + 15px) !important; /* 3번째, 5번째 다이어그램 */
+  }
+  
+  /* circle-lines 모바일 위치 조정 */
+  .circle-lines {
+    top: calc(50% + 40px) !important;
+    left: calc(65% - 5px) !important;
+    width: 400px !important;
+    height: 400px !important;
+  }
 }
 </style>
     </div>
