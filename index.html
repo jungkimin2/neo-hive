@@ -2425,13 +2425,6 @@ html body .core-value-fresh-mobile {
         <!-- SVG circle visually connecting the steps -->
         <svg class="circle-lines" viewBox="0 0 580 580" width="580" height="580" style="position:absolute; top:0; left:0; z-index:0;">
           <circle cx="290" cy="290" r="235" fill="none" stroke="#7BE495" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="6,6"/>
-          <!-- 연결선들: 중앙에서 각 다이어그램으로 -->
-          <line x1="290" y1="290" x2="290" y2="55" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
-          <line x1="290" y1="290" x2="480" y2="145" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
-          <line x1="290" y1="290" x2="480" y2="435" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
-          <line x1="290" y1="290" x2="290" y2="525" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
-          <line x1="290" y1="290" x2="100" y2="435" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
-          <line x1="290" y1="290" x2="100" y2="145" stroke="#7BE495" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4"/>
         </svg>
       </div>
       <!-- NEO SMART 카드형 주요 UI -->
@@ -2737,14 +2730,56 @@ html body .core-value-fresh-mobile {
     left: -50px !important;
   }
   .circle-lines {
-    width: 320px !important;
-    height: 320px !important;
+    width: 280px !important;
+    height: 280px !important;
     position: absolute !important;
-    top: calc(50% + 10px) !important;
-    left: calc(50% + 50px) !important;
+    top: 50% !important;
+    left: 50% !important;
     transform: translate(-50%, -50%) !important;
   }
-
+  .circle-lines::before,
+  .circle-lines::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed #7BE495;
+    opacity: 0.6;
+  }
+  .circle-lines::before {
+    width: 200px;
+    height: 0;
+    transform: translate(-50%, -50%) rotate(30deg);
+  }
+  .circle-lines::after {
+    width: 200px;
+    height: 0;
+    transform: translate(-50%, -50%) rotate(-30deg);
+  }
+  .connecting-line-1,
+  .connecting-line-2,
+  .connecting-line-3,
+  .connecting-line-4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed #7BE495;
+    opacity: 0.6;
+    width: 200px;
+    height: 0;
+  }
+  .connecting-line-1 {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .connecting-line-2 {
+    transform: translate(-50%, -50%) rotate(150deg);
+  }
+  .connecting-line-3 {
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+  .connecting-line-4 {
+    transform: translate(-50%, -50%) rotate(-150deg);
+  }
   .circle-center-title {
     width: 130px;
     font-size: 1.05rem;
