@@ -2781,8 +2781,7 @@ html body .core-value-fresh-mobile {
 }
 
 /* 모바일 환경에서만 다이어그램 중앙 정렬 (PC 환경 완전 보호) */
-@media screen and (max-width: 768px) and (orientation: portrait),
-       screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (max-width: 768px) {
   
   /* 모바일에서만 다이어그램 컨테이너 중앙 정렬 */
   #smart .circular-flow-container {
@@ -2834,21 +2833,31 @@ html body .core-value-fresh-mobile {
   }
   
   /* 모바일에서 6개 원들을 캡처 이미지처럼 완벽한 원형 배치 */
-  /* 모든 circle-step 공통 설정 */
+  /* 모든 circle-step 공통 설정 - 인라인 스타일 완전 무력화 */
+  html body section#smart .circular-flow-container .circle-step[style],
+  html body section#smart .circular-flow-container div.circle-step[style],
+  html body #smart .circular-flow-container .circle-step[style],
+  html body #smart .circular-flow-container div.circle-step[style],
+  section#smart .circular-flow-container .circle-step,
+  section#smart .circular-flow-container div.circle-step,
   #smart .circular-flow-container .circle-step,
-  html body #smart .circular-flow-container .circle-step,
-  #smart .circular-flow-container div.circle-step,
-  html body #smart .circular-flow-container div.circle-step {
+  #smart .circular-flow-container div.circle-step {
     position: absolute !important;
     z-index: 10 !important;
     transform-origin: center center !important;
     width: 100px !important;
     height: 100px !important;
+    margin: 0 !important;
+    display: flex !important;
   }
   
-  /* 1번 원 (NFC 운동 가이드) - 12시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(1),
-  #smart .circular-flow-container .circle-step:nth-child(1)[style],
+  /* 강력한 우선순위로 모든 원 위치 강제 설정 */
+  html body section#smart .circular-flow-container .circle-step:nth-child(1)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(1)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(1)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(1)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(1),
+  #smart .circular-flow-container .circle-step:nth-child(1),
   #smart .circular-flow-container div.circle-step:nth-child(1) {
     left: 50% !important;
     top: 8% !important;
@@ -2856,9 +2865,12 @@ html body .core-value-fresh-mobile {
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(2),
-  #smart .circular-flow-container .circle-step:nth-child(2)[style],
+  html body section#smart .circular-flow-container .circle-step:nth-child(2)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(2)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(2)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(2)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(2),
+  #smart .circular-flow-container .circle-step:nth-child(2),
   #smart .circular-flow-container div.circle-step:nth-child(2) {
     left: 86% !important;
     top: 30% !important;
@@ -2866,9 +2878,12 @@ html body .core-value-fresh-mobile {
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 3번 원 (트레이너 시간 절약) - 4시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(3),
-  #smart .circular-flow-container .circle-step:nth-child(3)[style],
+  html body section#smart .circular-flow-container .circle-step:nth-child(3)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(3)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(3)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(3)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(3),
+  #smart .circular-flow-container .circle-step:nth-child(3),
   #smart .circular-flow-container div.circle-step:nth-child(3) {
     left: 86% !important;
     top: 70% !important;
@@ -2876,9 +2891,12 @@ html body .core-value-fresh-mobile {
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 4번 원 (자기 주도 운동) - 6시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(4),
-  #smart .circular-flow-container .circle-step:nth-child(4)[style],
+  html body section#smart .circular-flow-container .circle-step:nth-child(4)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(4)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(4)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(4)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(4),
+  #smart .circular-flow-container .circle-step:nth-child(4),
   #smart .circular-flow-container div.circle-step:nth-child(4) {
     left: 50% !important;
     top: 92% !important;
@@ -2886,9 +2904,12 @@ html body .core-value-fresh-mobile {
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 5번 원 (운영 효율 향상) - 8시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(5),
-  #smart .circular-flow-container .circle-step:nth-child(5)[style],
+  html body section#smart .circular-flow-container .circle-step:nth-child(5)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(5)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(5)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(5)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(5),
+  #smart .circular-flow-container .circle-step:nth-child(5),
   #smart .circular-flow-container div.circle-step:nth-child(5) {
     left: 14% !important;
     top: 70% !important;
@@ -2896,14 +2917,30 @@ html body .core-value-fresh-mobile {
     -webkit-transform: translate(-50%, -50%) !important;
   }
   
-  /* 6번 원 (매출 증대 효과) - 10시 방향 */
-  html body #smart .circular-flow-container .circle-step:nth-child(6),
-  #smart .circular-flow-container .circle-step:nth-child(6)[style],
+  html body section#smart .circular-flow-container .circle-step:nth-child(6)[style*="position"],
+  html body section#smart .circular-flow-container div.circle-step:nth-child(6)[style*="position"],
+  html body #smart .circular-flow-container .circle-step:nth-child(6)[style],
+  html body #smart .circular-flow-container div.circle-step:nth-child(6)[style],
+  section#smart .circular-flow-container .circle-step:nth-child(6),
+  #smart .circular-flow-container .circle-step:nth-child(6),
   #smart .circular-flow-container div.circle-step:nth-child(6) {
     left: 14% !important;
     top: 30% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
+  }
+  
+  /* JavaScript로 추가된 클래스에 대한 최고 우선순위 스타일 */
+  .mobile-circle-positioned {
+    position: absolute !important;
+    z-index: 10 !important;
+    width: 100px !important;
+    height: 100px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 </style>
@@ -6459,6 +6496,11 @@ document.addEventListener('DOMContentLoaded', function() {
       circlePositions.forEach(pos => {
         const circleStep = document.querySelector(`#smart .circular-flow-container .circle-step:nth-child(${pos.selector})`);
         if (circleStep) {
+          // 인라인 스타일 완전 제거
+          circleStep.removeAttribute('style');
+          
+          // 새로운 스타일 강제 적용
+          circleStep.style.cssText = '';
           circleStep.style.setProperty('position', 'absolute', 'important');
           circleStep.style.setProperty('left', pos.left, 'important');
           circleStep.style.setProperty('top', pos.top, 'important');
@@ -6468,6 +6510,13 @@ document.addEventListener('DOMContentLoaded', function() {
           circleStep.style.setProperty('width', '100px', 'important');
           circleStep.style.setProperty('height', '100px', 'important');
           circleStep.style.setProperty('margin', '0', 'important');
+          circleStep.style.setProperty('display', 'flex', 'important');
+          circleStep.style.setProperty('flex-direction', 'column', 'important');
+          circleStep.style.setProperty('align-items', 'center', 'important');
+          circleStep.style.setProperty('justify-content', 'center', 'important');
+          
+          // 클래스 추가로 CSS 우선순위 강화
+          circleStep.classList.add('mobile-circle-positioned');
         }
       });
       
@@ -6536,6 +6585,55 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
+    // 원 위치 강제 설정 함수를 별도로 실행
+    function forceCirclePositions() {
+      const circlePositions = [
+        { selector: 1, left: '50%', top: '8%' },   // 12시 방향
+        { selector: 2, left: '86%', top: '30%' },  // 2시 방향
+        { selector: 3, left: '86%', top: '70%' },  // 4시 방향
+        { selector: 4, left: '50%', top: '92%' },  // 6시 방향
+        { selector: 5, left: '14%', top: '70%' },  // 8시 방향
+        { selector: 6, left: '14%', top: '30%' }   // 10시 방향
+      ];
+      
+      circlePositions.forEach(pos => {
+        const circleStep = document.querySelector(`#smart .circular-flow-container .circle-step:nth-child(${pos.selector})`);
+        if (circleStep) {
+          // 인라인 스타일 완전 제거
+          circleStep.removeAttribute('style');
+          
+          // 새로운 스타일 강제 적용
+          circleStep.style.cssText = '';
+          circleStep.style.setProperty('position', 'absolute', 'important');
+          circleStep.style.setProperty('left', pos.left, 'important');
+          circleStep.style.setProperty('top', pos.top, 'important');
+          circleStep.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          circleStep.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+          circleStep.style.setProperty('z-index', '10', 'important');
+          circleStep.style.setProperty('width', '100px', 'important');
+          circleStep.style.setProperty('height', '100px', 'important');
+          circleStep.style.setProperty('margin', '0', 'important');
+          circleStep.style.setProperty('display', 'flex', 'important');
+          circleStep.style.setProperty('flex-direction', 'column', 'important');
+          circleStep.style.setProperty('align-items', 'center', 'important');
+          circleStep.style.setProperty('justify-content', 'center', 'important');
+          
+          // 클래스 추가로 CSS 우선순위 강화
+          circleStep.classList.add('mobile-circle-positioned');
+        }
+      });
+    }
+    
+    // 원 위치 반복 강제 설정 (1초마다 5번)
+    let circleForceCount = 0;
+    const circleForceInterval = setInterval(() => {
+      forceCirclePositions();
+      circleForceCount++;
+      if (circleForceCount >= 5) {
+        clearInterval(circleForceInterval);
+      }
+    }, 1000);
+    
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
@@ -6547,6 +6645,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
+        forceCirclePositions(); // 원 위치도 재적용
       }
     });
     
