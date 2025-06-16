@@ -2836,10 +2836,12 @@ html body .core-value-fresh-mobile {
   /* 모바일에서 6개 원들을 2번째 캡처 이미지처럼 번호 순서대로 균등 배치 */
   /* 1번 원 (NFC 운동 가이드) - 12시 방향 상단 중앙 */
   #smart .circular-flow-container .circle-step:nth-child(1) {
+    position: absolute !important;
     left: 50% !important;
-    top: 8% !important;
+    top: 5% !important;
     transform: translate(-50%, -50%) !important;
     -webkit-transform: translate(-50%, -50%) !important;
+    z-index: 10 !important;
   }
   
   /* 2번 원 (이해하기 쉬운 숏폼) - 2시 방향 우상단 */
