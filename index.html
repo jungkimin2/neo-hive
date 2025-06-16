@@ -2734,14 +2734,45 @@ html body .core-value-fresh-mobile {
     height: 380px !important;
     min-width: 180px;
     position: relative !important;
-    left: -50px !important;
+    left: 0px !important;
   }
   .circle-lines {
-    width: 280px !important;
-    height: 280px !important;
+    width: 320px !important;
+    height: 320px !important;
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  /* 6개 다이어그램 균등 배치 */
+  .circle-step:nth-child(1) {
+    left: 50% !important;
+    top: 15% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .circle-step:nth-child(2) {
+    left: 80% !important;
+    top: 35% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .circle-step:nth-child(3) {
+    left: 80% !important;
+    top: 65% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .circle-step:nth-child(4) {
+    left: 50% !important;
+    top: 85% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .circle-step:nth-child(5) {
+    left: 20% !important;
+    top: 65% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .circle-step:nth-child(6) {
+    left: 20% !important;
+    top: 35% !important;
     transform: translate(-50%, -50%) !important;
   }
   
