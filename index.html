@@ -272,7 +272,7 @@ pointer-events: auto !important;
   hr {
     display: none !important;
   }
-  body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #0A0A0A; }
+  body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #000; }
   /* PC 환경에서만 적용되는 header 스타일 */
   @media screen and (min-width: 769px) {
     header {
@@ -5711,6 +5711,7 @@ document.addEventListener('DOMContentLoaded', function() {
      html, body {
        position: relative !important;
        overflow-x: hidden !important;
+       background: #000 !important;
      }
      
      /* PC 네비게이션 숨김 */
@@ -5799,6 +5800,26 @@ document.addEventListener('DOMContentLoaded', function() {
            /* 첫 번째 섹션 상단 여백 조정 */
       #hive.section {
         padding-top: 0 !important;
+      }
+      
+      /* 모든 섹션 간 여백 제거 */
+      .section {
+        margin: 0 !important;
+        background: #000 !important;
+      }
+      
+      /* 전체 컨테이너 배경 강제 설정 */
+      #scrollable-content {
+        background: #000 !important;
+      }
+      
+      /* 모든 가능한 회색 배경을 검은색으로 강제 변경 */
+      * {
+        background-color: transparent !important;
+      }
+      
+      html, body, .section, #scrollable-content {
+        background-color: #000 !important;
       }
       
 
