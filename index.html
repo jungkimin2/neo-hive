@@ -2819,6 +2819,16 @@ html body .core-value-fresh-mobile {
   filter: blur(80px);
   pointer-events: none;
 }
+
+/* 모바일 환경에서 발광효과를 NEO SMART 핵심 흐름 텍스트 중앙으로 이동 */
+@media (max-width: 600px) {
+  .circular-bg-glow {
+    top: calc(50% + 43px) !important; /* 텍스트와 같은 세로 위치 */
+    left: calc(65% - 5px) !important; /* 텍스트와 같은 가로 위치 */
+    width: 300px !important;
+    height: 300px !important;
+  }
+}
 </style>
     </div>
   </div>
