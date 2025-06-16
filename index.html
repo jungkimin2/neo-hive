@@ -3337,11 +3337,11 @@ html body .core-value-fresh-mobile {
             videoPhone.style.setProperty('box-shadow', 'none', 'important');
             videoPhone.style.setProperty('border-radius', '16px', 'important');
           } else {
-            // PC에서는 일반 스타일 적용
+            // PC에서는 일반 스타일 적용 - 비디오는 항상 가장 낮은 z-index
             videoPhone.style.left = targetPosition.left;
             videoPhone.style.top = targetPosition.top;
             videoPhone.style.transform = targetPosition.transform;
-            videoPhone.style.zIndex = targetPosition.zIndex;
+            videoPhone.style.zIndex = '0'; // 항상 가장 뒤로 배치
             videoPhone.style.width = '160px';
             videoPhone.style.height = '320px';
             videoPhone.style.border = 'none';
@@ -3388,25 +3388,25 @@ html body .core-value-fresh-mobile {
   // 인덱스에 따른 위치 정보 반환 함수
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - CSS nth-of-type과 정확히 일치
+      // 모바일용 위치 - HTML 순서에 맞춰 수정 (좌측 3개: 0,1,2 / 우측 3개: 3,4,5)
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // 1번
-        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // 2번
-        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // 3번
-        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // 4번
-        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // 5번
-        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // 6번
+        { left: '50%', top: '60%', transform: 'translate(-200%, -50%) scale(0.95)', zIndex: 3 }, // neohive6.png (좌측 첫 번째)
+        { left: '50%', top: '60%', transform: 'translate(-250%, -50%) scale(0.9)', zIndex: 2 },  // neohive9.png (좌측 두 번째)
+        { left: '50%', top: '60%', transform: 'translate(-300%, -50%) scale(0.85)', zIndex: 1 }, // neohive5.png (좌측 세 번째)
+        { left: '50%', top: '60%', transform: 'translate(100%, -50%) scale(0.95)', zIndex: 3 },  // neohive4.png (우측 첫 번째)
+        { left: '50%', top: '60%', transform: 'translate(150%, -50%) scale(0.9)', zIndex: 2 },  // neohive7.png (우측 두 번째)
+        { left: '50%', top: '60%', transform: 'translate(200%, -50%) scale(0.85)', zIndex: 1 }  // neohive8.png (우측 세 번째)
       ];
       return positions[index] || positions[0];
     } else {
-      // PC용 위치
+      // PC용 위치 - HTML 순서에 맞춰 수정
       const positions = [
-        { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 },
-        { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },
-        { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 },
-        { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },
-        { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },
-        { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }
+        { left: '50%', top: '55%', transform: 'translate(-200%, -60%) scale(0.95)', zIndex: 3 }, // neohive6.png (좌측 첫 번째)
+        { left: '50%', top: '55%', transform: 'translate(-250%, -60%) scale(0.9)', zIndex: 2 },  // neohive9.png (좌측 두 번째)
+        { left: '50%', top: '55%', transform: 'translate(-300%, -60%) scale(0.85)', zIndex: 1 }, // neohive5.png (좌측 세 번째)
+        { left: '50%', top: '55%', transform: 'translate(100%, -60%) scale(0.95)', zIndex: 3 },  // neohive4.png (우측 첫 번째)
+        { left: '50%', top: '55%', transform: 'translate(150%, -60%) scale(0.9)', zIndex: 2 },  // neohive7.png (우측 두 번째)
+        { left: '50%', top: '55%', transform: 'translate(200%, -60%) scale(0.85)', zIndex: 1 }  // neohive8.png (우측 세 번째)
       ];
       return positions[index] || positions[0];
     }
