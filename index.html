@@ -3306,11 +3306,11 @@ html body .core-value-fresh-mobile {
             videoPhone.style.setProperty('box-shadow', 'none', 'important');
             videoPhone.style.setProperty('border-radius', '16px', 'important');
           } else {
-            // PC에서는 일반 스타일 적용
+            // PC에서는 일반 스타일 적용 - 비디오는 해당 위치의 z-index에서 -1
             videoPhone.style.left = targetPosition.left;
             videoPhone.style.top = targetPosition.top;
             videoPhone.style.transform = targetPosition.transform;
-            videoPhone.style.zIndex = targetPosition.zIndex;
+            videoPhone.style.zIndex = Math.max(targetPosition.zIndex - 1, 0); // 클릭된 이미지 위치보다 낮게
             videoPhone.style.width = '160px';
             videoPhone.style.height = '320px';
             videoPhone.style.border = 'none';
