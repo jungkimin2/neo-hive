@@ -2875,6 +2875,21 @@ html body .core-value-fresh-mobile {
   .circle-step div[style*="font-size: 0.75rem"] {
     font-size: 0.6rem !important; /* 설명 텍스트 크기 줄임 */
   }
+  
+  /* 모바일에서 중앙 원의 배경색을 완전한 검정색으로 변경하여 점선 완전히 숨김 */
+  .circle-center-title {
+    background: #000 !important;
+    background-color: #000 !important;
+    backdrop-filter: none !important;
+    border-radius: 50% !important;
+  }
+  
+  /* 모바일에서만 6개 다이어그램 원들의 배경을 완전 불투명하게 변경 */
+  .circle-step {
+    background: rgba(0, 0, 0, 0.98) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
 }
 </style>
     </div>
