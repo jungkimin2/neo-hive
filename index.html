@@ -2727,11 +2727,6 @@ html body .core-value-fresh-mobile {
     height: 380px !important;
     min-width: 180px;
     position: relative !important;
-    /* 다이어그램만 중앙 정렬 - 상위 코드 영향 차단 */
-    margin: 56px auto 36px auto !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform: translateX(-50%) !important;
   }
   .circle-lines {
     width: 340px !important;
@@ -2779,176 +2774,6 @@ html body .core-value-fresh-mobile {
     justify-content: center !important;
   }
 }
-
-/* 모바일 환경에서만 다이어그램 중앙 정렬 (PC 환경 완전 보호) */
-@media screen and (max-width: 768px) {
-  
-  /* 모바일에서만 다이어그램 컨테이너 중앙 정렬 */
-  #smart .circular-flow-container {
-    position: relative !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform: translateX(-50%) !important;
-    z-index: 100 !important;
-    margin: 56px 0 36px 0 !important;
-    width: 90vw !important;
-    max-width: 400px !important;
-    height: 400px !important;
-  }
-  
-  /* 모바일에서만 중앙 점선 원 정렬 - 강력한 중앙 정렬 */
-  html body section#smart .circular-flow-container .circle-lines,
-  html body #smart .circular-flow-container .circle-lines,
-  section#smart .circular-flow-container .circle-lines,
-  #smart .circular-flow-container .circle-lines,
-  #smart .circular-flow-container svg.circle-lines {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    width: 340px !important;
-    height: 340px !important;
-    z-index: 1 !important;
-    margin: 0 !important;
-  }
-  
-  /* 모바일에서만 중앙 타이틀 정렬 */
-  #smart .circular-flow-container .circle-center-title {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    width: 130px !important;
-    height: 130px !important;
-    text-align: center !important;
-    font-size: 0.9rem !important;
-    z-index: 10 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    line-height: 1.3 !important;
-  }
-  
-  /* 모바일에서만 단계 원들 크기 조정 */
-  #smart .circular-flow-container .circle-step {
-    width: 100px !important;
-    height: 100px !important;
-  }
-  
-  /* 모바일에서 6개 원들을 캡처 이미지처럼 완벽한 원형 배치 */
-  /* 모든 circle-step 공통 설정 - 인라인 스타일 완전 무력화 */
-  html body section#smart .circular-flow-container .circle-step[style],
-  html body section#smart .circular-flow-container div.circle-step[style],
-  html body #smart .circular-flow-container .circle-step[style],
-  html body #smart .circular-flow-container div.circle-step[style],
-  section#smart .circular-flow-container .circle-step,
-  section#smart .circular-flow-container div.circle-step,
-  #smart .circular-flow-container .circle-step,
-  #smart .circular-flow-container div.circle-step {
-    position: absolute !important;
-    z-index: 10 !important;
-    transform-origin: center center !important;
-    width: 100px !important;
-    height: 100px !important;
-    margin: 0 !important;
-    display: flex !important;
-  }
-  
-  /* 강력한 우선순위로 모든 원 위치 강제 설정 */
-  html body section#smart .circular-flow-container .circle-step:nth-child(1)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(1)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(1)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(1)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(1),
-  #smart .circular-flow-container .circle-step:nth-child(1),
-  #smart .circular-flow-container div.circle-step:nth-child(1) {
-    left: 50% !important;
-    top: 8% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  html body section#smart .circular-flow-container .circle-step:nth-child(2)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(2)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(2)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(2)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(2),
-  #smart .circular-flow-container .circle-step:nth-child(2),
-  #smart .circular-flow-container div.circle-step:nth-child(2) {
-    left: 86% !important;
-    top: 30% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  html body section#smart .circular-flow-container .circle-step:nth-child(3)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(3)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(3)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(3)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(3),
-  #smart .circular-flow-container .circle-step:nth-child(3),
-  #smart .circular-flow-container div.circle-step:nth-child(3) {
-    left: 86% !important;
-    top: 70% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  html body section#smart .circular-flow-container .circle-step:nth-child(4)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(4)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(4)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(4)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(4),
-  #smart .circular-flow-container .circle-step:nth-child(4),
-  #smart .circular-flow-container div.circle-step:nth-child(4) {
-    left: 50% !important;
-    top: 92% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  html body section#smart .circular-flow-container .circle-step:nth-child(5)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(5)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(5)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(5)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(5),
-  #smart .circular-flow-container .circle-step:nth-child(5),
-  #smart .circular-flow-container div.circle-step:nth-child(5) {
-    left: 14% !important;
-    top: 70% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  html body section#smart .circular-flow-container .circle-step:nth-child(6)[style*="position"],
-  html body section#smart .circular-flow-container div.circle-step:nth-child(6)[style*="position"],
-  html body #smart .circular-flow-container .circle-step:nth-child(6)[style],
-  html body #smart .circular-flow-container div.circle-step:nth-child(6)[style],
-  section#smart .circular-flow-container .circle-step:nth-child(6),
-  #smart .circular-flow-container .circle-step:nth-child(6),
-  #smart .circular-flow-container div.circle-step:nth-child(6) {
-    left: 14% !important;
-    top: 30% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-  }
-  
-  /* JavaScript로 추가된 클래스에 대한 최고 우선순위 스타일 */
-  .mobile-circle-positioned {
-    position: absolute !important;
-    z-index: 10 !important;
-    width: 100px !important;
-    height: 100px !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-}
 </style>
 <style>
 .circular-bg-glow {
@@ -2963,6 +2788,20 @@ html body .core-value-fresh-mobile {
   z-index: 0;
   filter: blur(80px);
   pointer-events: none;
+}
+
+/* 모바일에서만 점선 원 중앙 정렬 */
+@media (max-width: 768px) {
+  #smart .circular-flow-container .circle-lines {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    width: 340px !important;
+    height: 340px !important;
+    z-index: 1 !important;
+  }
 }
 </style>
     </div>
@@ -6489,21 +6328,6 @@ document.addEventListener('DOMContentLoaded', function() {
         flipper.style.setProperty('position', 'relative', 'important');
       }
       
-      // 모바일에서 6개 원들의 위치는 그대로 유지 (수정하지 않음)
-      // 점선 원만 중앙 정렬 강제 적용
-      const circleLines = document.querySelector('#smart .circular-flow-container .circle-lines');
-      if (circleLines) {
-        circleLines.style.setProperty('position', 'absolute', 'important');
-        circleLines.style.setProperty('top', '50%', 'important');
-        circleLines.style.setProperty('left', '50%', 'important');
-        circleLines.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-        circleLines.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
-        circleLines.style.setProperty('width', '340px', 'important');
-        circleLines.style.setProperty('height', '340px', 'important');
-        circleLines.style.setProperty('z-index', '1', 'important');
-        circleLines.style.setProperty('margin', '0', 'important');
-      }
-      
       // 텍스트 오버레이 초기 숨김
       const backTextOverlay = document.querySelector('.back-text-overlay');
       if (backTextOverlay) {
@@ -6547,10 +6371,26 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 점선 원 중앙 정렬 함수 (안전한 방법)
+    function centerCircleLines() {
+      const circleLines = document.querySelector('#smart .circular-flow-container .circle-lines');
+      if (circleLines) {
+        circleLines.style.setProperty('position', 'absolute', 'important');
+        circleLines.style.setProperty('top', '50%', 'important');
+        circleLines.style.setProperty('left', '50%', 'important');
+        circleLines.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        circleLines.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
+        circleLines.style.setProperty('width', '340px', 'important');
+        circleLines.style.setProperty('height', '340px', 'important');
+        circleLines.style.setProperty('z-index', '1', 'important');
+      }
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
+      centerCircleLines(); // 점선 원 중앙 정렬
       
       // 페이지 표시
       setTimeout(() => {
@@ -6569,69 +6409,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // 원 위치 강제 설정 함수를 별도로 실행
-    function forceCirclePositions() {
-      const circlePositions = [
-        { selector: 1, left: '50%', top: '8%' },   // 12시 방향
-        { selector: 2, left: '86%', top: '30%' },  // 2시 방향
-        { selector: 3, left: '86%', top: '70%' },  // 4시 방향
-        { selector: 4, left: '50%', top: '92%' },  // 6시 방향
-        { selector: 5, left: '14%', top: '70%' },  // 8시 방향
-        { selector: 6, left: '14%', top: '30%' }   // 10시 방향
-      ];
-      
-      circlePositions.forEach(pos => {
-        const circleStep = document.querySelector(`#smart .circular-flow-container .circle-step:nth-child(${pos.selector})`);
-        if (circleStep) {
-          // 인라인 스타일 완전 제거
-          circleStep.removeAttribute('style');
-          
-          // 새로운 스타일 강제 적용
-          circleStep.style.cssText = '';
-          circleStep.style.setProperty('position', 'absolute', 'important');
-          circleStep.style.setProperty('left', pos.left, 'important');
-          circleStep.style.setProperty('top', pos.top, 'important');
-          circleStep.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-          circleStep.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
-          circleStep.style.setProperty('z-index', '10', 'important');
-          circleStep.style.setProperty('width', '100px', 'important');
-          circleStep.style.setProperty('height', '100px', 'important');
-          circleStep.style.setProperty('margin', '0', 'important');
-          circleStep.style.setProperty('display', 'flex', 'important');
-          circleStep.style.setProperty('flex-direction', 'column', 'important');
-          circleStep.style.setProperty('align-items', 'center', 'important');
-          circleStep.style.setProperty('justify-content', 'center', 'important');
-          
-                     // 클래스 추가로 CSS 우선순위 강화
-           circleStep.classList.add('mobile-circle-positioned');
-         }
-       });
-       
-       // 점선 원 중앙 정렬 강제 적용
-       const circleLines = document.querySelector('#smart .circular-flow-container .circle-lines');
-       if (circleLines) {
-         circleLines.style.setProperty('position', 'absolute', 'important');
-         circleLines.style.setProperty('top', '50%', 'important');
-         circleLines.style.setProperty('left', '50%', 'important');
-         circleLines.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-         circleLines.style.setProperty('-webkit-transform', 'translate(-50%, -50%)', 'important');
-         circleLines.style.setProperty('width', '340px', 'important');
-         circleLines.style.setProperty('height', '340px', 'important');
-         circleLines.style.setProperty('z-index', '1', 'important');
-         circleLines.style.setProperty('margin', '0', 'important');
-       }
-     }
-    
-    // 원 위치 반복 강제 설정 (1초마다 5번)
-    let circleForceCount = 0;
-    const circleForceInterval = setInterval(() => {
-      forceCirclePositions();
-      circleForceCount++;
-      if (circleForceCount >= 5) {
-        clearInterval(circleForceInterval);
-      }
-    }, 1000);
-    
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
@@ -6643,7 +6420,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        forceCirclePositions(); // 점선 원 중앙 정렬 재적용
+        centerCircleLines(); // 점선 원 중앙 정렬
       }
     });
     
