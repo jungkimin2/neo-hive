@@ -2908,7 +2908,7 @@ html body .core-value-fresh-mobile {
   /* 모바일에서 김포 바키짐 라벨과 제목 사이 간격 조정 */
   h4[style*="margin-top: 24px"] {
     margin-bottom: 20px !important;
-    margin-top: 8px !important; /* NEO HIVE 도입 시 문구를 박스 내에서 한 칸 위로 */
+    margin-top: -8px !important; /* NEO HIVE 도입 시 문구를 박스 내에서 더 위로 */
   }
 }
 </style>
@@ -5286,6 +5286,15 @@ document.addEventListener('DOMContentLoaded', function() {
   span[style*="김포 지역 타센터"] {
     font-size: 0.75rem !important;
     padding: 4px 12px !important;
+  }
+  
+  /* 모바일에서 라벨을 좌측 정렬로 변경 (박스 크기에 영향 없음) */
+  @media (max-width: 768px) {
+    div[style*="position: absolute"][style*="top: -12px"] {
+      left: 16px !important;
+      transform: none !important;
+      right: auto !important;
+    }
   }
   
   /* 비교 박스 내부 텍스트 크기 조정 */
