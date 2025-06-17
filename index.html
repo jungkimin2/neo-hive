@@ -2362,7 +2362,7 @@ html body .core-value-fresh-mobile {
         </p>
       </div>
       <!-- Circular Flow Steps UI for NEO SMART 핵심 흐름 -->
-      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 56px auto 36px;">
+      <div class="circular-flow-container desktop-only" style="position: relative; width: 580px; height: 580px; margin: 56px auto 36px;">
         <div class="circular-bg-glow"></div>
         <div style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, rgba(0, 0, 0, 0) 75%); border-radius: 50%; z-index:0; pointer-events: none;"></div>
         <div class="circle-center-title">
@@ -2421,8 +2421,18 @@ html body .core-value-fresh-mobile {
     display: none !important;
   }
   /* 모바일에서 circular-flow-container 완전히 숨기기 */
-  .circular-flow-container {
+  .circular-flow-container,
+  .desktop-only {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -999 !important;
   }
 }
 @media (max-width: 600px) {
@@ -3058,8 +3068,14 @@ html body .core-value-fresh-mobile {
     }
   }
   
-  // 모바일에서 운동은 팀으로 섹션 강제 위로 이동
+  // 모바일에서 회색 박스 완전 제거 및 운동은 팀으로 섹션 강제 위로 이동
   if (window.innerWidth <= 768) {
+    // 회색 박스 완전 제거
+    const circularContainer = document.querySelector('.circular-flow-container');
+    if (circularContainer) {
+      circularContainer.remove();
+    }
+    
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
       benefitsSection.style.setProperty('margin-top', '-164px', 'important');
@@ -3094,8 +3110,14 @@ html body .core-value-fresh-mobile {
       }
     }
     
-    // 모바일에서 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
+    // 모바일에서 회색 박스 완전 제거 및 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
     if (window.innerWidth <= 768) {
+      // 회색 박스 완전 제거
+      const circularContainer = document.querySelector('.circular-flow-container');
+      if (circularContainer) {
+        circularContainer.remove();
+      }
+      
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
         benefitsSection.style.setProperty('margin-top', '-164px', 'important');
@@ -4746,13 +4768,16 @@ html body #smart p {
 /* 모바일 환경에서 슬라이드 UI 전환 최적화 */
 @media (max-width: 768px) {
 /* 회색 박스(circular-flow-container) 완전히 숨기기 */
-.circular-flow-container {
+.circular-flow-container,
+.desktop-only {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
 }
 
 /* 이미지 슬라이드 최적화 */
