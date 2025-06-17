@@ -3612,10 +3612,14 @@ html body .core-value-fresh-mobile {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 좌측 이미지들(0,1,2)만 순환
-      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
-      else if (slideIndex <= 0) slideIndex = 2;
-      else slideIndex = Math.max(slideIndex - 1, 0);
+      // 좌측 이미지들(0,1,2) 정상 순환: 0→1→2→0
+      if (slideIndex === -1 || slideIndex >= 3) {
+        slideIndex = 0; // 비디오 상태이거나 우측이면 좌측 첫번째부터
+      } else if (slideIndex === 2) {
+        slideIndex = 0; // 좌측 마지막에서 첫번째로
+      } else {
+        slideIndex = slideIndex + 1; // 다음 좌측 이미지로
+      }
       showSlide(slideIndex);
     });
   }
@@ -3625,10 +3629,14 @@ html body .core-value-fresh-mobile {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 우측 이미지들(3,4,5)만 순환
-      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
-      else if (slideIndex >= 5) slideIndex = 3;
-      else slideIndex = Math.min(slideIndex + 1, 5);
+      // 우측 이미지들(3,4,5) 정상 순환: 3→4→5→3
+      if (slideIndex === -1 || slideIndex < 3) {
+        slideIndex = 3; // 비디오 상태이거나 좌측이면 우측 첫번째부터
+      } else if (slideIndex === 5) {
+        slideIndex = 3; // 우측 마지막에서 첫번째로
+      } else {
+        slideIndex = slideIndex + 1; // 다음 우측 이미지로
+      }
       showSlide(slideIndex);
     });
   }
