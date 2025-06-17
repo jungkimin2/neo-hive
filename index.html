@@ -5197,14 +5197,27 @@ document.addEventListener('DOMContentLoaded', function() {
     flex: 1 !important;
   }
   
-  /* 모바일에서는 mobile-break 보이고 desktop-inline 숨김 */
-  .mobile-break {
+  /* 모바일에서는 mobile-break 보이고 desktop-inline 숨김 - 최고 우선순위 */
+  html body p .mobile-break,
+  html body span.mobile-break {
     display: inline !important;
-    white-space: pre-line !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
   
-  .desktop-inline {
+  html body p .desktop-inline,
+  html body span.desktop-inline {
     display: none !important;
+    visibility: hidden !important;
+  }
+  
+  /* BR 태그 강제 표시 */
+  .mobile-break br {
+    display: block !important;
+    content: "" !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
   }
   
   /* 표 하단 구분선 추가 */
@@ -5625,13 +5638,30 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
      }
      
-     /* 모바일에서 줄바꿈 적용 - 간단한 방법 */
-     .mobile-break {
+     /* 모바일에서 줄바꿈 적용 - 최종 강제 적용 */
+     html body div p span.mobile-break {
        display: inline !important;
+       white-space: normal !important;
+       word-break: break-word !important;
+       overflow-wrap: break-word !important;
+       text-overflow: clip !important;
+       overflow: visible !important;
      }
      
-     .desktop-inline {
+     html body div p span.desktop-inline {
        display: none !important;
+       visibility: hidden !important;
+     }
+     
+     /* BR 태그가 확실히 줄바꿈되도록 강제 */
+     html body div p span.mobile-break br {
+       display: block !important;
+       height: 1.2em !important;
+       content: "" !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       border: none !important;
+       background: none !important;
      }
      
      /* 모든 회원권 관련 텍스트 선택자 강화 */
