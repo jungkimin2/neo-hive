@@ -2362,7 +2362,7 @@ html body .core-value-fresh-mobile {
         </p>
       </div>
       <!-- Circular Flow Steps UI for NEO SMART 핵심 흐름 -->
-      <div class="circular-flow-container desktop-only" style="position: relative; width: 580px; height: 580px; margin: 56px auto 36px;">
+      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 56px auto 36px;">
         <div class="circular-bg-glow"></div>
         <div style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, rgba(0, 0, 0, 0) 75%); border-radius: 50%; z-index:0; pointer-events: none;"></div>
         <div class="circle-center-title">
@@ -2419,20 +2419,6 @@ html body .core-value-fresh-mobile {
 @media (max-width: 768px) {
   .mobile-hide {
     display: none !important;
-  }
-  /* 모바일에서 circular-flow-container 완전히 숨기기 */
-  .circular-flow-container,
-  .desktop-only {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    z-index: -999 !important;
   }
 }
 @media (max-width: 600px) {
@@ -3068,14 +3054,8 @@ html body .core-value-fresh-mobile {
     }
   }
   
-  // 모바일에서 회색 박스 완전 제거 및 운동은 팀으로 섹션 강제 위로 이동
+  // 모바일에서 운동은 팀으로 섹션 강제 위로 이동
   if (window.innerWidth <= 768) {
-    // 회색 박스 완전 제거
-    const circularContainer = document.querySelector('.circular-flow-container');
-    if (circularContainer) {
-      circularContainer.remove();
-    }
-    
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
       benefitsSection.style.setProperty('margin-top', '-164px', 'important');
@@ -3110,14 +3090,8 @@ html body .core-value-fresh-mobile {
       }
     }
     
-    // 모바일에서 회색 박스 완전 제거 및 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
+    // 모바일에서 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
     if (window.innerWidth <= 768) {
-      // 회색 박스 완전 제거
-      const circularContainer = document.querySelector('.circular-flow-container');
-      if (circularContainer) {
-        circularContainer.remove();
-      }
-      
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
         benefitsSection.style.setProperty('margin-top', '-164px', 'important');
@@ -3168,8 +3142,6 @@ html body .core-value-fresh-mobile {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
         benefitsSection.style.setProperty('margin-top', '-100px', 'important');
-        benefitsSection.style.setProperty('position', 'relative', 'important');
-        benefitsSection.style.setProperty('z-index', '10', 'important');
       }
     }
   });
@@ -4767,19 +4739,6 @@ html body #smart p {
 <style>
 /* 모바일 환경에서 슬라이드 UI 전환 최적화 */
 @media (max-width: 768px) {
-/* 회색 박스(circular-flow-container) 완전히 숨기기 */
-.circular-flow-container,
-.desktop-only {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-}
-
 /* 이미지 슬라이드 최적화 */
 .hive-image {
   -webkit-backface-visibility: hidden !important;
@@ -5741,13 +5700,11 @@ document.addEventListener('DOMContentLoaded', function() {
      
 
      
-     /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - PC 전용 */
-     @media only screen and (min-width: 769px) {
-       section#benefits {
-         margin-top: -100px !important;
-         position: relative !important;
-         z-index: 10 !important;
-       }
+     /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
+     section#benefits {
+       margin-top: -100px !important;
+       position: relative !important;
+       z-index: 10 !important;
      }
      
      /* 모바일에서 운동은 팀으로 섹션을 4칸 더 위로 */
@@ -6098,25 +6055,13 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 20px !important;
   }
   
-  /* 운동은 팀으로 섹션 위로 이동 - PC와 모바일 분리 */
-  @media (min-width: 769px) {
-    section#benefits.section.animate-on-scroll {
-      margin-top: -100px !important;
-      position: relative !important;
-      z-index: 10 !important;
-      transform: none !important;
-      -webkit-transform: none !important;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    section#benefits.section.animate-on-scroll {
-      margin-top: -164px !important; /* 모바일에서만 4칸 위로 */
-      position: relative !important;
-      z-index: 10 !important;
-      transform: none !important;
-      -webkit-transform: none !important;
-    }
+  /* 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
+  section#benefits.section.animate-on-scroll {
+    margin-top: -164px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 
 
