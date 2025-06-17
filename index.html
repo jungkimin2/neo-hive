@@ -5638,11 +5638,13 @@ document.addEventListener('DOMContentLoaded', function() {
      div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] {
        font-size: 0.65rem !important;
        margin-top: 32px !important; /* 위 문단과 한 칸 띄우기 */
+       color: #7BE495 !important; /* 그린색으로 변경 */
      }
      
      div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] {
        font-size: 0.65rem !important;
        margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
+       color: #7BE495 !important; /* 그린색으로 변경 */
      }
      
            /* 모바일에서 줄바꿈 적용 - 최종 강제 적용 */
@@ -5678,6 +5680,13 @@ document.addEventListener('DOMContentLoaded', function() {
      /* 모든 회원권 관련 텍스트 선택자 강화 */
      p[style*="color: #7BE495"][style*="font-weight: bold"] {
        font-size: 0.65rem !important;
+       color: #7BE495 !important; /* 그린색 강제 적용 */
+     }
+     
+     /* 회원권 가격 문구 내부 span도 그린색으로 */
+     p[style*="김포 바키짐 1년 회원권"] .mobile-break,
+     p[style*="타센터 1년 회원권 평균 단가"] .mobile-break {
+       color: #7BE495 !important;
      }
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
