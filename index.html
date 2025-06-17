@@ -2638,7 +2638,7 @@ html body .core-value-fresh-mobile {
                     <li>• <span class="mobile-break">머신 비용: 7,500만 원<br>(대당 250만 원 기준)</span><span class="desktop-inline">머신 비용: 7,500만 원 (대당 250만 원 기준)</span></li>
                     <li>• 스마트 솔루션 초기 비용: <span style="color:#fff;">200만 원</span></li>
                   </ul>
-                  <p style="margin-top: 16px; font-size: 0.85rem; color: #7BE495; font-weight: bold;">
+                  <p style="margin-top: 16px; font-size: 0.85rem; color: #7BE495; font-weight: bold;" class="gimpo-membership-price">
                     <span class="mobile-break">김포 바키짐 1년 회원권 : 월 5만 원<br>(2025년 5월 기준)</span>
                     <span class="desktop-inline">김포 바키짐 1년 회원권 : 월 5만 원 (2025년 5월 기준)</span>
                   </p>
@@ -2663,7 +2663,7 @@ html body .core-value-fresh-mobile {
                     <li>• <span class="mobile-break">머신 비용: 3억 7천 5백만 원<br>(대당 1,250만 원 기준)</span><span class="desktop-inline">머신 비용: 3억 7천 5백만 원 (대당 1,250만 원 기준)</span></li>
                     <li>• 스마트 솔루션 초기 비용: <span style="color:#fff;">없음</span></li>
                   </ul>
-                    <p style="margin-top: 28px; font-size: 0.85rem; color: #7BE495; font-weight: bold;">
+                    <p style="margin-top: 28px; font-size: 0.85rem; color: #7BE495; font-weight: bold;" class="other-center-membership-price">
                       <span class="mobile-break">타센터 1년 회원권 평균 단가: 월 2~3만 원<br>(2025년 5월 기준)</span>
                       <span class="desktop-inline">타센터 1년 회원권 평균 단가: 월 2~3만 원 (2025년 5월 기준)</span>
                     </p>
@@ -5649,78 +5649,44 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* 중복 body 패딩 - 맨 아래 최종 규칙으로 대체됨 */
      
-     /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) - 더 구체적인 선택자 */
-     div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] {
-       font-size: 0.75rem !important; /* 0.65rem에서 0.75rem으로 크기 증가 */
-       margin-top: 32px !important; /* 위 문단과 한 칸 띄우기 */
-       color: #00FF00 !important; /* 그린색으로 변경 - 더 강한 그린 */
+     /* 회원권 관련 텍스트 사이즈 줄이기 (모바일) - 클래스 기반으로 강력하게 적용 */
+     .gimpo-membership-price {
+       font-size: 0.75rem !important; /* 김포 바키짐 문구 크기 */
+       margin-top: 48px !important; /* 상단과 한 칸 더 띄우기 */
+       color: #00FF00 !important; /* 밝은 그린색 */
      }
      
-     div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] {
+     .other-center-membership-price {
        font-size: 0.65rem !important;
-       margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
-       color: #00FF00 !important; /* 그린색으로 변경 - 더 강한 그린 */
+       margin-top: 44px !important;
+       color: #00FF00 !important; /* 밝은 그린색 */
      }
      
-           /* 모바일에서 줄바꿈 적용 - 최종 강제 적용 */
-      html body div p span.mobile-break,
-      html body ul li span.mobile-break {
-        display: inline !important;
-        white-space: normal !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        text-overflow: clip !important;
-        overflow: visible !important;
-        color: #fff !important;
-      }
-     
-           html body div p span.desktop-inline,
-      html body ul li span.desktop-inline {
-        display: none !important;
-        visibility: hidden !important;
-      }
-     
-           /* BR 태그가 확실히 줄바꿈되도록 강제 */
-      html body div p span.mobile-break br,
-      html body ul li span.mobile-break br {
-        display: block !important;
-        height: 1.2em !important;
-        content: "" !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        background: none !important;
-      }
-     
-     /* 모든 회원권 관련 텍스트 선택자 강화 */
-     p[style*="color: #7BE495"][style*="font-weight: bold"] {
-       font-size: 0.65rem !important;
-       color: #7BE495 !important; /* 그린색 강제 적용 */
+     /* 모바일에서 클래스 기반 스타일 강제 적용 */
+     .gimpo-membership-price span.mobile-break,
+     .other-center-membership-price span.mobile-break {
+       color: #00FF00 !important;
+       display: inline !important;
+       white-space: normal !important;
      }
      
-           /* 회원권 가격 문구 내부 span도 그린색으로 */
-      p[style*="김포 바키짐 1년 회원권"] .mobile-break,
-      p[style*="타센터 1년 회원권 평균 단가"] .mobile-break {
-        color: #00FF00 !important;
-      }
-      
-      /* 김포 바키짐 회원권 문구 그린색 강제 적용 - 최고 우선순위 */
-      html body div p[style*="김포 바키짐 1년 회원권"] {
-        color: #00FF00 !important;
-      }
-      
-      html body div p[style*="김포 바키짐 1년 회원권"] span.mobile-break {
-        color: #00FF00 !important;
-      }
-      
-      /* 타센터 회원권 문구도 그린색 강제 적용 - 최고 우선순위 */
-      html body div p[style*="타센터 1년 회원권 평균 단가"] {
-        color: #00FF00 !important;
-      }
-      
-      html body div p[style*="타센터 1년 회원권 평균 단가"] span.mobile-break {
-        color: #00FF00 !important;
-      }
+     .gimpo-membership-price span.desktop-inline,
+     .other-center-membership-price span.desktop-inline {
+       display: none !important;
+       visibility: hidden !important;
+     }
+     
+     /* BR 태그가 확실히 줄바꿈되도록 강제 */
+     .gimpo-membership-price span.mobile-break br,
+     .other-center-membership-price span.mobile-break br {
+       display: block !important;
+       height: 1.2em !important;
+       content: "" !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       border: none !important;
+       background: none !important;
+     }
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
      section#benefits {
