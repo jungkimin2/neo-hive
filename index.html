@@ -3529,14 +3529,14 @@ html body .core-value-fresh-mobile {
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - 화면 안에서만 순서 변경 (화면 밖으로 나가지 않음)
+      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-120%, -50%) scale(0.9)', zIndex: 3 }, // 좌측 1번째 - 화면 안
-        { left: '50%', top: '60%', transform: 'translate(-150%, -50%) scale(0.8)', zIndex: 2 }, // 좌측 2번째 - 화면 안
-        { left: '50%', top: '60%', transform: 'translate(-180%, -50%) scale(0.7)', zIndex: 1 }, // 좌측 3번째 - 화면 안
-        { left: '50%', top: '60%', transform: 'translate(20%, -50%) scale(0.9)', zIndex: 3 },  // 우측 1번째 - 화면 안
-        { left: '50%', top: '60%', transform: 'translate(50%, -50%) scale(0.8)', zIndex: 2 },  // 우측 2번째 - 화면 안
-        { left: '50%', top: '60%', transform: 'translate(80%, -50%) scale(0.7)', zIndex: 1 }   // 우측 3번째 - 화면 안
+        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
       ];
       return positions[index] || positions[0];
     } else {
@@ -6092,122 +6092,66 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 모바일 위치 - 화면 안에서만 순서 변경 */
-  @media (max-width: 768px) {
-    .hive-image:nth-of-type(1),
-    .hive-showcase .hive-image:nth-of-type(1),
-    html body .hive-showcase .hive-image:nth-of-type(1) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(-120%, -50%) scale(0.9) !important;
-      -webkit-transform: translate(-120%, -50%) scale(0.9) !important;
-      z-index: 3 !important;
-      position: absolute !important;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      will-change: transform, left, top, width, height, border, box-shadow !important;
-      transform-style: preserve-3d !important;
-      -webkit-transform-style: preserve-3d !important;
-    }
-    .hive-image:nth-of-type(2) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(-150%, -50%) scale(0.8) !important;
-      z-index: 2 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-      -webkit-transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(3) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(-180%, -50%) scale(0.7) !important;
-      z-index: 1 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-      -webkit-transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(4) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(20%, -50%) scale(0.9) !important;
-      z-index: 3 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-      -webkit-transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(5) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(50%, -50%) scale(0.8) !important;
-      z-index: 2 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-      -webkit-transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(6) {
-      left: 50% !important;
-      top: 60% !important;
-      transform: translate(80%, -50%) scale(0.7) !important;
-      z-index: 1 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-      -webkit-transition: all 0.4s ease-out !important;
-    }
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
+  .hive-image:nth-of-type(1),
+  .hive-showcase .hive-image:nth-of-type(1),
+  html body .hive-showcase .hive-image:nth-of-type(1) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-160%, -50%) scale(0.9) !important;
+    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, left, top, width, height, border, box-shadow !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
   }
-  
-  /* PC용 기존 위치 유지 */
-  @media (min-width: 769px) {
-    .hive-image:nth-of-type(1),
-    .hive-showcase .hive-image:nth-of-type(1),
-    html body .hive-showcase .hive-image:nth-of-type(1) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(-200%, -60%) scale(0.95) !important;
-      z-index: 3 !important;
-      position: absolute !important;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-    .hive-image:nth-of-type(2) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(-250%, -60%) scale(0.9) !important;
-      z-index: 2 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(3) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(-300%, -60%) scale(0.85) !important;
-      z-index: 1 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(4) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(100%, -60%) scale(0.95) !important;
-      z-index: 3 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(5) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(150%, -60%) scale(0.9) !important;
-      z-index: 2 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-    }
-    .hive-image:nth-of-type(6) {
-      left: 50% !important;
-      top: 55% !important;
-      transform: translate(200%, -60%) scale(0.85) !important;
-      z-index: 1 !important;
-      position: absolute !important;
-      transition: all 0.4s ease-out !important;
-    }
+  .hive-image:nth-of-type(2) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-210%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
+  }
+  .hive-image:nth-of-type(3) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-260%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
+  }
+  .hive-image:nth-of-type(4) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(60%, -50%) scale(0.9) !important;
+    z-index: 3 !important;
+    position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
+  }
+  .hive-image:nth-of-type(5) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(110%, -50%) scale(0.8) !important;
+    z-index: 2 !important;
+    position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
+  }
+  .hive-image:nth-of-type(6) {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(160%, -50%) scale(0.7) !important;
+    z-index: 1 !important;
+    position: absolute !important;
+    transition: all 0.4s ease-out !important;
+    -webkit-transition: all 0.4s ease-out !important;
   }
   
   /* PC 환경에서 .hive-image.active */
