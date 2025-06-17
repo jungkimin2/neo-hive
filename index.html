@@ -5671,6 +5671,13 @@ document.addEventListener('DOMContentLoaded', function() {
        z-index: 10 !important;
      }
      
+     /* 모바일에서 운동은 팀으로 섹션을 4칸 더 위로 */
+     @media (max-width: 768px) {
+       section#benefits {
+         margin-top: -164px !important; /* 4칸 더 위로 (원래 -100px에서 -164px로) */
+       }
+     }
+     
      section#benefits .container {
        padding-top: 60px !important;
        background: #000 !important;
