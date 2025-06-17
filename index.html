@@ -2741,6 +2741,7 @@ html body .core-value-fresh-mobile {
     position: relative !important;
     left: -50px !important;
     top: -40px !important; /* NEO SMART UI를 2칸 위로 */
+    margin: -40px auto -20px !important; /* 모바일에서 상단/하단 마진 대폭 축소 */
   }
   .circle-lines {
     width: 400px !important;
@@ -3058,7 +3059,7 @@ html body .core-value-fresh-mobile {
   if (window.innerWidth <= 768) {
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
-      benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+      benefitsSection.style.setProperty('margin-top', '-120px', 'important');
       benefitsSection.style.setProperty('position', 'relative', 'important');
       benefitsSection.style.setProperty('z-index', '10', 'important');
     }
@@ -3094,7 +3095,7 @@ html body .core-value-fresh-mobile {
     if (window.innerWidth <= 768) {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-120px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
       }
@@ -3133,7 +3134,7 @@ html body .core-value-fresh-mobile {
     if (window.innerWidth <= 768) {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-120px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
       }
@@ -6057,7 +6058,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
   section#benefits.section.animate-on-scroll {
-    margin-top: -164px !important;
+    margin-top: -120px !important; /* circular-flow-container 마진 축소로 인해 조정 */
     position: relative !important;
     z-index: 10 !important;
     transform: none !important;
@@ -6667,7 +6668,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceBenefitsPosition() {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-120px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
         // transform은 건드리지 않음 (CSS margin-top만 사용)
