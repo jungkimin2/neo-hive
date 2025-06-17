@@ -3142,6 +3142,8 @@ html body .core-value-fresh-mobile {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
         benefitsSection.style.setProperty('margin-top', '-100px', 'important');
+        benefitsSection.style.setProperty('position', 'relative', 'important');
+        benefitsSection.style.setProperty('z-index', '10', 'important');
       }
     }
   });
@@ -5700,11 +5702,13 @@ document.addEventListener('DOMContentLoaded', function() {
      
 
      
-     /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
-     section#benefits {
-       margin-top: -100px !important;
-       position: relative !important;
-       z-index: 10 !important;
+     /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - PC 전용 */
+     @media only screen and (min-width: 769px) {
+       section#benefits {
+         margin-top: -100px !important;
+         position: relative !important;
+         z-index: 10 !important;
+       }
      }
      
      /* 모바일에서 운동은 팀으로 섹션을 4칸 더 위로 */
@@ -6055,13 +6059,25 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 20px !important;
   }
   
-  /* 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
-  section#benefits.section.animate-on-scroll {
-    margin-top: -164px !important;
-    position: relative !important;
-    z-index: 10 !important;
-    transform: none !important;
-    -webkit-transform: none !important;
+  /* 운동은 팀으로 섹션 위로 이동 - PC와 모바일 분리 */
+  @media (min-width: 769px) {
+    section#benefits.section.animate-on-scroll {
+      margin-top: -100px !important;
+      position: relative !important;
+      z-index: 10 !important;
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    section#benefits.section.animate-on-scroll {
+      margin-top: -164px !important; /* 모바일에서만 4칸 위로 */
+      position: relative !important;
+      z-index: 10 !important;
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
   }
 
 
