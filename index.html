@@ -2420,6 +2420,10 @@ html body .core-value-fresh-mobile {
   .mobile-hide {
     display: none !important;
   }
+  /* 모바일에서 circular-flow-container 완전히 숨기기 */
+  .circular-flow-container {
+    display: none !important;
+  }
 }
 @media (max-width: 600px) {
   .text-xl.text-gray-300 span:not(.neon-green) {
@@ -4741,6 +4745,16 @@ html body #smart p {
 <style>
 /* 모바일 환경에서 슬라이드 UI 전환 최적화 */
 @media (max-width: 768px) {
+/* 회색 박스(circular-flow-container) 완전히 숨기기 */
+.circular-flow-container {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
 /* 이미지 슬라이드 최적화 */
 .hive-image {
   -webkit-backface-visibility: hidden !important;
