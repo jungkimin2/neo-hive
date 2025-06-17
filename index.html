@@ -3072,9 +3072,21 @@ html body .core-value-fresh-mobile {
     
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
-      benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+      // 더 강력한 위치 조정 - 모든 가능한 속성 적용
+      benefitsSection.style.setProperty('margin-top', '-300px', 'important');
       benefitsSection.style.setProperty('position', 'relative', 'important');
-      benefitsSection.style.setProperty('z-index', '10', 'important');
+      benefitsSection.style.setProperty('z-index', '999', 'important');
+      benefitsSection.style.setProperty('transform', 'translateY(-100px)', 'important');
+      benefitsSection.style.setProperty('-webkit-transform', 'translateY(-100px)', 'important');
+      
+      // 부모 요소들의 여백도 제거
+      const prevElements = document.querySelectorAll('.circular-flow-container, .neos-card-list, style');
+      prevElements.forEach(el => {
+        if (el && el.style) {
+          el.style.setProperty('margin-bottom', '0', 'important');
+          el.style.setProperty('padding-bottom', '0', 'important');
+        }
+      });
     }
   }
   
@@ -3153,9 +3165,12 @@ html body .core-value-fresh-mobile {
     if (window.innerWidth <= 768) {
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        // 더 강력한 위치 조정 - 모든 가능한 속성 적용
+        benefitsSection.style.setProperty('margin-top', '-300px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
-        benefitsSection.style.setProperty('z-index', '10', 'important');
+        benefitsSection.style.setProperty('z-index', '999', 'important');
+        benefitsSection.style.setProperty('transform', 'translateY(-100px)', 'important');
+        benefitsSection.style.setProperty('-webkit-transform', 'translateY(-100px)', 'important');
       }
     } else {
       // PC에서는 원래 값으로 복원
@@ -6077,11 +6092,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
   section#benefits.section.animate-on-scroll {
-    margin-top: -164px !important;
+    margin-top: -300px !important; /* 모바일에서 강력하게 위로 */
     position: relative !important;
-    z-index: 10 !important;
-    transform: none !important;
-    -webkit-transform: none !important;
+    z-index: 999 !important;
+    transform: translateY(-100px) !important;
+    -webkit-transform: translateY(-100px) !important;
   }
 
 
