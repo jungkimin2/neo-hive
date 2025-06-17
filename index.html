@@ -2639,8 +2639,10 @@ html body .core-value-fresh-mobile {
 (대당 250만 원 기준)</span></li>
                     <li>• 스마트 솔루션 초기 비용: <span style="color:#fff;">200만 원</span></li>
                   </ul>
-                  <p style="margin-top: 16px; font-size: 0.85rem; color: #7BE495; font-weight: bold;"><span class="mobile-break">김포 바키짐 1년 회원권 : 월 5만 원 
-(2025년 5월 기준)</span><span class="desktop-inline">김포 바키짐 1년 회원권 : 월 5만 원 (2025년 5월 기준)</span></p>
+                  <p style="margin-top: 16px; font-size: 0.85rem; color: #7BE495; font-weight: bold;">
+                    <span class="mobile-break">김포 바키짐 1년 회원권 : 월 5만 원<br>(2025년 5월 기준)</span>
+                    <span class="desktop-inline">김포 바키짐 1년 회원권 : 월 5만 원 (2025년 5월 기준)</span>
+                  </p>
                 </div>
                 <div style="font-size: 1.8rem; font-weight: bold; color: #7BE495; text-align: center;">vs</div>
                 <div style="position: relative; background: #000000; border: 1px solid rgba(123, 228, 149, 0.3); border-radius: 16px; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 24px; text-align: left;">
@@ -2663,8 +2665,10 @@ html body .core-value-fresh-mobile {
 (대당 1,250만 원 기준)</span></li>
                     <li>• 스마트 솔루션 초기 비용: <span style="color:#fff;">없음</span></li>
                   </ul>
-                    <p style="margin-top: 28px; font-size: 0.85rem; color: #7BE495; font-weight: bold;"><span class="mobile-break">타센터 1년 회원권 평균 단가: 월 2~3만 원 
-(2025년 5월 기준)</span><span class="desktop-inline">타센터 1년 회원권 평균 단가: 월 2~3만 원 (2025년 5월 기준)</span></p>
+                    <p style="margin-top: 28px; font-size: 0.85rem; color: #7BE495; font-weight: bold;">
+                      <span class="mobile-break">타센터 1년 회원권 평균 단가: 월 2~3만 원<br>(2025년 5월 기준)</span>
+                      <span class="desktop-inline">타센터 1년 회원권 평균 단가: 월 2~3만 원 (2025년 5월 기준)</span>
+                    </p>
                 </div>
               </div>
               <div style="margin-top: 20px; text-align: center; font-size: 1.25rem; color: #fff; font-weight: bold;">
@@ -5621,26 +5625,13 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
      }
      
-     /* 모바일에서 회원권 가격 문구 줄바꿈 적용 - 최강 선택자 */
-     html body div p[style*="김포 바키짐 1년 회원권"],
-     html body div p[style*="타센터 1년 회원권 평균 단가"] {
-       white-space: pre-line !important;
-       word-wrap: break-word !important;
-       overflow-wrap: break-word !important;
-     }
-     
-     /* mobile-break 클래스 강화 - 최고 우선순위 */
-     html body .mobile-break {
-       white-space: pre-line !important;
+     /* 모바일에서 줄바꿈 적용 - 간단한 방법 */
+     .mobile-break {
        display: inline !important;
-       word-wrap: break-word !important;
-       overflow-wrap: break-word !important;
      }
      
-     /* desktop-inline 클래스는 모바일에서 완전 숨김 */
-     html body .desktop-inline {
+     .desktop-inline {
        display: none !important;
-       visibility: hidden !important;
      }
      
      /* 모든 회원권 관련 텍스트 선택자 강화 */
@@ -6582,37 +6573,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 회원권 가격 문구 줄바꿈 강제 적용
-    function forceMembershipTextLineBreaks() {
-      // 김포 바키짐 회원권 문구 줄바꿈 강제 적용
-      const kimpoText = document.querySelector('p[style*="김포 바키짐 1년 회원권"] .mobile-break');
-      if (kimpoText) {
-        kimpoText.style.setProperty('white-space', 'pre-line', 'important');
-        kimpoText.style.setProperty('display', 'inline', 'important');
-        kimpoText.innerHTML = kimpoText.innerHTML.replace(/\n/g, '<br>');
-      }
-      
-      // 타센터 회원권 문구 줄바꿈 강제 적용
-      const centerText = document.querySelector('p[style*="타센터 1년 회원권 평균 단가"] .mobile-break');
-      if (centerText) {
-        centerText.style.setProperty('white-space', 'pre-line', 'important');
-        centerText.style.setProperty('display', 'inline', 'important');
-        centerText.innerHTML = centerText.innerHTML.replace(/\n/g, '<br>');
-      }
-      
-      // desktop-inline 클래스 숨김
-      const desktopInlines = document.querySelectorAll('.desktop-inline');
-      desktopInlines.forEach(element => {
-        element.style.setProperty('display', 'none', 'important');
-        element.style.setProperty('visibility', 'hidden', 'important');
-      });
-    }
+    
     
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
-      forceMembershipTextLineBreaks();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6642,7 +6608,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
-        forceMembershipTextLineBreaks();
       }
     });
     
