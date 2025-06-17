@@ -5281,6 +5281,15 @@ document.addEventListener('DOMContentLoaded', function() {
     gap: 16px !important;
   }
   
+  /* 모바일에서 두 박스의 가로 크기 동일하게 맞추기 */
+  div[style*="position: relative; background: #000000"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+    flex: none !important;
+  }
+  
   /* vs를 두 번째 순서로 배치 */
   div[style*="font-size: 1.8rem; font-weight: bold; color: #7BE495; text-align: center"] {
     order: 2 !important;
