@@ -5431,6 +5431,13 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 16px !important;
   }
   
+  /* 모바일에서 비용 차이 텍스트 더 작게 */
+  @media (max-width: 768px) {
+    div[style*="비용 차이:"] {
+      font-size: 0.75rem !important;
+    }
+  }
+  
   /* 네온 그린 텍스트 효과 */
   .neon-green-text {
     color: #7BE495 !important;
