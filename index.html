@@ -5279,9 +5279,7 @@ document.addEventListener('DOMContentLoaded', function() {
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
-    width: 105% !important;
-    max-width: 105% !important;
-    margin: 0 -2.5% !important;
+    width: 100% !important;
     align-items: stretch !important;
   }
   
@@ -5292,7 +5290,7 @@ document.addEventListener('DOMContentLoaded', function() {
     min-width: 100% !important;
     box-sizing: border-box !important;
     flex: none !important;
-    padding: 28px !important;
+    padding: 24px !important;
     margin: 0 !important;
   }
   
@@ -5707,27 +5705,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       /* 김포 바키짐 회원권 문구 그린색 강제 적용 - 최고 우선순위 */
-      html body div p[style*="김포 바키짐 1년 회원권"],
-      html body div p[style*="김포 바키짐 1년 회원권"] * {
+      html body div p[style*="김포 바키짐 1년 회원권"] {
         color: #7BE495 !important;
-        text-shadow: 0 0 6px rgba(123, 228, 149, 0.7) !important;
       }
       
-      html body div p[style*="김포 바키짐 1년 회원권"] span.mobile-break,
-      html body div p[style*="김포 바키짐 1년 회원권"] span.mobile-break * {
+      html body div p[style*="김포 바키짐 1년 회원권"] span.mobile-break {
         color: #7BE495 !important;
-        text-shadow: 0 0 6px rgba(123, 228, 149, 0.7) !important;
-      }
-      
-      /* 추가 강화 - 인라인 스타일도 덮어쓰기 */
-      @media (max-width: 768px) {
-        p[style*="김포 바키짐 1년 회원권"][style*="color: #7BE495"] {
-          color: #7BE495 !important;
-        }
-        
-        p[style*="김포 바키짐 1년 회원권"] span {
-          color: #7BE495 !important;
-        }
       }
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
