@@ -2918,7 +2918,7 @@ html body .core-value-fresh-mobile {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000;">
+<section id="benefits" class="section animate-on-scroll" style="background: #000;" data-mobile-adjust="true">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
@@ -3054,6 +3054,16 @@ html body .core-value-fresh-mobile {
     }
   }
   
+  // 모바일에서 운동은 팀으로 섹션 강제 위로 이동
+  if (window.innerWidth <= 768) {
+    const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
+    if (benefitsSection) {
+      benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+      benefitsSection.style.setProperty('position', 'relative', 'important');
+      benefitsSection.style.setProperty('z-index', '10', 'important');
+    }
+  }
+  
   // DOMContentLoaded로 더 빠른 초기화
   document.addEventListener('DOMContentLoaded', function() {
     // PC에서만 스크롤 초기화
@@ -3077,6 +3087,16 @@ html body .core-value-fresh-mobile {
       
       if (centerTitle) {
         centerTitle.style.zIndex = '4';
+      }
+    }
+    
+    // 모바일에서 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
+    if (window.innerWidth <= 768) {
+      const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
+      if (benefitsSection) {
+        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('position', 'relative', 'important');
+        benefitsSection.style.setProperty('z-index', '10', 'important');
       }
     }
     
@@ -3106,6 +3126,22 @@ html body .core-value-fresh-mobile {
       
       if (centerTitle) {
         centerTitle.style.zIndex = '4';
+      }
+    }
+    
+    // 윈도우 리사이즈 시에도 운동은 팀으로 섹션 위치 조정
+    if (window.innerWidth <= 768) {
+      const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
+      if (benefitsSection) {
+        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('position', 'relative', 'important');
+        benefitsSection.style.setProperty('z-index', '10', 'important');
+      }
+    } else {
+      // PC에서는 원래 값으로 복원
+      const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
+      if (benefitsSection) {
+        benefitsSection.style.setProperty('margin-top', '-100px', 'important');
       }
     }
   });
@@ -5672,9 +5708,11 @@ document.addEventListener('DOMContentLoaded', function() {
      }
      
      /* 모바일에서 운동은 팀으로 섹션을 4칸 더 위로 */
-     @media (max-width: 768px) {
-       section#benefits {
+     @media only screen and (max-width: 768px) {
+       section#benefits.section {
          margin-top: -164px !important; /* 4칸 더 위로 (원래 -100px에서 -164px로) */
+         position: relative !important;
+         z-index: 10 !important;
        }
      }
      
@@ -6015,6 +6053,15 @@ document.addEventListener('DOMContentLoaded', function() {
   #hive.section {
     margin-top: 0 !important;
     padding-top: 20px !important;
+  }
+  
+  /* 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
+  section#benefits.section.animate-on-scroll {
+    margin-top: -164px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 
 
