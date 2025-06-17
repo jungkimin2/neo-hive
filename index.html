@@ -1607,7 +1607,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             </div>
           </div>
           <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
-          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-420px) !important; -webkit-transform: translateY(-420px) !important; position: relative !important;">
+          <div class="mobile-ui-position-adjustment mobile-transform-target mobile-hide" style="display: none !important;">
             <div class="mobile-system-box mobile-system-box--merged">
               <div class="mobile-system-content">
                 <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
@@ -1639,11 +1639,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
 @media (max-width: 768px) {
-  /* 강제 위치 조정 - 브라우저 캐시 무력화 */
-  .mobile-ui-position-adjustment.mobile-transform-target {
-    transform: translateY(-420px) !important;
-    -webkit-transform: translateY(-420px) !important;
-    position: relative !important;
+  /* 모바일에서 무인 출입/이벤트 시스템 박스 완전히 숨기기 */
+  .mobile-ui-position-adjustment.mobile-transform-target,
+  .mobile-hide {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -999 !important;
   }
   
   .mobile-ui-position-adjustment .mobile-system-box {
@@ -3054,8 +3062,14 @@ html body .core-value-fresh-mobile {
     }
   }
   
-  // 모바일에서 운동은 팀으로 섹션 강제 위로 이동
+  // 모바일에서 무인 출입/이벤트 시스템 박스 제거 및 운동은 팀으로 섹션 강제 위로 이동
   if (window.innerWidth <= 768) {
+    // 무인 출입/이벤트 시스템 박스 완전 제거
+    const systemBoxes = document.querySelectorAll('.mobile-ui-position-adjustment, .mobile-hide, .mobile-system-box');
+    systemBoxes.forEach(box => {
+      if (box) box.remove();
+    });
+    
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
       benefitsSection.style.setProperty('margin-top', '-164px', 'important');
@@ -3090,8 +3104,14 @@ html body .core-value-fresh-mobile {
       }
     }
     
-    // 모바일에서 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
+    // 모바일에서 무인 출입/이벤트 시스템 박스 제거 및 운동은 팀으로 섹션 강제 위로 이동 (DOM 로드 후)
     if (window.innerWidth <= 768) {
+      // 무인 출입/이벤트 시스템 박스 완전 제거
+      const systemBoxes = document.querySelectorAll('.mobile-ui-position-adjustment, .mobile-hide, .mobile-system-box');
+      systemBoxes.forEach(box => {
+        if (box) box.remove();
+      });
+      
       const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
       if (benefitsSection) {
         benefitsSection.style.setProperty('margin-top', '-164px', 'important');
