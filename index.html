@@ -272,7 +272,7 @@ pointer-events: auto !important;
   hr {
     display: none !important;
   }
-  body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #000; }
+  body { font-family: 'SUIT', 'Noto Sans KR', sans-serif; line-height: 1.6; color: #fff; background: #0A0A0A; }
   /* PC 환경에서만 적용되는 header 스타일 */
   @media screen and (min-width: 769px) {
     header {
@@ -3355,16 +3355,11 @@ html body .core-value-fresh-mobile {
   });
 
   document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
-    // 모바일에서는 초기부터 visible 클래스 추가 (benefits 섹션 제외)
+    // 모바일에서는 초기부터 visible 클래스 추가
     if (window.innerWidth <= 768) {
-      if (el.id === 'benefits') {
-        // benefits 섹션은 모바일에서도 스크롤 애니메이션 유지
-        observer.observe(el);
-      } else {
-        el.classList.add("visible");
-        el.style.opacity = "1";
-        el.style.transform = "none";
-      }
+      el.classList.add("visible");
+      el.style.opacity = "1";
+      el.style.transform = "none";
     } else {
       observer.observe(el);
     }
@@ -4653,11 +4648,11 @@ html body #smart p {
 <style>
 @media (max-width: 768px) {
 /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits) {
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -5614,22 +5609,6 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: -100px !important;
        position: relative !important;
        z-index: 10 !important;
-       overflow: hidden !important;
-       transform: translateY(0) !important;
-       transition: transform 0.8s ease-out !important;
-     }
-     
-     /* Benefits 섹션 초기 상태 */
-     section#benefits.animate-on-scroll {
-       opacity: 0 !important;
-       transform: translateY(50px) !important;
-       transition: all 0.8s ease-out !important;
-     }
-     
-     /* Benefits 섹션 슬라이드 애니메이션 활성화 */
-     section#benefits.animate-on-scroll.visible {
-       opacity: 1 !important;
-       transform: translateY(0) !important;
      }
      
      section#benefits .container {
@@ -5711,7 +5690,6 @@ document.addEventListener('DOMContentLoaded', function() {
      html, body {
        position: relative !important;
        overflow-x: hidden !important;
-       background: #000 !important;
      }
      
      /* PC 네비게이션 숨김 */
@@ -5800,26 +5778,6 @@ document.addEventListener('DOMContentLoaded', function() {
            /* 첫 번째 섹션 상단 여백 조정 */
       #hive.section {
         padding-top: 0 !important;
-      }
-      
-      /* 모든 섹션 간 여백 제거 */
-      .section {
-        margin: 0 !important;
-        background: #000 !important;
-      }
-      
-      /* 전체 컨테이너 배경 강제 설정 */
-      #scrollable-content {
-        background: #000 !important;
-      }
-      
-      /* 모든 가능한 회색 배경을 검은색으로 강제 변경 */
-      * {
-        background-color: transparent !important;
-      }
-      
-      html, body, .section, #scrollable-content {
-        background-color: #000 !important;
       }
       
 
