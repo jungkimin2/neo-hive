@@ -6099,14 +6099,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 특정 UI 요소들은 완전히 제외 */
-  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
   }
   
-  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper),
-  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart .container) {
+  .section:not(#hive):not(#smart):not(#benefits):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper),
+  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart .container):not(#benefits .container) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
@@ -6663,11 +6663,23 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     
+    // 모바일에서 benefits 섹션 위치 강제 적용
+    function forceBenefitsPosition() {
+      const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
+      if (benefitsSection) {
+        benefitsSection.style.setProperty('margin-top', '-164px', 'important');
+        benefitsSection.style.setProperty('position', 'relative', 'important');
+        benefitsSection.style.setProperty('z-index', '10', 'important');
+        // transform은 건드리지 않음 (CSS margin-top만 사용)
+      }
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
       adjustMobileLabels();
+      forceBenefitsPosition();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6698,6 +6710,7 @@ document.addEventListener('DOMContentLoaded', function() {
         forceApplyMobileStyles();
         adjustMobileIcons();
         adjustMobileLabels();
+        forceBenefitsPosition();
       }
     });
     
