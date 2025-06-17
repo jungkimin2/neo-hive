@@ -4686,11 +4686,11 @@ html body #smart p {
 <style>
 @media (max-width: 768px) {
 /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not(#benefits) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -6070,12 +6070,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 모바일용 - 운동은 팀으로 섹션을 4칸 위로 강제 이동 */
   @media (max-width: 768px) {
-    section#benefits[data-mobile-adjust="true"] {
+    section#benefits[data-mobile-adjust="true"],
+    section#benefits.section.animate-on-scroll {
       margin-top: -250px !important;
       position: relative !important;
       z-index: 999 !important;
       transform: none !important;
       -webkit-transform: none !important;
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
     }
   }
 
