@@ -5621,13 +5621,24 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
      }
      
-     /* 모바일에서 회원권 가격 문구 줄바꿈 적용 */
-     div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] .mobile-break {
+     /* 모바일에서 회원권 가격 문구 줄바꿈 적용 - 더 강력한 선택자 */
+     p[style*="김포 바키짐 1년 회원권"] {
        white-space: pre-line !important;
      }
      
-     div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] .mobile-break {
+     p[style*="타센터 1년 회원권 평균 단가"] {
        white-space: pre-line !important;
+     }
+     
+     /* mobile-break 클래스에도 줄바꿈 적용 */
+     .mobile-break {
+       white-space: pre-line !important;
+       display: inline !important;
+     }
+     
+     /* desktop-inline 클래스는 모바일에서 숨김 */
+     .desktop-inline {
+       display: none !important;
      }
      
      /* 모든 회원권 관련 텍스트 선택자 강화 */
