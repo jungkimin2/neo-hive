@@ -5621,24 +5621,26 @@ document.addEventListener('DOMContentLoaded', function() {
        margin-top: 44px !important; /* 위 문단과 한 칸 띄우기 (기존 28px에서 증가) */
      }
      
-     /* 모바일에서 회원권 가격 문구 줄바꿈 적용 - 더 강력한 선택자 */
-     p[style*="김포 바키짐 1년 회원권"] {
+     /* 모바일에서 회원권 가격 문구 줄바꿈 적용 - 최강 선택자 */
+     html body div p[style*="김포 바키짐 1년 회원권"],
+     html body div p[style*="타센터 1년 회원권 평균 단가"] {
        white-space: pre-line !important;
+       word-wrap: break-word !important;
+       overflow-wrap: break-word !important;
      }
      
-     p[style*="타센터 1년 회원권 평균 단가"] {
-       white-space: pre-line !important;
-     }
-     
-     /* mobile-break 클래스에도 줄바꿈 적용 */
-     .mobile-break {
+     /* mobile-break 클래스 강화 - 최고 우선순위 */
+     html body .mobile-break {
        white-space: pre-line !important;
        display: inline !important;
+       word-wrap: break-word !important;
+       overflow-wrap: break-word !important;
      }
      
-     /* desktop-inline 클래스는 모바일에서 숨김 */
-     .desktop-inline {
+     /* desktop-inline 클래스는 모바일에서 완전 숨김 */
+     html body .desktop-inline {
        display: none !important;
+       visibility: hidden !important;
      }
      
      /* 모든 회원권 관련 텍스트 선택자 강화 */
@@ -6580,10 +6582,37 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 회원권 가격 문구 줄바꿈 강제 적용
+    function forceMembershipTextLineBreaks() {
+      // 김포 바키짐 회원권 문구 줄바꿈 강제 적용
+      const kimpoText = document.querySelector('p[style*="김포 바키짐 1년 회원권"] .mobile-break');
+      if (kimpoText) {
+        kimpoText.style.setProperty('white-space', 'pre-line', 'important');
+        kimpoText.style.setProperty('display', 'inline', 'important');
+        kimpoText.innerHTML = kimpoText.innerHTML.replace(/\n/g, '<br>');
+      }
+      
+      // 타센터 회원권 문구 줄바꿈 강제 적용
+      const centerText = document.querySelector('p[style*="타센터 1년 회원권 평균 단가"] .mobile-break');
+      if (centerText) {
+        centerText.style.setProperty('white-space', 'pre-line', 'important');
+        centerText.style.setProperty('display', 'inline', 'important');
+        centerText.innerHTML = centerText.innerHTML.replace(/\n/g, '<br>');
+      }
+      
+      // desktop-inline 클래스 숨김
+      const desktopInlines = document.querySelectorAll('.desktop-inline');
+      desktopInlines.forEach(element => {
+        element.style.setProperty('display', 'none', 'important');
+        element.style.setProperty('visibility', 'hidden', 'important');
+      });
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
+      forceMembershipTextLineBreaks();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6613,6 +6642,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
+        forceMembershipTextLineBreaks();
       }
     });
     
