@@ -5288,19 +5288,28 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 4px 12px !important;
   }
   
-  /* 라벨 컨테이너를 좌측 정렬로 변경 - 최대 우선순위 */
-  div[style*="position: relative"][style*="background: #000000"][style*="border: 1px solid rgba(123, 228, 149, 0.3)"] > div[style*="position: absolute"][style*="top: -12px"][style*="left: 50%"][style*="transform: translateX(-50%)"] {
-    left: 16px !important;
-    transform: none !important;
-    right: auto !important;
-  }
-  
-  /* 강제로 모든 라벨을 좌측 정렬 */
-  div[style*="background: #000000"] div[style*="position: absolute"][style*="top: -12px"] {
-    left: 16px !important;
-    transform: none !important;
-    right: auto !important;
-  }
+     /* 라벨 컨테이너를 좌측 정렬로 변경 - 모든 가능한 방법 */
+   div[style*="position: absolute"][style*="top: -12px"] {
+     left: 16px !important;
+     transform: none !important;
+     margin-left: 0 !important;
+     right: auto !important;
+   }
+   
+   /* 더 구체적인 선택자로 강제 적용 */
+   div[style*="position: relative; background: #000000"] div[style*="position: absolute"] {
+     left: 16px !important;
+     transform: none !important;
+     right: auto !important;
+   }
+   
+   /* 라벨 스팬 자체도 좌측 정렬 */
+   span[style*="김포 바키짐"],
+   span[style*="김포 지역 타센터"] {
+     position: relative !important;
+     left: 0 !important;
+     transform: none !important;
+   }
   
   /* 비교 박스 내부 텍스트 크기 조정 */
   div[style*="position: relative; background: #000000"] h3 {
@@ -6552,10 +6561,22 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 모바일에서 라벨을 좌측 정렬로 강제 변경
+    function adjustMobileLabels() {
+      const labels = document.querySelectorAll('div[style*="position: absolute"][style*="top: -12px"]');
+      labels.forEach(label => {
+        label.style.setProperty('left', '16px', 'important');
+        label.style.setProperty('transform', 'none', 'important');
+        label.style.setProperty('right', 'auto', 'important');
+        label.style.setProperty('-webkit-transform', 'none', 'important');
+      });
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
+      adjustMobileLabels();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6585,6 +6606,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
+        adjustMobileLabels();
       }
     });
     
