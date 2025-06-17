@@ -2303,7 +2303,7 @@ html body .core-value-fresh-mobile {
     visibility: hidden !important;
     display: block !important;
   }
-  
+
   /* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
 }
 </style>
@@ -4960,17 +4960,17 @@ display: block !important;
 <script>
 // PC와 모바일 모두에서 작동하는 카드 뒤집기 스크립트
 document.addEventListener('DOMContentLoaded', function() {
-  const flipButton = document.querySelector('.neos-category-tags');
-  const flipper = document.querySelector('.flipper');
+    const flipButton = document.querySelector('.neos-category-tags');
+    const flipper = document.querySelector('.flipper');
   const backTextOverlay = document.querySelector('.back-text-overlay');
   const flipContainer = document.querySelector('.flip-container');
   
   // 모바일 환경 감지 (더 정확한 방법)
   const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  
-  if (flipButton && flipper) {
-    let isFlipped = false;
     
+    if (flipButton && flipper) {
+      let isFlipped = false;
+      
     // 공통 뒤집기 함수
     function performFlip() {
       isFlipped = !isFlipped;
@@ -5052,8 +5052,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 클릭 이벤트 (PC와 모바일 모두)
-    flipButton.addEventListener('click', function(e) {
-      e.preventDefault();
+      flipButton.addEventListener('click', function(e) {
+        e.preventDefault();
       e.stopPropagation();
       console.log('Button clicked'); // 디버깅용
       performFlip();
@@ -5309,7 +5309,7 @@ document.addEventListener('DOMContentLoaded', function() {
      position: relative !important;
      left: 0 !important;
      transform: none !important;
-   }
+  }
   
   /* 비교 박스 내부 텍스트 크기 조정 */
   div[style*="position: relative; background: #000000"] h3 {
@@ -5616,12 +5616,33 @@ document.addEventListener('DOMContentLoaded', function() {
      /* 회원권 관련 텍스트 사이즈 조정 (모바일) - 더 구체적인 선택자 */
      div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] {
        font-size: 0.8rem !important;
-       margin-top: 32px !important; /* 한 칸 아래로 */
+       margin-top: 48px !important; /* 더 많은 간격 */
      }
      
      div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] {
        font-size: 0.8rem !important;
-       margin-top: 44px !important; /* 한 칸 아래로 */
+       margin-top: 60px !important; /* 더 많은 간격 */
+     }
+     
+     /* 모바일에서 회원권 가격 정보와 상단 텍스트 사이 간격 추가 */
+     @media (max-width: 768px) {
+       div[style*="border-radius: 16px"] p[style*="김포 바키짐 1년 회원권"] .mobile-break {
+         margin-top: 24px !important;
+         display: block !important;
+         padding-top: 16px !important;
+       }
+       
+       div[style*="border-radius: 16px"] p[style*="타센터 1년 회원권 평균 단가"] .mobile-break {
+         margin-top: 24px !important;
+         display: block !important;
+         padding-top: 16px !important;
+       }
+       
+       /* 가격 정보 전체 컨테이너 간격 */
+       div[style*="border-radius: 16px"] p[style*="color: #7BE495"] {
+         margin-top: 40px !important;
+         padding-top: 20px !important;
+       }
      }
      
      /* 모든 회원권 관련 텍스트 선택자 강화 */
