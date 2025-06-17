@@ -3370,8 +3370,8 @@ html body .core-value-fresh-mobile {
     // 성능 최적화된 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // 모바일에서는 스크롤 애니메이션 비활성화
-      if (window.innerWidth <= 768) {
+      // 모바일에서는 benefits 섹션을 제외하고 스크롤 애니메이션 비활성화
+      if (window.innerWidth <= 768 && entry.target.id !== 'benefits') {
         entry.target.classList.add("visible");
         entry.target.style.opacity = "1";
         entry.target.style.transform = "none";
@@ -3393,8 +3393,8 @@ html body .core-value-fresh-mobile {
   });
 
   document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
-    // 모바일에서는 초기부터 visible 클래스 추가
-    if (window.innerWidth <= 768) {
+    // 모바일에서는 benefits 섹션을 제외하고 초기부터 visible 클래스 추가
+    if (window.innerWidth <= 768 && el.id !== 'benefits') {
       el.classList.add("visible");
       el.style.opacity = "1";
       el.style.transform = "none";
@@ -6072,13 +6072,19 @@ document.addEventListener('DOMContentLoaded', function() {
   @media (max-width: 768px) {
     section#benefits[data-mobile-adjust="true"],
     section#benefits.section.animate-on-scroll {
-      margin-top: -250px !important;
       position: relative !important;
       z-index: 999 !important;
-      transform: none !important;
-      -webkit-transform: none !important;
-      animation: none !important;
-      transition: none !important;
+      transform: translateY(50px) !important;
+      -webkit-transform: translateY(50px) !important;
+      opacity: 0 !important;
+      transition: all 0.6s ease-out !important;
+    }
+    
+    section#benefits[data-mobile-adjust="true"].visible,
+    section#benefits.section.animate-on-scroll.visible {
+      margin-top: -250px !important;
+      transform: translateY(0) !important;
+      -webkit-transform: translateY(0) !important;
       opacity: 1 !important;
     }
   }
