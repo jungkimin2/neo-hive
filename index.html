@@ -2918,7 +2918,7 @@ html body .core-value-fresh-mobile {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000;" data-mobile-adjust="true">
+<section id="benefits" class="section animate-on-scroll" style="background: #000; margin-top: -164px !important; position: relative !important; z-index: 999 !important;" data-mobile-adjust="true">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
@@ -3058,9 +3058,8 @@ html body .core-value-fresh-mobile {
   if (window.innerWidth <= 768) {
     const benefitsSection = document.querySelector('section#benefits[data-mobile-adjust="true"]');
     if (benefitsSection) {
-      benefitsSection.style.setProperty('margin-top', '-164px', 'important');
-      benefitsSection.style.setProperty('position', 'relative', 'important');
-      benefitsSection.style.setProperty('z-index', '10', 'important');
+      // 강력한 위치 조정 - 브라우저 캐시 무시
+      benefitsSection.style.cssText += '; margin-top: -300px !important; position: relative !important; z-index: 999 !important; transform: translateY(-100px) !important; -webkit-transform: translateY(-100px) !important;';
     }
   }
   
@@ -6059,9 +6058,20 @@ document.addEventListener('DOMContentLoaded', function() {
   section#benefits.section.animate-on-scroll {
     margin-top: -164px !important;
     position: relative !important;
-    z-index: 10 !important;
+    z-index: 999 !important;
     transform: none !important;
     -webkit-transform: none !important;
+  }
+  
+  /* 모바일에서 운동은 팀으로 섹션을 더 위로 강제 이동 */
+  @media (max-width: 768px) {
+    section#benefits[data-mobile-adjust="true"] {
+      margin-top: -300px !important;
+      position: relative !important;
+      z-index: 999 !important;
+      transform: translateY(-100px) !important;
+      -webkit-transform: translateY(-100px) !important;
+    }
   }
 
 
