@@ -3531,14 +3531,14 @@ html body .core-value-fresh-mobile {
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
+      // 모바일용 위치 - 화면 내에서 보이도록 조정된 값
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
-        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate(-120%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(-150%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(-180%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(20%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(50%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(80%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - 화면 내 위치
       ];
       return positions[index] || positions[0];
     } else {
@@ -5140,16 +5140,35 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
-  section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
-    margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
-    max-width: 90% !important;
-    margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
-    position: relative !important;
-  }
+   /* "운동은 팀으로, 기구는 스마트하게" 섹션을 4칸(64px) 위로 이동 - 최고 우선순위 */
+   html body section#benefits,
+   body section#benefits,
+   section#benefits.section {
+     transform: translateY(-64px) !important;
+     -webkit-transform: translateY(-64px) !important;
+     position: relative !important;
+     z-index: 100 !important;
+     margin-top: -64px !important;
+   }
+   
+   /* benefits 섹션 내부 요소들도 강제 적용 */
+   html body section#benefits .container,
+   body section#benefits .container {
+     transform: none !important;
+     -webkit-transform: none !important;
+     position: relative !important;
+   }
+
+   /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
+   section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
+     grid-template-columns: repeat(2, 1fr) !important;
+     gap: 8px !important;
+     padding: 12px !important;
+     margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
+     max-width: 90% !important;
+     margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
+     position: relative !important;
+   }
   
 
 
@@ -6094,14 +6113,14 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 모바일에서 화면 내 위치로 조정 */
   .hive-image:nth-of-type(1),
   .hive-showcase .hive-image:nth-of-type(1),
   html body .hive-showcase .hive-image:nth-of-type(1) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-160%, -50%) scale(0.9) !important;
-    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
+    transform: translate(-120%, -50%) scale(0.9) !important; /* -160% → -120%로 조정 */
+    -webkit-transform: translate(-120%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -6113,7 +6132,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(2) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-210%, -50%) scale(0.8) !important;
+    transform: translate(-150%, -50%) scale(0.8) !important; /* -210% → -150%로 조정 */
+    -webkit-transform: translate(-150%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6122,7 +6142,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(3) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-260%, -50%) scale(0.7) !important;
+    transform: translate(-180%, -50%) scale(0.7) !important; /* -260% → -180%로 조정 */
+    -webkit-transform: translate(-180%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6131,7 +6152,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(4) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(60%, -50%) scale(0.9) !important;
+    transform: translate(20%, -50%) scale(0.9) !important; /* 60% → 20%로 조정 */
+    -webkit-transform: translate(20%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6140,7 +6162,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(5) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(110%, -50%) scale(0.8) !important;
+    transform: translate(50%, -50%) scale(0.8) !important; /* 110% → 50%로 조정 */
+    -webkit-transform: translate(50%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6149,7 +6172,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(6) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(160%, -50%) scale(0.7) !important;
+    transform: translate(80%, -50%) scale(0.7) !important; /* 160% → 80%로 조정 */
+    -webkit-transform: translate(80%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6593,22 +6617,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일에서 라벨을 좌측 정렬로 강제 변경
-    function adjustMobileLabels() {
-      const labels = document.querySelectorAll('div[style*="position: absolute"][style*="top: -12px"]');
-      labels.forEach(label => {
-        label.style.setProperty('left', '16px', 'important');
-        label.style.setProperty('transform', 'none', 'important');
-        label.style.setProperty('right', 'auto', 'important');
-        label.style.setProperty('-webkit-transform', 'none', 'important');
-      });
-    }
+         // 모바일에서 라벨을 좌측 정렬로 강제 변경
+     function adjustMobileLabels() {
+       const labels = document.querySelectorAll('div[style*="position: absolute"][style*="top: -12px"]');
+       labels.forEach(label => {
+         label.style.setProperty('left', '16px', 'important');
+         label.style.setProperty('transform', 'none', 'important');
+         label.style.setProperty('right', 'auto', 'important');
+         label.style.setProperty('-webkit-transform', 'none', 'important');
+       });
+     }
+     
+     // 모바일에서 "운동은 팀으로, 기구는 스마트하게" 섹션 강제 위로 이동
+     function moveBenefitsSection() {
+       if (window.innerWidth <= 768) {
+         const benefitsSection = document.querySelector('#benefits');
+         if (benefitsSection) {
+           benefitsSection.style.setProperty('transform', 'translateY(-64px)', 'important');
+           benefitsSection.style.setProperty('-webkit-transform', 'translateY(-64px)', 'important');
+           benefitsSection.style.setProperty('position', 'relative', 'important');
+           benefitsSection.style.setProperty('z-index', '100', 'important');
+           benefitsSection.style.setProperty('margin-top', '-64px', 'important');
+           console.log('Benefits section moved up by 64px');
+         }
+       }
+     }
     
-    // 모바일 페이지 로딩 완료 처리
-    function showMobilePage() {
-      forceApplyMobileStyles();
-      adjustMobileIcons();
-      adjustMobileLabels();
+         // 모바일 페이지 로딩 완료 처리
+     function showMobilePage() {
+       forceApplyMobileStyles();
+       adjustMobileIcons();
+       adjustMobileLabels();
+       moveBenefitsSection();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6636,10 +6676,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       if (shouldReapply) {
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-        adjustMobileLabels();
-      }
+                 forceApplyMobileStyles();
+         adjustMobileIcons();
+         adjustMobileLabels();
+         moveBenefitsSection();
+       }
     });
     
     // DOM 감시 시작
