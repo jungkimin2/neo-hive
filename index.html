@@ -6,11 +6,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
 
+<!-- NEOS 카드 위치 즉시 강제 적용 스크립트 -->
+<script>
+(function() {
+  if (window.innerWidth <= 768) {
+    // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
+    function forceNeosCardPosition() {
+      const neosCard = document.querySelector('.neos-card-list');
+      if (neosCard) {
+        neosCard.style.setProperty('margin-top', '24px', 'important');
+        neosCard.style.setProperty('position', 'relative', 'important');
+        neosCard.style.setProperty('z-index', '15', 'important');
+      }
+    }
+    
+    // DOM 요소가 생성되는 즉시 실행
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && (node.classList.contains('neos-card-list') || node.querySelector('.neos-card-list'))) {
+              forceNeosCardPosition();
+            }
+          });
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+    
+    // DOM 준비 시 재실행
+    document.addEventListener('DOMContentLoaded', forceNeosCardPosition);
+  }
+})();
+</script>
+
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
 <style>
 /* 모바일에서만 적용 - PC 환경 완전 보호 */
 @media screen and (max-width: 768px) and (orientation: portrait),
        screen and (max-width: 768px) and (orientation: landscape) {
+  
+  /* NEOS 카드 위치 즉시 적용 - 최고 우선순위 */
+  .neos-card-list {
+    margin-top: 24px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    max-width: 90% !important;
+    margin-left: -25px !important;
+    position: relative !important;
+    z-index: 15 !important;
+  }
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
   .mobile-ui-position-adjustment {
@@ -5143,15 +5193,16 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 정확히 타겟팅하여 위치 조정 - 다른 UI 영향 없음 */
-  section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
+  /* NEOS 카드 위치 조정 - 최고 우선순위 적용 */
+  html body section#smart div.neos-card-list {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
     margin-top: 24px !important; /* 24px로 설정 (2칸 위로 조정) */
     max-width: 90% !important;
-    margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
+    margin-left: -25px !important;
     position: relative !important;
+    z-index: 15 !important;
   }
   
 
@@ -6501,16 +6552,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일 환경에서 뒤집기 효과 안의 NEOS 이미지만 2칸 아래로 이동 -->
+<!-- 모바일 환경에서 뒤집기 컨테이너 설정 -->
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드 리스트 위치 조정 */
-  div.neos-card-list[style*="margin-top: 24px"] {
-    margin-top: 24px !important; /* 24px로 조정 */
-    position: relative !important;
-    z-index: 15 !important;
-  }
-  
   /* 뒤집기 컨테이너의 위치 이동은 JavaScript에서 처리 */
   .flip-container {
     position: relative !important;
@@ -6583,10 +6627,10 @@ document.addEventListener('DOMContentLoaded', function() {
         backTextOverlay.style.setProperty('opacity', '0', 'important');
       }
       
-      // NEOS 카드 리스트 위치 조정
-      const neosCardList = document.querySelector('div.neos-card-list[style*="margin-top: 24px"]');
+      // NEOS 카드 리스트 위치 조정 - 클래스로 직접 선택
+      const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
-        neosCardList.style.setProperty('margin-top', '24px', 'important'); // 24px로 조정
+        neosCardList.style.setProperty('margin-top', '24px', 'important');
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
