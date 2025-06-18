@@ -3531,14 +3531,14 @@ html body .core-value-fresh-mobile {
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - 화면 내에서 보이도록 조정된 값
+      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-120%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - 화면 내 위치
-        { left: '50%', top: '60%', transform: 'translate(-150%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - 화면 내 위치
-        { left: '50%', top: '60%', transform: 'translate(-180%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - 화면 내 위치
-        { left: '50%', top: '60%', transform: 'translate(20%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - 화면 내 위치
-        { left: '50%', top: '60%', transform: 'translate(50%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - 화면 내 위치
-        { left: '50%', top: '60%', transform: 'translate(80%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - 화면 내 위치
+        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
       ];
       return positions[index] || positions[0];
     } else {
@@ -6113,14 +6113,14 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 모바일에서 화면 내 위치로 조정 */
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
   .hive-image:nth-of-type(1),
   .hive-showcase .hive-image:nth-of-type(1),
   html body .hive-showcase .hive-image:nth-of-type(1) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-120%, -50%) scale(0.9) !important; /* -160% → -120%로 조정 */
-    -webkit-transform: translate(-120%, -50%) scale(0.9) !important;
+    transform: translate(-160%, -50%) scale(0.9) !important;
+    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -6132,8 +6132,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(2) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-150%, -50%) scale(0.8) !important; /* -210% → -150%로 조정 */
-    -webkit-transform: translate(-150%, -50%) scale(0.8) !important;
+    transform: translate(-210%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6142,8 +6141,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(3) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(-180%, -50%) scale(0.7) !important; /* -260% → -180%로 조정 */
-    -webkit-transform: translate(-180%, -50%) scale(0.7) !important;
+    transform: translate(-260%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6152,8 +6150,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(4) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(20%, -50%) scale(0.9) !important; /* 60% → 20%로 조정 */
-    -webkit-transform: translate(20%, -50%) scale(0.9) !important;
+    transform: translate(60%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6162,8 +6159,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(5) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(50%, -50%) scale(0.8) !important; /* 110% → 50%로 조정 */
-    -webkit-transform: translate(50%, -50%) scale(0.8) !important;
+    transform: translate(110%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
@@ -6172,8 +6168,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-image:nth-of-type(6) {
     left: 50% !important;
     top: 60% !important;
-    transform: translate(80%, -50%) scale(0.7) !important; /* 160% → 80%로 조정 */
-    -webkit-transform: translate(80%, -50%) scale(0.7) !important;
+    transform: translate(160%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
