@@ -5140,35 +5140,16 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-   /* "운동은 팀으로, 기구는 스마트하게" 섹션을 4칸(64px) 위로 이동 - 최고 우선순위 */
-   html body section#benefits,
-   body section#benefits,
-   section#benefits.section {
-     transform: translateY(-64px) !important;
-     -webkit-transform: translateY(-64px) !important;
-     position: relative !important;
-     z-index: 100 !important;
-     margin-top: -64px !important;
-   }
-   
-   /* benefits 섹션 내부 요소들도 강제 적용 */
-   html body section#benefits .container,
-   body section#benefits .container {
-     transform: none !important;
-     -webkit-transform: none !important;
-     position: relative !important;
-   }
-
-   /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
-   section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
-     grid-template-columns: repeat(2, 1fr) !important;
-     gap: 8px !important;
-     padding: 12px !important;
-     margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
-     max-width: 90% !important;
-     margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
-     position: relative !important;
-   }
+  /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
+  section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+    margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
+    max-width: 90% !important;
+    margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
+    position: relative !important;
+  }
   
 
 
@@ -6612,38 +6593,22 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-         // 모바일에서 라벨을 좌측 정렬로 강제 변경
-     function adjustMobileLabels() {
-       const labels = document.querySelectorAll('div[style*="position: absolute"][style*="top: -12px"]');
-       labels.forEach(label => {
-         label.style.setProperty('left', '16px', 'important');
-         label.style.setProperty('transform', 'none', 'important');
-         label.style.setProperty('right', 'auto', 'important');
-         label.style.setProperty('-webkit-transform', 'none', 'important');
-       });
-     }
-     
-     // 모바일에서 "운동은 팀으로, 기구는 스마트하게" 섹션 강제 위로 이동
-     function moveBenefitsSection() {
-       if (window.innerWidth <= 768) {
-         const benefitsSection = document.querySelector('#benefits');
-         if (benefitsSection) {
-           benefitsSection.style.setProperty('transform', 'translateY(-64px)', 'important');
-           benefitsSection.style.setProperty('-webkit-transform', 'translateY(-64px)', 'important');
-           benefitsSection.style.setProperty('position', 'relative', 'important');
-           benefitsSection.style.setProperty('z-index', '100', 'important');
-           benefitsSection.style.setProperty('margin-top', '-64px', 'important');
-           console.log('Benefits section moved up by 64px');
-         }
-       }
-     }
+    // 모바일에서 라벨을 좌측 정렬로 강제 변경
+    function adjustMobileLabels() {
+      const labels = document.querySelectorAll('div[style*="position: absolute"][style*="top: -12px"]');
+      labels.forEach(label => {
+        label.style.setProperty('left', '16px', 'important');
+        label.style.setProperty('transform', 'none', 'important');
+        label.style.setProperty('right', 'auto', 'important');
+        label.style.setProperty('-webkit-transform', 'none', 'important');
+      });
+    }
     
-         // 모바일 페이지 로딩 완료 처리
-     function showMobilePage() {
-       forceApplyMobileStyles();
-       adjustMobileIcons();
-       adjustMobileLabels();
-       moveBenefitsSection();
+    // 모바일 페이지 로딩 완료 처리
+    function showMobilePage() {
+      forceApplyMobileStyles();
+      adjustMobileIcons();
+      adjustMobileLabels();
       
       // 페이지 표시
       setTimeout(() => {
@@ -6671,11 +6636,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       if (shouldReapply) {
-                 forceApplyMobileStyles();
-         adjustMobileIcons();
-         adjustMobileLabels();
-         moveBenefitsSection();
-       }
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+        adjustMobileLabels();
+      }
     });
     
     // DOM 감시 시작
