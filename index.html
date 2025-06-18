@@ -5143,12 +5143,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
+  /* NEOS 카드만 정확히 타겟팅하여 2칸 위로 이동 - 다른 UI 영향 없음 */
   section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
+    margin-top: 88px !important; /* 120px에서 88px로 변경 (32px 위로 = 2칸 위로) */
     max-width: 90% !important;
     margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
     position: relative !important;
@@ -6504,9 +6504,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- 모바일 환경에서 뒤집기 효과 안의 NEOS 이미지만 2칸 아래로 이동 -->
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드 리스트는 원래 위치 유지 */
+  /* NEOS 카드 리스트는 2칸 위로 이동 */
   div.neos-card-list[style*="margin-top: 120px"] {
-    margin-top: 120px !important; /* 원래 값으로 복원 */
+    margin-top: 88px !important; /* 120px에서 88px로 수정 (2칸 위로) */
     position: relative !important;
     z-index: 15 !important;
   }
@@ -6586,7 +6586,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // NEOS 카드 리스트는 기본 모바일 스타일만 적용
       const neosCardList = document.querySelector('div.neos-card-list[style*="margin-top: 120px"]');
       if (neosCardList) {
-        neosCardList.style.setProperty('margin-top', '120px', 'important'); // 원래 값 유지
+        neosCardList.style.setProperty('margin-top', '88px', 'important'); // 120px에서 88px로 수정 (2칸 위로)
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
