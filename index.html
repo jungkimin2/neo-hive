@@ -3452,11 +3452,11 @@ html body .core-value-fresh-mobile {
           }
         }
       } else if (hiveImages[idx]) {
-        // 모바일과 PC에서 다른 방식으로 처리
+        // 클릭된 이미지가 중앙으로, 비디오는 그 이미지의 원래 위치로
         const targetImg = hiveImages[idx];
         const targetPosition = getPositionForIndex(idx);
         
-        // 모든 이미지를 비활성화
+        // 먼저 모든 이미지를 원래 위치로 리셋
         hiveImages.forEach((img, index) => {
           img.classList.remove('active');
           if (index !== idx) {
@@ -3464,22 +3464,12 @@ html body .core-value-fresh-mobile {
           }
         });
 
-        if (window.innerWidth <= 768) {
-          // 모바일: 단순한 위치 교체 방식
-          // 클릭된 이미지를 중앙으로
-          targetImg.classList.add('active');
-          targetImg.style.setProperty('left', '50%', 'important');
-          targetImg.style.setProperty('top', '60%', 'important');
-          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-          targetImg.style.setProperty('z-index', '100', 'important');
-          targetImg.style.setProperty('width', '180px', 'important');
-          targetImg.style.setProperty('height', '360px', 'important');
-          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
-          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-          targetImg.style.setProperty('border-radius', '20px', 'important');
-          
-          // 비디오를 클릭된 이미지의 원래 위치로
-          if (videoPhone) {
+        // 비디오를 클릭된 이미지의 원래 위치로 이동
+        if (videoPhone) {
+          if (window.innerWidth <= 768) {
+            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
             videoPhone.style.setProperty('left', targetPosition.left, 'important');
             videoPhone.style.setProperty('top', targetPosition.top, 'important');
             videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
@@ -3489,28 +3479,41 @@ html body .core-value-fresh-mobile {
             videoPhone.style.setProperty('border', 'none', 'important');
             videoPhone.style.setProperty('box-shadow', 'none', 'important');
             videoPhone.style.setProperty('border-radius', '16px', 'important');
-          }
-        } else {
-          // PC: 기존 복잡한 방식 유지
-          // 비디오를 클릭된 이미지의 원래 위치로 이동
-          if (videoPhone) {
+          } else {
+            // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
             videoPhone.style.top = targetPosition.top;
             videoPhone.style.transform = targetPosition.transform;
-            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
+            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important'); // !important로 강제 적용
             videoPhone.style.width = '160px';
             videoPhone.style.height = '320px';
             videoPhone.style.border = 'none';
             videoPhone.style.boxShadow = 'none';
             videoPhone.style.borderRadius = '24px';
           }
+        }
 
-          // 클릭된 이미지를 중앙으로 이동
-          targetImg.classList.add('active');
+        // 클릭된 이미지를 중앙으로 이동
+        targetImg.classList.add('active');
+        if (window.innerWidth <= 768) {
+          // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+          targetImg.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+          targetImg.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+          targetImg.style.setProperty('left', '50%', 'important');
+          targetImg.style.setProperty('top', '60%', 'important');
+          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          targetImg.style.setProperty('z-index', '10', 'important');
+          targetImg.style.setProperty('width', '180px', 'important');
+          targetImg.style.setProperty('height', '360px', 'important');
+          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+          targetImg.style.setProperty('border-radius', '20px', 'important');
+        } else {
+          // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
           targetImg.style.top = '50%';
           targetImg.style.transform = 'translate(-50%, -50%)';
-          targetImg.style.setProperty('z-index', '100', 'important');
+          targetImg.style.setProperty('z-index', '100', 'important'); // 클릭된 이미지는 항상 가장 앞에
           targetImg.style.width = '256px';
           targetImg.style.height = '512px';
           targetImg.style.border = '6px solid #7BE495';
@@ -3525,17 +3528,17 @@ html body .core-value-fresh-mobile {
     }, 400);
   }
   
-  // 인덱스에 따른 위치 정보 반환 함수 - 모바일에서 화면 내 안전한 위치
+  // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - 화면 내에서 안전한 위치로 조정
+      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
       const positions = [
-        { left: '30%', top: '60%', transform: 'translate(-50%, -50%) scale(0.5)', zIndex: 3 }, // 좌측 1번
-        { left: '20%', top: '60%', transform: 'translate(-50%, -50%) scale(0.4)', zIndex: 2 }, // 좌측 2번
-        { left: '10%', top: '60%', transform: 'translate(-50%, -50%) scale(0.3)', zIndex: 1 }, // 좌측 3번
-        { left: '70%', top: '60%', transform: 'translate(-50%, -50%) scale(0.5)', zIndex: 3 }, // 우측 1번
-        { left: '80%', top: '60%', transform: 'translate(-50%, -50%) scale(0.4)', zIndex: 2 }, // 우측 2번
-        { left: '90%', top: '60%', transform: 'translate(-50%, -50%) scale(0.3)', zIndex: 1 }  // 우측 3번
+        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
+        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
+        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
       ];
       return positions[index] || positions[0];
     } else {
@@ -6110,14 +6113,14 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 - 모바일에서 화면 내 안전한 위치 */
+  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
   .hive-image:nth-of-type(1),
   .hive-showcase .hive-image:nth-of-type(1),
   html body .hive-showcase .hive-image:nth-of-type(1) {
-    left: 30% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.5) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.5) !important;
+    transform: translate(-160%, -50%) scale(0.9) !important;
+    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -6127,50 +6130,45 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: preserve-3d !important;
   }
   .hive-image:nth-of-type(2) {
-    left: 20% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.4) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.4) !important;
+    transform: translate(-210%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(3) {
-    left: 10% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.3) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.3) !important;
+    transform: translate(-260%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(4) {
-    left: 70% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.5) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.5) !important;
+    transform: translate(60%, -50%) scale(0.9) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(5) {
-    left: 80% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.4) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.4) !important;
+    transform: translate(110%, -50%) scale(0.8) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(6) {
-    left: 90% !important;
+    left: 50% !important;
     top: 60% !important;
-    transform: translate(-50%, -50%) scale(0.3) !important;
-    -webkit-transform: translate(-50%, -50%) scale(0.3) !important;
+    transform: translate(160%, -50%) scale(0.7) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
