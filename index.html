@@ -5140,16 +5140,24 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 @media (max-width: 768px) {
-  /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
-  section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
-    margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
-    max-width: 90% !important;
-    margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
-    position: relative !important;
-  }
+   /* "운동은 팀으로, 기구는 스마트하게" 섹션을 4칸(64px) 위로 이동 */
+   section#benefits {
+     transform: translateY(-64px) !important;
+     -webkit-transform: translateY(-64px) !important;
+     position: relative !important;
+     z-index: 10 !important;
+   }
+
+   /* NEOS 카드만 정확히 타겟팅하여 2칸 아래로 이동 - 다른 UI 영향 없음 */
+   section#smart div.neos-card-list[style*="grid-template-columns: repeat(4, 1fr)"] {
+     grid-template-columns: repeat(2, 1fr) !important;
+     gap: 8px !important;
+     padding: 12px !important;
+     margin-top: 120px !important; /* 56px에서 120px로 변경 (64px 더 아래로 = 2칸) */
+     max-width: 90% !important;
+     margin-left: -25px !important; /* transform 대신 margin 사용 - 뒤집기 애니메이션 보존 */
+     position: relative !important;
+   }
   
 
 
