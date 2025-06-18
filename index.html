@@ -3531,14 +3531,14 @@ html body .core-value-fresh-mobile {
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
+      // 모바일용 위치 - 화면 내 안전한 위치로 복구
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
-        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
+        { left: '30%', top: '60%', transform: 'translate(-50%, -50%) scale(0.5)', zIndex: 3 }, // 좌측 1번
+        { left: '20%', top: '60%', transform: 'translate(-50%, -50%) scale(0.4)', zIndex: 2 }, // 좌측 2번
+        { left: '10%', top: '60%', transform: 'translate(-50%, -50%) scale(0.3)', zIndex: 1 }, // 좌측 3번
+        { left: '70%', top: '60%', transform: 'translate(-50%, -50%) scale(0.5)', zIndex: 3 }, // 우측 1번
+        { left: '80%', top: '60%', transform: 'translate(-50%, -50%) scale(0.4)', zIndex: 2 }, // 우측 2번
+        { left: '90%', top: '60%', transform: 'translate(-50%, -50%) scale(0.3)', zIndex: 1 }  // 우측 3번
       ];
       return positions[index] || positions[0];
     } else {
@@ -6113,14 +6113,14 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform: translateZ(0) !important;
   }
   
-  /* 네오 하이브 슬라이드 원래 위치 강제 복구 - 최고 우선순위 */
+  /* 네오 하이브 슬라이드 - 모바일에서 화면 내 안전한 위치로 복구 */
   .hive-image:nth-of-type(1),
   .hive-showcase .hive-image:nth-of-type(1),
   html body .hive-showcase .hive-image:nth-of-type(1) {
-    left: 50% !important;
+    left: 30% !important;
     top: 60% !important;
-    transform: translate(-160%, -50%) scale(0.9) !important;
-    -webkit-transform: translate(-160%, -50%) scale(0.9) !important;
+    transform: translate(-50%, -50%) scale(0.5) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.5) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -6130,45 +6130,50 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-transform-style: preserve-3d !important;
   }
   .hive-image:nth-of-type(2) {
-    left: 50% !important;
+    left: 20% !important;
     top: 60% !important;
-    transform: translate(-210%, -50%) scale(0.8) !important;
+    transform: translate(-50%, -50%) scale(0.4) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.4) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(3) {
-    left: 50% !important;
+    left: 10% !important;
     top: 60% !important;
-    transform: translate(-260%, -50%) scale(0.7) !important;
+    transform: translate(-50%, -50%) scale(0.3) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.3) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(4) {
-    left: 50% !important;
+    left: 70% !important;
     top: 60% !important;
-    transform: translate(60%, -50%) scale(0.9) !important;
+    transform: translate(-50%, -50%) scale(0.5) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.5) !important;
     z-index: 3 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(5) {
-    left: 50% !important;
+    left: 80% !important;
     top: 60% !important;
-    transform: translate(110%, -50%) scale(0.8) !important;
+    transform: translate(-50%, -50%) scale(0.4) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.4) !important;
     z-index: 2 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
     -webkit-transition: all 0.4s ease-out !important;
   }
   .hive-image:nth-of-type(6) {
-    left: 50% !important;
+    left: 90% !important;
     top: 60% !important;
-    transform: translate(160%, -50%) scale(0.7) !important;
+    transform: translate(-50%, -50%) scale(0.3) !important;
+    -webkit-transform: translate(-50%, -50%) scale(0.3) !important;
     z-index: 1 !important;
     position: absolute !important;
     transition: all 0.4s ease-out !important;
