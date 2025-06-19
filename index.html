@@ -81,8 +81,8 @@
   }
   
   #smart {
-    transform: translateY(-456px) !important;
-    -webkit-transform: translateY(-456px) !important;
+    transform: translateY(-440px) !important;
+    -webkit-transform: translateY(-440px) !important;
     position: relative !important;
   }
 
@@ -6601,7 +6601,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-364.8px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-456px)' }
+        { selector: '#smart', transform: 'translateY(-440px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -6728,51 +6728,9 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 즉시 실행 NEOS 카드 위치 수정 스크립트 -->
+<!-- NEOS 카드는 기본 CSS로 처리 -->
 <script>
-// 극강 강제 적용 - 모든 방법 동원
-const timestamp = Date.now();
-const isMobile = window.innerWidth <= 768;
-
-// 방법 1: document.write로 즉시 CSS 삽입
-document.write('<style id="neos-force-' + timestamp + '">');
-if (isMobile) {
-  document.write('.neos-card-list, div.neos-card-list, section .neos-card-list, #smart .neos-card-list { margin-top: 56px !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }');
-} else {
-  document.write('.neos-card-list, div.neos-card-list, section .neos-card-list, #smart .neos-card-list { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important; }');
-}
-document.write('</style>');
-
-// 방법 2: 즉시 실행 함수로 DOM 조작
-(function forceApply() {
-  const cards = document.querySelectorAll('.neos-card-list');
-  cards.forEach(function(card) {
-    if (isMobile) {
-      card.style.cssText = 'display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; justify-items: center !important; margin-top: 56px !important;';
-      console.log('모바일 NEOS 카드 56px 강제 적용됨');
-    } else {
-      card.style.cssText = 'display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important;';
-      console.log('PC NEOS 카드 강제 적용됨');
-    }
-  });
-  
-  // 0.1초 후 재실행
-  setTimeout(forceApply, 100);
-})();
-
-// 방법 3: DOM 준비 후 재강제 적용
-document.addEventListener('DOMContentLoaded', function() {
-  const cards = document.querySelectorAll('.neos-card-list');
-  cards.forEach(function(card) {
-    if (isMobile) {
-      card.setAttribute('style', 'display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; justify-items: center !important; margin-top: 56px !important;');
-      console.log('DOM 준비 후 모바일 NEOS 카드 56px 재적용됨');
-    } else {
-      card.setAttribute('style', 'display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important;');
-      console.log('DOM 준비 후 PC NEOS 카드 재적용됨');
-    }
-  });
-});
+console.log('NEOS 카드 위치는 #smart transform으로 조정됨');
 </script>
 
 </body>
