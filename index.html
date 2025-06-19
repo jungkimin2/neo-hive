@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="cache-version" content="v2024-12-18-008">
+<meta name="cache-version" content="v2024-12-18-007">
 
 <!-- 간단한 NEOS 카드 스타일 적용 -->
 <script>
@@ -6629,9 +6629,12 @@ document.addEventListener('DOMContentLoaded', function() {
         backTextOverlay.style.setProperty('opacity', '0', 'important');
       }
       
-      // NEOS 카드 리스트 기본 모바일 스타일 적용
+      // NEOS 카드 리스트 위치 조정 - transform으로 위로 이동
       const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
+        neosCardList.style.setProperty('transform', 'translateY(-32px)', 'important');
+        neosCardList.style.setProperty('position', 'relative', 'important');
+        neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
         neosCardList.style.setProperty('gap', '8px', 'important');
         neosCardList.style.setProperty('padding', '12px', 'important');
