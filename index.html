@@ -199,6 +199,15 @@ pointer-events: auto !important;
   text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
 }
 
+/* 모바일 환경에서 자물쇠 이모티콘 좌측 이동 및 예시 문구 크기 조정 */
+.lock-icon {
+  margin-left: -16px !important;
+}
+
+.example-text {
+  font-size: 0.75rem !important;
+}
+
 .mobile-system-list li {
   font-size: 0.88rem !important;
   line-height: 1.6 !important;
@@ -2534,8 +2543,8 @@ if (window.innerWidth <= 768) {
               스마트 헬스 가이드 시스템입니다.
             </div>
           </div>
-          <p style="color: #62D2A2; font-size: 0.85rem; line-height: 1.6; margin-top: -16px; text-align: left; display: flex; align-items: center;">
-            <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 10px;"> 각 운동 기구에 최적화된 전용 영상 가이드 탑재<br>(예: 레그프레스 기구에는 레그프레스 사용법 영상 자동 제공)
+          <p style="color: #62D2A2; font-size: 0.85rem; line-height: 1.6; margin-top: -16px; text-align: left; display: flex; align-items: center;" class="smart-guide-text">
+            <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 10px;" class="lock-icon"> 각 운동 기구에 최적화된 전용 영상 가이드 탑재<br><span class="example-text">(예: 레그프레스 기구에는 레그프레스 사용법 영상 자동 제공)</span>
           </p>
         </div>
         <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
