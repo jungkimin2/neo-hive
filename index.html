@@ -2244,10 +2244,10 @@ html body .core-value-fresh-mobile {
     position: relative !important;
   }
   
-  /* 뒷면 이미지도 동일하게 위로 이동 */
+  /* 뒷면 이미지는 앞면보다 2칸 아래로 */
   .flipper .back,
   .back {
-    transform: translateY(-64px) rotateY(180deg) !important;
+    transform: translateY(-32px) rotateY(180deg) !important;
   }
   
 
@@ -2347,7 +2347,7 @@ if (window.innerWidth <= 768) {
     }
     
     if (backCard) {
-      backCard.style.setProperty('transform', 'translateY(-64px) rotateY(180deg)', 'important');
+      backCard.style.setProperty('transform', 'translateY(-32px) rotateY(180deg)', 'important');
     }
     
 
@@ -5047,9 +5047,9 @@ document.addEventListener('DOMContentLoaded', function() {
           flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
           
           if (isFlipped) {
-            // 뒷면 보기: 앞면 숨기고 뒷면 보이기 (위치 유지)
+            // 뒷면 보기: 앞면 숨기고 뒷면 보이기 (뒷면은 앞면보다 2칸 아래)
             frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(-180deg)', 'important');
-            backImage.style.setProperty('transform', 'translateY(-64px) rotateY(0deg)', 'important');
+            backImage.style.setProperty('transform', 'translateY(-32px) rotateY(0deg)', 'important');
             
             // 텍스트 오버레이도 뒷면과 함께 표시
             if (backTextOverlay) {
@@ -5059,9 +5059,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             console.log('Mobile: Showing back side with text');
           } else {
-            // 앞면 보기: 앞면 보이고 뒷면 숨기기 (위치 유지)
+            // 앞면 보기: 앞면 보이고 뒷면 숨기기 (뒷면은 앞면보다 2칸 아래)
             frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(0deg)', 'important');
-            backImage.style.setProperty('transform', 'translateY(-64px) rotateY(180deg)', 'important');
+            backImage.style.setProperty('transform', 'translateY(-32px) rotateY(180deg)', 'important');
             
             // 텍스트 오버레이도 숨기기
             if (backTextOverlay) {
@@ -5165,9 +5165,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // 3D 효과 활성화
         flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
         
-        // 초기 상태: 앞면 보이기, 뒷면 숨기기 (위치 유지)
+        // 초기 상태: 앞면 보이기, 뒷면 숨기기 (뒷면은 앞면보다 2칸 아래)
         frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(0deg)', 'important');
-        backImage.style.setProperty('transform', 'translateY(-64px) rotateY(180deg)', 'important');
+        backImage.style.setProperty('transform', 'translateY(-32px) rotateY(180deg)', 'important');
         console.log('Mobile initial state: front visible, back hidden');
       }
     } else {
