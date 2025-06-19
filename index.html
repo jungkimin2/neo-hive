@@ -66,36 +66,38 @@
     });
   }
   
-  if (window.innerWidth <= 768) {
-    
-    // 즉시 실행
-    forceNeosCardPosition();
-    
-    // DOM 요소가 생성되는 즉시 실행
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList') {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1 && (node.classList.contains('neos-card-list') || node.querySelector('.neos-card-list'))) {
-              setTimeout(forceNeosCardPosition, 0);
-            }
-          });
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
-    
-    // 다양한 시점에서 재실행
-    document.addEventListener('DOMContentLoaded', forceNeosCardPosition);
-    window.addEventListener('load', forceNeosCardPosition);
-    
-    // 1초 후 재실행 (최종 보험)
-    setTimeout(forceNeosCardPosition, 1000);
-  }
+     // 즉시 실행 (모바일/PC 모두)
+   forceNeosCardPosition();
+   
+   // DOM 요소가 생성되는 즉시 실행
+   const observer = new MutationObserver(function(mutations) {
+     mutations.forEach(function(mutation) {
+       if (mutation.type === 'childList') {
+         mutation.addedNodes.forEach(function(node) {
+           if (node.nodeType === 1 && (node.classList.contains('neos-card-list') || node.querySelector('.neos-card-list'))) {
+             setTimeout(forceNeosCardPosition, 0);
+           }
+         });
+       }
+     });
+   });
+   
+   observer.observe(document.documentElement, {
+     childList: true,
+     subtree: true
+   });
+   
+   // 다양한 시점에서 재실행
+   document.addEventListener('DOMContentLoaded', forceNeosCardPosition);
+   window.addEventListener('load', forceNeosCardPosition);
+   
+   // 1초 후 재실행 (최종 보험)
+   setTimeout(forceNeosCardPosition, 1000);
+   
+   // 윈도우 리사이즈 시에도 재적용
+   window.addEventListener('resize', function() {
+     setTimeout(forceNeosCardPosition, 100);
+   });
 })();
 </script>
 
