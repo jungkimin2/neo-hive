@@ -20,13 +20,17 @@
 @media screen and (max-width: 768px) and (orientation: portrait),
        screen and (max-width: 768px) and (orientation: landscape) {
   
-  /* NEOS 카드 모바일 스타일 - 위치는 #smart 섹션 transform으로 제어 */
+  /* NEOS 카드 위치 - 모바일에서만 적용 */
   .neos-card-list {
+    transform: translateY(-32px) !important;
+    margin-top: -32px !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
     max-width: 90% !important;
     margin-left: -25px !important;
+    position: relative !important;
+    z-index: 15 !important;
   }
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
