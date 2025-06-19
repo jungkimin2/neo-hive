@@ -2235,12 +2235,12 @@ html body .core-value-fresh-mobile {
   pointer-events: auto !important;
 }
 
-/* 모바일에서만 NEOS 카드 이미지를 위로 2칸(32px) 이동 - 최고 우선순위 */
+/* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
   .flipper img.neo-smart-logo.front,
   img.neo-smart-logo.front {
-    transform: translateY(-32px) !important;
-    margin-top: -32px !important;
+    transform: translateY(-64px) !important;
+    margin-top: -64px !important;
     position: relative !important;
   }
 }
@@ -2330,10 +2330,10 @@ if (window.innerWidth <= 768) {
   function forceNeosCardPosition() {
     const neosCard = document.querySelector('.neo-smart-logo.front');
     if (neosCard) {
-      neosCard.style.setProperty('transform', 'translateY(-32px)', 'important');
-      neosCard.style.setProperty('margin-top', '-32px', 'important');
+      neosCard.style.setProperty('transform', 'translateY(-64px)', 'important');
+      neosCard.style.setProperty('margin-top', '-64px', 'important');
       neosCard.style.setProperty('position', 'relative', 'important');
-      console.log('NEOS 카드 위치 강제 조정 완료');
+      console.log('NEOS 카드 위치 강제 조정 완료 (4칸 위로)');
     }
   }
   
