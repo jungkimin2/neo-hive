@@ -24,17 +24,17 @@
     });
   }
   
-  if (window.innerWidth <= 768) {
-    // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
-    function forceNeosCardPosition() {
-      const neosCards = document.querySelectorAll('.neos-card-list');
-      neosCards.forEach(function(neosCard) {
-        if (neosCard) {
-          // 기존 스타일 완전 제거 후 재적용
-          neosCard.style.cssText = '';
-          neosCard.removeAttribute('style');
-          
-          // 새로운 스타일 강제 적용
+  // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
+  function forceNeosCardPosition() {
+    const neosCards = document.querySelectorAll('.neos-card-list');
+    neosCards.forEach(function(neosCard) {
+      if (neosCard) {
+        // 기존 스타일 완전 제거 후 재적용
+        neosCard.style.cssText = '';
+        neosCard.removeAttribute('style');
+        
+        if (window.innerWidth <= 768) {
+          // 모바일 환경 스타일
           neosCard.style.setProperty('margin-top', '40px', 'important');
           neosCard.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
           neosCard.style.setProperty('gap', '8px', 'important');
@@ -46,10 +46,27 @@
           neosCard.style.setProperty('display', 'grid', 'important');
           neosCard.style.setProperty('justify-items', 'center', 'important');
           
-          console.log('NEOS 카드 스타일 강제 적용됨:', neosCard.style.marginTop);
+          console.log('NEOS 카드 모바일 스타일 적용됨:', neosCard.style.marginTop);
+        } else {
+          // PC 환경 스타일 (원래대로)
+          neosCard.style.setProperty('display', 'grid', 'important');
+          neosCard.style.setProperty('grid-template-columns', 'repeat(4, 1fr)', 'important');
+          neosCard.style.setProperty('gap', '16px', 'important');
+          neosCard.style.setProperty('justify-items', 'center', 'important');
+          neosCard.style.setProperty('margin-top', '24px', 'important');
+          neosCard.style.setProperty('max-width', '100%', 'important');
+          neosCard.style.setProperty('margin-left', '0', 'important');
+          neosCard.style.setProperty('padding', '0', 'important');
+          neosCard.style.setProperty('position', 'static', 'important');
+          neosCard.style.setProperty('z-index', 'auto', 'important');
+          
+          console.log('NEOS 카드 PC 스타일 적용됨 - 4열 배치');
         }
-      });
-    }
+      }
+    });
+  }
+  
+  if (window.innerWidth <= 768) {
     
     // 즉시 실행
     forceNeosCardPosition();
@@ -88,7 +105,7 @@
 @media screen and (max-width: 768px) and (orientation: portrait),
        screen and (max-width: 768px) and (orientation: landscape) {
   
-  /* NEOS 카드 위치 즉시 적용 - 최고 우선순위 */
+  /* NEOS 카드 위치 - 모바일에서만 적용 */
   .neos-card-list {
     margin-top: 40px !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -179,7 +196,7 @@
   }
 }
 
-/* PC 환경에서는 모든 transform 제거 */
+/* PC 환경에서는 모든 transform 제거 및 NEOS 카드 원래 스타일 복원 */
 @media screen and (min-width: 769px) {
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
@@ -188,6 +205,20 @@
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
+  }
+  
+  /* PC 환경에서 NEOS 카드 원래 스타일 복원 */
+  .neos-card-list {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+    justify-items: center !important;
+    margin-top: 24px !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    z-index: auto !important;
   }
 }
 
