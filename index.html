@@ -10,94 +10,24 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="cache-version" content="v2024-12-18-001">
+<meta name="cache-version" content="v2024-12-18-002">
 
-<!-- NEOS 카드 위치 즉시 강제 적용 스크립트 - 캐시 무효화 버전 -->
+<!-- 간단한 NEOS 카드 스타일 적용 -->
 <script>
+// 즉시 실행 - 페이지 로딩과 동시에
 (function() {
-  // 강제 캐시 무효화
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-      for(let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  }
+  const timestamp = Date.now();
+  const isMobile = window.innerWidth <= 768;
   
-  // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
-  function forceNeosCardPosition() {
-    const neosCards = document.querySelectorAll('.neos-card-list');
-    neosCards.forEach(function(neosCard) {
-      if (neosCard) {
-        // 기존 스타일 완전 제거 후 재적용
-        neosCard.style.cssText = '';
-        neosCard.removeAttribute('style');
-        
-        if (window.innerWidth <= 768) {
-          // 모바일 환경 스타일
-          neosCard.style.setProperty('margin-top', '40px', 'important');
-          neosCard.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
-          neosCard.style.setProperty('gap', '8px', 'important');
-          neosCard.style.setProperty('padding', '12px', 'important');
-          neosCard.style.setProperty('max-width', '90%', 'important');
-          neosCard.style.setProperty('margin-left', '-25px', 'important');
-          neosCard.style.setProperty('position', 'relative', 'important');
-          neosCard.style.setProperty('z-index', '15', 'important');
-          neosCard.style.setProperty('display', 'grid', 'important');
-          neosCard.style.setProperty('justify-items', 'center', 'important');
-          
-          console.log('NEOS 카드 모바일 스타일 적용됨:', neosCard.style.marginTop);
-        } else {
-          // PC 환경 스타일 (원래대로)
-          neosCard.style.setProperty('display', 'grid', 'important');
-          neosCard.style.setProperty('grid-template-columns', 'repeat(4, 1fr)', 'important');
-          neosCard.style.setProperty('gap', '16px', 'important');
-          neosCard.style.setProperty('justify-items', 'center', 'important');
-          neosCard.style.setProperty('margin-top', '24px', 'important');
-          neosCard.style.setProperty('max-width', '100%', 'important');
-          neosCard.style.setProperty('margin-left', '0', 'important');
-          neosCard.style.setProperty('padding', '0', 'important');
-          neosCard.style.setProperty('position', 'static', 'important');
-          neosCard.style.setProperty('z-index', 'auto', 'important');
-          
-          console.log('NEOS 카드 PC 스타일 적용됨 - 4열 배치');
-        }
-      }
-    });
-  }
+  // CSS 직접 삽입
+  const style = document.createElement('style');
+  style.id = 'neos-fix-' + timestamp;
+  style.innerHTML = isMobile ? 
+    '.neos-card-list { margin-top: 40px !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }' :
+    '.neos-card-list { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important; }';
+  document.head.appendChild(style);
   
-     // 즉시 실행 (모바일/PC 모두)
-   forceNeosCardPosition();
-   
-   // DOM 요소가 생성되는 즉시 실행
-   const observer = new MutationObserver(function(mutations) {
-     mutations.forEach(function(mutation) {
-       if (mutation.type === 'childList') {
-         mutation.addedNodes.forEach(function(node) {
-           if (node.nodeType === 1 && (node.classList.contains('neos-card-list') || node.querySelector('.neos-card-list'))) {
-             setTimeout(forceNeosCardPosition, 0);
-           }
-         });
-       }
-     });
-   });
-   
-   observer.observe(document.documentElement, {
-     childList: true,
-     subtree: true
-   });
-   
-   // 다양한 시점에서 재실행
-   document.addEventListener('DOMContentLoaded', forceNeosCardPosition);
-   window.addEventListener('load', forceNeosCardPosition);
-   
-   // 1초 후 재실행 (최종 보험)
-   setTimeout(forceNeosCardPosition, 1000);
-   
-   // 윈도우 리사이즈 시에도 재적용
-   window.addEventListener('resize', function() {
-     setTimeout(forceNeosCardPosition, 100);
-   });
+  console.log('NEOS 스타일 삽입됨:', isMobile ? '모바일' : 'PC');
 })();
 </script>
 
@@ -6798,27 +6728,31 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 강제 새로고침 및 캐시 무효화 최종 스크립트 -->
+<!-- 즉시 실행 NEOS 카드 위치 수정 스크립트 -->
 <script>
-(function() {
-  // 페이지 로드 완료 후 강제 새로고침 (한 번만)
-  if (!sessionStorage.getItem('neos-refresh-done')) {
-    sessionStorage.setItem('neos-refresh-done', 'true');
-    setTimeout(function() {
-      // 브라우저 캐시 강제 삭제
-      if ('caches' in window) {
-        caches.keys().then(function(names) {
-          names.forEach(function(name) {
-            caches.delete(name);
-          });
-        });
-      }
-      
-      // 현재 페이지 강제 새로고침
-      window.location.reload(true);
-    }, 500);
-  }
-})();
+// 즉시 실행 함수 - 브라우저 파싱과 동시에 실행
+document.write('<style id="neos-override-' + Date.now() + '">');
+document.write('@media (max-width: 768px) {');
+document.write('.neos-card-list { margin-top: 40px !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }');
+document.write('}');
+document.write('@media (min-width: 769px) {');
+document.write('.neos-card-list { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important; }');
+document.write('}');
+document.write('</style>');
+
+// DOM 준비되면 JavaScript로도 강제 적용
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.neos-card-list');
+  cards.forEach(function(card) {
+    if (window.innerWidth <= 768) {
+      card.setAttribute('style', 'display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; justify-items: center !important; margin-top: 40px !important;');
+      console.log('모바일 NEOS 카드 강제 적용됨');
+    } else {
+      card.setAttribute('style', 'display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important;');
+      console.log('PC NEOS 카드 강제 적용됨');
+    }
+  });
+});
 </script>
 
 </body>
