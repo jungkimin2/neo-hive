@@ -2235,10 +2235,13 @@ html body .core-value-fresh-mobile {
   pointer-events: auto !important;
 }
 
-/* 모바일에서만 NEOS 카드 이미지를 위로 2칸(32px) 이동 */
+/* 모바일에서만 NEOS 카드 이미지를 위로 2칸(32px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
-  .neo-smart-logo.front {
+  .flipper img.neo-smart-logo.front,
+  img.neo-smart-logo.front {
     transform: translateY(-32px) !important;
+    margin-top: -32px !important;
+    position: relative !important;
   }
 }
 
@@ -2319,6 +2322,34 @@ html body .core-value-fresh-mobile {
         <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div> <!-- End of .hive-showcase -->
+
+<!-- JavaScript로 NEOS 카드 강제 이동 -->
+<script>
+// 모바일에서만 NEOS 카드 위치 강제 조정
+if (window.innerWidth <= 768) {
+  function forceNeosCardPosition() {
+    const neosCard = document.querySelector('.neo-smart-logo.front');
+    if (neosCard) {
+      neosCard.style.setProperty('transform', 'translateY(-32px)', 'important');
+      neosCard.style.setProperty('margin-top', '-32px', 'important');
+      neosCard.style.setProperty('position', 'relative', 'important');
+      console.log('NEOS 카드 위치 강제 조정 완료');
+    }
+  }
+  
+  // 즉시 실행
+  forceNeosCardPosition();
+  
+  // DOM 로드 후 재실행
+  document.addEventListener('DOMContentLoaded', forceNeosCardPosition);
+  
+  // 페이지 완전 로드 후 재실행
+  window.addEventListener('load', forceNeosCardPosition);
+  
+  // 1초 후 다시 한 번 더 실행 (다른 스크립트들이 덮어쓸 수 있어서)
+  setTimeout(forceNeosCardPosition, 1000);
+}
+</script>
 <style>
 /* Ripple wave background for NEO-S */
 .wave-background {
