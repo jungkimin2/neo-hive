@@ -10,15 +10,15 @@
 <script>
 (function() {
   if (window.innerWidth <= 768) {
-    // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
-    function forceNeosCardPosition() {
-      const neosCard = document.querySelector('.neos-card-list');
-      if (neosCard) {
-        neosCard.style.setProperty('margin-top', '24px', 'important');
-        neosCard.style.setProperty('position', 'relative', 'important');
-        neosCard.style.setProperty('z-index', '15', 'important');
-      }
-    }
+         // 페이지 로딩 즉시 NEOS 카드 스타일 강제 적용
+     function forceNeosCardPosition() {
+       const neosCard = document.querySelector('.neos-card-list');
+       if (neosCard) {
+         neosCard.style.setProperty('margin-top', '40px', 'important');
+         neosCard.style.setProperty('position', 'relative', 'important');
+         neosCard.style.setProperty('z-index', '15', 'important');
+       }
+     }
     
     // DOM 요소가 생성되는 즉시 실행
     const observer = new MutationObserver(function(mutations) {
@@ -52,7 +52,7 @@
   
   /* NEOS 카드 위치 즉시 적용 - 최고 우선순위 */
   .neos-card-list {
-    margin-top: 24px !important;
+    margin-top: 40px !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
@@ -2491,7 +2491,7 @@ html body .core-value-fresh-mobile {
         </svg>
       </div>
       <!-- NEO SMART 카드형 주요 UI -->
-      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 24px;">
+      <div class="neos-card-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; margin-top: 40px;">
         <div class="neos-card" style="display: flex; align-items: center; min-width: 240px;">
           <div class="neos-icon" style="width: 42px; height: 42px; background: linear-gradient(135deg, #7BE495, #62D2A2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 16px;">
             <img src="./images/neo98.png" alt="기구 사용법" style="width: 30px; height: 30px;">
@@ -5198,7 +5198,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    margin-top: 24px !important; /* 24px로 설정 (2칸 위로 조정) */
+    margin-top: 40px !important; /* 40px로 설정 (적정 위치로 조정) */
     max-width: 90% !important;
     margin-left: -25px !important;
     position: relative !important;
@@ -6630,7 +6630,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // NEOS 카드 리스트 위치 조정 - 클래스로 직접 선택
       const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
-        neosCardList.style.setProperty('margin-top', '24px', 'important');
+        neosCardList.style.setProperty('margin-top', '40px', 'important');
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
