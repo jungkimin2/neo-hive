@@ -10,26 +10,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="cache-version" content="v2024-12-18-006">
+<meta name="cache-version" content="v2024-12-18-008">
 
-<!-- 간단한 NEOS 카드 스타일 적용 -->
-<script>
-// 즉시 실행 - 페이지 로딩과 동시에
-(function() {
-  const timestamp = Date.now();
-  const isMobile = window.innerWidth <= 768;
-  
-  // CSS 직접 삽입
-  const style = document.createElement('style');
-  style.id = 'neos-fix-' + timestamp;
-     style.innerHTML = isMobile ? 
-     '.neos-card-list { transform: translateY(16px) !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }' :
-     '.neos-card-list { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important; }';
-  document.head.appendChild(style);
-  
-  console.log('NEOS 스타일 삽입됨:', isMobile ? '모바일' : 'PC');
-})();
-</script>
+<!-- NEOS 카드는 이제 #smart 섹션 transform으로 위치 제어됨 -->
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
 <style>
@@ -37,16 +20,13 @@
 @media screen and (max-width: 768px) and (orientation: portrait),
        screen and (max-width: 768px) and (orientation: landscape) {
   
-  /* NEOS 카드 위치 - 모바일에서만 적용 */
+  /* NEOS 카드 모바일 스타일 - 위치는 #smart 섹션 transform으로 제어 */
   .neos-card-list {
-    transform: translateY(16px) !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
     max-width: 90% !important;
     margin-left: -25px !important;
-    position: relative !important;
-    z-index: 15 !important;
   }
   
   /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
@@ -81,8 +61,8 @@
   }
   
   #smart {
-    transform: translateY(-424px) !important;
-    -webkit-transform: translateY(-424px) !important;
+    transform: translateY(-456px) !important;
+    -webkit-transform: translateY(-456px) !important;
     position: relative !important;
   }
 
@@ -5199,7 +5179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    transform: translateY(16px) !important; /* transform으로 아래로 이동 */
+    transform: translateY(-32px) !important; /* transform으로 위로 이동 */
     max-width: 90% !important;
     margin-left: -25px !important;
     position: relative !important;
@@ -6601,7 +6581,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-364.8px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-424px)' }
+        { selector: '#smart', transform: 'translateY(-456px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -6628,12 +6608,9 @@ document.addEventListener('DOMContentLoaded', function() {
         backTextOverlay.style.setProperty('opacity', '0', 'important');
       }
       
-      // NEOS 카드 리스트 위치 조정 - transform으로 아래로 이동
+      // NEOS 카드 리스트 기본 모바일 스타일 적용
       const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
-        neosCardList.style.setProperty('transform', 'translateY(16px)', 'important');
-        neosCardList.style.setProperty('position', 'relative', 'important');
-        neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
         neosCardList.style.setProperty('gap', '8px', 'important');
         neosCardList.style.setProperty('padding', '12px', 'important');
