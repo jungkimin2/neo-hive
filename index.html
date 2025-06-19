@@ -10,7 +10,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="cache-version" content="v2024-12-18-007">
+<meta name="cache-version" content="v2024-12-18-006">
 
 <!-- 간단한 NEOS 카드 스타일 적용 -->
 <script>
@@ -23,7 +23,7 @@
   const style = document.createElement('style');
   style.id = 'neos-fix-' + timestamp;
      style.innerHTML = isMobile ? 
-     '.neos-card-list { transform: translateY(-32px) !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }' :
+     '.neos-card-list { transform: translateY(16px) !important; grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 12px !important; max-width: 90% !important; margin-left: -25px !important; position: relative !important; z-index: 15 !important; display: grid !important; justify-items: center !important; }' :
      '.neos-card-list { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; justify-items: center !important; margin-top: 24px !important; max-width: 100% !important; margin-left: 0 !important; padding: 0 !important; position: static !important; z-index: auto !important; }';
   document.head.appendChild(style);
   
@@ -39,8 +39,7 @@
   
   /* NEOS 카드 위치 - 모바일에서만 적용 */
   .neos-card-list {
-    transform: translateY(-32px) !important;
-    margin-top: -32px !important;
+    transform: translateY(16px) !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
@@ -5200,7 +5199,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
     padding: 12px !important;
-    transform: translateY(-32px) !important; /* transform으로 위로 이동 */
+    transform: translateY(16px) !important; /* transform으로 아래로 이동 */
     max-width: 90% !important;
     margin-left: -25px !important;
     position: relative !important;
@@ -6629,10 +6628,10 @@ document.addEventListener('DOMContentLoaded', function() {
         backTextOverlay.style.setProperty('opacity', '0', 'important');
       }
       
-      // NEOS 카드 리스트 위치 조정 - transform으로 위로 이동
+      // NEOS 카드 리스트 위치 조정 - transform으로 아래로 이동
       const neosCardList = document.querySelector('.neos-card-list');
       if (neosCardList) {
-        neosCardList.style.setProperty('transform', 'translateY(-32px)', 'important');
+        neosCardList.style.setProperty('transform', 'translateY(16px)', 'important');
         neosCardList.style.setProperty('position', 'relative', 'important');
         neosCardList.style.setProperty('z-index', '15', 'important');
         neosCardList.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
