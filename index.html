@@ -5789,9 +5789,30 @@ document.addEventListener('DOMContentLoaded', function() {
        z-index: 10 !important;
      }
      
-     /* 모바일에서 impact 섹션 숨기기 */
-     #impact {
+     /* 모바일에서 impact 섹션 숨기기 - 강력한 적용 */
+     #impact,
+     div#impact,
+     section#impact,
+     .animate-on-scroll#impact {
        display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       overflow: hidden !important;
+       position: absolute !important;
+       left: -9999px !important;
+     }
+     
+     /* 회색 박스들을 직접 타겟팅 */
+     div[style*="background: linear-gradient(135deg, #0F1F1A"],
+     div[style*="background: #0F1A1C"],
+     div[style*="헬스장 운영의 패러다임 전환"],
+     div[style*="피트니스 시장의 생존 전략"] {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       overflow: hidden !important;
      }
      
      section#benefits .container {
@@ -6757,14 +6778,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
+    // 회색 박스 강제 제거 함수
+    function removeGreyBoxes() {
+      // impact 섹션 완전 제거
+      const impactSection = document.querySelector('#impact, div#impact, section#impact, .animate-on-scroll#impact');
+      if (impactSection) {
+        impactSection.remove();
+      }
+      
+      // 회색 배경을 가진 모든 div 제거
+      const greyBoxes = document.querySelectorAll('div[style*="background: linear-gradient(135deg, #0F1F1A"], div[style*="background: #0F1A1C"]');
+      greyBoxes.forEach(box => {
+        box.remove();
+      });
+      
+      // 특정 텍스트를 포함한 요소들 제거
+      const textElements = document.querySelectorAll('*');
+      textElements.forEach(el => {
+        if (el.textContent && (
+          el.textContent.includes('헬스장 운영의 패러다임 전환') ||
+          el.textContent.includes('피트니스 시장의 생존 전략') ||
+          el.textContent.includes('NEO HIVE 도입 시 매출 상승 효과') ||
+          el.textContent.includes('NEO SMART 도입 시 비용 절감 효과')
+        )) {
+          const parentDiv = el.closest('div[style*="background"]');
+          if (parentDiv) {
+            parentDiv.remove();
+          }
+        }
+      });
+    }
+    
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       forceApplyMobileStyles();
       adjustMobileIcons();
+      removeGreyBoxes(); // 회색 박스 제거 추가
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
+        removeGreyBoxes(); // 한 번 더 실행
       }, 50);
     }
     
@@ -6790,6 +6844,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (shouldReapply) {
         forceApplyMobileStyles();
         adjustMobileIcons();
+        removeGreyBoxes(); // 회색 박스 제거도 재적용
       }
     });
     
