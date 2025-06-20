@@ -5777,9 +5777,47 @@ document.addEventListener('DOMContentLoaded', function() {
        background: none !important;
      }
      
+     /* 모바일에서 impact 섹션 숨기기 - 강력한 적용 */
+     #impact,
+     div#impact,
+     section#impact,
+     .animate-on-scroll#impact {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       max-height: 0 !important;
+       min-height: 0 !important;
+       overflow: hidden !important;
+       position: absolute !important;
+       left: -9999px !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       border: none !important;
+       background: transparent !important;
+     }
+     
+     /* impact 섹션 내부 모든 요소들도 숨기기 */
+     #impact *,
+     div#impact *,
+     section#impact *,
+     .animate-on-scroll#impact * {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       max-height: 0 !important;
+       min-height: 0 !important;
+       overflow: hidden !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       border: none !important;
+       background: transparent !important;
+     }
+
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 */
      section#benefits {
-       margin-top: -100px !important;
+       margin-top: -500px !important;
        position: relative !important;
        z-index: 10 !important;
      }
