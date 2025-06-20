@@ -1671,82 +1671,35 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
 @media (max-width: 768px) {
-  /* 강제 위치 조정 - 브라우저 캐시 무력화 */
+  /* 모바일에서 무인 출입/이벤트 시스템 UI 완전 숨김 */
   .mobile-ui-position-adjustment.mobile-transform-target {
-    transform: translateY(-420px) !important;
-    -webkit-transform: translateY(-420px) !important;
-    position: relative !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
   
   .mobile-ui-position-adjustment .mobile-system-box {
-    background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
-    border-radius: 22px !important;
-    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
-    padding: 26px !important; /* slightly increased padding */
-    padding-bottom: 12px !important; /* 모바일에서만 하단 패딩 줄임 */
-    margin-bottom: 0px !important;
-    border: 1px solid #62D2A2;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
   .mobile-ui-position-adjustment .mobile-system-box--merged {
-    margin-top: 0 !important;
+    display: none !important;
   }
   .mobile-system-content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* adjusted gap for better spacing */
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 16px !important; /* 한 칸(16px) 전체를 아래로 이동 */
+    display: none !important;
   }
-  .mobile-system-title {
-    font-size: 1.05rem !important;
-    color: #7BE495;
-    text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
-    font-weight: bold;
-    margin-bottom: 10px; /* consistent margin for visual balance */
-    text-align: left;
-  }
-  .mobile-system-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .mobile-system-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    font-size: 0.88rem !important;
-    color: #ccc !important;
-    margin-bottom: 8px; /* consistent vertical spacing */
-    line-height: 1.5 !important;
-  }
-  .mobile-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background-color: #7BE495 !important;
-    border-radius: 50%;
-    margin-top: 7px;
-    flex-shrink: 0;
-  }
-  .mobile-system-desc {
-    font-size: 0.7rem !important;
-    color: #ffffff !important;
-    margin-top: 10px !important;
-    text-align: left;
-    line-height: 1.5;
-    text-align: left;
-    padding-left: 22px;
-    text-indent: -20px;
-  }
+  .mobile-system-title,
+  .mobile-system-list,
+  .mobile-system-list li,
+  .mobile-dot,
+  .mobile-system-desc,
   .mobile-system-divider {
-    border: none;
-    border-top: 1px solid rgba(123, 228, 149, 0.4);
-    margin: 12px 0 16px 0;
-    width: 100%;
-    background: none;
-    height: 1px;
-    display: block;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 }
 @media (min-width: 769px) {
@@ -6632,6 +6585,28 @@ document.addEventListener('DOMContentLoaded', function() {
       impactSections.forEach(section => {
         if (section) {
           section.remove();
+        }
+      });
+      
+      // 모바일 시스템 UI 요소들 제거
+      const mobileSystemBoxes = document.querySelectorAll('.mobile-ui-position-adjustment, .mobile-system-box, .mobile-system-content, .mobile-system-title');
+      mobileSystemBoxes.forEach(box => {
+        if (box) {
+          box.remove();
+        }
+      });
+      
+      // 무인 출입 시스템과 이벤트 시스템 텍스트를 포함한 요소들 제거
+      const systemElements = document.querySelectorAll('*');
+      systemElements.forEach(el => {
+        if (el.textContent && (
+          el.textContent.includes('무인 출입 시스템 운영 방식') ||
+          el.textContent.includes('이벤트 시스템 연동')
+        )) {
+          const parentBox = el.closest('.mobile-ui-position-adjustment, .mobile-system-box');
+          if (parentBox) {
+            parentBox.remove();
+          }
         }
       });
       
