@@ -2767,7 +2767,7 @@ if (window.innerWidth <= 768) {
                 </div>
               </div>
               <div style="margin-top: 20px; text-align: center; font-size: 1.25rem; color: #fff; font-weight: bold;">
-                ✔ 비용 차이: <span class="neon-green-text">2억 9천 8백만 원 절감 가능</span>
+                ✔ 비용 차이: <span class="neon-green-text pc-neon-savings">2억 9천 8백만 원 절감 가능</span>
               </div>
             </div>
           </div>
@@ -6631,6 +6631,40 @@ document.addEventListener('DOMContentLoaded', function() {
   .neo-smart-video,
   .floating-video {
     z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
+  }
+}
+
+/* PC 환경에서만 적용되는 그린 네온 사인 효과 */
+@media (min-width: 769px) {
+  .pc-neon-savings {
+    color: #7BE495 !important;
+    text-shadow: 
+      0 0 5px rgba(123, 228, 149, 0.8),
+      0 0 10px rgba(123, 228, 149, 0.6),
+      0 0 15px rgba(123, 228, 149, 0.4),
+      0 0 20px rgba(123, 228, 149, 0.3),
+      0 0 30px rgba(123, 228, 149, 0.2) !important;
+    font-weight: bold !important;
+    animation: neon-pulse 2s ease-in-out infinite alternate !important;
+  }
+  
+  @keyframes neon-pulse {
+    from {
+      text-shadow: 
+        0 0 5px rgba(123, 228, 149, 0.8),
+        0 0 10px rgba(123, 228, 149, 0.6),
+        0 0 15px rgba(123, 228, 149, 0.4),
+        0 0 20px rgba(123, 228, 149, 0.3),
+        0 0 30px rgba(123, 228, 149, 0.2);
+    }
+    to {
+      text-shadow: 
+        0 0 8px rgba(123, 228, 149, 1),
+        0 0 16px rgba(123, 228, 149, 0.8),
+        0 0 24px rgba(123, 228, 149, 0.6),
+        0 0 32px rgba(123, 228, 149, 0.4),
+        0 0 40px rgba(123, 228, 149, 0.3);
+    }
   }
 }
 </style>
