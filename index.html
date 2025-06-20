@@ -5777,18 +5777,54 @@ document.addEventListener('DOMContentLoaded', function() {
        background: none !important;
      }
      
-     /* 모바일에서 impact 섹션 완전 제거 */
-     #impact {
+     /* 모바일에서 impact 섹션 완전 제거 - 강력한 적용 */
+     #impact,
+     div#impact,
+     section#impact,
+     .animate-on-scroll#impact {
        display: none !important;
        visibility: hidden !important;
        opacity: 0 !important;
        height: 0 !important;
        max-height: 0 !important;
+       min-height: 0 !important;
        overflow: hidden !important;
        position: absolute !important;
        left: -9999px !important;
        margin: 0 !important;
        padding: 0 !important;
+       border: none !important;
+       background: transparent !important;
+     }
+     
+     /* impact 섹션 내부 모든 요소들도 숨기기 */
+     #impact *,
+     div#impact *,
+     section#impact *,
+     .animate-on-scroll#impact * {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       max-height: 0 !important;
+       min-height: 0 !important;
+       overflow: hidden !important;
+       margin: 0 !important;
+       padding: 0 !important;
+       border: none !important;
+       background: transparent !important;
+     }
+     
+     /* 회색 박스들을 직접 타겟팅 */
+     div[style*="background: linear-gradient(135deg, #0F1F1A"],
+     div[style*="background: #0F1A1C"],
+     div[style*="헬스장 운영의 패러다임 전환"],
+     div[style*="피트니스 시장의 생존 전략"] {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       overflow: hidden !important;
      }
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 */
@@ -6732,6 +6768,28 @@ document.addEventListener('DOMContentLoaded', function() {
       impactSections.forEach(section => {
         if (section) {
           section.remove();
+        }
+      });
+      
+      // 회색 배경을 가진 모든 div 제거
+      const greyBoxes = document.querySelectorAll('div[style*="background: linear-gradient(135deg, #0F1F1A"], div[style*="background: #0F1A1C"]');
+      greyBoxes.forEach(box => {
+        box.remove();
+      });
+      
+      // 특정 텍스트를 포함한 요소들 제거
+      const textElements = document.querySelectorAll('*');
+      textElements.forEach(el => {
+        if (el.textContent && (
+          el.textContent.includes('헬스장 운영의 패러다임 전환') ||
+          el.textContent.includes('피트니스 시장의 생존 전략') ||
+          el.textContent.includes('NEO HIVE 도입 시 매출 상승 효과') ||
+          el.textContent.includes('NEO SMART 도입 시 비용 절감 효과')
+        )) {
+          const parentDiv = el.closest('div[style*="background"]');
+          if (parentDiv) {
+            parentDiv.remove();
+          }
         }
       });
     }
