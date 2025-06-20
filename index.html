@@ -5777,6 +5777,20 @@ document.addEventListener('DOMContentLoaded', function() {
        background: none !important;
      }
      
+     /* 모바일에서 impact 섹션 완전 제거 */
+     #impact {
+       display: none !important;
+       visibility: hidden !important;
+       opacity: 0 !important;
+       height: 0 !important;
+       max-height: 0 !important;
+       overflow: hidden !important;
+       position: absolute !important;
+       left: -9999px !important;
+       margin: 0 !important;
+       padding: 0 !important;
+     }
+     
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 */
      section#benefits {
        margin-top: -400px !important;
@@ -6711,16 +6725,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 회색 박스 강제 제거 함수
+    function removeGreyBoxes() {
+      // impact 섹션 완전 제거
+      const impactSections = document.querySelectorAll('#impact, div#impact, section#impact, .animate-on-scroll#impact');
+      impactSections.forEach(section => {
+        if (section) {
+          section.remove();
+        }
+      });
+    }
+    
     
     
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
+      removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
+        removeGreyBoxes(); // 한 번 더 제거
       }, 50);
     }
     
@@ -6744,6 +6771,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       if (shouldReapply) {
+        removeGreyBoxes(); // 회색 박스 제거
         forceApplyMobileStyles();
         adjustMobileIcons();
       }
