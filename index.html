@@ -2714,9 +2714,15 @@ if (window.innerWidth <= 768) {
   .circular-bg-glow {
     top: calc(50% + 40px) !important; /* 다이어그램 중앙 */
     left: calc(65% - 5px) !important; /* 다이어그램 중앙 */
-    width: 400px !important;
-    height: 400px !important;
+    width: 500px !important;
+    height: 500px !important;
     transform: translate(-50%, -50%) !important;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.3), rgba(123, 228, 149, 0.1), rgba(0,0,0,0)) !important;
+    filter: blur(60px) !important;
+    z-index: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   /* 모바일에서 투명도 겹치기 효과 적용 - dotted lines는 뒤로, 다이어그램 circles는 앞으로 */
