@@ -2714,12 +2714,12 @@ if (window.innerWidth <= 768) {
   .circular-bg-glow {
     top: calc(50% + 40px) !important; /* 다이어그램 중앙 */
     left: calc(65% - 5px) !important; /* 다이어그램 중앙 */
-    width: 400px !important;
-    height: 400px !important;
+    width: 500px !important;
+    height: 500px !important;
     transform: translate(-50%, -50%) !important;
-    background: radial-gradient(circle, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.15) 50%, rgba(0,0,0,0) 100%) !important;
-    filter: blur(60px) !important;
-    z-index: 0 !important;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.15) 0%, rgba(123, 228, 149, 0.08) 40%, rgba(123, 228, 149, 0.03) 70%, rgba(0,0,0,0) 100%) !important;
+    filter: blur(80px) !important;
+    z-index: -1 !important; /* 모든 요소 뒤로 보내기 */
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -2728,17 +2728,21 @@ if (window.innerWidth <= 768) {
   
   /* 모바일에서 투명도 겹치기 효과 적용 - dotted lines는 뒤로, 다이어그램 circles는 앞으로 */
   .circle-lines {
-    z-index: 1 !important; /* 점선 원은 배경으로 */
+    z-index: 2 !important; /* 점선 원을 발광 위로 */
   }
   
   .circle-step {
-    z-index: 3 !important; /* 다이어그램 원들은 앞으로 */
+    z-index: 5 !important; /* 다이어그램 원들을 가장 앞으로 */
+    background: rgba(0, 10, 13, 0.95) !important; /* 다이어그램 배경을 더 불투명하게 */
   }
   
   .center-title {
-    z-index: 4 !important; /* 중앙 텍스트는 최상단 */
+    z-index: 6 !important; /* 중앙 텍스트는 최상단 */
     top: calc(50% + 43px) !important; /* 중앙 텍스트 위치 */
     left: calc(65% - 5px) !important;
+    background: rgba(0, 10, 13, 0.9) !important; /* 중앙 텍스트 배경 */
+    border-radius: 50% !important;
+    padding: 20px !important;
   }
   
 
