@@ -2714,27 +2714,16 @@ if (window.innerWidth <= 768) {
   .circular-bg-glow {
     top: calc(50% + 40px) !important; /* 다이어그램 중앙 */
     left: calc(65% - 5px) !important; /* 다이어그램 중앙 */
-    width: 600px !important;
-    height: 600px !important;
+    width: 400px !important;
+    height: 400px !important;
     transform: translate(-50%, -50%) !important;
-    background: radial-gradient(circle, rgba(123, 228, 149, 0.4) 0%, rgba(123, 228, 149, 0.2) 40%, rgba(123, 228, 149, 0.1) 70%, rgba(0,0,0,0) 100%) !important;
-    filter: blur(50px) !important;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.15) 50%, rgba(0,0,0,0) 100%) !important;
+    filter: blur(60px) !important;
     z-index: 0 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    animation: centerGlow 3s ease-in-out infinite alternate !important;
-  }
-  
-  @keyframes centerGlow {
-    from {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.1);
-    }
+    animation: none !important;
   }
   
   /* 모바일에서 투명도 겹치기 효과 적용 - dotted lines는 뒤로, 다이어그램 circles는 앞으로 */
@@ -2752,32 +2741,7 @@ if (window.innerWidth <= 768) {
     left: calc(65% - 5px) !important;
   }
   
-  /* 모바일 중앙 강화 발광 효과 추가 */
-  .circular-flow-container::after {
-    content: '';
-    position: absolute;
-    top: calc(50% + 40px) !important;
-    left: calc(65% - 5px) !important;
-    width: 200px !important;
-    height: 200px !important;
-    transform: translate(-50%, -50%) !important;
-    background: radial-gradient(circle, rgba(123, 228, 149, 0.6) 0%, rgba(123, 228, 149, 0.3) 50%, rgba(0,0,0,0) 100%) !important;
-    border-radius: 50% !important;
-    z-index: 2 !important;
-    animation: innerGlow 2s ease-in-out infinite alternate !important;
-    pointer-events: none !important;
-  }
-  
-  @keyframes innerGlow {
-    from {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-  }
+
   
   /* 다이어그램 원들 모바일 위치 조정 */
   .circle-step[style*="left: 85%; top: 12%"],
