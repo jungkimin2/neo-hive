@@ -1355,7 +1355,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <a href="#hive" onclick="closeNav()">하이브 시스템</a>
     <a href="#smart" onclick="closeNav()">스마트 시스템</a>
     <a href="#impact" onclick="closeNav()">도입 효과</a>
-    <a href="#formModal" onclick="openForm();closeNav();">무료 신청</a>
+    <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">무료 신청</a>
   </div>
 </div>
 
@@ -1376,7 +1376,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <a href="#hive">하이브 시스템</a>
         <a href="#smart">스마트 시스템</a>
         <a href="#impact">도입 효과</a>
-        <a href="#formModal" onclick="openForm()">무료 신청</a>
+        <a href="javascript:void(0)" onclick="openForm();return false;">무료 신청</a>
       </nav>
     </div>
     </header>
@@ -2833,7 +2833,7 @@ if (window.innerWidth <= 768) {
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 268px; left: 224px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
     <div style="text-align:center; margin-top: 36px;">
-      <a href="#formModal" onclick="openForm()" class="btn" style="
+      <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
         display: inline-block;
         background: none;
         color: #7BE495;
@@ -2998,11 +2998,17 @@ if (window.innerWidth <= 768) {
     }
   });
   
-  function openForm() {
+  function openForm(event) {
+    // 스크롤 방지
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
     const modal = document.getElementById('formModal');
     if (!modal) {
       console.error('formModal not found');
-      return;
+      return false;
     }
     
     modal.style.display = 'block';
@@ -3034,6 +3040,8 @@ if (window.innerWidth <= 768) {
         }
       }, 50);
     }
+    
+    return false;
   }
   function closeForm() {
     document.getElementById('formModal').style.display = 'none';
