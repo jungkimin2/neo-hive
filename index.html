@@ -3015,48 +3015,30 @@ if (window.innerWidth <= 768) {
     
     // 모바일 환경에서 팝업을 좌측으로 정렬
     if (window.innerWidth <= 768) {
-      // 즉시 적용 - 더 강력한 스타일
-      modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '50%', 'important');
-      modal.style.setProperty('left', '7.5%', 'important');
-      modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '85%', 'important');
-      modal.style.setProperty('max-width', '350px', 'important');
-      modal.style.setProperty('min-width', '280px', 'important');
-      modal.style.setProperty('box-sizing', 'border-box', 'important');
-      modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('right', 'auto', 'important');
-      modal.style.setProperty('z-index', '2147483647', 'important');
-      modal.style.setProperty('background', '#000', 'important');
-      modal.style.setProperty('border', '2px solid #3AC8A8', 'important');
-      modal.style.setProperty('border-radius', '12px', 'important');
-      modal.style.setProperty('color', '#fff', 'important');
-      modal.style.setProperty('visibility', 'visible', 'important');
-      modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('padding', '20px', 'important');
-      
-      console.log('Mobile modal opened with styles applied');
+      // 즉시 적용
+      modal.style.position = 'fixed';
+      modal.style.top = '50%';
+      modal.style.left = '7.5%';
+      modal.style.transform = 'translateY(-50%)';
+      modal.style.width = '85%';
+      modal.style.maxWidth = '350px';
+      modal.style.minWidth = '280px';
+      modal.style.boxSizing = 'border-box';
+      modal.style.margin = '0';
+      modal.style.right = 'auto';
+      modal.style.zIndex = '9999';
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
       
       // 추가 안전장치
       setTimeout(() => {
         if (modal.style.display === 'block') {
-          modal.style.setProperty('position', 'fixed', 'important');
-          modal.style.setProperty('top', '50%', 'important');
-          modal.style.setProperty('left', '7.5%', 'important');
-          modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-          modal.style.setProperty('z-index', '2147483647', 'important');
-          modal.style.setProperty('visibility', 'visible', 'important');
-          modal.style.setProperty('opacity', '1', 'important');
-          console.log('Modal safety check applied');
+          modal.style.position = 'fixed';
+          modal.style.top = '50%';
+          modal.style.left = '7.5%';
+          modal.style.transform = 'translateY(-50%)';
         }
-      }, 100);
-    } else {
-      // PC 환경에서는 기본 중앙 정렬
-      modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '50%', 'important');
-      modal.style.setProperty('left', '50%', 'important');
-      modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      modal.style.setProperty('z-index', '9999', 'important');
+      }, 50);
     }
     
     return false;
