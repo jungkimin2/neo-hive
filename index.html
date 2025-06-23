@@ -3104,8 +3104,22 @@ if (window.innerWidth <= 768) {
       overlay.id = 'modalOverlay';
       overlay.className = 'modal-overlay';
       overlay.onclick = closeForm;
+      overlay.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        backdrop-filter: blur(2px) !important;
+        z-index: 2147483647 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+      `;
       document.body.appendChild(overlay);
-      console.log('Overlay created dynamically');
+      console.log('Overlay created dynamically with enhanced styles');
     }
     
     if (!modal) {
@@ -3114,23 +3128,24 @@ if (window.innerWidth <= 768) {
     }
     
     // 오버레이와 모달 표시 - PC/모바일 공통 강화
-    if (overlay) {
-      overlay.style.setProperty('display', 'block', 'important');
-      overlay.style.setProperty('position', 'fixed', 'important');
-      overlay.style.setProperty('top', '0', 'important');
-      overlay.style.setProperty('left', '0', 'important');
-      overlay.style.setProperty('right', '0', 'important');
-      overlay.style.setProperty('bottom', '0', 'important');
-      overlay.style.setProperty('width', '100vw', 'important');
-      overlay.style.setProperty('height', '100vh', 'important');
-      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important'); /* 더 어둡게 */
-      overlay.style.setProperty('z-index', '2147483647', 'important');
-      overlay.style.setProperty('visibility', 'visible', 'important');
-      overlay.style.setProperty('opacity', '1', 'important');
-      overlay.style.setProperty('pointer-events', 'auto', 'important');
-      overlay.classList.add('active');
-      console.log('Overlay displayed');
-    }
+          if (overlay) {
+        overlay.style.setProperty('display', 'block', 'important');
+        overlay.style.setProperty('position', 'fixed', 'important');
+        overlay.style.setProperty('top', '0', 'important');
+        overlay.style.setProperty('left', '0', 'important');
+        overlay.style.setProperty('right', '0', 'important');
+        overlay.style.setProperty('bottom', '0', 'important');
+        overlay.style.setProperty('width', '100vw', 'important');
+        overlay.style.setProperty('height', '100vh', 'important');
+        overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important'); /* 더욱 어둡게 강화 */
+        overlay.style.setProperty('z-index', '2147483647', 'important');
+        overlay.style.setProperty('visibility', 'visible', 'important');
+        overlay.style.setProperty('opacity', '1', 'important');
+        overlay.style.setProperty('pointer-events', 'auto', 'important');
+        overlay.style.setProperty('backdrop-filter', 'blur(2px)', 'important'); /* 블러 효과 추가 */
+        overlay.classList.add('active');
+        console.log('Overlay displayed');
+      }
     modal.style.display = 'block';
     
     // 모바일 환경에서 현재 화면 위치에 팝업 표시
@@ -3139,12 +3154,12 @@ if (window.innerWidth <= 768) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // 즉시 적용 - 현재 화면 중앙에 표시 (2칸 좌측으로 이동)
+      // 즉시 적용 - 현재 화면 중앙에 표시 (3칸 우측으로 이동)
       modal.style.setProperty('position', 'absolute', 'important');
       modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
-      modal.style.setProperty('left', '2.5%', 'important'); /* 12.5% → 2.5%로 2칸 좌측 이동 */
+      modal.style.setProperty('left', '32.5%', 'important'); /* 2.5% → 32.5%로 3칸 우측 이동 */
       modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '80%', 'important'); /* 75% → 80%로 약간 늘림 */
+      modal.style.setProperty('width', '65%', 'important'); /* 80% → 65%로 조정 (우측으로 이동한 만큼 너비 조정) */
       modal.style.setProperty('max-width', '350px', 'important');
       modal.style.setProperty('min-width', '280px', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
@@ -3169,7 +3184,8 @@ if (window.innerWidth <= 768) {
           overlay.style.setProperty('bottom', '0', 'important');
           overlay.style.setProperty('width', '100vw', 'important');
           overlay.style.setProperty('height', '100vh', 'important');
-          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.8)', 'important'); /* 더 어둡게 */
+          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important'); /* 더욱 어둡게 강화 */
+          overlay.style.setProperty('backdrop-filter', 'blur(2px)', 'important'); /* 블러 효과 추가 */
           overlay.style.setProperty('display', 'block', 'important');
           overlay.style.setProperty('visibility', 'visible', 'important');
           overlay.style.setProperty('opacity', '1', 'important');
@@ -3188,7 +3204,7 @@ if (window.innerWidth <= 768) {
           const currentWindowHeight = window.innerHeight;
           modal.style.setProperty('position', 'absolute', 'important');
           modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
-          modal.style.setProperty('left', '2.5%', 'important'); /* 2칸 좌측 위치 유지 */
+          modal.style.setProperty('left', '32.5%', 'important'); /* 3칸 우측 위치 유지 */
           modal.style.setProperty('transform', 'translateY(-50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
           console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
@@ -3216,6 +3232,7 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('display', 'none', 'important');
       overlay.style.setProperty('visibility', 'hidden', 'important');
       overlay.style.setProperty('opacity', '0', 'important');
+      overlay.style.setProperty('pointer-events', 'none', 'important');
       overlay.classList.remove('active');
       console.log('Overlay hidden');
     }
@@ -6777,7 +6794,8 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(2px) !important;
     z-index: 2147483647 !important;
     display: none !important;
   }
@@ -6792,7 +6810,8 @@ document.addEventListener('DOMContentLoaded', function() {
   bottom: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: rgba(0, 0, 0, 0.7) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(2px) !important;
   z-index: 2147483647 !important;
   display: none !important;
   pointer-events: auto !important;
