@@ -3110,7 +3110,7 @@ if (window.innerWidth <= 768) {
       return false;
     }
     
-    // 오버레이와 모달 표시
+    // 오버레이와 모달 표시 - PC/모바일 공통 강화
     if (overlay) {
       overlay.style.setProperty('display', 'block', 'important');
       overlay.style.setProperty('position', 'fixed', 'important');
@@ -3120,10 +3120,11 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('bottom', '0', 'important');
       overlay.style.setProperty('width', '100vw', 'important');
       overlay.style.setProperty('height', '100vh', 'important');
-      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.7)', 'important');
+      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important'); /* 더 어둡게 */
       overlay.style.setProperty('z-index', '2147483647', 'important');
       overlay.style.setProperty('visibility', 'visible', 'important');
       overlay.style.setProperty('opacity', '1', 'important');
+      overlay.style.setProperty('pointer-events', 'auto', 'important');
       overlay.classList.add('active');
       console.log('Overlay displayed');
     }
@@ -3135,12 +3136,12 @@ if (window.innerWidth <= 768) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // 즉시 적용 - 현재 화면 중앙에 표시 (우측으로 한 칸 이동)
+      // 즉시 적용 - 현재 화면 중앙에 표시 (2칸 좌측으로 이동)
       modal.style.setProperty('position', 'absolute', 'important');
       modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
-      modal.style.setProperty('left', '12.5%', 'important'); /* 7.5% → 12.5%로 우측 이동 */
+      modal.style.setProperty('left', '2.5%', 'important'); /* 12.5% → 2.5%로 2칸 좌측 이동 */
       modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '75%', 'important'); /* 85% → 75%로 약간 줄임 */
+      modal.style.setProperty('width', '80%', 'important'); /* 75% → 80%로 약간 늘림 */
       modal.style.setProperty('max-width', '350px', 'important');
       modal.style.setProperty('min-width', '280px', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
@@ -3155,13 +3156,21 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('opacity', '1', 'important');
       modal.style.setProperty('padding', '20px', 'important');
       
-              // 오버레이 다시 확인 및 적용 (모달보다 낮은 z-index)
+              // 오버레이 다시 확인 및 적용 (모달보다 낮은 z-index) - 모바일 강화
         if (overlay) {
           overlay.style.setProperty('z-index', '2147483647', 'important');
           overlay.style.setProperty('position', 'fixed', 'important');
+          overlay.style.setProperty('top', '0', 'important');
+          overlay.style.setProperty('left', '0', 'important');
+          overlay.style.setProperty('right', '0', 'important');
+          overlay.style.setProperty('bottom', '0', 'important');
+          overlay.style.setProperty('width', '100vw', 'important');
+          overlay.style.setProperty('height', '100vh', 'important');
+          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.8)', 'important'); /* 더 어둡게 */
           overlay.style.setProperty('display', 'block', 'important');
           overlay.style.setProperty('visibility', 'visible', 'important');
           overlay.style.setProperty('opacity', '1', 'important');
+          overlay.classList.add('active');
         }
       
       console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
@@ -3176,7 +3185,7 @@ if (window.innerWidth <= 768) {
           const currentWindowHeight = window.innerHeight;
           modal.style.setProperty('position', 'absolute', 'important');
           modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
-          modal.style.setProperty('left', '7.5%', 'important');
+          modal.style.setProperty('left', '2.5%', 'important'); /* 2칸 좌측 위치 유지 */
           modal.style.setProperty('transform', 'translateY(-50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
           console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
