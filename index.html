@@ -3013,11 +3013,6 @@ if (window.innerWidth <= 768) {
     
     modal.style.display = 'block';
     
-    // 모바일에서 배경 스크롤 방지
-    if (window.innerWidth <= 768) {
-      document.body.style.overflow = 'hidden';
-    }
-    
     // 모바일 환경에서 팝업을 좌측으로 정렬
     if (window.innerWidth <= 768) {
       // 즉시 적용 - 더 강력한 스타일
@@ -3068,11 +3063,6 @@ if (window.innerWidth <= 768) {
   }
   function closeForm() {
     document.getElementById('formModal').style.display = 'none';
-    
-    // 모바일에서 배경 스크롤 복원
-    if (window.innerWidth <= 768) {
-      document.body.style.overflow = 'auto';
-    }
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -3189,8 +3179,6 @@ if (window.innerWidth <= 768) {
             el.id === 'formModal' ||
             el.closest('#mobile-top-nav-fixed') ||
             el.closest('#formModal') ||
-            el.classList.contains('modal') ||
-            el.closest('.modal') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
