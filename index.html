@@ -3009,7 +3009,18 @@ if (window.innerWidth <= 768) {
     }
     
     const modal = document.getElementById('formModal');
-    const overlay = document.getElementById('modalOverlay');
+    let overlay = document.getElementById('modalOverlay');
+    
+    // 오버레이가 없으면 동적으로 생성
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'modalOverlay';
+      overlay.className = 'modal-overlay';
+      overlay.onclick = closeForm;
+      document.body.appendChild(overlay);
+      console.log('Overlay created dynamically');
+    }
+    
     if (!modal) {
       console.error('formModal not found');
       return false;
@@ -3017,7 +3028,20 @@ if (window.innerWidth <= 768) {
     
     // 오버레이와 모달 표시
     if (overlay) {
-      overlay.style.display = 'block';
+      overlay.style.setProperty('display', 'block', 'important');
+      overlay.style.setProperty('position', 'fixed', 'important');
+      overlay.style.setProperty('top', '0', 'important');
+      overlay.style.setProperty('left', '0', 'important');
+      overlay.style.setProperty('right', '0', 'important');
+      overlay.style.setProperty('bottom', '0', 'important');
+      overlay.style.setProperty('width', '100vw', 'important');
+      overlay.style.setProperty('height', '100vh', 'important');
+      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.7)', 'important');
+      overlay.style.setProperty('z-index', '2147483647', 'important');
+      overlay.style.setProperty('visibility', 'visible', 'important');
+      overlay.style.setProperty('opacity', '1', 'important');
+      overlay.classList.add('active');
+      console.log('Overlay displayed');
     }
     modal.style.display = 'block';
     
@@ -3038,7 +3062,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('box-sizing', 'border-box', 'important');
       modal.style.setProperty('margin', '0', 'important');
       modal.style.setProperty('right', 'auto', 'important');
-      modal.style.setProperty('z-index', '2147483647', 'important');
+      modal.style.setProperty('z-index', '2147483648', 'important');
       modal.style.setProperty('background', '#000', 'important');
       modal.style.setProperty('border', '2px solid #3AC8A8', 'important');
       modal.style.setProperty('border-radius', '12px', 'important');
@@ -3046,6 +3070,15 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('visibility', 'visible', 'important');
       modal.style.setProperty('opacity', '1', 'important');
       modal.style.setProperty('padding', '20px', 'important');
+      
+              // 오버레이 다시 확인 및 적용 (모달보다 낮은 z-index)
+        if (overlay) {
+          overlay.style.setProperty('z-index', '2147483647', 'important');
+          overlay.style.setProperty('position', 'fixed', 'important');
+          overlay.style.setProperty('display', 'block', 'important');
+          overlay.style.setProperty('visibility', 'visible', 'important');
+          overlay.style.setProperty('opacity', '1', 'important');
+        }
       
       console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
       
@@ -3061,7 +3094,7 @@ if (window.innerWidth <= 768) {
           modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
           modal.style.setProperty('left', '7.5%', 'important');
           modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-          modal.style.setProperty('z-index', '2147483647', 'important');
+          modal.style.setProperty('z-index', '2147483648', 'important');
           console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
         }
       }, 100);
@@ -3071,7 +3104,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      modal.style.setProperty('z-index', '9999', 'important');
+      modal.style.setProperty('z-index', '2147483648', 'important');
     }
     
     return false;
@@ -3084,7 +3117,11 @@ if (window.innerWidth <= 768) {
       modal.style.display = 'none';
     }
     if (overlay) {
-      overlay.style.display = 'none';
+      overlay.style.setProperty('display', 'none', 'important');
+      overlay.style.setProperty('visibility', 'hidden', 'important');
+      overlay.style.setProperty('opacity', '0', 'important');
+      overlay.classList.remove('active');
+      console.log('Overlay hidden');
     }
     
     // 모바일에서 배경 스크롤 복원
@@ -6605,7 +6642,7 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box !important;
     position: absolute !important;
     right: auto !important;
-    z-index: 2147483647 !important;
+    z-index: 2147483648 !important;
     background: #000 !important;
     border: 2px solid #3AC8A8 !important;
     border-radius: 12px !important;
@@ -6645,7 +6682,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100% !important;
     height: 100% !important;
     background: rgba(0, 0, 0, 0.7) !important;
-    z-index: 2147483646 !important;
+    z-index: 2147483647 !important;
     display: none !important;
   }
 }
@@ -6655,11 +6692,23 @@ document.addEventListener('DOMContentLoaded', function() {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
   background: rgba(0, 0, 0, 0.7) !important;
-  z-index: 2147483646 !important;
+  z-index: 2147483647 !important;
   display: none !important;
+  pointer-events: auto !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.modal-overlay.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 </style>
 
