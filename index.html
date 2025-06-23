@@ -2878,6 +2878,9 @@ if (window.innerWidth <= 768) {
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
 
+<!-- 모달 배경 오버레이 -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
+
 <div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px; color:#fff; box-sizing:border-box;">
   <div style="text-align:right;">
     <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
@@ -3006,11 +3009,16 @@ if (window.innerWidth <= 768) {
     }
     
     const modal = document.getElementById('formModal');
+    const overlay = document.getElementById('modalOverlay');
     if (!modal) {
       console.error('formModal not found');
       return false;
     }
     
+    // 오버레이와 모달 표시
+    if (overlay) {
+      overlay.style.display = 'block';
+    }
     modal.style.display = 'block';
     
     // 모바일 환경에서 현재 화면 위치에 팝업 표시
@@ -3069,7 +3077,15 @@ if (window.innerWidth <= 768) {
     return false;
   }
   function closeForm() {
-    document.getElementById('formModal').style.display = 'none';
+    const modal = document.getElementById('formModal');
+    const overlay = document.getElementById('modalOverlay');
+    
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    if (overlay) {
+      overlay.style.display = 'none';
+    }
     
     // 모바일에서 배경 스크롤 복원
     if (window.innerWidth <= 768) {
@@ -3189,10 +3205,14 @@ if (window.innerWidth <= 768) {
         // 네비게이션 관련 요소들과 슬라이드 요소들, 팝업 모달은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
             el.id === 'formModal' ||
+            el.id === 'modalOverlay' ||
             el.closest('#mobile-top-nav-fixed') ||
             el.closest('#formModal') ||
+            el.closest('#modalOverlay') ||
             el.classList.contains('modal') ||
+            el.classList.contains('modal-overlay') ||
             el.closest('.modal') ||
+            el.closest('.modal-overlay') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
@@ -6616,6 +6636,30 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box !important;
     align-self: center !important;
   }
+  
+  /* 팝업 배경 오버레이 */
+  .modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    z-index: 2147483646 !important;
+    display: none !important;
+  }
+}
+
+/* PC와 모바일 공통 오버레이 스타일 */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  z-index: 2147483646 !important;
+  display: none !important;
 }
 </style>
 
