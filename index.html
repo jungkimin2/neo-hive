@@ -3131,12 +3131,12 @@ if (window.innerWidth <= 768) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // 즉시 적용 - 현재 화면 중앙에 표시
+      // 즉시 적용 - 현재 화면 중앙에 표시 (우측으로 한 칸 이동)
       modal.style.setProperty('position', 'absolute', 'important');
       modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
-      modal.style.setProperty('left', '7.5%', 'important');
+      modal.style.setProperty('left', '12.5%', 'important'); /* 7.5% → 12.5%로 우측 이동 */
       modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '85%', 'important');
+      modal.style.setProperty('width', '75%', 'important'); /* 85% → 75%로 약간 줄임 */
       modal.style.setProperty('max-width', '350px', 'important');
       modal.style.setProperty('min-width', '280px', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
