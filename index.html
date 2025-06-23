@@ -3104,22 +3104,8 @@ if (window.innerWidth <= 768) {
       overlay.id = 'modalOverlay';
       overlay.className = 'modal-overlay';
       overlay.onclick = closeForm;
-      overlay.style.cssText = `
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-        backdrop-filter: blur(2px) !important;
-        z-index: 2147483647 !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-      `;
       document.body.appendChild(overlay);
-      console.log('Overlay created dynamically with enhanced styles');
+      console.log('Overlay created dynamically');
     }
     
     if (!modal) {
@@ -3232,7 +3218,6 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('display', 'none', 'important');
       overlay.style.setProperty('visibility', 'hidden', 'important');
       overlay.style.setProperty('opacity', '0', 'important');
-      overlay.style.setProperty('pointer-events', 'none', 'important');
       overlay.classList.remove('active');
       console.log('Overlay hidden');
     }
@@ -6794,8 +6779,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    backdrop-filter: blur(2px) !important;
+    background: rgba(0, 0, 0, 0.7) !important;
     z-index: 2147483647 !important;
     display: none !important;
   }
@@ -6810,8 +6794,7 @@ document.addEventListener('DOMContentLoaded', function() {
   bottom: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: rgba(0, 0, 0, 0.9) !important;
-  backdrop-filter: blur(2px) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
   z-index: 2147483647 !important;
   display: none !important;
   pointer-events: auto !important;
