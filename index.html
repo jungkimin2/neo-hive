@@ -3000,23 +3000,39 @@ if (window.innerWidth <= 768) {
   
   function openForm() {
     const modal = document.getElementById('formModal');
+    if (!modal) {
+      console.error('formModal not found');
+      return;
+    }
+    
     modal.style.display = 'block';
     
     // 모바일 환경에서 팝업을 좌측으로 정렬
     if (window.innerWidth <= 768) {
+      // 즉시 적용
+      modal.style.position = 'fixed';
+      modal.style.top = '50%';
+      modal.style.left = '7.5%';
+      modal.style.transform = 'translateY(-50%)';
+      modal.style.width = '85%';
+      modal.style.maxWidth = '350px';
+      modal.style.minWidth = '280px';
+      modal.style.boxSizing = 'border-box';
+      modal.style.margin = '0';
+      modal.style.right = 'auto';
+      modal.style.zIndex = '9999';
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
+      
+      // 추가 안전장치
       setTimeout(() => {
-        modal.style.cssText = modal.style.cssText + 
-          '; position: fixed !important' +
-          '; top: 50% !important' +
-          '; left: 7.5% !important' +
-          '; transform: translateY(-50%) !important' +
-          '; width: 85% !important' +
-          '; max-width: 350px !important' +
-          '; min-width: 280px !important' +
-          '; box-sizing: border-box !important' +
-          '; margin: 0 !important' +
-          '; right: auto !important';
-      }, 10);
+        if (modal.style.display === 'block') {
+          modal.style.position = 'fixed';
+          modal.style.top = '50%';
+          modal.style.left = '7.5%';
+          modal.style.transform = 'translateY(-50%)';
+        }
+      }, 50);
     }
   }
   function closeForm() {
@@ -3132,9 +3148,11 @@ if (window.innerWidth <= 768) {
       document.querySelectorAll('*').forEach(el => {
         const styles = window.getComputedStyle(el);
         
-        // 네비게이션 관련 요소들과 슬라이드 요소들은 제외
+        // 네비게이션 관련 요소들과 슬라이드 요소들, 팝업 모달은 제외
         if (el.id === 'mobile-top-nav-fixed' || 
+            el.id === 'formModal' ||
             el.closest('#mobile-top-nav-fixed') ||
+            el.closest('#formModal') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
