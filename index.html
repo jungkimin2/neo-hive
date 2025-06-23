@@ -3013,38 +3013,68 @@ if (window.innerWidth <= 768) {
     
     modal.style.display = 'block';
     
-    // 모바일 환경에서 팝업을 좌측으로 정렬
+    // 모바일 환경에서 현재 화면 위치에 팝업 표시
     if (window.innerWidth <= 768) {
-      // 즉시 적용
-      modal.style.position = 'fixed';
-      modal.style.top = '50%';
-      modal.style.left = '7.5%';
-      modal.style.transform = 'translateY(-50%)';
-      modal.style.width = '85%';
-      modal.style.maxWidth = '350px';
-      modal.style.minWidth = '280px';
-      modal.style.boxSizing = 'border-box';
-      modal.style.margin = '0';
-      modal.style.right = 'auto';
-      modal.style.zIndex = '9999';
-      modal.style.visibility = 'visible';
-      modal.style.opacity = '1';
+      // 현재 스크롤 위치 가져오기
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      
+      // 즉시 적용 - 현재 화면 중앙에 표시
+      modal.style.setProperty('position', 'absolute', 'important');
+      modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
+      modal.style.setProperty('left', '7.5%', 'important');
+      modal.style.setProperty('transform', 'translateY(-50%)', 'important');
+      modal.style.setProperty('width', '85%', 'important');
+      modal.style.setProperty('max-width', '350px', 'important');
+      modal.style.setProperty('min-width', '280px', 'important');
+      modal.style.setProperty('box-sizing', 'border-box', 'important');
+      modal.style.setProperty('margin', '0', 'important');
+      modal.style.setProperty('right', 'auto', 'important');
+      modal.style.setProperty('z-index', '2147483647', 'important');
+      modal.style.setProperty('background', '#000', 'important');
+      modal.style.setProperty('border', '2px solid #3AC8A8', 'important');
+      modal.style.setProperty('border-radius', '12px', 'important');
+      modal.style.setProperty('color', '#fff', 'important');
+      modal.style.setProperty('visibility', 'visible', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('padding', '20px', 'important');
+      
+      console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
+      
+      // 배경 스크롤 방지
+      document.body.style.overflow = 'hidden';
       
       // 추가 안전장치
       setTimeout(() => {
         if (modal.style.display === 'block') {
-          modal.style.position = 'fixed';
-          modal.style.top = '50%';
-          modal.style.left = '7.5%';
-          modal.style.transform = 'translateY(-50%)';
+          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const currentWindowHeight = window.innerHeight;
+          modal.style.setProperty('position', 'absolute', 'important');
+          modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
+          modal.style.setProperty('left', '7.5%', 'important');
+          modal.style.setProperty('transform', 'translateY(-50%)', 'important');
+          modal.style.setProperty('z-index', '2147483647', 'important');
+          console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
         }
-      }, 50);
+      }, 100);
+    } else {
+      // PC 환경에서는 기본 fixed 중앙 정렬
+      modal.style.setProperty('position', 'fixed', 'important');
+      modal.style.setProperty('top', '50%', 'important');
+      modal.style.setProperty('left', '50%', 'important');
+      modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      modal.style.setProperty('z-index', '9999', 'important');
     }
     
     return false;
   }
   function closeForm() {
     document.getElementById('formModal').style.display = 'none';
+    
+    // 모바일에서 배경 스크롤 복원
+    if (window.innerWidth <= 768) {
+      document.body.style.overflow = 'auto';
+    }
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -3161,6 +3191,8 @@ if (window.innerWidth <= 768) {
             el.id === 'formModal' ||
             el.closest('#mobile-top-nav-fixed') ||
             el.closest('#formModal') ||
+            el.classList.contains('modal') ||
+            el.closest('.modal') ||
             el.classList.contains('neo-smart-video') ||
             el.closest('.neo-smart-video') ||
             el.classList.contains('video-container') ||
@@ -6547,13 +6579,19 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 350px !important;
     padding: 20px !important;
     left: 7.5% !important;
-    top: 50% !important;
     transform: translateY(-50%) !important;
     margin: 0 !important;
     min-width: 280px !important;
     box-sizing: border-box !important;
-    position: fixed !important;
+    position: absolute !important;
     right: auto !important;
+    z-index: 2147483647 !important;
+    background: #000 !important;
+    border: 2px solid #3AC8A8 !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   #formModal form {
