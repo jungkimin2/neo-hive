@@ -2999,25 +2999,7 @@ if (window.innerWidth <= 768) {
   });
   
   function openForm() {
-    const modal = document.getElementById('formModal');
-    modal.style.display = 'block';
-    
-    // 모바일 환경에서 팝업 정렬 강제 보장
-    if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        modal.style.cssText = modal.style.cssText + 
-          '; position: fixed !important' +
-          '; top: 50% !important' +
-          '; left: 50% !important' +
-          '; transform: translate(-50%, -50%) !important' +
-          '; width: 85% !important' +
-          '; max-width: 350px !important' +
-          '; min-width: 280px !important' +
-          '; box-sizing: border-box !important' +
-          '; margin: 0 auto !important' +
-          '; right: auto !important';
-      }, 10);
-    }
+    document.getElementById('formModal').style.display = 'block';
   }
   function closeForm() {
     document.getElementById('formModal').style.display = 'none';
