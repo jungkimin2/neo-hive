@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
@@ -3009,13 +3009,51 @@ if (window.innerWidth <= 768) {
         content: none !important;
       }
       
-      /* 페이지 하단 여백 제거 */
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        outline: none !important;
-      }
+             /* 페이지 하단 여백 제거 */
+       body {
+         margin: 0 !important;
+         padding: 0 !important;
+         border: none !important;
+         outline: none !important;
+         padding-bottom: env(safe-area-inset-bottom) !important;
+       }
+       
+       /* iOS 홈 인디케이터 및 브라우저 네비게이션 바 숨김 */
+       html {
+         height: 100% !important;
+         overflow-x: hidden !important;
+         -webkit-touch-callout: none !important;
+         -webkit-user-select: none !important;
+         -webkit-tap-highlight-color: transparent !important;
+       }
+       
+       /* iOS Safari 홈 인디케이터 숨김 */
+       body {
+         height: 100vh !important;
+         height: calc(100vh - env(safe-area-inset-bottom)) !important;
+         position: relative !important;
+       }
+       
+       /* 하단 여백 완전 제거 */
+       body::after {
+         content: '' !important;
+         position: fixed !important;
+         bottom: 0 !important;
+         left: 0 !important;
+         right: 0 !important;
+         height: env(safe-area-inset-bottom, 20px) !important;
+         background: #000 !important;
+         z-index: 9999 !important;
+         pointer-events: none !important;
+       }
+       
+       /* 웹 앱 모드에서 상태바 숨김 */
+       @media screen and (display-mode: standalone) {
+         body {
+           padding-top: env(safe-area-inset-top) !important;
+           padding-bottom: env(safe-area-inset-bottom) !important;
+         }
+       }
     }
     
     @media (max-width: 900px) {
