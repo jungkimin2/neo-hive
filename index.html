@@ -3233,7 +3233,7 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('width', '100vw', 'important');
       overlay.style.setProperty('height', '100vh', 'important');
       overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
-      overlay.style.setProperty('z-index', '2147483647', 'important');
+      overlay.style.setProperty('z-index', '2147483646', 'important'); /* 모달보다 뒤에 위치 */
       overlay.style.setProperty('visibility', 'visible', 'important');
       overlay.style.setProperty('opacity', '1', 'important');
       overlay.style.setProperty('pointer-events', 'auto', 'important');
@@ -3270,7 +3270,7 @@ if (window.innerWidth <= 768) {
       
               // 모바일에서 배경 어둡게 효과 강화
         if (overlay) {
-          overlay.style.setProperty('z-index', '2147483647', 'important');
+          overlay.style.setProperty('z-index', '2147483646', 'important'); /* 모달보다 뒤에 위치 */
           overlay.style.setProperty('position', 'fixed', 'important');
           overlay.style.setProperty('top', '0', 'important');
           overlay.style.setProperty('left', '0', 'important');
