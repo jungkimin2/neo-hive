@@ -3277,28 +3277,17 @@ if (window.innerWidth <= 768) {
           overlay.style.setProperty('bottom', '0', 'important');
           overlay.style.setProperty('width', '100vw', 'important');
           overlay.style.setProperty('height', '100vh', 'important');
-          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important'); /* 더 어둡게 */
-          overlay.style.setProperty('backdrop-filter', 'blur(3px)', 'important');
-          overlay.style.setProperty('-webkit-backdrop-filter', 'blur(3px)', 'important');
+          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.8)', 'important'); /* 더 어둡게 */
           overlay.style.setProperty('display', 'block', 'important');
           overlay.style.setProperty('visibility', 'visible', 'important');
           overlay.style.setProperty('opacity', '1', 'important');
-          overlay.style.setProperty('pointer-events', 'auto', 'important');
           overlay.classList.add('active');
-          
-          // 모바일에서 터치 스크롤 방지
-          overlay.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-          }, { passive: false });
         }
       
       console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
       
-      // 배경 스크롤 방지 - 강화
-      document.body.style.setProperty('overflow', 'hidden', 'important');
-      document.body.style.setProperty('position', 'fixed', 'important');
-      document.body.style.setProperty('width', '100%', 'important');
-      document.body.style.setProperty('top', `-${window.scrollY}px`, 'important');
+      // 배경 스크롤 방지
+      document.body.style.overflow = 'hidden';
       
       // 추가 안전장치
       setTimeout(() => {
@@ -3339,16 +3328,9 @@ if (window.innerWidth <= 768) {
       console.log('Overlay hidden');
     }
     
-    // 모바일에서 배경 스크롤 복원 - 강화
+    // 모바일에서 배경 스크롤 복원
     if (window.innerWidth <= 768) {
-      const scrollY = document.body.style.top;
-      document.body.style.removeProperty('overflow');
-      document.body.style.removeProperty('position');
-      document.body.style.removeProperty('width');
-      document.body.style.removeProperty('top');
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      }
+      document.body.style.overflow = 'auto';
     }
   }
   // ESC로 모달 닫기
