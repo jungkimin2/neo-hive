@@ -6961,14 +6961,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // benefits 섹션 강제 위치 조정
+      // benefits 섹션 강제 위치 조정 - 모바일에서 보이도록 수정
       const benefitsSection = document.querySelector('section#benefits');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-600px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-400px', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
         benefitsSection.style.setProperty('padding-top', '80px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
+        benefitsSection.style.setProperty('display', 'block', 'important');
+        benefitsSection.style.setProperty('visibility', 'visible', 'important');
+        benefitsSection.style.setProperty('opacity', '1', 'important');
       }
       
       // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
