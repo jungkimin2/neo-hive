@@ -2992,6 +2992,20 @@ if (window.innerWidth <= 768) {
         opacity: 1 !important;
       }
       
+      /* 모바일에서 제목 폰트 잘림 방지 */
+      section#benefits h2 {
+        line-height: 1.5 !important;
+        padding-top: 12px !important;
+        margin-top: 0 !important;
+        font-size: 2rem !important;
+        overflow: visible !important;
+      }
+      
+      section#benefits .container {
+        padding-top: 20px !important;
+        overflow: visible !important;
+      }
+      
       /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
       #mobile-cost-recovery-text {
         text-align: center !important;
