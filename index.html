@@ -3205,73 +3205,85 @@ if (window.innerWidth <= 768) {
     }
     
     const modal = document.getElementById('formModal');
-    let overlay = document.getElementById('modalOverlay');
     
-    // 오버레이가 없으면 동적으로 생성
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.id = 'modalOverlay';
-      overlay.className = 'modal-overlay';
-      overlay.onclick = closeForm;
-      document.body.appendChild(overlay);
-      console.log('Overlay created dynamically');
+    // 모바일에서 완전히 새로운 오버레이 생성 (기존 것 무시)
+    if (window.innerWidth <= 768) {
+      // 기존 오버레이들 모두 제거
+      const existingOverlays = document.querySelectorAll('.modal-overlay, #modalOverlay');
+      existingOverlays.forEach(el => el.remove());
+      
+      // 완전히 새로운 오버레이 생성
+      const mobileOverlay = document.createElement('div');
+      mobileOverlay.id = 'mobileForceOverlay';
+      mobileOverlay.onclick = closeForm;
+      
+      // 인라인 스타일로 완전 강제 적용
+      mobileOverlay.setAttribute('style', `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        z-index: 2147483646 !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      `);
+      
+      document.body.appendChild(mobileOverlay);
+      console.log('Mobile force overlay created');
+      
+      // 추가 확인
+      setTimeout(() => {
+        const check = document.getElementById('mobileForceOverlay');
+        if (check) {
+          console.log('Mobile overlay exists and visible');
+        } else {
+          console.log('Mobile overlay missing!');
+        }
+      }, 50);
+      
+    } else {
+      // PC에서는 기존 방식 유지
+      let overlay = document.getElementById('modalOverlay');
+      
+      // 오버레이가 없으면 동적으로 생성
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'modalOverlay';
+        overlay.className = 'modal-overlay';
+        overlay.onclick = closeForm;
+        document.body.appendChild(overlay);
+        console.log('PC Overlay created dynamically');
+      }
+      
+      // PC 오버레이 표시
+      if (overlay) {
+        overlay.style.setProperty('display', 'block', 'important');
+        overlay.style.setProperty('position', 'fixed', 'important');
+        overlay.style.setProperty('top', '0', 'important');
+        overlay.style.setProperty('left', '0', 'important');
+        overlay.style.setProperty('right', '0', 'important');
+        overlay.style.setProperty('bottom', '0', 'important');
+        overlay.style.setProperty('width', '100vw', 'important');
+        overlay.style.setProperty('height', '100vh', 'important');
+        overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
+        overlay.style.setProperty('z-index', '2147483646', 'important');
+        overlay.style.setProperty('visibility', 'visible', 'important');
+        overlay.style.setProperty('opacity', '1', 'important');
+        overlay.style.setProperty('pointer-events', 'auto', 'important');
+        overlay.classList.add('active');
+        console.log('PC Overlay displayed');
+      }
     }
     
     if (!modal) {
       console.error('formModal not found');
       return false;
-    }
-    
-    // 오버레이와 모달 표시 - 배경 어둡게 효과
-    if (overlay) {
-      overlay.style.setProperty('display', 'block', 'important');
-      overlay.style.setProperty('position', 'fixed', 'important');
-      overlay.style.setProperty('top', '0', 'important');
-      overlay.style.setProperty('left', '0', 'important');
-      overlay.style.setProperty('right', '0', 'important');
-      overlay.style.setProperty('bottom', '0', 'important');
-      overlay.style.setProperty('width', '100vw', 'important');
-      overlay.style.setProperty('height', '100vh', 'important');
-      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
-      overlay.style.setProperty('z-index', '2147483646', 'important'); /* 모달보다 뒤에 위치 */
-      overlay.style.setProperty('visibility', 'visible', 'important');
-      overlay.style.setProperty('opacity', '1', 'important');
-      overlay.style.setProperty('pointer-events', 'auto', 'important');
-      overlay.classList.add('active');
-      
-      // 모바일 디버깅: 오버레이 상태 확인
-      if (window.innerWidth <= 768) {
-        console.log('Mobile overlay debug:');
-        console.log('- Display:', overlay.style.display);
-        console.log('- Visibility:', overlay.style.visibility);
-        console.log('- Opacity:', overlay.style.opacity);
-        console.log('- Z-index:', overlay.style.zIndex);
-        console.log('- Background:', overlay.style.background);
-        console.log('- Position:', overlay.style.position);
-        console.log('- Active class:', overlay.classList.contains('active'));
-        
-        // 강제로 모바일에서 더 확실하게 표시
-        setTimeout(() => {
-          overlay.style.cssText = `
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: rgba(0, 0, 0, 0.95) !important;
-            z-index: 2147483646 !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            pointer-events: auto !important;
-          `;
-          console.log('Mobile overlay force applied after timeout');
-        }, 100);
-      }
-      
-      console.log('Overlay displayed');
     }
     modal.style.display = 'block';
     
@@ -3301,23 +3313,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('opacity', '1', 'important');
       modal.style.setProperty('padding', '20px', 'important');
       
-              // 모바일에서 배경 어둡게 효과 강화
-        if (overlay) {
-          overlay.style.setProperty('z-index', '2147483646', 'important'); /* 모달보다 뒤에 위치 */
-          overlay.style.setProperty('position', 'fixed', 'important');
-          overlay.style.setProperty('top', '0', 'important');
-          overlay.style.setProperty('left', '0', 'important');
-          overlay.style.setProperty('right', '0', 'important');
-          overlay.style.setProperty('bottom', '0', 'important');
-          overlay.style.setProperty('width', '100vw', 'important');
-          overlay.style.setProperty('height', '100vh', 'important');
-          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important'); /* 모바일에서 더 어둡게 */
-          overlay.style.setProperty('display', 'block', 'important');
-          overlay.style.setProperty('visibility', 'visible', 'important');
-          overlay.style.setProperty('opacity', '1', 'important');
-          overlay.style.setProperty('pointer-events', 'auto', 'important');
-          overlay.classList.add('active');
-        }
+              // 모바일에서는 이미 위에서 mobileForceOverlay가 생성됨
       
       console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
       
@@ -3350,22 +3346,30 @@ if (window.innerWidth <= 768) {
   }
   function closeForm() {
     const modal = document.getElementById('formModal');
-    const overlay = document.getElementById('modalOverlay');
     
     if (modal) {
       modal.style.display = 'none';
     }
-    if (overlay) {
-      overlay.style.setProperty('display', 'none', 'important');
-      overlay.style.setProperty('visibility', 'hidden', 'important');
-      overlay.style.setProperty('opacity', '0', 'important');
-      overlay.classList.remove('active');
-      console.log('Overlay hidden');
-    }
     
-    // 모바일에서 배경 스크롤 복원
+    // 모바일 전용 오버레이 제거
     if (window.innerWidth <= 768) {
+      const mobileOverlay = document.getElementById('mobileForceOverlay');
+      if (mobileOverlay) {
+        mobileOverlay.remove();
+        console.log('Mobile force overlay removed');
+      }
+      // 모바일에서 배경 스크롤 복원
       document.body.style.overflow = 'auto';
+    } else {
+      // PC 오버레이 처리
+      const overlay = document.getElementById('modalOverlay');
+      if (overlay) {
+        overlay.style.setProperty('display', 'none', 'important');
+        overlay.style.setProperty('visibility', 'hidden', 'important');
+        overlay.style.setProperty('opacity', '0', 'important');
+        overlay.classList.remove('active');
+        console.log('PC Overlay hidden');
+      }
     }
   }
   // ESC로 모달 닫기
