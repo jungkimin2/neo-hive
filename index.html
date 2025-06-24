@@ -135,6 +135,55 @@ pointer-events: auto !important;
 /* 기존 모바일에서 .neo-smart-logo.front 숨김 처리 코드는 삭제됨 */
 </style>
 <style>
+/* PC 네비게이션에서 사전 예약하기 네온 효과 */
+.nav-neon-green {
+  color: #7BE495 !important;
+  text-shadow: 
+    0 0 5px #7BE495,
+    0 0 10px #7BE495,
+    0 0 15px #7BE495,
+    0 0 20px #62D2A2,
+    0 0 35px #62D2A2,
+    0 0 40px #62D2A2 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  animation: neonPulse 2s ease-in-out infinite alternate !important;
+}
+
+.nav-neon-green:hover {
+  color: #9DF3C4 !important;
+  text-shadow: 
+    0 0 8px #9DF3C4,
+    0 0 15px #9DF3C4,
+    0 0 20px #7BE495,
+    0 0 25px #62D2A2,
+    0 0 40px #62D2A2,
+    0 0 50px #3AC8A8 !important;
+  transform: scale(1.05) !important;
+}
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 
+      0 0 5px #7BE495,
+      0 0 10px #7BE495,
+      0 0 15px #7BE495,
+      0 0 20px #62D2A2,
+      0 0 35px #62D2A2,
+      0 0 40px #62D2A2;
+  }
+  100% {
+    text-shadow: 
+      0 0 8px #9DF3C4,
+      0 0 15px #9DF3C4,
+      0 0 20px #7BE495,
+      0 0 25px #62D2A2,
+      0 0 40px #62D2A2,
+      0 0 50px #3AC8A8;
+  }
+}
+</style>
+<style>
 @media (max-width: 768px) {
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
@@ -1376,7 +1425,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <a href="#hive">하이브 시스템</a>
         <a href="#smart">스마트 시스템</a>
         <a href="#impact">도입 효과</a>
-        <a href="javascript:void(0)" onclick="openForm();return false;">사전 예약하기</a>
+        <a href="javascript:void(0)" onclick="openForm();return false;" class="nav-neon-green">사전 예약하기</a>
       </nav>
     </div>
     </header>
@@ -6167,19 +6216,65 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483646 !important;
   }
 
-  /* 메뉴 아이템 */
+  /* 메뉴 아이템 - 일반 항목들은 흰색 */
   #mobile-top-nav-fixed .nav-menu a {
     display: block !important;
     padding: 15px 20px !important;
-    color: #7BE495 !important;
+    color: #FFFFFF !important;
     text-decoration: none !important;
     border-bottom: 1px solid #333 !important;
     font-size: 16px !important;
     text-align: center !important; /* 중앙 정렬 */
+    font-weight: 400 !important;
   }
 
   #mobile-top-nav-fixed .nav-menu a:hover {
     background: #222 !important;
+  }
+  
+  /* 사전 예약하기만 그린 네온 효과 적용 */
+  #mobile-top-nav-fixed .nav-menu a[onclick*="openForm"] {
+    color: #7BE495 !important;
+    font-weight: 600 !important;
+    text-shadow: 
+      0 0 5px #7BE495,
+      0 0 10px #7BE495,
+      0 0 15px #7BE495,
+      0 0 20px #62D2A2,
+      0 0 25px #62D2A2 !important;
+    animation: mobileNeonPulse 2s ease-in-out infinite alternate !important;
+  }
+  
+  #mobile-top-nav-fixed .nav-menu a[onclick*="openForm"]:hover {
+    color: #9DF3C4 !important;
+    text-shadow: 
+      0 0 8px #9DF3C4,
+      0 0 15px #9DF3C4,
+      0 0 20px #7BE495,
+      0 0 25px #62D2A2,
+      0 0 35px #62D2A2,
+      0 0 40px #3AC8A8 !important;
+    background: #222 !important;
+  }
+  
+  @keyframes mobileNeonPulse {
+    0% {
+      text-shadow: 
+        0 0 5px #7BE495,
+        0 0 10px #7BE495,
+        0 0 15px #7BE495,
+        0 0 20px #62D2A2,
+        0 0 25px #62D2A2;
+    }
+    100% {
+      text-shadow: 
+        0 0 8px #9DF3C4,
+        0 0 15px #9DF3C4,
+        0 0 20px #7BE495,
+        0 0 25px #62D2A2,
+        0 0 35px #62D2A2,
+        0 0 40px #3AC8A8;
+    }
   }
 
   /* 스크롤 가능한 콘텐츠 영역 */
