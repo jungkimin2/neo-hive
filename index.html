@@ -3,7 +3,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000000">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
@@ -3009,13 +3013,51 @@ if (window.innerWidth <= 768) {
         content: none !important;
       }
       
-      /* 페이지 하단 여백 제거 */
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        outline: none !important;
-      }
+             /* 페이지 하단 여백 제거 */
+       body {
+         margin: 0 !important;
+         padding: 0 !important;
+         border: none !important;
+         outline: none !important;
+         padding-bottom: env(safe-area-inset-bottom) !important;
+       }
+       
+       /* iOS 홈 인디케이터 및 브라우저 네비게이션 바 숨김 */
+       html {
+         height: 100% !important;
+         overflow-x: hidden !important;
+         -webkit-touch-callout: none !important;
+         -webkit-user-select: none !important;
+         -webkit-tap-highlight-color: transparent !important;
+       }
+       
+       /* iOS Safari 홈 인디케이터 숨김 */
+       body {
+         height: 100vh !important;
+         height: calc(100vh - env(safe-area-inset-bottom)) !important;
+         position: relative !important;
+       }
+       
+       /* 하단 여백 완전 제거 */
+       body::after {
+         content: '' !important;
+         position: fixed !important;
+         bottom: 0 !important;
+         left: 0 !important;
+         right: 0 !important;
+         height: env(safe-area-inset-bottom, 20px) !important;
+         background: #000 !important;
+         z-index: 9999 !important;
+         pointer-events: none !important;
+       }
+       
+       /* 웹 앱 모드에서 상태바 숨김 */
+       @media screen and (display-mode: standalone) {
+         body {
+           padding-top: env(safe-area-inset-top) !important;
+           padding-bottom: env(safe-area-inset-bottom) !important;
+         }
+       }
     }
     
     @media (max-width: 900px) {
@@ -7154,6 +7196,61 @@ document.addEventListener('DOMContentLoaded', function() {
        // 페이지 완전 로드 후 한 번 더 실행
        window.addEventListener('load', function() {
          setTimeout(forceRemoveScrollbars, 200);
+       });
+       
+       // iOS 홈 인디케이터 및 브라우저 네비게이션 바 강제 숨김
+       function hideIOSIndicators() {
+         // 풀스크린 모드 요청 (가능한 경우)
+         if (document.documentElement.requestFullscreen) {
+           document.documentElement.requestFullscreen().catch(() => {});
+         } else if (document.documentElement.webkitRequestFullscreen) {
+           document.documentElement.webkitRequestFullscreen().catch(() => {});
+         }
+         
+         // iOS Safari 특화 설정
+         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+           // 주소표시줄 숨김
+           window.scrollTo(0, 1);
+           setTimeout(() => window.scrollTo(0, 0), 100);
+           
+           // 상태바 숨김
+           if (window.navigator.standalone) {
+             document.body.style.setProperty('padding-top', 'env(safe-area-inset-top)', 'important');
+           }
+         }
+         
+         // 하단 여백 강제 제거
+         document.body.style.setProperty('margin-bottom', '0', 'important');
+         document.body.style.setProperty('padding-bottom', '0', 'important');
+         
+         // 홈 인디케이터 가리기 위한 검정 박스 추가
+         const existingCover = document.getElementById('bottom-cover');
+         if (!existingCover) {
+           const bottomCover = document.createElement('div');
+           bottomCover.id = 'bottom-cover';
+           bottomCover.style.cssText = `
+             position: fixed !important;
+             bottom: 0 !important;
+             left: 0 !important;
+             right: 0 !important;
+             height: 40px !important;
+             background: #000 !important;
+             z-index: 999999 !important;
+             pointer-events: none !important;
+             display: block !important;
+           `;
+           document.body.appendChild(bottomCover);
+         }
+       }
+       
+       // 즉시 실행 및 이벤트 연결
+       hideIOSIndicators();
+       setTimeout(hideIOSIndicators, 500);
+       setTimeout(hideIOSIndicators, 1000);
+       
+       // orientationchange 이벤트에서도 실행
+       window.addEventListener('orientationchange', function() {
+         setTimeout(hideIOSIndicators, 300);
        });
       
       // 회색 가로 바 형태의 요소들 제거
