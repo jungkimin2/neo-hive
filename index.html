@@ -2865,7 +2865,7 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p style="font-size: 0.85rem; color: #fff; font-weight: 600; line-height: 1.7; margin: 0; text-align: left; padding-left: 112px;">
+                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: left !important; padding-left: 112px !important; margin-left: 0 !important; text-indent: 0 !important;">
                   <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
                 </p>
               </div>
@@ -2930,6 +2930,33 @@ if (window.innerWidth <= 768) {
       }
       .testimonial-content-mobile {
         display: block !important;
+      }
+      
+      /* 모바일에서 benefits 섹션을 강제로 위로 이동 */
+      section#benefits {
+        margin-top: -552px !important;
+        transform: translateY(-32px) !important;
+        position: relative !important;
+        z-index: 10 !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      /* 모바일에서 비용 회수 텍스트 강제 우측 정렬 */
+      #mobile-cost-recovery-text {
+        text-align: left !important;
+        padding-left: 112px !important;
+        margin-left: 0 !important;
+        text-indent: 0 !important;
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      /* 부모 div도 좌측 정렬로 강제 */
+      #mobile-cost-recovery-text div,
+      #mobile-cost-recovery-text:parent {
+        text-align: left !important;
       }
     }
     
@@ -6961,10 +6988,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동
+      // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동 (CSS와 함께 적용)
       const benefitsSection = document.querySelector('section#benefits');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-520px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-552px', 'important');
+        benefitsSection.style.setProperty('transform', 'translateY(-32px)', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
         benefitsSection.style.setProperty('padding-top', '80px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
@@ -6972,6 +7000,29 @@ document.addEventListener('DOMContentLoaded', function() {
         benefitsSection.style.setProperty('display', 'block', 'important');
         benefitsSection.style.setProperty('visibility', 'visible', 'important');
         benefitsSection.style.setProperty('opacity', '1', 'important');
+        
+        // 강제로 스타일 재적용
+        benefitsSection.offsetHeight; // 리플로우 강제 트리거
+      }
+      
+      // 모바일에서 비용 회수 텍스트 강제 우측 정렬
+      const costRecoveryText = document.getElementById('mobile-cost-recovery-text');
+      if (costRecoveryText) {
+        costRecoveryText.style.setProperty('text-align', 'left', 'important');
+        costRecoveryText.style.setProperty('padding-left', '112px', 'important');
+        costRecoveryText.style.setProperty('margin-left', '0', 'important');
+        costRecoveryText.style.setProperty('text-indent', '0', 'important');
+        costRecoveryText.style.setProperty('padding-right', '0', 'important');
+        costRecoveryText.style.setProperty('margin-right', '0', 'important');
+        
+        // 부모 요소의 text-align도 확인
+        const parentDiv = costRecoveryText.closest('div');
+        if (parentDiv) {
+          parentDiv.style.setProperty('text-align', 'left', 'important');
+        }
+        
+        // 강제 리플로우
+        costRecoveryText.offsetHeight;
       }
       
       // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
