@@ -2865,7 +2865,7 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(0px) !important; position: relative !important; width: 100% !important;">
+                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
                   <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
                 </p>
               </div>
@@ -2943,10 +2943,10 @@ if (window.innerWidth <= 768) {
         opacity: 1 !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 중앙 정렬 - transform 사용 */
+      /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(0px) !important;
+        transform: translateX(16px) !important;
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
@@ -6867,7 +6867,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceApplyMobileStyles() {
       const elements = [
         { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-452px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-328px)' },
         { selector: '.core-value-fresh-mobile', transform: 'translateY(-396.8px)' },
         { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
         { selector: '#smart', transform: 'translateY(-440px)' }
@@ -7028,7 +7028,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const costRecoveryText = document.getElementById('mobile-cost-recovery-text');
       if (costRecoveryText) {
         costRecoveryText.style.setProperty('text-align', 'center', 'important');
-        costRecoveryText.style.setProperty('transform', 'translateX(0px)', 'important');
+        costRecoveryText.style.setProperty('transform', 'translateX(16px)', 'important');
         costRecoveryText.style.setProperty('position', 'relative', 'important');
         costRecoveryText.style.setProperty('width', '100%', 'important');
         costRecoveryText.style.setProperty('margin', '0', 'important');
@@ -7045,21 +7045,79 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.setProperty('overflow-x', 'hidden', 'important');
       document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
       
-      // 회색 가로 바 형태의 요소들 제거
-      const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
-      greyBars.forEach(bar => {
-        if (bar.offsetHeight <= 10 && bar.offsetWidth > 100) {
-          bar.remove();
-        }
-      });
+      // 강력한 회색 가로 바 제거 - 모든 가능한 경우 대응
+      function removeAllGreyBars() {
+        // 1. 모든 작은 높이의 div 요소 검사
+        const allDivs = document.querySelectorAll('div, span, section, article');
+        allDivs.forEach(element => {
+          const computed = window.getComputedStyle(element);
+          const height = parseInt(computed.height);
+          const width = parseInt(computed.width);
+          const bg = computed.backgroundColor;
+          const borderBottom = computed.borderBottom;
+          
+          // 회색 배경이거나 높이가 10px 이하인 가로 바 형태 요소 제거
+          if ((height <= 10 && width > 100) || 
+              bg.includes('gray') || bg.includes('grey') || 
+              bg.includes('rgb(128') || bg.includes('rgba(128') ||
+              borderBottom.includes('gray') || borderBottom.includes('grey')) {
+            element.style.display = 'none';
+            element.remove();
+          }
+        });
+        
+        // 2. CSS 가상 요소 스타일 제거
+        const style = document.createElement('style');
+        style.innerHTML = `
+          *::before, *::after {
+            background: transparent !important;
+            border: none !important;
+            height: 0 !important;
+          }
+          
+          /* 모든 스크롤 관련 요소 제거 */
+          *[class*="scroll"],
+          *[id*="scroll"],
+          *[class*="indicator"],
+          *[id*="indicator"],
+          *[class*="progress"],
+          *[id*="progress"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // 3. body와 html의 모든 border 제거
+        document.body.style.setProperty('border', 'none', 'important');
+        document.body.style.setProperty('border-bottom', 'none', 'important');
+        document.documentElement.style.setProperty('border', 'none', 'important');
+        document.documentElement.style.setProperty('border-bottom', 'none', 'important');
+        
+        // 4. 스크롤 관련 모든 속성 제거
+        document.body.style.setProperty('overflow-x', 'hidden', 'important');
+        document.body.style.setProperty('overflow-y', 'scroll', 'important');
+        document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+        
+        // 5. 브라우저 네이티브 스크롤바 완전 제거
+        const scrollStyles = document.createElement('style');
+        scrollStyles.innerHTML = `
+          ::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+          * { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+          html { overflow-x: hidden !important; }
+          body { overflow-x: hidden !important; }
+        `;
+        document.head.appendChild(scrollStyles);
+      }
       
-      // 스크롤 인디케이터 제거
-      const scrollIndicators = document.querySelectorAll('*[class*="scroll"], *[id*="scroll"]');
-      scrollIndicators.forEach(indicator => {
-        if (indicator.offsetHeight <= 10 && indicator.offsetWidth > 100) {
-          indicator.style.display = 'none';
-        }
-      });
+      // 즉시 실행
+      removeAllGreyBars();
+      
+      // 페이지 로드 후 재실행
+      setTimeout(removeAllGreyBars, 500);
+      setTimeout(removeAllGreyBars, 1000);
+      setTimeout(removeAllGreyBars, 2000);
       
       // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
       const emptyDivs = document.querySelectorAll('div:empty, div[style*="height"], div[style*="margin"]');
