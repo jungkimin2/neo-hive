@@ -2953,29 +2953,68 @@ if (window.innerWidth <= 768) {
         padding: 0 !important;
       }
       
-      /* 모바일에서 스크롤바 숨김 */
-      body {
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      /* 브라우저별 스크롤바 숨김 */
-      body::-webkit-scrollbar {
-        display: none !important;
-        width: 0 !important;
-        height: 0 !important;
-      }
-      
-      html {
-        overflow-x: hidden !important;
+      /* 모바일에서 모든 스크롤바와 스크롤 인디케이터 완전 제거 */
+      * {
         scrollbar-width: none !important; /* Firefox */
         -ms-overflow-style: none !important; /* IE 10+ */
       }
       
-      html::-webkit-scrollbar {
+      *::-webkit-scrollbar {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
+        background: transparent !important;
+      }
+      
+      *::-webkit-scrollbar-track {
+        display: none !important;
+        background: transparent !important;
+      }
+      
+      *::-webkit-scrollbar-thumb {
+        display: none !important;
+        background: transparent !important;
+      }
+      
+      *::-webkit-scrollbar-corner {
+        display: none !important;
+        background: transparent !important;
+      }
+      
+      body, html {
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: auto !important;
+      }
+      
+      /* 모든 가능한 스크롤 관련 요소 숨김 */
+      *[class*="scroll"],
+      *[id*="scroll"],
+      *[class*="indicator"],
+      *[id*="indicator"],
+      *[class*="progress"],
+      *[id*="progress"],
+      *[role="scrollbar"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+      }
+      
+      /* 브라우저 네이티브 스크롤 표시기 제거 */
+      body::after,
+      html::after,
+      *::after {
+        content: none !important;
+      }
+      
+      /* 페이지 하단 여백 제거 */
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        outline: none !important;
       }
     }
     
@@ -7038,12 +7077,84 @@ document.addEventListener('DOMContentLoaded', function() {
         costRecoveryText.offsetHeight;
       }
       
-      // 모바일에서 스크롤바 완전 제거
-      document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
-      document.documentElement.style.setProperty('scrollbar-width', 'none', 'important');
-      document.documentElement.style.setProperty('-ms-overflow-style', 'none', 'important');
-      document.body.style.setProperty('overflow-x', 'hidden', 'important');
-      document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      // 모바일에서 모든 스크롤바와 스크롤 인디케이터 강제 제거
+      function forceRemoveScrollbars() {
+        // 모든 요소의 스크롤바 제거
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+          element.style.setProperty('scrollbar-width', 'none', 'important');
+          element.style.setProperty('-ms-overflow-style', 'none', 'important');
+        });
+        
+        // HTML과 body 설정
+        document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+        document.documentElement.style.setProperty('scrollbar-width', 'none', 'important');
+        document.documentElement.style.setProperty('-ms-overflow-style', 'none', 'important');
+        document.documentElement.style.setProperty('margin', '0', 'important');
+        document.documentElement.style.setProperty('padding', '0', 'important');
+        
+        document.body.style.setProperty('overflow-x', 'hidden', 'important');
+        document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+        document.body.style.setProperty('margin', '0', 'important');
+        document.body.style.setProperty('padding', '0', 'important');
+        document.body.style.setProperty('border', 'none', 'important');
+        
+        // 스크롤 관련 모든 요소 제거
+        const scrollElements = document.querySelectorAll(`
+          *[class*="scroll"],
+          *[id*="scroll"],
+          *[class*="indicator"],
+          *[id*="indicator"],
+          *[class*="progress"],
+          *[id*="progress"],
+          *[role="scrollbar"]
+        `);
+        
+        scrollElements.forEach(element => {
+          element.style.setProperty('display', 'none', 'important');
+          element.style.setProperty('visibility', 'hidden', 'important');
+          element.style.setProperty('opacity', '0', 'important');
+          element.style.setProperty('height', '0', 'important');
+          element.style.setProperty('width', '0', 'important');
+        });
+        
+        // 동적으로 생성되는 스크롤바 스타일 추가
+        const existingStyle = document.getElementById('force-no-scrollbar');
+        if (!existingStyle) {
+          const style = document.createElement('style');
+          style.id = 'force-no-scrollbar';
+          style.innerHTML = `
+            * { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+            *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+            *::-webkit-scrollbar-track { display: none !important; }
+            *::-webkit-scrollbar-thumb { display: none !important; }
+            *::-webkit-scrollbar-corner { display: none !important; }
+            body, html { overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; }
+          `;
+          document.head.appendChild(style);
+        }
+      }
+      
+             // 즉시 실행 및 반복 실행
+       forceRemoveScrollbars();
+       setTimeout(forceRemoveScrollbars, 100);
+       setTimeout(forceRemoveScrollbars, 500);
+       setTimeout(forceRemoveScrollbars, 1000);
+       
+       // 스크롤 이벤트 감지하여 실시간 제거
+       let scrollTimeout;
+       window.addEventListener('scroll', function() {
+         clearTimeout(scrollTimeout);
+         scrollTimeout = setTimeout(forceRemoveScrollbars, 50);
+       });
+       
+       // 리사이즈 이벤트에서도 제거
+       window.addEventListener('resize', forceRemoveScrollbars);
+       
+       // 페이지 완전 로드 후 한 번 더 실행
+       window.addEventListener('load', function() {
+         setTimeout(forceRemoveScrollbars, 200);
+       });
       
       // 회색 가로 바 형태의 요소들 제거
       const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
