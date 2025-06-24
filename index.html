@@ -7251,67 +7251,13 @@ document.addEventListener('DOMContentLoaded', function() {
          setTimeout(forceRemoveScrollbars, 200);
        });
       
-      // 회색 가로 바 형태의 요소들 제거 (더 포괄적)
-      function removeGreyBars() {
-        const greySelectors = [
-          'div[style*="background-color: gray"]',
-          'div[style*="background-color: grey"]', 
-          'div[style*="background: gray"]',
-          'div[style*="background: grey"]',
-          'div[style*="background-color: #808080"]',
-          'div[style*="background: #808080"]',
-          'div[style*="height: 1px"]',
-          'div[style*="height: 2px"]',
-          'div[style*="height: 3px"]',
-          'div[style*="height: 4px"]',
-          'div[style*="height: 5px"]',
-          'div[style*="height: 6px"]',
-          'div[style*="height: 8px"]',
-          'hr',
-          '*[class*="divider"]',
-          '*[class*="separator"]',
-          '*[class*="border"]',
-          '*[style*="border-bottom"]',
-          '*[style*="border-top"]'
-        ];
-        
-        greySelectors.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(element => {
-            // 높이가 낮은 요소만 제거 (가로바 형태)
-            const computedStyle = window.getComputedStyle(element);
-            const height = parseInt(computedStyle.height);
-            if (height <= 10) {
-              element.style.setProperty('display', 'none', 'important');
-              element.style.setProperty('visibility', 'hidden', 'important');
-              element.style.setProperty('opacity', '0', 'important');
-              element.style.setProperty('height', '0', 'important');
-              element.style.setProperty('width', '0', 'important');
-              element.remove();
-            }
-          });
-        });
-        
-        // 페이지 하단의 가로바들 특별히 처리
-        const bottomBars = document.querySelectorAll('*');
-        bottomBars.forEach(element => {
-          const rect = element.getBoundingClientRect();
-          const style = window.getComputedStyle(element);
-          
-          // 페이지 하단 근처에 있고, 높이가 낮은 가로바 형태의 요소
-          if (rect.bottom > window.innerHeight - 50 && rect.height <= 10 && rect.width > 100) {
-            element.style.setProperty('display', 'none', 'important');
-            element.style.setProperty('visibility', 'hidden', 'important');
-            element.style.setProperty('opacity', '0', 'important');
-          }
-        });
-      }
-      
-      // 즉시 실행 및 반복 실행
-      removeGreyBars();
-      setTimeout(removeGreyBars, 500);
-      setTimeout(removeGreyBars, 1000);
-      setTimeout(removeGreyBars, 2000);
+      // 회색 가로 바 형태의 요소들 제거
+      const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
+      greyBars.forEach(bar => {
+        if (bar.offsetHeight <= 10 && bar.offsetWidth > 100) {
+          bar.remove();
+        }
+      });
       
       // 스크롤 인디케이터 제거
       const scrollIndicators = document.querySelectorAll('*[class*="scroll"], *[id*="scroll"]');
