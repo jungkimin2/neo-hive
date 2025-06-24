@@ -6820,11 +6820,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
       const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-420px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-364.8px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-568px)' },
-        { selector: '#smart', transform: 'translateY(-408px)' }
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-452px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-328px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-396.8px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
+        { selector: '#smart', transform: 'translateY(-440px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -6964,7 +6964,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동
       const benefitsSection = document.querySelector('section#benefits');
       if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-top', '-480px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-520px', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
         benefitsSection.style.setProperty('padding-top', '80px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
