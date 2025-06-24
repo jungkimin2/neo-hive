@@ -3222,7 +3222,7 @@ if (window.innerWidth <= 768) {
       return false;
     }
     
-    // 오버레이와 모달 표시
+    // 오버레이와 모달 표시 - 배경 어둡게 효과
     if (overlay) {
       overlay.style.setProperty('display', 'block', 'important');
       overlay.style.setProperty('position', 'fixed', 'important');
@@ -3232,10 +3232,11 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('bottom', '0', 'important');
       overlay.style.setProperty('width', '100vw', 'important');
       overlay.style.setProperty('height', '100vh', 'important');
-      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.7)', 'important');
+      overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
       overlay.style.setProperty('z-index', '2147483647', 'important');
       overlay.style.setProperty('visibility', 'visible', 'important');
       overlay.style.setProperty('opacity', '1', 'important');
+      overlay.style.setProperty('pointer-events', 'auto', 'important');
       overlay.classList.add('active');
       console.log('Overlay displayed');
     }
@@ -3267,7 +3268,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('opacity', '1', 'important');
       modal.style.setProperty('padding', '20px', 'important');
       
-              // 오버레이 다시 확인 및 적용 (모달보다 낮은 z-index) - 모바일 강화
+              // 모바일에서 배경 어둡게 효과 강화
         if (overlay) {
           overlay.style.setProperty('z-index', '2147483647', 'important');
           overlay.style.setProperty('position', 'fixed', 'important');
@@ -3277,10 +3278,11 @@ if (window.innerWidth <= 768) {
           overlay.style.setProperty('bottom', '0', 'important');
           overlay.style.setProperty('width', '100vw', 'important');
           overlay.style.setProperty('height', '100vh', 'important');
-          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.8)', 'important'); /* 더 어둡게 */
+          overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important'); /* 모바일에서 더 어둡게 */
           overlay.style.setProperty('display', 'block', 'important');
           overlay.style.setProperty('visibility', 'visible', 'important');
           overlay.style.setProperty('opacity', '1', 'important');
+          overlay.style.setProperty('pointer-events', 'auto', 'important');
           overlay.classList.add('active');
         }
       
@@ -6924,14 +6926,14 @@ document.addEventListener('DOMContentLoaded', function() {
     align-self: center !important;
   }
   
-  /* 팝업 배경 오버레이 - 모바일 강화 */
+  /* 팝업 배경 오버레이 - 모바일 배경 어둡게 효과 */
   .modal-overlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(0, 0, 0, 0.85) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
     z-index: 2147483647 !important;
     display: none !important;
     pointer-events: auto !important;
@@ -6947,7 +6949,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* PC와 모바일 공통 오버레이 스타일 - 강화된 배경 어둡게 효과 */
+/* PC와 모바일 공통 오버레이 스타일 - 배경 어둡게 효과 */
 .modal-overlay {
   position: fixed !important;
   top: 0 !important;
@@ -6962,9 +6964,7 @@ document.addEventListener('DOMContentLoaded', function() {
   pointer-events: auto !important;
   visibility: hidden !important;
   opacity: 0 !important;
-  transition: opacity 0.4s ease, visibility 0.4s ease !important;
-  backdrop-filter: blur(3px) !important;
-  -webkit-backdrop-filter: blur(3px) !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
 }
 
 .modal-overlay.active {
