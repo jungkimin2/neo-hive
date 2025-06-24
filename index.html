@@ -2953,68 +2953,29 @@ if (window.innerWidth <= 768) {
         padding: 0 !important;
       }
       
-      /* 모바일에서 모든 스크롤바와 스크롤 인디케이터 완전 제거 */
-      * {
+      /* 모바일에서 스크롤바 숨김 */
+      body {
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* 브라우저별 스크롤바 숨김 */
+      body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      
+      html {
+        overflow-x: hidden !important;
         scrollbar-width: none !important; /* Firefox */
         -ms-overflow-style: none !important; /* IE 10+ */
       }
       
-      *::-webkit-scrollbar {
+      html::-webkit-scrollbar {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
-        background: transparent !important;
-      }
-      
-      *::-webkit-scrollbar-track {
-        display: none !important;
-        background: transparent !important;
-      }
-      
-      *::-webkit-scrollbar-thumb {
-        display: none !important;
-        background: transparent !important;
-      }
-      
-      *::-webkit-scrollbar-corner {
-        display: none !important;
-        background: transparent !important;
-      }
-      
-      body, html {
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        scroll-behavior: auto !important;
-      }
-      
-      /* 모든 가능한 스크롤 관련 요소 숨김 */
-      *[class*="scroll"],
-      *[id*="scroll"],
-      *[class*="indicator"],
-      *[id*="indicator"],
-      *[class*="progress"],
-      *[id*="progress"],
-      *[role="scrollbar"] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        height: 0 !important;
-        width: 0 !important;
-      }
-      
-      /* 브라우저 네이티브 스크롤 표시기 제거 */
-      body::after,
-      html::after,
-      *::after {
-        content: none !important;
-      }
-      
-      /* 페이지 하단 여백 제거 */
-      body {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        outline: none !important;
       }
     }
     
