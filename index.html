@@ -2952,6 +2952,31 @@ if (window.innerWidth <= 768) {
         margin: 0 !important;
         padding: 0 !important;
       }
+      
+      /* 모바일에서 스크롤바 숨김 */
+      body {
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      /* 브라우저별 스크롤바 숨김 */
+      body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      
+      html {
+        overflow-x: hidden !important;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE 10+ */
+      }
+      
+      html::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
     }
     
     @media (max-width: 900px) {
@@ -7012,6 +7037,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // 강제 리플로우
         costRecoveryText.offsetHeight;
       }
+      
+      // 모바일에서 스크롤바 완전 제거
+      document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+      document.documentElement.style.setProperty('scrollbar-width', 'none', 'important');
+      document.documentElement.style.setProperty('-ms-overflow-style', 'none', 'important');
+      document.body.style.setProperty('overflow-x', 'hidden', 'important');
+      document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      
+      // 회색 가로 바 형태의 요소들 제거
+      const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
+      greyBars.forEach(bar => {
+        if (bar.offsetHeight <= 10 && bar.offsetWidth > 100) {
+          bar.remove();
+        }
+      });
+      
+      // 스크롤 인디케이터 제거
+      const scrollIndicators = document.querySelectorAll('*[class*="scroll"], *[id*="scroll"]');
+      scrollIndicators.forEach(indicator => {
+        if (indicator.offsetHeight <= 10 && indicator.offsetWidth > 100) {
+          indicator.style.display = 'none';
+        }
+      });
       
       // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
       const emptyDivs = document.querySelectorAll('div:empty, div[style*="height"], div[style*="margin"]');
