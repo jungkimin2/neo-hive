@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
@@ -7135,26 +7135,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       
-             // 즉시 실행 및 반복 실행
-       forceRemoveScrollbars();
-       setTimeout(forceRemoveScrollbars, 100);
-       setTimeout(forceRemoveScrollbars, 500);
-       setTimeout(forceRemoveScrollbars, 1000);
-       
-       // 스크롤 이벤트 감지하여 실시간 제거
-       let scrollTimeout;
-       window.addEventListener('scroll', function() {
-         clearTimeout(scrollTimeout);
-         scrollTimeout = setTimeout(forceRemoveScrollbars, 50);
-       });
-       
-       // 리사이즈 이벤트에서도 제거
-       window.addEventListener('resize', forceRemoveScrollbars);
-       
-       // 페이지 완전 로드 후 한 번 더 실행
-       window.addEventListener('load', function() {
-         setTimeout(forceRemoveScrollbars, 200);
-       });
+      // 즉시 실행 및 반복 실행
+      forceRemoveScrollbars();
+      setTimeout(forceRemoveScrollbars, 100);
+      setTimeout(forceRemoveScrollbars, 500);
+      setTimeout(forceRemoveScrollbars, 1000);
       
       // 회색 가로 바 형태의 요소들 제거
       const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
