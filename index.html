@@ -3238,6 +3238,39 @@ if (window.innerWidth <= 768) {
       overlay.style.setProperty('opacity', '1', 'important');
       overlay.style.setProperty('pointer-events', 'auto', 'important');
       overlay.classList.add('active');
+      
+      // 모바일 디버깅: 오버레이 상태 확인
+      if (window.innerWidth <= 768) {
+        console.log('Mobile overlay debug:');
+        console.log('- Display:', overlay.style.display);
+        console.log('- Visibility:', overlay.style.visibility);
+        console.log('- Opacity:', overlay.style.opacity);
+        console.log('- Z-index:', overlay.style.zIndex);
+        console.log('- Background:', overlay.style.background);
+        console.log('- Position:', overlay.style.position);
+        console.log('- Active class:', overlay.classList.contains('active'));
+        
+        // 강제로 모바일에서 더 확실하게 표시
+        setTimeout(() => {
+          overlay.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.95) !important;
+            z-index: 2147483646 !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+          `;
+          console.log('Mobile overlay force applied after timeout');
+        }, 100);
+      }
+      
       console.log('Overlay displayed');
     }
     modal.style.display = 'block';
@@ -6934,7 +6967,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.9) !important;
-    z-index: 2147483647 !important;
+    z-index: 2147483646 !important; /* 모달보다 뒤에 위치 */
     display: none !important;
     pointer-events: auto !important;
     opacity: 0 !important;
@@ -6959,7 +6992,7 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100vw !important;
   height: 100vh !important;
   background: rgba(0, 0, 0, 0.9) !important;
-  z-index: 2147483647 !important;
+  z-index: 2147483646 !important; /* 모달보다 뒤에 위치 */
   display: none !important;
   pointer-events: auto !important;
   visibility: hidden !important;
