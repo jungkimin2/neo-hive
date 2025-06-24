@@ -3251,89 +3251,59 @@ if (window.innerWidth <= 768) {
     
     const modal = document.getElementById('formModal');
     
-    // 모바일에서 완전히 새로운 오버레이 생성 (기존 것 무시)
+    // 모바일에서 가장 간단하고 확실한 방법으로 오버레이 생성
     if (window.innerWidth <= 768) {
-      console.log('Creating mobile overlay...');
+      console.log('📱 Mobile detected - creating simple overlay');
       
-      // 기존 오버레이들 모두 제거
-      const existingOverlays = document.querySelectorAll('.modal-overlay, #modalOverlay, #mobileForceOverlay');
-      console.log('Removing existing overlays:', existingOverlays.length);
-      existingOverlays.forEach(el => el.remove());
+      // 기존 오버레이들 제거
+      document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
       
-      // 완전히 새로운 오버레이 생성
-      const mobileOverlay = document.createElement('div');
-      mobileOverlay.id = 'mobileForceOverlay';
-      mobileOverlay.onclick = closeForm;
-      
-      // 더 강력한 스타일 적용 - cssText 사용
-      mobileOverlay.style.cssText = `
-        position: fixed !important;
-        top: 0px !important;
-        left: 0px !important;
-        right: 0px !important;
-        bottom: 0px !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background-color: rgba(0, 0, 0, 0.9) !important;
-        z-index: 999999 !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        transform: none !important;
+      // HTML 문자열로 직접 삽입 (가장 확실한 방법)
+      const overlayHTML = `
+        <div id="mobileForceOverlay" onclick="closeForm()" style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 999999;
+          display: block;
+        "></div>
       `;
       
-      // body에 직접 추가
-      document.body.appendChild(mobileOverlay);
-      console.log('Mobile overlay added to body');
+      // body 시작 부분에 삽입
+      document.body.insertAdjacentHTML('afterbegin', overlayHTML);
       
-      // 즉시 확인
-      const immediateCheck = document.getElementById('mobileForceOverlay');
-      if (immediateCheck) {
-        console.log('✓ Mobile overlay created successfully');
-        console.log('Overlay style:', immediateCheck.style.cssText);
-        console.log('Overlay computed style:', window.getComputedStyle(immediateCheck));
+      // 생성 확인
+      const overlay = document.getElementById('mobileForceOverlay');
+      if (overlay) {
+        console.log('✅ Mobile overlay created via HTML insertion');
         
-        // 실제로 화면에 보이는지 추가 체크
-        const rect = immediateCheck.getBoundingClientRect();
-        console.log('Overlay position:', rect);
+        // 추가 보장을 위해 인라인 스타일도 설정
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        overlay.style.zIndex = '999999';
+        overlay.style.display = 'block';
         
-        // 혹시 다른 요소에 가려지는지 체크
-        const topElement = document.elementFromPoint(window.innerWidth/2, window.innerHeight/2);
-        console.log('Top element at center:', topElement);
-        
+        console.log('Mobile overlay final check:', {
+          display: overlay.style.display,
+          position: overlay.style.position,
+          zIndex: overlay.style.zIndex,
+          background: overlay.style.backgroundColor
+        });
       } else {
-        console.error('✗ Failed to create mobile overlay');
+        console.error('❌ Mobile overlay creation failed');
+        
+        // 마지막 수단: body 스타일 직접 변경
+        document.body.style.position = 'relative';
+        document.body.style.background = 'rgba(0, 0, 0, 0.9)';
+        console.log('Applied fallback body background');
       }
-      
-      // 추가 안전장치 - 조금 후에 다시 확인
-      setTimeout(() => {
-        const check = document.getElementById('mobileForceOverlay');
-        if (check && check.parentElement) {
-          console.log('✓ Mobile overlay still exists after timeout');
-          // 스타일 다시 강제 적용
-          check.style.cssText = `
-            position: fixed !important;
-            top: 0px !important;
-            left: 0px !important;
-            right: 0px !important;
-            bottom: 0px !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background-color: rgba(0, 0, 0, 0.95) !important;
-            z-index: 999999 !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            pointer-events: auto !important;
-          `;
-        } else {
-          console.error('✗ Mobile overlay disappeared after timeout');
-        }
-      }, 100);
       
     } else {
       // PC에서는 기존 방식 유지
@@ -7442,7 +7412,38 @@ if (window.innerWidth <= 768) {
 // 테스트 함수
 function testMobileOverlay() {
   console.log('=== TEST OVERLAY FUNCTION ===');
-  openForm();
+  
+  // 즉시 시각적 피드백
+  const testButton = document.getElementById('mobileDebugButton');
+  testButton.style.background = 'green';
+  testButton.textContent = 'TESTING...';
+  
+  // 간단한 오버레이 직접 생성 테스트
+  const testOverlay = document.createElement('div');
+  testOverlay.id = 'testOverlay';
+  testOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.5);
+    z-index: 999999;
+    display: block;
+  `;
+  testOverlay.onclick = function() {
+    this.remove();
+    testButton.style.background = 'red';
+    testButton.textContent = 'TEST OVERLAY';
+  };
+  
+  document.body.appendChild(testOverlay);
+  console.log('Red test overlay created');
+  
+  // 실제 openForm도 호출
+  setTimeout(() => {
+    openForm();
+  }, 1000);
 }
 </script>
 
