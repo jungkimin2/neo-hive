@@ -2707,6 +2707,9 @@ if (window.innerWidth <= 768) {
   z-index: 0;
   filter: blur(80px);
   pointer-events: none;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* 모바일 환경에서 발광효과를 다이어그램 정중앙(NEO SMART 핵심 흐름 위치)으로 이동 */
@@ -2717,7 +2720,7 @@ if (window.innerWidth <= 768) {
     width: 500px !important;
     height: 500px !important;
     transform: translate(-50%, -50%) !important;
-    background: radial-gradient(circle, rgba(123, 228, 149, 0.15) 0%, rgba(123, 228, 149, 0.08) 40%, rgba(123, 228, 149, 0.03) 70%, rgba(0,0,0,0) 100%) !important;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.25) 0%, rgba(123, 228, 149, 0.15) 40%, rgba(123, 228, 149, 0.08) 70%, rgba(0,0,0,0) 100%) !important;
     filter: blur(80px) !important;
     z-index: -1 !important; /* 모든 요소 뒤로 보내기 */
     display: block !important;
@@ -6860,6 +6863,25 @@ document.addEventListener('DOMContentLoaded', function() {
         neosCardList.style.setProperty('max-width', '90%', 'important');
         neosCardList.style.setProperty('margin-left', '-25px', 'important');
       }
+      
+      // 모바일 환경에서 발광효과 강제 표시
+      const glowElement = document.querySelector('.circular-bg-glow');
+      if (glowElement) {
+        glowElement.style.setProperty('display', 'block', 'important');
+        glowElement.style.setProperty('visibility', 'visible', 'important');
+        glowElement.style.setProperty('opacity', '1', 'important');
+        glowElement.style.setProperty('z-index', '-1', 'important');
+        glowElement.style.setProperty('position', 'absolute', 'important');
+        glowElement.style.setProperty('top', 'calc(50% + 40px)', 'important');
+        glowElement.style.setProperty('left', 'calc(65% - 5px)', 'important');
+        glowElement.style.setProperty('width', '500px', 'important');
+        glowElement.style.setProperty('height', '500px', 'important');
+        glowElement.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        glowElement.style.setProperty('background', 'radial-gradient(circle, rgba(123, 228, 149, 0.25) 0%, rgba(123, 228, 149, 0.15) 40%, rgba(123, 228, 149, 0.08) 70%, rgba(0,0,0,0) 100%)', 'important');
+        glowElement.style.setProperty('filter', 'blur(80px)', 'important');
+        glowElement.style.setProperty('border-radius', '50%', 'important');
+        glowElement.style.setProperty('pointer-events', 'none', 'important');
+      }
     }
     
     // 아이콘 정렬 함수
@@ -6949,9 +6971,14 @@ document.addEventListener('DOMContentLoaded', function() {
         benefitsSection.style.setProperty('z-index', '10', 'important');
       }
       
-      // 여백을 만드는 빈 div들 제거
+      // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
       const emptyDivs = document.querySelectorAll('div:empty, div[style*="height"], div[style*="margin"]');
       emptyDivs.forEach(div => {
+        // 발광효과 요소는 보호
+        if (div.classList.contains('circular-bg-glow')) {
+          return;
+        }
+        
         const computedStyle = window.getComputedStyle(div);
         const height = parseInt(computedStyle.height);
         const marginTop = parseInt(computedStyle.marginTop);
@@ -6965,17 +6992,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     
+    // 발광효과 강제 복구 함수
+    function restoreGlowEffect() {
+      const glowElement = document.querySelector('.circular-bg-glow');
+      if (glowElement) {
+        // 모바일 환경에서 발광효과 완전 복구
+        glowElement.style.setProperty('display', 'block', 'important');
+        glowElement.style.setProperty('visibility', 'visible', 'important');
+        glowElement.style.setProperty('opacity', '1', 'important');
+        glowElement.style.setProperty('z-index', '-1', 'important');
+        glowElement.style.setProperty('position', 'absolute', 'important');
+        glowElement.style.setProperty('top', 'calc(50% + 40px)', 'important');
+        glowElement.style.setProperty('left', 'calc(65% - 5px)', 'important');
+        glowElement.style.setProperty('width', '500px', 'important');
+        glowElement.style.setProperty('height', '500px', 'important');
+        glowElement.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        glowElement.style.setProperty('background', 'radial-gradient(circle, rgba(123, 228, 149, 0.25) 0%, rgba(123, 228, 149, 0.15) 40%, rgba(123, 228, 149, 0.08) 70%, rgba(0,0,0,0) 100%)', 'important');
+        glowElement.style.setProperty('filter', 'blur(80px)', 'important');
+        glowElement.style.setProperty('border-radius', '50%', 'important');
+        glowElement.style.setProperty('pointer-events', 'none', 'important');
+        console.log('Mobile glow effect restored');
+      }
+    }
     
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
+      restoreGlowEffect(); // 발광효과 복구
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
+        restoreGlowEffect(); // 발광효과 재복구
       }, 50);
     }
     
@@ -7002,6 +7053,7 @@ document.addEventListener('DOMContentLoaded', function() {
         removeGreyBoxes(); // 회색 박스 제거
         forceApplyMobileStyles();
         adjustMobileIcons();
+        restoreGlowEffect(); // 발광효과 복구
       }
     });
     
