@@ -2865,7 +2865,7 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
+                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(0px) !important; position: relative !important; width: 100% !important;">
                   <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
                 </p>
               </div>
@@ -2943,10 +2943,10 @@ if (window.innerWidth <= 768) {
         opacity: 1 !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
+      /* 모바일에서 비용 회수 텍스트 중앙 정렬 - transform 사용 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(16px) !important;
+        transform: translateX(0px) !important;
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
@@ -7028,7 +7028,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const costRecoveryText = document.getElementById('mobile-cost-recovery-text');
       if (costRecoveryText) {
         costRecoveryText.style.setProperty('text-align', 'center', 'important');
-        costRecoveryText.style.setProperty('transform', 'translateX(16px)', 'important');
+        costRecoveryText.style.setProperty('transform', 'translateX(0px)', 'important');
         costRecoveryText.style.setProperty('position', 'relative', 'important');
         costRecoveryText.style.setProperty('width', '100%', 'important');
         costRecoveryText.style.setProperty('margin', '0', 'important');
