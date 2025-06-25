@@ -453,6 +453,24 @@ div > p.smart-guide-text {
   .section { padding: 60px 20px; background: #000; color: #fff; }
   /* Reduce spacing above hero box header */
   .section:first-of-type { padding: 100px 20px 20px; }
+  
+  /* 모바일에서 마지막 섹션 하단 여백 최소화 */
+  @media (max-width: 768px) {
+    .section:last-of-type {
+      padding-bottom: 10px !important;
+    }
+    
+    #benefits {
+      padding-bottom: 10px !important;
+      margin-bottom: 0 !important;
+    }
+    
+    /* 페이지 전체 하단 마진/패딩 제거 */
+    body, html {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
   .container { max-width: 1024px; margin: 0 auto; }
   .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
   .feature-item, .benefit-item { background: #243348; padding: 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
@@ -550,6 +568,35 @@ div > p.smart-guide-text {
     margin-top: 0;
   }
   footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
+
+/* 모바일에서 페이지 하단 여백 최소화 */
+@media (max-width: 768px) {
+  section#benefits {
+    padding-bottom: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  section#benefits .container {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  footer {
+    margin-top: 10px !important;
+    padding: 15px 20px !important;
+  }
+  
+  /* 모바일에서 body와 html의 하단 여백도 제거 */
+  body {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  html {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
   a, a:visited, a:hover { color: inherit; }
 
   .animate-on-scroll {
@@ -2942,7 +2989,7 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-    <div style="text-align:center; margin-top: 36px;">
+    <div style="text-align:center; margin-top: 36px; margin-bottom: 0;">
       <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
         display: inline-block;
         background: none;
@@ -3069,7 +3116,7 @@ if (window.innerWidth <= 768) {
 
 
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
-<footer>
+<footer style="margin-top: 0 !important; padding-top: 20px !important;">
   &copy; 2025 Neo Hive. All Rights Reserved.<br>
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
