@@ -1,57 +1,10 @@
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
-<html lang="ko" style="margin: 0 !important; padding: 0 !important; height: 100% !important;">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
-
-<!-- 모바일 하단 여백 강제 제거 - 최고 우선순위 -->
-<style>
-  @media (max-width: 768px) {
-    html, body {
-      margin: 0 !important;
-      padding: 0 !important;
-      height: 100% !important;
-      min-height: 100% !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* 모든 요소의 하단 여백 강제 제거 */
-    * {
-      margin-bottom: 0 !important;
-    }
-    
-    /* 모든 섹션과 컨테이너 하단 여백 제거 */
-    section, .section, div, .container {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    /* Benefits 섹션 특별 처리 */
-    #benefits, section#benefits {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    #benefits .container {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    /* 푸터 바로 붙이기 */
-    footer {
-      margin: 0 !important;
-      padding: 5px 15px !important;
-    }
-    
-    /* 사전예약하기 버튼 영역 */
-    div[style*="text-align:center"] {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-  }
-</style>
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
 <style>
@@ -500,38 +453,6 @@ div > p.smart-guide-text {
   .section { padding: 60px 20px; background: #000; color: #fff; }
   /* Reduce spacing above hero box header */
   .section:first-of-type { padding: 100px 20px 20px; }
-  
-  /* 모바일에서 모든 여백 강제 제거 */
-  @media (max-width: 768px) {
-    /* 모든 섹션 하단 완전 제거 */
-    .section, section {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    .section:last-of-type, section:last-of-type {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    #benefits, section#benefits {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    /* 페이지 전체 완전 제거 */
-    body, html {
-      margin: 0 !important;
-      padding: 0 !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* 모든 요소 박스 모델 통일 */
-    *, *::before, *::after {
-      box-sizing: border-box !important;
-      margin-bottom: 0 !important;
-    }
-  }
   .container { max-width: 1024px; margin: 0 auto; }
   .features, .benefits { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
   .feature-item, .benefit-item { background: #243348; padding: 20px; border-radius: 8px; color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
@@ -629,72 +550,6 @@ div > p.smart-guide-text {
     margin-top: 0;
   }
   footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
-
-/* 모바일에서 페이지 하단 여백 완전 제거 - 강화판 */
-@media (max-width: 768px) {
-  /* 모든 요소의 하단 여백 강제 제거 */
-  * {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  
-  /* HTML과 Body 완전 제거 */
-  html {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100% !important;
-  }
-  
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100% !important;
-    min-height: 100% !important;
-  }
-  
-  /* 모든 섹션 하단 여백 제거 */
-  section, .section {
-    margin-bottom: 0 !important;
-    padding-bottom: 5px !important;
-  }
-  
-  /* Benefits 섹션 특별 처리 */
-  section#benefits, #benefits {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  
-  section#benefits .container, #benefits .container {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  
-  /* 사전예약하기 버튼 영역 */
-  section#benefits div[style*="text-align:center"] {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  
-  /* 푸터 완전 붙이기 */
-  footer {
-    margin: 0 !important;
-    padding: 10px 15px !important;
-    position: relative !important;
-    bottom: 0 !important;
-  }
-  
-  /* 모든 컨테이너 하단 여백 제거 */
-  .container, .testimonial-card {
-    margin-bottom: 0 !important;
-    padding-bottom: 5px !important;
-  }
-  
-  /* 브라우저 기본 여백 강제 제거 */
-  :root {
-    --bottom-padding: 0px !important;
-    --bottom-margin: 0px !important;
-  }
-}
   a, a:visited, a:hover { color: inherit; }
 
   .animate-on-scroll {
@@ -1538,7 +1393,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
-<body style="margin: 0 !important; padding: 0 !important; height: 100% !important;">
+<body>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
   <div class="nav-bar">
@@ -3009,8 +2864,8 @@ if (window.innerWidth <= 768) {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000; margin-bottom: 0 !important; padding-bottom: 0 !important;">
-  <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center; margin-bottom: 0 !important; padding-bottom: 0 !important;">
+<section id="benefits" class="section animate-on-scroll" style="background: #000;">
+  <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
     </h2>
@@ -3087,7 +2942,7 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-    <div style="text-align:center; margin-top: 36px; margin-bottom: 0;">
+    <div style="text-align:center; margin-top: 36px;">
       <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
         display: inline-block;
         background: none;
@@ -3214,7 +3069,7 @@ if (window.innerWidth <= 768) {
 
 
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
-<footer style="margin-top: 0 !important; padding-top: 20px !important;">
+<footer>
   &copy; 2025 Neo Hive. All Rights Reserved.<br>
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
@@ -3260,8 +3115,8 @@ if (window.innerWidth <= 768) {
     window.scrollTo(0, 0);
   }
   
-  // 모바일에서 z-index 강제 적용 및 하단 여백 제거
-  if (window.innerWidth <= 768) {
+  // 모바일에서 z-index 강제 적용
+  if (window.innerWidth <= 600) {
     const circleLines = document.querySelector('.circle-lines');
     const circleSteps = document.querySelectorAll('.circle-step');
     const centerTitle = document.querySelector('.center-title');
@@ -3277,35 +3132,6 @@ if (window.innerWidth <= 768) {
     if (centerTitle) {
       centerTitle.style.zIndex = '4';
     }
-    
-    // 모바일에서 하단 여백 강제 제거
-    document.documentElement.style.setProperty('margin-bottom', '0', 'important');
-    document.documentElement.style.setProperty('padding-bottom', '0', 'important');
-    document.body.style.setProperty('margin-bottom', '0', 'important');
-    document.body.style.setProperty('padding-bottom', '0', 'important');
-    
-    // 모든 섹션과 컨테이너의 하단 여백 제거
-    const allSections = document.querySelectorAll('section, .section');
-    allSections.forEach(section => {
-      section.style.setProperty('margin-bottom', '0', 'important');
-      section.style.setProperty('padding-bottom', '0', 'important');
-    });
-    
-    // Benefits 섹션 특별 처리
-    const benefitsSection = document.getElementById('benefits');
-    if (benefitsSection) {
-      benefitsSection.style.setProperty('margin-bottom', '0', 'important');
-      benefitsSection.style.setProperty('padding-bottom', '0', 'important');
-    }
-    
-    // 푸터 붙이기
-    const footer = document.querySelector('footer');
-    if (footer) {
-      footer.style.setProperty('margin-top', '0', 'important');
-      footer.style.setProperty('padding', '10px 15px', 'important');
-    }
-    
-    console.log('📱 Mobile bottom spacing forcefully removed');
   }
   
   // DOMContentLoaded로 더 빠른 초기화
@@ -3315,8 +3141,8 @@ if (window.innerWidth <= 768) {
       window.scrollTo(0, 0);
     }
     
-    // 모바일에서 z-index 강제 적용 및 하단 여백 재제거 (DOM 로드 후)
-    if (window.innerWidth <= 768) {
+    // 모바일에서 z-index 강제 적용 (DOM 로드 후)
+    if (window.innerWidth <= 600) {
       const circleLines = document.querySelector('.circle-lines');
       const circleSteps = document.querySelectorAll('.circle-step');
       const centerTitle = document.querySelector('.center-title');
@@ -3332,45 +3158,6 @@ if (window.innerWidth <= 768) {
       if (centerTitle) {
         centerTitle.style.zIndex = '4';
       }
-      
-      // DOM 로드 후 하단 여백 재제거
-      setTimeout(() => {
-        // HTML과 Body 여백 완전 제거
-        document.documentElement.style.setProperty('margin', '0', 'important');
-        document.documentElement.style.setProperty('padding', '0', 'important');
-        document.body.style.setProperty('margin', '0', 'important');
-        document.body.style.setProperty('padding', '0', 'important');
-        
-        // 모든 요소의 하단 여백 제거
-        const allElements = document.querySelectorAll('*');
-        allElements.forEach(el => {
-          if (el.tagName !== 'SCRIPT' && el.tagName !== 'STYLE') {
-            el.style.setProperty('margin-bottom', '0', 'important');
-          }
-        });
-        
-        // Benefits 섹션과 컨테이너 완전 제거
-        const benefitsSection = document.getElementById('benefits');
-        if (benefitsSection) {
-          benefitsSection.style.setProperty('margin-bottom', '0', 'important');
-          benefitsSection.style.setProperty('padding-bottom', '0', 'important');
-          
-          const container = benefitsSection.querySelector('.container');
-          if (container) {
-            container.style.setProperty('margin-bottom', '0', 'important');
-            container.style.setProperty('padding-bottom', '0', 'important');
-          }
-        }
-        
-        // 푸터를 benefits 섹션에 바로 붙이기
-        const footer = document.querySelector('footer');
-        if (footer) {
-          footer.style.setProperty('margin', '0', 'important');
-          footer.style.setProperty('padding', '5px 15px', 'important');
-        }
-        
-        console.log('🔥 Mobile spacing COMPLETELY removed after DOM load');
-      }, 500);
     }
     
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
@@ -3464,126 +3251,56 @@ if (window.innerWidth <= 768) {
     
     const modal = document.getElementById('formModal');
     
-    // 모바일에서 상위 요소들의 z-index를 제어하고 강력한 오버레이 생성
+    // 모바일에서 가장 간단하고 확실한 방법으로 오버레이 생성
     if (window.innerWidth <= 768) {
-      console.log('📱 Mobile detected - FORCING overlay above all elements');
+      console.log('📱 Mobile detected - creating simple overlay');
       
-      // 1. 먼저 높은 z-index를 가진 상위 요소들을 임시로 숨기거나 z-index 낮추기
-      const highZIndexElements = [
-        '#mobile-top-nav-fixed',
-        '.video-phone',
-        '.floating-video',
-        '.neo-smart-video',
-        '[style*="z-index: 2147483647"]',
-        '[style*="z-index: 2147483646"]'
-      ];
+      // 기존 오버레이들 제거
+      document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
       
-      const hiddenElements = [];
-      highZIndexElements.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-          // 원래 스타일 저장
-          el.dataset.originalZIndex = el.style.zIndex || getComputedStyle(el).zIndex;
-          el.dataset.originalDisplay = el.style.display || getComputedStyle(el).display;
-          
-          // z-index를 매우 낮게 설정하거나 숨기기
-          if (el.id === 'mobile-top-nav-fixed') {
-            el.style.setProperty('z-index', '1', 'important');
-            console.log('📱 Mobile nav z-index lowered');
-          } else {
-            el.style.setProperty('z-index', '1', 'important');
-          }
-          hiddenElements.push(el);
-        });
-      });
-      
-      // 숨긴 요소들을 전역에 저장 (복원용)
-      window.mobileHiddenElements = hiddenElements;
-      
-      // 2. 기존 오버레이들 모두 제거
-      document.querySelectorAll('#mobileForceOverlay, .modal-overlay, [id*="overlay"], [class*="overlay"]').forEach(el => {
-        if (el.id !== 'formModal') {
-          el.remove();
-        }
-      });
-      
-      // 3. 최대한 높은 z-index로 오버레이 생성
+      // 직접 createElement로 생성 (더 안정적)
       const overlay = document.createElement('div');
       overlay.id = 'mobileForceOverlay';
-      overlay.className = 'mobile-modal-overlay-active';
+      overlay.onclick = closeForm;
       
-      // 가장 강력한 스타일 적용
+      // 인라인 스타일 설정
       overlay.style.cssText = `
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-        z-index: 999999999999 !important;
+        background: rgba(0, 0, 0, 0.85) !important;
+        z-index: 2147483646 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
         pointer-events: auto !important;
-        -webkit-backface-visibility: hidden !important;
-        backface-visibility: hidden !important;
-        will-change: transform !important;
       `;
       
-      // 4. 클릭 이벤트 추가
-      overlay.addEventListener('click', function(e) {
-        if (e.target === this) {
-          e.preventDefault();
-          e.stopPropagation();
-          closeForm();
-        }
-      }, true);
-      
-      overlay.addEventListener('touchstart', function(e) {
-        if (e.target === this) {
-          e.preventDefault();
-          e.stopPropagation();
-          closeForm();
-        }
-      }, true);
-      
-      // 5. body 맨 끝에 추가 (가장 위에 렌더링되도록)
+      // body에 바로 추가
       document.body.appendChild(overlay);
       
-      // 6. body와 html에도 오버레이 클래스 추가
-      document.body.classList.add('mobile-overlay-active');
-      document.documentElement.classList.add('mobile-overlay-active');
-      document.body.style.setProperty('overflow', 'hidden', 'important');
-      
-      // 7. 강제 리플로우 후 재확인
-      overlay.offsetHeight; // 강제 리플로우
-      
-      requestAnimationFrame(() => {
+      // 생성 확인 및 강제 적용
+      setTimeout(() => {
         const createdOverlay = document.getElementById('mobileForceOverlay');
         if (createdOverlay) {
-          // 마지막 보장 스타일 적용
-          createdOverlay.style.setProperty('z-index', '999999999999', 'important');
+          createdOverlay.style.setProperty('position', 'fixed', 'important');
+          createdOverlay.style.setProperty('top', '0', 'important');
+          createdOverlay.style.setProperty('left', '0', 'important');
+          createdOverlay.style.setProperty('width', '100vw', 'important');
+          createdOverlay.style.setProperty('height', '100vh', 'important');
+          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
+          createdOverlay.style.setProperty('z-index', '2147483646', 'important');
           createdOverlay.style.setProperty('display', 'block', 'important');
           createdOverlay.style.setProperty('visibility', 'visible', 'important');
           createdOverlay.style.setProperty('opacity', '1', 'important');
-          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
-          
-          console.log('✅ Mobile overlay FORCE APPLIED with highest z-index');
-          console.log('Current z-index:', getComputedStyle(createdOverlay).zIndex);
-          
-          // 시각적 확인용 빨간 테두리 (1초간)
-          createdOverlay.style.setProperty('border', '3px solid red', 'important');
-          setTimeout(() => {
-            if (createdOverlay) {
-              createdOverlay.style.removeProperty('border');
-            }
-          }, 1000);
+          createdOverlay.style.setProperty('pointer-events', 'auto', 'important');
+          console.log('✅ Mobile overlay confirmed and styles applied');
         } else {
-          console.error('❌ Mobile overlay FAILED completely');
+          console.error('❌ Mobile overlay creation failed');
         }
-      });
+      }, 10);
       
     } else {
       // PC에서는 기존 방식 유지
@@ -3689,65 +3406,15 @@ if (window.innerWidth <= 768) {
       modal.style.display = 'none';
     }
     
-    // 모바일 전용 오버레이 제거 및 숨겨진 요소들 복원
+    // 모바일 전용 오버레이 제거
     if (window.innerWidth <= 768) {
-      console.log('🔄 Closing mobile form and restoring all elements');
-      
-      // 1. 모바일 오버레이 제거
       const mobileOverlay = document.getElementById('mobileForceOverlay');
       if (mobileOverlay) {
         mobileOverlay.remove();
         console.log('Mobile force overlay removed');
       }
-      
-      // 2. 숨겨진 높은 z-index 요소들 복원
-      if (window.mobileHiddenElements) {
-        window.mobileHiddenElements.forEach(el => {
-          // 원래 z-index 복원
-          if (el.dataset.originalZIndex && el.dataset.originalZIndex !== 'auto') {
-            el.style.setProperty('z-index', el.dataset.originalZIndex, 'important');
-          } else {
-            el.style.removeProperty('z-index');
-          }
-          
-          // 원래 display 복원
-          if (el.dataset.originalDisplay && el.dataset.originalDisplay !== 'none') {
-            el.style.display = el.dataset.originalDisplay;
-          }
-          
-          console.log('Restored element:', el.id || el.className);
-        });
-        
-        // 모바일 네비게이션 특별 복원
-        const mobileNav = document.getElementById('mobile-top-nav-fixed');
-        if (mobileNav) {
-          mobileNav.style.setProperty('z-index', '2147483647', 'important');
-          console.log('📱 Mobile nav z-index restored to maximum');
-        }
-        
-        window.mobileHiddenElements = null;
-      }
-      
-      // 3. body와 html 클래스 제거
-      document.body.classList.remove('mobile-overlay-active');
-      document.documentElement.classList.remove('mobile-overlay-active');
-      
-      // 4. body 스타일 복원
-      document.body.style.removeProperty('background');
-      document.body.style.removeProperty('position');
-      document.body.style.removeProperty('overflow');
-      
-      // 5. html 배경 스타일도 복원
-      document.documentElement.style.removeProperty('background');
-      
-      // 6. 모든 오버레이 관련 요소들 제거
-      document.querySelectorAll('[id*="overlay"], [class*="overlay"]').forEach(el => {
-        if (el.id !== 'formModal' && !el.closest('#formModal')) {
-          el.remove();
-        }
-      });
-      
-      console.log('✅ Mobile elements fully restored');
+      // 모바일에서 배경 스크롤 복원
+      document.body.style.overflow = 'auto';
     } else {
       // PC 오버레이 처리
       const overlay = document.getElementById('modalOverlay');
@@ -3766,157 +3433,6 @@ if (window.innerWidth <= 768) {
       closeForm();
     }
   });
-
-  // 모바일에서 사전예약하기 버튼 강제 연결 및 디버깅
-  function setupMobileReservationButtons() {
-    if (window.innerWidth <= 768) {
-      console.log('🔧 Setting up mobile reservation buttons');
-      
-      // 모든 사전예약하기 버튼 찾기
-      const reservationButtons = document.querySelectorAll(
-        'a[onclick*="openForm"], button[onclick*="openForm"], ' +
-        'a:contains("사전 예약하기"), a:contains("사전예약하기"), ' +
-        '.nav-neon-green, a[href*="formModal"]'
-      );
-      
-      // 추가로 텍스트 기반으로도 찾기
-      const allLinks = document.querySelectorAll('a, button');
-      allLinks.forEach(link => {
-        const text = link.textContent.trim();
-        if (text.includes('사전 예약하기') || text.includes('사전예약하기')) {
-          reservationButtons.push(link);
-        }
-      });
-      
-      console.log('Found reservation buttons:', reservationButtons.length);
-      
-      reservationButtons.forEach((button, index) => {
-        console.log(`Button ${index + 1}:`, button.textContent.trim(), button.onclick);
-        
-        // 기존 이벤트 제거하고 새로 추가
-        button.onclick = null;
-        
-        // 새로운 강력한 이벤트 리스너 추가
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          console.log('📱 Mobile reservation button clicked!');
-          
-          // 즉시 시각적 피드백
-          document.body.style.background = 'rgba(255, 0, 0, 0.5)';
-          setTimeout(() => {
-            document.body.style.background = 'rgba(0, 0, 0, 0.8)';
-          }, 200);
-          
-          // 네비게이션 닫기
-          if (typeof closeNav === 'function') {
-            closeNav();
-          }
-          
-          // 폼 열기
-          openForm(e);
-          
-          return false;
-        }, true);
-        
-        // 터치 이벤트도 추가
-        button.addEventListener('touchstart', function(e) {
-          console.log('📱 Mobile reservation button touched!');
-          // 터치 시 즉시 시각적 피드백
-          this.style.background = 'rgba(255, 255, 0, 0.3)';
-        }, true);
-        
-        button.addEventListener('touchend', function(e) {
-          // 터치 종료 시 원래 상태 복원
-          setTimeout(() => {
-            this.style.background = '';
-          }, 500);
-        }, true);
-      });
-      
-      console.log('✅ Mobile reservation buttons setup complete');
-    }
-  }
-
-  // DOM 준비되면 실행
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMobileReservationButtons);
-  } else {
-    setupMobileReservationButtons();
-  }
-
-  // 페이지 로드 완료 후에도 한 번 더 실행
-  window.addEventListener('load', setupMobileReservationButtons);
-
-  // 모바일 오버레이 디버깅 함수 추가 (임시)
-  function createMobileDebugger() {
-    if (window.innerWidth <= 768) {
-      // 디버그 버튼 추가
-      const debugBtn = document.createElement('button');
-      debugBtn.textContent = '강제 오버레이';
-      debugBtn.style.cssText = `
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        background: #ff0066;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
-        font-size: 12px;
-        font-weight: bold;
-        z-index: 999999999;
-        cursor: pointer;
-        box-shadow: 0 2px 10px rgba(255, 0, 102, 0.3);
-      `;
-      
-      debugBtn.addEventListener('click', function() {
-        console.log('🚀 FORCE DEBUG: Creating ultimate overlay');
-        
-        // 즉시 전면 배경 변경으로 시각적 피드백
-        document.body.style.setProperty('background', 'rgba(255, 0, 0, 0.8)', 'important');
-        document.documentElement.style.setProperty('background', 'rgba(255, 0, 0, 0.8)', 'important');
-        
-        this.textContent = '강제 실행중...';
-        this.style.background = '#00aa00';
-        
-        setTimeout(() => {
-          // 실제 openForm 호출
-          openForm();
-          
-          // 추가 확인: 오버레이가 생성되었는지 체크
-          setTimeout(() => {
-            const overlay = document.getElementById('mobileForceOverlay');
-            if (overlay) {
-              this.textContent = '오버레이 성공!';
-              this.style.background = '#0066ff';
-            } else {
-              this.textContent = '오버레이 실패!';
-              this.style.background = '#ff0000';
-            }
-            
-            // 5초 후 자동 닫기
-            setTimeout(() => {
-              closeForm();
-              this.textContent = '강제 오버레이';
-              this.style.background = '#ff0066';
-            }, 5000);
-          }, 500);
-        }, 300);
-      });
-      
-      document.body.appendChild(debugBtn);
-      console.log('🧪 Mobile debug button added');
-    }
-  }
-
-  // 디버그 버튼 생성
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createMobileDebugger);
-  } else {
-    createMobileDebugger();
-  }
   
   // PC에서만 네비게이션 링크 클릭 시 정확한 위치로 스크롤
   document.addEventListener('DOMContentLoaded', function() {
@@ -7549,9 +7065,8 @@ document.addEventListener('DOMContentLoaded', function() {
   opacity: 1 !important;
 }
 
-/* 모바일 전용 강제 오버레이 스타일 - 최고 우선순위 */
-#mobileForceOverlay,
-.mobile-modal-overlay-active {
+/* 모바일 전용 강제 오버레이 스타일 */
+#mobileForceOverlay {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -7559,46 +7074,13 @@ document.addEventListener('DOMContentLoaded', function() {
   bottom: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: rgba(0, 0, 0, 0.9) !important;
-  z-index: 999999999999 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  z-index: 2147483646 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
   -webkit-tap-highlight-color: transparent !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
-  will-change: transform !important;
-  transform: translateZ(0) !important;
-}
-
-/* 모바일에서 body 전체가 오버레이가 될 때의 스타일 */
-@media (max-width: 768px) {
-  body.mobile-overlay-active {
-    background: rgba(0, 0, 0, 0.8) !important;
-    position: relative !important;
-    overflow: hidden !important;
-  }
-  
-  html.mobile-overlay-active {
-    background: rgba(0, 0, 0, 0.9) !important;
-  }
-  
-  /* 모바일에서 오버레이 활성화시 다른 높은 z-index 요소들 낮추기 */
-  body.mobile-overlay-active #mobile-top-nav-fixed {
-    z-index: 1 !important;
-  }
-  
-  body.mobile-overlay-active .video-phone,
-  body.mobile-overlay-active .floating-video,
-  body.mobile-overlay-active .neo-smart-video {
-    z-index: 1 !important;
-  }
-  
-  /* 오버레이 활성화시 모달만 최상위 */
-  body.mobile-overlay-active #formModal {
-    z-index: 999999999999 !important;
-  }
 }
 </style>
 
