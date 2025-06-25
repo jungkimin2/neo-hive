@@ -1058,31 +1058,9 @@ div > p.smart-guide-text {
     }
   }
 
-  /* Prevent horizontal scrolling on all devices and hide scrollbar */
+  /* Prevent horizontal scrolling on mobile */
   html, body {
     overflow-x: hidden;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
-  }
-  
-  /* Hide scrollbar for Chrome, Safari, Opera */
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-  
-  /* Hide scrollbar for all elements */
-  *::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-  
-  * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
   }
   
   /* 스크롤 위치 안정화 */
@@ -2887,7 +2865,7 @@ if (window.innerWidth <= 768) {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 120px;">
+<section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
@@ -3047,15 +3025,6 @@ if (window.innerWidth <= 768) {
         width: 100% !important;
         box-sizing: border-box !important;
         min-height: 80px !important; /* 최소 높이 보장 */
-      }
-    }
-    
-    /* PC 환경에서 푸터 상단 여백 추가 */
-    @media (min-width: 769px) {
-      footer {
-        margin-top: 40px !important; /* PC에서 상단 여백 추가 */
-        padding-top: 30px !important; /* 상단 패딩도 추가 */
-        transform: none !important; /* PC에서는 transform 제거 */
       }
       
       /* 모바일에서 푸터가 다른 요소에 가려지지 않도록 보호 */
@@ -5960,40 +5929,6 @@ document.addEventListener('DOMContentLoaded', function() {
     /* PC에서 첫 번째 섹션 상단 여백 조정 - 한칸 아래로 */
     #hive.section {
       padding-top: 40px !important;
-    }
-    
-    /* PC에서 푸터 상단 여백 추가 - 문구 잘림 방지 */
-    footer {
-      margin-top: 60px !important;
-      padding-top: 40px !important;
-      border-top: 1px solid rgba(123, 228, 149, 0.2) !important;
-      clear: both !important;
-      overflow: visible !important;
-    }
-    
-    /* PC에서 스크롤바 숨김 */
-    html {
-      overflow-x: hidden !important;
-      scrollbar-width: none !important; /* Firefox */
-      -ms-overflow-style: none !important; /* IE 10+ */
-    }
-    
-    html::-webkit-scrollbar {
-      display: none !important; /* Chrome, Safari, Opera */
-      width: 0 !important;
-      height: 0 !important;
-    }
-    
-    body {
-      overflow-x: hidden !important;
-      scrollbar-width: none !important; /* Firefox */
-      -ms-overflow-style: none !important; /* IE 10+ */
-    }
-    
-    body::-webkit-scrollbar {
-      display: none !important; /* Chrome, Safari, Opera */
-      width: 0 !important;
-      height: 0 !important;
     }
   }
   
