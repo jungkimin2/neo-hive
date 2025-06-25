@@ -7340,12 +7340,7 @@ document.addEventListener('DOMContentLoaded', function() {
           `;
         }
         
-        // 모바일에서 푸터를 2칸 위로 강제 이동
-        footer.style.setProperty('margin-top', '-32px', 'important');
-        footer.style.setProperty('transform', 'translateY(-32px)', 'important');
-        footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
-        
-        console.log('Mobile footer restored and moved up:', footer.textContent);
+        console.log('Mobile footer restored:', footer.textContent);
       }
       
       // 모바일에서 스크롤바 완전 제거
