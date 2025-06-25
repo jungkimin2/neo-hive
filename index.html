@@ -3007,7 +3007,7 @@ if (window.innerWidth <= 768) {
         z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
       }
       
-      /* 모바일에서 푸터 강제 표시 및 위치 조정 */
+      /* 모바일에서 푸터 강제 표시 */
       footer {
         display: block !important;
         visibility: visible !important;
@@ -3017,9 +3017,8 @@ if (window.innerWidth <= 768) {
         background: #000 !important;
         color: #fff !important;
         padding: 20px !important;
-        margin: 0 0 0 0 !important;
+        margin: 0 !important;
         margin-top: -32px !important; /* 모바일에서 2칸(32px) 위로 이동 */
-        transform: translateY(-32px) !important; /* 추가로 transform으로도 위로 이동 */
         text-align: center !important;
         font-size: 0.9rem !important;
         width: 100% !important;
@@ -3117,11 +3116,9 @@ if (window.innerWidth <= 768) {
 
 
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
-<footer style="background: #000; margin: 0; margin-top: -32px; padding: 20px; color: #fff;">
-  <div style="padding-top: 30px; border-top: 1px solid rgba(123, 228, 149, 0.2); margin-top: 40px;">
-    &copy; 2025 Neo Hive. All Rights Reserved.<br>
-    경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
-  </div>
+<footer style="background: #000; margin: 0; padding: 20px; color: #fff;">
+  &copy; 2025 Neo Hive. All Rights Reserved.<br>
+  경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
 
 <!-- 모달 배경 오버레이 -->
@@ -5931,23 +5928,6 @@ document.addEventListener('DOMContentLoaded', function() {
     /* PC에서 첫 번째 섹션 상단 여백 조정 - 한칸 아래로 */
     #hive.section {
       padding-top: 40px !important;
-    }
-    
-    /* PC에서 푸터 상단 여백 추가 - 문구 잘림 방지 */
-    footer {
-      margin-top: 80px !important;
-      padding-top: 50px !important;
-      border-top: 2px solid rgba(123, 228, 149, 0.3) !important;
-      clear: both !important;
-      overflow: visible !important;
-      position: relative !important;
-      z-index: 100 !important;
-    }
-    
-    /* PC에서 Benefits 섹션 하단 여백 추가 */
-    #benefits {
-      padding-bottom: 150px !important;
-      margin-bottom: 50px !important;
     }
   }
   
