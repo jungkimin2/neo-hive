@@ -2864,7 +2864,7 @@ if (window.innerWidth <= 768) {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000;">
+<section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
@@ -2981,7 +2981,7 @@ if (window.innerWidth <= 768) {
         display: block !important;
       }
       
-      /* 모바일에서 benefits 섹션을 강제로 위로 이동 */
+      /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
         margin-top: -552px !important;
         transform: translateY(-32px) !important;
@@ -2990,6 +2990,31 @@ if (window.innerWidth <= 768) {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
+        padding-bottom: 120px !important; /* 모바일에서 배경을 더 아래까지 연장 */
+      }
+      
+      /* 모바일에서 배경 연장을 위한 가상 요소 추가 */
+      section#benefits::after {
+        content: '' !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100px !important;
+        background: #000 !important;
+        position: absolute !important;
+        bottom: -100px !important;
+        left: 0 !important;
+        z-index: 5 !important;
+      }
+      
+      /* 모바일에서 전체 페이지 배경 통일 */
+      html, body {
+        background: #000 !important;
+      }
+      
+      /* 모바일에서 사전예약하기 버튼 컨테이너 배경 연장 */
+      section#benefits .container {
+        background: #000 !important;
+        padding-bottom: 60px !important;
       }
       
       /* 모바일에서 제목 폰트 잘림 방지 */
@@ -3069,7 +3094,7 @@ if (window.innerWidth <= 768) {
 
 
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
-<footer>
+<footer style="background: #000; margin: 0; padding: 20px; color: #fff;">
   &copy; 2025 Neo Hive. All Rights Reserved.<br>
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
