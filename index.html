@@ -2943,24 +2943,94 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-          <div style="text-align:center; margin-top: 20px;">
-        <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
-          display: inline-block;
-          background: none;
-          color: #7BE495;
-          padding: 12px 24px;
-          border: 2px solid #7BE495;
-          border-radius: 8px;
-          font-size: 1.1rem;
-          font-weight: bold;
-          text-shadow: 0 0 8px #7BE495;
-          box-shadow: 0 0 10px rgba(123, 228, 149, 0.8), 0 0 20px #7BE495;
-          cursor: pointer;
-          text-decoration: none;
-        ">
-          사전 예약하기
-        </a>
-      </div>
+          <!-- 클릭 가능한 사전 예약 혜택 안내 -->
+        <div class="reservation-benefit-notice clickable-benefit-box" 
+             onclick="openForm();return false;" 
+             tabindex="0"
+             role="button"
+             aria-label="사전 예약 시 3개월 무료 혜택 신청하기"
+             style="margin-top: 40px; text-align: center; position: relative; cursor: pointer;">
+          <div style="
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(123, 228, 149, 0.15) 0%, rgba(62, 200, 162, 0.08) 100%);
+            border: 2px solid rgba(123, 228, 149, 0.5);
+            border-radius: 20px;
+            padding: 12px 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 
+              0 6px 20px rgba(123, 228, 149, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+          ">
+            <!-- 글로우 효과 배경 -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: radial-gradient(circle at center, rgba(123, 228, 149, 0.15) 0%, transparent 70%);
+              pointer-events: none;
+            "></div>
+            
+            <!-- 메인 텍스트 -->
+            <div style="position: relative; z-index: 2;">
+              <span style="
+                color: #7BE495;
+                font-size: 1rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">✨ 사전 예약 시</span>
+              <span style="
+                color: #FFFFFF;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 0 8px;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+              ">3개월 무료</span>
+              <span style="
+                color: #7BE495;
+                font-size: 1rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">혜택! 🎁</span>
+            </div>
+            
+            <!-- 혜택 상세 내용 -->
+            <div style="
+              margin-top: 8px;
+              color: #B8E6C1;
+              font-size: 0.85rem;
+              font-weight: 500;
+              text-shadow: 0 0 4px rgba(184, 230, 193, 0.5);
+              position: relative;
+              z-index: 2;
+              line-height: 1.4;
+            ">
+              💎 프리미엄 기능 무료 체험<br>
+              🎯 맞춤형 운영 컨설팅 제공
+            </div>
+            
+            <!-- 클릭 안내 텍스트 -->
+            <div style="
+              margin-top: 6px;
+              color: #7BE495;
+              font-size: 0.7rem;
+              font-weight: 400;
+              opacity: 0.8;
+              position: relative;
+              z-index: 2;
+            ">
+              👆 클릭하여 신청하기
+            </div>
+          </div>
+        </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3206,10 +3276,37 @@ if (window.innerWidth <= 768) {
       }
     }
     
+    // 클릭 가능한 혜택 박스 이벤트 처리
+    const benefitBox = document.querySelector('.clickable-benefit-box');
+    if (benefitBox) {
+      // 키보드 이벤트 (Enter, Space)
+      benefitBox.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openForm();
+        }
+      });
+      
+      // 터치 이벤트 (모바일)
+      if (window.innerWidth <= 768) {
+        benefitBox.addEventListener('touchstart', function(e) {
+          this.classList.add('touching');
+        }, { passive: true });
+        
+        benefitBox.addEventListener('touchend', function(e) {
+          this.classList.remove('touching');
+        }, { passive: true });
+        
+        benefitBox.addEventListener('touchcancel', function(e) {
+          this.classList.remove('touching');
+        }, { passive: true });
+      }
+    }
+
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
       setTimeout(() => {
-        const reservationButtons = document.querySelectorAll('a[onclick*="openForm"], button[onclick*="openForm"]');
+        const reservationButtons = document.querySelectorAll('a[onclick*="openForm"], button[onclick*="openForm"], .clickable-benefit-box');
         console.log('Found reservation buttons:', reservationButtons.length);
         
         reservationButtons.forEach((button, index) => {
@@ -6998,7 +7095,122 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: hidden !important;
     opacity: 0 !important;
   }
-}
+
+  /* 클릭 가능한 사전 예약 혜택 안내 - 반응형 디자인 */
+  .clickable-benefit-box {
+    animation: benefitGlow 3s ease-in-out infinite alternate;
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .clickable-benefit-box * {
+    cursor: pointer !important;
+    pointer-events: none; /* 하위 요소들은 클릭 이벤트 차단하여 부모에서만 처리 */
+  }
+  
+  @keyframes benefitGlow {
+    0% {
+      filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.3));
+    }
+    100% {
+      filter: drop-shadow(0 0 15px rgba(123, 228, 149, 0.6));
+    }
+  }
+
+  /* PC 환경에서 클릭 가능한 혜택 안내 호버 효과 */
+  @media (min-width: 769px) {
+    .clickable-benefit-box {
+      transition: all 0.3s ease !important;
+    }
+    
+    .clickable-benefit-box > div {
+      transition: all 0.3s ease !important;
+      cursor: pointer !important;
+    }
+    
+    .clickable-benefit-box:hover {
+      transform: translateY(-4px) scale(1.02) !important;
+      filter: drop-shadow(0 0 20px rgba(123, 228, 149, 0.7)) !important;
+    }
+    
+    .clickable-benefit-box:hover > div {
+      box-shadow: 
+        0 12px 30px rgba(123, 228, 149, 0.4),
+        0 6px 15px rgba(123, 228, 149, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+      border-color: rgba(123, 228, 149, 0.8) !important;
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.25) 0%, rgba(62, 200, 162, 0.15) 100%) !important;
+    }
+    
+    .clickable-benefit-box:hover span {
+      text-shadow: 0 0 12px rgba(123, 228, 149, 1) !important;
+    }
+    
+    .clickable-benefit-box:active {
+      transform: translateY(-2px) scale(0.98) !important;
+      transition: all 0.1s ease !important;
+    }
+  }
+
+  /* 모바일 환경에서 클릭 가능한 혜택 안내 최적화 */
+  @media (max-width: 768px) {
+    .clickable-benefit-box {
+      margin-top: 12px !important;
+      padding: 0 8px !important;
+      -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+      tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+    }
+    
+    .clickable-benefit-box > div {
+      padding: 6px 16px !important;
+      border-radius: 16px !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      transition: all 0.2s ease !important;
+    }
+    
+    /* 모바일 터치 효과 */
+    .clickable-benefit-box:active {
+      transform: scale(0.95) !important;
+      transition: all 0.1s ease !important;
+    }
+    
+    .clickable-benefit-box:active > div {
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(62, 200, 162, 0.2) 100%) !important;
+      border-color: rgba(123, 228, 149, 0.8) !important;
+      box-shadow: 
+        0 8px 25px rgba(123, 228, 149, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .clickable-benefit-box span {
+      font-size: 0.8rem !important;
+    }
+    
+    .clickable-benefit-box span:nth-child(2) {
+      font-size: 0.9rem !important;
+      margin: 0 4px !important;
+    }
+    
+    .clickable-benefit-box > div > div:last-child {
+      font-size: 0.7rem !important;
+      margin-top: 2px !important;
+      line-height: 1.2 !important;
+    }
+    
+    /* 터치 중일 때 추가 효과 */
+    .clickable-benefit-box.touching {
+      transform: scale(0.95) !important;
+    }
+    
+    .clickable-benefit-box.touching > div {
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.35) 0%, rgba(62, 200, 162, 0.25) 100%) !important;
+      border-color: rgba(123, 228, 149, 0.9) !important;
+    }
+  }
 </style>
 
 <!-- PC 환경에서 네오 스마트 영상이 네비게이션 가리지 않도록 z-index 조정 -->
@@ -7134,10 +7346,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
 (function() {
-  // 모바일 환경 체크 (더 엄격한 조건)
-  const isMobile = window.innerWidth <= 768 && 
-                   (window.orientation !== undefined || 
-                    navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i));
+  // 모바일 환경 체크 (더 간단하고 안전한 조건)
+  const isMobile = window.innerWidth <= 768;
   
   if (isMobile) {
     // 즉시 실행 함수로 스타일 강제 적용
