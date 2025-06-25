@@ -1,10 +1,57 @@
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="margin: 0 !important; padding: 0 !important; height: 100% !important;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
+
+<!-- 모바일 하단 여백 강제 제거 - 최고 우선순위 -->
+<style>
+  @media (max-width: 768px) {
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* 모든 요소의 하단 여백 강제 제거 */
+    * {
+      margin-bottom: 0 !important;
+    }
+    
+    /* 모든 섹션과 컨테이너 하단 여백 제거 */
+    section, .section, div, .container {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    /* Benefits 섹션 특별 처리 */
+    #benefits, section#benefits {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    #benefits .container {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    /* 푸터 바로 붙이기 */
+    footer {
+      margin: 0 !important;
+      padding: 5px 15px !important;
+    }
+    
+    /* 사전예약하기 버튼 영역 */
+    div[style*="text-align:center"] {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+</style>
 
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
 <style>
@@ -454,21 +501,35 @@ div > p.smart-guide-text {
   /* Reduce spacing above hero box header */
   .section:first-of-type { padding: 100px 20px 20px; }
   
-  /* 모바일에서 마지막 섹션 하단 여백 최소화 */
+  /* 모바일에서 모든 여백 강제 제거 */
   @media (max-width: 768px) {
-    .section:last-of-type {
-      padding-bottom: 10px !important;
-    }
-    
-    #benefits {
-      padding-bottom: 10px !important;
-      margin-bottom: 0 !important;
-    }
-    
-    /* 페이지 전체 하단 마진/패딩 제거 */
-    body, html {
+    /* 모든 섹션 하단 완전 제거 */
+    .section, section {
       margin-bottom: 0 !important;
       padding-bottom: 0 !important;
+    }
+    
+    .section:last-of-type, section:last-of-type {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    #benefits, section#benefits {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    /* 페이지 전체 완전 제거 */
+    body, html {
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* 모든 요소 박스 모델 통일 */
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+      margin-bottom: 0 !important;
     }
   }
   .container { max-width: 1024px; margin: 0 auto; }
@@ -569,32 +630,69 @@ div > p.smart-guide-text {
   }
   footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
 
-/* 모바일에서 페이지 하단 여백 최소화 */
+/* 모바일에서 페이지 하단 여백 완전 제거 - 강화판 */
 @media (max-width: 768px) {
-  section#benefits {
-    padding-bottom: 10px !important;
-    margin-bottom: 0 !important;
-  }
-  
-  section#benefits .container {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  
-  footer {
-    margin-top: 10px !important;
-    padding: 15px 20px !important;
-  }
-  
-  /* 모바일에서 body와 html의 하단 여백도 제거 */
-  body {
+  /* 모든 요소의 하단 여백 강제 제거 */
+  * {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
   
+  /* HTML과 Body 완전 제거 */
   html {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+  }
+  
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+  
+  /* 모든 섹션 하단 여백 제거 */
+  section, .section {
+    margin-bottom: 0 !important;
+    padding-bottom: 5px !important;
+  }
+  
+  /* Benefits 섹션 특별 처리 */
+  section#benefits, #benefits {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  section#benefits .container, #benefits .container {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* 사전예약하기 버튼 영역 */
+  section#benefits div[style*="text-align:center"] {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+  
+  /* 푸터 완전 붙이기 */
+  footer {
+    margin: 0 !important;
+    padding: 10px 15px !important;
+    position: relative !important;
+    bottom: 0 !important;
+  }
+  
+  /* 모든 컨테이너 하단 여백 제거 */
+  .container, .testimonial-card {
+    margin-bottom: 0 !important;
+    padding-bottom: 5px !important;
+  }
+  
+  /* 브라우저 기본 여백 강제 제거 */
+  :root {
+    --bottom-padding: 0px !important;
+    --bottom-margin: 0px !important;
   }
 }
   a, a:visited, a:hover { color: inherit; }
@@ -1440,7 +1538,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
-<body>
+<body style="margin: 0 !important; padding: 0 !important; height: 100% !important;">
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
   <div class="nav-bar">
@@ -2911,8 +3009,8 @@ if (window.innerWidth <= 768) {
 
 
 
-<section id="benefits" class="section animate-on-scroll" style="background: #000;">
-  <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+<section id="benefits" class="section animate-on-scroll" style="background: #000; margin-bottom: 0 !important; padding-bottom: 0 !important;">
+  <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center; margin-bottom: 0 !important; padding-bottom: 0 !important;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
       <span style="color: #FFFFFF;">운동은 팀으로</span><span class="neon-green">, 기구는 스마트하게</span>
     </h2>
@@ -3162,8 +3260,8 @@ if (window.innerWidth <= 768) {
     window.scrollTo(0, 0);
   }
   
-  // 모바일에서 z-index 강제 적용
-  if (window.innerWidth <= 600) {
+  // 모바일에서 z-index 강제 적용 및 하단 여백 제거
+  if (window.innerWidth <= 768) {
     const circleLines = document.querySelector('.circle-lines');
     const circleSteps = document.querySelectorAll('.circle-step');
     const centerTitle = document.querySelector('.center-title');
@@ -3179,6 +3277,35 @@ if (window.innerWidth <= 768) {
     if (centerTitle) {
       centerTitle.style.zIndex = '4';
     }
+    
+    // 모바일에서 하단 여백 강제 제거
+    document.documentElement.style.setProperty('margin-bottom', '0', 'important');
+    document.documentElement.style.setProperty('padding-bottom', '0', 'important');
+    document.body.style.setProperty('margin-bottom', '0', 'important');
+    document.body.style.setProperty('padding-bottom', '0', 'important');
+    
+    // 모든 섹션과 컨테이너의 하단 여백 제거
+    const allSections = document.querySelectorAll('section, .section');
+    allSections.forEach(section => {
+      section.style.setProperty('margin-bottom', '0', 'important');
+      section.style.setProperty('padding-bottom', '0', 'important');
+    });
+    
+    // Benefits 섹션 특별 처리
+    const benefitsSection = document.getElementById('benefits');
+    if (benefitsSection) {
+      benefitsSection.style.setProperty('margin-bottom', '0', 'important');
+      benefitsSection.style.setProperty('padding-bottom', '0', 'important');
+    }
+    
+    // 푸터 붙이기
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.style.setProperty('margin-top', '0', 'important');
+      footer.style.setProperty('padding', '10px 15px', 'important');
+    }
+    
+    console.log('📱 Mobile bottom spacing forcefully removed');
   }
   
   // DOMContentLoaded로 더 빠른 초기화
@@ -3188,8 +3315,8 @@ if (window.innerWidth <= 768) {
       window.scrollTo(0, 0);
     }
     
-    // 모바일에서 z-index 강제 적용 (DOM 로드 후)
-    if (window.innerWidth <= 600) {
+    // 모바일에서 z-index 강제 적용 및 하단 여백 재제거 (DOM 로드 후)
+    if (window.innerWidth <= 768) {
       const circleLines = document.querySelector('.circle-lines');
       const circleSteps = document.querySelectorAll('.circle-step');
       const centerTitle = document.querySelector('.center-title');
@@ -3205,6 +3332,45 @@ if (window.innerWidth <= 768) {
       if (centerTitle) {
         centerTitle.style.zIndex = '4';
       }
+      
+      // DOM 로드 후 하단 여백 재제거
+      setTimeout(() => {
+        // HTML과 Body 여백 완전 제거
+        document.documentElement.style.setProperty('margin', '0', 'important');
+        document.documentElement.style.setProperty('padding', '0', 'important');
+        document.body.style.setProperty('margin', '0', 'important');
+        document.body.style.setProperty('padding', '0', 'important');
+        
+        // 모든 요소의 하단 여백 제거
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(el => {
+          if (el.tagName !== 'SCRIPT' && el.tagName !== 'STYLE') {
+            el.style.setProperty('margin-bottom', '0', 'important');
+          }
+        });
+        
+        // Benefits 섹션과 컨테이너 완전 제거
+        const benefitsSection = document.getElementById('benefits');
+        if (benefitsSection) {
+          benefitsSection.style.setProperty('margin-bottom', '0', 'important');
+          benefitsSection.style.setProperty('padding-bottom', '0', 'important');
+          
+          const container = benefitsSection.querySelector('.container');
+          if (container) {
+            container.style.setProperty('margin-bottom', '0', 'important');
+            container.style.setProperty('padding-bottom', '0', 'important');
+          }
+        }
+        
+        // 푸터를 benefits 섹션에 바로 붙이기
+        const footer = document.querySelector('footer');
+        if (footer) {
+          footer.style.setProperty('margin', '0', 'important');
+          footer.style.setProperty('padding', '5px 15px', 'important');
+        }
+        
+        console.log('🔥 Mobile spacing COMPLETELY removed after DOM load');
+      }, 500);
     }
     
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
