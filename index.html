@@ -3075,7 +3075,7 @@ if (window.innerWidth <= 768) {
         z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
       }
       
-      /* 모바일에서 푸터 강제 표시 - 2칸 위로 이동 */
+      /* 모바일에서 푸터 강제 표시 */
       footer {
         display: block !important;
         visibility: visible !important;
@@ -3086,13 +3086,11 @@ if (window.innerWidth <= 768) {
         color: #fff !important;
         padding: 20px !important;
         margin: 0 !important;
-        margin-top: -32px !important; /* 2칸(32px) 위로 이동 */
         text-align: center !important;
         font-size: 0.9rem !important;
         width: 100% !important;
         box-sizing: border-box !important;
         min-height: 80px !important; /* 최소 높이 보장 */
-        transform: translateY(-32px) !important; /* 추가적으로 2칸 더 위로 */
       }
       
       /* 모바일에서 푸터가 다른 요소에 가려지지 않도록 보호 */
