@@ -2915,7 +2915,7 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(0px) !important; position: relative !important; width: 100% !important;">
+                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
                   <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
                 </p>
               </div>
@@ -7435,29 +7435,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // DOM 준비 시 재실행 (보험)
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        showMobilePage();
-        // 푸터 위치 추가 조정
-        const footer = document.querySelector('footer');
-        if (footer) {
-          footer.style.setProperty('margin-top', '-32px', 'important');
-          footer.style.setProperty('transform', 'translateY(-32px)', 'important');
-          footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
-        }
-      });
+      document.addEventListener('DOMContentLoaded', showMobilePage);
     }
     
     // 페이지 완전 로드 시 재실행 (최종 보험)
-    window.addEventListener('load', function() {
-      showMobilePage();
-      // 푸터 위치 최종 조정
-      const footer = document.querySelector('footer');
-      if (footer) {
-        footer.style.setProperty('margin-top', '-32px', 'important');
-        footer.style.setProperty('transform', 'translateY(-32px)', 'important');
-        footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
-      }
-    });
+    window.addEventListener('load', showMobilePage);
     
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
