@@ -3007,7 +3007,7 @@ if (window.innerWidth <= 768) {
         z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
       }
       
-      /* 모바일에서 푸터 강제 표시 */
+      /* 모바일에서 푸터 강제 표시 및 위치 조정 */
       footer {
         display: block !important;
         visibility: visible !important;
@@ -3017,8 +3017,9 @@ if (window.innerWidth <= 768) {
         background: #000 !important;
         color: #fff !important;
         padding: 20px !important;
-        margin: 0 !important;
+        margin: 0 0 0 0 !important;
         margin-top: -32px !important; /* 모바일에서 2칸(32px) 위로 이동 */
+        transform: translateY(-32px) !important; /* 추가로 transform으로도 위로 이동 */
         text-align: center !important;
         font-size: 0.9rem !important;
         width: 100% !important;
@@ -3116,7 +3117,7 @@ if (window.innerWidth <= 768) {
 
 
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
-<footer style="background: #000; margin: 0; padding: 20px; color: #fff;">
+<footer style="background: #000; margin: 0; margin-top: -32px; padding: 20px; color: #fff;">
   &copy; 2025 Neo Hive. All Rights Reserved.<br>
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
@@ -7339,7 +7340,12 @@ document.addEventListener('DOMContentLoaded', function() {
           `;
         }
         
-        console.log('Mobile footer restored:', footer.textContent);
+        // 모바일에서 푸터를 2칸 위로 강제 이동
+        footer.style.setProperty('margin-top', '-32px', 'important');
+        footer.style.setProperty('transform', 'translateY(-32px)', 'important');
+        footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
+        
+        console.log('Mobile footer restored and moved up:', footer.textContent);
       }
       
       // 모바일에서 스크롤바 완전 제거
@@ -7429,11 +7435,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // DOM 준비 시 재실행 (보험)
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', showMobilePage);
+      document.addEventListener('DOMContentLoaded', function() {
+        showMobilePage();
+        // 푸터 위치 추가 조정
+        const footer = document.querySelector('footer');
+        if (footer) {
+          footer.style.setProperty('margin-top', '-32px', 'important');
+          footer.style.setProperty('transform', 'translateY(-32px)', 'important');
+          footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
+        }
+      });
     }
     
     // 페이지 완전 로드 시 재실행 (최종 보험)
-    window.addEventListener('load', showMobilePage);
+    window.addEventListener('load', function() {
+      showMobilePage();
+      // 푸터 위치 최종 조정
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.setProperty('margin-top', '-32px', 'important');
+        footer.style.setProperty('transform', 'translateY(-32px)', 'important');
+        footer.style.setProperty('-webkit-transform', 'translateY(-32px)', 'important');
+      }
+    });
     
     // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
