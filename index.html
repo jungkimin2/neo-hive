@@ -2943,24 +2943,24 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-    <div style="text-align:center; margin-top: 36px;">
-      <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
-        display: inline-block;
-        background: none;
-        color: #7BE495;
-        padding: 12px 24px;
-        border: 2px solid #7BE495;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-shadow: 0 0 8px #7BE495;
-        box-shadow: 0 0 10px rgba(123, 228, 149, 0.8), 0 0 20px #7BE495;
-        cursor: pointer;
-        text-decoration: none;
-      ">
-        사전 예약하기
-      </a>
-    </div>
+          <div style="text-align:center; margin-top: 20px;">
+        <a href="javascript:void(0)" onclick="openForm();return false;" class="btn" style="
+          display: inline-block;
+          background: none;
+          color: #7BE495;
+          padding: 12px 24px;
+          border: 2px solid #7BE495;
+          border-radius: 8px;
+          font-size: 1.1rem;
+          font-weight: bold;
+          text-shadow: 0 0 8px #7BE495;
+          box-shadow: 0 0 10px rgba(123, 228, 149, 0.8), 0 0 20px #7BE495;
+          cursor: pointer;
+          text-decoration: none;
+        ">
+          사전 예약하기
+        </a>
+      </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3018,6 +3018,7 @@ if (window.innerWidth <= 768) {
         color: #fff !important;
         padding: 20px !important;
         margin: 0 !important;
+        margin-top: -32px !important; /* 모바일에서 2칸(32px) 위로 이동 */
         text-align: center !important;
         font-size: 0.9rem !important;
         width: 100% !important;
@@ -7327,6 +7328,7 @@ document.addEventListener('DOMContentLoaded', function() {
         footer.style.setProperty('color', '#fff', 'important');
         footer.style.setProperty('padding', '20px', 'important');
         footer.style.setProperty('margin', '0', 'important');
+        footer.style.setProperty('margin-top', '-32px', 'important'); // 2칸 위로 이동
         footer.style.setProperty('text-align', 'center', 'important');
         footer.style.setProperty('font-size', '0.9rem', 'important');
         
