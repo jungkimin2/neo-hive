@@ -3007,24 +3007,23 @@ if (window.innerWidth <= 768) {
         z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
       }
       
-              /* 모바일에서 푸터 강제 표시 */
-        footer {
-          display: block !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          position: relative !important;
-          z-index: 10 !important; /* 가상 요소보다 높은 z-index */
-          background: #000 !important;
-          color: #fff !important;
-          padding: 20px !important;
-          margin: 0 !important;
-          margin-top: -64px !important; /* 모바일에서 4칸(64px) 위로 이동 */
-          text-align: center !important;
-          font-size: 0.9rem !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-          min-height: 80px !important; /* 최소 높이 보장 */
-        }
+      /* 모바일에서 푸터 강제 표시 */
+      footer {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 10 !important; /* 가상 요소보다 높은 z-index */
+        background: #000 !important;
+        color: #fff !important;
+        padding: 20px !important;
+        margin: 0 !important;
+        text-align: center !important;
+        font-size: 0.9rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 80px !important; /* 최소 높이 보장 */
+      }
       
       /* 모바일에서 푸터가 다른 요소에 가려지지 않도록 보호 */
       footer * {
@@ -7330,7 +7329,6 @@ document.addEventListener('DOMContentLoaded', function() {
         footer.style.setProperty('margin', '0', 'important');
         footer.style.setProperty('text-align', 'center', 'important');
         footer.style.setProperty('font-size', '0.9rem', 'important');
-        footer.style.setProperty('margin-top', '-64px', 'important');
         
         // 푸터 내용 확인 및 복구
         if (!footer.textContent.trim()) {
