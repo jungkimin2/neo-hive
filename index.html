@@ -7548,7 +7548,7 @@ document.addEventListener('DOMContentLoaded', function() {
         costRecoveryText.offsetHeight;
       }
       
-      // 모바일에서 푸터 강제 표시 - 2칸 위로 이동
+      // 모바일에서 푸터 강제 표시
       const footer = document.querySelector('footer');
       if (footer) {
         footer.style.setProperty('display', 'block', 'important');
@@ -7560,8 +7560,6 @@ document.addEventListener('DOMContentLoaded', function() {
         footer.style.setProperty('color', '#fff', 'important');
         footer.style.setProperty('padding', '20px', 'important');
         footer.style.setProperty('margin', '0', 'important');
-        footer.style.setProperty('margin-top', '-32px', 'important'); // 2칸(32px) 위로 이동
-        footer.style.setProperty('transform', 'translateY(-32px)', 'important'); // 추가적으로 2칸 더 위로
         footer.style.setProperty('text-align', 'center', 'important');
         footer.style.setProperty('font-size', '0.9rem', 'important');
         
@@ -7573,7 +7571,7 @@ document.addEventListener('DOMContentLoaded', function() {
           `;
         }
         
-        console.log('Mobile footer restored and moved up:', footer.textContent);
+        console.log('Mobile footer restored:', footer.textContent);
       }
       
       // 모바일에서 스크롤바 완전 제거
