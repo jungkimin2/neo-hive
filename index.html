@@ -3170,7 +3170,10 @@ if (window.innerWidth <= 768) {
       .testimonial-card {
         padding: 24px 10px 18px 16px !important;
       }
-      /* 모바일에서 로고 이미지 위치 조정 - 우측으로 1칸 이동 및 크기 확대 */
+    }
+    
+    /* 모바일에서 로고 이미지 위치 조정 - 우측으로 1칸 이동 및 크기 확대 */
+    @media (max-width: 768px) {
       .testimonial-card img[src="./images/hive3.png"] {
         left: 136px !important; /* 120px에서 136px로 변경 (16px 우측 이동) */
         top: 180px !important;
@@ -7157,7 +7160,7 @@ document.addEventListener('DOMContentLoaded', function() {
   @media (max-width: 768px) {
     .clickable-benefit-box {
       margin-top: 28px !important; /* 12px에서 28px로 변경 (16px 더 아래로) */
-      margin-bottom: 16px !important; /* 하단 여백 1칸(16px)으로 증가 (기존 8px에서 8px 더 추가) */
+      margin-bottom: 32px !important; /* 하단 여백 2칸(32px)으로 증가 (16px에서 16px 더 추가) */
       padding: 0 8px !important;
       -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
       tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
@@ -7358,12 +7361,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (isMobile) {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
-                      const elements = [
-          { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
-          { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
-          { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
-          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
-          { selector: '#smart', transform: 'translateY(-432px)' }
+      const elements = [
+        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
+        { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
+        { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
+        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
+        { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
