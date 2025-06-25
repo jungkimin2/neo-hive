@@ -3493,12 +3493,12 @@ if (window.innerWidth <= 768) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // 즉시 적용 - 현재 화면 중앙에 표시 (2칸 좌측으로 이동)
+      // 즉시 적용 - 현재 화면 중앙에 표시 (우측으로 2칸 이동)
       modal.style.setProperty('position', 'absolute', 'important');
       modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
-      modal.style.setProperty('left', '2.5%', 'important'); /* 12.5% → 2.5%로 2칸 좌측 이동 */
+      modal.style.setProperty('left', '12.5%', 'important'); /* 2.5%에서 12.5%로 우측으로 2칸 이동 */
       modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '80%', 'important'); /* 75% → 80%로 약간 늘림 */
+      modal.style.setProperty('width', '75%', 'important'); /* 80%에서 75%로 조정 */
       modal.style.setProperty('max-width', '350px', 'important');
       modal.style.setProperty('min-width', '280px', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
@@ -3527,7 +3527,7 @@ if (window.innerWidth <= 768) {
           const currentWindowHeight = window.innerHeight;
           modal.style.setProperty('position', 'absolute', 'important');
           modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
-          modal.style.setProperty('left', '2.5%', 'important'); /* 2칸 좌측 위치 유지 */
+          modal.style.setProperty('left', '12.5%', 'important'); /* 우측으로 2칸 이동된 위치 유지 */
           modal.style.setProperty('transform', 'translateY(-50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
           console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
@@ -7243,12 +7243,12 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
   }
   
-  /* 모바일 팝업 모달 정렬 수정 */
+  /* 모바일 팝업 모달 정렬 수정 - 우측으로 2칸 이동 */
   #formModal {
-    width: 85% !important;
+    width: 75% !important;
     max-width: 350px !important;
     padding: 20px !important;
-    left: 7.5% !important;
+    left: 12.5% !important; /* 7.5%에서 12.5%로 우측으로 2칸 이동 */
     transform: translateY(-50%) !important;
     margin: 0 !important;
     min-width: 280px !important;
