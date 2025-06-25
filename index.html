@@ -1247,6 +1247,93 @@ div > p.smart-guide-text {
     height: 560px;
     border-radius: 32px;
     overflow: hidden;
+  }
+  
+  /* 사전 예약 혜택 안내 - 반응형 디자인 */
+  .reservation-benefit-notice {
+    animation: benefitGlow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes benefitGlow {
+    0% {
+      filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.3));
+    }
+    100% {
+      filter: drop-shadow(0 0 15px rgba(123, 228, 149, 0.6));
+    }
+  }
+  
+  /* 모바일 환경에서 혜택 안내 최적화 */
+  @media (max-width: 768px) {
+    .reservation-benefit-notice {
+      margin-top: 12px !important;
+      padding: 0 8px !important;
+    }
+    
+    .reservation-benefit-notice > div {
+      padding: 6px 16px !important;
+      border-radius: 16px !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+    }
+    
+    .reservation-benefit-notice span {
+      font-size: 0.8rem !important;
+    }
+    
+    .reservation-benefit-notice span:nth-child(2) {
+      font-size: 0.9rem !important;
+      margin: 0 4px !important;
+    }
+    
+    .reservation-benefit-notice > div > div:last-child {
+      font-size: 0.7rem !important;
+      margin-top: 2px !important;
+      line-height: 1.2 !important;
+    }
+  }
+  
+  /* PC 환경에서 혜택 안내 호버 효과 */
+  @media (min-width: 769px) {
+    .reservation-benefit-notice > div {
+      transition: all 0.3s ease !important;
+      cursor: default !important;
+    }
+    
+    .reservation-benefit-notice > div:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 
+        0 6px 20px rgba(123, 228, 149, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      border-color: rgba(123, 228, 149, 0.6) !important;
+    }
+    
+    .reservation-benefit-notice > div:hover span:nth-child(2) {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+      color: #FFFFFF !important;
+    }
+  }
+  
+  /* 글로우 효과 강화 */
+  .reservation-benefit-notice > div::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+      rgba(123, 228, 149, 0.4) 0%, 
+      rgba(62, 200, 162, 0.2) 50%, 
+      rgba(123, 228, 149, 0.4) 100%);
+    border-radius: 21px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .reservation-benefit-notice > div:hover::before {
+    opacity: 1;
     border: 10px solid #7BE495;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A);
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.4), 0 0 10px rgba(123, 228, 149, 0.3);
@@ -2960,6 +3047,74 @@ if (window.innerWidth <= 768) {
         ">
           사전 예약하기
         </a>
+        
+        <!-- 사전 예약 혜택 안내 -->
+        <div class="reservation-benefit-notice" style="margin-top: 16px; text-align: center; position: relative;">
+          <div style="
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(123, 228, 149, 0.15) 0%, rgba(62, 200, 162, 0.08) 100%);
+            border: 1px solid rgba(123, 228, 149, 0.4);
+            border-radius: 20px;
+            padding: 8px 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 
+              0 4px 15px rgba(123, 228, 149, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+          ">
+            <!-- 글로우 효과 배경 -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: radial-gradient(circle at center, rgba(123, 228, 149, 0.1) 0%, transparent 70%);
+              pointer-events: none;
+            "></div>
+            
+            <!-- 메인 텍스트 -->
+            <div style="position: relative; z-index: 2;">
+              <span style="
+                color: #7BE495;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">✨ 사전 예약 시</span>
+              <span style="
+                color: #FFFFFF;
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 0 6px;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+              ">3개월 무료</span>
+              <span style="
+                color: #7BE495;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">혜택! 🎁</span>
+            </div>
+            
+            <!-- 하단 서브 텍스트 -->
+            <div style="
+              margin-top: 4px;
+              color: #B8E6C1;
+              font-size: 0.75rem;
+              font-weight: 400;
+              opacity: 0.9;
+              text-shadow: 0 0 4px rgba(184, 230, 193, 0.5);
+              position: relative;
+              z-index: 2;
+            ">
+              지금 신청하고 특별 혜택을 받아보세요
+            </div>
+          </div>
+        </div>
       </div>
   </div>
   <style>
