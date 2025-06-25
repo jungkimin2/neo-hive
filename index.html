@@ -1,4 +1,4 @@
- <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
+<meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7234,56 +7234,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 회색 박스 강제 제거 함수
     function removeGreyBoxes() {
-      // 모바일에서 하단 여백 강제 제거
-      document.documentElement.style.setProperty('margin', '0', 'important');
-      document.documentElement.style.setProperty('padding', '0', 'important');
-      document.documentElement.style.setProperty('height', '100%', 'important');
-      document.body.style.setProperty('margin', '0', 'important');
-      document.body.style.setProperty('padding', '0', 'important');
-      document.body.style.setProperty('height', '100%', 'important');
-      
-      // 모든 요소의 하단 여백 제거
-      const allElements = document.querySelectorAll('*');
-      allElements.forEach(el => {
-        if (el.tagName !== 'SCRIPT' && el.tagName !== 'STYLE') {
-          el.style.setProperty('margin-bottom', '0', 'important');
-          el.style.setProperty('padding-bottom', '0', 'important');
-        }
-      });
-      
-      // Benefits 섹션 특별 처리
-      const benefitsSection = document.getElementById('benefits');
-      if (benefitsSection) {
-        benefitsSection.style.setProperty('margin-bottom', '0', 'important');
-        benefitsSection.style.setProperty('padding-bottom', '0', 'important');
-        
-        // Benefits 섹션 내부 모든 요소도 처리
-        const benefitsElements = benefitsSection.querySelectorAll('*');
-        benefitsElements.forEach(el => {
-          el.style.setProperty('margin-bottom', '0', 'important');
-          el.style.setProperty('padding-bottom', '0', 'important');
-        });
-      }
-      
-      // 사전예약하기 버튼 처리
-      const reservationBtns = document.querySelectorAll('.btn, a[onclick*="openForm"]');
-      reservationBtns.forEach(btn => {
-        btn.style.setProperty('margin-bottom', '0', 'important');
-        btn.style.setProperty('padding-bottom', '12px', 'important'); // 버튼 내부 패딩만 유지
-        if (btn.parentElement) {
-          btn.parentElement.style.setProperty('margin-bottom', '0', 'important');
-          btn.parentElement.style.setProperty('padding-bottom', '0', 'important');
-        }
-      });
-      
-      // 푸터 처리
-      const footer = document.querySelector('footer');
-      if (footer) {
-        footer.style.setProperty('margin', '0', 'important');
-        footer.style.setProperty('padding', '10px 20px 0 20px', 'important');
-        footer.style.setProperty('background', '#000', 'important');
-      }
-      
       // impact 섹션 완전 제거
       const impactSections = document.querySelectorAll('#impact, div#impact, section#impact, .animate-on-scroll#impact');
       impactSections.forEach(section => {
