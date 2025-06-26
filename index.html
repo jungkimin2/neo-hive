@@ -3347,18 +3347,18 @@ if (window.innerWidth <= 768) {
     
     // 모바일에서 강력한 배경 어두워지는 효과 생성
     if (window.innerWidth <= 768) {
-      console.log('📱 Mobile detected - creating dark overlay');
+      console.log('📱 Mobile detected - creating ULTRA dark overlay');
       
       // 기존 오버레이들 모두 제거
-      document.querySelectorAll('#mobileForceOverlay, .modal-overlay, #modalOverlay').forEach(el => el.remove());
+      document.querySelectorAll('#mobileForceOverlay, .modal-overlay, #modalOverlay, #mobileUltraOverlay').forEach(el => el.remove());
       
-      // 강력한 배경 오버레이 생성
-      const darkOverlay = document.createElement('div');
-      darkOverlay.id = 'mobileForceOverlay';
-      darkOverlay.onclick = closeForm;
+      // 매우 강력한 배경 오버레이 생성
+      const ultraOverlay = document.createElement('div');
+      ultraOverlay.id = 'mobileUltraOverlay';
+      ultraOverlay.onclick = closeForm;
       
-      // 매우 강력한 어두운 배경 스타일
-      darkOverlay.style.cssText = `
+      // 초강력 어두운 배경 스타일 - 확실히 보이도록
+      ultraOverlay.style.cssText = `
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
@@ -3366,20 +3366,71 @@ if (window.innerWidth <= 768) {
         bottom: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        background: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: blur(3px) !important;
-        -webkit-backdrop-filter: blur(3px) !important;
-        z-index: 999999998 !important;
+        background: rgba(0, 0, 0, 0.98) !important;
+        backdrop-filter: blur(5px) saturate(0.3) !important;
+        -webkit-backdrop-filter: blur(5px) saturate(0.3) !important;
+        z-index: 2147483646 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
         pointer-events: auto !important;
         transform: translateZ(0) !important;
         -webkit-transform: translateZ(0) !important;
+        transition: none !important;
+        animation: mobileOverlayFadeIn 0.3s ease-out !important;
       `;
       
+      // 오버레이 페이드인 애니메이션 생성 (없으면 추가)
+      if (!document.querySelector('#mobileOverlayAnimation')) {
+        const style = document.createElement('style');
+        style.id = 'mobileOverlayAnimation';
+        style.textContent = `
+          @keyframes mobileOverlayFadeIn {
+            0% {
+              opacity: 0 !important;
+              background: rgba(0, 0, 0, 0) !important;
+            }
+            100% {
+              opacity: 1 !important;
+              background: rgba(0, 0, 0, 0.98) !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
       // body 최상단에 추가
-      document.body.insertBefore(darkOverlay, document.body.firstChild);
+      document.body.insertBefore(ultraOverlay, document.body.firstChild);
+      
+      // 오버레이가 제대로 생성되었는지 확인하고 강제 적용
+      setTimeout(() => {
+        const checkOverlay = document.getElementById('mobileUltraOverlay');
+        if (checkOverlay) {
+          checkOverlay.style.background = 'rgba(0, 0, 0, 0.98)';
+          checkOverlay.style.display = 'block';
+          checkOverlay.style.opacity = '1';
+          console.log('✅ Mobile overlay confirmed active');
+        } else {
+          console.log('❌ Mobile overlay missing - creating backup');
+          // 백업 오버레이 생성
+          const backupOverlay = document.createElement('div');
+          backupOverlay.style.cssText = ultraOverlay.style.cssText;
+          backupOverlay.onclick = closeForm;
+          document.body.appendChild(backupOverlay);
+        }
+      }, 100);
+      
+      // 추가 확인 - 0.5초 후에도 재확인
+      setTimeout(() => {
+        if (!document.querySelector('#mobileUltraOverlay, #mobileForceOverlay')) {
+          const finalOverlay = document.createElement('div');
+          finalOverlay.id = 'mobileForceOverlay';
+          finalOverlay.onclick = closeForm;
+          finalOverlay.style.cssText = ultraOverlay.style.cssText;
+          document.body.appendChild(finalOverlay);
+          console.log('🔧 Emergency overlay created');
+        }
+      }, 500);
       
       // 즉시 강제 적용 및 확인
       requestAnimationFrame(() => {
@@ -3508,21 +3559,57 @@ if (window.innerWidth <= 768) {
     return false;
   }
   function closeForm() {
+    console.log('=== closeForm called ===');
     const modal = document.getElementById('formModal');
     
     if (modal) {
       modal.style.display = 'none';
     }
     
-    // 모바일 전용 오버레이 제거
+    // 모바일에서 모든 오버레이 완전 제거
     if (window.innerWidth <= 768) {
-      const mobileOverlay = document.getElementById('mobileForceOverlay');
-      if (mobileOverlay) {
-        mobileOverlay.remove();
-        console.log('Mobile force overlay removed');
-      }
+      console.log('📱 Mobile - removing ALL overlays');
+      
+      // 모든 가능한 오버레이 ID로 제거 시도
+      const overlayIds = [
+        'mobileUltraOverlay',
+        'mobileForceOverlay', 
+        'modalOverlay',
+        'mobileOverlay'
+      ];
+      
+      overlayIds.forEach(id => {
+        const overlay = document.getElementById(id);
+        if (overlay) {
+          overlay.remove();
+          console.log(`✅ Removed overlay: ${id}`);
+        }
+      });
+      
+      // 클래스로도 제거 시도
+      document.querySelectorAll('.modal-overlay, .mobile-overlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
+        if (el && el.parentNode) {
+          el.remove();
+          console.log('✅ Removed overlay by class/attribute');
+        }
+      });
+      
+      // 배경 어두운 div들 제거 (rgba(0,0,0,0.9) 이상의 검은 배경)
+      document.querySelectorAll('div').forEach(div => {
+        const style = div.style.cssText || '';
+        const bgMatch = style.match(/background[^;]*rgba\(0,\s*0,\s*0,\s*(0\.[89]|0\.9[0-9]|1)/i);
+        if (bgMatch && div.style.position === 'fixed') {
+          div.remove();
+          console.log('✅ Removed dark background div');
+        }
+      });
+      
       // 모바일에서 배경 스크롤 복원
       document.body.style.overflow = 'auto';
+      document.body.style.position = 'relative';
+      
+      console.log('🔄 Mobile overlays cleanup completed');
+      
     } else {
       // PC 오버레이 처리
       const overlay = document.getElementById('modalOverlay');
@@ -3534,6 +3621,15 @@ if (window.innerWidth <= 768) {
         console.log('PC Overlay hidden');
       }
     }
+    
+    // 최종 확인 - 0.1초 후 남은 오버레이 재검사
+    setTimeout(() => {
+      const remainingOverlays = document.querySelectorAll('[id*="overlay"], [id*="Overlay"], .modal-overlay');
+      if (remainingOverlays.length > 0 && window.innerWidth <= 768) {
+        console.log(`🔧 Found ${remainingOverlays.length} remaining overlays, removing...`);
+        remainingOverlays.forEach(el => el.remove());
+      }
+    }, 100);
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
