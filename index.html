@@ -3073,7 +3073,7 @@ if (window.innerWidth <= 768) {
       /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(16px) !important;
+        transform: translateX(0px) !important; /* 16px에서 0px로 변경 (좌측으로 1칸 이동) */
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
@@ -7482,7 +7482,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const costRecoveryText = document.getElementById('mobile-cost-recovery-text');
       if (costRecoveryText) {
         costRecoveryText.style.setProperty('text-align', 'center', 'important');
-        costRecoveryText.style.setProperty('transform', 'translateX(16px)', 'important');
+        costRecoveryText.style.setProperty('transform', 'translateX(0px)', 'important'); /* 좌측으로 1칸 이동 */
         costRecoveryText.style.setProperty('position', 'relative', 'important');
         costRecoveryText.style.setProperty('width', '100%', 'important');
         costRecoveryText.style.setProperty('margin', '0', 'important');
