@@ -2942,19 +2942,44 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-                  <!-- 사전 예약하기 버튼 -->
+                  <!-- 사전 예약 혜택 안내 및 버튼 -->
         <div style="text-align: center; margin-top: 40px;">
-          <button onclick="openForm()" class="btn" style="
-            background: #3AC8A8;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+          <!-- 혜택 안내 텍스트 -->
+          <div style="margin-bottom: 20px;">
+            <div style="color: #7BE495; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">
+              ✨ 사전 예약 시 3개월 무료 혜택! 🎁
+            </div>
+            <div style="color: #fff; font-size: 1rem; font-weight: 500; margin-bottom: 5px;">
+              총 100만원 상당 혜택 제공
+            </div>
+            <div style="color: #fff; font-size: 1rem; font-weight: 500;">
+              맞춤형 운영 컨설팅 제공
+            </div>
+          </div>
+          
+          <!-- 사전 예약하기 버튼 - 네온 글로우 디자인 -->
+          <button onclick="openForm()" class="btn reservation-btn" style="
+            background: #000;
+            color: #7BE495;
+            padding: 20px 50px;
+            border: 3px solid #7BE495;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(58, 200, 168, 0.3);
+            box-shadow: 
+              0 0 30px rgba(123, 228, 149, 0.6),
+              0 0 60px rgba(123, 228, 149, 0.4),
+              inset 0 0 20px rgba(123, 228, 149, 0.1);
+            text-shadow: 
+              0 0 10px rgba(123, 228, 149, 0.8),
+              0 0 20px rgba(123, 228, 149, 0.6),
+              0 0 30px rgba(123, 228, 149, 0.4);
+            letter-spacing: 2px;
+            min-width: 250px;
+            position: relative;
+            overflow: hidden;
           ">
             사전 예약하기
           </button>
@@ -7163,6 +7188,74 @@ document.addEventListener('DOMContentLoaded', function() {
   opacity: 1 !important;
   pointer-events: auto !important;
   -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 사전 예약하기 버튼 - 네온 글로우 스타일 */
+.reservation-btn {
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  0% {
+    box-shadow: 
+      0 0 20px rgba(123, 228, 149, 0.4),
+      0 0 40px rgba(123, 228, 149, 0.3),
+      inset 0 0 15px rgba(123, 228, 149, 0.1);
+    text-shadow: 
+      0 0 8px rgba(123, 228, 149, 0.6),
+      0 0 15px rgba(123, 228, 149, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 40px rgba(123, 228, 149, 0.7),
+      0 0 80px rgba(123, 228, 149, 0.5),
+      inset 0 0 25px rgba(123, 228, 149, 0.2);
+    text-shadow: 
+      0 0 15px rgba(123, 228, 149, 1),
+      0 0 25px rgba(123, 228, 149, 0.8),
+      0 0 35px rgba(123, 228, 149, 0.6);
+  }
+}
+
+/* PC 환경에서 호버 효과 */
+@media (min-width: 769px) {
+  .reservation-btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 
+      0 0 50px rgba(123, 228, 149, 0.8),
+      0 0 100px rgba(123, 228, 149, 0.6),
+      inset 0 0 30px rgba(123, 228, 149, 0.3) !important;
+    border-color: #7BE495 !important;
+    background: #111 !important;
+    text-shadow: 
+      0 0 20px rgba(123, 228, 149, 1),
+      0 0 30px rgba(123, 228, 149, 0.9),
+      0 0 40px rgba(123, 228, 149, 0.7) !important;
+  }
+  
+  .reservation-btn:active {
+    transform: translateY(-1px) scale(1.02) !important;
+    transition: all 0.1s ease !important;
+  }
+}
+
+/* 모바일 환경에서 터치 효과 */
+@media (max-width: 768px) {
+  .reservation-btn {
+    padding: 18px 40px !important;
+    font-size: 1.2rem !important;
+    min-width: 220px !important;
+    -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+  }
+  
+  .reservation-btn:active {
+    transform: scale(0.95) !important;
+    background: #111 !important;
+    box-shadow: 
+      0 0 35px rgba(123, 228, 149, 0.8),
+      0 0 70px rgba(123, 228, 149, 0.6) !important;
+    transition: all 0.1s ease !important;
+  }
 }
 </style>
 
