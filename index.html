@@ -3012,7 +3012,7 @@ if (window.innerWidth <= 768) {
               z-index: 2;
               line-height: 1.4;
             ">
-              💎 프리미엄 기능 무료 체험<br>
+              💎 총 100만원 상당 혜택 제공<br>
               🎯 맞춤형 운영 컨설팅 제공
             </div>
             
@@ -7549,6 +7549,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // 강제 리플로우
         costRecoveryText.offsetHeight;
       }
+      
+      // 모바일에서 혜택 텍스트 강제 업데이트
+      const benefitTexts = document.querySelectorAll('*');
+      benefitTexts.forEach(element => {
+        if (element.textContent && element.textContent.includes('프리미엄 기능 무료 체험')) {
+          element.innerHTML = element.innerHTML.replace('프리미엄 기능 무료 체험', '총 100만원 상당 혜택 제공');
+          console.log('Mobile benefit text updated');
+        }
+      });
       
       // 모바일에서 푸터 강제 표시
       const footer = document.querySelector('footer');
