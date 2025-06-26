@@ -2945,13 +2945,13 @@ if (window.innerWidth <= 768) {
                   <!-- 사전 예약 혜택 안내 및 버튼 -->
         <div style="text-align: center; margin-top: 40px;">
           <!-- 혜택 안내 텍스트 -->
-          <div style="margin-bottom: 20px;">
+          <div class="benefit-text-container" style="margin-bottom: 20px;">
             <div style="font-size: 1.3rem; font-weight: 600; margin-bottom: 10px;">
               <span style="color: #7BE495;">✨ 사전 예약 시 </span>
               <span style="color: #fff; font-size: 1.5rem; font-weight: 700;">3개월 무료</span>
               <span style="color: #7BE495;"> 혜택! 🎁</span>
             </div>
-            <div style="color: #fff; font-size: 1.2rem; font-weight: 500; margin-bottom: 6px;">
+            <div class="neon-benefit-text" style="color: #7BE495; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; text-shadow: 0 0 5px #7BE495, 0 0 10px #7BE495, 0 0 15px #7BE495, 0 0 20px #7BE495;">
               총 100만원 상당 혜택 제공
             </div>
             <div style="color: #fff; font-size: 1.2rem; font-weight: 500;">
@@ -7219,7 +7219,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* PC 환경에서 호버 효과 */
+/* PC 환경에서 호버 효과 및 텍스트 크기 조정 */
 @media (min-width: 769px) {
   .reservation-btn:hover {
     transform: translateY(-3px) scale(1.05) !important;
@@ -7238,6 +7238,52 @@ document.addEventListener('DOMContentLoaded', function() {
   .reservation-btn:active {
     transform: translateY(-1px) scale(1.02) !important;
     transition: all 0.1s ease !important;
+  }
+  
+  /* PC 환경에서 혜택 안내 텍스트 더 크게 */
+  .benefit-text-container > div:first-child {
+    font-size: 1.6rem !important;
+  }
+  
+  .benefit-text-container > div:first-child span:nth-child(2) {
+    font-size: 1.8rem !important;
+  }
+  
+  .benefit-text-container > div:nth-child(2),
+  .benefit-text-container > div:nth-child(3) {
+    font-size: 1.4rem !important;
+  }
+  
+  /* PC에서 네온 효과 더 강하게 */
+  .neon-benefit-text {
+    text-shadow: 
+      0 0 5px #7BE495,
+      0 0 10px #7BE495,
+      0 0 20px #7BE495,
+      0 0 30px #7BE495 !important;
+  }
+}
+
+/* 네온 혜택 텍스트 애니메이션 */
+.neon-benefit-text {
+  animation: neonBenefitGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonBenefitGlow {
+  0% {
+    text-shadow: 
+      0 0 5px #7BE495,
+      0 0 10px #7BE495,
+      0 0 15px #7BE495,
+      0 0 20px #7BE495;
+  }
+  100% {
+    text-shadow: 
+      0 0 8px #7BE495,
+      0 0 15px #7BE495,
+      0 0 25px #7BE495,
+      0 0 35px #7BE495,
+      0 0 45px #62D2A2;
   }
 }
 
