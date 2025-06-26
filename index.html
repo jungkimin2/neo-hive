@@ -139,10 +139,17 @@ pointer-events: auto !important;
 <style>
 /* PC 네비게이션에서 사전 예약하기 네온 효과 */
 .nav-neon-green {
-  color: #7BE495;
-  text-shadow: 0 0 10px #7BE495;
-  transition: all 0.3s ease;
-  animation: neonPulse 2s ease-in-out infinite alternate;
+  color: #7BE495 !important;
+  text-shadow: 
+    0 0 5px #7BE495,
+    0 0 10px #7BE495,
+    0 0 15px #7BE495,
+    0 0 20px #62D2A2,
+    0 0 35px #62D2A2,
+    0 0 40px #62D2A2 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  animation: neonPulse 2s ease-in-out infinite alternate !important;
 }
 
 .nav-neon-green:hover {
@@ -182,14 +189,6 @@ pointer-events: auto !important;
 @media (max-width: 768px) {
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
-}
-
-.mobile-transform-target {
-  letter-spacing: 2px !important;
-  -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
-  transform: translateX(-32px) !important;
-  position: relative !important;
-  transition: all 0.1s ease !important;
 }
 /* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
 .mobile-system-desc {
@@ -1679,6 +1678,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   top: 144px !important; /* 기존 128px에서 한 칸 더 아래로 */
   transform: none !important;
   margin-top: 0 !important;
+}
 }
 </style>
             <div class="core-icon">
@@ -4917,16 +4917,15 @@ if (video) {
 <!-- 이미 <head>에 동일한 @media (max-width: 768px) 스타일이 있으므로 이 부분은 완전히 삭제해도 됩니다. -->
 <style>
 @media (max-width: 768px) {
-  .trial-renewal-msg,
-  .feedback-msg {
-    font-size: 0.62rem !important;
-    line-height: 1.4 !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.01em !important;
-    padding-right: 0 !important;
-    margin-bottom: 0 !important;
-    color: #ccc !important;
-  }
+.trial-renewal-msg,
+.feedback-msg {
+  font-size: 0.68rem !important;
+  line-height: 1.2 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 0 !important;
+  padding-right: 0 !important;
+}
 }
 </style>
 <style>
@@ -7240,39 +7239,21 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서 네온 글로우 스타일 강제 적용 */
+/* 모바일 환경에서 터치 효과 */
 @media (max-width: 768px) {
   .reservation-btn {
-    background: #000 !important;
-    color: #7BE495 !important;
     padding: 18px 40px !important;
-    border: 3px solid #7BE495 !important;
-    border-radius: 15px !important;
     font-size: 1.2rem !important;
-    font-weight: 700 !important;
     min-width: 220px !important;
-    box-shadow: 
-    box-shadow: 
-      0 0 30px rgba(123, 228, 149, 0.6) !important,
-      0 0 60px rgba(123, 228, 149, 0.4) !important,
-      inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
-    text-shadow: 
-      0 0 10px rgba(123, 228, 149, 0.8) !important,
-      0 0 20px rgba(123, 228, 149, 0.6) !important,
-      0 0 30px rgba(123, 228, 149, 0.4) !important;
-    letter-spacing: 2px !important;
     -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
-    transform: translateX(-48px) !important; /* 좌측으로 3칸(48px) 이동 */
-    position: relative !important;
   }
   
   .reservation-btn:active {
     transform: scale(0.95) !important;
     background: #111 !important;
     box-shadow: 
-      0 0 40px rgba(123, 228, 149, 0.8) !important,
-      0 0 80px rgba(123, 228, 149, 0.6) !important,
-      inset 0 0 25px rgba(123, 228, 149, 0.2) !important;
+      0 0 35px rgba(123, 228, 149, 0.8),
+      0 0 70px rgba(123, 228, 149, 0.6) !important;
     transition: all 0.1s ease !important;
   }
 }
