@@ -7550,15 +7550,6 @@ document.addEventListener('DOMContentLoaded', function() {
         costRecoveryText.offsetHeight;
       }
       
-      // 모바일에서 혜택 텍스트 강제 업데이트
-      const benefitTexts = document.querySelectorAll('*');
-      benefitTexts.forEach(element => {
-        if (element.textContent && element.textContent.includes('프리미엄 기능 무료 체험')) {
-          element.innerHTML = element.innerHTML.replace('프리미엄 기능 무료 체험', '총 100만원 상당 혜택 제공');
-          console.log('Mobile benefit text updated');
-        }
-      });
-      
       // 모바일에서 푸터 강제 표시
       const footer = document.querySelector('footer');
       if (footer) {
