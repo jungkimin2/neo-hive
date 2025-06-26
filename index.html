@@ -139,17 +139,10 @@ pointer-events: auto !important;
 <style>
 /* PC 네비게이션에서 사전 예약하기 네온 효과 */
 .nav-neon-green {
-  color: #7BE495 !important;
-  text-shadow: 
-    0 0 5px #7BE495,
-    0 0 10px #7BE495,
-    0 0 15px #7BE495,
-    0 0 20px #62D2A2,
-    0 0 35px #62D2A2,
-    0 0 40px #62D2A2 !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-  animation: neonPulse 2s ease-in-out infinite alternate !important;
+  color: #7BE495;
+  text-shadow: 0 0 10px #7BE495;
+  transition: all 0.3s ease;
+  animation: neonPulse 2s ease-in-out infinite alternate;
 }
 
 .nav-neon-green:hover {
@@ -189,6 +182,14 @@ pointer-events: auto !important;
 @media (max-width: 768px) {
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
+}
+
+.mobile-transform-target {
+  letter-spacing: 2px !important;
+  -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+  transform: translateX(-32px) !important;
+  position: relative !important;
+  transition: all 0.1s ease !important;
 }
 /* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
 .mobile-system-desc {
@@ -1678,7 +1679,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   top: 144px !important; /* 기존 128px에서 한 칸 더 아래로 */
   transform: none !important;
   margin-top: 0 !important;
-}
 }
 </style>
             <div class="core-icon">
@@ -4917,15 +4917,16 @@ if (video) {
 <!-- 이미 <head>에 동일한 @media (max-width: 768px) 스타일이 있으므로 이 부분은 완전히 삭제해도 됩니다. -->
 <style>
 @media (max-width: 768px) {
-.trial-renewal-msg,
-.feedback-msg {
-  font-size: 0.68rem !important;
-  line-height: 1.2 !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.01em !important;
-  margin-bottom: 0 !important;
-  padding-right: 0 !important;
-}
+  .trial-renewal-msg,
+  .feedback-msg {
+    font-size: 0.62rem !important;
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    padding-right: 0 !important;
+    margin-bottom: 0 !important;
+    color: #ccc !important;
+  }
 }
 </style>
 <style>
@@ -7251,6 +7252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 700 !important;
     min-width: 220px !important;
     box-shadow: 
+    box-shadow: 
       0 0 30px rgba(123, 228, 149, 0.6) !important,
       0 0 60px rgba(123, 228, 149, 0.4) !important,
       inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
@@ -7260,7 +7262,7 @@ document.addEventListener('DOMContentLoaded', function() {
       0 0 30px rgba(123, 228, 149, 0.4) !important;
     letter-spacing: 2px !important;
     -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
-    transform: translateX(-80px) !important; /* 좌측으로 5칸(80px) 이동 */
+    transform: translateX(-48px) !important; /* 좌측으로 3칸(48px) 이동 */
     position: relative !important;
   }
   
