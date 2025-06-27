@@ -3134,6 +3134,10 @@ if (window.innerWidth <= 768) {
     left: 50% !important;
     top: 60% !important;
     transform: translate(-50%, -50%) !important;
+  }
+  
+  /* 페이지 로딩 시에만 트랜지션 비활성화 */
+  .video-phone.no-transition {
     transition: none !important;
     -webkit-transition: none !important;
     animation: none !important;
@@ -3970,9 +3974,7 @@ if (window.innerWidth <= 768) {
         });
         if (videoPhone) {
                   if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 트랜지션 비활성화로 즉시 위치 고정
-          videoPhone.style.setProperty('transition', 'none', 'important');
-          videoPhone.style.setProperty('-webkit-transition', 'none', 'important');
+          // 모바일에서만 !important 사용 - 트랜지션은 클래스로 제어
           videoPhone.style.setProperty('left', '50%', 'important');
           videoPhone.style.setProperty('top', '60%', 'important');
           videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -7726,11 +7728,30 @@ document.addEventListener('DOMContentLoaded', function() {
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
       
+      // 모바일에서 video-phone 초기 로딩 시 트랜지션 비활성화
+      if (window.innerWidth <= 768) {
+        const videoPhone = document.querySelector('.video-phone');
+        if (videoPhone) {
+          videoPhone.classList.add('no-transition');
+        }
+      }
+      
       // 페이지 표시 - 약간 빠르게
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
+        
+        // 모바일에서 로딩 완료 후 트랜지션 다시 활성화
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            const videoPhone = document.querySelector('.video-phone');
+            if (videoPhone) {
+              videoPhone.classList.remove('no-transition');
+              console.log('Mobile video-phone transitions re-enabled');
+            }
+          }, 100); // 추가 100ms 후 트랜지션 활성화
+        }
       }, 30); // 50ms에서 30ms로 약간 단축
     }
     
