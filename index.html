@@ -1490,8 +1490,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <!-- Center phone -->
       <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
         <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
-        <!-- 네오 하이브 영상 음향 제어 버튼 -->
-        <button id="hive-audio-btn" onclick="toggleHiveAudio()" style="position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; background: rgba(0,0,0,0.8); border: 1px solid #7BE495; border-radius: 50%; color: #7BE495; font-size: 12px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center;">🔇</button>
       </div>
     </div>
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
@@ -2363,8 +2361,6 @@ html body .core-value-fresh-mobile {
 </style>
       <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
         <video id="smart-showcase-video" src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
-        <!-- 네오 스마트 영상 음향 제어 버튼 -->
-        <button id="smart-audio-btn" onclick="toggleSmartAudio()" style="position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; background: rgba(0,0,0,0.7); border: 1px solid #7BE495; border-radius: 50%; color: #7BE495; font-size: 14px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center;">🔇</button>
       </div>
     </div> <!-- End of .hive-showcase -->
 
@@ -3362,48 +3358,7 @@ if (window.innerWidth <= 768) {
     });
   }
   
-  // 네오 스마트 영상 음향 토글 함수
-  function toggleSmartAudio() {
-    const smartVideo = document.getElementById('smart-showcase-video');
-    const audioBtn = document.getElementById('smart-audio-btn');
-    
-    if (smartVideo) {
-      if (smartVideo.muted) {
-        smartVideo.muted = false;
-        smartVideo.volume = 0.3;
-        audioBtn.textContent = '🔊';
-        console.log('🎵 Neo Smart 영상 소리 켜짐 (버튼 클릭)');
-      } else {
-        smartVideo.muted = true;
-        audioBtn.textContent = '🔇';
-        console.log('🔇 Neo Smart 영상 소리 꺼짐 (버튼 클릭)');
-      }
-    }
-  }
 
-  // 네오 하이브 영상 음향 토글 함수
-  function toggleHiveAudio() {
-    const hiveVideo = document.getElementById('hive-showcase-video');
-    const audioBtn = document.getElementById('hive-audio-btn');
-    
-    if (hiveVideo) {
-      if (hiveVideo.muted) {
-        hiveVideo.muted = false;
-        // 모바일과 PC에 따른 볼륨 설정
-        if (window.innerWidth <= 768) {
-          hiveVideo.volume = 0.2; // 모바일에서 20%
-        } else {
-          hiveVideo.volume = 0.15; // PC에서 15%
-        }
-        audioBtn.textContent = '🔊';
-        console.log('🎵 Neo Hive 영상 소리 켜짐 (버튼 클릭) - 볼륨:', hiveVideo.volume * 100 + '%');
-      } else {
-        hiveVideo.muted = true;
-        audioBtn.textContent = '🔇';
-        console.log('🔇 Neo Hive 영상 소리 꺼짐 (버튼 클릭)');
-      }
-    }
-  }
 
   // DOM 로드 완료 후 영상 음향 제어 시스템 초기화
   document.addEventListener('DOMContentLoaded', () => {
@@ -3429,9 +3384,6 @@ if (window.innerWidth <= 768) {
          };
          
          tryPlaySmart();
-         smartVideo.muted = false;
-         smartVideo.volume = 0.3;
-         console.log('🚀 페이지 로드 시 Neo Smart 영상 즉시 음소거 해제');
        }
        
        // 네오 하이브 영상 재생 시도
@@ -3511,48 +3463,7 @@ if (window.innerWidth <= 768) {
             }, { once: true });
           });
           
-          // 수동으로 음소거 해제 테스트
-          console.log('🧪 Neo Smart 영상 수동 음소거 해제 테스트 시작');
-          smartVideo.muted = false;
-          smartVideo.volume = 0.3;
-          console.log('✅ Neo Smart 영상 음소거 해제 완료 - 볼륨:', smartVideo.volume);
-          
-          // 클릭으로 음소거 해제 기능 추가
-          smartVideo.addEventListener('click', () => {
-            smartVideo.muted = false;
-            smartVideo.volume = 0.3;
-            console.log('👆 Neo Smart 영상 클릭으로 음소거 해제');
-          });
-          
-          // 영상 컨테이너 클릭으로도 음소거 해제
-          const smartContainer = smartVideo.closest('.floating-video');
-          if (smartContainer) {
-            smartContainer.addEventListener('click', () => {
-              smartVideo.muted = false;
-              smartVideo.volume = 0.3;
-              console.log('📱 Neo Smart 컨테이너 클릭으로 음소거 해제');
-            });
-          }
-          
-          // 3초 후 강제 음소거 해제 (사용자가 스크롤했을 때를 대비)
-          setTimeout(() => {
-            if (!smartVideo.muted) {
-              console.log('🔊 Neo Smart 영상 3초 후 재확인 - 이미 음소거 해제됨');
-            } else {
-              smartVideo.muted = false;
-              smartVideo.volume = 0.3;
-              console.log('🔧 Neo Smart 영상 3초 후 강제 음소거 해제');
-            }
-          }, 3000);
-          
-          // 5초마다 주기적으로 음소거 상태 확인 및 해제
-          setInterval(() => {
-            if (smartVideo.muted) {
-              smartVideo.muted = false;
-              smartVideo.volume = 0.3;
-              console.log('⏰ Neo Smart 영상 주기적 음소거 해제');
-            }
-          }, 5000);
+          console.log('📊 Neo Smart 영상 메타데이터 로드됨');
           
 
         });
