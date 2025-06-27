@@ -3293,16 +3293,28 @@ if (window.innerWidth <= 768) {
             }
           }, { passive: false });
         });
-      }, 1000);
+      }, 200); // 모바일 최적화: 1초에서 0.2초로 단축
     }
     
-    // 비디오 지연 로딩
-    setTimeout(() => {
-      const videos = document.querySelectorAll('video[preload="none"]');
+    // 모바일에서 비디오 완전 비활성화, PC에서만 지연 로딩
+    if (window.innerWidth > 768) {
+      // PC에서만 비디오 로딩
+      setTimeout(() => {
+        const videos = document.querySelectorAll('video[preload="none"]');
+        videos.forEach(video => {
+          video.preload = 'metadata';
+        });
+      }, 500); // 1초에서 0.5초로 단축
+    } else {
+      // 모바일에서는 비디오 완전 비활성화
+      const videos = document.querySelectorAll('video');
       videos.forEach(video => {
-        video.preload = 'metadata';
+        video.style.display = 'none';
+        video.pause();
+        video.removeAttribute('autoplay');
+        video.preload = 'none';
       });
-    }, 1000);
+    }
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
@@ -3805,8 +3817,8 @@ if (window.innerWidth <= 768) {
   // 즉시 실행 (DOM이 준비되기 전에도)
   forceMobileNavigation();
   
-  // 추가 안전장치 - 1초 후 다시 실행
-  setTimeout(forceMobileNavigation, 1000);
+  // 추가 안전장치 - 0.3초 후 다시 실행 (모바일 최적화)
+  setTimeout(forceMobileNavigation, 300);
   
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
@@ -7417,12 +7429,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
-// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
+// 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용 - 성능 최적화
 (function() {
   // 모바일 환경 체크 (더 간단하고 안전한 조건)
   const isMobile = window.innerWidth <= 768;
   
   if (isMobile) {
+    // 모바일에서 불필요한 애니메이션 즉시 비활성화
+    document.documentElement.style.setProperty('--animation-duration', '0s', 'important');
+    document.documentElement.style.setProperty('--transition-duration', '0.1s', 'important');
+    
+    // CSS 애니메이션 완전 비활성화
+    const disableAnimationStyle = document.createElement('style');
+    disableAnimationStyle.textContent = `
+      @media (max-width: 768px) {
+        *, *::before, *::after {
+          animation-duration: 0s !important;
+          animation-delay: 0s !important;
+          transition-duration: 0.1s !important;
+          transition-delay: 0s !important;
+        }
+        .animate-on-scroll, .slide-in-left, .slide-in-right {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(disableAnimationStyle);
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
       const elements = [
@@ -7679,19 +7712,34 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리
+    // 모바일 페이지 로딩 완료 처리 - 성능 최적화
     function showMobilePage() {
+      // 모바일에서 이미지 lazy loading 적용
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        if (img.src && !img.complete) {
+          img.loading = 'lazy';
+          // 중요하지 않은 이미지는 로딩 지연
+          if (!img.closest('.hero') && !img.closest('.testimonial')) {
+            img.style.opacity = '0.5';
+            img.addEventListener('load', () => {
+              img.style.opacity = '1';
+            });
+          }
+        }
+      });
+      
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
       
-      // 페이지 표시
+      // 페이지 표시 - 지연 시간 단축
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
-      }, 50);
+      }, 10); // 50ms에서 10ms로 단축
     }
     
     // 즉시 실행 (HTML 파싱과 동시에)
