@@ -1417,7 +1417,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-        <a href="#" style="display:block;">
+        <a href="#" onclick="scrollToTop(); return false;" style="display:block; cursor: pointer;">
           <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
         </a>
       </div>
@@ -2385,7 +2385,7 @@ html body .core-value-fresh-mobile {
       @media (max-width: 768px) {
         #smart-speaker-btn {
           left: calc(50% + 150px) !important;
-          top: calc(50% - 200px) !important;
+          top: calc(50% - 152px) !important;
           width: 32px !important;
           height: 32px !important;
           font-size: 14px !important;
@@ -3430,6 +3430,17 @@ if (window.innerWidth <= 768) {
         }
       }
     }
+
+    // 페이지 상단으로 스크롤하는 함수 (모바일/PC 공통)
+    function scrollToTop() {
+      // 부드러운 스크롤 애니메이션으로 페이지 상단으로 이동
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      console.log('📱 네오 하이브 로고 클릭 - 페이지 상단으로 스크롤');
+    }
  
   
     // DOM 로드 완료 후 영상 음향 제어 시스템 초기화
@@ -3828,8 +3839,10 @@ if (window.innerWidth <= 768) {
       
       console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
       
-      // 배경 스크롤 방지
-      document.body.style.overflow = 'hidden';
+      // 배경 스크롤 방지 (모바일에서만)
+      if (window.innerWidth <= 768) {
+        document.body.style.overflow = 'hidden';
+      }
       
       // 추가 안전장치
       setTimeout(() => {
@@ -3925,6 +3938,9 @@ if (window.innerWidth <= 768) {
         console.log('PC Overlay hidden');
       }
     }
+    
+    // 모든 환경에서 스크롤 복원 (안전장치)
+    document.body.style.overflow = 'auto';
     
     // 최종 확인 - 0.1초 후 남은 오버레이 재검사
     setTimeout(() => {
@@ -7914,11 +7930,13 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Mobile footer hidden');
       }
       
-      // 모바일에서 스크롤바 완전 제거
+      // 모바일에서 가로 스크롤만 제거, 세로 스크롤은 유지
       document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+      document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
       document.documentElement.style.setProperty('scrollbar-width', 'none', 'important');
       document.documentElement.style.setProperty('-ms-overflow-style', 'none', 'important');
       document.body.style.setProperty('overflow-x', 'hidden', 'important');
+      document.body.style.setProperty('overflow-y', 'auto', 'important');
       document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
       
       // 회색 가로 바 형태의 요소들 제거
@@ -8113,7 +8131,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 스크롤 막힘 방지 */
   body, html {
-    overscroll-behavior: contain !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     scroll-behavior: smooth !important;
   }
   
