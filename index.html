@@ -1488,7 +1488,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
       <!-- Center phone -->
-      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="50%" data-mobile-transform="translate(-50%, -50%)">
+      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
         <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div>
@@ -3122,13 +3122,24 @@ if (window.innerWidth <= 768) {
     }
     
     /* 모바일에서 로고 이미지 위치 조정 - 우측으로 1칸 이동 및 크기 확대 */
-    @media (max-width: 768px) {
-      .testimonial-card img[src="./images/hive3.png"] {
-        left: 136px !important; /* 120px에서 136px로 변경 (16px 우측 이동) */
-        top: 180px !important;
-        width: 320px !important; /* 280px에서 320px로 크기 확대 */
-      }
-    }
+@media (max-width: 768px) {
+  .testimonial-card img[src="./images/hive3.png"] {
+    left: 136px !important; /* 120px에서 136px로 변경 (16px 우측 이동) */
+    top: 180px !important;
+    width: 320px !important; /* 280px에서 320px로 크기 확대 */
+  }
+  
+  /* 모바일에서 video-phone 초기 위치를 최종 위치로 즉시 고정 */
+  .video-phone {
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-50%, -50%) !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+}
   </style>
 </section>
 
@@ -3958,19 +3969,19 @@ if (window.innerWidth <= 768) {
           resetImageToOriginalPosition(img, index);
         });
         if (videoPhone) {
-          if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('left', '50%', 'important');
-            videoPhone.style.setProperty('top', '60%', 'important');
-            videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-            videoPhone.style.setProperty('z-index', '10', 'important');
-            videoPhone.style.setProperty('width', '180px', 'important');
-            videoPhone.style.setProperty('height', '360px', 'important');
-            videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
-            videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-            videoPhone.style.setProperty('border-radius', '20px', 'important');
+                  if (window.innerWidth <= 768) {
+          // 모바일에서만 !important 사용 - 트랜지션 비활성화로 즉시 위치 고정
+          videoPhone.style.setProperty('transition', 'none', 'important');
+          videoPhone.style.setProperty('-webkit-transition', 'none', 'important');
+          videoPhone.style.setProperty('left', '50%', 'important');
+          videoPhone.style.setProperty('top', '60%', 'important');
+          videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          videoPhone.style.setProperty('z-index', '10', 'important');
+          videoPhone.style.setProperty('width', '180px', 'important');
+          videoPhone.style.setProperty('height', '360px', 'important');
+          videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
+          videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+          videoPhone.style.setProperty('border-radius', '20px', 'important');
           } else {
             // PC에서는 일반 스타일 적용
             videoPhone.style.left = '50%';
