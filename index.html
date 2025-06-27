@@ -3444,19 +3444,39 @@ if (window.innerWidth <= 768) {
 
     // 페이지 상단으로 스크롤하는 함수 (모바일/PC 공통)
     function scrollToTop() {
-      // 완전 최상단으로 이동 (0, 0 좌표로 강제 이동)
-      window.scrollTo(0, 0);
-      
-      // 추가적으로 부드러운 스크롤도 적용
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
-      }, 10);
-      
-      console.log('📱 네오 하이브 로고 클릭 - 완전 최상단으로 스크롤');
+      if (window.innerWidth <= 768) {
+        // 모바일: 네오 하이브 섹션이 보이는 위치로 스크롤
+        const hiveSection = document.getElementById('hive');
+        if (hiveSection) {
+          const navHeight = 60; // 모바일 네비게이션 높이
+          const targetPosition = hiveSection.offsetTop - navHeight - 20; // 추가 여백 20px
+          
+          window.scrollTo({
+            top: Math.max(0, targetPosition),
+            left: 0,
+            behavior: 'smooth'
+          });
+          
+          console.log('📱 네오 하이브 로고 클릭 - 네오 하이브 섹션으로 스크롤');
+        } else {
+          // 네오 하이브 섹션을 찾을 수 없으면 최상단으로
+          window.scrollTo(0, 0);
+        }
+      } else {
+        // PC: 완전 최상단으로 이동
+        window.scrollTo(0, 0);
+        
+        // 추가적으로 부드러운 스크롤도 적용
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+        }, 10);
+        
+        console.log('💻 네오 하이브 로고 클릭 - 완전 최상단으로 스크롤');
+      }
     }
  
   
