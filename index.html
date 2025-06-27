@@ -3293,28 +3293,16 @@ if (window.innerWidth <= 768) {
             }
           }, { passive: false });
         });
-      }, 200); // 모바일 최적화: 1초에서 0.2초로 단축
+      }, 1000);
     }
     
-    // 모바일에서 비디오 완전 비활성화, PC에서만 지연 로딩
-    if (window.innerWidth > 768) {
-      // PC에서만 비디오 로딩
-      setTimeout(() => {
-        const videos = document.querySelectorAll('video[preload="none"]');
-        videos.forEach(video => {
-          video.preload = 'metadata';
-        });
-      }, 500); // 1초에서 0.5초로 단축
-    } else {
-      // 모바일에서는 비디오 완전 비활성화
-      const videos = document.querySelectorAll('video');
+    // 비디오 지연 로딩
+    setTimeout(() => {
+      const videos = document.querySelectorAll('video[preload="none"]');
       videos.forEach(video => {
-        video.style.display = 'none';
-        video.pause();
-        video.removeAttribute('autoplay');
-        video.preload = 'none';
+        video.preload = 'metadata';
       });
-    }
+    }, 1000);
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
@@ -3817,8 +3805,8 @@ if (window.innerWidth <= 768) {
   // 즉시 실행 (DOM이 준비되기 전에도)
   forceMobileNavigation();
   
-  // 추가 안전장치 - 0.3초 후 다시 실행 (모바일 최적화)
-  setTimeout(forceMobileNavigation, 300);
+  // 추가 안전장치 - 1초 후 다시 실행
+  setTimeout(forceMobileNavigation, 1000);
   
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
