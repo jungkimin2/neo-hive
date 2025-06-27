@@ -1492,7 +1492,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
       <!-- 네오 하이브 영상 스피커 버튼 (영상 바깥쪽 우측 상단) -->
-      <button id="hive-speaker-btn" onclick="toggleHiveAudio()" style="position: absolute; left: calc(50% + 126px); top: calc(50% - 228px); width: 36px; height: 36px; background: rgba(0,0,0,0.8); border: 2px solid #7BE495; border-radius: 50%; color: #7BE495; font-size: 16px; cursor: pointer; z-index: 2147483647; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5);">🔇</button>
+      <button id="hive-speaker-btn" onclick="toggleHiveAudio()" style="position: absolute; left: calc(50% + 126px); top: calc(50% - 228px); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 2147483647; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
       
       <!-- 모바일 환경용 네오 하이브 영상 스피커 버튼 -->
       <style>
@@ -1500,9 +1500,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         #hive-speaker-btn {
           left: calc(50% + 110px) !important;
           top: calc(50% - 152px) !important;
-          width: 32px !important;
-          height: 32px !important;
-          font-size: 14px !important;
+          width: 70px !important;
+          height: 28px !important;
+          font-size: 9px !important;
+          border-radius: 14px !important;
         }
       }
       </style>
@@ -2378,7 +2379,7 @@ html body .core-value-fresh-mobile {
         <video id="smart-showcase-video" src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
       <!-- 네오 스마트 영상 스피커 버튼 (영상 바깥쪽 우측 상단) -->
-      <button id="smart-speaker-btn" onclick="toggleSmartAudio()" style="position: absolute; left: calc(50% + 366px); top: calc(50% - 168px); width: 36px; height: 36px; background: rgba(0,0,0,0.8); border: 2px solid #7BE495; border-radius: 50%; color: #7BE495; font-size: 16px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5);">🔇</button>
+      <button id="smart-speaker-btn" onclick="toggleSmartAudio()" style="position: absolute; left: calc(50% + 366px); top: calc(50% - 168px); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
       
       <!-- 모바일 환경용 네오 스마트 영상 스피커 버튼 -->
       <style>
@@ -2386,9 +2387,10 @@ html body .core-value-fresh-mobile {
         #smart-speaker-btn {
           left: calc(50% + 150px) !important;
           top: calc(50% - 152px) !important;
-          width: 32px !important;
-          height: 32px !important;
-          font-size: 14px !important;
+          width: 70px !important;
+          height: 28px !important;
+          font-size: 9px !important;
+          border-radius: 14px !important;
         }
       }
       </style>
@@ -3402,11 +3404,13 @@ if (window.innerWidth <= 768) {
           } else {
             hiveVideo.volume = 0.15; // PC에서 15%
           }
-          speakerBtn.textContent = '🔊';
+          speakerBtn.innerHTML = '🔊 소리켜짐';
+          speakerBtn.style.background = 'rgba(123, 228, 149, 0.2)';
           console.log('🎵 Neo Hive 영상 소리 켜짐');
         } else {
           hiveVideo.muted = true;
-          speakerBtn.textContent = '🔇';
+          speakerBtn.innerHTML = '🔇 음소거';
+          speakerBtn.style.background = 'rgba(0,0,0,0.9)';
           console.log('🔇 Neo Hive 영상 소리 꺼짐');
         }
       }
@@ -3420,12 +3424,19 @@ if (window.innerWidth <= 768) {
       if (smartVideo && speakerBtn) {
         if (smartVideo.muted) {
           smartVideo.muted = false;
-          smartVideo.volume = 0.3; // 30%
-          speakerBtn.textContent = '🔊';
+          // 모바일과 PC에 따른 볼륨 설정
+          if (window.innerWidth <= 768) {
+            smartVideo.volume = 0.3; // 모바일에서 30%
+          } else {
+            smartVideo.volume = 0.6; // PC에서 60%
+          }
+          speakerBtn.innerHTML = '🔊 소리켜짐';
+          speakerBtn.style.background = 'rgba(123, 228, 149, 0.2)';
           console.log('🎵 Neo Smart 영상 소리 켜짐');
         } else {
           smartVideo.muted = true;
-          speakerBtn.textContent = '🔇';
+          speakerBtn.innerHTML = '🔇 음소거';
+          speakerBtn.style.background = 'rgba(0,0,0,0.9)';
           console.log('🔇 Neo Smart 영상 소리 꺼짐');
         }
       }
