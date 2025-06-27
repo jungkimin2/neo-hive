@@ -7712,34 +7712,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리 - 성능 최적화
+    // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
-      // 모바일에서 이미지 lazy loading 적용
-      const images = document.querySelectorAll('img');
-      images.forEach(img => {
-        if (img.src && !img.complete) {
-          img.loading = 'lazy';
-          // 중요하지 않은 이미지는 로딩 지연
-          if (!img.closest('.hero') && !img.closest('.testimonial')) {
-            img.style.opacity = '0.5';
-            img.addEventListener('load', () => {
-              img.style.opacity = '1';
-            });
-          }
-        }
-      });
-      
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
       
-      // 페이지 표시 - 지연 시간 단축
+      // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
-      }, 10); // 50ms에서 10ms로 단축
+      }, 50);
     }
     
     // 즉시 실행 (HTML 파싱과 동시에)
