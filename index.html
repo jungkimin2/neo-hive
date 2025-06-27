@@ -3354,7 +3354,7 @@ if (window.innerWidth <= 768) {
       },
       { 
         id: 'smart-showcase-video', 
-        container: '#smart',
+        container: '.slide-container',
         name: 'Neo Smart 영상'
       }
     ];
@@ -3371,7 +3371,7 @@ if (window.innerWidth <= 768) {
         if (entry.isIntersecting) {
           // 영상이 화면에 보일 때 음소거 해제
           video.muted = false;
-          video.volume = 0.7; // 볼륨 70%로 설정
+          video.volume = 0.3; // 볼륨 30%로 설정
           console.log(`🔊 ${videoData.name} 음향 활성화`);
         } else {
           // 영상이 화면에서 벗어날 때 음소거
@@ -3418,7 +3418,7 @@ if (window.innerWidth <= 768) {
               const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
               if (isVisible) {
                 video.muted = false;
-                video.volume = 0.7;
+                video.volume = 0.3;
               }
             }
           }
@@ -3430,6 +3430,56 @@ if (window.innerWidth <= 768) {
   // DOM 로드 완료 후 영상 음향 제어 시스템 초기화
   document.addEventListener('DOMContentLoaded', () => {
     setupVideoAudioControl();
+    
+    // 네오 스마트 영상 디버깅
+    setTimeout(() => {
+      const smartVideo = document.getElementById('smart-showcase-video');
+      if (smartVideo) {
+        console.log('🎬 Neo Smart 영상 요소 발견:', smartVideo);
+        console.log('📁 영상 소스:', smartVideo.src);
+        console.log('🔇 음소거 상태:', smartVideo.muted);
+        console.log('🔊 볼륨 레벨:', smartVideo.volume);
+        console.log('📺 영상 준비 상태:', smartVideo.readyState);
+        
+        // 영상의 오디오 트랙 확인
+        smartVideo.addEventListener('loadedmetadata', () => {
+          console.log('📊 Neo Smart 영상 메타데이터 로드됨');
+          console.log('⏱️ 영상 길이:', smartVideo.duration, '초');
+          console.log('📏 영상 크기:', smartVideo.videoWidth, 'x', smartVideo.videoHeight);
+          
+          // 오디오 트랙 존재 여부 확인
+          if (smartVideo.mozHasAudio !== undefined) {
+            console.log('🎵 오디오 트랙 (Firefox):', smartVideo.mozHasAudio);
+          } else if (smartVideo.webkitAudioDecodedByteCount !== undefined) {
+            console.log('🎵 오디오 트랙 (Chrome):', smartVideo.webkitAudioDecodedByteCount > 0);
+          }
+          
+          // 수동으로 음소거 해제 테스트
+          console.log('🧪 Neo Smart 영상 수동 음소거 해제 테스트 시작');
+          smartVideo.muted = false;
+          smartVideo.volume = 0.3;
+          console.log('✅ Neo Smart 영상 음소거 해제 완료 - 볼륨:', smartVideo.volume);
+          
+          // 3초 후 강제 음소거 해제 (사용자가 스크롤했을 때를 대비)
+          setTimeout(() => {
+            if (!smartVideo.muted) {
+              console.log('🔊 Neo Smart 영상 3초 후 재확인 - 이미 음소거 해제됨');
+            } else {
+              smartVideo.muted = false;
+              smartVideo.volume = 0.3;
+              console.log('🔧 Neo Smart 영상 3초 후 강제 음소거 해제');
+            }
+          }, 3000);
+        });
+        
+        smartVideo.addEventListener('error', (e) => {
+          console.error('❌ Neo Smart 영상 로드 오류:', e);
+        });
+        
+      } else {
+        console.error('❌ Neo Smart 영상 요소를 찾을 수 없음');
+      }
+    }, 2000);
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
