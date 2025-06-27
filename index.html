@@ -1489,7 +1489,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
       <!-- Center phone -->
       <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
-        <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div>
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
@@ -3478,6 +3478,43 @@ if (window.innerWidth <= 768) {
         
       } else {
         console.error('❌ Neo Smart 영상 요소를 찾을 수 없음');
+      }
+      
+      // 네오 하이브 영상 디버깅
+      const hiveVideo = document.getElementById('hive-showcase-video');
+      if (hiveVideo) {
+        console.log('🎬 Neo Hive 영상 요소 발견:', hiveVideo);
+        console.log('📁 영상 소스:', hiveVideo.src);
+        console.log('🔇 음소거 상태:', hiveVideo.muted);
+        console.log('🔊 볼륨 레벨:', hiveVideo.volume);
+        console.log('▶️ 재생 상태:', hiveVideo.paused ? '일시정지' : '재생중');
+        console.log('📺 영상 준비 상태:', hiveVideo.readyState);
+        
+        // 강제 재생 시도
+        hiveVideo.play().then(() => {
+          console.log('✅ Neo Hive 영상 재생 성공');
+        }).catch(error => {
+          console.error('❌ Neo Hive 영상 재생 실패:', error);
+          // 사용자 상호작용 후 재생 시도
+          document.addEventListener('click', () => {
+            hiveVideo.play().then(() => {
+              console.log('✅ Neo Hive 영상 클릭 후 재생 성공');
+            }).catch(e => console.error('❌ Neo Hive 영상 클릭 후에도 재생 실패:', e));
+          }, { once: true });
+        });
+        
+        hiveVideo.addEventListener('loadedmetadata', () => {
+          console.log('📊 Neo Hive 영상 메타데이터 로드됨');
+          console.log('⏱️ 영상 길이:', hiveVideo.duration, '초');
+          console.log('📏 영상 크기:', hiveVideo.videoWidth, 'x', hiveVideo.videoHeight);
+        });
+        
+        hiveVideo.addEventListener('error', (e) => {
+          console.error('❌ Neo Hive 영상 로드 오류:', e);
+        });
+        
+      } else {
+        console.error('❌ Neo Hive 영상 요소를 찾을 수 없음');
       }
     }, 2000);
   });
