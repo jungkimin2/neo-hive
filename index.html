@@ -1,5 +1,3 @@
-
-
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -3296,13 +3294,24 @@ if (window.innerWidth <= 768) {
       }, 1000);
     }
     
-    // 비디오 지연 로딩
-    setTimeout(() => {
-      const videos = document.querySelectorAll('video[preload="none"]');
-      videos.forEach(video => {
-        video.preload = 'metadata';
-      });
-    }, 1000);
+    // 비디오 지연 로딩 - 모바일 최적화
+    if (window.innerWidth <= 768) {
+      // 모바일에서는 더 빠른 로딩
+      setTimeout(() => {
+        const videos = document.querySelectorAll('video[preload="none"]');
+        videos.forEach(video => {
+          video.preload = 'metadata';
+        });
+      }, 500);
+    } else {
+      // PC에서는 기존 방식
+      setTimeout(() => {
+        const videos = document.querySelectorAll('video[preload="none"]');
+        videos.forEach(video => {
+          video.preload = 'metadata';
+        });
+      }, 1000);
+    }
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
@@ -7679,19 +7688,39 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리
+    // 모바일 페이지 로딩 완료 처리 - 성능 최적화 (기능 유지)
     function showMobilePage() {
+      // 모바일에서 이미지 lazy loading만 적용 (비디오는 그대로 유지)
+      const images = document.querySelectorAll('img');
+      let loadedImages = 0;
+      const totalImages = images.length;
+      
+      images.forEach(img => {
+        if (img.src && !img.complete) {
+          img.loading = 'lazy';
+          // 중요하지 않은 배경 이미지만 지연 로딩
+          if (!img.closest('.hero') && !img.closest('.testimonial') && !img.closest('.hive-showcase')) {
+            img.addEventListener('load', () => {
+              loadedImages++;
+              if (loadedImages === totalImages) {
+                console.log('All images loaded');
+              }
+            });
+          }
+        }
+      });
+      
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
       
-      // 페이지 표시
+      // 페이지 표시 - 약간 빠르게
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
-      }, 50);
+      }, 30); // 50ms에서 30ms로 약간 단축
     }
     
     // 즉시 실행 (HTML 파싱과 동시에)
