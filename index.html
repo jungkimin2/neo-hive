@@ -2921,7 +2921,7 @@ if (window.innerWidth <= 768) {
               회원들은 언제든 NFC 태그로 운동법을 확인하며 자기 주도적 운동 환경을 경험하고 있습니다.
             </p>
             
-                          <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 0; line-height: 1.8; text-align: center;">
+            <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 0; line-height: 1.8; text-align: center;">
               지금 바로 <span class='neon-green'>NEO HIVE + NEO SMART</span>로<br>
               헬스장의 <span class='neon-green'>새로운 가능성</span>을 경험해보세요.
             </p>
@@ -2991,13 +2991,13 @@ if (window.innerWidth <= 768) {
           <!-- 사전 예약하기 버튼 - 네온 글로우 디자인 -->
           <button onclick="openForm()" class="btn reservation-btn" style="
             background: #000;
-            color: #7BE495;
+        color: #7BE495;
             padding: 20px 50px;
             border: 3px solid #7BE495;
             border-radius: 15px;
             font-size: 1.3rem;
             font-weight: 700;
-            cursor: pointer;
+        cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 
               0 0 30px rgba(123, 228, 149, 0.6),
@@ -3011,10 +3011,10 @@ if (window.innerWidth <= 768) {
             min-width: 250px;
             position: relative;
             overflow: hidden;
-          ">
-            사전 예약하기
+      ">
+        사전 예약하기
           </button>
-        </div>
+    </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3153,9 +3153,9 @@ if (window.innerWidth <= 768) {
     
     /* 모바일에서 로고 이미지 위치 조정 - 우측으로 1칸 이동 및 크기 확대 */
 @media (max-width: 768px) {
-  .testimonial-card img[src="./images/hive3.png"] {
+      .testimonial-card img[src="./images/hive3.png"] {
     left: 136px !important; /* 120px에서 136px로 변경 (16px 우측 이동) */
-    top: 180px !important;
+        top: 180px !important;
     width: 320px !important; /* 280px에서 320px로 크기 확대 */
   }
   
@@ -3187,8 +3187,8 @@ if (window.innerWidth <= 768) {
     right: 5% !important; /* 간격을 더 벌리기 위해 10% → 5%로 조정 */
     transform: translateX(50%) !important;
     z-index: 25 !important;
-  }
-}
+      }
+    }
   </style>
 </section>
 
@@ -3312,7 +3312,7 @@ if (window.innerWidth <= 768) {
         }, { passive: true });
       }
     }
-
+    
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
       setTimeout(() => {
@@ -3365,12 +3365,12 @@ if (window.innerWidth <= 768) {
       }, 500);
     } else {
       // PC에서는 기존 방식
-      setTimeout(() => {
-        const videos = document.querySelectorAll('video[preload="none"]');
-        videos.forEach(video => {
-          video.preload = 'metadata';
-        });
-      }, 1000);
+    setTimeout(() => {
+      const videos = document.querySelectorAll('video[preload="none"]');
+      videos.forEach(video => {
+        video.preload = 'metadata';
+      });
+    }, 1000);
     }
       });
   
@@ -3398,7 +3398,7 @@ if (window.innerWidth <= 768) {
           hiveVideo.muted = false;
           // 모바일과 PC에 따른 볼륨 설정
           if (window.innerWidth <= 768) {
-            hiveVideo.volume = 0.2; // 모바일에서 20%
+            hiveVideo.volume = 0.1; // 모바일에서 10%
           } else {
             hiveVideo.volume = 0.15; // PC에서 15%
           }
@@ -3742,8 +3742,8 @@ if (window.innerWidth <= 768) {
       
       // 즉시 강제 적용 및 확인
       requestAnimationFrame(() => {
-        const overlay = document.getElementById('mobileForceOverlay');
-        if (overlay) {
+      const overlay = document.getElementById('mobileForceOverlay');
+      if (overlay) {
           // 다시 한번 강력하게 적용
           overlay.style.setProperty('position', 'fixed', 'important');
           overlay.style.setProperty('top', '0', 'important');
@@ -3764,7 +3764,7 @@ if (window.innerWidth <= 768) {
           overlay.style.setProperty('-webkit-transform', 'translateZ(0)', 'important');
           
           console.log('✅ Mobile dark overlay created and confirmed');
-        } else {
+      } else {
           console.error('❌ Mobile dark overlay creation failed');
         }
       });
@@ -3841,7 +3841,7 @@ if (window.innerWidth <= 768) {
       
       // 배경 스크롤 방지 (모바일에서만)
       if (window.innerWidth <= 768) {
-        document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
       }
       
       // 추가 안전장치
@@ -3918,7 +3918,7 @@ if (window.innerWidth <= 768) {
         if (bgMatch && div.style.position === 'fixed') {
           div.remove();
           console.log('✅ Removed dark background div');
-        }
+      }
       });
       
       // 모바일에서 배경 스크롤 복원
@@ -4259,17 +4259,17 @@ if (window.innerWidth <= 768) {
           resetImageToOriginalPosition(img, index);
         });
         if (videoPhone) {
-                  if (window.innerWidth <= 768) {
+          if (window.innerWidth <= 768) {
           // 모바일에서만 !important 사용 - 트랜지션은 클래스로 제어
-          videoPhone.style.setProperty('left', '50%', 'important');
-          videoPhone.style.setProperty('top', '60%', 'important');
-          videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-          videoPhone.style.setProperty('z-index', '10', 'important');
-          videoPhone.style.setProperty('width', '180px', 'important');
-          videoPhone.style.setProperty('height', '360px', 'important');
-          videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
-          videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-          videoPhone.style.setProperty('border-radius', '20px', 'important');
+            videoPhone.style.setProperty('left', '50%', 'important');
+            videoPhone.style.setProperty('top', '60%', 'important');
+            videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+            videoPhone.style.setProperty('z-index', '10', 'important');
+            videoPhone.style.setProperty('width', '180px', 'important');
+            videoPhone.style.setProperty('height', '360px', 'important');
+            videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
+            videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+            videoPhone.style.setProperty('border-radius', '20px', 'important');
           } else {
             // PC에서는 일반 스타일 적용
             videoPhone.style.left = '50%';
@@ -7743,12 +7743,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (isMobile) {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
-      const elements = [
-        { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
-        { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
-        { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
-        { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
-        { selector: '#smart', transform: 'translateY(-432px)' }
+                      const elements = [
+          { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
+          { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
+          { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
+          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
+          { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -8119,8 +8119,8 @@ document.addEventListener('DOMContentLoaded', function() {
   [style*="z-index: 2147483646"],
   [style*="z-index: 999"] {
     pointer-events: auto !important;
-  }
-  
+}
+
   /* 스크롤 컨테이너 최적화 */
   .slide-container,
   .container,
