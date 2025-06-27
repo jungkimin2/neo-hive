@@ -2379,6 +2379,19 @@ html body .core-value-fresh-mobile {
       </div>
       <!-- 네오 스마트 영상 스피커 버튼 (영상 바깥쪽 우측 상단) -->
       <button id="smart-speaker-btn" onclick="toggleSmartAudio()" style="position: absolute; left: calc(50% + 366px); top: calc(50% - 168px); width: 36px; height: 36px; background: rgba(0,0,0,0.8); border: 2px solid #7BE495; border-radius: 50%; color: #7BE495; font-size: 16px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5);">🔇</button>
+      
+      <!-- 모바일 환경용 네오 스마트 영상 스피커 버튼 -->
+      <style>
+      @media (max-width: 768px) {
+        #smart-speaker-btn {
+          left: calc(50% + 150px) !important;
+          top: calc(50% - 200px) !important;
+          width: 32px !important;
+          height: 32px !important;
+          font-size: 14px !important;
+        }
+      }
+      </style>
     </div> <!-- End of .hive-showcase -->
 
 <!-- JavaScript로 NEOS 카드 강제 이동 -->
