@@ -5011,7 +5011,7 @@ if (video) {
     .hive-showcase {
       margin-top: 100px !important;
       padding: 0 16px !important;
-      touch-action: pan-x pinch-zoom !important;
+      touch-action: pan-y pan-x pinch-zoom !important;
     }
   }
 </style>
@@ -5022,7 +5022,17 @@ if (video) {
   @media (max-width: 768px) {
     body {
       padding-top: 56px !important;
+      touch-action: pan-y pinch-zoom !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-y: auto !important;
     }
+    
+    html {
+      touch-action: pan-y pinch-zoom !important;
+      -webkit-overflow-scrolling: touch !important;
+      overflow-y: auto !important;
+    }
+    
     .hive-showcase {
       margin-top: 16px !important;
     }
@@ -8077,5 +8087,44 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
+
+<!-- 모바일 스크롤 최적화 CSS -->
+<style>
+@media (max-width: 768px) {
+  /* 전역 스크롤 최적화 */
+  * {
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 높은 z-index 요소들의 터치 이벤트 최적화 */
+  [style*="z-index: 2147483647"],
+  [style*="z-index: 2147483646"],
+  [style*="z-index: 999"] {
+    pointer-events: auto !important;
+  }
+  
+  /* 스크롤 컨테이너 최적화 */
+  .slide-container,
+  .container,
+  .section {
+    touch-action: pan-y pinch-zoom !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 스크롤 막힘 방지 */
+  body, html {
+    overscroll-behavior: contain !important;
+    scroll-behavior: smooth !important;
+  }
+  
+  /* 터치 이벤트 최적화 */
+  .video-phone,
+  .hive-showcase,
+  .circular-flow-container {
+    touch-action: pan-y pinch-zoom !important;
+  }
+}
+</style>
+
 </body>
 </html>
