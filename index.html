@@ -1568,6 +1568,60 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">QR코드로 자동 인증과<br>출석 랭킹 연동</div>
         </div>
       </div>
+
+      <!-- 모바일 전용: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
+      <div class="mobile-system-ui-new" style="margin-top: 32px;">
+        <div class="mobile-system-card">
+          <div class="mobile-system-header">
+            <img src="./images/neo35.png" alt="무인 출입 시스템" style="width: 24px; height: 24px; margin-right: 8px;">
+            <span>무인 출입 시스템 운영 방식</span>
+          </div>
+          <div class="mobile-system-content-new">
+            <div class="mobile-system-step">
+              <span class="step-num">1</span>
+              <span>가상의 회원 등록 (시스템 계정)</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">2</span>
+              <span>해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">3</span>
+              <span>네오 하이브를 통해 예약한 팀에게 코드 전송</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">4</span>
+              <span>사용자는 코드 입력만으로 무인 헬스장 출입 가능</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mobile-system-card" style="margin-top: 20px;">
+          <div class="mobile-system-header">
+            <img src="./images/neo22.png" alt="이벤트 시스템" style="width: 24px; height: 24px; margin-right: 8px;">
+            <span>이벤트 시스템 연동</span>
+          </div>
+          <div class="mobile-system-content-new">
+            <div class="mobile-system-step">
+              <span class="step-num">•</span>
+              <span>제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">•</span>
+              <span>팀원 전원 QR 출석체크 필요 (최소 3명)</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">•</span>
+              <span>출석체크 인정 횟수는 누적으로 진행</span>
+            </div>
+            <div class="mobile-system-step">
+              <span class="step-num">•</span>
+              <span>팀장이 인증센터 선택 및 시간대 예약</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- FLEX 3-BOX BLOCK MOVED HERE -->
       <div class="neohive-flex-row" style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; align-items: flex-start; margin-top: 32px;">
         <!-- NeoFit H box (refactored with inner gradient strip) -->
@@ -7880,13 +7934,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 전용 단순 스크롤 보장 - 네오핏 방식
-    function removeGreyBoxes() {
-      document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+    // 모바일 전용 단순 스크롤 보장 - 네오핏 간소화 방식
+    function ensureMobileScroll() {
       document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
-      document.body.style.setProperty('overflow-x', 'hidden', 'important');
       document.body.style.setProperty('overflow-y', 'auto', 'important');
       document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      console.log('📱 모바일 스크롤 보장');
     }
     
     
@@ -7915,13 +7968,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 모바일 페이지 로딩 완료 처리 - 네오핏 간소화 방식
     function showMobilePage() {
-      removeGreyBoxes(); // 단순 스크롤 활성화
-      forceApplyMobileStyles();
+      ensureMobileScroll(); // 단순 스크롤 보장
       
       // 페이지 표시 - 네오핏 방식
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
-        console.log('📱 모바일 스크롤 보장');
+        document.body.style.opacity = '1';
+        console.log('📱 모바일 페이지 로딩 완료');
       }, 30);
     }
     
@@ -7936,7 +7989,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용
+    // MutationObserver로 DOM 변경 감지 시 재적용 - 간소화
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
       mutations.forEach(function(mutation) {
@@ -7945,10 +7998,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       if (shouldReapply) {
-        removeGreyBoxes(); // 회색 박스 제거
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-        restoreGlowEffect(); // 발광효과 복구
+        ensureMobileScroll(); // 스크롤 보장만 재적용
       }
     });
     
@@ -7978,23 +8028,21 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 최적화 CSS - 네오핏 방식 적용 -->
+<!-- 모바일 스크롤 최적화 CSS - 네오핏 간소화 방식 적용 -->
 <style>
 @media (max-width: 768px) {
-  /* 모바일 즉시 스크롤 활성화 */
-  html {
-    touch-action: pan-y !important;
-    -webkit-overflow-scrolling: touch !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+  /* 모바일에서만 애니메이션 비활성화 - 네오핏 성공 방식 */
+  .animate-on-scroll { 
+    animation: none !important; 
+    transition: none !important; 
   }
   
-  body {
+  /* 즉시 터치 스크롤 활성화 */
+  html, body {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    pointer-events: auto !important;
   }
   
   /* 전역 스크롤 최적화 */
@@ -8007,38 +8055,71 @@ document.addEventListener('DOMContentLoaded', function() {
     pointer-events: auto !important;
   }
   
-  /* 기본 스크롤만 허용 */
-  body, html {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-  }
-  
   /* 단순 Neo Hive 스크롤 허용 */
   #hive {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 모바일에서만 애니메이션 비활성화 - PC는 그대로 유지 */
-  .animate-on-scroll,
-  .section.animate-on-scroll,
-  .slide-in-left,
-  .slide-in-right,
-  .feature-item {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
+  /* 모바일 전용 무인 출입 시스템 UI 스타일 */
+  .mobile-system-ui-new {
+    display: block !important;
+    width: 100%;
+    padding: 0 16px;
   }
   
-  /* 모바일에서만 높은 z-index 제한 */
-  .video-phone {
-    z-index: 10 !important;
+  .mobile-system-card {
+    background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(123, 228, 149, 0.3);
+    box-shadow: 0 4px 16px rgba(123, 228, 149, 0.1);
   }
   
-  #hive-speaker-btn {
-    z-index: 15 !important;
+  .mobile-system-header {
+    display: flex;
+    align-items: center;
+    color: #7BE495;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-shadow: 0 0 8px rgba(123, 228, 149, 0.5);
+  }
+  
+  .mobile-system-content-new {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .mobile-system-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background: #7BE495;
+    color: #000;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+}
+
+/* PC에서는 숨김 */
+@media (min-width: 769px) {
+  .mobile-system-ui-new {
+    display: none !important;
   }
 }
 </style>
