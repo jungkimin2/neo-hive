@@ -8248,35 +8248,68 @@ document.addEventListener('DOMContentLoaded', function() {
            neosCardList.style.setProperty('pointer-events', 'auto', 'important');
          }
          
-         // 모든 복잡한 요소들 완전 차단 - 스크롤 걸림 근본 해결
-         const disruptiveElements = document.querySelectorAll(
-           '.video-phone, .neo-smart-video, .floating-video, ' +
-           '.hive-image, .hive-showcase, .flipper, .slide-in-left, .slide-in-right, ' +
-           '[style*="z-index: 2147483647"], [style*="z-index: 2147483646"]'
-         );
-         disruptiveElements.forEach(el => {
+         // 비디오 요소들만 간단히 터치 차단
+         const videoElements = document.querySelectorAll('.video-phone, .neo-smart-video, .floating-video');
+         videoElements.forEach(el => {
            el.style.setProperty('pointer-events', 'none', 'important');
            el.style.setProperty('touch-action', 'none', 'important');
-           el.style.setProperty('animation', 'none', 'important');
-           el.style.setProperty('transition', 'none', 'important');
-           el.style.setProperty('transform', 'none', 'important');
-           el.style.setProperty('z-index', 'auto', 'important');
          });
          
-         // 모든 이벤트 리스너 제거
-         const elementsWithEvents = document.querySelectorAll('*');
-         elementsWithEvents.forEach(el => {
-           if (el.onclick) el.onclick = null;
-           if (el.ontouchstart) el.ontouchstart = null;
-           if (el.ontouchmove) el.ontouchmove = null;
-           if (el.ontouchend) el.ontouchend = null;
-         });
+         // 신청서 팝업 기능 보장
+         const formModal = document.querySelector('#formModal');
+         if (formModal) {
+           formModal.style.setProperty('pointer-events', 'auto', 'important');
+           formModal.style.setProperty('touch-action', 'auto', 'important');
+           
+           // 팝업 내부 모든 요소들도 허용
+           const modalElements = formModal.querySelectorAll('*');
+           modalElements.forEach(el => {
+             el.style.setProperty('pointer-events', 'auto', 'important');
+             el.style.setProperty('touch-action', 'auto', 'important');
+           });
+         }
         
-        // 스크롤 영역 강제 보장
+                 // 강력한 스크롤 보장 - iOS Safari 스크롤 멈춤 해결
         document.body.style.setProperty('touch-action', 'pan-y', 'important');
         document.documentElement.style.setProperty('touch-action', 'pan-y', 'important');
+        document.body.style.setProperty('position', 'relative', 'important');
+        document.body.style.setProperty('min-height', '100vh', 'important');
         
-        console.log('📱 모바일 스크롤 걸림 현상 해결 완료');
+        // 스크롤 컨테이너 강화
+        const scrollableContent = document.querySelector('#scrollable-content');
+        if (scrollableContent) {
+          scrollableContent.style.setProperty('position', 'relative', 'important');
+          scrollableContent.style.setProperty('overflow-y', 'auto', 'important');
+          scrollableContent.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+          scrollableContent.style.setProperty('touch-action', 'pan-y', 'important');
+        }
+        
+        // 모든 섹션 스크롤 보장
+        const sections = document.querySelectorAll('.section, section');
+        sections.forEach(section => {
+          section.style.setProperty('position', 'relative', 'important');
+          section.style.setProperty('overflow', 'visible', 'important');
+          section.style.setProperty('touch-action', 'pan-y', 'important');
+        });
+        
+        // iOS Safari 스크롤 멈춤 방지
+        let isScrolling = false;
+        document.addEventListener('touchstart', () => {
+          isScrolling = true;
+        }, { passive: true });
+        
+        document.addEventListener('touchend', () => {
+          setTimeout(() => {
+            isScrolling = false;
+          }, 100);
+        }, { passive: true });
+        
+        // 스크롤 이벤트 강제 활성화
+        document.addEventListener('scroll', () => {
+          // 스크롤 이벤트가 발생하면 브라우저가 스크롤 상태를 유지하도록 함
+        }, { passive: true });
+        
+        console.log('📱 모바일 스크롤 걸림 현상 강력 해결 완료');
       }, 100);
     }
   } else {
@@ -8287,7 +8320,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 최적화 - 강력한 근본 해결 -->
+<!-- 모바일 스크롤 최적화 - 최소한의 개입 -->
 <style>
 @media (max-width: 768px) {
   /* 사용자 성공 방식 */
@@ -8296,43 +8329,44 @@ document.addEventListener('DOMContentLoaded', function() {
     transition: none !important; 
   }
   
-  /* 모든 CSS 애니메이션과 트랜스폼 제거 */
-  * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    -webkit-animation: none !important;
-    -webkit-transition: none !important;
-    -webkit-transform: none !important;
-  }
-  
-  /* 기본 스크롤 강제 보장 */
+  /* 기본 스크롤 보장 */
   html, body {
     overflow-x: hidden !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y !important;
-    position: relative !important;
   }
   
-  /* 모든 높은 z-index 요소 평면화 */
-  * {
-    z-index: auto !important;
+  /* 비디오 요소들만 터치 차단 */
+  .video-phone, .neo-smart-video, .floating-video {
+    pointer-events: none !important;
+    touch-action: none !important;
   }
   
-  /* 네비게이션만 예외 */
-  #mobile-top-nav-fixed, #mobile-top-nav-fixed * {
-    z-index: 9999 !important;
+  /* 네비게이션과 모달 허용 */
+  #mobile-top-nav-fixed, #formModal, #formModal * {
     pointer-events: auto !important;
     touch-action: auto !important;
   }
   
-  /* 모든 비디오와 인터랙티브 요소 차단 */
-  .video-phone, .neo-smart-video, .floating-video, 
-  .hive-image, .hive-showcase, .flipper, 
-  [style*="z-index: 2147483647"], [style*="z-index: 2147483646"] {
-    pointer-events: none !important;
-    touch-action: none !important;
+  /* 스크롤 멈춤 현상 강력 해결 */
+  body {
+    position: relative !important;
+    min-height: 100vh !important;
+  }
+  
+  #scrollable-content {
+    position: relative !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  
+  /* 모든 섹션 스크롤 보장 */
+  .section, section {
+    position: relative !important;
+    overflow: visible !important;
+    touch-action: pan-y !important;
   }
 }
 </style>
