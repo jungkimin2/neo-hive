@@ -8182,50 +8182,5 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<!-- 모바일에서 네오핏 온라인 클래스 구간 스크롤 걸림 해결 -->
-<style>
-@media (max-width: 768px) {
-  /* 네오 스마트 카드 리스트 구간 스크롤 최적화 - 네오핏 포함 */
-  .neos-card-list,
-  .neos-card-list * {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
-  }
-  
-  /* 네오핏 카드만 특별히 터치 최적화 */
-  .neos-card[style*="네오핏"],
-  .neos-card img[alt*="네오핏"] {
-    pointer-events: none !important;
-    touch-action: none !important;
-  }
-  
-  /* 네오 스마트 섹션 내 높은 z-index 요소들 터치 차단 */
-  #smart [style*="z-index"],
-  #smart .neo-smart-video,
-  #smart .floating-video {
-    pointer-events: none !important;
-    touch-action: none !important;
-  }
-  
-  /* 네오 스마트 섹션 컨테이너 스크롤 최적화 */
-  #smart .container,
-  #smart .slide-container {
-    overflow: visible !important;
-    transform-style: flat !important;
-    will-change: auto !important;
-  }
-  
-  /* 네오 스마트 섹션만 하드웨어 가속 제거 */
-  #smart * {
-    transform: none !important;
-    transform-style: flat !important;
-    perspective: none !important;
-    will-change: auto !important;
-    backface-visibility: visible !important;
-  }
-}
-</style>
-
 </body>
 </html>
