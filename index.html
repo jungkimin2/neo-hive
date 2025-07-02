@@ -8146,41 +8146,45 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- 모바일 스크롤 최적화 CSS -->
 <style>
 @media (max-width: 768px) {
-  /* 전역 스크롤 최적화 */
-  * {
+  /* 네오 하이브 섹션 전용 스크롤 최적화 - 다른 UI 영향 없음 */
+  #hive.section {
+    overflow: visible !important;
+    position: relative !important;
     -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y pinch-zoom !important;
   }
   
-  /* 높은 z-index 요소들의 터치 이벤트 최적화 */
-  [style*="z-index: 2147483647"],
-  [style*="z-index: 2147483646"],
-  [style*="z-index: 999"] {
-    pointer-events: auto !important;
-}
-
-  /* 스크롤 컨테이너 최적화 */
-  .slide-container,
-  .container,
-  .section {
+  /* 네오 하이브 섹션 내부 요소들만 터치 이벤트 차단 */
+  #hive .hive-showcase {
     touch-action: pan-y pinch-zoom !important;
     -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 스크롤 막힘 방지 */
-  body, html {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    scroll-behavior: smooth !important;
+  /* 네오 하이브 섹션 내 높은 z-index 요소들만 터치 차단 */
+  #hive [style*="z-index: 2147483647"],
+  #hive [style*="z-index: 2147483646"],
+  #hive .video-phone,
+  #hive .hive-image {
+    pointer-events: none !important;
+    touch-action: none !important;
   }
   
-  /* 터치 이벤트 최적화 */
-  .video-phone,
-  .hive-showcase,
-  .circular-flow-container {
-    touch-action: pan-y pinch-zoom !important;
+  /* 네오 하이브 섹션만 애니메이션 제거 */
+  #hive .animate-on-scroll,
+  #hive .slide-in-left,
+  #hive .slide-in-right {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  /* 네오 하이브 컨테이너 성능 최적화 */
+  #hive .container {
+    transform: translateZ(0) !important;
+    will-change: auto !important;
   }
 }
 </style>
 
-</body>
+  </body>
 </html>
