@@ -4424,20 +4424,48 @@ if (window.innerWidth <= 768) {
     }
   }
 
-  // 이미지 클릭 이벤트 핸들러 추가
+  // 이미지 클릭 이벤트 핸들러 수정 - 모바일 스크롤 방해 방지
   hiveImages.forEach((image, idx) => {
-    image.addEventListener('click', function (e) {
-      e.stopPropagation();
-      if (isTransitioning) return;
+    if (window.innerWidth <= 768) {
+      // 모바일에서는 터치 이벤트만 사용하고 짧은 탭만 인식
+      let touchStartTime = 0;
       
-      const isActive = image.classList.contains('active');
-      if (!isActive) {
-        slideIndex = idx;
-      } else {
-        slideIndex = -1;
-      }
-      showSlide(slideIndex);
-    });
+      image.addEventListener('touchstart', function(e) {
+        touchStartTime = Date.now();
+      }, { passive: true });
+      
+      image.addEventListener('touchend', function (e) {
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // 짧은 탭(200ms 이하)만 클릭으로 인식
+        if (touchDuration < 200 && !isTransitioning) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const isActive = image.classList.contains('active');
+          if (!isActive) {
+            slideIndex = idx;
+          } else {
+            slideIndex = -1;
+          }
+          showSlide(slideIndex);
+        }
+      }, { passive: false });
+    } else {
+      // PC에서는 기존 클릭 이벤트 유지
+      image.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (isTransitioning) return;
+        
+        const isActive = image.classList.contains('active');
+        if (!isActive) {
+          slideIndex = idx;
+        } else {
+          slideIndex = -1;
+        }
+        showSlide(slideIndex);
+      });
+    }
   });
 
   
@@ -4504,25 +4532,48 @@ if (window.innerWidth <= 768) {
     });
   }
 
-  // 비디오 클릭 시 원래 상태로 복귀
+  // 비디오 클릭 시 원래 상태로 복귀 - 모바일 스크롤 방해 방지
   if (videoPhone) {
-    videoPhone.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (isTransitioning) return;
+    if (window.innerWidth <= 768) {
+      // 모바일에서는 터치 이벤트로 처리
+      let videoTouchStartTime = 0;
       
+      videoPhone.addEventListener('touchstart', function(e) {
+        videoTouchStartTime = Date.now();
+      }, { passive: true });
+      
+      videoPhone.addEventListener('touchend', function(e) {
+        const touchDuration = Date.now() - videoTouchStartTime;
+        
+        if (touchDuration < 200 && !isTransitioning) {
+          e.preventDefault();
+          e.stopPropagation();
+          slideIndex = -1;
+          showSlide(slideIndex);
+        }
+      }, { passive: false });
+    } else {
+      // PC에서는 기존 클릭 이벤트 유지
+      videoPhone.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isTransitioning) return;
+        
+        slideIndex = -1;
+        showSlide(slideIndex);
+      });
+    }
+  }
+
+  // Reset all if clicked outside - 모바일에서는 비활성화
+  if (window.innerWidth > 768) {
+    document.querySelector('.hive-showcase').addEventListener('click', (e) => {
+      if (e.target.classList.contains('hive-image') || e.target.closest('.video-phone')) return;
+      
+      if (isTransitioning) return;
       slideIndex = -1;
       showSlide(slideIndex);
     });
   }
-
-  // Reset all if clicked outside
-  document.querySelector('.hive-showcase').addEventListener('click', (e) => {
-    if (e.target.classList.contains('hive-image') || e.target.closest('.video-phone')) return;
-    
-    if (isTransitioning) return;
-    slideIndex = -1;
-    showSlide(slideIndex);
-  });
 </script>
 </body>
 <script>
@@ -5100,40 +5151,58 @@ if (video) {
 </style>
 
 <script>
-  // 터치 이벤트 처리 추가
+  // 터치 이벤트 처리 수정 - 스크롤 걸림 현상 해결
   document.addEventListener("DOMContentLoaded", function () {
     const showcase = document.querySelector('.hive-showcase');
-    if (!showcase) return;
+    if (!showcase || window.innerWidth > 768) return; // PC에서는 실행하지 않음
     
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let isScrolling = false;
 
+    // passive: true 옵션으로 스크롤 성능 향상
     showcase.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
-    });
+      touchStartY = e.touches[0].clientY;
+      isScrolling = false;
+    }, { passive: true });
+
+    showcase.addEventListener('touchmove', (e) => {
+      if (!isScrolling) {
+        const touchMoveX = e.touches[0].clientX;
+        const touchMoveY = e.touches[0].clientY;
+        const diffX = Math.abs(touchMoveX - touchStartX);
+        const diffY = Math.abs(touchMoveY - touchStartY);
+        
+        // 세로 스크롤이 가로 스크롤보다 크면 스크롤로 판단
+        if (diffY > diffX) {
+          isScrolling = true;
+        }
+      }
+    }, { passive: true });
 
     showcase.addEventListener('touchend', (e) => {
+      if (isScrolling) return; // 스크롤 중이면 스와이프 무시
+      
       touchEndX = e.changedTouches[0].clientX;
       handleSwipe();
-    });
+    }, { passive: true });
 
     function handleSwipe() {
-      const swipeThreshold = 50;
+      const swipeThreshold = 80; // 임계값 증가로 우발적 스와이프 방지
       const diff = touchEndX - touchStartX;
 
-      if (Math.abs(diff) > swipeThreshold) {
+      if (Math.abs(diff) > swipeThreshold && !isScrolling) {
         if (diff > 0) {
           // 오른쪽으로 스와이프
-          if (window.innerWidth <= 768) {
-            const prevBtn = document.getElementById('slide-prev');
-            if (prevBtn) prevBtn.click();
-          }
+          const prevBtn = document.getElementById('slide-prev');
+          if (prevBtn) prevBtn.click();
         } else {
           // 왼쪽으로 스와이프
-          if (window.innerWidth <= 768) {
-            const nextBtn = document.getElementById('slide-next');
-            if (nextBtn) nextBtn.click();
-          }
+          const nextBtn = document.getElementById('slide-next');
+          if (nextBtn) nextBtn.click();
         }
       }
     }
@@ -8101,39 +8170,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용
-    const observer = new MutationObserver(function(mutations) {
-      let shouldReapply = false;
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-          shouldReapply = true;
+    // 모바일에서는 MutationObserver 비활성화 - 스크롤 성능 향상
+    if (window.innerWidth > 768) {
+      // PC에서만 MutationObserver 사용
+      const observer = new MutationObserver(function(mutations) {
+        let shouldReapply = false;
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList' || mutation.type === 'attributes') {
+            shouldReapply = true;
+          }
+        });
+        if (shouldReapply) {
+          removeGreyBoxes(); // 회색 박스 제거
+          forceApplyMobileStyles();
+          adjustMobileIcons();
+          restoreGlowEffect(); // 발광효과 복구
         }
       });
-      if (shouldReapply) {
-        removeGreyBoxes(); // 회색 박스 제거
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-        restoreGlowEffect(); // 발광효과 복구
-      }
-    });
-    
-    // DOM 감시 시작
-    if (document.body) {
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
+      
+      // DOM 감시 시작 (PC에서만)
+      if (document.body) {
         observer.observe(document.body, {
           childList: true,
           subtree: true,
           attributes: true,
           attributeFilter: ['style', 'class']
         });
-      });
+      } else {
+        document.addEventListener('DOMContentLoaded', function() {
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style', 'class']
+          });
+        });
+      }
+    } else {
+      // 모바일에서는 초기 설정만 실행
+      removeGreyBoxes();
+      forceApplyMobileStyles();
+      adjustMobileIcons();
+      restoreGlowEffect();
+      
+      console.log('📱 모바일: MutationObserver 비활성화로 스크롤 성능 최적화');
+      
+      // 모바일 스크롤 걸림 현상 해결을 위한 추가 최적화
+      setTimeout(() => {
+        // 모든 높은 z-index 요소들의 터치 이벤트 차단 (네비게이션 제외)
+        const highZIndexElements = document.querySelectorAll('[style*="z-index"]');
+        highZIndexElements.forEach(el => {
+          const zIndex = el.style.zIndex;
+          if (parseInt(zIndex) > 1000 && !el.closest('#mobile-top-nav-fixed') && !el.closest('#formModal')) {
+            el.style.setProperty('pointer-events', 'none', 'important');
+            el.style.setProperty('touch-action', 'none', 'important');
+          }
+        });
+        
+        // 스크롤 영역 강제 보장
+        document.body.style.setProperty('touch-action', 'pan-y', 'important');
+        document.documentElement.style.setProperty('touch-action', 'pan-y', 'important');
+        
+        console.log('📱 모바일 스크롤 걸림 현상 해결 완료');
+      }, 100);
     }
   } else {
     // PC 환경에서는 body 즉시 표시
@@ -8143,41 +8242,66 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 최적화 CSS -->
+<!-- 모바일 스크롤 최적화 CSS - 스크롤 걸림 현상 해결 -->
 <style>
 @media (max-width: 768px) {
-  /* 전역 스크롤 최적화 */
-  * {
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 높은 z-index 요소들의 터치 이벤트 최적화 */
-  [style*="z-index: 2147483647"],
-  [style*="z-index: 2147483646"],
-  [style*="z-index: 999"] {
-    pointer-events: auto !important;
-}
-
-  /* 스크롤 컨테이너 최적화 */
-  .slide-container,
-  .container,
-  .section {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 스크롤 막힘 방지 */
-  body, html {
-    overflow-y: auto !important;
+  /* 전역 스크롤 보장 - 최우선 */
+  html, body {
     overflow-x: hidden !important;
-    scroll-behavior: smooth !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    scroll-behavior: auto !important;
+    position: relative !important;
   }
   
-  /* 터치 이벤트 최적화 */
-  .video-phone,
+  /* 네오 하이브 섹션 스크롤 최적화 */
+  #hive,
+  #hive *,
   .hive-showcase,
-  .circular-flow-container {
-    touch-action: pan-y pinch-zoom !important;
+  .hive-showcase * {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 비디오와 이미지 요소들 터치 이벤트 제한 */
+  .video-phone,
+  .hive-image,
+  .neo-smart-video,
+  .floating-video {
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+  
+  /* 스크롤 영역 보장 */
+  .section,
+  .container,
+  #scrollable-content {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+  }
+  
+  /* 네비게이션과 폼 모달만 터치 허용 */
+  #mobile-top-nav-fixed,
+  #mobile-top-nav-fixed *,
+  #formModal,
+  #formModal * {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+  }
+  
+  /* 높은 z-index 요소들의 터치 차단 */
+  [style*="z-index: 2147483647"],
+  [style*="z-index: 2147483646"] {
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+  
+  /* 네비게이션만 예외 */
+  #mobile-top-nav-fixed {
+    pointer-events: auto !important;
+    touch-action: auto !important;
   }
 }
 </style>
