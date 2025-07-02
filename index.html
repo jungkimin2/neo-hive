@@ -8217,16 +8217,45 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 걸림 완전 해결 CSS - 강력한 수정 -->
+<!-- 모바일 스크롤 걸림 완전 해결 CSS - 애니메이션 제거 방식 -->
 <style>
 @media (max-width: 768px) {
+  /* 모바일에서만 적용되는 최적화 - 모든 애니메이션과 트랜지션 제거 */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    -webkit-animation: none !important;
+    -webkit-transition: none !important;
+    -moz-animation: none !important;
+    -moz-transition: none !important;
+    -o-animation: none !important;
+    -o-transition: none !important;
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* 3D 변환 완전 제거 */
+  * {
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+    perspective: none !important;
+    -webkit-perspective: none !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    will-change: auto !important;
+  }
+  
   /* 전역 스크롤 최적화 */
   html, body {
     overflow-x: hidden !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y pinch-zoom !important;
-    scroll-behavior: auto !important; /* smooth에서 auto로 변경 */
+    scroll-behavior: auto !important;
     position: relative !important;
     height: auto !important;
   }
@@ -8239,7 +8268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-overflow-scrolling: touch !important;
     pointer-events: auto !important;
     position: relative !important;
-    z-index: 1 !important; /* 낮은 z-index로 통일 */
+    z-index: 1 !important;
   }
   
   /* 모든 높은 z-index 요소들 터치 이벤트 완전 차단 */
