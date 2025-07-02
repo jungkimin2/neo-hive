@@ -8101,40 +8101,75 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용
-    const observer = new MutationObserver(function(mutations) {
-      let shouldReapply = false;
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-          shouldReapply = true;
-        }
-      });
-      if (shouldReapply) {
-        removeGreyBoxes(); // 회색 박스 제거
-        forceApplyMobileStyles();
-        adjustMobileIcons();
-        restoreGlowEffect(); // 발광효과 복구
-      }
-    });
+    // 🚀 모바일 스크롤 최적화: MutationObserver 제거 (성능 향상)
+    console.log('🚀 Mobile scroll optimization: MutationObserver disabled for better performance');
     
-    // DOM 감시 시작
-    if (document.body) {
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['style', 'class']
+    // 🔧 모바일에서 스크롤 방해 요소들 완전 제거
+    function disableScrollBlockers() {
+      if (window.innerWidth <= 768) {
+        // 모든 높은 z-index 요소들 찾아서 비활성화
+        document.querySelectorAll('*').forEach(el => {
+          const zIndex = window.getComputedStyle(el).zIndex;
+          if (parseInt(zIndex) > 100) {
+            el.style.setProperty('z-index', '1', 'important');
+            el.style.setProperty('pointer-events', 'none', 'important');
+            el.style.setProperty('touch-action', 'none', 'important');
+          }
         });
-      });
+        
+        // 모든 애니메이션 강제 중단
+        document.querySelectorAll('*').forEach(el => {
+          if (el.id !== 'mobile-top-nav-fixed' && !el.closest('#mobile-top-nav-fixed') && 
+              el.id !== 'formModal' && !el.closest('#formModal')) {
+            el.style.setProperty('animation', 'none', 'important');
+            el.style.setProperty('transition', 'none', 'important');
+            el.style.setProperty('transform', 'none', 'important');
+          }
+        });
+        
+        console.log('🔧 All scroll blockers disabled on mobile');
+      }
     }
+    
+    // 즉시 실행하고 짧은 간격으로 재실행 (1초간만)
+    disableScrollBlockers();
+    let execCount = 0;
+    const maxExec = 10; // 최대 10번만 실행
+    const intervalId = setInterval(() => {
+      disableScrollBlockers();
+      execCount++;
+      if (execCount >= maxExec) {
+        clearInterval(intervalId);
+        console.log('🚀 Mobile scroll optimization completed');
+      }
+         }, 100);
+     
+     // 🛡️ 최종 보험: 모바일 터치 이벤트 완전 통제
+     if (window.innerWidth <= 768) {
+       // 스크롤만 허용하고 나머지 모든 터치 이벤트 차단
+       document.addEventListener('touchstart', function(e) {
+         // 네비게이션과 폼 모달 제외하고 모든 터치 차단
+         if (!e.target.closest('#mobile-top-nav-fixed') && 
+             !e.target.closest('#formModal') &&
+             !e.target.closest('.nav-menu') &&
+             !e.target.closest('button[onclick*="openForm"]')) {
+           e.preventDefault();
+           e.stopPropagation();
+         }
+       }, { passive: false, capture: true });
+       
+       // 터치 이동은 세로 스크롤만 허용
+       document.addEventListener('touchmove', function(e) {
+         if (!e.target.closest('#mobile-top-nav-fixed') && 
+             !e.target.closest('#formModal')) {
+           // 세로 스크롤만 허용
+           e.stopPropagation();
+         }
+       }, { passive: true, capture: true });
+       
+       console.log('🛡️ Mobile touch events controlled for smooth scrolling');
+     }
+     
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.display = 'block';
@@ -8143,45 +8178,54 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 최적화 CSS -->
+<!-- 🚀 모바일 스크롤 걸림 완전 해결 - 최종 버전 -->
 <style>
 @media (max-width: 768px) {
-  /* 네오 하이브 섹션 전용 스크롤 최적화 - 다른 UI 영향 없음 */
-  #hive.section {
-    overflow: visible !important;
-    position: relative !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
-  }
-  
-  /* 네오 하이브 섹션 내부 요소들만 터치 이벤트 차단 */
-  #hive .hive-showcase {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 네오 하이브 섹션 내 높은 z-index 요소들만 터치 차단 */
-  #hive [style*="z-index: 2147483647"],
-  #hive [style*="z-index: 2147483646"],
-  #hive .video-phone,
-  #hive .hive-image {
+  /* 🔧 모든 높은 z-index 요소들 비활성화 */
+  [style*="z-index: 2147483647"],
+  [style*="z-index: 2147483646"],
+  [style*="z-index: 999"] {
+    z-index: 1 !important;
     pointer-events: none !important;
     touch-action: none !important;
   }
   
-  /* 네오 하이브 섹션만 애니메이션 제거 */
-  #hive .animate-on-scroll,
-  #hive .slide-in-left,
-  #hive .slide-in-right {
+  /* 🎯 모든 애니메이션과 3D 변환 제거 */
+  *:not(#mobile-top-nav-fixed):not(#mobile-top-nav-fixed *):not(#formModal):not(#formModal *) {
     animation: none !important;
     transition: none !important;
     transform: none !important;
+    -webkit-transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+    will-change: auto !important;
   }
   
-  /* 네오 하이브 컨테이너 성능 최적화 */
-  #hive .container {
+  /* ⚡ 스크롤 성능 최적화 */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y pinch-zoom !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* 📱 모든 섹션 기본 설정 */
+  .section, .container, div, span {
+    position: relative !important;
+    z-index: auto !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  /* 🛡️ 네비게이션과 모달만 예외 처리 */
+  #mobile-top-nav-fixed {
+    z-index: 1000 !important;
     transform: translateZ(0) !important;
-    will-change: auto !important;
+  }
+  
+  #formModal {
+    z-index: 1001 !important;
   }
 }
 </style>
