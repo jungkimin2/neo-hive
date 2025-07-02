@@ -8101,16 +8101,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver 제거 - 대신 간단한 스크롤 최적화 적용
-    console.log('🚀 모바일 스크롤 최적화 완료 - MutationObserver 제거로 성능 향상');
-    
-    // 간단한 비디오 요소 터치 차단만 적용 - 스크롤 이벤트 최적화 제거
-    document.querySelectorAll('.video-phone, .neo-smart-video, .floating-video').forEach(el => {
-      el.style.pointerEvents = 'none';
-      el.style.touchAction = 'none';
+    // MutationObserver로 DOM 변경 감지 시 재적용
+    const observer = new MutationObserver(function(mutations) {
+      let shouldReapply = false;
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          shouldReapply = true;
+        }
+      });
+      if (shouldReapply) {
+        removeGreyBoxes(); // 회색 박스 제거
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+        restoreGlowEffect(); // 발광효과 복구
+      }
     });
     
-    console.log('🚀 모바일 스크롤 최적화 완료 - 단순화된 방식 적용');
+    // DOM 감시 시작
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+      });
+    }
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.display = 'block';
@@ -8119,33 +8143,41 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 최적화 - 스크롤 보장 -->
+<!-- 모바일 스크롤 최적화 CSS -->
 <style>
 @media (max-width: 768px) {
-  /* 스크롤만 보장하고 나머지는 최소 개입 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+  /* 전역 스크롤 최적화 */
+  * {
     -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y !important;
-    position: relative !important;
   }
   
-  /* 비디오 요소들만 터치 차단 */
-  .video-phone,
-  .neo-smart-video,
-  .floating-video {
-    pointer-events: none !important;
-    touch-action: none !important;
-  }
-  
-  /* 네비게이션은 정상 작동 */
-  #mobile-top-nav-fixed,
-  #mobile-top-nav-fixed *,
-  #formModal,
-  #formModal * {
+  /* 높은 z-index 요소들의 터치 이벤트 최적화 */
+  [style*="z-index: 2147483647"],
+  [style*="z-index: 2147483646"],
+  [style*="z-index: 999"] {
     pointer-events: auto !important;
-    touch-action: auto !important;
+}
+
+  /* 스크롤 컨테이너 최적화 */
+  .slide-container,
+  .container,
+  .section {
+    touch-action: pan-y pinch-zoom !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 스크롤 막힘 방지 */
+  body, html {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+  }
+  
+  /* 터치 이벤트 최적화 */
+  .video-phone,
+  .hive-showcase,
+  .circular-flow-container {
+    touch-action: pan-y pinch-zoom !important;
   }
 }
 </style>
