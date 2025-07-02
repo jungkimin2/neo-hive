@@ -6001,43 +6001,43 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 클릭 이벤트 (PC와 모바일 모두)
-    flipButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Button clicked'); // 디버깅용
-      performFlip();
-    });
-    
-    // PC에서 이미지 클릭으로도 뒤집기 가능
-    if (flipContainer && !isMobile) {
-      flipContainer.addEventListener('click', function(e) {
-        // 버튼 클릭이 아닌 경우에만 실행
-        if (!e.target.closest('.neos-category-tags')) {
+    // 클릭 이벤트 최적화 - 모바일 스크롤 방해 방지
+    if (isMobile) {
+      // 모바일에서는 짧은 터치만 인식
+      let flipTouchStartTime = 0;
+      
+      flipButton.addEventListener('touchstart', function(e) {
+        flipTouchStartTime = Date.now();
+      }, { passive: true });
+      
+      flipButton.addEventListener('touchend', function(e) {
+        const touchDuration = Date.now() - flipTouchStartTime;
+        
+        // 짧은 탭(150ms 이하)만 뒤집기로 인식
+        if (touchDuration < 150) {
           e.preventDefault();
           e.stopPropagation();
-          console.log('Container clicked'); // 디버깅용
+          console.log('Mobile flip triggered'); // 디버깅용
           performFlip();
         }
-      });
-    }
-    
-    // 터치 이벤트 (모바일 전용)
-    if (isMobile) {
-      flipButton.addEventListener('touchstart', function(e) {
+      }, { passive: false });
+    } else {
+      // PC에서는 기존 클릭 이벤트 유지
+      flipButton.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log('Touch started'); // 디버깅용
+        console.log('Button clicked'); // 디버깅용
         performFlip();
       });
       
-      // 모바일에서 컨테이너 터치로도 뒤집기 가능
+      // PC에서 이미지 클릭으로도 뒤집기 가능
       if (flipContainer) {
-        flipContainer.addEventListener('touchstart', function(e) {
+        flipContainer.addEventListener('click', function(e) {
+          // 버튼 클릭이 아닌 경우에만 실행
           if (!e.target.closest('.neos-category-tags')) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Container touched'); // 디버깅용
+            console.log('Container clicked'); // 디버깅용
             performFlip();
           }
         });
@@ -8217,15 +8217,36 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 모바일 스크롤 걸림 현상 해결을 위한 추가 최적화
       setTimeout(() => {
-        // 모든 높은 z-index 요소들의 터치 이벤트 차단 (네비게이션 제외)
-        const highZIndexElements = document.querySelectorAll('[style*="z-index"]');
-        highZIndexElements.forEach(el => {
-          const zIndex = el.style.zIndex;
-          if (parseInt(zIndex) > 1000 && !el.closest('#mobile-top-nav-fixed') && !el.closest('#formModal')) {
-            el.style.setProperty('pointer-events', 'none', 'important');
-            el.style.setProperty('touch-action', 'none', 'important');
-          }
-        });
+                 // 모든 높은 z-index 요소들의 터치 이벤트 차단 (네비게이션 제외)
+         const highZIndexElements = document.querySelectorAll('[style*="z-index"]');
+         highZIndexElements.forEach(el => {
+           const zIndex = el.style.zIndex;
+           if (parseInt(zIndex) > 100 && !el.closest('#mobile-top-nav-fixed') && !el.closest('#formModal')) {
+             el.style.setProperty('pointer-events', 'none', 'important');
+             el.style.setProperty('touch-action', 'none', 'important');
+           }
+         });
+         
+         // 네오 스마트 관련 모든 요소들 터치 이벤트 차단
+         const neoSmartElements = document.querySelectorAll(
+           '.neo-smart-video, .floating-video, .neo-smart-logo, .neos-wrapper, ' +
+           '.flip-container, .flipper, .back, .back-text-overlay, ' +
+           '.neos-category-tags, .wave-background'
+         );
+         neoSmartElements.forEach(el => {
+           // 뒤집기 버튼만 예외
+           if (!el.classList.contains('neos-category-tags')) {
+             el.style.setProperty('pointer-events', 'none', 'important');
+             el.style.setProperty('touch-action', 'none', 'important');
+           }
+         });
+         
+         // 네오 스마트 카드 리스트는 스크롤 허용
+         const neosCardList = document.querySelector('.neos-card-list');
+         if (neosCardList) {
+           neosCardList.style.setProperty('touch-action', 'pan-y', 'important');
+           neosCardList.style.setProperty('pointer-events', 'auto', 'important');
+         }
         
         // 스크롤 영역 강제 보장
         document.body.style.setProperty('touch-action', 'pan-y', 'important');
@@ -8264,11 +8285,28 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 비디오와 이미지 요소들 터치 이벤트 제한 */
+  /* 네오 스마트 섹션 스크롤 최적화 */
+  #smart,
+  #smart *,
+  .neos-wrapper,
+  .neos-wrapper *,
+  .flip-container,
+  .flip-container *,
+  .flipper,
+  .flipper * {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 비디오와 이미지 요소들 터치 이벤트 완전 차단 */
   .video-phone,
   .hive-image,
   .neo-smart-video,
-  .floating-video {
+  .floating-video,
+  .neo-smart-logo,
+  .neo-smart-logo *,
+  .back,
+  .back-text-overlay {
     pointer-events: none !important;
     touch-action: none !important;
   }
@@ -8302,6 +8340,34 @@ document.addEventListener('DOMContentLoaded', function() {
   #mobile-top-nav-fixed {
     pointer-events: auto !important;
     touch-action: auto !important;
+  }
+  
+  /* 네오 스마트 섹션 특별 최적화 - 스크롤 걸림 방지 */
+  #smart {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+  }
+  
+  /* 뒤집기 버튼만 터치 허용 */
+  .neos-category-tags {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    z-index: 999 !important;
+  }
+  
+  /* 원형 플로우 컨테이너 스크롤 허용 */
+  .circular-flow-container,
+  .circular-flow-container * {
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+  
+  /* 네오 스마트 카드들 터치 허용 */
+  .neos-card,
+  .neos-card * {
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
   }
 }
 </style>
