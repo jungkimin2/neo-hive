@@ -2385,7 +2385,7 @@ html body .core-value-fresh-mobile {
       <style>
       @media (max-width: 768px) {
         #smart-speaker-btn {
-          left: calc(50% + 22px) !important;
+          left: calc(50% + 70px) !important;
           top: calc(50% - 152px) !important;
           width: 70px !important;
           height: 28px !important;
@@ -3400,7 +3400,7 @@ if (window.innerWidth <= 768) {
           hiveVideo.muted = false;
           // 모바일과 PC에 따른 볼륨 설정
           if (window.innerWidth <= 768) {
-            hiveVideo.volume = 0.08; // 모바일에서 8%
+            hiveVideo.volume = 0.1; // 모바일에서 10%
           } else {
             hiveVideo.volume = 0.15; // PC에서 15%
           }
@@ -3468,13 +3468,13 @@ if (window.innerWidth <= 768) {
         
         // 추가적으로 부드러운 스크롤도 적용
         setTimeout(() => {
-      window.scrollTo({
-        top: 0,
+          window.scrollTo({
+            top: 0,
             left: 0,
-        behavior: 'smooth'
-      });
+            behavior: 'smooth'
+          });
         }, 10);
-      
+        
         console.log('💻 네오 하이브 로고 클릭 - 완전 최상단으로 스크롤');
       }
     }
@@ -8117,64 +8117,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // 모바일 스크롤 방해 요소 제어 함수
-    function optimizeMobileScroll() {
-      if (window.innerWidth <= 768) {
-        // 높은 z-index를 가진 장식용 요소들의 터치 이벤트 차단
-        const highZIndexElements = document.querySelectorAll('[style*="z-index: 2147483646"], [style*="z-index: 2147483647"]');
-        highZIndexElements.forEach(el => {
-          // 네비게이션과 모달은 제외
-          if (!el.id.includes('mobile-top-nav') && !el.id.includes('formModal') && !el.classList.contains('nav-')) {
-            // 비디오와 이미지가 아닌 경우에만 터치 차단
-            if (!el.classList.contains('video-phone') && !el.classList.contains('hive-image')) {
-              el.style.setProperty('pointer-events', 'none', 'important');
-              el.style.setProperty('touch-action', 'none', 'important');
-            }
-          }
-        });
-        
-        // 스크롤 컨테이너 최적화
-        const scrollContainers = document.querySelectorAll('.section, .container, #scrollable-content');
-        scrollContainers.forEach(container => {
-          container.style.setProperty('touch-action', 'pan-y pinch-zoom', 'important');
-          container.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-          container.style.setProperty('pointer-events', 'auto', 'important');
-        });
-        
-        // 네비게이션 터치 이벤트 보장
-        const navElements = document.querySelectorAll('#mobile-top-nav-fixed, #mobile-top-nav-fixed *, .nav-bar, .nav-menu, .nav-menu a');
-        navElements.forEach(nav => {
-          nav.style.setProperty('pointer-events', 'auto', 'important');
-          nav.style.setProperty('touch-action', 'manipulation', 'important');
-        });
-        
-        // 버튼들 터치 이벤트 보장
-        const buttons = document.querySelectorAll('button, .btn, #slide-prev, #slide-next, input[type="submit"]');
-        buttons.forEach(btn => {
-          btn.style.setProperty('pointer-events', 'auto', 'important');
-          btn.style.setProperty('touch-action', 'manipulation', 'important');
-        });
-        
-        // 하이브 이미지들 터치 이벤트 보장
-        const hiveImages = document.querySelectorAll('.hive-image, .video-phone');
-        hiveImages.forEach(img => {
-          img.style.setProperty('pointer-events', 'auto', 'important');
-          img.style.setProperty('touch-action', 'manipulation', 'important');
-        });
-        
-        // body 스크롤 보장
-        document.body.style.setProperty('overflow-y', 'auto', 'important');
-        document.body.style.setProperty('overflow-x', 'hidden', 'important');
-        document.body.style.setProperty('touch-action', 'pan-y pinch-zoom', 'important');
-        document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-        
-        console.log('🔧 Mobile scroll optimization applied');
-      }
-    }
-    
-    // 페이지 로드 시 스크롤 최적화 적용
-    optimizeMobileScroll();
-    
     // DOM 감시 시작
     if (document.body) {
       observer.observe(document.body, {
@@ -8193,22 +8135,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       });
     }
-    
-    // 리사이즈 시에도 스크롤 최적화 재적용
-    window.addEventListener('resize', function() {
-      setTimeout(optimizeMobileScroll, 100);
-    });
-    
-    // 스크롤 이벤트 최적화 (throttling)
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = setTimeout(function() {
-        optimizeMobileScroll();
-      }, 150);
-    }, { passive: true });
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.display = 'block';
@@ -8217,142 +8143,41 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-<!-- 모바일 스크롤 걸림 완전 해결 CSS -->
+<!-- 모바일 스크롤 최적화 CSS -->
 <style>
 @media (max-width: 768px) {
   /* 전역 스크롤 최적화 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
-    scroll-behavior: smooth !important;
-    position: relative !important;
-  }
-  
-  /* 메인 콘텐츠 영역 스크롤 최적화 */
-  #scrollable-content,
-  .section,
-  .container {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
-    position: relative !important;
-  }
-  
-  /* 높은 z-index 요소들 중 터치 이벤트가 필요하지 않은 것들 */
-  .video-phone:not(.active),
-  .neo-smart-video:not(.playing),
-  .floating-video {
-    pointer-events: none !important; /* 스크롤 방해 방지 */
-    touch-action: none !important;
-  }
-  
-  /* 터치 이벤트가 필요한 요소들만 활성화 */
-  .video-phone:hover,
-  .video-phone.active,
-  .hive-image,
-  .hive-image:hover,
-  .hive-image.active {
-    pointer-events: auto !important;
-    touch-action: manipulation !important;
-  }
-  
-  /* 네비게이션은 터치 이벤트 유지 */
-  #mobile-top-nav-fixed,
-  #mobile-top-nav-fixed *,
-  .nav-bar,
-  .nav-menu,
-  .nav-menu a {
-    pointer-events: auto !important;
-    touch-action: manipulation !important;
-  }
-  
-  /* 스크롤 컨테이너들 */
-  .hive-showcase,
-  .circular-flow-container,
-  .slide-container {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-    overflow: visible !important;
-  }
-  
-  /* 배경 장식 요소들은 터치 이벤트 차단 */
-  .circular-bg-glow,
-  .wave-background,
-  [style*="pointer-events: none"] {
-    pointer-events: none !important;
-    touch-action: none !important;
-  }
-  
-  /* 모달 관련 요소들 */
-  .modal-overlay,
-  #formModal {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 스크롤 막힘 방지 - 중요 */
   * {
-    -webkit-tap-highlight-color: transparent !important;
-    -webkit-touch-callout: none !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 텍스트는 선택 가능하게 */
-  p, span, h1, h2, h3, h4, h5, h6, li, td, th {
-    -webkit-user-select: text !important;
-    user-select: text !important;
-  }
-  
-  /* 입력 폼은 모든 터치 이벤트 허용 */
-  input, textarea, select, button {
-    -webkit-user-select: auto !important;
-    user-select: auto !important;
-    touch-action: manipulation !important;
+  /* 높은 z-index 요소들의 터치 이벤트 최적화 */
+  [style*="z-index: 2147483647"],
+  [style*="z-index: 2147483646"],
+  [style*="z-index: 999"] {
     pointer-events: auto !important;
-  }
-  
-  /* 스크롤 성능 최적화 */
+}
+
+  /* 스크롤 컨테이너 최적화 */
+  .slide-container,
+  .container,
   .section {
-    will-change: scroll-position !important;
-    transform: translateZ(0) !important;
-    -webkit-transform: translateZ(0) !important;
+    touch-action: pan-y pinch-zoom !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 고정 요소들의 스크롤 방해 방지 */
-  [style*="position: fixed"]:not(#mobile-top-nav-fixed):not(#formModal) {
-    pointer-events: none !important;
+  /* 스크롤 막힘 방지 */
+  body, html {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
   }
   
-  /* 절대 위치 요소들 중 장식용은 터치 차단 */
-  [style*="position: absolute"][style*="z-index"]:not(.hive-image):not(.video-phone):not(#formModal) {
-    pointer-events: none !important;
-  }
-  
-  /* 슬라이드 버튼들은 터치 이벤트 유지 */
-  #slide-prev,
-  #slide-next,
-  .nav-menu-btn,
-  .btn,
-  button {
-    pointer-events: auto !important;
-    touch-action: manipulation !important;
-  }
-  
-  /* 스크롤 끊김 방지 추가 */
-  body {
-    position: relative !important;
-    min-height: 100vh !important;
-    transform: none !important;
-    -webkit-transform: none !important;
-  }
-  
-  /* 3D 변환이 스크롤을 방해하지 않도록 */
-  *:not(.hive-image):not(.video-phone):not(.flipper):not([class*="slide"]) {
-    transform-style: flat !important;
-    -webkit-transform-style: flat !important;
+  /* 터치 이벤트 최적화 */
+  .video-phone,
+  .hive-showcase,
+  .circular-flow-container {
+    touch-action: pan-y pinch-zoom !important;
   }
 }
 </style>
