@@ -8248,14 +8248,24 @@ document.addEventListener('DOMContentLoaded', function() {
            neosCardList.style.setProperty('pointer-events', 'auto', 'important');
          }
          
-         // 네오 하이브 텍스트 영역 강제 보호
-         const hiveTextElements = document.querySelectorAll('#hive h2, #hive p, #hive .container');
+         // 네오 하이브 텍스트 영역 강화 보호 - 스크롤 걸림 해결
+         const hiveTextElements = document.querySelectorAll('#hive h2, #hive p, #hive .container, #hive span');
          hiveTextElements.forEach(el => {
            el.style.setProperty('touch-action', 'pan-y', 'important');
            el.style.setProperty('pointer-events', 'auto', 'important');
            el.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-           el.style.setProperty('z-index', '100', 'important');
+           el.style.setProperty('z-index', '1000', 'important');
            el.style.setProperty('position', 'relative', 'important');
+           el.style.setProperty('background', 'transparent', 'important');
+         });
+         
+         // 네오 하이브 섹션 내 모든 방해 요소 차단
+         const hiveDisruptiveElements = document.querySelectorAll('#hive .video-phone, #hive .hive-image, #hive [style*="z-index"]');
+         hiveDisruptiveElements.forEach(el => {
+           if (!el.matches('h2, p, .container, span')) {
+             el.style.setProperty('pointer-events', 'none', 'important');
+             el.style.setProperty('touch-action', 'none', 'important');
+           }
          });
          
          // 네오 하이브 섹션 전체 스크롤 보장
@@ -8294,14 +8304,10 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
   }
   
-  /* 모든 애니메이션과 트랜지션 제거 - 스크롤 걸림 방지 */
-  * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    -webkit-animation: none !important;
-    -webkit-transition: none !important;
-    -webkit-transform: none !important;
+  /* 사용자 성공 방식 적용 - 최소한의 애니메이션 제거 */
+  .animate-on-scroll { 
+    animation: none !important; 
+    transition: none !important; 
   }
   
   /* 네오 하이브 섹션 스크롤 최적화 - 텍스트 영역 포함 */
@@ -8361,15 +8367,24 @@ document.addEventListener('DOMContentLoaded', function() {
     touch-action: none !important;
   }
   
-  /* 네오 하이브 텍스트가 비디오/이미지에 가려지지 않도록 */
+  /* 네오 하이브 텍스트 구간 스크롤 걸림 해결 */
   #hive h2,
-  #hive p {
+  #hive p,
+  #hive .container {
     position: relative !important;
-    z-index: 100 !important;
-    background: rgba(0, 0, 0, 0.8) !important;
-    padding: 8px 0 !important;
+    z-index: 1000 !important;
     touch-action: pan-y !important;
     pointer-events: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+  }
+  
+  /* 네오 하이브 섹션 내 비디오/이미지 완전 비활성화 */
+  #hive .video-phone,
+  #hive .hive-image,
+  #hive .hive-showcase *:not(h2):not(p):not(.container) {
+    pointer-events: none !important;
+    touch-action: none !important;
   }
   
   /* 스크롤 영역 보장 */
@@ -8454,6 +8469,28 @@ document.addEventListener('DOMContentLoaded', function() {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
     position: relative !important;
+  }
+  
+  /* 네오 하이브 섹션 스크롤 강화 - 텍스트 걸림 현상 완전 해결 */
+  #hive {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+  
+  /* 텍스트 영역만 스크롤 허용, 나머지는 차단 */
+  #hive * {
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+  
+  #hive h2,
+  #hive p,
+  #hive .container,
+  #hive span {
+    pointer-events: auto !important;
+    touch-action: pan-y !important;
   }
 }
 </style>
