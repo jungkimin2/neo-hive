@@ -8326,29 +8326,16 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 1000 !important;
   }
   
-  /* 네오 하이브 섹션 쇼케이스 완전 단순화 - 스크롤 걸림 해결 */
-  #hive .hive-showcase {
-    pointer-events: none !important;
-    touch-action: none !important;
-    position: static !important;
-    height: auto !important;
-    min-height: 200px !important;
-  }
-  
-  /* 네오 하이브 섹션 내 모든 방해 요소들 완전 차단 */
+  /* 네오 하이브 섹션 내 방해 요소들 터치 차단 */
   #hive .video-phone,
   #hive .hive-image,
+  #hive .hive-showcase,
   #hive .hive-label-left,
   #hive .hive-label-right,
   #hive #slide-prev,
-  #hive #slide-next,
-  #hive .hive-showcase *,
-  #hive .hive-showcase::before,
-  #hive .hive-showcase::after {
+  #hive #slide-next {
     pointer-events: none !important;
     touch-action: none !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
   }
   
   /* 비디오 요소들만 터치 차단 */
