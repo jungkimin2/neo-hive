@@ -2284,7 +2284,7 @@ html body .core-value-fresh-mobile {
   pointer-events: auto !important;
 }
 
-/* 모바일 환경에서 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
+/* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
   .flipper img.neo-smart-logo.front,
   img.neo-smart-logo.front {
@@ -3400,7 +3400,7 @@ if (window.innerWidth <= 768) {
           hiveVideo.muted = false;
           // 모바일과 PC에 따른 볼륨 설정
           if (window.innerWidth <= 768) {
-            hiveVideo.volume = 0.08; // 모바일에서 8%
+            hiveVideo.volume = 0.1; // 모바일에서 10%
           } else {
             hiveVideo.volume = 0.15; // PC에서 15%
           }
@@ -8101,20 +8101,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver 제거 - 스크롤 성능 향상을 위해
-    // 대신 간단한 스크롤 최적화만 적용
-    document.addEventListener('scroll', function() {
-      // 스크롤 중 고성능 요소들 최적화
-      if (window.innerWidth <= 768) {
-        const highZElements = document.querySelectorAll('[style*="z-index: 2147483647"], [style*="z-index: 2147483646"]');
-        highZElements.forEach(el => {
-          if (!el.closest('#mobile-top-nav-fixed') && !el.closest('#formModal')) {
-            el.style.setProperty('pointer-events', 'none', 'important');
-            el.style.setProperty('touch-action', 'none', 'important');
-          }
-        });
+    // MutationObserver로 DOM 변경 감지 시 재적용
+    const observer = new MutationObserver(function(mutations) {
+      let shouldReapply = false;
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' || mutation.type === 'attributes') {
+          shouldReapply = true;
+        }
+      });
+      if (shouldReapply) {
+        removeGreyBoxes(); // 회색 박스 제거
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+        restoreGlowEffect(); // 발광효과 복구
       }
-    }, { passive: true }); // passive 옵션으로 성능 향상
+    });
+    
+    // DOM 감시 시작
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+      });
+    }
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.display = 'block';
@@ -8159,72 +8179,6 @@ document.addEventListener('DOMContentLoaded', function() {
   .circular-flow-container {
     touch-action: pan-y pinch-zoom !important;
   }
-}
-</style>
-
-<!-- 모바일 스크롤 걸림 완전 해결 - 최종 해결책 -->
-<style>
-@media (max-width: 768px) {
-  /* 모바일 스크롤 걸림 완전 해결 - 간단하고 강력한 방법 */
-  *:not(.hive-image):not(.video-phone):not(.neo-smart-video):not(.floating-video):not(#mobile-top-nav-fixed):not(#mobile-top-nav-fixed *):not(#formModal):not(.modal-overlay) {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    -webkit-transform: none !important;
-    will-change: auto !important;
-    perspective: none !important;
-    transform-style: flat !important;
-    backface-visibility: visible !important;
-    -webkit-backface-visibility: visible !important;
-  }
-  
-  /* 모든 높은 z-index 요소들 터치 차단 (핵심 UI 제외) */
-  [style*="z-index"]:not(#mobile-top-nav-fixed):not(#mobile-top-nav-fixed *):not(#formModal):not(.modal-overlay) {
-    pointer-events: none !important;
-    touch-action: none !important;
-  }
-  
-  /* 스크롤 컨테이너 완전 최적화 */
-  html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-y pinch-zoom !important;
-    scroll-behavior: auto !important;
-    position: relative !important;
-  }
-  
-  /* 모든 섹션과 컨테이너 스크롤 최적화 */
-  .section,
-  .container,
-  .slide-container,
-  .hive-showcase,
-  .circular-flow-container,
-  .neohive-flex-row,
-  .flow-step-wrapper {
-    touch-action: pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch !important;
-    overflow: visible !important;
-    position: relative !important;
-  }
-  
-     /* GPU 가속 최적화 - 선별적 적용 */
-   *:not(.hive-image):not(.video-phone):not(.neo-smart-video):not(.floating-video):not(#mobile-top-nav-fixed):not(#mobile-top-nav-fixed *) {
-     -webkit-transform: none !important;
-     transform: none !important;
-   }
-   
-   /* 핵심 UI 요소들만 하드웨어 가속 허용 */
-   .hive-image,
-   .video-phone,
-   .neo-smart-video,
-   .floating-video,
-   #mobile-top-nav-fixed,
-   #mobile-top-nav-fixed * {
-     -webkit-transform: translateZ(0) !important;
-     transform: translateZ(0) !important;
-     transition: all 0.3s ease !important;
-   }
 }
 </style>
 
