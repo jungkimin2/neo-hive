@@ -8247,6 +8247,24 @@ document.addEventListener('DOMContentLoaded', function() {
            neosCardList.style.setProperty('touch-action', 'pan-y', 'important');
            neosCardList.style.setProperty('pointer-events', 'auto', 'important');
          }
+         
+         // 네오 하이브 텍스트 영역 강제 보호
+         const hiveTextElements = document.querySelectorAll('#hive h2, #hive p, #hive .container');
+         hiveTextElements.forEach(el => {
+           el.style.setProperty('touch-action', 'pan-y', 'important');
+           el.style.setProperty('pointer-events', 'auto', 'important');
+           el.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+           el.style.setProperty('z-index', '100', 'important');
+           el.style.setProperty('position', 'relative', 'important');
+         });
+         
+         // 네오 하이브 섹션 전체 스크롤 보장
+         const hiveSection = document.querySelector('#hive');
+         if (hiveSection) {
+           hiveSection.style.setProperty('touch-action', 'pan-y', 'important');
+           hiveSection.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+           hiveSection.style.setProperty('overflow', 'visible', 'important');
+         }
         
         // 스크롤 영역 강제 보장
         document.body.style.setProperty('touch-action', 'pan-y', 'important');
@@ -8276,13 +8294,31 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
   }
   
-  /* 네오 하이브 섹션 스크롤 최적화 */
+  /* 네오 하이브 섹션 스크롤 최적화 - 텍스트 영역 포함 */
   #hive,
   #hive *,
+  #hive .container,
+  #hive .container *,
+  #hive h2,
+  #hive p,
   .hive-showcase,
   .hive-showcase * {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important;
+    pointer-events: auto !important;
+  }
+  
+  /* 네오 하이브 텍스트 영역 강제 스크롤 허용 */
+  #hive .section,
+  #hive .container,
+  #hive h2,
+  #hive p,
+  #hive span {
+    position: relative !important;
+    z-index: 1 !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
   }
   
   /* 네오 스마트 섹션 스크롤 최적화 */
@@ -8306,9 +8342,24 @@ document.addEventListener('DOMContentLoaded', function() {
   .neo-smart-logo,
   .neo-smart-logo *,
   .back,
-  .back-text-overlay {
+  .back-text-overlay,
+  .hive-label-left,
+  .hive-label-right,
+  #slide-prev,
+  #slide-next {
     pointer-events: none !important;
     touch-action: none !important;
+  }
+  
+  /* 네오 하이브 텍스트가 비디오/이미지에 가려지지 않도록 */
+  #hive h2,
+  #hive p {
+    position: relative !important;
+    z-index: 100 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    padding: 8px 0 !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
   }
   
   /* 스크롤 영역 보장 */
@@ -8368,6 +8419,31 @@ document.addEventListener('DOMContentLoaded', function() {
   .neos-card * {
     touch-action: pan-y !important;
     pointer-events: auto !important;
+  }
+  
+  /* 네오 하이브 배경 효과들 터치 차단 */
+  .hive-showcase::before,
+  .hive-showcase::after,
+  .neohive-flex-row::before,
+  .neohive-flex-row::after,
+  div[style*="background: radial-gradient"],
+  div[style*="filter: blur"] {
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+  
+  /* 전체 페이지 스크롤 강화 */
+  html {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* 섹션별 스크롤 보장 */
+  .section {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
   }
 }
 </style>
