@@ -7935,37 +7935,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용 - 간소화
-    const observer = new MutationObserver(function(mutations) {
-      let shouldReapply = false;
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList' || mutation.type === 'attributes') {
-          shouldReapply = true;
-        }
-      });
-      if (shouldReapply) {
-        ensureMobileScroll(); // 스크롤 보장만 재적용
-      }
-    });
-    
-    // DOM 감시 시작
-    if (document.body) {
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['style', 'class']
-      });
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['style', 'class']
-        });
-      });
-    }
+    // 최소한의 DOM 감시 - 스크롤 걸림 방지
+    setTimeout(function() {
+      ensureMobileScroll(); // 한 번만 더 실행
+    }, 1000);
   } else {
     // PC 환경에서는 body 즉시 표시
     document.body.style.display = 'block';
@@ -8007,6 +7980,43 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-overflow-scrolling: touch !important;
   }
   
+  /* 스크롤 걸림 완전 해결 - 강력한 스크롤 보장 */
+  html, body, #app, main, .container {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  
+  /* 모든 애니메이션과 transform 완전 비활성화 */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  /* 특정 요소들의 transform 예외 처리 (필요한 것만) */
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* 스크롤 이벤트 차단 방지 */
+  .animate-on-scroll,
+  .slide-in-left,
+  .slide-in-right,
+  .feature-item {
+    pointer-events: none !important;
+  }
+  
+  /* 터치 스크롤 최우선 적용 */
+  html {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: auto !important;
+  }
 }
 </style>
 
