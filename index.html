@@ -1569,7 +1569,60 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         </div>
       </div>
 
+      <!-- 모바일 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
+      <div class="mobile-system-ui-container" style="margin-top: 40px; display: none;">
+        <!-- 무인 출입 시스템 카드 -->
+        <div class="mobile-system-card-new" style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); border-radius: 18px; padding: 24px 20px; border: 1px solid rgba(123, 228, 149, 0.4); box-shadow: 0 6px 20px rgba(123, 228, 149, 0.15); margin-bottom: 20px;">
+          <div class="mobile-system-header-new" style="display: flex; align-items: center; margin-bottom: 20px;">
+            <img src="./images/neo35.png" alt="무인 출입 시스템" style="width: 32px; height: 32px; margin-right: 12px; background: rgba(123, 228, 149, 0.1); border-radius: 8px; padding: 6px;">
+            <h3 style="color: #7BE495; font-size: 1.1rem; font-weight: bold; margin: 0; text-shadow: 0 0 8px rgba(123, 228, 149, 0.6);">무인 출입 시스템 운영 방식</h3>
+          </div>
+          <div class="mobile-system-steps" style="background: rgba(123, 228, 149, 0.03); border-left: 3px solid #62D2A2; border-radius: 8px; padding: 16px;">
+            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">가상의 회원 등록 (시스템 계정)</span>
+            </div>
+            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</span>
+            </div>
+            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">네오 하이브를 통해 예약한 팀에게 코드 전송</span>
+            </div>
+            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">사용자는 코드 입력만으로 무인 헬스장 출입 가능</span>
+            </div>
+          </div>
+          <div class="mobile-summary" style="display: flex; align-items: center; margin-top: 16px; padding: 12px; background: rgba(62, 210, 162, 0.08); border-radius: 8px;">
+            <img src="./images/neo35.png" alt="출입 코드" style="width: 24px; height: 24px; margin-right: 10px;">
+            <span style="color: #62D2A2; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">간단한 코드 입력만으로 무인 헬스장에 손쉽게 출입할 수 있습니다.</span>
+          </div>
+        </div>
 
+        <!-- 이벤트 시스템 연동 카드 -->
+        <div class="mobile-system-card-new" style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); border-radius: 18px; padding: 24px 20px; border: 1px solid rgba(123, 228, 149, 0.4); box-shadow: 0 6px 20px rgba(123, 228, 149, 0.15);">
+          <div class="mobile-system-header-new" style="display: flex; align-items: center; margin-bottom: 20px;">
+            <img src="./images/neo1256.png" alt="이벤트 시스템" style="width: 32px; height: 32px; margin-right: 12px; background: rgba(123, 228, 149, 0.1); border-radius: 8px; padding: 6px;">
+            <h3 style="color: #7BE495; font-size: 1.1rem; font-weight: bold; margin: 0; text-shadow: 0 0 8px rgba(123, 228, 149, 0.6);">이벤트 시스템 연동</h3>
+          </div>
+          <div class="mobile-event-list" style="background: rgba(123, 228, 149, 0.03); border-left: 3px solid #62D2A2; border-radius: 8px; padding: 16px;">
+            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</span>
+            </div>
+            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">팀원 전원 QR 출석체크 필요 (최소 3명)</span>
+            </div>
+            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
+              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">출석체크 인정 횟수는 누적으로 진행</span>
+            </div>
+            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
+              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
+              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">팀장이 인증센터 선택 및 시간대 예약</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- PC 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
       <div class="pc-system-ui" style="margin-top: 40px; display: block;">
@@ -1783,7 +1836,35 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
               <div class="core-value-desc">함께하는 운동, 지속적인 동기부여, 건강한 커뮤니티 구축</div>
             </div>
           </div>
-
+          <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 (핵심가치 아래, 한 박스 통합) -->
+          <div class="mobile-ui-position-adjustment mobile-transform-target" style="transform: translateY(-420px) !important; -webkit-transform: translateY(-420px) !important; position: relative !important;">
+            <div class="mobile-system-box mobile-system-box--merged">
+              <div class="mobile-system-content">
+                <div class="mobile-system-title">무인 출입 시스템 운영 방식</div>
+                <hr class="mobile-system-divider" />
+                <ul class="mobile-system-list">
+                  <li>1. 가상의 회원 등록 (시스템 계정)</li>
+                  <li>2. 해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
+                  <li>3. 네오 하이브를 통해 예약한 팀에게 코드 전송</li>
+                  <li class="mobile-system-desc" style="font-size: 0.7rem; color: #ffffff; margin-top: 8px;">
+                    <span class="mobile-only-lock-icon">
+                      <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;">
+                    </span>사용자는 코드 입력만으로 무인 헬스장<br>출입이 가능 합니다.
+                  </li>
+                </ul>
+              </div>
+              <div class="mobile-system-content" style="margin-top: 24px;">
+                <div class="mobile-system-title">이벤트 시스템 연동</div>
+                <hr class="mobile-system-divider" />
+                <ul class="mobile-system-list">
+                  <li><span class="mobile-dot"></span> 제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</li>
+                  <li><span class="mobile-dot"></span> 팀원 전원 QR 출석체크 필요 (최소 3명)</li>
+                  <li><span class="mobile-dot"></span> 출석체크 인정 횟수는 누적으로 진행</li>
+                  <li><span class="mobile-dot"></span> 팀장이 인증센터 선택 및 시간대 예약</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 </style>
 <!-- 모바일 전용: 무인 출입 시스템/이벤트 시스템 안내 스타일 및 모바일 전용 표시 -->
 <style>
@@ -8239,8 +8320,6 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 0 !important;
     overflow: hidden !important;
   }
-}
-
 }
 </style>
 
