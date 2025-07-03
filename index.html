@@ -3797,7 +3797,7 @@ if (window.innerWidth <= 768) {
       width: 100vw !important;
       height: 100vh !important;
       background: rgba(0, 0, 0, 0.85) !important;
-      z-index: 999999998 !important;
+      z-index: 2147483645 !important;
       display: block !important;
       visibility: visible !important;
       opacity: 1 !important;
@@ -3809,7 +3809,7 @@ if (window.innerWidth <= 768) {
     modal.style.setProperty('display', 'block', 'important');
     modal.style.setProperty('visibility', 'visible', 'important');
     modal.style.setProperty('opacity', '1', 'important');
-          modal.style.setProperty('z-index', '999999999', 'important');
+          modal.style.setProperty('z-index', '2147483650', 'important');
     
     // 모바일에서 화면 중앙에 고정 위치
     if (window.innerWidth <= 768) {
@@ -7442,7 +7442,7 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100vw !important;
   height: 100vh !important;
   background: rgba(0, 0, 0, 0.85) !important;
-  z-index: 999999997 !important;
+  z-index: 2147483644 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -7972,7 +7972,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서 사전예약 팝업 확실히 표시 */
+/* 모바일 환경에서 사전예약 팝업 PC와 동일하게 표시 */
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
@@ -7982,13 +7982,13 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 90% !important;
     max-width: 400px !important;
     min-width: 300px !important;
-    padding: 24px !important;
-    background: #000 !important;
+    padding: 30px !important;
+    background: #0d0d0d !important;
     border: 2px solid #7BE495 !important;
-    border-radius: 16px !important;
+    border-radius: 20px !important;
     color: #fff !important;
     box-shadow: none !important;
-    z-index: 999999999 !important;
+    z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 90vh !important;
@@ -8049,7 +8049,7 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: none !important;
   }
   
-  /* 오버레이도 모바일에서 확실히 표시 - PC와 같은 수준으로 조정 */
+  /* 오버레이도 모바일에서 확실히 표시 - 팝업보다 낮은 z-index */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
@@ -8057,7 +8057,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.85) !important;
-    z-index: 999999997 !important;
+    z-index: 2147483645 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -8197,7 +8197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.85) !important;
-    z-index: 2147483646 !important;
+    z-index: 2147483645 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
