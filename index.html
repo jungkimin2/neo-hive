@@ -1855,7 +1855,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   width: 0 !important;
   height: 0 !important;
 }
-}
 </style>
             <div class="core-icon">
               <img src="./images/neohive22.png" alt="핵심가치 아이콘">
@@ -2665,6 +2664,20 @@ if (window.innerWidth <= 768) {
   .mobile-hide {
     display: none !important;
   }
+  
+  /* 모바일에서 원형 다이어그램의 모든 숫자 숨김 (다른 UI는 건드리지 않음) */
+  .circle-step-number {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -999999 !important;
+  }
 }
 @media (max-width: 600px) {
   .text-xl.text-gray-300 span:not(.neon-green) {
@@ -3440,47 +3453,29 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 숫자 4 UI 강제 제거
+    // 모바일에서 원형 다이어그램 숫자 UI 제거 (다른 UI는 보호)
     if (window.innerWidth <= 768) {
-      function removeNumber4UI() {
-        // 모든 circle-step-number에서 4번 찾아서 숨기기
-        const allNumbers = document.querySelectorAll('.circle-step-number');
-        allNumbers.forEach(numberEl => {
-          if (numberEl.textContent.trim() === '4') {
-            numberEl.style.setProperty('display', 'none', 'important');
-            numberEl.style.setProperty('visibility', 'hidden', 'important');
-            numberEl.style.setProperty('opacity', '0', 'important');
-            numberEl.style.setProperty('width', '0', 'important');
-            numberEl.style.setProperty('height', '0', 'important');
-            numberEl.style.setProperty('overflow', 'hidden', 'important');
-            numberEl.style.setProperty('position', 'absolute', 'important');
-            numberEl.style.setProperty('left', '-9999px', 'important');
-            numberEl.style.setProperty('top', '-9999px', 'important');
-            numberEl.style.setProperty('z-index', '-1', 'important');
-            console.log('Mobile: 숫자 4 UI 제거됨');
-          }
+      function removeCircleNumbers() {
+        console.log('🔥 모바일에서 원형 다이어그램 숫자 제거 시작');
+        
+        // circle-step-number 클래스만 정확히 타겟팅 (다른 step-number는 건드리지 않음)
+        const circleNumbers = document.querySelectorAll('.circle-step-number');
+        circleNumbers.forEach(numberEl => {
+          numberEl.style.setProperty('display', 'none', 'important');
+          numberEl.style.setProperty('visibility', 'hidden', 'important');
+          numberEl.style.setProperty('opacity', '0', 'important');
+          console.log('✅ 원형 다이어그램 숫자 숨김:', numberEl.textContent.trim());
         });
         
-        // 4번 다이어그램의 숫자만 찾아서 제거 (백업 방법)
-        const fourthStep = document.querySelector('.circle-step[style*="top: 98%"]');
-        if (fourthStep) {
-          const numberInFourth = fourthStep.querySelector('.circle-step-number');
-          if (numberInFourth) {
-            numberInFourth.style.setProperty('display', 'none', 'important');
-            numberInFourth.style.setProperty('visibility', 'hidden', 'important');
-            numberInFourth.style.setProperty('opacity', '0', 'important');
-            console.log('Mobile: 4번 다이어그램 숫자 제거됨 (백업 방법)');
-          }
-        }
+        console.log(`✅ 총 ${circleNumbers.length}개 원형 다이어그램 숫자 숨김 완료`);
       }
       
       // 즉시 실행
-      removeNumber4UI();
+      removeCircleNumbers();
       
-      // DOM 변경 감지하여 재실행
-      setTimeout(removeNumber4UI, 500);
-      setTimeout(removeNumber4UI, 1000);
-      setTimeout(removeNumber4UI, 2000);
+      // 추가 보장
+      setTimeout(removeCircleNumbers, 500);
+      setTimeout(removeCircleNumbers, 1000);
     }
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
