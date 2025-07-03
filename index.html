@@ -1404,7 +1404,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <a href="#hive" onclick="closeNav()">하이브 시스템</a>
     <a href="#smart" onclick="closeNav()">스마트 시스템</a>
     <a href="#impact" onclick="closeNav()">도입 효과</a>
-    <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
+    <a href="javascript:void(0)" onclick="handleMobileBooking(event);return false;" id="mobile-booking-btn">사전 예약하기</a>
   </div>
 </div>
 
@@ -4175,6 +4175,74 @@ if (window.innerWidth <= 768) {
     if (menu) {
       menu.style.display = 'none';
     }
+  }
+  
+  // 모바일 환경에서 사전예약하기 버튼 강화
+  function handleMobileBooking(event) {
+    console.log('🔧 Mobile booking button clicked');
+    
+    // 이벤트 중단
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
+    // 네비게이션 메뉴 먼저 닫기
+    closeNav();
+    
+    // 짧은 지연 후 폼 열기 (네비게이션 메뉴가 완전히 닫힌 후)
+    setTimeout(() => {
+      console.log('🚀 Opening form after nav close');
+      
+             // 팝업 강제 표시 (모바일 환경에서 z-index 문제 해결)
+       const modal = document.getElementById('formModal');
+       if (modal) {
+         // 모바일 환경에서 즉시 표시
+         modal.style.setProperty('display', 'block', 'important');
+         modal.style.setProperty('position', 'fixed', 'important');
+         modal.style.setProperty('z-index', '2147483648', 'important');
+         modal.style.setProperty('visibility', 'visible', 'important');
+         modal.style.setProperty('opacity', '1', 'important');
+         
+         // 화면 중앙에 위치
+         modal.style.setProperty('top', '50%', 'important');
+         modal.style.setProperty('left', '50%', 'important');
+         modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+         modal.style.setProperty('width', '90%', 'important');
+         modal.style.setProperty('max-width', '400px', 'important');
+         
+         console.log('✅ Mobile popup directly displayed');
+       }
+       
+       // 모바일 전용 배경 오버레이 생성
+       let overlay = document.getElementById('modalOverlay');
+       if (!overlay) {
+         overlay = document.createElement('div');
+         overlay.id = 'modalOverlay';
+         overlay.onclick = function() { closeForm(); };
+         document.body.appendChild(overlay);
+       }
+       
+       // 모바일 오버레이 스타일 강화
+       overlay.style.setProperty('display', 'block', 'important');
+       overlay.style.setProperty('position', 'fixed', 'important');
+       overlay.style.setProperty('top', '0', 'important');
+       overlay.style.setProperty('left', '0', 'important');
+       overlay.style.setProperty('right', '0', 'important');
+       overlay.style.setProperty('bottom', '0', 'important');
+       overlay.style.setProperty('width', '100vw', 'important');
+       overlay.style.setProperty('height', '100vh', 'important');
+       overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
+       overlay.style.setProperty('z-index', '2147483647', 'important');
+       overlay.style.setProperty('visibility', 'visible', 'important');
+       overlay.style.setProperty('opacity', '1', 'important');
+       
+       console.log('✅ Mobile overlay created');
+      
+      // 기존 openForm 함수도 호출
+      openForm(event);
+      
+    }, 200);
   }
   
   // 모바일 네비게이션 강제 고정 설정 (개선된 버전)
@@ -8324,7 +8392,6 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
-  }
   }
 }
 </style>
