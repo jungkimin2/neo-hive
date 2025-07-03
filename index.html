@@ -3191,7 +3191,7 @@ if (window.innerWidth <= 768) {
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
 <!-- 모달 배경 오버레이 -->
-<div id="modalOverlay" style="display: none;"></div>
+<div id="modalOverlay" onclick="closeForm()" style="display: none;"></div>
 <div id="formModal" onclick="event.stopPropagation()" style="display:none;">
   <div style="text-align:right;">
     <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
@@ -3688,26 +3688,28 @@ if (window.innerWidth <= 768) {
         width: 100vw !important;
         height: 100vh !important;
         background: rgba(0, 0, 0, 0.9) !important;
-        z-index: 999998 !important;
+        z-index: 1000000 !important;
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
-        pointer-events: none !important;
+        pointer-events: auto !important;
       `;
       document.body.appendChild(overlay);
     }
     
     // 오버레이 활성화
     overlay.classList.add('active');
+    overlay.style.setProperty('display', 'block', 'important');
+    overlay.style.setProperty('visibility', 'visible', 'important');
+    overlay.style.setProperty('opacity', '1', 'important');
     
-    // 배경 클릭 감지를 위한 이벤트 리스너 추가
-    document.addEventListener('click', handleBackgroundClick, true);
+    // 오버레이 자체에 onclick 이벤트가 있으므로 document 레벨 이벤트는 제거
     
     // 모달 표시 (오버레이보다 확실히 높은 z-index)
     modal.style.setProperty('display', 'block', 'important');
     modal.style.setProperty('visibility', 'visible', 'important');
     modal.style.setProperty('opacity', '1', 'important');
-    modal.style.setProperty('z-index', '2147483645', 'important');
+    modal.style.setProperty('z-index', '1000001', 'important');
     modal.style.setProperty('pointer-events', 'auto', 'important');
     
     // 모바일에서 화면 중앙에 고정 위치
@@ -3747,16 +3749,7 @@ if (window.innerWidth <= 768) {
     return false;
   }
   
-  // 배경 클릭 감지 함수
-  function handleBackgroundClick(event) {
-    const modal = document.getElementById('formModal');
-    if (modal && modal.style.display === 'block') {
-      // 클릭된 요소가 팝업창 내부인지 확인
-      if (!modal.contains(event.target)) {
-        closeForm();
-      }
-    }
-  }
+  // 오버레이 onclick 이벤트로 처리하므로 별도 배경 클릭 감지 함수는 불필요
   
   function closeForm() {
     console.log('📱 closeForm called - simplified version');
@@ -3770,10 +3763,12 @@ if (window.innerWidth <= 768) {
     const overlay = document.getElementById('modalOverlay');
     if (overlay) {
       overlay.classList.remove('active');
+      overlay.style.setProperty('display', 'none', 'important');
+      overlay.style.setProperty('visibility', 'hidden', 'important');
+      overlay.style.setProperty('opacity', '0', 'important');
     }
     
-    // 배경 클릭 이벤트 리스너 제거
-    document.removeEventListener('click', handleBackgroundClick, true);
+    // 오버레이 onclick 이벤트로 처리하므로 document 레벨 이벤트 리스너는 불필요
     
     // 기타 불필요한 오버레이들만 제거
     document.querySelectorAll('.modal-overlay, [id*="overlay"]:not(#modalOverlay), [id*="Overlay"]:not(#modalOverlay)').forEach(el => {
@@ -3955,6 +3950,8 @@ if (window.innerWidth <= 768) {
   
   // 추가 안전장치 - 1초 후 다시 실행
   setTimeout(forceMobileNavigation, 1000);
+  }
+  }
   
   // 모바일에서 스크롤 시에도 네비게이션 고정 확인
   if (window.innerWidth <= 768) {
@@ -7713,7 +7710,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 16px !important;
     color: #fff !important;
     box-shadow: none !important;
-    z-index: 2147483645 !important;
+    z-index: 1000001 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 90vh !important;
@@ -7762,27 +7759,28 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer !important;
   }
   
-  /* 오버레이는 팝업창과 완전히 분리 */
+  /* 배경 어두운 오버레이 효과 */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-    z-index: 999998 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    z-index: 1000000 !important;
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
-    pointer-events: none !important;
+    pointer-events: auto !important;
+    transition: opacity 0.3s ease !important;
   }
   
-  /* 팝업이 열렸을 때만 오버레이 표시 */
+  /* 팝업이 열렸을 때 오버레이 표시 */
   #modalOverlay.active {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    pointer-events: none !important;
+    pointer-events: auto !important;
   }
 }
 /* PC 환경에서 팝업창 더 크게 */
@@ -7801,7 +7799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 20px !important;
     color: #fff !important;
     box-shadow: none !important;
-    z-index: 2147483645 !important;
+    z-index: 1000001 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 85vh !important;
