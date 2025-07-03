@@ -37,11 +37,7 @@
     justify-content: flex-start !important;
   }
   
-  .mobile-system-box-wrapper {
-    transform: translateY(-568px) !important;
-    -webkit-transform: translateY(-568px) !important;
-    position: relative !important;
-  }
+
   
   #smart {
     transform: translateY(-456px) !important;
@@ -96,7 +92,6 @@
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
-  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -108,7 +103,6 @@
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
-  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -188,20 +182,10 @@ pointer-events: auto !important;
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
 }
-/* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
-.mobile-system-desc {
-  font-size: 0.65rem !important; /* 문구 크기를 더 작게 설정 */
-}
-/* 2. .mobile-system-title과 그 하단 설명 전체를 위로 한 칸(16px) 올림 */
-.mobile-system-title,
-.mobile-system-list {
-  transform: translateY(-16px) !important; /* 한 칸 위로 조정 */
-}
-/* 3. 모바일 환경에서만 .mobile-system-box 하단 여백을 기존보다 더 줄임 (명확히 2칸 더 줄임) */
-.mobile-system-box {
-  padding-bottom: 0 !important;
-  margin-bottom: -80px !important; /* 기존 -64px에서 한 칸 더 줄임 */
-}
+
+
+
+
 }
 </style>
 <style>
@@ -233,20 +217,9 @@ pointer-events: auto !important;
 
 
 
-.mobile-system-box {
-  background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
-  border-radius: 22px !important;
-  box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
-  padding: 22px !important;
-  margin-bottom: 16px !important;
-  border: 1px solid #62D2A2;
-}
 
-.mobile-system-title {
-  font-size: 1.05rem !important;
-  color: #7BE495;
-  text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
-}
+
+
 
 /* 모바일 환경에서 자물쇠 이모티콘 좌측 이동 및 예시 문구 크기 조정 */
 .lock-icon {
@@ -258,14 +231,7 @@ pointer-events: auto !important;
   font-size: 0.75rem !important;
 }
 
-/* 모바일 환경에서 무인 출입 시스템과 이벤트 시스템 UI 완전 숨김 */
-.mobile-ui-position-adjustment {
-  display: none !important;
-}
 
-.mobile-system-box {
-  display: none !important;
-}
 
 /* 모바일 환경에서 전체 스마트 가이드 텍스트를 우측으로 2칸 이동 */
 p.smart-guide-text {
@@ -279,21 +245,7 @@ div > p.smart-guide-text {
   padding-left: 32px !important;
 }
 
-.mobile-system-list li {
-  font-size: 0.88rem !important;
-  line-height: 1.6 !important;
-  color: #ccc !important;
-}
 
-.mobile-dot {
-  background-color: #7BE495 !important;
-}
-
-.mobile-system-desc {
-  font-size: 0.85rem !important;
-  color: #ffffff !important;
-  margin-top: 10px !important;
-}
 }
 </style>
 </body>
@@ -1404,7 +1356,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <a href="#hive" onclick="closeNav()">하이브 시스템</a>
     <a href="#smart" onclick="closeNav()">스마트 시스템</a>
     <a href="#impact" onclick="closeNav()">도입 효과</a>
-    <a href="javascript:void(0)" onclick="handleMobileBooking(event);return false;" id="mobile-booking-btn">사전 예약하기</a>
+    <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
   </div>
 </div>
 
@@ -4177,74 +4129,6 @@ if (window.innerWidth <= 768) {
     }
   }
   
-  // 모바일 환경에서 사전예약하기 버튼 강화
-  function handleMobileBooking(event) {
-    console.log('🔧 Mobile booking button clicked');
-    
-    // 이벤트 중단
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    
-    // 네비게이션 메뉴 먼저 닫기
-    closeNav();
-    
-    // 짧은 지연 후 폼 열기 (네비게이션 메뉴가 완전히 닫힌 후)
-    setTimeout(() => {
-      console.log('🚀 Opening form after nav close');
-      
-             // 팝업 강제 표시 (모바일 환경에서 z-index 문제 해결)
-       const modal = document.getElementById('formModal');
-       if (modal) {
-         // 모바일 환경에서 즉시 표시
-         modal.style.setProperty('display', 'block', 'important');
-         modal.style.setProperty('position', 'fixed', 'important');
-         modal.style.setProperty('z-index', '2147483648', 'important');
-         modal.style.setProperty('visibility', 'visible', 'important');
-         modal.style.setProperty('opacity', '1', 'important');
-         
-         // 화면 중앙에 위치
-         modal.style.setProperty('top', '50%', 'important');
-         modal.style.setProperty('left', '50%', 'important');
-         modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-         modal.style.setProperty('width', '90%', 'important');
-         modal.style.setProperty('max-width', '400px', 'important');
-         
-         console.log('✅ Mobile popup directly displayed');
-       }
-       
-       // 모바일 전용 배경 오버레이 생성
-       let overlay = document.getElementById('modalOverlay');
-       if (!overlay) {
-         overlay = document.createElement('div');
-         overlay.id = 'modalOverlay';
-         overlay.onclick = function() { closeForm(); };
-         document.body.appendChild(overlay);
-       }
-       
-       // 모바일 오버레이 스타일 강화
-       overlay.style.setProperty('display', 'block', 'important');
-       overlay.style.setProperty('position', 'fixed', 'important');
-       overlay.style.setProperty('top', '0', 'important');
-       overlay.style.setProperty('left', '0', 'important');
-       overlay.style.setProperty('right', '0', 'important');
-       overlay.style.setProperty('bottom', '0', 'important');
-       overlay.style.setProperty('width', '100vw', 'important');
-       overlay.style.setProperty('height', '100vh', 'important');
-       overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
-       overlay.style.setProperty('z-index', '2147483647', 'important');
-       overlay.style.setProperty('visibility', 'visible', 'important');
-       overlay.style.setProperty('opacity', '1', 'important');
-       
-       console.log('✅ Mobile overlay created');
-      
-      // 기존 openForm 함수도 호출
-      openForm(event);
-      
-    }, 200);
-  }
-  
   // 모바일 네비게이션 강제 고정 설정 (개선된 버전)
   function forceMobileNavigation() {
     const isMobile = window.innerWidth <= 768;
@@ -5544,50 +5428,9 @@ if (video) {
 }
 </style>
 
-<style>
-@media (max-width: 768px) {
-/* 기존 2단 구조 숨김 */
-.neohive-twobox-col > div:last-child { display: none !important; }
-.mobile-system-box { display: flex !important; flex-direction: column; gap: 16px; width: 100%; margin: 0; padding: 0 4px; }
-.system-card { background: #101f18; border: 1.5px solid #7BE495; border-radius: 14px; padding: 16px 12px; box-shadow: 0 0 10px #7BE49522; width: 100%; font-size: 0.95rem; margin: 0 auto; }
-.system-card h4 { font-size: 1.1rem; color: #7BE495; margin-bottom: 10px; }
-.system-card ul { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; padding-left: 18px; }
-.system-desc { display: flex; align-items: center; font-size: 0.85rem; color: #7BE495; margin-top: 6px; }
-.system-desc img { width: 22px; height: 22px; margin-right: 8px; }
-}
-/* 캡처 이미지 UI 완전 삭제 - 모든 환경에서 숨김 */
-.mobile-system-box { 
-  display: none !important; 
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-</style>
+
 <!-- 모바일 전용 1단 카드형 시스템 안내 -->
-<div class="mobile-system-box" style="display:none;">
-<div class="system-card">
-  <h4>무인 출입 시스템 운영 방식</h4>
-  <ul>
-    <li>가상의 회원 등록 (시스템 계정)</li>
-    <li>해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
-    <li>네오 하이브를 통해 예약한 팀에게 코드 전송</li>
-  </ul>
-  <div class="system-desc">
-    <img src="./images/neo35.png" alt="출입 코드 아이콘" />
-    <span>사용자는 코드만 입력하면 무인 헬스에 손쉽게 출입할 수 있습니다.</span>
-  </div>
-</div>
-<div class="system-card">
-  <h4>이벤트 시스템 연동</h4>
-  <ul>
-    <li>제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</li>
-    <li>팀원 전원 QR 출석체크 필요 (최소 3명)</li>
-    <li>출석체크 인정 횟수는 누적으로 진행</li>
-    <li>팀장이 인증센터 선택 및 시간대 예약</li>
-  </ul>
-</div>
-</div>
+
 
 
 <!-- 기존 trial/feedback 메시지 모바일 폰트 오버라이드 삭제 (중복 제거) -->
@@ -5629,47 +5472,9 @@ h3 {
 }
 }
 </style>
-<style>
-/* 모바일 환경에서만 시스템/이벤트 박스를 핵심 가치 UI 밑으로 이동 */
-@media (max-width: 768px) {
-body .mobile-system-box-wrapper,
-html body .mobile-system-box-wrapper {
-  display: block !important;
-  width: 100%;
-  position: relative !important;
-  transform: translateY(-648px) !important; /* 1칸(16px) 아래로 이동: -664px → -648px */
-  -webkit-transform: translateY(-648px) !important;
-  margin-bottom: 24px;
-  z-index: 101;
-}
-}
-@media (min-width: 769px) {
-.mobile-system-box-wrapper {
-  display: block !important;
-  position: static !important;
-  transform: none !important;
-  margin-bottom: 0 !important;
-  z-index: auto;
-}
-}
-</style>
 
-<style>
-@media (max-width: 768px) {
-.mobile-system-desc {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-weight: bold !important; /* 문구 강조 효과 */
-  text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important; /* 글자에 은은한 빛 효과 */
-}
 
-.mobile-system-desc img {
-  flex-shrink: 0 !important;
-  margin-right: 6px !important; /* 이미지와 문구 간격 명확히 설정 */
-}
-}
-</style>
+
 <style>
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
@@ -5743,11 +5548,11 @@ html body #smart p {
 <style>
 @media (max-width: 768px) {
 /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -7183,10 +6988,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /* 모든 섹션들이 네비게이션 아래에 위치하도록 (특정 UI 요소들 제외) */
-  .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
-  .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
-  main:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
-  div[class*="section"]:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper) {
+  .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
+  .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
+  main:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
+  div[class*="section"]:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile) {
     position: relative !important;
     z-index: 1 !important;
     transform: none !important;
@@ -7269,14 +7074,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 특정 UI 요소들은 완전히 제외 */
-  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
   }
   
-  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper),
-  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart .container) {
+  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile),
+  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart .container) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
@@ -7640,9 +7445,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 105 !important;
   }
   
-  .mobile-system-box-wrapper {
-    z-index: 115 !important;
-  }
+
   
   #smart {
     z-index: 50 !important;
@@ -7661,15 +7464,12 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 20px !important;
   }
   
-  .mobile-system-box-wrapper + * {
-    margin-top: 20px !important;
-  }
+
   
   /* 모든 UI 요소들의 가시성 강제 보장 */
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
-  .mobile-system-box-wrapper,
   #smart {
     opacity: 1 !important;
     visibility: visible !important;
@@ -7681,7 +7481,6 @@ document.addEventListener('DOMContentLoaded', function() {
   .mobile-ui-position-adjustment *,
   #mobile-moved-merged-box *,
   .core-value-fresh-mobile *,
-  .mobile-system-box-wrapper *,
   #smart * {
     opacity: 1 !important;
     visibility: visible !important;
@@ -7695,7 +7494,6 @@ document.addEventListener('DOMContentLoaded', function() {
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
-  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -8016,7 +7814,7 @@ document.addEventListener('DOMContentLoaded', function() {
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
           { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
-          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
+
           { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
