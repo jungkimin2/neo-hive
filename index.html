@@ -2632,6 +2632,24 @@ if (window.innerWidth <= 768) {
   z-index: 5;
   pointer-events: none;
 }
+
+/* 모바일 환경에서 다이얼그램 숫자들을 상단 좌측으로 이동 */
+@media (max-width: 768px) {
+  .circle-step-number {
+    top: -8px !important;
+    left: -8px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.7rem !important;
+    background: #0A0F0D !important;
+    border: 1.5px solid #7BE495 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 8px rgba(123, 228, 149, 0.6) !important;
+  }
+}
 @media (max-width: 768px) {
   .mobile-hide {
     display: none !important;
