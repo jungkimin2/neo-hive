@@ -5487,8 +5487,13 @@ if (video) {
 .system-desc { display: flex; align-items: center; font-size: 0.85rem; color: #7BE495; margin-top: 6px; }
 .system-desc img { width: 22px; height: 22px; margin-right: 8px; }
 }
-@media (min-width: 769px) {
-.mobile-system-box { display: none !important; }
+/* 캡처 이미지 UI 완전 삭제 - 모든 환경에서 숨김 */
+.mobile-system-box { 
+  display: none !important; 
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 </style>
 <!-- 모바일 전용 1단 카드형 시스템 안내 -->
@@ -8319,6 +8324,7 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
+  }
   }
 }
 </style>
