@@ -3296,7 +3296,7 @@ if (window.innerWidth <= 768) {
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
-<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px; color:#fff; box-sizing:border-box;">
+<div id="formModal" onclick="event.stopPropagation()" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px; color:#fff; box-sizing:border-box;">
   <div style="text-align:right;">
     <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
   </div>
@@ -3786,7 +3786,7 @@ if (window.innerWidth <= 768) {
     // 기존 오버레이 모두 제거 (깔끔한 시작)
     document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
     
-    // 간단한 배경 오버레이 생성
+    // 간단한 배경 오버레이 생성 (팝업창보다 낮은 z-index)
     const overlay = document.createElement('div');
     overlay.id = 'modalOverlay';
     overlay.onclick = closeForm;
@@ -3797,7 +3797,7 @@ if (window.innerWidth <= 768) {
       width: 100vw !important;
       height: 100vh !important;
       background: rgba(0, 0, 0, 0.9) !important;
-      z-index: 2147483646 !important;
+      z-index: 1000000 !important;
       display: block !important;
       visibility: visible !important;
       opacity: 1 !important;
@@ -3805,11 +3805,11 @@ if (window.innerWidth <= 768) {
     `;
     document.body.appendChild(overlay);
     
-    // 모달 표시
+    // 모달 표시 (오버레이보다 높은 z-index)
     modal.style.setProperty('display', 'block', 'important');
     modal.style.setProperty('visibility', 'visible', 'important');
     modal.style.setProperty('opacity', '1', 'important');
-    modal.style.setProperty('z-index', '2147483647', 'important');
+    modal.style.setProperty('z-index', '1000001', 'important');
     
     // 모바일에서 화면 중앙에 고정 위치
     if (window.innerWidth <= 768) {
@@ -7988,7 +7988,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 16px !important;
     color: #fff !important;
     box-shadow: 0 0 30px rgba(123, 228, 149, 0.5) !important;
-    z-index: 2147483647 !important;
+    z-index: 1000001 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 90vh !important;
@@ -8037,7 +8037,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer !important;
   }
   
-  /* 오버레이도 모바일에서 확실히 표시 */
+  /* 오버레이는 팝업창보다 낮은 z-index로 배경만 어둡게 */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
@@ -8045,13 +8045,12 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.9) !important;
-    z-index: 2147483646 !important;
+    z-index: 1000000 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
-}
 </style>
 
 </body>
