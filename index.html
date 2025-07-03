@@ -2634,7 +2634,7 @@ if (window.innerWidth <= 768) {
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">교육 시간 절감,<br>매출·개인레슨 집중</div>
         </div>
         <div class="circle-step" style="position: absolute; left: 50%; top: 98%; transform: translate(-50%, -100%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
-          <div class="circle-step-number">4</div>
+          <div class="circle-step-number mobile-hide">4</div>
           <img src="./images/sso1.png" alt="자기 주도 운동 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">자기 주도 운동</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">회원이 직접 스캔<br>자율 운동 지원</div>
@@ -2665,6 +2665,15 @@ if (window.innerWidth <= 768) {
 @media (max-width: 768px) {
   .mobile-hide {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -999999 !important;
   }
 }
 @media (max-width: 600px) {
@@ -3441,37 +3450,17 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 숫자 4 UI 완전 삭제 - 가장 강력한 방법
+    // 모바일에서 숫자 4 UI 완전 삭제 (간단하고 확실한 방법)
     if (window.innerWidth <= 768) {
       function killNumber4UI() {
-        console.log('🔥 모바일에서 숫자 4 UI 완전 삭제 시작');
+        console.log('🔥 모바일에서 숫자 4 UI 제거 시작');
         
-        // 방법 1: 4번째 circle-step 직접 타겟팅 (가장 확실한 방법)
-        const step4Element = document.querySelector('.circle-step[style*="top: 98%"]');
-        if (step4Element) {
-          const number4 = step4Element.querySelector('.circle-step-number');
-          if (number4) {
-            // DOM에서 완전 제거
-            number4.remove();
-            console.log('✅ 4번째 다이어그램의 숫자 4 DOM에서 완전 삭제됨');
-          }
-        }
-        
-        // 방법 2: transform 스타일로도 찾기
-        const step4Transform = document.querySelector('.circle-step[style*="transform: translate(-50%, -100%)"]');
-        if (step4Transform) {
-          const number4 = step4Transform.querySelector('.circle-step-number');
-          if (number4) {
-            number4.remove();
-            console.log('✅ transform 스타일 4번째 다이어그램의 숫자 4 DOM에서 완전 삭제됨');
-          }
-        }
-        
-        // 방법 3: 모든 circle-step-number 중에서 텍스트가 4인 것 찾아서 삭제
-        document.querySelectorAll('.circle-step-number').forEach(numberEl => {
-          if (numberEl.textContent.trim() === '4') {
-            numberEl.remove();
-            console.log('✅ 텍스트 기반으로 숫자 4 DOM에서 완전 삭제됨');
+        // mobile-hide 클래스가 이미 추가되었으므로 추가 제거 작업
+        const number4Elements = document.querySelectorAll('.circle-step-number.mobile-hide');
+        number4Elements.forEach(el => {
+          if (el.textContent.trim() === '4') {
+            el.remove();
+            console.log('✅ 숫자 4 DOM에서 완전 제거됨');
           }
         });
       }
@@ -3481,13 +3470,6 @@ if (window.innerWidth <= 768) {
       
       // 페이지 로딩 완료 후 재실행
       document.addEventListener('DOMContentLoaded', killNumber4UI);
-      
-      // 추가 실행 (안전장치)
-      setTimeout(killNumber4UI, 50);
-      setTimeout(killNumber4UI, 200);
-      setTimeout(killNumber4UI, 500);
-      setTimeout(killNumber4UI, 1000);
-      setTimeout(killNumber4UI, 2000);
     }
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
@@ -8358,5 +8340,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 </body>
-</html>
 </html>
