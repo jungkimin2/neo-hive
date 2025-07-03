@@ -3689,11 +3689,11 @@ if (window.innerWidth <= 768) {
         width: 100vw !important;
         height: 100vh !important;
         background: rgba(0, 0, 0, 0.9) !important;
-        z-index: 999999 !important;
+        z-index: 1000000 !important;
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
-        pointer-events: none !important;
+        pointer-events: auto !important;
       `;
       document.body.appendChild(overlay);
     }
@@ -3701,11 +3701,12 @@ if (window.innerWidth <= 768) {
     // 오버레이 활성화
     overlay.classList.add('active');
     
-    // 모달 표시 (오버레이보다 높은 z-index)
+    // 모달 표시 (오버레이보다 확실히 높은 z-index)
     modal.style.setProperty('display', 'block', 'important');
     modal.style.setProperty('visibility', 'visible', 'important');
     modal.style.setProperty('opacity', '1', 'important');
-    modal.style.setProperty('z-index', '1000001', 'important');
+    modal.style.setProperty('z-index', '1000002', 'important');
+    modal.style.setProperty('pointer-events', 'auto', 'important');
     
     // 모바일에서 화면 중앙에 고정 위치
     if (window.innerWidth <= 768) {
@@ -3721,7 +3722,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('border', '2px solid #7BE495', 'important');
       modal.style.setProperty('border-radius', '16px', 'important');
       modal.style.setProperty('color', '#fff', 'important');
-      modal.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 0.5)', 'important');
+      modal.style.setProperty('box-shadow', 'none', 'important');
       console.log('✅ Mobile popup positioned');
     } else {
       // PC에서는 더 큰 크기로 설정
@@ -3737,7 +3738,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('border', '2px solid #7BE495', 'important');
       modal.style.setProperty('border-radius', '20px', 'important');
       modal.style.setProperty('color', '#fff', 'important');
-      modal.style.setProperty('box-shadow', '0 0 40px rgba(123, 228, 149, 0.6)', 'important');
+      modal.style.setProperty('box-shadow', 'none', 'important');
       console.log('✅ PC popup positioned with larger size');
     }
     
@@ -6304,7 +6305,7 @@ document.addEventListener('DOMContentLoaded', function() {
        top: 0 !important;
        left: 0 !important;
        width: 100% !important;
-       z-index: 999999 !important;
+       z-index: 2147483646 !important;
      }
      
      #mobile-top-nav-fixed {
@@ -6351,7 +6352,7 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
-        z-index: 999999 !important;
+        z-index: 2147483646 !important;
         background: #000 !important;
         border-bottom: 2px solid #7BE495 !important;
       }
@@ -7695,7 +7696,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 16px !important;
     color: #fff !important;
     box-shadow: none !important;
-    z-index: 1000001 !important;
+    z-index: 1000002 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 90vh !important;
@@ -7744,19 +7745,19 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer !important;
   }
   
-  /* 오버레이는 기본적으로 숨김, 팝업 열릴 때만 표시 */
+  /* 오버레이는 팝업창 뒤에만 위치 */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    z-index: 999999 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    z-index: 1000000 !important;
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
-    pointer-events: none !important;
+    pointer-events: auto !important;
   }
   
   /* 팝업이 열렸을 때만 오버레이 표시 */
@@ -7764,6 +7765,12 @@ document.addEventListener('DOMContentLoaded', function() {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+  
+  /* 팝업창은 오버레이보다 확실히 위에 */
+  #formModal {
+    z-index: 1000002 !important;
+    position: fixed !important;
     pointer-events: auto !important;
   }
 }
@@ -7783,7 +7790,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 20px !important;
     color: #fff !important;
     box-shadow: none !important;
-    z-index: 1000001 !important;
+    z-index: 1000002 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 85vh !important;
@@ -7816,7 +7823,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal textarea:focus,
   #formModal select:focus {
     border-color: #7BE495 !important;
-    box-shadow: 0 0 15px rgba(123, 228, 149, 0.5) !important;
+    box-shadow: none !important;
     outline: none !important;
   }
   
