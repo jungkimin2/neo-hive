@@ -3769,7 +3769,7 @@ if (window.innerWidth <= 768) {
   });
   
   function openForm(event) {
-    console.log('📱 openForm called - simplified version');
+    console.log('📱 openForm called - Mobile no overlay');
     
     // 이벤트 처리
     if (event) {
@@ -3786,33 +3786,17 @@ if (window.innerWidth <= 768) {
     // 기존 오버레이 모두 제거 (깔끔한 시작)
     document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
     
-    // 간단한 배경 오버레이 생성
-    const overlay = document.createElement('div');
-    overlay.id = 'modalOverlay';
-    overlay.onclick = closeForm;
-    overlay.style.cssText = `
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      background: rgba(0, 0, 0, 0.9) !important;
-      z-index: 2147483646 !important;
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-    `;
-    document.body.appendChild(overlay);
-    
-    // 모달 표시
-    modal.style.setProperty('display', 'block', 'important');
-    modal.style.setProperty('visibility', 'visible', 'important');
-    modal.style.setProperty('opacity', '1', 'important');
-    modal.style.setProperty('z-index', '2147483647', 'important');
-    
-    // 모바일에서 화면 중앙에 고정 위치
+    // 모바일에서는 오버레이 없이 팝업만 표시
     if (window.innerWidth <= 768) {
+      console.log('📱 Mobile - No overlay, popup only');
+      
+      // 모달 표시 - 오버레이 없음
+      modal.style.setProperty('display', 'block', 'important');
+      modal.style.setProperty('visibility', 'visible', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('z-index', '9999', 'important');
+      
+      // 모바일에서 화면 중앙에 고정 위치
       modal.style.setProperty('position', 'fixed', 'important');
       modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
@@ -3820,45 +3804,75 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('width', '85%', 'important');
       modal.style.setProperty('max-width', '400px', 'important');
       modal.style.setProperty('min-width', '300px', 'important');
-      modal.style.setProperty('padding', '24px', 'important');
-      modal.style.setProperty('background', '#000', 'important');
+      modal.style.setProperty('padding', '30px', 'important');
+      modal.style.setProperty('background', '#0d0d0d', 'important');
       modal.style.setProperty('border', '2px solid #7BE495', 'important');
-      modal.style.setProperty('border-radius', '16px', 'important');
+      modal.style.setProperty('border-radius', '20px', 'important');
       modal.style.setProperty('color', '#fff', 'important');
-      modal.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 0.5)', 'important');
-      console.log('✅ Mobile popup positioned');
+      modal.style.setProperty('box-shadow', 'none', 'important');
+      console.log('✅ Mobile popup positioned - NO OVERLAY');
+      
     } else {
-      // PC에서는 기존 방식
+      // PC에서는 오버레이 사용
+      const overlay = document.createElement('div');
+      overlay.id = 'modalOverlay';
+      overlay.onclick = closeForm;
+      overlay.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.85) !important;
+        z-index: 1000000 !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      `;
+      document.body.appendChild(overlay);
+      
+      // 모달 표시 - 오버레이보다 높은 z-index
+      modal.style.setProperty('display', 'block', 'important');
+      modal.style.setProperty('visibility', 'visible', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('z-index', '1000001', 'important');
       modal.style.setProperty('position', 'fixed', 'important');
       modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      console.log('✅ PC popup positioned');
+      console.log('✅ PC popup positioned with overlay');
     }
     
     return false;
   }
   function closeForm() {
-    console.log('📱 closeForm called - simplified version');
+    console.log('📱 closeForm called - mobile no overlay');
     
     const modal = document.getElementById('formModal');
     if (modal) {
       modal.style.display = 'none';
     }
     
-    // 모든 오버레이 제거
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
-      if (el && el.parentNode) {
-        el.remove();
-      }
-    });
+    // 모바일에서는 오버레이가 없으므로 간단히 팝업만 닫기
+    if (window.innerWidth <= 768) {
+      console.log('📱 Mobile - Just close popup, no overlay to remove');
+    } else {
+      // PC에서는 오버레이 제거
+      document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
+        if (el && el.parentNode) {
+          el.remove();
+        }
+      });
+      console.log('✅ PC - Popup closed and overlays removed');
+    }
     
     // 스크롤 복원
     document.body.style.overflow = 'auto';
     document.body.style.background = '';
     document.body.style.backdropFilter = '';
     
-    console.log('✅ Popup closed and overlays removed');
+    console.log('✅ Popup closed');
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -7442,7 +7456,7 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100vw !important;
   height: 100vh !important;
   background: rgba(0, 0, 0, 0.85) !important;
-  z-index: 2147483646 !important;
+  z-index: 2147483644 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -7972,7 +7986,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서 사전예약 팝업 확실히 표시 */
+/* 모바일 환경에서 사전예약 팝업 PC와 동일하게 표시 */
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
@@ -7982,13 +7996,13 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 90% !important;
     max-width: 400px !important;
     min-width: 300px !important;
-    padding: 24px !important;
-    background: #000 !important;
+    padding: 30px !important;
+    background: #0d0d0d !important;
     border: 2px solid #7BE495 !important;
-    border-radius: 16px !important;
+    border-radius: 20px !important;
     color: #fff !important;
-    box-shadow: 0 0 30px rgba(123, 228, 149, 0.5) !important;
-    z-index: 2147483647 !important;
+    box-shadow: none !important;
+    z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
     max-height: 90vh !important;
@@ -8020,6 +8034,13 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 8px !important;
     background: #111 !important;
     color: #fff !important;
+    box-shadow: none !important;
+  }
+  
+  #formModal input:focus,
+  #formModal textarea:focus,
+  #formModal select:focus {
+    box-shadow: none !important;
   }
   
   #formModal .btn {
@@ -8035,17 +8056,22 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 8px !important;
     font-weight: bold !important;
     cursor: pointer !important;
+    box-shadow: none !important;
   }
   
-  /* 오버레이도 모바일에서 확실히 표시 */
+  #formModal .btn:hover {
+    box-shadow: none !important;
+  }
+  
+  /* 오버레이도 모바일에서 확실히 표시 - 팝업보다 낮은 z-index */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    z-index: 2147483646 !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    z-index: 2147483645 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -8185,7 +8211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.85) !important;
-    z-index: 2147483646 !important;
+    z-index: 2147483645 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
