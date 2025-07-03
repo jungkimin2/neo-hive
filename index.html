@@ -1815,41 +1815,17 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   overflow: hidden !important;
 }
 
-/* 모바일에서 숫자 4 UI 숨김 - 모든 가능한 선택자로 강력하게 적용 */
-.circle-step:nth-of-type(4) .circle-step-number,
-.circle-step[style*="left: 50%; top: 98%"] .circle-step-number,
-.circle-step div.circle-step-number:contains("4"),
-.circular-flow-container .circle-step:nth-child(4) .circle-step-number,
-.circular-flow-container .circle-step:nth-of-type(4) .circle-step-number {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  z-index: -1 !important;
-}
-
-/* 4번이라는 텍스트를 포함한 모든 circle-step-number 숨김 */
+/* 원형 다이어그램의 모든 숫자는 표시 (1,2,3,4,5,6 모두 보이도록) */
 .circle-step-number {
   display: block !important;
-}
-
-.circle-step-number:nth-child(1) {
-  display: block !important;
-}
-
-/* 4번 다이어그램 전체에서 숫자만 선택적으로 숨김 */
-.circle-step[style*="top: 98%"] .circle-step-number,
-.circle-step[style*="자기 주도 운동"] .circle-step-number {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  height: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: auto !important;
 }
 </style>
             <div class="core-icon">
