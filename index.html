@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neo Hive - 스마트하게, 함께 하는 피트니스</title>
-
 <!-- 모바일 전용 즉시 적용 스타일 - 페이지 로딩 시 깜빡임 방지 -->
 <style>
 /* 모바일에서만 적용 - PC 환경 완전 보호 */
@@ -37,20 +36,17 @@
     justify-content: flex-start !important;
   }
   
-
   
   #smart {
     transform: translateY(-456px) !important;
     -webkit-transform: translateY(-456px) !important;
     position: relative !important;
   }
-
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
   .neos-wrapper {
     left: calc(15% - 64px) !important;
     transform: translateY(-50%) !important;
   }
-
   /* 모바일 환경에서 video-phone 즉시 고정 위치 설정 */
   .video-phone {
     position: absolute !important;
@@ -86,7 +82,6 @@
     opacity: 1 !important;
   }
 }
-
 /* PC 환경에서는 모든 transform 제거 */
 @media screen and (min-width: 769px) {
   .mobile-ui-position-adjustment,
@@ -97,7 +92,6 @@
     -webkit-transform: none !important;
   }
 }
-
 /* 태블릿 환경에서도 transform 제거 */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .mobile-ui-position-adjustment,
@@ -143,7 +137,6 @@ pointer-events: auto !important;
   transition: all 0.3s ease !important;
   animation: neonPulse 2s ease-in-out infinite alternate !important;
 }
-
 .nav-neon-green:hover {
   color: #9DF3C4 !important;
   text-shadow: 
@@ -155,7 +148,6 @@ pointer-events: auto !important;
     0 0 50px #3AC8A8 !important;
   transform: scale(1.05) !important;
 }
-
 @keyframes neonPulse {
   0% {
     text-shadow: 
@@ -182,10 +174,6 @@ pointer-events: auto !important;
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
 }
-
-
-
-
 }
 </style>
 <style>
@@ -214,38 +202,24 @@ pointer-events: auto !important;
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
 }
-
-
-
-
-
-
-
 /* 모바일 환경에서 자물쇠 이모티콘 좌측 이동 및 예시 문구 크기 조정 */
 .lock-icon {
   margin-left: -32px !important;
   margin-top: 2px !important;
 }
-
 .example-text {
   font-size: 0.75rem !important;
 }
-
-
-
 /* 모바일 환경에서 전체 스마트 가이드 텍스트를 우측으로 2칸 이동 */
 p.smart-guide-text {
   transform: translateX(32px) !important;
   position: relative !important;
   z-index: 999 !important;
 }
-
 /* 추가적인 우선순위 강화 */
 div > p.smart-guide-text {
   padding-left: 32px !important;
 }
-
-
 }
 </style>
 </body>
@@ -274,7 +248,6 @@ div > p.smart-guide-text {
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"></noscript>
-
 <style>
 /* 모바일: .mobile-only-text 내 아이콘 배경색 및 둥근 테두리 적용 */
 @media (max-width: 768px) {
@@ -480,7 +453,6 @@ div > p.smart-guide-text {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
   }
-
   /* Fade-in and float-up animation for floating labels */
   @keyframes fadeInUp {
     from {
@@ -503,7 +475,6 @@ div > p.smart-guide-text {
   }
   footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 0.9rem; }
   a, a:visited, a:hover { color: inherit; }
-
   .animate-on-scroll {
     opacity: 0;
     transform: scale(0.8);
@@ -513,7 +484,6 @@ div > p.smart-guide-text {
     opacity: 1;
     transform: scale(1);
   }
-
   .section.animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -523,17 +493,14 @@ div > p.smart-guide-text {
     opacity: 1;
     transform: translateY(0);
   }
-
   @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
   }
-
   @keyframes blink {
     0%, 100% { border-color: transparent; }
     50% { border-color: white; }
   }
-
   .typing {
     width: 0;
     overflow: hidden;
@@ -543,7 +510,6 @@ div > p.smart-guide-text {
     font-size: 2.2rem;
     text-shadow: 0 0 10px #7BE495;
   }
-
   @keyframes slideInLeft {
     from { opacity: 0; transform: translateX(-50px); }
     to { opacity: 1; transform: translateX(0); }
@@ -570,7 +536,6 @@ div > p.smart-guide-text {
     opacity: 1;
     transform: translateX(0);
   }
-
   @media (max-width: 768px) {
     /* 모바일: 핵심 가치 위치 조정 */
     .neohive-twobox-col > div:nth-child(2) {
@@ -955,7 +920,6 @@ div > p.smart-guide-text {
       width: 24px !important;
       height: 24px !important;
     }
-
     /* 베네핏 섹션 */
     #benefits {
       padding: 60px 16px 40px 16px !important;
@@ -1008,7 +972,6 @@ div > p.smart-guide-text {
       font-size: 16px !important; /* iOS 줌 방지 */
     }
   }
-
   /* Prevent horizontal scrolling on mobile */
   html, body {
     overflow-x: hidden;
@@ -1051,29 +1014,24 @@ div > p.smart-guide-text {
       will-change: transform, opacity;
       transform: translateZ(0);
     }
-
     /* 모바일에서 비디오 최적화 */
     video {
       will-change: auto;
       transform: translateZ(0);
     }
-
     /* 모바일에서 이미지 최적화 */
     img {
       will-change: auto;
       transform: translateZ(0);
     }
-
     /* 모바일에서만 Neo Hive 제목 아래로 이동 */
     .neo-hive-title {
       margin-top: 48px !important;
     }
-
     /* Move the entire hive showcase down slightly on mobile */
     #hive .hive-showcase {
       margin-top: 32px !important;
     }
-
     /* Move green gradient box down one step on mobile */
     .neohive-flex-row {
       margin-top: 48px !important;
@@ -1107,7 +1065,6 @@ div > p.smart-guide-text {
     box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
     will-change: transform, box-shadow, opacity;
   }
-
   /* 네오 스마트 주요 기능: floating-video, smart-caption, glowing border animation */
   /* 네오 스마트 비디오 - 모바일에서 처음부터 가운데 최전면 고정 */
   @media (max-width: 768px) {
@@ -1184,7 +1141,6 @@ div > p.smart-guide-text {
         opacity: 1;
       }
     }
-
     .neo-smart-video.tag-slide {
       animation: slideRightToLeft 2.8s ease-out forwards;
     }
@@ -1227,7 +1183,6 @@ div > p.smart-guide-text {
       white-space: nowrap !important; /* 한 줄로 강제 표시 */
     }
   }
-
   /* Simplified, thinner neon cards */
   .neos-card {
     background: none !important;
@@ -1264,17 +1219,14 @@ margin-top: -180px !important; /* 추가적으로 상단 여백 감소 (기존 -
 padding-top: 0 !important;
 transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
 }
-
 #smart.section, #smart .container {
 margin-top: 0 !important;
 padding-top: 0 !important;
 overflow: visible !important;
 }
-
 #smart h2, #smart p, #smart .hive-showcase {
 transform: none !important;
 }
-
 #smart h2 {
 font-size: 1.4rem !important;
 }
@@ -1287,13 +1239,11 @@ will-change: transform, opacity;
 transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
-
 .hive-image.active {
 will-change: transform, opacity;
 transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
-
 .video-phone {
 will-change: transform, opacity;
 transform: translateZ(0);
@@ -1301,7 +1251,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
 </style>
-
 </head>
 <style>
 @media (max-width: 768px) {
@@ -1359,9 +1308,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
   </div>
 </div>
-
-
-
 <!-- PC 전용 네비게이션 바 -->
 <div id="pc-nav-container">
   <div class="mobile-nav-container">
@@ -1383,11 +1329,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </header>
   </div>
 </div>
-
 <!-- 스크롤되는 페이지 콘텐츠 컨테이너 -->
 <div id="scrollable-content">
-
-
 <!-- 스크롤 방향 감지 스크립트 제거 - 단순 고정 방식으로 변경 -->
 <!-- <div id="features"></div> -->
 <section id="hive" class="section animate-on-scroll" style="background:#000; padding-top:24px;">
@@ -1398,7 +1341,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <p style="margin: 10px 0 24px; color: #aaa; text-align: left; line-height: 1.6;">
       지역 기반 소모임 헬스 커뮤니티 플랫폼<br><span class="neon-green">커뮤니티와 헬스장을 하나로 연결</span><span style="color:#aaa;">하여 지속적인 운동 문화를 만들고, 헬스장의 활성화를 도모합니다.</span>
     </p>
-
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
       <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
@@ -1410,7 +1352,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
       <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; left:10px; transform:translateY(-50%);">&#10094;</button>
       <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; right:10px; transform:translateY(-50%);">&#10095;</button>
-
       <!-- Left 3 images stacked behind center (팀 결성 관련) -->
       <img src="./images/neohive6.png" loading="lazy" decoding="async"
            class="hive-image slide-in-left animate-on-scroll team-formation"
@@ -1424,7 +1365,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            class="hive-image slide-in-left animate-on-scroll team-formation"
            data-category="team" width="160" height="320"
            style="position:absolute; left:50%; top:65%; transform:translate(-300%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s;">
-
       <!-- Right 3 images stacked behind center (주변 센터 예약 관련) -->
       <img src="./images/neohive4.png" loading="lazy" decoding="async"
            class="hive-image slide-in-right animate-on-scroll center-booking"
@@ -1438,7 +1378,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            class="hive-image slide-in-right animate-on-scroll center-booking"
            data-category="booking" width="160" height="320"
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
-
       <!-- Center phone -->
       <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
         <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
@@ -1520,7 +1459,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">QR코드로 자동 인증과<br>출석 랭킹 연동</div>
         </div>
       </div>
-
       <!-- 모바일 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
       <div class="mobile-system-ui-container" style="margin-top: 40px; display: none;">
         <!-- 무인 출입 시스템 카드 -->
@@ -1548,7 +1486,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
             <span style="color: #62D2A2; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">간단한 코드 입력만으로 무인 헬스장에 손쉽게 출입할 수 있습니다.</span>
           </div>
         </div>
-
         <!-- 이벤트 시스템 연동 카드 -->
         <div class="mobile-system-card-new" style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); border-radius: 18px; padding: 24px 20px; border: 1px solid rgba(123, 228, 149, 0.4); box-shadow: 0 6px 20px rgba(123, 228, 149, 0.15);">
           <div class="mobile-system-header-new" style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -1575,7 +1512,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           </div>
         </div>
       </div>
-
       <!-- PC 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
       <div class="pc-system-ui" style="margin-top: 40px; display: block;">
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 30px 40px; margin: 20px auto; max-width: 1000px;">
@@ -1623,7 +1559,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           </div>
         </div>
       </div>
-
       <!-- FLEX 3-BOX BLOCK MOVED HERE -->
       <div class="neohive-flex-row" style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; align-items: flex-start; margin-top: 32px;">
         <!-- NeoFit H box (refactored with inner gradient strip) -->
@@ -1749,14 +1684,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   transform: none !important;
   margin-top: 0 !important;
 }
-
 .pc-system-ui {
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
 }
-
 /* 모바일 환경에서 PC용 무인 출입 시스템 UI 숨김 */
 @media (max-width: 768px) {
 .pc-system-ui {
@@ -1766,7 +1699,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   height: 0 !important;
   overflow: hidden !important;
 }
-
 /* 원형 다이어그램의 모든 숫자는 표시 (1,2,3,4,5,6 모두 보이도록) */
 .circle-step-number {
   display: block !important;
@@ -1912,7 +1844,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 @media (min-width: 769px) {
 .mobile-merged-box { display: none !important; }
 }
-
 @media (max-width: 768px) {
 body #mobile-moved-merged-box,
 html body #mobile-moved-merged-box {
@@ -2031,7 +1962,6 @@ html body .core-value-fresh-mobile {
     transparent 100%);
   z-index: 1;
 }
-
 .core-value-fresh-mobile::after {
   content: '';
   position: absolute;
@@ -2043,20 +1973,17 @@ html body .core-value-fresh-mobile {
   pointer-events: none;
   z-index: 1;
 }
-
 /* 아이콘과 텍스트가 글라스 효과 위에 표시되도록 */
 .core-value-fresh-mobile .core-icon,
 .core-value-fresh-mobile .core-text-block {
   position: relative;
   z-index: 2;
 }
-
 /* 아이콘에 글로우 효과 추가 */
 .core-value-fresh-mobile .core-icon img {
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) !important;
   transition: all 0.3s ease !important;
 }
-
 /* 터치 효과 */
 .core-value-fresh-mobile:active {
   transform: translateY(-366.8px) !important; /* 터치 시 살짝 위로 */
@@ -2067,7 +1994,6 @@ html body .core-value-fresh-mobile {
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
     inset 0 -1px 0 rgba(123, 228, 149, 0.25) !important;
 }
-
 /* 기존 mobile-core-value-block 숨김 (혹시 남아있을 경우) */
 .mobile-core-value-block {
   display: none !important;
@@ -2199,14 +2125,11 @@ html body .core-value-fresh-mobile {
   .mobile-core-value-fresh { display: none !important; }
 }
 </style>
-
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
 <!-- <div id="hive"></div> -->
           <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px;">
   <div class="container" style="text-align:center;">
@@ -2247,7 +2170,6 @@ html body .core-value-fresh-mobile {
     transform: translateX(calc(-52% - 20px)) !important; /* 기존 -52%에서 20px 더 좌측으로 (26px에서 6px 우측 이동) */
   }
 }
-
 /* 모바일 환경에서 .neos-category-tags를 하단으로 8칸(약 160px) 이동 */
 @media (max-width: 768px) {
   .neos-category-tags {
@@ -2302,14 +2224,12 @@ html body .core-value-fresh-mobile {
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
-
   /* 3D 효과를 지원하기 위한 컨테이너 설정 */
   .neos-wrapper {
     transform-style: preserve-3d !important; /* 3D 효과 활성화 */
     position: relative !important;
   }
 }
-
 .flipper {
   position: relative;
   width: 100%;
@@ -2317,16 +2237,13 @@ html body .core-value-fresh-mobile {
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
 }
-
 /* CSS hover 효과 제거 - JavaScript에서 완전히 제어 */
-
 .neo-smart-logo.front,
 .back {
   width: 100%;
   backface-visibility: hidden;
   border-radius: 16px;
 }
-
 /* Ensure .neo-smart-logo.front is always visible and not overridden */
 .neo-smart-logo.front {
   display: block !important;
@@ -2340,7 +2257,6 @@ html body .core-value-fresh-mobile {
   margin: 0 auto !important;
   pointer-events: auto !important;
 }
-
 /* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
   .flipper img.neo-smart-logo.front,
@@ -2356,9 +2272,7 @@ html body .core-value-fresh-mobile {
     transform: translateY(64px) rotateY(180deg) !important;
   }
   
-
 }
-
 .back {
   position: absolute;
   top: 0;
@@ -2403,9 +2317,7 @@ html body .core-value-fresh-mobile {
   text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
   line-height: 1.6;
 }
-
 /* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
-
 /* 모바일 환경 스타일 */
 @media (max-width: 768px) {
   .back-text-overlay {
@@ -2443,7 +2355,6 @@ html body .core-value-fresh-mobile {
       }
       </style>
     </div> <!-- End of .hive-showcase -->
-
 <!-- JavaScript로 NEOS 카드 강제 이동 -->
 <script>
 // 모바일에서만 NEOS 카드 위치 강제 조정
@@ -2493,7 +2404,6 @@ if (window.innerWidth <= 768) {
   animation: wavePulse 2.5s infinite ease-in-out;
   z-index: 0;
 }
-
 @keyframes wavePulse {
   0% {
     transform: translate(-50%, -50%) scale(0.8);
@@ -2504,7 +2414,6 @@ if (window.innerWidth <= 768) {
     opacity: 0;
   }
 }
-
 /* 모바일 환경에서 파동 효과 제거 */
 @media (max-width: 768px) {
   .wave-background {
@@ -2598,7 +2507,6 @@ if (window.innerWidth <= 768) {
   text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
   transition: all 0.3s ease;
 }
-
 /* 모바일 환경에서 다이얼그램 숫자들을 상단 좌측으로 이동 */
 @media (max-width: 768px) {
   .circle-step-number {
@@ -2773,7 +2681,6 @@ if (window.innerWidth <= 768) {
   border-color: #3AC8A8;
   transform: scale(1.06);
 }
-
 .circle-step:hover .circle-step-number {
   transform: scale(1.15);
   box-shadow: 
@@ -2881,7 +2788,6 @@ if (window.innerWidth <= 768) {
   visibility: visible !important;
   opacity: 1 !important;
 }
-
 /* 모바일 환경에서 발광효과를 다이어그램 정중앙(NEO SMART 핵심 흐름 위치)으로 이동 */
 @media (max-width: 600px) {
   .circular-bg-glow {
@@ -2918,7 +2824,6 @@ if (window.innerWidth <= 768) {
     padding: 20px !important;
   }
   
-
   
   /* 다이어그램 원들 모바일 위치 조정 */
   .circle-step[style*="left: 85%; top: 12%"],
@@ -2982,9 +2887,6 @@ if (window.innerWidth <= 768) {
     </div>
   </div>
 </section>
-
-
-
 <section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
@@ -3058,7 +2960,6 @@ if (window.innerWidth <= 768) {
             </div>
           </div>
         </div>
-
       </div>
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
@@ -3284,18 +3185,13 @@ if (window.innerWidth <= 768) {
     }
   </style>
 </section>
-
-
-
 <!-- Removed "3개월 무료 파트너십 신청" section and NEO HIVE green gradient hero box as requested. -->
 <footer style="background: #000; margin: 0; padding: 20px; color: #fff;">
   &copy; 2025 Neo Hive. All Rights Reserved.<br>
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
-
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" onclick="closeForm()" style="display: none;"></div>
-
 <div id="formModal" onclick="event.stopPropagation()" style="display:none;">
   <div style="text-align:right;">
     <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
@@ -3406,8 +3302,6 @@ if (window.innerWidth <= 768) {
       }
     }
     
-
-
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
       setTimeout(() => {
@@ -3508,7 +3402,6 @@ if (window.innerWidth <= 768) {
         }
       }
     }
-
     // 네오 스마트 영상 스피커 토글 함수
     function toggleSmartAudio() {
       const smartVideo = document.getElementById('smart-showcase-video');
@@ -3534,7 +3427,6 @@ if (window.innerWidth <= 768) {
         }
       }
     }
-
     // 페이지 상단으로 스크롤하는 함수 (모바일/PC 공통)
     function scrollToTop() {
       if (window.innerWidth <= 768) {
@@ -3678,7 +3570,6 @@ if (window.innerWidth <= 768) {
           
           console.log('📊 Neo Smart 영상 메타데이터 로드됨');
           
-
         });
         
         smartVideo.addEventListener('error', (e) => {
@@ -3782,7 +3673,6 @@ if (window.innerWidth <= 768) {
       console.error('formModal not found');
       return false;
     }
-
     // 기존 불필요한 오버레이들만 제거 (modalOverlay는 재사용)
     document.querySelectorAll('.modal-overlay, [id*="overlay"]:not(#modalOverlay), [id*="Overlay"]:not(#modalOverlay)').forEach(el => el.remove());
     
@@ -4090,10 +3980,7 @@ if (window.innerWidth <= 768) {
   
   // 모바일 하단 고정 네비게이션 (항상 표시)
   // 스크롤 감지 로직 제거 - 이제 항상 보임
-
 </script>
-
-
   <script>
     // 성능 최적화된 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
@@ -4106,7 +3993,6 @@ if (window.innerWidth <= 768) {
         observer.unobserve(entry.target);
         return;
       }
-
       if (entry.isIntersecting) {
         // requestAnimationFrame으로 애니메이션 최적화
         requestAnimationFrame(() => {
@@ -4119,7 +4005,6 @@ if (window.innerWidth <= 768) {
     rootMargin: '0px 0px -50px 0px', // 더 빠른 트리거
     threshold: 0.1 // 10%만 보여도 트리거
   });
-
   document.querySelectorAll(".animate-on-scroll, .section.animate-on-scroll, .slide-in-left, .slide-in-right, .feature-item").forEach(el => {
     // 모바일에서는 초기부터 visible 클래스 추가
     if (window.innerWidth <= 768) {
@@ -4137,7 +4022,6 @@ if (window.innerWidth <= 768) {
   let isTransitioning = false; // 전환 중 중복 클릭 방지
   const hiveImages = document.querySelectorAll('.hive-image');
   const videoPhone = document.querySelector('.video-phone');
-
   // Store original inline style values for transform, left, top, zIndex on page load
   window.addEventListener('load', () => {
     // 성능 최적화를 위한 requestAnimationFrame 사용
@@ -4173,14 +4057,12 @@ if (window.innerWidth <= 768) {
       showSlide(slideIndex);
     });
   });
-
   function showSlide(idx) {
     if (isTransitioning) return; // 전환 중이면 무시
     
     isTransitioning = true;
     const container = document.querySelector('.hive-showcase');
     if (!container) return;
-
     // requestAnimationFrame 제거하여 CSS 트랜지션이 작동하도록 함
     if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
@@ -4225,7 +4107,6 @@ if (window.innerWidth <= 768) {
             resetImageToOriginalPosition(img, index);
           }
         });
-
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
@@ -4254,7 +4135,6 @@ if (window.innerWidth <= 768) {
             videoPhone.style.borderRadius = '24px';
           }
         }
-
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
@@ -4316,7 +4196,6 @@ if (window.innerWidth <= 768) {
       return positions[index] || positions[0];
     }
   }
-
   // 이미지 클릭 이벤트 핸들러 추가
   hiveImages.forEach((image, idx) => {
     image.addEventListener('click', function (e) {
@@ -4332,7 +4211,6 @@ if (window.innerWidth <= 768) {
       showSlide(slideIndex);
     });
   });
-
   
   
        // 이미지를 원래 위치로 복귀시키는 함수
@@ -4367,7 +4245,6 @@ if (window.innerWidth <= 768) {
    }
   
        
-
   const prevBtn = document.getElementById('slide-prev');
   const nextBtn = document.getElementById('slide-next');
   
@@ -4396,7 +4273,6 @@ if (window.innerWidth <= 768) {
       showSlide(slideIndex);
     });
   }
-
   // 비디오 클릭 시 원래 상태로 복귀
   if (videoPhone) {
     videoPhone.addEventListener('click', (e) => {
@@ -4407,7 +4283,6 @@ if (window.innerWidth <= 768) {
       showSlide(slideIndex);
     });
   }
-
   // Reset all if clicked outside
   document.querySelector('.hive-showcase').addEventListener('click', (e) => {
     if (e.target.classList.contains('hive-image') || e.target.closest('.video-phone')) return;
@@ -4511,7 +4386,6 @@ if (window.innerWidth <= 768) {
     }, 20);
   }
 })();
-
 window.addEventListener('load', () => {
   const video = document.querySelector('.neo-smart-video');
   
@@ -4587,7 +4461,6 @@ if (video) {
     opacity: 1;
     box-shadow: none;
   }
-
   @media (max-width: 768px) {
     .neo-smart-caption-wrapper {
       margin-top: 16px !important;
@@ -4712,14 +4585,12 @@ if (video) {
     color: #fff;
     padding: 0 16px;
   }
-
   .smart-feature-text h2 {
     font-size: 1.4rem;
     color: #7BE495;
     margin-bottom: 8px;
     text-shadow: 0 0 8px #7BE495;
   }
-
   .smart-feature-text p {
     font-size: 1rem;
     line-height: 1.6;
@@ -4756,7 +4627,6 @@ if (video) {
     transform: translateX(100%);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-
   .flow-arrow-inside {
     position: absolute;
     right: -12px;
@@ -4780,7 +4650,6 @@ if (video) {
   position: relative;
   z-index: 2;
 }
-
 /* 2. 메인 버튼(CTA) 강조 효과 */
 .btn {
   transition: all 0.3s cubic-bezier(.4,2,.6,1);
@@ -4789,7 +4658,6 @@ if (video) {
   transform: scale(1.07);
   box-shadow: 0 0 20px #7BE495, 0 0 40px #3AC8A8;
 }
-
 /* 3. 폼 모달 배경 오버레이 */
 #formModal::before {
   content: '';
@@ -4798,21 +4666,18 @@ if (video) {
   background: rgba(0,0,0,0.7);
   z-index: -1;
 }
-
 /* 4. 폼 입력 포커스 효과 */
 #formModal input:focus, #formModal textarea:focus, #formModal select:focus {
   border-color: #7BE495;
   box-shadow: 0 0 8px #7BE49555;
   outline: none;
 }
-
 /* 5. 카드 hover 효과 (네온 강조) */
 .feature-item:hover, .neos-card:hover, .benefit-item:hover {
   transform: scale(1.04) translateY(-6px);
   box-shadow: 0 0 24px #7BE495cc, 0 0 8px #7BE49588;
   border-color: #3AC8A8 !important;
 }
-
 /* 6. 반응형 개선: 중간 화면에서 2열 유지 */
 @media (max-width: 1024px) {
   .features, .benefits {
@@ -4946,14 +4811,12 @@ if (video) {
       height: 360px !important;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
-
     .hive-image {
       width: 90px !important;
       height: 180px !important;
       border-radius: 16px !important;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
-
     .hive-showcase {
       margin-top: 100px !important;
       padding: 0 16px !important;
@@ -4991,7 +4854,6 @@ if (video) {
     }
   }
 </style>
-
 <script>
   // 터치 이벤트 처리 추가
   document.addEventListener("DOMContentLoaded", function () {
@@ -5000,20 +4862,16 @@ if (video) {
     
     let touchStartX = 0;
     let touchEndX = 0;
-
     showcase.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
     });
-
     showcase.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].clientX;
       handleSwipe();
     });
-
     function handleSwipe() {
       const swipeThreshold = 50;
       const diff = touchEndX - touchStartX;
-
       if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
           // 오른쪽으로 스와이프
@@ -5062,7 +4920,6 @@ if (video) {
       transition: none !important;
     }
   }
-
   @media (max-width: 768px) {
     .video-phone {
       width: 180px !important;
@@ -5074,7 +4931,6 @@ if (video) {
     }
   }
 </style>
-
 <style>
   @media (max-width: 768px) {
     #slide-prev, #slide-next {
@@ -5095,7 +4951,6 @@ if (video) {
     }
   }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* 네오 하이브 주요 기능(지역 기반/팀 기반) 모바일 최적화 */
@@ -5141,7 +4996,6 @@ if (video) {
 }
 }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* '지역 기반 연결', '팀 기반 시스템' 제목을 한 칸(12px) 아래로 내림 */
@@ -5150,7 +5004,6 @@ if (video) {
 }
 }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* '지역 기반 연결'과 '팀 기반 시스템' 설명문구와 아이콘을 한 칸 위로 올림 */
@@ -5170,7 +5023,6 @@ if (video) {
 }
 }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* '핵심 가치'와 설명을 박스 내에서 한 칸(12px) 아래로 내림 */
@@ -5182,7 +5034,6 @@ if (video) {
 }
 }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* '핵심 가치'와 설명만 한 칸(12px) 아래로 내림 (박스 전체 X) */
@@ -5196,7 +5047,6 @@ if (video) {
 }
 }
 </style>
-
 <style>
 @media (max-width: 768px) {
 /* 무인 출입/이벤트 시스템 연동 박스 1단 세로 쌓기 */
@@ -5227,12 +5077,7 @@ if (video) {
 }
 }
 </style>
-
-
 <!-- 모바일 전용 1단 카드형 시스템 안내 -->
-
-
-
 <!-- 기존 trial/feedback 메시지 모바일 폰트 오버라이드 삭제 (중복 제거) -->
 <!-- 이미 <head>에 동일한 @media (max-width: 768px) 스타일이 있으므로 이 부분은 완전히 삭제해도 됩니다. -->
 <style>
@@ -5272,9 +5117,6 @@ h3 {
 }
 }
 </style>
-
-
-
 <style>
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
@@ -5285,20 +5127,17 @@ html body #smart {
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
-
 body #smart h2,
 html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
-
 body #smart .hive-showcase,
 body #smart p,
 html body #smart .hive-showcase,
 html body #smart p {
   transform: none !important;
 }
-
 .smart-caption {
   margin-top: 12px !important;
 }
@@ -5318,7 +5157,6 @@ html body #smart p {
   font-size: 0.9rem !important;
   line-height: 1.2 !important;
 }
-
 body #smart,
 html body #smart {
   transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
@@ -5326,20 +5164,17 @@ html body #smart {
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
-
 body #smart h2,
 html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
-
 body #smart .hive-showcase,
 body #smart p,
 html body #smart .hive-showcase,
 html body #smart p {
   transform: none !important;
 }
-
 .smart-caption {
   margin-top: 12px !important;
 }
@@ -5358,13 +5193,11 @@ html body #smart p {
   animation: none !important;
   transition: none !important;
 }
-
 /* 기존 모바일 스타일 유지 */
 .smart-trainer-text {
   font-size: 1.8rem !important;
   line-height: 1.2 !important;
 }
-
 body #smart,
 html body #smart {
   transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
@@ -5372,20 +5205,17 @@ html body #smart {
   margin-top: -180px !important;
   padding-top: 0 !important;
 }
-
 body #smart h2,
 html body #smart h2 {
   font-size: 1.4rem !important;
   transform: none !important;
 }
-
 body #smart .hive-showcase,
 body #smart p,
 html body #smart .hive-showcase,
 html body #smart p {
   transform: none !important;
 }
-
 .smart-caption {
   margin-top: 12px !important;
 }
@@ -5414,7 +5244,6 @@ html body #smart p {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   perspective: 1000px !important;
 }
-
 .hive-image.active {
   -webkit-backface-visibility: hidden !important;
   backface-visibility: hidden !important;
@@ -5425,7 +5254,6 @@ html body #smart p {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   perspective: 1000px !important;
 }
-
 .video-phone {
   -webkit-backface-visibility: hidden !important;
   backface-visibility: hidden !important;
@@ -5436,7 +5264,6 @@ html body #smart p {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   perspective: 1000px !important;
 }
-
 /* 컨테이너 최적화 */
 .hive-showcase {
   -webkit-backface-visibility: hidden !important;
@@ -5473,7 +5300,6 @@ html body #smart p {
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
 }
-
 /* 최고 우선순위로 강제 적용 - 인라인 스타일도 덮어쓰기 */
 html body .hive-showcase .video-phone[style],
 div.video-phone[style],
@@ -5522,7 +5348,6 @@ div.video-phone[style],
   width: 450px !important;
   height: auto !important;
 }
-
 .neo-smart-logo img,
 .neo-smart-logo.front {
   display: block !important;
@@ -5534,7 +5359,6 @@ div.video-phone[style],
   position: relative !important;
   z-index: 100 !important;
 }
-
 /* 이미지 컨테이너 스타일 */
 .neos-wrapper {
   display: block !important;
@@ -5547,7 +5371,6 @@ div.video-phone[style],
   z-index: 200 !important;
   width: 450px !important;
 }
-
 /* 기존 숨김 처리된 스타일 덮어쓰기 */
 .hidden-mobile,
 .mobile-hidden {
@@ -5556,7 +5379,6 @@ div.video-phone[style],
   opacity: 1 !important;
 }
 }
-
 /* 모바일 환경에서 사이드 열 슬라이드 최적화 */
 @media (max-width: 768px) {
 /* 좌우 1열 슬라이드 최적화 */
@@ -5570,7 +5392,6 @@ div.video-phone[style],
   transform-style: flat !important;
   will-change: transform !important;
 }
-
 .swiper-container-side .swiper-slide,
 .side-column .swiper-slide {
   -webkit-transform: translateZ(0) !important;
@@ -5581,13 +5402,11 @@ div.video-phone[style],
   will-change: transform, opacity !important;
   opacity: 0.8 !important;
 }
-
 .swiper-container-side .swiper-slide-active,
 .side-column .swiper-slide-active {
   opacity: 1 !important;
   transform: scale(1) translateZ(0) !important;
 }
-
 .swiper-container-side .swiper-slide-prev,
 .swiper-container-side .swiper-slide-next,
 .side-column .swiper-slide-prev,
@@ -5596,7 +5415,6 @@ div.video-phone[style],
   transform: scale(0.95) translateZ(0) !important;
 }
 }
-
 /* 모바일 환경에서 슬라이드 전환 최적화 */
 @media (max-width: 768px) {
 /* 전역 트랜지션 최적화 */
@@ -5606,7 +5424,6 @@ div.video-phone[style],
   -webkit-transform-style: preserve-3d !important;
   transform-style: preserve-3d !important;
 }
-
 /* 슬라이드 컨테이너 최적화 */
 .swiper-container,
 .swiper-wrapper {
@@ -5616,7 +5433,6 @@ div.video-phone[style],
   perspective: 1000 !important;
   will-change: transform !important;
 }
-
 /* 슬라이드 개별 요소 최적화 */
 .swiper-slide {
   -webkit-transform: translate3d(0,0,0) !important;
@@ -5624,7 +5440,6 @@ div.video-phone[style],
   transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
   will-change: transform, opacity !important;
 }
-
 /* 트랜지션 중인 슬라이드 최적화 */
 .swiper-slide-active,
 .swiper-slide-next,
@@ -5633,7 +5448,6 @@ div.video-phone[style],
   transform: translate3d(0,0,0) !important;
   }
 }
-
 /* 데스크톱에서는 desktop-inline 보이고 mobile-break 숨김 */
 @media (min-width: 769px) {
   .mobile-break {
@@ -5855,15 +5669,12 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative !important;
   }
   
-
-
   /* 네오핏 로고 크기 및 정렬 조정 */
   .neos-icon img[src*="neo95.png"] {
     width: 38px !important;
     height: 38px !important;
     margin: -2px 0 0 -2px !important;
   }
-
   /* 카드 내부 정렬 개선 */
   .neos-card {
     width: 100% !important;
@@ -5877,7 +5688,6 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center !important;
     justify-content: flex-start !important;
   }
-
   .neos-icon {
     width: 36px !important;
     height: 36px !important;
@@ -5887,7 +5697,6 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center !important;
     justify-content: center !important;
   }
-
   .neos-text {
     font-size: 0.82rem !important;
     line-height: 1.2 !important;
@@ -6347,7 +6156,6 @@ document.addEventListener('DOMContentLoaded', function() {
        transform: translateY(-25%) !important;
      }
      
-
      
      /* 중복 body 패딩 - 맨 아래 최종 규칙으로 대체됨 */
      
@@ -6503,7 +6311,6 @@ document.addEventListener('DOMContentLoaded', function() {
        display: none !important;
      }
      
-
      
      .mobile-nav-container {
        position: relative !important;
@@ -6517,7 +6324,6 @@ document.addEventListener('DOMContentLoaded', function() {
       display: none;
     }
     
-
     
     /* 스크롤 콘텐츠 컨테이너 */
     #scrollable-content {
@@ -6621,7 +6427,6 @@ document.addEventListener('DOMContentLoaded', function() {
         padding-top: 0 !important;
       }
       
-
       
       /* 모바일에서 하이브 섹션 위치 조정 */
       #hive.section {
@@ -6633,7 +6438,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   </style>
-
 </div> <!-- scrollable-content 끝 -->
 <style>
 /* 모바일 환경 최우선 네비게이션 고정 스타일 */
@@ -6653,7 +6457,6 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 60px !important; /* 네비게이션 공간 확보 */
     overflow-x: hidden;
   }
-
   /* 모바일 상단 네비게이션 - 최상위 고정 */
   #mobile-top-nav-fixed {
     position: fixed !important;
@@ -6675,7 +6478,6 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
     opacity: 1 !important;
   }
-
   /* 네비게이션 바 내부 */
   #mobile-top-nav-fixed .nav-bar {
     display: flex !important;
@@ -6686,7 +6488,6 @@ document.addEventListener('DOMContentLoaded', function() {
     background: transparent !important;
     position: relative !important;
   }
-
   /* 로고 스타일 */
   #mobile-top-nav-fixed .nav-logo {
     height: 28px !important;
@@ -6694,7 +6495,6 @@ document.addEventListener('DOMContentLoaded', function() {
     display: block !important;
     margin-left: -16px !important; /* 좌측으로 한 칸 이동 */
   }
-
   /* 메뉴 버튼 스타일 */
   #mobile-top-nav-fixed .nav-menu-btn {
     background: none !important;
@@ -6705,7 +6505,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer !important;
     display: block !important;
   }
-
   /* 드롭다운 메뉴 */
   #mobile-top-nav-fixed .nav-menu {
     position: absolute !important;
@@ -6717,7 +6516,6 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
     z-index: 2147483646 !important;
   }
-
   /* 메뉴 아이템 - 일반 항목들은 흰색 */
   #mobile-top-nav-fixed .nav-menu a {
     display: block !important;
@@ -6729,7 +6527,6 @@ document.addEventListener('DOMContentLoaded', function() {
     text-align: center !important; /* 중앙 정렬 */
     font-weight: 400 !important;
   }
-
   #mobile-top-nav-fixed .nav-menu a:hover {
     background: #222 !important;
   }
@@ -6778,7 +6575,6 @@ document.addEventListener('DOMContentLoaded', function() {
         0 0 40px #3AC8A8;
     }
   }
-
   /* 스크롤 가능한 콘텐츠 영역 */
   #scrollable-content {
     position: relative !important;
@@ -6786,7 +6582,6 @@ document.addEventListener('DOMContentLoaded', function() {
     min-height: 100vh !important;
     transform: none !important;
   }
-
   /* 모든 섹션들이 네비게이션 아래에 위치하도록 (특정 UI 요소들 제외) */
   .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
   .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
@@ -6832,16 +6627,12 @@ document.addEventListener('DOMContentLoaded', function() {
   .hive-showcase {
     position: relative !important;
   }
-
   /* 첫 번째 섹션 여백 조정 */
   #hive.section {
     margin-top: 0 !important;
     padding-top: 20px !important;
   }
-
-
 }
-
 /* 모바일에서 PC 네비게이션 완전 숨김 */
 @media only screen and (max-width: 768px) {
   #pc-nav-container,
@@ -6851,7 +6642,6 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: hidden !important;
   }
 }
-
 /* PC 환경 보호 (769px 이상) */
 @media only screen and (min-width: 769px) {
   /* 기존 PC 스타일 유지 */
@@ -6863,7 +6653,6 @@ document.addEventListener('DOMContentLoaded', function() {
     padding-top: 56px !important;
   }
 }
-
 /* 모바일 네비게이션 충돌 방지 추가 스타일 */
 @media only screen and (max-width: 768px) {
   /* 모든 부모 요소의 transform 제거 (슬라이드 및 특정 UI 요소들 제외) */
@@ -7181,7 +6970,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-
   
   /* 3D 변환 컨텍스트 제거 (네오 하이브/스마트 영상 제외) */
   *:not(.video-phone):not(.neo-smart-video):not(.floating-video):not(.hive-showcase *) {
@@ -7245,7 +7033,6 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 105 !important;
   }
   
-
   
   #smart {
     z-index: 50 !important;
@@ -7264,7 +7051,6 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 20px !important;
   }
   
-
   
   /* 모든 UI 요소들의 가시성 강제 보장 */
   .mobile-ui-position-adjustment,
@@ -7286,9 +7072,7 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
   }
   
-
 }
-
 /* PC 환경에서는 transform 제거 */
 @media (min-width: 769px) {
   .mobile-ui-position-adjustment,
@@ -7300,7 +7084,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
-
 <!-- 모바일 환경에서 뒤집기 효과 안의 NEOS 이미지만 2칸 아래로 이동 -->
 <style>
 @media (max-width: 768px) {
@@ -7339,10 +7122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: hidden !important;
     opacity: 0 !important;
   }
-
-
 </style>
-
 <!-- PC 환경에서 네오 스마트 영상이 네비게이션 가리지 않도록 z-index 조정 -->
 <style>
 /* PC 환경에서는 네오 스마트 영상 z-index 낮추기 */
@@ -7353,7 +7133,6 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 50 !important; /* 네비게이션보다 낮은 값으로 설정 */
   }
 }
-
 /* 모바일 환경에서는 높은 z-index 유지 */
 @media (max-width: 768px) {
   .video-phone,
@@ -7389,14 +7168,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 중복 삭제됨 - 하단의 통합 정의 사용 */
 }
-
 /* 중복 삭제됨 - #modalOverlay만 사용 */
-
 /* 사전 예약하기 버튼 - 네온 글로우 스타일 */
 .reservation-btn {
   animation: neonGlow 2s ease-in-out infinite alternate;
 }
-
 @keyframes neonGlow {
   0% {
     box-shadow: 
@@ -7418,7 +7194,6 @@ document.addEventListener('DOMContentLoaded', function() {
       0 0 35px rgba(123, 228, 149, 0.6);
   }
 }
-
 /* PC 환경에서 호버 효과 및 텍스트 크기 조정 */
 @media (min-width: 769px) {
   .reservation-btn:hover {
@@ -7463,12 +7238,10 @@ document.addEventListener('DOMContentLoaded', function() {
       0 0 30px #7BE495 !important;
   }
 }
-
 /* 네온 혜택 텍스트 애니메이션 */
 .neon-benefit-text {
   animation: neonBenefitGlow 2.5s ease-in-out infinite alternate;
 }
-
 @keyframes neonBenefitGlow {
   0% {
     text-shadow: 
@@ -7486,7 +7259,6 @@ document.addEventListener('DOMContentLoaded', function() {
       0 0 45px #62D2A2;
   }
 }
-
 /* 모바일 환경에서 터치 효과 */
 @media (max-width: 768px) {
   .reservation-btn {
@@ -7508,7 +7280,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
-
 <!-- 모바일 전용 즉시 적용 스크립트 - 네오핏 스크롤 최적화 방식 -->
 <script>
 // 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
@@ -7535,7 +7306,6 @@ document.addEventListener('DOMContentLoaded', function() {
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
           { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
-
           { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
@@ -7712,7 +7482,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
-
 <!-- 모바일 스크롤 최적화 CSS - 네오핏 간소화 방식 적용 -->
 <style>
 @media (max-width: 768px) {
@@ -7800,14 +7569,12 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-shrink: 0;
   }
 }
-
 /* PC에서는 숨김 */
 @media (min-width: 769px) {
   .mobile-system-ui-new {
     display: none !important;
   }
 }
-
 /* 모바일 전용 무인 출입 시스템 UI 반응형 스타일 */
 @media (max-width: 768px) {
   .mobile-system-ui-container {
@@ -7902,7 +7669,6 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 500 !important;
   }
 }
-
 /* PC에서는 모바일 UI 완전 숨김 */
 @media (min-width: 769px) {
   .mobile-system-ui-container {
@@ -7913,7 +7679,6 @@ document.addEventListener('DOMContentLoaded', function() {
     overflow: hidden !important;
   }
 }
-
 /* 모바일 환경에서 사전예약 팝업 확실히 표시 */
 @media (max-width: 768px) {
   #formModal {
@@ -7929,7 +7694,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 2px solid #7BE495 !important;
     border-radius: 16px !important;
     color: #fff !important;
-    box-shadow: 0 0 30px rgba(123, 228, 149, 0.5) !important;
+    box-shadow: none !important;
     z-index: 1000001 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
@@ -8002,7 +7767,6 @@ document.addEventListener('DOMContentLoaded', function() {
     pointer-events: auto !important;
   }
 }
-
 /* PC 환경에서 팝업창 더 크게 */
 @media (min-width: 769px) {
   #formModal {
@@ -8018,7 +7782,7 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 2px solid #7BE495 !important;
     border-radius: 20px !important;
     color: #fff !important;
-    box-shadow: 0 0 40px rgba(123, 228, 149, 0.6) !important;
+    box-shadow: none !important;
     z-index: 1000001 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
@@ -8076,7 +7840,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal .btn:hover {
     background: #5BC978 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4) !important;
+    box-shadow: none !important;
   }
   
   #formModal button[onclick="closeForm()"] {
@@ -8098,6 +7862,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
-
 </body>
 </html>
