@@ -3294,7 +3294,7 @@ if (window.innerWidth <= 768) {
 </footer>
 
 <!-- 모달 배경 오버레이 -->
-<div id="modalOverlay" onclick="closeForm()"></div>
+<div id="modalOverlay" onclick="closeForm()" style="display: none;"></div>
 
 <div id="formModal" onclick="event.stopPropagation()" style="display:none;">
   <div style="text-align:right;">
@@ -3783,27 +3783,33 @@ if (window.innerWidth <= 768) {
       return false;
     }
 
-    // 기존 오버레이 모두 제거 (깔끔한 시작)
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
+    // 기존 불필요한 오버레이들만 제거 (modalOverlay는 재사용)
+    document.querySelectorAll('.modal-overlay, [id*="overlay"]:not(#modalOverlay), [id*="Overlay"]:not(#modalOverlay)').forEach(el => el.remove());
     
-    // 간단한 배경 오버레이 생성 (팝업창보다 낮은 z-index)
-    const overlay = document.createElement('div');
-    overlay.id = 'modalOverlay';
-    overlay.onclick = closeForm;
-    overlay.style.cssText = `
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      background: rgba(0, 0, 0, 0.9) !important;
-      z-index: 1000000 !important;
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-    `;
-    document.body.appendChild(overlay);
+    // 기존 오버레이가 있으면 활성화, 없으면 생성
+    let overlay = document.getElementById('modalOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'modalOverlay';
+      overlay.onclick = closeForm;
+      overlay.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        z-index: 999999 !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      `;
+      document.body.appendChild(overlay);
+    }
+    
+    // 오버레이 활성화
+    overlay.classList.add('active');
     
     // 모달 표시 (오버레이보다 높은 z-index)
     modal.style.setProperty('display', 'block', 'important');
@@ -3828,12 +3834,21 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 0.5)', 'important');
       console.log('✅ Mobile popup positioned');
     } else {
-      // PC에서는 기존 방식
+      // PC에서는 더 큰 크기로 설정
       modal.style.setProperty('position', 'fixed', 'important');
       modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      console.log('✅ PC popup positioned');
+      modal.style.setProperty('width', '90%', 'important');
+      modal.style.setProperty('max-width', '600px', 'important');
+      modal.style.setProperty('min-width', '500px', 'important');
+      modal.style.setProperty('padding', '40px', 'important');
+      modal.style.setProperty('background', '#000', 'important');
+      modal.style.setProperty('border', '2px solid #7BE495', 'important');
+      modal.style.setProperty('border-radius', '20px', 'important');
+      modal.style.setProperty('color', '#fff', 'important');
+      modal.style.setProperty('box-shadow', '0 0 40px rgba(123, 228, 149, 0.6)', 'important');
+      console.log('✅ PC popup positioned with larger size');
     }
     
     return false;
@@ -3846,8 +3861,14 @@ if (window.innerWidth <= 768) {
       modal.style.display = 'none';
     }
     
-    // 모든 오버레이 제거
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
+    // 오버레이 비활성화 (제거하지 않고 숨김)
+    const overlay = document.getElementById('modalOverlay');
+    if (overlay) {
+      overlay.classList.remove('active');
+    }
+    
+    // 기타 불필요한 오버레이들만 제거
+    document.querySelectorAll('.modal-overlay, [id*="overlay"]:not(#modalOverlay), [id*="Overlay"]:not(#modalOverlay)').forEach(el => {
       if (el && el.parentNode) {
         el.remove();
       }
@@ -3858,7 +3879,7 @@ if (window.innerWidth <= 768) {
     document.body.style.background = '';
     document.body.style.backdropFilter = '';
     
-    console.log('✅ Popup closed and overlays removed');
+    console.log('✅ Popup closed and overlay deactivated');
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -7958,7 +7979,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer !important;
   }
   
-  /* 오버레이는 팝업창보다 낮은 z-index로 배경만 어둡게 */
+  /* 오버레이는 기본적으로 숨김, 팝업 열릴 때만 표시 */
   #modalOverlay {
     position: fixed !important;
     top: 0 !important;
@@ -7966,12 +7987,116 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100vw !important;
     height: 100vh !important;
     background: rgba(0, 0, 0, 0.9) !important;
-    z-index: 1000000 !important;
+    z-index: 999999 !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* 팝업이 열렸을 때만 오버레이 표시 */
+  #modalOverlay.active {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
+}
+
+/* PC 환경에서 팝업창 더 크게 */
+@media (min-width: 769px) {
+  #formModal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 600px !important;
+    min-width: 500px !important;
+    padding: 40px !important;
+    background: #000 !important;
+    border: 2px solid #7BE495 !important;
+    border-radius: 20px !important;
+    color: #fff !important;
+    box-shadow: 0 0 40px rgba(123, 228, 149, 0.6) !important;
+    z-index: 1000001 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    max-height: 85vh !important;
+  }
+  
+  #formModal form {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  #formModal input,
+  #formModal textarea,
+  #formModal select {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 18px !important;
+    padding: 16px !important;
+    margin-bottom: 12px !important;
+    border: 2px solid #7BE495 !important;
+    border-radius: 12px !important;
+    background: #111 !important;
+    color: #fff !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  #formModal input:focus,
+  #formModal textarea:focus,
+  #formModal select:focus {
+    border-color: #7BE495 !important;
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.5) !important;
+    outline: none !important;
+  }
+  
+  #formModal .btn {
+    width: auto !important;
+    min-width: 160px !important;
+    max-width: 250px !important;
+    padding: 16px 32px !important;
+    box-sizing: border-box !important;
+    margin: 20px auto 0 !important;
+    background: #7BE495 !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  #formModal .btn:hover {
+    background: #5BC978 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4) !important;
+  }
+  
+  #formModal button[onclick="closeForm()"] {
+    font-size: 2.5rem !important;
+    padding: 8px 16px !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  #formModal button[onclick="closeForm()"]:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.1) !important;
+  }
+}
 </style>
 
 </body>
