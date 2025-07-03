@@ -1548,6 +1548,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div class="flow-arrow-inside">➔</div>
         </div>
         <div class="flow-step">
+          <div class="step-number">4</div>
           <div class="flow-icon"><img src="./images/neo32.png" alt="관리자 알림" style="width: 30px; height: 30px;"></div>
           <div class="font-semibold mt-2" style="font-weight: 700; text-align: left;">관리자 알림</div>
           <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">자동 알림 전송:<br>"00팀 00시 예약 완료"</div>
@@ -1590,6 +1591,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
               <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">네오 하이브를 통해 예약한 팀에게 코드 전송</span>
             </div>
             <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
+              <span class="step-number" style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #7BE495; color: #000; border-radius: 50%; font-size: 0.8rem; font-weight: bold; margin-right: 12px; flex-shrink: 0;">4</span>
               <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">사용자는 코드 입력만으로 무인 헬스장 출입 가능</span>
             </div>
           </div>
@@ -1817,55 +1819,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   overflow: hidden !important;
 }
 
-/* 모바일에서 숫자 3, 4 UI 완전 삭제 - 가장 강력한 방법 */
-.circle-step[style*="top: 98%"] .circle-step-number {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  z-index: -999999 !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  background: transparent !important;
-  color: transparent !important;
-  text-indent: -9999px !important;
-  content: none !important;
-}
-
-/* 3번째 circle-step의 숫자 3 완전 삭제 */
-.circle-step[style*="left: 85%; top: 73%"] .circle-step-number {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  z-index: -999999 !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  background: transparent !important;
-  color: transparent !important;
-  text-indent: -9999px !important;
-  content: none !important;
-}
-
-/* 4번째 circle-step 안의 모든 숫자 요소 삭제 */
+/* 모바일에서 숫자 4 UI 숨김 - 모든 가능한 선택자로 강력하게 적용 */
+.circle-step:nth-of-type(4) .circle-step-number,
 .circle-step[style*="left: 50%; top: 98%"] .circle-step-number,
-.circle-step[style*="transform: translate(-50%, -100%)"] .circle-step-number {
+.circle-step div.circle-step-number:contains("4"),
+.circular-flow-container .circle-step:nth-child(4) .circle-step-number,
+.circular-flow-container .circle-step:nth-of-type(4) .circle-step-number {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -1875,7 +1834,26 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   position: absolute !important;
   left: -9999px !important;
   top: -9999px !important;
-  z-index: -999999 !important;
+  z-index: -1 !important;
+}
+
+/* 4번이라는 텍스트를 포함한 모든 circle-step-number 숨김 */
+.circle-step-number {
+  display: block !important;
+}
+
+.circle-step-number:nth-child(1) {
+  display: block !important;
+}
+
+/* 4번 다이어그램 전체에서 숫자만 선택적으로 숨김 */
+.circle-step[style*="top: 98%"] .circle-step-number,
+.circle-step[style*="자기 주도 운동"] .circle-step-number {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 }
 </style>
@@ -2649,11 +2627,13 @@ if (window.innerWidth <= 768) {
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">1분 이내, 핵심만 담은<br>숏폼 영상</div>
         </div>
           <div class="circle-step" style="position: absolute; left: 85%; top: 73%; transform: translate(-50%, -50%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+          <div class="circle-step-number">3</div>
           <img src="./images/soo11.png" alt="트레이너 보조 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.9rem;">트레이너 시간 절약</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">교육 시간 절감,<br>매출·개인레슨 집중</div>
         </div>
         <div class="circle-step" style="position: absolute; left: 50%; top: 98%; transform: translate(-50%, -100%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
+          <div class="circle-step-number">4</div>
           <img src="./images/sso1.png" alt="자기 주도 운동 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.8rem;">자기 주도 운동</div>
           <div style="font-size: 0.75rem; color: #ccc; text-align:center;">회원이 직접 스캔<br>자율 운동 지원</div>
@@ -2684,38 +2664,6 @@ if (window.innerWidth <= 768) {
 @media (max-width: 768px) {
   .mobile-hide {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    z-index: -999999 !important;
-  }
-  
-  /* 모바일에서 모든 circle-step-number 완전 숨김 */
-  .circle-step-number {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    z-index: -999999 !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-    color: transparent !important;
-    text-indent: -9999px !important;
-    content: none !important;
   }
 }
 @media (max-width: 600px) {
@@ -3492,39 +3440,47 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 모든 circle-step-number UI 완전 삭제
+    // 모바일에서 숫자 4 UI 강제 제거
     if (window.innerWidth <= 768) {
-      function killAllNumbers() {
-        console.log('🔥 모바일에서 모든 숫자 UI 제거 시작');
-        
-        // 모든 circle-step-number 찾아서 제거
+      function removeNumber4UI() {
+        // 모든 circle-step-number에서 4번 찾아서 숨기기
         const allNumbers = document.querySelectorAll('.circle-step-number');
-        allNumbers.forEach(el => {
-          el.remove();
-          console.log('✅ 숫자 UI DOM에서 완전 제거됨');
+        allNumbers.forEach(numberEl => {
+          if (numberEl.textContent.trim() === '4') {
+            numberEl.style.setProperty('display', 'none', 'important');
+            numberEl.style.setProperty('visibility', 'hidden', 'important');
+            numberEl.style.setProperty('opacity', '0', 'important');
+            numberEl.style.setProperty('width', '0', 'important');
+            numberEl.style.setProperty('height', '0', 'important');
+            numberEl.style.setProperty('overflow', 'hidden', 'important');
+            numberEl.style.setProperty('position', 'absolute', 'important');
+            numberEl.style.setProperty('left', '-9999px', 'important');
+            numberEl.style.setProperty('top', '-9999px', 'important');
+            numberEl.style.setProperty('z-index', '-1', 'important');
+            console.log('Mobile: 숫자 4 UI 제거됨');
+          }
         });
         
-        // 백업: 클래스 없이도 직접 찾아서 제거
-        const circleSteps = document.querySelectorAll('.circle-step');
-        circleSteps.forEach(step => {
-          const numbers = step.querySelectorAll('div');
-          numbers.forEach(div => {
-            if (div.textContent.trim().match(/^[1-6]$/)) {
-              div.remove();
-              console.log('✅ 백업 방식으로 숫자 제거됨');
-            }
-          });
-        });
+        // 4번 다이어그램의 숫자만 찾아서 제거 (백업 방법)
+        const fourthStep = document.querySelector('.circle-step[style*="top: 98%"]');
+        if (fourthStep) {
+          const numberInFourth = fourthStep.querySelector('.circle-step-number');
+          if (numberInFourth) {
+            numberInFourth.style.setProperty('display', 'none', 'important');
+            numberInFourth.style.setProperty('visibility', 'hidden', 'important');
+            numberInFourth.style.setProperty('opacity', '0', 'important');
+            console.log('Mobile: 4번 다이어그램 숫자 제거됨 (백업 방법)');
+          }
+        }
       }
-
+      
       // 즉시 실행
-      killAllNumbers();
+      removeNumber4UI();
       
-      // 페이지 로딩 완료 후 재실행
-      document.addEventListener('DOMContentLoaded', killAllNumbers);
-      
-      // 추가 보장: 5초 후 한 번 더 실행
-      setTimeout(killAllNumbers, 5000);
+      // DOM 변경 감지하여 재실행
+      setTimeout(removeNumber4UI, 500);
+      setTimeout(removeNumber4UI, 1000);
+      setTimeout(removeNumber4UI, 2000);
     }
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
