@@ -2624,13 +2624,27 @@ if (window.innerWidth <= 768) {
 <style>
 .circle-step-number {
   position: absolute;
-  top: -2px;
-  left: 10px;
+  top: -12px;
+  left: -12px;
+  width: 32px;
+  height: 32px;
   font-size: 1rem;
   font-weight: bold;
   color: #7BE495;
+  background: transparent;
+  border: 2px solid #7BE495;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px rgba(123, 228, 149, 0.8),
+    0 0 25px rgba(123, 228, 149, 0.5),
+    inset 0 0 8px rgba(123, 228, 149, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 5;
   pointer-events: none;
+  text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+  transition: all 0.3s ease;
 }
 
 /* 모바일 환경에서 다이얼그램 숫자들을 상단 좌측으로 이동 */
@@ -2806,6 +2820,17 @@ if (window.innerWidth <= 768) {
   box-shadow: 0 0 40px #7BE495cc, 0 0 8px #7BE49588;
   border-color: #3AC8A8;
   transform: scale(1.06);
+}
+
+.circle-step:hover .circle-step-number {
+  transform: scale(1.15);
+  box-shadow: 
+    0 0 20px rgba(123, 228, 149, 1),
+    0 0 35px rgba(123, 228, 149, 0.7),
+    inset 0 0 12px rgba(123, 228, 149, 0.4);
+  background: rgba(123, 228, 149, 0.1);
+  border-color: #9DF3C4;
+  color: #9DF3C4;
 }
 @media (max-width: 600px) {
   .circular-flow-container {
