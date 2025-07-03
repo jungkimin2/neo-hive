@@ -1819,12 +1819,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   overflow: hidden !important;
 }
 
-/* 모바일에서 숫자 4 UI 숨김 - 모든 가능한 선택자로 강력하게 적용 */
-.circle-step:nth-of-type(4) .circle-step-number,
-.circle-step[style*="left: 50%; top: 98%"] .circle-step-number,
-.circle-step div.circle-step-number:contains("4"),
-.circular-flow-container .circle-step:nth-child(4) .circle-step-number,
-.circular-flow-container .circle-step:nth-of-type(4) .circle-step-number {
+/* 모바일에서만 4번째 circle-step의 숫자 완전 제거 - 가장 강력한 선택자 */
+.circular-flow-container .circle-step:nth-child(4) .circle-step-number {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -1834,26 +1830,28 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   position: absolute !important;
   left: -9999px !important;
   top: -9999px !important;
-  z-index: -1 !important;
+  z-index: -999999 !important;
+  font-size: 0 !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  pointer-events: none !important;
 }
 
-/* 4번이라는 텍스트를 포함한 모든 circle-step-number 숨김 */
-.circle-step-number {
-  display: block !important;
-}
-
-.circle-step-number:nth-child(1) {
-  display: block !important;
-}
-
-/* 4번 다이어그램 전체에서 숫자만 선택적으로 숨김 */
-.circle-step[style*="top: 98%"] .circle-step-number,
-.circle-step[style*="자기 주도 운동"] .circle-step-number {
+/* 추가 보장: top: 98% 스타일을 가진 다이어그램의 숫자 숨김 */
+.circle-step[style*="top: 98%"] .circle-step-number {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   width: 0 !important;
   height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  z-index: -999999 !important;
 }
 }
 </style>
@@ -3440,48 +3438,50 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 숫자 4 UI 강제 제거
-    if (window.innerWidth <= 768) {
-      function removeNumber4UI() {
-        // 모든 circle-step-number에서 4번 찾아서 숨기기
-        const allNumbers = document.querySelectorAll('.circle-step-number');
-        allNumbers.forEach(numberEl => {
-          if (numberEl.textContent.trim() === '4') {
-            numberEl.style.setProperty('display', 'none', 'important');
-            numberEl.style.setProperty('visibility', 'hidden', 'important');
-            numberEl.style.setProperty('opacity', '0', 'important');
-            numberEl.style.setProperty('width', '0', 'important');
-            numberEl.style.setProperty('height', '0', 'important');
-            numberEl.style.setProperty('overflow', 'hidden', 'important');
-            numberEl.style.setProperty('position', 'absolute', 'important');
-            numberEl.style.setProperty('left', '-9999px', 'important');
-            numberEl.style.setProperty('top', '-9999px', 'important');
-            numberEl.style.setProperty('z-index', '-1', 'important');
-            console.log('Mobile: 숫자 4 UI 제거됨');
+          // 모바일에서 숫자 4 UI 완전 제거 - 가장 확실한 방법
+      if (window.innerWidth <= 768) {
+        function removeNumber4UIForce() {
+          // 방법 1: 4번째 circle-step 직접 타겟팅 (가장 확실함)
+          const circleSteps = document.querySelectorAll('.circular-flow-container .circle-step');
+          if (circleSteps[3]) { // 4번째 (0부터 시작하므로 인덱스 3)
+            const number4 = circleSteps[3].querySelector('.circle-step-number');
+            if (number4) {
+              number4.remove(); // 완전 삭제
+              console.log('✅ 4번째 circle-step 숫자 완전 삭제됨');
+            }
           }
-        });
-        
-        // 4번 다이어그램의 숫자만 찾아서 제거 (백업 방법)
-        const fourthStep = document.querySelector('.circle-step[style*="top: 98%"]');
-        if (fourthStep) {
-          const numberInFourth = fourthStep.querySelector('.circle-step-number');
-          if (numberInFourth) {
-            numberInFourth.style.setProperty('display', 'none', 'important');
-            numberInFourth.style.setProperty('visibility', 'hidden', 'important');
-            numberInFourth.style.setProperty('opacity', '0', 'important');
-            console.log('Mobile: 4번 다이어그램 숫자 제거됨 (백업 방법)');
+          
+          // 방법 2: 모든 "4" 텍스트 제거 (백업)
+          document.querySelectorAll('.circle-step-number').forEach(el => {
+            if (el.textContent.trim() === '4') {
+              el.remove(); // 완전 삭제
+              console.log('✅ 숫자 4 텍스트 완전 삭제됨');
+            }
+          });
+          
+          // 방법 3: top: 98% 스타일 요소의 숫자 제거 (추가 백업)
+          const step98 = document.querySelector('.circle-step[style*="top: 98%"]');
+          if (step98) {
+            const numberIn98 = step98.querySelector('.circle-step-number');
+            if (numberIn98) {
+              numberIn98.remove(); // 완전 삭제
+              console.log('✅ top: 98% 다이어그램 숫자 완전 삭제됨');
+            }
           }
         }
+        
+        // 즉시 실행
+        removeNumber4UIForce();
+        
+        // DOM 로드 후 재실행
+        document.addEventListener('DOMContentLoaded', removeNumber4UIForce);
+        
+        // 안전장치로 여러 번 실행
+        setTimeout(removeNumber4UIForce, 100);
+        setTimeout(removeNumber4UIForce, 500);
+        setTimeout(removeNumber4UIForce, 1000);
+        setTimeout(removeNumber4UIForce, 2000);
       }
-      
-      // 즉시 실행
-      removeNumber4UI();
-      
-      // DOM 변경 감지하여 재실행
-      setTimeout(removeNumber4UI, 500);
-      setTimeout(removeNumber4UI, 1000);
-      setTimeout(removeNumber4UI, 2000);
-    }
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
