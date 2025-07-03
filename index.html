@@ -1591,7 +1591,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
               <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">네오 하이브를 통해 예약한 팀에게 코드 전송</span>
             </div>
             <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
-              <span class="step-number" style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #7BE495; color: #000; border-radius: 50%; font-size: 0.8rem; font-weight: bold; margin-right: 12px; flex-shrink: 0;">4</span>
               <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">사용자는 코드 입력만으로 무인 헬스장 출입 가능</span>
             </div>
           </div>
@@ -2664,20 +2663,6 @@ if (window.innerWidth <= 768) {
   .mobile-hide {
     display: none !important;
   }
-  
-  /* 모바일에서 원형 다이어그램의 모든 숫자 숨김 (다른 UI는 건드리지 않음) */
-  .circle-step-number {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    z-index: -999999 !important;
-  }
 }
 @media (max-width: 600px) {
   .text-xl.text-gray-300 span:not(.neon-green) {
@@ -3453,30 +3438,7 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 원형 다이어그램 숫자 UI 제거 (다른 UI는 보호)
-    if (window.innerWidth <= 768) {
-      function removeCircleNumbers() {
-        console.log('🔥 모바일에서 원형 다이어그램 숫자 제거 시작');
-        
-        // circle-step-number 클래스만 정확히 타겟팅 (다른 step-number는 건드리지 않음)
-        const circleNumbers = document.querySelectorAll('.circle-step-number');
-        circleNumbers.forEach(numberEl => {
-          numberEl.style.setProperty('display', 'none', 'important');
-          numberEl.style.setProperty('visibility', 'hidden', 'important');
-          numberEl.style.setProperty('opacity', '0', 'important');
-          console.log('✅ 원형 다이어그램 숫자 숨김:', numberEl.textContent.trim());
-        });
-        
-        console.log(`✅ 총 ${circleNumbers.length}개 원형 다이어그램 숫자 숨김 완료`);
-      }
-      
-      // 즉시 실행
-      removeCircleNumbers();
-      
-      // 추가 보장
-      setTimeout(removeCircleNumbers, 500);
-      setTimeout(removeCircleNumbers, 1000);
-    }
+
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
