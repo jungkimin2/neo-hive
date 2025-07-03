@@ -1819,18 +1819,41 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   overflow: hidden !important;
 }
 
-/* 모바일에서 숫자 4 UI 숨김 (circle-step-number 4번만) */
-.circle-step:nth-of-type(4) .circle-step-number {
+/* 모바일에서 숫자 4 UI 숨김 - 모든 가능한 선택자로 강력하게 적용 */
+.circle-step:nth-of-type(4) .circle-step-number,
+.circle-step[style*="left: 50%; top: 98%"] .circle-step-number,
+.circle-step div.circle-step-number:contains("4"),
+.circular-flow-container .circle-step:nth-child(4) .circle-step-number,
+.circular-flow-container .circle-step:nth-of-type(4) .circle-step-number {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  z-index: -1 !important;
 }
 
-/* 더 구체적으로 4번 다이어그램의 번호만 숨김 */
-.circle-step[style*="left: 50%; top: 98%"] .circle-step-number {
+/* 4번이라는 텍스트를 포함한 모든 circle-step-number 숨김 */
+.circle-step-number {
+  display: block !important;
+}
+
+.circle-step-number:nth-child(1) {
+  display: block !important;
+}
+
+/* 4번 다이어그램 전체에서 숫자만 선택적으로 숨김 */
+.circle-step[style*="top: 98%"] .circle-step-number,
+.circle-step[style*="자기 주도 운동"] .circle-step-number {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 }
 </style>
@@ -3417,6 +3440,49 @@ if (window.innerWidth <= 768) {
       }
     }
     
+    // 모바일에서 숫자 4 UI 강제 제거
+    if (window.innerWidth <= 768) {
+      function removeNumber4UI() {
+        // 모든 circle-step-number에서 4번 찾아서 숨기기
+        const allNumbers = document.querySelectorAll('.circle-step-number');
+        allNumbers.forEach(numberEl => {
+          if (numberEl.textContent.trim() === '4') {
+            numberEl.style.setProperty('display', 'none', 'important');
+            numberEl.style.setProperty('visibility', 'hidden', 'important');
+            numberEl.style.setProperty('opacity', '0', 'important');
+            numberEl.style.setProperty('width', '0', 'important');
+            numberEl.style.setProperty('height', '0', 'important');
+            numberEl.style.setProperty('overflow', 'hidden', 'important');
+            numberEl.style.setProperty('position', 'absolute', 'important');
+            numberEl.style.setProperty('left', '-9999px', 'important');
+            numberEl.style.setProperty('top', '-9999px', 'important');
+            numberEl.style.setProperty('z-index', '-1', 'important');
+            console.log('Mobile: 숫자 4 UI 제거됨');
+          }
+        });
+        
+        // 4번 다이어그램의 숫자만 찾아서 제거 (백업 방법)
+        const fourthStep = document.querySelector('.circle-step[style*="top: 98%"]');
+        if (fourthStep) {
+          const numberInFourth = fourthStep.querySelector('.circle-step-number');
+          if (numberInFourth) {
+            numberInFourth.style.setProperty('display', 'none', 'important');
+            numberInFourth.style.setProperty('visibility', 'hidden', 'important');
+            numberInFourth.style.setProperty('opacity', '0', 'important');
+            console.log('Mobile: 4번 다이어그램 숫자 제거됨 (백업 방법)');
+          }
+        }
+      }
+      
+      // 즉시 실행
+      removeNumber4UI();
+      
+      // DOM 변경 감지하여 재실행
+      setTimeout(removeNumber4UI, 500);
+      setTimeout(removeNumber4UI, 1000);
+      setTimeout(removeNumber4UI, 2000);
+    }
+
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
       setTimeout(() => {
