@@ -1832,71 +1832,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   visibility: hidden !important;
   opacity: 0 !important;
 }
-
-/* 모바일 환경에서 모달과 네비게이션 강화 */
-@media (max-width: 768px) {
-  /* 모바일에서 formModal이 활성화될 때 제대로 표시되도록 강화 */
-  #formModal[style*="display: block"], #formModal[style*="display:block"] {
-    z-index: 2147483647 !important;
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90% !important;
-    max-width: 400px !important;
-    background: #000 !important;
-    border: 2px solid #7BE495 !important;
-    border-radius: 12px !important;
-    padding: 20px !important;
-    box-shadow: 0 0 30px rgba(123, 228, 149, 0.5) !important;
-  }
-
-  /* 모바일에서 모달 오버레이 강화 */
-  #modalOverlay {
-    z-index: 2147483646 !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    display: block !important;
-  }
-
-  /* 모바일에서 네비게이션 메뉴 강화 */
-  #nav-menu {
-    z-index: 2147483645 !important;
-    background: #000 !important;
-    border: 1px solid #7BE495 !important;
-    border-radius: 8px !important;
-    padding: 10px 0 !important;
-    position: absolute !important;
-    top: 60px !important;
-    right: 10px !important;
-    min-width: 150px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
-  }
-
-  #nav-menu a {
-    display: block !important;
-    padding: 12px 15px !important;
-    color: #fff !important;
-    text-decoration: none !important;
-    border-bottom: 1px solid rgba(123, 228, 149, 0.2) !important;
-    font-size: 0.9rem !important;
-  }
-
-  #nav-menu a:last-child {
-    border-bottom: none !important;
-  }
-
-  #nav-menu a:hover, #nav-menu a:active {
-    background: rgba(123, 228, 149, 0.15) !important;
-    color: #7BE495 !important;
-  }
-}
 }
 </style>
             <div class="core-icon">
@@ -3482,80 +3417,21 @@ if (window.innerWidth <= 768) {
       }
     }
     
-    // 모바일에서 사전예약 버튼 강제 이벤트 바인딩 및 디버깅 강화
+    // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
-      console.log('📱 모바일 환경 감지됨 - 사전예약 버튼 강화 시작');
-      
       setTimeout(() => {
         const reservationButtons = document.querySelectorAll('a[onclick*="openForm"], button[onclick*="openForm"], .clickable-benefit-box');
-        console.log('🔍 사전예약 버튼 발견:', reservationButtons.length);
-        
-        // 모바일 네비게이션의 사전예약하기 버튼 특별 처리
-        const mobileNavReservationBtn = document.querySelector('#nav-menu a[onclick*="openForm"]');
-        if (mobileNavReservationBtn) {
-          console.log('📱 모바일 네비게이션 사전예약 버튼 발견');
-          
-          // 강력한 이벤트 리스너 추가
-          const mobileOpenForm = function(e) {
-            console.log('🚀 모바일 네비게이션에서 사전예약하기 클릭됨!');
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // 네비게이션 메뉴 닫기
-            closeNav();
-            
-            // 잠시 후 팝업 열기 (네비게이션이 닫힌 후)
-            setTimeout(() => {
-              console.log('🎯 openForm 함수 호출 시도');
-              openForm();
-              
-              // 추가 확인: formModal이 표시되었는지 체크
-              setTimeout(() => {
-                const modal = document.getElementById('formModal');
-                if (modal && modal.style.display === 'block') {
-                  console.log('✅ 모바일 팝업 성공적으로 표시됨');
-                } else {
-                  console.error('❌ 모바일 팝업 표시 실패, 강제 표시 시도');
-                  if (modal) {
-                    modal.style.display = 'block';
-                    modal.style.position = 'fixed';
-                    modal.style.top = '50%';
-                    modal.style.left = '50%';
-                    modal.style.transform = 'translate(-50%, -50%)';
-                    modal.style.zIndex = '2147483647';
-                    modal.style.background = '#000';
-                    modal.style.border = '2px solid #7BE495';
-                    modal.style.borderRadius = '12px';
-                    modal.style.padding = '20px';
-                    modal.style.width = '90%';
-                    modal.style.maxWidth = '400px';
-                    console.log('🔧 강제 팝업 표시 완료');
-                  }
-                }
-              }, 100);
-            }, 200);
-            
-            return false;
-          };
-          
-          // 클릭 이벤트
-          mobileNavReservationBtn.addEventListener('click', mobileOpenForm, true);
-          
-          // 터치 이벤트
-          mobileNavReservationBtn.addEventListener('touchend', mobileOpenForm, { passive: false });
-          
-          console.log('✅ 모바일 네비게이션 사전예약 버튼 강화 완료');
-        }
+        console.log('Found reservation buttons:', reservationButtons.length);
         
         reservationButtons.forEach((button, index) => {
-          console.log(`📍 버튼 ${index + 1}:`, button.textContent.trim(), button.onclick);
+          console.log(`Button ${index + 1}:`, button.textContent.trim(), button.onclick);
           
           // 기존 onclick 이벤트 백업
           const originalOnclick = button.onclick;
           
           // 새로운 클릭 이벤트 추가
           button.addEventListener('click', function(e) {
-            console.log(`🎯 모바일 버튼 ${index + 1} 클릭됨!`);
+            console.log(`Mobile button ${index + 1} clicked!`);
             e.preventDefault();
             e.stopPropagation();
             
@@ -3569,7 +3445,7 @@ if (window.innerWidth <= 768) {
           
           // 터치 이벤트도 추가
           button.addEventListener('touchend', function(e) {
-            console.log(`👆 모바일 버튼 ${index + 1} 터치됨!`);
+            console.log(`Mobile button ${index + 1} touched!`);
             e.preventDefault();
             
             if (originalOnclick) {
@@ -3579,8 +3455,6 @@ if (window.innerWidth <= 768) {
             }
           }, { passive: false });
         });
-        
-        console.log('✅ 모든 사전예약 버튼 강화 완료');
       }, 1000);
     }
     
