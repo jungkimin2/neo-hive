@@ -7341,26 +7341,26 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
   }
   
-  /* 모바일 팝업 모달 정렬 수정 - 우측으로 2칸 이동 */
-  #formModal {
-    width: 75% !important;
-    max-width: 350px !important;
-    padding: 20px !important;
-    left: 12.5% !important; /* 7.5%에서 12.5%로 우측으로 2칸 이동 */
-    transform: translateY(-50%) !important;
-    margin: 0 !important;
-    min-width: 280px !important;
-    box-sizing: border-box !important;
-    position: absolute !important;
-    right: auto !important;
-    z-index: 2147483648 !important;
-    background: #000 !important;
-    border: 2px solid #3AC8A8 !important;
-    border-radius: 12px !important;
-    color: #fff !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
+     /* PC 버전 팝업 모달 - 캡처 이미지 스타일 */
+   #formModal {
+     position: fixed !important;
+     top: 50% !important;
+     left: 50% !important;
+     transform: translate(-50%, -50%) !important;
+     width: 90% !important;
+     max-width: 600px !important;
+     min-width: 500px !important;
+     padding: 40px !important;
+     background: #1a1a1a !important;
+     border: 2px solid #7BE495 !important;
+     border-radius: 20px !important;
+     color: #fff !important;
+     z-index: 2147483648 !important;
+     box-sizing: border-box !important;
+     max-height: 90vh !important;
+     overflow-y: auto !important;
+     box-shadow: 0 0 50px rgba(123, 228, 149, 0.3) !important;
+   }
   
   #formModal form {
     width: 100% !important;
@@ -8052,7 +8052,146 @@ document.addEventListener('DOMContentLoaded', function() {
     pointer-events: auto !important;
   }
 }
-</style>
 
+/* PC 환경에서 팝업창 - 캡처 이미지 디자인 */
+@media (min-width: 769px) {
+     #formModal {
+     position: fixed !important;
+     top: 50% !important;
+     left: 50% !important;
+     transform: translate(-50%, -50%) !important;
+     width: 90% !important;
+     max-width: 600px !important;
+     min-width: 500px !important;
+     padding: 40px !important;
+     background: #0d0d0d !important;
+     border: 2px solid #7BE495 !important;
+     border-radius: 20px !important;
+     color: #fff !important;
+     z-index: 2147483647 !important;
+     box-sizing: border-box !important;
+     max-height: 90vh !important;
+     overflow-y: auto !important;
+     box-shadow: 0 0 50px rgba(123, 228, 149, 0.3) !important;
+   }
+  
+  #formModal form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 0 !important;
+  }
+  
+     /* 캡처 이미지 스타일 - 모든 입력 필드 */
+   #formModal input,
+   #formModal textarea,
+   #formModal select {
+     width: 100% !important;
+     padding: 16px 20px !important;
+     background: #000 !important;
+     border: 2px solid #7BE495 !important;
+     border-radius: 12px !important;
+     color: #fff !important;
+     font-size: 16px !important;
+     font-family: inherit !important;
+     box-sizing: border-box !important;
+     outline: none !important;
+     transition: all 0.3s ease !important;
+     margin-bottom: 0 !important;
+   }
+   
+   /* 텍스트영역 특별 설정 - 캡처 이미지처럼 크게 */
+   #formModal textarea {
+     min-height: 120px !important;
+     resize: vertical !important;
+   }
+  
+  #formModal input::placeholder,
+  #formModal textarea::placeholder {
+    color: #888 !important;
+    opacity: 1 !important;
+  }
+  
+  #formModal input:focus,
+  #formModal textarea:focus,
+  #formModal select:focus {
+    border-color: #5BC978 !important;
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.3) !important;
+  }
+  
+  /* 드롭다운 화살표 스타일 */
+  #formModal select {
+    appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M7 10l5 5 5-5z'/></svg>") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 15px center !important;
+    background-size: 16px !important;
+  }
+  
+  /* 신청서 보내기 버튼 - 캡처 이미지 스타일 */
+  #formModal .btn {
+    width: 100% !important;
+    padding: 16px 24px !important;
+    background: #7BE495 !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  #formModal .btn:hover {
+    background: #5BC978 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 20px rgba(123, 228, 149, 0.4) !important;
+  }
+  
+  /* X 버튼 스타일 개선 */
+  #formModal button[onclick="closeForm()"] {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 28px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    line-height: 1 !important;
+  }
+  
+  #formModal button[onclick="closeForm()"]:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: scale(1.1) !important;
+  }
+  
+  /* PC 오버레이 스타일 */
+  #modalOverlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    z-index: 2147483646 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+</style>
 </body>
 </html>
