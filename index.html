@@ -8009,9 +8009,9 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
-    top: 50% !important;
+    top: 20px !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translateX(-50%) !important;
     width: 90% !important;
     max-width: 380px !important;
     min-width: 300px !important;
@@ -8026,10 +8026,8 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
-    max-height: 85vh !important;
-    /* 애니메이션 제거하고 즉시 중앙에 고정 */
-    opacity: 1 !important;
-    visibility: visible !important;
+    max-height: calc(100vh - 40px) !important;
+    animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
     margin-bottom: 0 !important;
@@ -8039,15 +8037,22 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal[style*="display: block"],
   #formModal[style*="display:block"] {
     position: fixed !important;
-    top: 50% !important;
+    top: 20px !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translateX(-50%) !important;
     margin: 0 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
-  /* 모바일 팝업 애니메이션 제거 - 즉시 중앙에 고정 */
+  @keyframes mobileModalSlideIn {
+    0% {
+      transform: translateX(-50%) translateY(-20px) scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
   
   #formModal[style*="display: block"] {
     display: block !important;
