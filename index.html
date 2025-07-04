@@ -3823,29 +3823,27 @@ if (window.innerWidth <= 768) {
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile - No overlay, popup only');
       
-      // 모바일에서 body 스크롤 제어
-      document.body.classList.add('modal-open');
-      
       // 모달 표시 - 오버레이 없음
       modal.style.setProperty('display', 'block', 'important');
       modal.style.setProperty('visibility', 'visible', 'important');
       modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('z-index', '2147483650', 'important');
+      modal.style.setProperty('z-index', '9999', 'important');
       
-      // 모바일에서 화면 상단에 고정 위치 (스크롤 영향 없음)
+      // 모바일에서 화면 중앙에 고정 위치
       modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '80px', 'important');
+      modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
-      modal.style.setProperty('transform', 'translateX(-50%)', 'important');
-      modal.style.setProperty('width', '90%', 'important');
-      modal.style.setProperty('max-width', '380px', 'important');
+      modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      modal.style.setProperty('width', '85%', 'important');
+      modal.style.setProperty('max-width', '400px', 'important');
       modal.style.setProperty('min-width', '300px', 'important');
-      modal.style.setProperty('padding', '25px', 'important');
-      modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('will-change', 'transform', 'important');
-      modal.style.setProperty('backface-visibility', 'hidden', 'important');
-      modal.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-      console.log('✅ Mobile popup positioned at top - NO OVERLAY');
+      modal.style.setProperty('padding', '30px', 'important');
+      modal.style.setProperty('background', '#0d0d0d', 'important');
+      modal.style.setProperty('border', '2px solid #7BE495', 'important');
+      modal.style.setProperty('border-radius', '20px', 'important');
+      modal.style.setProperty('color', '#fff', 'important');
+      modal.style.setProperty('box-shadow', 'none', 'important');
+      console.log('✅ Mobile popup positioned - NO OVERLAY');
       
     } else {
       // PC에서는 오버레이 사용
@@ -3889,25 +3887,25 @@ if (window.innerWidth <= 768) {
       modal.style.display = 'none';
     }
     
-    // 모바일에서 body 스크롤 제어 해제
-    document.body.classList.remove('modal-open');
-    
-    // 모든 오버레이 제거
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
-      if (el && el.parentNode) {
-        el.remove();
-      }
-    });
+    // 모바일에서는 오버레이가 없으므로 간단히 팝업만 닫기
+    if (window.innerWidth <= 768) {
+      console.log('📱 Mobile - Just close popup, no overlay to remove');
+    } else {
+      // PC에서는 오버레이 제거
+      document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
+        if (el && el.parentNode) {
+          el.remove();
+        }
+      });
+      console.log('✅ PC - Popup closed and overlays removed');
+    }
     
     // 스크롤 복원
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.height = '';
+    document.body.style.overflow = 'auto';
     document.body.style.background = '';
     document.body.style.backdropFilter = '';
     
-    console.log('✅ Popup closed and scroll restored');
+    console.log('✅ Popup closed');
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -8011,7 +8009,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
-    top: 80px !important;
+    top: 20px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 90% !important;
@@ -8028,69 +8026,21 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
-    max-height: calc(100vh - 100px) !important;
+    max-height: calc(100vh - 40px) !important;
     animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    /* 스크롤 시에도 위치 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
   }
   
   /* 더 높은 우선순위로 모바일 팝업 위치 강제 설정 */
   #formModal[style*="display: block"],
   #formModal[style*="display:block"] {
     position: fixed !important;
-    top: 80px !important;
+    top: 20px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
-    /* 스크롤 시에도 위치 절대 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
-  /* 모바일 환경에서 팝업 위치 완전 고정 - 최고 우선순위 */
-  body #formModal,
-  html #formModal {
-    position: fixed !important;
-    top: 80px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
-  }
-  
-  /* 모바일 환경에서 팝업 표시 시 스크롤 제어 */
-  body.modal-open {
-    overflow: hidden !important;
-    position: fixed !important;
-    width: 100% !important;
-    height: 100% !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 모바일 환경에서 팝업 위치 안정화 */
-  #formModal {
-    -webkit-transform: translateX(-50%) !important;
-    -moz-transform: translateX(-50%) !important;
-    -ms-transform: translateX(-50%) !important;
-    -o-transform: translateX(-50%) !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform-origin: 50% 0 !important;
-    -moz-transform-origin: 50% 0 !important;
-    -ms-transform-origin: 50% 0 !important;
-    -o-transform-origin: 50% 0 !important;
-    transform-origin: 50% 0 !important;
   }
   
   @keyframes mobileModalSlideIn {
@@ -8125,7 +8075,24 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 12px !important;
+    gap: 14px !important;
+  }
+  
+  /* 간소화된 입력 필드 */
+  #formModal .input-group {
+    position: relative !important;
+    margin-bottom: 2px !important;
+  }
+  
+  #formModal .input-group label {
+    display: block !important;
+    color: #7BE495 !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 6px !important;
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
   }
   
   #formModal input,
@@ -8134,11 +8101,11 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100% !important;
     box-sizing: border-box !important;
     font-size: 16px !important;
-    padding: 12px !important;
-    margin-bottom: 8px !important;
-    border: 1px solid #7BE495 !important;
-    border-radius: 8px !important;
-    background: #111 !important;
+    padding: 14px 16px !important;
+    margin-bottom: 0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 12px !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     color: #fff !important;
     transition: all 0.3s ease !important;
   }
@@ -8225,7 +8192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1.1) !important;
   }
   
-  /* 모바일에서 모든 오버레이 완전 제거 - 강화된 버전 */
+  /* 모바일에서 모든 오버레이 완전 제거 */
   #modalOverlay,
   .modal-overlay,
   .modal-overlay.active,
@@ -8235,13 +8202,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #mobileBackup1,
   #mobileBackup2,
   [id*="overlay"],
-  [id*="Overlay"],
-  [class*="overlay"],
-  [class*="Overlay"],
-  div[style*="background"],
-  div[style*="backdrop"],
-  *:before,
-  *:after {
+  [id*="Overlay"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -8252,51 +8213,8 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 0 !important;
     height: 0 !important;
     background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     z-index: -9999 !important;
   }
-  
-  /* 모바일에서 body와 html의 배경 효과 제거 */
-  body,
-  html {
-    background: #000 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  
-  /* 모바일에서 팝업 외부 영역 클릭 방지 */
-  body.modal-open::before,
-  body.modal-open::after,
-  html.modal-open::before,
-  html.modal-open::after {
-    display: none !important;
-    content: none !important;
-  }
-  
-  /* 
-  === 대안 옵션: 전체 화면 일관된 오버레이 ===
-  위의 "완전 제거" 대신 아래 코드를 사용하면 전체 화면에 일관된 오버레이가 적용됩니다.
-  사용하려면 위의 "완전 제거" 코드를 주석처리하고 아래 코드의 주석을 해제하세요.
-  
-  .mobile-modal-overlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-    z-index: 2147483649 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-  
-  #formModal {
-    z-index: 2147483651 !important;
-  }
-  */
 }
 
 /* PC 환경에서 팝업창 - 캡처 이미지 디자인 */
@@ -8408,58 +8326,29 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 5px 20px rgba(123, 228, 149, 0.4) !important;
   }
   
-  /* PC 환경 닫기 버튼 - 원형 디자인 */
+  /* X 버튼 스타일 개선 */
   #formModal button[onclick="closeForm()"] {
     position: absolute !important;
-    top: 20px !important;
-    right: 20px !important;
-    background: linear-gradient(135deg, rgba(123, 228, 149, 0.1), rgba(123, 228, 149, 0.2)) !important;
-    border: 2px solid #7BE495 !important;
-    color: #7BE495 !important;
-    font-size: 16px !important;
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    max-width: 38px !important;
-    max-height: 38px !important;
+    top: 15px !important;
+    right: 15px !important;
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 28px !important;
+    width: 40px !important;
+    height: 40px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
     border-radius: 50% !important;
-    -webkit-border-radius: 50% !important;
-    -moz-border-radius: 50% !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.3s ease !important;
     line-height: 1 !important;
-    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.2) !important;
-    font-weight: bold !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
   }
   
   #formModal button[onclick="closeForm()"]:hover {
-    background: linear-gradient(135deg, #7BE495, #5BC978) !important;
-    color: #000 !important;
-    transform: scale(1.1) rotate(90deg) !important;
-    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.4) !important;
-    border-color: #5BC978 !important;
-  }
-  
-  #formModal button[onclick="closeForm()"]:active {
-    transform: scale(1.0) rotate(90deg) !important;
-    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.6) !important;
-  }
-  
-  /* PC 환경 닫기 버튼 내부 아이콘 스타일 */
-  #formModal button[onclick="closeForm()"]:before {
-    content: "✕" !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    line-height: 1 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: scale(1.1) !important;
   }
   
   /* PC 오버레이 스타일 */
