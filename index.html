@@ -3823,6 +3823,27 @@ if (window.innerWidth <= 768) {
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile - No overlay, popup only');
       
+      // 모바일에서 모든 배경 어두워짐 효과 강제 제거
+      document.body.style.setProperty('background', '#000', 'important');
+      document.body.style.setProperty('backdrop-filter', 'none', 'important');
+      document.body.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+      document.documentElement.style.setProperty('background', '#000', 'important');
+      document.documentElement.style.setProperty('backdrop-filter', 'none', 'important');
+      document.documentElement.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+      
+      // 기존 모든 오버레이 요소 강제 삭제
+      document.querySelectorAll('*').forEach(el => {
+        if (el !== modal && el.id !== 'formModal' && 
+            (el.style.position === 'fixed' || el.style.position === 'absolute') &&
+            (el.style.background || el.style.backgroundColor || 
+             el.classList.toString().includes('overlay') || 
+             el.id.includes('overlay') || el.id.includes('Overlay'))) {
+          el.style.display = 'none';
+          el.style.visibility = 'hidden';
+          el.style.opacity = '0';
+        }
+      });
+      
       // 모달 표시 - 오버레이 없음
       modal.style.setProperty('display', 'block', 'important');
       modal.style.setProperty('visibility', 'visible', 'important');
@@ -3890,6 +3911,13 @@ if (window.innerWidth <= 768) {
     // 모바일에서는 오버레이가 없으므로 간단히 팝업만 닫기
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile - Just close popup, no overlay to remove');
+      
+      // 모바일에서 배경 스타일 원복 (필요시)
+      document.body.style.removeProperty('backdrop-filter');
+      document.body.style.removeProperty('-webkit-backdrop-filter');
+      document.documentElement.style.removeProperty('backdrop-filter');
+      document.documentElement.style.removeProperty('-webkit-backdrop-filter');
+      
     } else {
       // PC에서는 오버레이 제거
       document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
@@ -8214,6 +8242,50 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 0 !important;
     background: transparent !important;
     z-index: -9999 !important;
+  }
+  
+  /* 모바일에서 body 배경 어두워짐 효과 제거 */
+  body::before,
+  body::after,
+  html::before,
+  html::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+  }
+  
+  /* 모바일에서 backdrop 효과 제거 */
+  body {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #000 !important;
+  }
+  
+  /* 모바일에서 모든 가능한 배경 어두워짐 효과 제거 */
+  *[style*="background"],
+  *[style*="backdrop"],
+  *[class*="dark"],
+  *[class*="overlay"],
+  *[id*="dark"],
+  div[style*="position: fixed"],
+  div[style*="position:fixed"] {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* 모바일에서 팝업 뒤 배경 투명 처리 */
+  div:not(#formModal):not(.form-input):not(.btn):not(button) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* 모바일에서 팝업창 자체는 유지하되 배경만 제거 */
+  #formModal {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #111 100%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
