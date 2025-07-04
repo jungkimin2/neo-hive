@@ -3842,9 +3842,7 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('min-width', '300px', 'important');
       modal.style.setProperty('padding', '25px', 'important');
       modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('will-change', 'transform', 'important');
-      modal.style.setProperty('backface-visibility', 'hidden', 'important');
-      modal.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+      // GPU 가속 속성 제거 - 스크롤 성능 개선
       
       // 모바일에서 모든 오버레이 즉시 제거
       function removeAllOverlays() {
@@ -3891,11 +3889,15 @@ if (window.innerWidth <= 768) {
         overlayObserver.disconnect();
       }, 5000);
       
-      // 모바일에서는 body 스크롤 막지 않음
+      // 모바일에서는 body 스크롤 막지 않음 - 단순 스크롤 최적화
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
       document.body.style.height = '';
+      
+      // 모바일 스크롤 성능 최적화
+      document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+      document.documentElement.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
       
       console.log('✅ Mobile popup positioned at top - NO OVERLAY');
       
@@ -8060,6 +8062,37 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+/* 모바일 환경 스크롤 최적화 - 단순하고 효과적 */
+@media (max-width: 768px) {
+  html, body {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  
+  * {
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 모바일에서 불필요한 GPU 가속 속성 제거 */
+  * {
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+  }
+  
+  /* 팝업 모달만 예외 처리 */
+  #formModal {
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+  }
+}
+
 /* 모바일 환경에서 컴팩트한 팝업 디자인 - 헤더 없음 */
 @media (max-width: 768px) {
   #formModal {
@@ -8086,12 +8119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    /* 스크롤 시에도 위치 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
+         /* 모바일 스크롤 최적화 - GPU 가속 속성 제거 */
   }
   
   /* 더 높은 우선순위로 모바일 팝업 위치 강제 설정 */
@@ -8102,10 +8130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
-    /* 스크롤 시에도 위치 절대 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
+         /* 모바일 스크롤 최적화 */
   }
   
   /* 모바일 환경에서 팝업 위치 완전 고정 - 최고 우선순위 */
@@ -8116,11 +8141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
+         /* 모바일 스크롤 최적화 */
   }
   
   /* 모바일 환경에서 팝업 표시 시 스크롤 제어 */
@@ -8132,19 +8153,11 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 모바일 환경에서 팝업 위치 안정화 */
-  #formModal {
-    -webkit-transform: translateX(-50%) !important;
-    -moz-transform: translateX(-50%) !important;
-    -ms-transform: translateX(-50%) !important;
-    -o-transform: translateX(-50%) !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform-origin: 50% 0 !important;
-    -moz-transform-origin: 50% 0 !important;
-    -ms-transform-origin: 50% 0 !important;
-    -o-transform-origin: 50% 0 !important;
-    transform-origin: 50% 0 !important;
-  }
+     /* 모바일 환경에서 팝업 위치 단순화 */
+   #formModal {
+     transform: translateX(-50%) !important;
+     -webkit-transform: translateX(-50%) !important;
+   }
   
   @keyframes mobileModalSlideIn {
     0% {
