@@ -5446,48 +5446,95 @@ html body #smart p {
 </style>
 <style>
 @media (max-width: 768px) {
-/* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart) {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
-  transition: none !important;
-}
+  /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
+  .animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+  .section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+  .slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+  .slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
+  .feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart) {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 
-/* 기존 모바일 스타일 유지 */
-.smart-trainer-text {
-  font-size: 1.8rem !important;
-  line-height: 1.2 !important;
-}
+  /* 기본 스크롤 설정 */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+    height: auto !important;
+    touch-action: pan-y !important;
+  }
 
-body #smart,
-html body #smart {
-  transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
-  -webkit-transform: translateY(-512px) !important;
-  margin-top: -180px !important;
-  padding-top: 0 !important;
-}
+  /* 스크롤 컨테이너 최적화 */
+  #scrollable-content {
+    position: relative !important;
+    z-index: 1 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
 
-body #smart h2,
-html body #smart h2 {
-  font-size: 1.4rem !important;
-  transform: none !important;
-}
+  /* 네비게이션 최적화 */
+  #mobile-top-nav-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: transform !important;
+    background: #000000 !important;
+    border-bottom: 1px solid rgba(123, 228, 149, 0.3) !important;
+  }
 
-body #smart .hive-showcase,
-body #smart p,
-html body #smart .hive-showcase,
-html body #smart p {
-  transform: none !important;
-}
+  /* 불필요한 GPU 가속 제거 */
+  *:not(.video-phone):not(.neo-smart-video):not(.floating-video):not(.hive-showcase *) {
+    will-change: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
 
-.smart-caption {
-  margin-top: 12px !important;
-}
+  /* 스크롤 성능 최적화 */
+  .section, .container {
+    transform: none !important;
+    -webkit-transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* 기존 모바일 스타일 유지 */
+  .smart-trainer-text {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+  }
+
+  body #smart,
+  html body #smart {
+    transform: translateY(-512px) !important; /* 1칸(16px) 아래로 이동: -528px → -512px */
+    -webkit-transform: translateY(-512px) !important;
+    margin-top: -180px !important;
+    padding-top: 0 !important;
+  }
+
+  body #smart h2,
+  html body #smart h2 {
+    font-size: 1.4rem !important;
+    transform: none !important;
+  }
+
+  body #smart .hive-showcase,
+  body #smart p,
+  html body #smart .hive-showcase,
+  html body #smart p {
+    transform: none !important;
+  }
+
+  .smart-caption {
+    margin-top: 12px !important;
+  }
 }
 </style>
 <style>
