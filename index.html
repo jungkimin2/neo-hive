@@ -3817,18 +3817,11 @@ if (window.innerWidth <= 768) {
     }
 
     // 기존 오버레이 모두 제거 (깔끔한 시작)
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"]').forEach(el => el.remove());
+    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
     
     // 모바일에서는 오버레이 없이 팝업만 표시
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile - No overlay, popup only');
-      
-      // 모바일에서 모든 오버레이 관련 요소 완전 제거
-      document.querySelectorAll('div[style*="background"], div[style*="rgba"], div[style*="opacity"]').forEach(el => {
-        if (el.id !== 'formModal' && !el.closest('#formModal')) {
-          el.remove();
-        }
-      });
       
       // 모바일에서 body 스크롤 제어
       document.body.classList.add('modal-open');
@@ -3841,7 +3834,7 @@ if (window.innerWidth <= 768) {
       
       // 모바일에서 화면 상단에 고정 위치 (스크롤 영향 없음)
       modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '80px', 'important');
+      modal.style.setProperty('top', '60px', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translateX(-50%)', 'important');
       modal.style.setProperty('width', '90%', 'important');
@@ -3899,21 +3892,12 @@ if (window.innerWidth <= 768) {
     // 모바일에서 body 스크롤 제어 해제
     document.body.classList.remove('modal-open');
     
-    // 모든 오버레이 제거 - 강화된 버전
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"]').forEach(el => {
+    // 모든 오버레이 제거
+    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
       if (el && el.parentNode) {
         el.remove();
       }
     });
-    
-    // 모바일에서 추가 오버레이 요소 제거
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('div[style*="background"], div[style*="rgba"], div[style*="opacity"]').forEach(el => {
-        if (el.id !== 'formModal' && !el.closest('#formModal')) {
-          el.remove();
-        }
-      });
-    }
     
     // 스크롤 복원
     document.body.style.overflow = '';
@@ -8027,7 +8011,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
-    top: 80px !important;
+    top: 60px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 90% !important;
@@ -8044,7 +8028,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
-    max-height: calc(100vh - 100px) !important;
+    max-height: calc(100vh - 80px) !important;
     animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
@@ -8061,7 +8045,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal[style*="display: block"],
   #formModal[style*="display:block"] {
     position: fixed !important;
-    top: 80px !important;
+    top: 60px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
@@ -8075,7 +8059,7 @@ document.addEventListener('DOMContentLoaded', function() {
   body #formModal,
   html #formModal {
     position: fixed !important;
-    top: 80px !important;
+    top: 60px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
@@ -8241,7 +8225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1.1) !important;
   }
   
-  /* 모바일에서 모든 오버레이 완전 제거 - 강화된 버전 */
+  /* 모바일에서 모든 오버레이 완전 제거 */
   #modalOverlay,
   .modal-overlay,
   .modal-overlay.active,
@@ -8251,12 +8235,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #mobileBackup1,
   #mobileBackup2,
   [id*="overlay"],
-  [id*="Overlay"],
-  [class*="overlay"],
-  [class*="Overlay"],
-  div[style*="background"],
-  div[style*="rgba"],
-  div[style*="opacity"] {
+  [id*="Overlay"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -8268,25 +8247,6 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 0 !important;
     background: transparent !important;
     z-index: -9999 !important;
-    transform: scale(0) !important;
-    -webkit-transform: scale(0) !important;
-    overflow: hidden !important;
-  }
-  
-  /* 모바일에서 body 배경 오버레이 제거 */
-  body.modal-open::before,
-  body.modal-open::after,
-  html.modal-open::before,
-  html.modal-open::after {
-    display: none !important;
-    content: none !important;
-    background: transparent !important;
-  }
-  
-  /* 모바일에서 추가 오버레이 방지 */
-  *:not(#formModal):not(#formModal *) {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
   }
 }
 
