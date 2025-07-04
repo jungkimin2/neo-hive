@@ -5249,56 +5249,6 @@ if (video) {
 .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p + p {
   margin-top: 0 !important;
 }
-
-/* 스크롤 걸림 문제 해결을 위한 CSS */
-#hive {
-  touch-action: pan-y !important;
-  -webkit-overflow-scrolling: touch !important;
-  overflow-y: auto !important;
-  position: relative !important;
-  isolation: isolate !important;
-}
-
-#hive .hive-showcase {
-  height: auto !important;
-  min-height: 620px !important;
-  touch-action: pan-y !important;
-  will-change: auto !important;
-  transform: none !important;
-  -webkit-transform: none !important;
-}
-
-/* 절대 위치 요소들이 스크롤을 방해하지 않도록 */
-#hive .hive-showcase [style*="position: absolute"] {
-  pointer-events: none !important;
-  will-change: auto !important;
-  transform: translateZ(0) !important;
-  -webkit-transform: translateZ(0) !important;
-}
-
-/* 배경 효과 제거 */
-#hive .hive-showcase [style*="background: radial-gradient"] {
-  display: none !important;
-}
-
-/* 이미지들의 GPU 가속 제거 */
-#hive .hive-showcase img {
-  will-change: auto !important;
-  transform: none !important;
-  -webkit-transform: none !important;
-  pointer-events: none !important;
-}
-
-/* 버튼은 터치 가능하게 유지 */
-#hive .hive-showcase button {
-  pointer-events: auto !important;
-}
-
-/* 전체 페이지 스크롤 최적화 */
-body {
-  overscroll-behavior-y: none !important;
-  -webkit-overflow-scrolling: touch !important;
-}
 }
 </style>
 
