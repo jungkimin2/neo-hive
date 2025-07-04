@@ -3300,13 +3300,13 @@ if (window.innerWidth <= 768) {
   <!-- 닫기 버튼 -->
   <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
   
-  <!-- 헤더 영역 -->
+  <!-- 모바일: 헤더 없음, PC: 헤더 표시 -->
   <div class="modal-header">
-    <h2>지역 기반 소모임 헬스 커뮤니티 플랫폼</h2>
-    <p>커뮤니티와 헬스장을 하나로 연결하여 지속적인 운동 문화를 만들어보세요</p>
+    <h2>파트너 신청</h2>
+    <p>Neo Hive와 함께 성장하세요</p>
   </div>
   
-  <!-- 바디 영역 -->
+  <!-- 폼 영역 -->
   <div class="modal-body">
     <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:12px;">
       <input type="hidden" name="_captcha" value="false">
@@ -8005,36 +8005,34 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서 더 매력적인 팝업 디자인 */
+/* 모바일 환경에서 컴팩트한 팝업 디자인 - 헤더 없음 */
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 95% !important;
-    max-width: 420px !important;
-    min-width: 320px !important;
-    padding: 0 !important;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%) !important;
-    border: 3px solid #7BE495 !important;
-    border-radius: 25px !important;
+    width: 90% !important;
+    max-width: 380px !important;
+    min-width: 300px !important;
+    padding: 25px !important;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #111 100%) !important;
+    border: 2px solid #7BE495 !important;
+    border-radius: 20px !important;
     color: #fff !important;
     box-shadow: 
-      0 0 30px rgba(123, 228, 149, 0.6),
-      0 0 60px rgba(123, 228, 149, 0.4),
-      0 0 100px rgba(123, 228, 149, 0.2),
-      inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
+      0 0 25px rgba(123, 228, 149, 0.5),
+      0 0 50px rgba(123, 228, 149, 0.3) !important;
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
-    max-height: 90vh !important;
-    animation: mobileModalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+    max-height: 85vh !important;
+    animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   }
   
   @keyframes mobileModalSlideIn {
     0% {
-      transform: translate(-50%, -50%) scale(0.8);
+      transform: translate(-50%, -50%) scale(0.9);
       opacity: 0;
     }
     100% {
@@ -8049,34 +8047,14 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 1 !important;
   }
   
-  /* 팝업 헤더 영역 */
+  /* 모바일에서 헤더 완전히 숨김 */
   #formModal .modal-header {
-    background: linear-gradient(135deg, #7BE495, #62D2A2) !important;
-    color: #000 !important;
-    padding: 20px 25px !important;
-    border-radius: 22px 22px 0 0 !important;
-    margin: 0 !important;
-    text-align: center !important;
-    position: relative !important;
-    box-shadow: 0 4px 15px rgba(123, 228, 149, 0.3) !important;
+    display: none !important;
   }
   
-  #formModal .modal-header h2 {
-    margin: 0 !important;
-    font-size: 1.4rem !important;
-    font-weight: bold !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-  }
-  
-  #formModal .modal-header p {
-    margin: 8px 0 0 0 !important;
-    font-size: 0.9rem !important;
-    opacity: 0.8 !important;
-  }
-  
-  /* 팝업 바디 영역 */
+  /* 모바일에서 바디 패딩 조정 */
   #formModal .modal-body {
-    padding: 30px 25px !important;
+    padding: 0 !important;
   }
   
   #formModal form {
@@ -8084,26 +8062,24 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 18px !important;
+    gap: 14px !important;
   }
   
-  /* 입력 필드 그룹 */
+  /* 간소화된 입력 필드 */
   #formModal .input-group {
     position: relative !important;
-    margin-bottom: 5px !important;
+    margin-bottom: 2px !important;
   }
   
   #formModal .input-group label {
-    position: absolute !important;
-    top: -8px !important;
-    left: 15px !important;
-    background: linear-gradient(135deg, #0a0a0a, #1a1a1a) !important;
+    display: block !important;
     color: #7BE495 !important;
-    padding: 2px 8px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.9rem !important;
     font-weight: 500 !important;
-    border-radius: 8px !important;
-    z-index: 1 !important;
+    margin-bottom: 6px !important;
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
   }
   
   #formModal input,
@@ -8112,107 +8088,82 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100% !important;
     box-sizing: border-box !important;
     font-size: 16px !important;
-    padding: 16px 18px !important;
+    padding: 14px 16px !important;
     margin-bottom: 0 !important;
-    border: 2px solid #444 !important;
-    border-radius: 15px !important;
-    background: rgba(17, 17, 17, 0.9) !important;
+    border: 1px solid #555 !important;
+    border-radius: 12px !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     color: #fff !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease !important;
   }
   
   #formModal input:focus,
   #formModal textarea:focus,
   #formModal select:focus {
     border-color: #7BE495 !important;
-    box-shadow: 
-      0 0 20px rgba(123, 228, 149, 0.4),
-      0 0 40px rgba(123, 228, 149, 0.2),
-      inset 0 0 10px rgba(123, 228, 149, 0.1) !important;
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.4) !important;
     outline: none !important;
-    transform: translateY(-2px) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
   }
   
   #formModal textarea {
-    min-height: 100px !important;
+    min-height: 80px !important;
     resize: vertical !important;
   }
   
   /* 플레이스홀더 스타일 */
   #formModal input::placeholder,
   #formModal textarea::placeholder {
-    color: #999 !important;
+    color: #aaa !important;
     opacity: 1 !important;
   }
   
-  /* 셀렉트 박스 커스텀 */
+  /* 셀렉트 박스 */
   #formModal select {
     appearance: none !important;
     background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237BE495'><path d='M7 10l5 5 5-5z'/></svg>") !important;
     background-repeat: no-repeat !important;
-    background-position: right 15px center !important;
-    background-size: 20px !important;
+    background-position: right 12px center !important;
+    background-size: 16px !important;
     cursor: pointer !important;
   }
   
-  /* 제출 버튼 */
+  /* 컴팩트한 제출 버튼 */
   #formModal .btn {
     width: 100% !important;
     max-width: none !important;
     min-width: auto !important;
-    padding: 18px 24px !important;
+    padding: 15px 20px !important;
     box-sizing: border-box !important;
-    margin: 20px 0 10px 0 !important;
+    margin: 10px 0 0 0 !important;
     background: linear-gradient(135deg, #7BE495, #62D2A2) !important;
     color: #000 !important;
     border: none !important;
-    border-radius: 15px !important;
+    border-radius: 12px !important;
     font-weight: bold !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-shadow: 0 4px 15px rgba(123, 228, 149, 0.3) !important;
-    position: relative !important;
-    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.3) !important;
   }
   
-  #formModal .btn:before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
-    transition: left 0.5s !important;
-  }
-  
-  #formModal .btn:hover:before {
-    left: 100% !important;
-  }
-  
-  #formModal .btn:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 25px rgba(123, 228, 149, 0.5) !important;
-  }
-  
+  #formModal .btn:hover,
   #formModal .btn:active {
-    transform: translateY(-1px) !important;
-    transition: transform 0.1s !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.4) !important;
   }
   
-  /* 닫기 버튼 개선 */
+  /* 간소화된 닫기 버튼 */
   #formModal button[onclick="closeForm()"] {
     position: absolute !important;
-    top: 15px !important;
-    right: 15px !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-    border: 2px solid #7BE495 !important;
+    top: 12px !important;
+    right: 12px !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #7BE495 !important;
     color: #7BE495 !important;
-    font-size: 20px !important;
-    width: 35px !important;
-    height: 35px !important;
+    font-size: 18px !important;
+    width: 30px !important;
+    height: 30px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -8220,22 +8171,36 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 50% !important;
     transition: all 0.3s ease !important;
     line-height: 1 !important;
-    backdrop-filter: blur(10px) !important;
   }
   
   #formModal button[onclick="closeForm()"]:hover {
     background: #7BE495 !important;
     color: #000 !important;
-    transform: scale(1.1) rotate(90deg) !important;
-    box-shadow: 0 0 15px rgba(123, 228, 149, 0.6) !important;
+    transform: scale(1.1) !important;
   }
   
-  /* 모바일에서 오버레이 효과 제거 */
-  #modalOverlay {
+  /* 모바일에서 모든 오버레이 완전 제거 */
+  #modalOverlay,
+  .modal-overlay,
+  .modal-overlay.active,
+  #mobileForceOverlay,
+  #mobileDarkOverlay,
+  #mobileUltraOverlay,
+  #mobileBackup1,
+  #mobileBackup2,
+  [id*="overlay"],
+  [id*="Overlay"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    z-index: -9999 !important;
   }
 }
 
@@ -8260,6 +8225,16 @@ document.addEventListener('DOMContentLoaded', function() {
      overflow-y: auto !important;
      box-shadow: 0 0 50px rgba(123, 228, 149, 0.3) !important;
    }
+  
+  /* PC에서는 모달 헤더 숨김 */
+  #formModal .modal-header {
+    display: none !important;
+  }
+  
+  /* PC에서는 모달 바디 패딩 제거 (헤더가 없으므로) */
+  #formModal .modal-body {
+    padding: 0 !important;
+  }
   
   #formModal form {
     display: flex !important;
