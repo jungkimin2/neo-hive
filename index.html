@@ -3845,12 +3845,65 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('will-change', 'transform', 'important');
       modal.style.setProperty('backface-visibility', 'hidden', 'important');
       modal.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+      
+      // 모바일에서 모든 오버레이 즉시 제거
+      function removeAllOverlays() {
+        document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"], .overlay, .Overlay').forEach(el => {
+          if (el && el.parentNode && el.id !== 'formModal') {
+            el.remove();
+          }
+        });
+      }
+      
+      // 즉시 제거
+      removeAllOverlays();
+      
+      // 지속적으로 오버레이 감시 및 제거
+      const overlayObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === 1) { // Element node
+                const isOverlay = node.classList?.contains('modal-overlay') ||
+                                 node.classList?.contains('overlay') ||
+                                 node.id?.includes('overlay') ||
+                                 node.id?.includes('Overlay') ||
+                                 node.className?.includes('overlay') ||
+                                 node.className?.includes('Overlay');
+                
+                if (isOverlay && node.id !== 'formModal') {
+                  node.remove();
+                  console.log('🚫 Overlay removed automatically:', node);
+                }
+              }
+            });
+          }
+        });
+      });
+      
+      overlayObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+      
+      // 5초 후 감시 해제
+      setTimeout(() => {
+        overlayObserver.disconnect();
+      }, 5000);
+      
+      // 모바일에서는 body 스크롤 막지 않음
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      
       console.log('✅ Mobile popup positioned at top - NO OVERLAY');
       
     } else {
       // PC에서는 오버레이 사용
       const overlay = document.createElement('div');
       overlay.id = 'modalOverlay';
+      overlay.className = 'modal-overlay';
       overlay.onclick = closeForm;
       overlay.style.cssText = `
         position: fixed !important;
@@ -3882,7 +3935,7 @@ if (window.innerWidth <= 768) {
     return false;
   }
   function closeForm() {
-    console.log('📱 closeForm called - mobile no overlay');
+    console.log('📱 closeForm called');
     
     const modal = document.getElementById('formModal');
     if (modal) {
@@ -3892,9 +3945,9 @@ if (window.innerWidth <= 768) {
     // 모바일에서 body 스크롤 제어 해제
     document.body.classList.remove('modal-open');
     
-    // 모든 오버레이 제거
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => {
-      if (el && el.parentNode) {
+    // 모든 오버레이 제거 (모바일에서는 없지만 안전하게)
+    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"], .overlay, .Overlay').forEach(el => {
+      if (el && el.parentNode && el.id !== 'formModal') {
         el.remove();
       }
     });
@@ -8225,7 +8278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1.1) !important;
   }
   
-  /* 모바일에서 모든 오버레이 완전 제거 */
+  /* 모바일에서 모든 오버레이 완전 제거 - 강력한 차단 */
   #modalOverlay,
   .modal-overlay,
   .modal-overlay.active,
@@ -8235,7 +8288,15 @@ document.addEventListener('DOMContentLoaded', function() {
   #mobileBackup1,
   #mobileBackup2,
   [id*="overlay"],
-  [id*="Overlay"] {
+  [id*="Overlay"],
+  [class*="overlay"],
+  [class*="Overlay"],
+  .overlay,
+  .Overlay,
+  div[style*="background: rgba(0, 0, 0"],
+  div[style*="background: rgba(0,0,0"],
+  div[style*="position: fixed"][style*="top: 0"][style*="left: 0"],
+  div[style*="z-index: 1000000"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -8247,6 +8308,29 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 0 !important;
     background: transparent !important;
     z-index: -9999 !important;
+    transform: translateX(-9999px) !important;
+    -webkit-transform: translateX(-9999px) !important;
+  }
+  
+  /* 가상 요소 오버레이도 제거 */
+  *::before,
+  *::after {
+    background: transparent !important;
+  }
+  
+  /* 특정 가상 요소 오버레이 제거 */
+  [class*="overlay"]::before,
+  [class*="overlay"]::after,
+  [class*="Overlay"]::before,
+  [class*="Overlay"]::after,
+  .overlay::before,
+  .overlay::after,
+  .Overlay::before,
+  .Overlay::after {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    content: none !important;
   }
 }
 
@@ -8427,6 +8511,8 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 1 !important;
     pointer-events: auto !important;
   }
+}
+}
 }
 </style>
 </body>
