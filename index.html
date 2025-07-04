@@ -5254,6 +5254,49 @@ if (video) {
 
 <style>
 @media (max-width: 768px) {
+/* 스크롤 걸림 해결: hive-showcase 구간 최적화 */
+.hive-showcase {
+  height: auto !important;
+  min-height: 620px !important;
+  overflow: visible !important;
+}
+
+/* 모든 애니메이션 효과 제거 */
+.hive-showcase .animate-on-scroll,
+.hive-showcase .slide-in-left,
+.hive-showcase .slide-in-right {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 이미지들의 복잡한 transform 단순화 */
+.hive-showcase img.hive-image {
+  transform: none !important;
+  position: static !important;
+  display: none !important;
+}
+
+/* 배경 blur 효과 제거 */
+.hive-showcase div[style*="filter: blur"] {
+  display: none !important;
+}
+
+/* 비디오만 중앙에 표시 */
+.hive-showcase .video-phone {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+}
+</style>
+
+<style>
+@media (max-width: 768px) {
 /* '핵심 가치'와 설명을 박스 내에서 한 칸(12px) 아래로 내림 */
 .neohive-twobox-col h4[style*='핵심 가치'] {
   margin-top: 12px !important;
