@@ -3834,7 +3834,7 @@ if (window.innerWidth <= 768) {
       
       // 모바일에서 화면 상단에 고정 위치 (스크롤 영향 없음)
       modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '60px', 'important');
+      modal.style.setProperty('top', '80px', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translateX(-50%)', 'important');
       modal.style.setProperty('width', '90%', 'important');
@@ -8011,7 +8011,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     position: fixed !important;
-    top: 60px !important;
+    top: 80px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 90% !important;
@@ -8028,7 +8028,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
-    max-height: calc(100vh - 80px) !important;
+    max-height: calc(100vh - 100px) !important;
     animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
@@ -8045,7 +8045,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal[style*="display: block"],
   #formModal[style*="display:block"] {
     position: fixed !important;
-    top: 60px !important;
+    top: 80px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
@@ -8059,7 +8059,7 @@ document.addEventListener('DOMContentLoaded', function() {
   body #formModal,
   html #formModal {
     position: fixed !important;
-    top: 60px !important;
+    top: 80px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
@@ -8225,7 +8225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1.1) !important;
   }
   
-  /* 모바일에서 모든 오버레이 완전 제거 */
+  /* 모바일에서 모든 오버레이 완전 제거 - 강화된 버전 */
   #modalOverlay,
   .modal-overlay,
   .modal-overlay.active,
@@ -8235,7 +8235,13 @@ document.addEventListener('DOMContentLoaded', function() {
   #mobileBackup1,
   #mobileBackup2,
   [id*="overlay"],
-  [id*="Overlay"] {
+  [id*="Overlay"],
+  [class*="overlay"],
+  [class*="Overlay"],
+  div[style*="background"],
+  div[style*="backdrop"],
+  *:before,
+  *:after {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -8246,8 +8252,51 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 0 !important;
     height: 0 !important;
     background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     z-index: -9999 !important;
   }
+  
+  /* 모바일에서 body와 html의 배경 효과 제거 */
+  body,
+  html {
+    background: #000 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* 모바일에서 팝업 외부 영역 클릭 방지 */
+  body.modal-open::before,
+  body.modal-open::after,
+  html.modal-open::before,
+  html.modal-open::after {
+    display: none !important;
+    content: none !important;
+  }
+  
+  /* 
+  === 대안 옵션: 전체 화면 일관된 오버레이 ===
+  위의 "완전 제거" 대신 아래 코드를 사용하면 전체 화면에 일관된 오버레이가 적용됩니다.
+  사용하려면 위의 "완전 제거" 코드를 주석처리하고 아래 코드의 주석을 해제하세요.
+  
+  .mobile-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    z-index: 2147483649 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  
+  #formModal {
+    z-index: 2147483651 !important;
+  }
+  */
 }
 
 /* PC 환경에서 팝업창 - 캡처 이미지 디자인 */
@@ -8359,29 +8408,58 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 5px 20px rgba(123, 228, 149, 0.4) !important;
   }
   
-  /* X 버튼 스타일 개선 */
+  /* PC 환경 닫기 버튼 - 원형 디자인 */
   #formModal button[onclick="closeForm()"] {
     position: absolute !important;
-    top: 15px !important;
-    right: 15px !important;
-    background: none !important;
-    border: none !important;
-    color: #fff !important;
-    font-size: 28px !important;
-    width: 40px !important;
-    height: 40px !important;
+    top: 20px !important;
+    right: 20px !important;
+    background: linear-gradient(135deg, rgba(123, 228, 149, 0.1), rgba(123, 228, 149, 0.2)) !important;
+    border: 2px solid #7BE495 !important;
+    color: #7BE495 !important;
+    font-size: 16px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
     border-radius: 50% !important;
-    transition: all 0.3s ease !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     line-height: 1 !important;
+    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.2) !important;
+    font-weight: bold !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
   
   #formModal button[onclick="closeForm()"]:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    transform: scale(1.1) !important;
+    background: linear-gradient(135deg, #7BE495, #5BC978) !important;
+    color: #000 !important;
+    transform: scale(1.1) rotate(90deg) !important;
+    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.4) !important;
+    border-color: #5BC978 !important;
+  }
+  
+  #formModal button[onclick="closeForm()"]:active {
+    transform: scale(1.0) rotate(90deg) !important;
+    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.6) !important;
+  }
+  
+  /* PC 환경 닫기 버튼 내부 아이콘 스타일 */
+  #formModal button[onclick="closeForm()"]:before {
+    content: "✕" !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
   }
   
   /* PC 오버레이 스타일 */
