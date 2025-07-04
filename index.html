@@ -3842,9 +3842,6 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('min-width', '300px', 'important');
       modal.style.setProperty('padding', '25px', 'important');
       modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('will-change', 'transform', 'important');
-      modal.style.setProperty('backface-visibility', 'hidden', 'important');
-      modal.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
       console.log('✅ Mobile popup positioned at top - NO OVERLAY');
       
     } else {
@@ -7712,9 +7709,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 전용 단순 스크롤 보장 - 네오핏 간소화 방식
+    // 모바일 전용 단순 스크롤 보장 - neofit.html 방식 적용
     function ensureMobileScroll() {
+      document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
       document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+      document.body.style.setProperty('overflow-x', 'hidden', 'important');
       document.body.style.setProperty('overflow-y', 'auto', 'important');
       document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
       console.log('📱 모바일 스크롤 보장');
@@ -7744,16 +7743,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리 - 네오핏 간소화 방식
+    // 모바일 페이지 로딩 완료 처리 - neofit.html 방식 적용
     function showMobilePage() {
       ensureMobileScroll(); // 단순 스크롤 보장
       
-      // 페이지 표시 - 네오핏 방식
+      // 페이지 표시 - neofit.html 방식
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         document.body.style.opacity = '1';
+        // 추가 스크롤 최적화
+        document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+        document.body.style.setProperty('overflow-y', 'auto', 'important');
         console.log('📱 모바일 페이지 로딩 완료');
-      }, 30);
+      }, 50);
     }
     
     // 즉시 실행 (HTML 파싱과 동시에)
@@ -8007,6 +8009,93 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+/* 모바일 환경 즉시 스크롤 최적화 - neofit.html 방식 적용 */
+@media (max-width: 768px) {
+  /* 즉시 터치 스크롤 활성화 */
+  html {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+  }
+  
+  body {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    pointer-events: auto !important;
+    /* 모바일 스크롤 성능 개선 */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+  
+  /* 전역 스크롤 최적화 */
+  * {
+    -webkit-overflow-scrolling: touch !important;
+    /* 모바일에서 글래스 효과 제거 */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  
+  /* 모바일에서 모든 애니메이션 비활성화 - 성능 향상 */
+  .animate-on-scroll,
+  .section.animate-on-scroll,
+  .slide-in-left,
+  .slide-in-right,
+  .feature-item,
+  [class*="animate"],
+  [class*="fade"],
+  [class*="slide"] {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  /* 모바일 탭 하이라이트 제거 */
+  * {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+  }
+  
+  /* 입력 요소들은 선택 가능하게 */
+  input, textarea, select {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+  }
+  
+  /* 모바일에서 모든 박스 섀도우 효과 최소화 */
+  * {
+    box-shadow: none !important;
+  }
+  
+  /* 필요한 요소들에만 최소한의 섀도우 허용 */
+  #formModal,
+  .btn,
+  button {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* 기본 스크롤만 허용 */
+  body, html {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
 /* 모바일 환경에서 컴팩트한 팝업 디자인 - 헤더 없음 */
 @media (max-width: 768px) {
   #formModal {
@@ -8018,13 +8107,11 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 380px !important;
     min-width: 300px !important;
     padding: 25px !important;
-    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #111 100%) !important;
+    background: #111 !important;
     border: 2px solid #7BE495 !important;
     border-radius: 20px !important;
     color: #fff !important;
-    box-shadow: 
-      0 0 25px rgba(123, 228, 149, 0.5),
-      0 0 50px rgba(123, 228, 149, 0.3) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
     z-index: 2147483650 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
@@ -8033,12 +8120,10 @@ document.addEventListener('DOMContentLoaded', function() {
     /* 모바일 브라우저의 뷰포트 문제 해결 */
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    /* 스크롤 시에도 위치 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
+    /* 모바일에서 글래스 효과 완전 제거 */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
   }
   
   /* 더 높은 우선순위로 모바일 팝업 위치 강제 설정 */
@@ -8049,10 +8134,6 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
-    /* 스크롤 시에도 위치 절대 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
   }
   
   /* 모바일 환경에서 팝업 위치 완전 고정 - 최고 우선순위 */
@@ -8063,11 +8144,6 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 50% !important;
     transform: translateX(-50%) !important;
     margin: 0 !important;
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
   }
   
   /* 모바일 환경에서 팝업 표시 시 스크롤 제어 */
@@ -8079,18 +8155,11 @@ document.addEventListener('DOMContentLoaded', function() {
     -webkit-overflow-scrolling: touch !important;
   }
   
-  /* 모바일 환경에서 팝업 위치 안정화 */
-  #formModal {
-    -webkit-transform: translateX(-50%) !important;
-    -moz-transform: translateX(-50%) !important;
-    -ms-transform: translateX(-50%) !important;
-    -o-transform: translateX(-50%) !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform-origin: 50% 0 !important;
-    -moz-transform-origin: 50% 0 !important;
-    -ms-transform-origin: 50% 0 !important;
-    -o-transform-origin: 50% 0 !important;
-    transform-origin: 50% 0 !important;
+  /* 모바일 스크롤 성능 최적화 */
+  .mobile-scroll-container {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-scrolling: touch !important;
+    will-change: scroll-position !important;
   }
   
   @keyframes mobileModalSlideIn {
@@ -8204,7 +8273,7 @@ document.addEventListener('DOMContentLoaded', function() {
     position: absolute !important;
     top: 12px !important;
     right: 12px !important;
-    background: rgba(0, 0, 0, 0.6) !important;
+    background: #000 !important;
     border: 1px solid #7BE495 !important;
     color: #7BE495 !important;
     font-size: 18px !important;
@@ -8217,6 +8286,10 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 50% !important;
     transition: all 0.3s ease !important;
     line-height: 1 !important;
+    /* 모바일에서 글래스 효과 제거 */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   
   #formModal button[onclick="closeForm()"]:hover {
@@ -8385,8 +8458,6 @@ document.addEventListener('DOMContentLoaded', function() {
     line-height: 1 !important;
     box-shadow: 0 3px 12px rgba(123, 228, 149, 0.2) !important;
     font-weight: bold !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
     padding: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
@@ -8427,6 +8498,8 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 1 !important;
     pointer-events: auto !important;
   }
+}
+}
 }
 </style>
 </body>
