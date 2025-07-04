@@ -1403,11 +1403,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards; pointer-events: none !important;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
       </div>
-      <div class="hive-label-right" style="position: absolute; top: 100px; right: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
+      <div class="hive-label-right" style="position: absolute; top: 100px; right: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards; pointer-events: none;">
         <img src="./images/neo41.png" alt="위치 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">주변 제휴센터 예약</span><span class="label-text-mobile">제휴센터 예약</span>
       </div>
       <!-- Background glow -->
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
+      <div class="hive-background-glow" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
       <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; left:10px; transform:translateY(-50%);">&#10094;</button>
       <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; right:10px; transform:translateY(-50%);">&#10095;</button>
 
@@ -5248,6 +5248,24 @@ if (video) {
 }
 .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p + p {
   margin-top: 0 !important;
+}
+
+/* 모바일에서만 스크롤 걸림 문제 해결 */
+@media (max-width: 768px) {
+  /* 배경 글로우 효과 제거 */
+  .hive-background-glow {
+    display: none !important;
+  }
+  
+  /* 절대 위치 요소들의 터치 이벤트 차단 */
+  #hive .hive-showcase [style*="position: absolute"] {
+    pointer-events: none !important;
+  }
+  
+  /* 섹션 전체에 부드러운 스크롤 적용 */
+  #hive {
+    -webkit-overflow-scrolling: touch !important;
+  }
 }
 }
 </style>
