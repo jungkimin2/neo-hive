@@ -1399,8 +1399,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       지역 기반 소모임 헬스 커뮤니티 플랫폼<br><span class="neon-green">커뮤니티와 헬스장을 하나로 연결</span><span style="color:#aaa;">하여 지속적인 운동 문화를 만들고, 헬스장의 활성화를 도모합니다.</span>
     </p>
 
-    <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
-      <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
+    <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px; touch-action: pan-y !important; -webkit-overflow-scrolling: touch !important;">
+      <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards; pointer-events: none !important;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
       </div>
       <div class="hive-label-right" style="position: absolute; top: 100px; right: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
@@ -4625,7 +4625,41 @@ window.addEventListener('load', () => {
 });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  // Fix for mobile scroll sticking
+  function fixMobileScroll() {
+    if (window.innerWidth <= 768) {
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        hiveSection.style.touchAction = 'pan-y';
+        hiveSection.style.webkitOverflowScrolling = 'touch';
+        
+        const showcase = hiveSection.querySelector('.hive-showcase');
+        if (showcase) {
+          showcase.style.height = 'auto';
+          showcase.style.minHeight = '620px';
+          showcase.style.position = 'relative';
+          
+          // Remove pointer events from absolute positioned elements
+          const absoluteElements = showcase.querySelectorAll('[style*="position: absolute"]');
+          absoluteElements.forEach(el => {
+            el.style.pointerEvents = 'none';
+          });
+          
+          // Enable pointer events only for interactive elements
+          const interactiveElements = showcase.querySelectorAll('button, a');
+          interactiveElements.forEach(el => {
+            el.style.pointerEvents = 'auto';
+          });
+        }
+      }
+    }
+  }
+  
+  // Run on load and resize
+  window.addEventListener('load', fixMobileScroll);
+  window.addEventListener('resize', fixMobileScroll);
+  
+  document.addEventListener('DOMContentLoaded', function() {
 const video = document.querySelector('.neo-smart-video');
 if (video) {
   // 모바일에서는 애니메이션 이벤트 리스너 제거
@@ -6118,15 +6152,6 @@ document.addEventListener('DOMContentLoaded', function() {
       left: 16px !important;
       transform: none !important;
       right: auto !important;
-    }
-    
-    /* 모바일에서 머신 비용 문구 줄바꿈 */
-    li:has(span[style*="7,500만 원"]) {
-      white-space: pre-line !important;
-    }
-    
-    li:has(span[style*="3억 7천 5백만 원"]) {
-      white-space: pre-line !important;
     }
   }
   
