@@ -8063,19 +8063,12 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: none !important;
   }
   
-  /* 오버레이도 모바일에서 확실히 표시 - 팝업보다 낮은 z-index */
+  /* 모바일에서 오버레이 효과 제거 */
   #modalOverlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0, 0, 0, 0.85) !important;
-    z-index: 2147483645 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 }
 
