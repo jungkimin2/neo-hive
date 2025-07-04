@@ -1130,8 +1130,8 @@ div > p.smart-guide-text {
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
       will-change: auto !important;
-      backface-visibility: hidden !important;
-      -webkit-backface-visibility: hidden !important;
+      backface-visibility: visible !important;
+      -webkit-backface-visibility: visible !important;
       visibility: visible !important;
       display: block !important;
     }
@@ -2341,7 +2341,7 @@ html body .core-value-fresh-mobile {
   pointer-events: auto !important;
 }
 
-/* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
+/* 모바일에서 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
   .flipper img.neo-smart-logo.front,
   img.neo-smart-logo.front {
@@ -2409,7 +2409,7 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경 스타일 */
 @media (max-width: 768px) {
   .back-text-overlay {
-    /* 모바일에서는 완전히 숨김 */
+    /* 모바일에서 완전히 숨김 */
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -3819,7 +3819,7 @@ if (window.innerWidth <= 768) {
     // 기존 오버레이 모두 제거 (깔끔한 시작)
     document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
     
-    // 모바일에서는 오버레이 없이 팝업만 표시
+    // 모바일에서만 오버레이 없이 팝업만 표시
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile - No overlay, popup only');
       
@@ -7435,7 +7435,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서는 높은 z-index 유지 */
+/* 모바일 환경에서 높은 z-index 유지 */
 @media (max-width: 768px) {
   .video-phone,
   .neo-smart-video,
@@ -7605,8 +7605,8 @@ document.addEventListener('DOMContentLoaded', function() {
     text-shadow: 
       0 0 5px #7BE495,
       0 0 10px #7BE495,
-      0 0 20px #7BE495,
-      0 0 30px #7BE495 !important;
+      0 0 15px #7BE495,
+      0 0 20px #7BE495;
   }
 }
 
