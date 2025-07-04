@@ -1412,6 +1412,91 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 })();
 </script>
+<style>
+/* 모바일 환경에서 가로 스크롤 방지 */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 모든 컨테이너 요소들의 가로 스크롤 방지 */
+  #scrollable-content,
+  .section,
+  .container,
+  .content-wrapper,
+  [class*="section"],
+  [class*="container"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 이미지와 비디오의 반응형 크기 조정 */
+  img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 테이블 반응형 처리 */
+  table {
+    max-width: 100% !important;
+    width: 100% !important;
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* 네비게이션 메뉴 가로 스크롤 방지 */
+  #mobile-top-nav-fixed,
+  .nav-bar,
+  .nav-menu {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 특정 UI 요소들의 가로 여백 조정 */
+  .hive-showcase,
+  .circular-flow-container,
+  .neos-card-list,
+  .mobile-merged-box,
+  .core-value-fresh-mobile {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+  }
+
+  /* 폼 모달 가로 스크롤 방지 */
+  #formModal {
+    width: 90% !important;
+    max-width: 90% !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+  }
+
+  /* 네오 하이브/스마트 비디오 컨테이너 조정 */
+  .video-phone,
+  .neo-smart-video,
+  .floating-video {
+    max-width: 180px !important;
+    width: 180px !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+</style>
 </head>
 <style>
 @media (max-width: 768px) {
