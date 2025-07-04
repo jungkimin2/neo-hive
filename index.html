@@ -208,18 +208,51 @@ margin: 0 auto !important;
 pointer-events: auto !important;
 }
 
-/* 스크롤 컨테이너 최적화 */
-html, body {
+/* 스크롤 컨테이너 추가 최적화 */
+#scrollable-content {
   position: relative !important;
   width: 100% !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
   overflow-x: hidden !important;
-  overflow-y: scroll !important;
-  overscroll-behavior-y: none !important;
   -webkit-overflow-scrolling: touch !important;
   touch-action: pan-y !important;
+  transform: translate3d(0,0,0) !important;
+  -webkit-transform: translate3d(0,0,0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: transform !important;
+  z-index: 1 !important;
+}
+
+/* 네오 하이브/스마트 비디오 컨테이너 최적화 */
+.video-phone,
+.neo-smart-video,
+.floating-video {
+  transform: translate3d(-50%, -50%, 0) !important;
+  -webkit-transform: translate3d(-50%, -50%, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: transform !important;
+  isolation: isolate !important;
+  contain: layout style paint !important;
+}
+
+/* 성능에 영향을 주는 효과들 제거 */
+.animate-on-scroll,
+.slide-in-left,
+.slide-in-right {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* 레이어 관리 최적화 */
+.hive-showcase {
+  transform-style: flat !important;
+  -webkit-transform-style: flat !important;
+  isolation: isolate !important;
+  contain: layout style paint !important;
 }
 
 /* transform 최적화 */
@@ -233,37 +266,6 @@ html, body {
   transform: none !important;
   -webkit-transform: none !important;
   will-change: auto !important;
-}
-
-/* 비디오/이미지 요소 최적화 */
-.video-phone,
-.neo-smart-video,
-.floating-video,
-.hive-showcase {
-  transform: translate3d(0, 0, 0) !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  will-change: transform !important;
-}
-
-/* 애니메이션 비활성화 */
-.animate-on-scroll,
-.slide-in-left,
-.slide-in-right,
-.feature-item {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
-  transition: none !important;
-}
-
-/* 스크롤 이벤트 최적화 */
-#scrollable-content {
-  position: relative !important;
-  width: 100% !important;
-  overflow-x: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
 }
 }
 </style>
