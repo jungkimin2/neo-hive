@@ -828,6 +828,11 @@ div > p.smart-guide-text {
       transform: translateX(-50%) !important;
     }
     
+    /* 모바일 배경 그라데이션 박스 표시 */
+    .mobile-gradient-bg {
+      display: block !important;
+    }
+    
     /* 모바일에서 라벨 스타일 조정 */
     .hive-label-left,
     .hive-label-right {
@@ -1438,6 +1443,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </p>
 
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
+      <!-- 모바일 배경 그라데이션 박스 -->
+      <div class="mobile-gradient-bg" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; height: 80%; background: radial-gradient(ellipse at center, rgba(123, 228, 149, 0.2) 0%, rgba(123, 228, 149, 0.1) 40%, rgba(123, 228, 149, 0.05) 70%, transparent 100%); border-radius: 32px; z-index: 0; pointer-events: none;"></div>
       <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
       </div>
