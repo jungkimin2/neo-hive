@@ -1386,14 +1386,15 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   /* 팀 결성 버튼 - 좌측 슬라이드 아래 */
   .mobile-slide-button.team-button {
-    left: 25% !important;
+    left: 22% !important;
     transform: translateX(-50%) !important;
   }
   
   /* 센터 예약 버튼 - 우측 슬라이드 아래 */
   .mobile-slide-button.booking-button {
-    left: 75% !important;
-    transform: translateX(-50%) !important;
+    right: 22% !important;
+    left: auto !important;
+    transform: translateX(50%) !important;
   }
   
   .mobile-slide-button img {
@@ -1606,7 +1607,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
     
     <!-- 모바일 슬라이드 하단 버튼 -->
-    <div class="mobile-slide-buttons" style="display: none; position: relative; width: 100%; height: 40px; margin-top: -35px; z-index: 15;">
+    <div class="mobile-slide-buttons" style="display: none; position: absolute; width: 100%; height: 40px; bottom: -45px; left: 0; z-index: 15;">
       <button class="mobile-slide-button team-button">
         <img src="./images/neo33.png" alt="팀 결성">
         <span>팀 결성</span>
