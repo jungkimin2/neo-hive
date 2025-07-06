@@ -1448,6 +1448,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     padding: 0 !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    transition: none !important;
+  }
+  
+  /* Remove all hover effects from the outer box on mobile */
+  .reservation-benefit-notice > div[style*="background: linear-gradient(135deg, rgba(0, 0, 0, 0.98)"]:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
   }
   
   /* Remove click functionality from the entire benefit notice on mobile */
@@ -1465,6 +1473,17 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   /* Ensure the button text and icon are also clickable */
   .reservation-benefit-notice div[style*="margin-top: 24px"] * {
     pointer-events: auto !important;
+  }
+  
+  /* Disable all animations and effects on container elements */
+  .reservation-benefit-notice * {
+    animation: none !important;
+  }
+  
+  /* Keep hover effect only on the button itself */
+  .reservation-benefit-notice div[style*="margin-top: 24px"][style*="cursor: pointer"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.3) !important;
   }
   
   /* Mobile popup logo adjustments */
