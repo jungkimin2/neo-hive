@@ -1371,13 +1371,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     justify-content: center !important;
     background: rgba(0, 0, 0, 0.9) !important;
     border: 1px solid #7BE495 !important;
-    border-radius: 12px !important;
-    padding: 6px 16px !important;
-    gap: 6px !important;
-    font-size: 0.65rem !important;
+    border-radius: 10px !important;
+    padding: 4px 12px !important;
+    gap: 4px !important;
+    font-size: 0.6rem !important;
     color: #7BE495 !important;
     font-weight: 600 !important;
-    min-width: 100px !important;
+    min-width: 80px !important;
     box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3) !important;
     cursor: pointer !important;
     position: absolute !important;
@@ -1386,20 +1386,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   /* 팀 결성 버튼 - 좌측 슬라이드 아래 */
   .mobile-slide-button.team-button {
-    left: 22% !important;
+    left: 25% !important;
     transform: translateX(-50%) !important;
   }
   
   /* 센터 예약 버튼 - 우측 슬라이드 아래 */
   .mobile-slide-button.booking-button {
-    right: 22% !important;
-    left: auto !important;
-    transform: translateX(50%) !important;
+    left: 75% !important;
+    transform: translateX(-50%) !important;
   }
   
   .mobile-slide-button img {
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
 }
 
@@ -1603,12 +1602,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
     
     <!-- 모바일 슬라이드 하단 버튼 -->
-    <div class="mobile-slide-buttons" style="display: none; position: relative; width: 100%; height: 50px; margin-top: -40px; z-index: 15;">
-      <button class="mobile-slide-button team-button" style="position: absolute; left: 22%; transform: translateX(-50%);">
+    <div class="mobile-slide-buttons" style="display: none; position: relative; width: 100%; height: 40px; margin-top: -35px; z-index: 15;">
+      <button class="mobile-slide-button team-button">
         <img src="./images/neo33.png" alt="팀 결성">
         <span>팀 결성</span>
       </button>
-      <button class="mobile-slide-button booking-button" style="position: absolute; right: 22%; transform: translateX(50%);">
+      <button class="mobile-slide-button booking-button">
         <img src="./images/neo41.png" alt="센터 예약">
         <span>센터 예약</span>
       </button>
