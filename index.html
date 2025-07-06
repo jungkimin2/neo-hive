@@ -1491,10 +1491,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     width: 35px !important;
     height: 35px !important;
     border: none !important; /* Remove border from logo container */
+    overflow: visible !important; /* Allow logo to extend beyond container */
   }
   
   .modal-header-advanced img[src*="neohive3.png"] {
-    width: 65px !important; /* Increase logo size even more */
+    width: 80px !important; /* Significantly increase logo size */
+    height: auto !important;
+    max-width: none !important;
   }
   
   /* Keep green bar but adjust styling on mobile */
