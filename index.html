@@ -2908,6 +2908,14 @@ if (window.innerWidth <= 768) {
     text-shadow: 0 0 10px rgba(123, 228, 149, 0.8) !important;
   }
   
+  /* Make second heading smaller to fit one line */
+  .smart-health-system-box > div:nth-child(2) h4 {
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  
   .code-method-box {
     background: rgba(0, 0, 0, 0.8) !important;
     border-left: 3px solid #7BE495 !important;
@@ -2922,6 +2930,25 @@ if (window.innerWidth <= 768) {
     border-radius: 8px !important;
     padding: 12px !important;
     border: 1px solid rgba(123, 228, 149, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  
+  .smart-guide-text .lock-icon {
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  
+  .smart-guide-text span[style*="display: block"] {
+    flex: 1 !important;
+    font-size: 0.8rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .smart-guide-text .example-text {
+    font-size: 0.75rem !important;
+    opacity: 0.8 !important;
   }
   
   .smart-health-system-box ul {
@@ -2955,8 +2982,6 @@ if (window.innerWidth <= 768) {
     padding-left: 0 !important;
   }
 }
-</style>
-/* .neos-card 3D effect removed for new style */
 </style>
       <!-- 전용 스마트 카드/스티커 안내 문장 (네온 그린, 기존 안내 박스 대신) -->
       <!-- 네오 스마트 + 네오 하이브 도입 효과 시각화 블록 -->
