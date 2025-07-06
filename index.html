@@ -823,7 +823,7 @@ div > p.smart-guide-text {
       transform: translateX(-50%) !important;
     }
     .mobile-image-label[data-index="3"] {
-      left: calc(50% + 107px) !important;
+      left: calc(50% + 139px) !important;
       top: calc(60% + 91px) !important;
       transform: translateX(-50%) !important;
     }
@@ -4340,14 +4340,7 @@ if (window.innerWidth <= 768) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
         hiveImages.forEach((img, index) => {
           img.classList.remove('active');
-          if (window.innerWidth <= 768 && index < 3) {
-            // 좌측열 이미지에만 RAF 적용
-            requestAnimationFrame(() => {
-              resetImageToOriginalPosition(img, index);
-            });
-          } else {
-            resetImageToOriginalPosition(img, index);
-          }
+          resetImageToOriginalPosition(img, index);
         });
         if (videoPhone) {
           if (window.innerWidth <= 768) {
@@ -4419,10 +4412,7 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 더 부드러운 트랜지션
-          const transitionTime = '0.4s';
-          targetImg.style.setProperty('transition', `all ${transitionTime} cubic-bezier(0.4, 0, 0.2, 1)`, 'important');
-          targetImg.style.setProperty('-webkit-transition', `all ${transitionTime} cubic-bezier(0.4, 0, 0.2, 1)`, 'important');
+          // 모바일에서만 !important 사용
           targetImg.style.setProperty('left', '50%', 'important');
           targetImg.style.setProperty('top', '60%', 'important');
           targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -4446,16 +4436,10 @@ if (window.innerWidth <= 768) {
         }
       }
       
-    // 전환 완료 후 플래그 리셋 및 will-change 제거
+    // 전환 완료 후 플래그 리셋
     setTimeout(() => {
       isTransitioning = false;
-      // 모바일에서 이미지의 will-change 제거
-      if (window.innerWidth <= 768) {
-        hiveImages.forEach((img) => {
-          img.style.willChange = 'auto';
-        });
-      }
-    }, 450); // 트랜지션 시간에 맞춰 조정
+    }, 550); // 트랜지션 시간에 맞춰 조정
   }
   
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
@@ -4508,24 +4492,17 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 RAF를 사용한 부드러운 트랜지션
-       requestAnimationFrame(() => {
-         // 더 부드러운 트랜지션을 위해 시간 연장
-         const transitionTime = '0.35s';
-         const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
-         img.style.setProperty('transition', `all ${transitionTime} ${easing}`, 'important');
-         img.style.setProperty('-webkit-transition', `all ${transitionTime} ${easing}`, 'important');
-         img.style.setProperty('transform', positions.transform + ' translateZ(0) scale3d(1,1,1)', 'important');
-         img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0) scale3d(1,1,1)', 'important');
-         img.style.setProperty('left', positions.left, 'important');
-         img.style.setProperty('top', positions.top, 'important');
-         img.style.setProperty('z-index', positions.zIndex, 'important');
-         img.style.setProperty('width', '90px', 'important');
-         img.style.setProperty('height', '180px', 'important');
-         img.style.setProperty('border-radius', '16px', 'important');
-         img.style.setProperty('border', 'none', 'important');
-         img.style.setProperty('box-shadow', 'none', 'important');
-       });
+       // 모바일에서 부드러운 트랜지션
+       img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
+       img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
+       img.style.setProperty('left', positions.left, 'important');
+       img.style.setProperty('top', positions.top, 'important');
+       img.style.setProperty('z-index', positions.zIndex, 'important');
+       img.style.setProperty('width', '90px', 'important');
+       img.style.setProperty('height', '180px', 'important');
+       img.style.setProperty('border-radius', '16px', 'important');
+       img.style.setProperty('border', 'none', 'important');
+       img.style.setProperty('box-shadow', 'none', 'important');
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
@@ -4550,25 +4527,12 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 모바일에서 좌측 이미지 전환시 최적화
-      if (window.innerWidth <= 768) {
-        // GPU 가속을 위한 준비
-        hiveImages.forEach((img, idx) => {
-          if (idx < 3) {
-            img.style.willChange = 'transform, left, top';
-          }
-        });
-      }
-      
       // 좌측 이미지들(0,1,2)만 순환
       if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
       else if (slideIndex <= 0) slideIndex = 2;
       else slideIndex = Math.max(slideIndex - 1, 0);
       
-      // RAF로 부드러운 전환
-      requestAnimationFrame(() => {
-        showSlide(slideIndex);
-      });
+      showSlide(slideIndex);
     });
   }
   
@@ -4799,16 +4763,25 @@ if (video) {
     .video-phone,
     .hive-showcase .hive-image,
     .hive-showcase .video-phone {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -moz-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -o-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      will-change: transform, left, top !important;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  left 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease !important;
+      -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                          left 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                          top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                          width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                          height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                          opacity 0.3s ease !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
       -webkit-font-smoothing: antialiased !important;
       -webkit-backface-visibility: hidden !important;
       backface-visibility: hidden !important;
+      -webkit-perspective: 1000px !important;
+      perspective: 1000px !important;
     }
   }
 </style>
