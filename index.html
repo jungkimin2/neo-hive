@@ -3073,88 +3073,296 @@ if (window.innerWidth <= 768) {
              onclick="openForm();return false;" 
              tabindex="0"
              role="button"
-             aria-label="사전 예약 시 3개월 무료 혜택 신청하기"
+             aria-label="파트너 신청 시 3개월 무료 혜택 신청하기"
              style="margin-top: 40px; text-align: center; position: relative; cursor: pointer;">
           <div style="
             display: inline-block;
-            background: linear-gradient(135deg, rgba(123, 228, 149, 0.15) 0%, rgba(62, 200, 162, 0.08) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
             border: 2px solid rgba(123, 228, 149, 0.5);
-            border-radius: 20px;
-            padding: 12px 24px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px 56px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow: 
-              0 6px 20px rgba(123, 228, 149, 0.3),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+              0 8px 32px rgba(0, 0, 0, 0.8),
+              0 4px 16px rgba(123, 228, 149, 0.2),
+              inset 0 2px 2px rgba(123, 228, 149, 0.1),
+              inset 0 -2px 8px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            transform: translateZ(0);
           ">
-            <!-- 글로우 효과 배경 -->
+            <!-- 매트릭스 스타일 배경 패턴 -->
             <div style="
               position: absolute;
               top: 0;
               left: 0;
               right: 0;
               bottom: 0;
-              background: radial-gradient(circle at center, rgba(123, 228, 149, 0.15) 0%, transparent 70%);
+              background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(123, 228, 149, 0.03) 2px,
+                rgba(123, 228, 149, 0.03) 4px
+              );
               pointer-events: none;
             "></div>
             
-            <!-- 메인 텍스트 -->
+            <!-- 스캔라인 효과 -->
+            <div style="
+              position: absolute;
+              top: -100%;
+              left: 0;
+              right: 0;
+              height: 100%;
+              background: linear-gradient(to bottom, transparent 0%, rgba(123, 228, 149, 0.1) 50%, transparent 100%);
+              animation: scanline 8s linear infinite;
+              pointer-events: none;
+            "></div>
+            
+            <!-- 메인 콘텐츠 -->
             <div style="position: relative; z-index: 2;">
-              <span style="
-                color: #7BE495;
-                font-size: 1rem;
-                font-weight: 600;
-                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
-                letter-spacing: 0.5px;
-              ">✨ 사전 예약 시</span>
-              <span style="
-                color: #FFFFFF;
-                font-size: 1.2rem;
-                font-weight: bold;
-                margin: 0 8px;
-                text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-              ">3개월 무료</span>
-              <span style="
-                color: #7BE495;
-                font-size: 1rem;
-                font-weight: 600;
-                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
-                letter-spacing: 0.5px;
-              ">혜택! 🎁</span>
-            </div>
-            
-            <!-- 혜택 상세 내용 -->
-            <div style="
-              margin-top: 8px;
-              color: #B8E6C1;
-              font-size: 0.85rem;
-              font-weight: 500;
-              text-shadow: 0 0 4px rgba(184, 230, 193, 0.5);
-              position: relative;
-              z-index: 2;
-              line-height: 1.4;
-            ">
-              💎 프리미엄 기능 무료 체험<br>
-              🎯 맞춤형 운영 컨설팅 제공
-            </div>
-            
-            <!-- 클릭 안내 텍스트 -->
-            <div style="
-              margin-top: 6px;
-              color: #7BE495;
-              font-size: 0.7rem;
-              font-weight: 400;
-              opacity: 0.8;
-              position: relative;
-              z-index: 2;
-            ">
-              👆 클릭하여 신청하기
+              <!-- 상단 타이틀 -->
+              <div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                margin-bottom: 16px;
+              ">
+                <span style="
+                  display: inline-block;
+                  width: 8px;
+                  height: 8px;
+                  background: #7BE495;
+                  border-radius: 50%;
+                  box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
+                  animation: pulse 2s ease-in-out infinite;
+                "></span>
+                <h3 style="
+                  margin: 0;
+                  color: #fff;
+                  font-size: 1.2rem;
+                  font-weight: 600;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                  letter-spacing: 0.05em;
+                  text-transform: uppercase;
+                ">
+                  파트너 신청 시 <span style="color: #7BE495;">3개월 무료</span> 헬택
+                </h3>
+                <span style="
+                  display: inline-block;
+                  width: 8px;
+                  height: 8px;
+                  background: #7BE495;
+                  border-radius: 50%;
+                  box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
+                  animation: pulse 2s ease-in-out infinite;
+                "></span>
+              </div>
+              
+              <!-- 중앙 데이터 디스플레이 -->
+              <div style="
+                background: rgba(123, 228, 149, 0.05);
+                border: 1px solid rgba(123, 228, 149, 0.2);
+                border-radius: 8px;
+                padding: 16px 32px;
+                margin: 16px 0;
+                position: relative;
+              ">
+                <!-- 코너 장식 -->
+                <div style="position: absolute; top: -1px; left: -1px; width: 12px; height: 12px; border-top: 2px solid #7BE495; border-left: 2px solid #7BE495;"></div>
+                <div style="position: absolute; top: -1px; right: -1px; width: 12px; height: 12px; border-top: 2px solid #7BE495; border-right: 2px solid #7BE495;"></div>
+                <div style="position: absolute; bottom: -1px; left: -1px; width: 12px; height: 12px; border-bottom: 2px solid #7BE495; border-left: 2px solid #7BE495;"></div>
+                <div style="position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px; border-bottom: 2px solid #7BE495; border-right: 2px solid #7BE495;"></div>
+                
+                <p style="
+                  margin: 0;
+                  color: #7BE495;
+                  font-size: 1.4rem;
+                  font-weight: 700;
+                  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+                  text-shadow: 0 0 20px rgba(123, 228, 149, 0.5);
+                  letter-spacing: 0.1em;
+                ">
+                  총 100만원 상당 혜택 제공
+                </p>
+              </div>
+              
+              <!-- 추가 정보 -->
+              <div style="
+                margin-top: 12px;
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.9rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              ">
+                <span style="color: #7BE495;">+</span>
+                맞춤형 운영 컨설팅 제공
+              </div>
+              
+              <!-- CTA 버튼 강조 -->
+              <div style="
+                margin-top: 20px;
+                background: linear-gradient(135deg, #7BE495 0%, #62D2A2 100%);
+                border: 2px solid #7BE495;
+                border-radius: 8px;
+                padding: 16px 36px;
+                color: #000;
+                font-size: 1.1rem;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 
+                  0 4px 20px rgba(123, 228, 149, 0.4),
+                  0 0 40px rgba(123, 228, 149, 0.3),
+                  inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease;
+              ">
+                <!-- 버튼 내부 그라데이션 오버레이 -->
+                <div style="
+                  position: absolute;
+                  top: 0;
+                  left: -100%;
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                  transition: left 0.5s ease;
+                "></div>
+                
+                <span style="position: relative; z-index: 1; font-weight: 900;">사전 예약하기</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="position: relative; z-index: 1; animation: arrowPulse 1.5s ease-in-out infinite;">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
             </div>
           </div>
+          
+          <style>
+            @keyframes scanline {
+              0% {
+                top: -100%;
+              }
+              100% {
+                top: 100%;
+              }
+            }
+            
+            @keyframes pulse {
+              0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+              }
+              50% {
+                opacity: 0.7;
+                transform: scale(0.9);
+              }
+            }
+            
+            @keyframes arrowPulse {
+              0%, 100% {
+                transform: translateX(0);
+              }
+              50% {
+                transform: translateX(4px);
+              }
+            }
+            
+            @keyframes buttonShine {
+              0% {
+                left: -100%;
+              }
+              100% {
+                left: 100%;
+              }
+            }
+            
+            .clickable-benefit-box:hover > div:first-child {
+              border-color: rgba(123, 228, 149, 0.8);
+              box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.9),
+                0 8px 24px rgba(123, 228, 149, 0.3),
+                inset 0 2px 2px rgba(123, 228, 149, 0.2),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.6);
+              transform: translateY(-2px);
+            }
+            
+            .clickable-benefit-box:hover div[style*="사전 예약하기"] {
+              transform: scale(1.05);
+              box-shadow: 
+                0 6px 30px rgba(123, 228, 149, 0.6),
+                0 0 50px rgba(123, 228, 149, 0.4),
+                inset 0 -3px 12px rgba(0, 0, 0, 0.3);
+            }
+            
+            .clickable-benefit-box:hover div[style*="사전 예약하기"] > div:first-child {
+              animation: buttonShine 0.5s ease-out;
+            }
+            
+            /* 모바일 최적화 강화 */
+            @media (max-width: 768px) {
+              .clickable-benefit-box > div:first-child {
+                padding: 24px 20px !important;
+                border-radius: 12px !important;
+                margin: 0 16px;
+              }
+              
+              .clickable-benefit-box h3 {
+                font-size: 0.95rem !important;
+                flex-wrap: wrap;
+                gap: 8px !important;
+              }
+              
+              .clickable-benefit-box h3 > span:first-child,
+              .clickable-benefit-box h3 > span:last-child {
+                display: none !important;
+              }
+              
+              .clickable-benefit-box p {
+                font-size: 1.1rem !important;
+                padding: 12px 20px !important;
+              }
+              
+              .clickable-benefit-box div[style*="사전 예약하기"] {
+                width: calc(100% - 40px) !important;
+                padding: 14px 24px !important;
+                font-size: 1rem !important;
+                margin: 16px auto 0 !important;
+                border-radius: 8px !important;
+              }
+              
+              .clickable-benefit-box div[style*="맞춤형"] {
+                font-size: 0.85rem !important;
+              }
+              
+              /* 모바일 터치 상태 */
+              .clickable-benefit-box:active > div:first-child {
+                transform: scale(0.98);
+              }
+              
+              .clickable-benefit-box:active div[style*="사전 예약하기"] {
+                transform: scale(0.95);
+                box-shadow: 
+                  0 2px 10px rgba(123, 228, 149, 0.4),
+                  inset 0 -1px 4px rgba(0, 0, 0, 0.2);
+              }
+            }
+          </style>
         </div>
   </div>
   <style>
