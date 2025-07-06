@@ -1480,10 +1480,25 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     animation: none !important;
   }
   
-  /* Keep hover effect only on the button itself */
+  /* Keep hover and active effect only on the button itself */
   .reservation-benefit-notice div[style*="margin-top: 24px"][style*="cursor: pointer"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 20px rgba(123, 228, 149, 0.3) !important;
+  }
+  
+  /* Active/click effect only on button */
+  .reservation-benefit-notice div[style*="margin-top: 24px"][style*="cursor: pointer"]:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 10px rgba(123, 228, 149, 0.2) !important;
+    background: rgba(123, 228, 149, 0.1) !important;
+  }
+  
+  /* Disable all click/active effects on parent containers */
+  .reservation-benefit-notice:active,
+  .reservation-benefit-notice > div:active {
+    transform: none !important;
+    box-shadow: none !important;
+    background: none !important;
   }
   
   /* Mobile popup logo adjustments */
