@@ -370,13 +370,6 @@ div > p.smart-guide-text {
     position: relative;
     overflow: hidden;
   }
-  
-  /* 모바일에서 overflow 문제 해결 */
-  @media (max-width: 768px) {
-    .hero {
-      overflow: visible !important;
-    }
-  }
   .hero-box {
     display: inline-block;
     background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A);
@@ -529,16 +522,6 @@ div > p.smart-guide-text {
   .section.animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-  
-  /* 모바일에서 애니메이션 비활성화 */
-  @media (max-width: 768px) {
-    .animate-on-scroll,
-    .section.animate-on-scroll {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
   }
 
   @keyframes typing {
@@ -805,73 +788,6 @@ div > p.smart-guide-text {
     
     .label-text-mobile {
       display: inline !important;
-    }
-    
-    /* 모바일 이미지 하단 라벨 스타일 추가 */
-    .mobile-image-label {
-      position: absolute !important;
-      background: rgba(0, 0, 0, 0.9) !important;
-      padding: 4px 8px !important;
-      border-radius: 12px !important;
-      color: #7BE495 !important;
-      font-size: 0.6rem !important;
-      font-weight: 600 !important;
-      white-space: nowrap !important;
-      z-index: 50 !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 4px !important;
-      border: 1px solid #7BE495 !important;
-      text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
-      pointer-events: none !important;
-    }
-    
-    .mobile-image-label img {
-      width: 14px !important;
-      height: 14px !important;
-      flex-shrink: 0 !important;
-    }
-    
-    /* 라벨 위치 설정 - 좌우 균형 맞춤 */
-    .mobile-image-label[data-index="0"] {
-      left: calc(50% - 145px) !important;
-      top: calc(60% + 91px) !important;
-      transform: translateX(-50%) !important;
-    }
-    .mobile-image-label[data-index="3"] {
-      left: calc(50% + 147px) !important;
-      top: calc(60% + 91px) !important;
-      transform: translateX(-50%) !important;
-    }
-    
-    /* 모바일 배경 그라데이션 박스 표시 */
-    .mobile-gradient-bg {
-      display: block !important;
-    }
-    
-    /* 모바일 스크롤 성능 개선 */
-    .hero {
-      -webkit-overflow-scrolling: touch !important;
-      overflow: visible !important;
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
-    }
-    
-    /* 상단 섹션 스크롤 최적화 */
-    body {
-      -webkit-overflow-scrolling: touch !important;
-    }
-    
-    /* 슬라이드 이미지에만 will-change 적용 */
-    .hive-image, .video-phone {
-      will-change: transform, left, top !important;
-    }
-    
-    /* 모바일 스크롤 시 부드러운 전환 */
-    .section {
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
     }
     
     /* 모바일에서 라벨 스타일 조정 */
@@ -1474,7 +1390,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
 <!-- 스크롤 방향 감지 스크립트 제거 - 단순 고정 방식으로 변경 -->
 <!-- <div id="features"></div> -->
-<section id="hive" class="section" style="background:#000; padding-top:24px;">
+<section id="hive" class="section animate-on-scroll" style="background:#000; padding-top:24px;">
   <div class="container" style="text-align:center; padding-top:0;">
     <h2 style="font-size: 2rem; text-align: left; color: #FFFFFF; margin-top:0;">
       네오 하이브 : <span class="neon-green">"하나되는 우리"</span>
@@ -1484,8 +1400,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </p>
 
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
-      <!-- 모바일 배경 그라데이션 박스 -->
-      <div class="mobile-gradient-bg" style="display: none; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); width: 92%; height: 90%; background: linear-gradient(to bottom, rgba(62, 150, 85, 0.35) 0%, rgba(62, 150, 85, 0.25) 30%, rgba(62, 150, 85, 0.15) 60%, rgba(62, 150, 85, 0.05) 85%, transparent 100%), radial-gradient(ellipse at center top, rgba(62, 150, 85, 0.3) 0%, rgba(62, 150, 85, 0.1) 50%, transparent 80%); border: 1px solid transparent; border-top-color: rgba(62, 150, 85, 0.3); border-left-color: rgba(62, 150, 85, 0.2); border-right-color: rgba(62, 150, 85, 0.2); border-radius: 32px 32px 0 0; z-index: 0; pointer-events: none; box-shadow: 0 -10px 40px rgba(62, 150, 85, 0.2) inset, 0 0 60px rgba(62, 150, 85, 0.1); mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);"></div>
       <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
       </div>
@@ -1526,7 +1440,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
       <!-- Center phone -->
-      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); -webkit-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
+      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
         <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
       <!-- 네오 하이브 영상 스피커 버튼 (영상 하단 바깥쪽) -->
@@ -1536,9 +1450,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <style>
       @media (max-width: 768px) {
         #hive-speaker-btn {
-          left: 50% !important;
-          top: calc(60% + 190px) !important;
-          transform: translateX(-50%) !important;
+          left: calc(50% + 142px) !important;
+          top: calc(50% - 152px) !important;
           width: 70px !important;
           height: 28px !important;
           font-size: 9px !important;
@@ -4320,33 +4233,6 @@ if (window.innerWidth <= 768) {
         // 하드웨어 가속 적용
         img.style.willChange = 'transform, opacity';
         img.style.transform = img.style.transform + ' translateZ(0)';
-        
-        // 모바일에서 이미지 하단 라벨 추가 - 좌우 첫 번째 이미지에만 표시
-        if (window.innerWidth <= 768 && (index === 0 || index === 3)) {
-          const existingLabel = document.querySelector(`.mobile-image-label[data-index="${index}"]`);
-          if (!existingLabel) {
-            const label = document.createElement('div');
-            label.className = 'mobile-image-label';
-            label.setAttribute('data-index', index);
-            
-            if (index === 0) {
-              // 왼쪽 첫 번째 이미지 - 팀 결성
-              label.innerHTML = `
-                <img src="./images/neo33.png" alt="팀 결성">
-                <span>팀 결성</span>`;
-            } else if (index === 3) {
-              // 오른쪽 첫 번째 이미지 - 센터 예약
-              label.innerHTML = `
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIgZmlsbD0iIzdCRTQ5NSIvPgo8L3N2Zz4=" alt="센터 예약">
-                <span>센터 예약</span>`;
-            }
-            
-            const showcase = document.querySelector('.hive-showcase');
-            if (showcase) {
-              showcase.appendChild(label);
-            }
-          }
-        }
       });
       
       if (videoPhone) {
@@ -4376,7 +4262,7 @@ if (window.innerWidth <= 768) {
     const container = document.querySelector('.hive-showcase');
     if (!container) return;
 
-    // 모바일에서 좌측열 이미지에 RAF 적용
+    // requestAnimationFrame 제거하여 CSS 트랜지션이 작동하도록 함
     if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
         hiveImages.forEach((img, index) => {
@@ -4424,7 +4310,9 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용
+            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
             videoPhone.style.setProperty('left', targetPosition.left, 'important');
             videoPhone.style.setProperty('top', targetPosition.top, 'important');
             videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
@@ -4451,7 +4339,9 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용
+          // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+          targetImg.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+          targetImg.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
           targetImg.style.setProperty('left', '50%', 'important');
           targetImg.style.setProperty('top', '60%', 'important');
           targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -4478,7 +4368,7 @@ if (window.innerWidth <= 768) {
     // 전환 완료 후 플래그 리셋
     setTimeout(() => {
       isTransitioning = false;
-    }, 550); // 트랜지션 시간에 맞춰 조정
+    }, 400);
   }
   
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
@@ -4531,11 +4421,12 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 부드러운 트랜지션
+       // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+       img.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+       img.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
        img.style.setProperty('left', positions.left, 'important');
        img.style.setProperty('top', positions.top, 'important');
-       img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
-       img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
+       img.style.setProperty('transform', positions.transform, 'important');
        img.style.setProperty('z-index', positions.zIndex, 'important');
        img.style.setProperty('width', '90px', 'important');
        img.style.setProperty('height', '180px', 'important');
@@ -4570,7 +4461,6 @@ if (window.innerWidth <= 768) {
       if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
       else if (slideIndex <= 0) slideIndex = 2;
       else slideIndex = Math.max(slideIndex - 1, 0);
-      
       showSlide(slideIndex);
     });
   }
@@ -4756,23 +4646,12 @@ if (video) {
     width: 160px; /* Default PC width, JS might override for mobile */
     height: auto; /* Default PC height, JS might override for mobile */
     border-radius: 12px;
-    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                border 0.3s ease,
-                box-shadow 0.3s ease !important;
-    -webkit-transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        border 0.3s ease,
-                        box-shadow 0.3s ease !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 모바일 트랜지션 복구 */
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
     opacity: 0; /* Initial state for animation */
     border: none;
     box-shadow: none;
+    will-change: transform, opacity, width, height, left, top;
     transform: translateZ(0); /* Hardware acceleration */
     backface-visibility: hidden; /* Smoother animations */
     -webkit-backface-visibility: hidden; /* iOS Safari 지원 */
@@ -4813,26 +4692,13 @@ if (video) {
     .video-phone,
     .hive-showcase .hive-image,
     .hive-showcase .video-phone {
-      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                  top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                  width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                  height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                  border 0.3s ease,
-                  box-shadow 0.3s ease,
-                  border-radius 0.3s ease !important;
-      -webkit-transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                          top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                          -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                          width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                          height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                          border 0.3s ease,
-                          box-shadow 0.3s ease,
-                          border-radius 0.3s ease !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -moz-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -o-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      will-change: transform, left, top, width, height, border, box-shadow, opacity !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
-      -webkit-backface-visibility: hidden !important;
-      backface-visibility: hidden !important;
     }
   }
 </style>
