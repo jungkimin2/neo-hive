@@ -1386,13 +1386,13 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   /* 팀 결성 버튼 - 좌측 슬라이드 아래 */
   .mobile-slide-button.team-button {
-    left: 22% !important;
+    left: 20% !important;
     transform: translateX(-50%) !important;
   }
   
   /* 센터 예약 버튼 - 우측 슬라이드 아래 */
   .mobile-slide-button.booking-button {
-    left: 78% !important;
+    left: 80% !important;
     transform: translateX(-50%) !important;
   }
   
@@ -1606,12 +1606,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
     
     <!-- 모바일 슬라이드 하단 버튼 -->
-    <div class="mobile-slide-buttons" style="display: none; position: absolute; width: 100%; height: 40px; bottom: -45px; left: 0; z-index: 15;">
-      <button class="mobile-slide-button team-button" style="left: 22% !important; transform: translateX(-50%) !important;">
+    <div class="mobile-slide-buttons" style="position: absolute; width: 100%; height: 40px; bottom: -45px; left: 0; z-index: 15;">
+      <button class="mobile-slide-button team-button" style="position: absolute !important; left: 20% !important; transform: translateX(-50%) !important; bottom: 0 !important;">
         <img src="./images/neo33.png" alt="팀 결성">
         <span>팀 결성</span>
       </button>
-      <button class="mobile-slide-button booking-button" style="left: 78% !important; transform: translateX(-50%) !important;">
+      <button class="mobile-slide-button booking-button" style="position: absolute !important; left: 80% !important; transform: translateX(-50%) !important; bottom: 0 !important;">
         <img src="./images/neo41.png" alt="센터 예약">
         <span>센터 예약</span>
       </button>
@@ -3010,7 +3010,7 @@ if (window.innerWidth <= 768) {
             </p>
             
             <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 24px; line-height: 1.8; text-align: center; padding: 20px; background: rgba(123,228,149,0.1); border-radius: 12px;">
-              <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
+              <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
             </p>
             
             <p style="font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 28px; line-height: 1.8;">
@@ -3040,7 +3040,7 @@ if (window.innerWidth <= 768) {
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
                 <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
-                  <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
+                  <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
                 </p>
               </div>
             </div>
@@ -7781,18 +7781,55 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // 모바일 슬라이드 버튼 위치 강제 조정
+    function forceMobileSlideButtonPosition() {
+      const mobileSlideButtons = document.querySelector('.mobile-slide-buttons');
+      if (mobileSlideButtons && window.innerWidth <= 768) {
+        // 컨테이너 스타일 강제 적용
+        mobileSlideButtons.style.setProperty('display', 'block', 'important');
+        mobileSlideButtons.style.setProperty('position', 'absolute', 'important');
+        mobileSlideButtons.style.setProperty('width', '100%', 'important');
+        mobileSlideButtons.style.setProperty('height', '40px', 'important');
+        mobileSlideButtons.style.setProperty('bottom', '-45px', 'important');
+        mobileSlideButtons.style.setProperty('left', '0', 'important');
+        mobileSlideButtons.style.setProperty('z-index', '15', 'important');
+        
+        // 팀결성 버튼 위치 조정 (좌측 슬라이드 아래)
+        const teamButton = mobileSlideButtons.querySelector('.team-button');
+        if (teamButton) {
+          teamButton.style.setProperty('position', 'absolute', 'important');
+          teamButton.style.setProperty('left', '20%', 'important');
+          teamButton.style.setProperty('transform', 'translateX(-50%)', 'important');
+          teamButton.style.setProperty('bottom', '0', 'important');
+          console.log('Team button position forced to left: 20%');
+        }
+        
+        // 센터예약 버튼 위치 조정 (우측 슬라이드 아래)
+        const bookingButton = mobileSlideButtons.querySelector('.booking-button');
+        if (bookingButton) {
+          bookingButton.style.setProperty('position', 'absolute', 'important');
+          bookingButton.style.setProperty('left', '80%', 'important');
+          bookingButton.style.setProperty('transform', 'translateX(-50%)', 'important');
+          bookingButton.style.setProperty('bottom', '0', 'important');
+          console.log('Booking button position forced to left: 80%');
+        }
+      }
+    }
+
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
+      forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 강제 조정
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
+        forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 다시 강제 조정
       }, 50);
     }
     
@@ -7820,6 +7857,7 @@ document.addEventListener('DOMContentLoaded', function() {
         forceApplyMobileStyles();
         adjustMobileIcons();
         restoreGlowEffect(); // 발광효과 복구
+        forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 강제 조정
       }
     });
     
