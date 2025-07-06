@@ -2848,8 +2848,8 @@ if (window.innerWidth <= 768) {
               스마트 헬스 가이드 시스템입니다.
             </div>
           </div>
-          <p style="color: #62D2A2; font-size: 0.85rem; line-height: 1.6; margin-top: 0px; text-align: left; display: flex; align-items: flex-start;" class="smart-guide-text">
-            <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 10px; margin-top: 10px;" class="lock-icon"> 
+          <p style="color: #62D2A2; font-size: 0.85rem; line-height: 1.6; margin-top: 0px; text-align: left; display: flex; align-items: center;" class="smart-guide-text">
+            <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 12px; margin-left: 8px;" class="lock-icon"> 
             <span style="display: block;">
               각 운동 기구에 최적화된 전용 영상 가이드 탑재<br>
               <span class="example-text">(예: 하체 기구에는 하체 기구 사용법 영상 자동 제공)</span>
@@ -2928,27 +2928,33 @@ if (window.innerWidth <= 768) {
   .smart-guide-text {
     background: rgba(123, 228, 149, 0.05) !important;
     border-radius: 8px !important;
-    padding: 12px !important;
+    padding: 12px 8px !important;
     border: 1px solid rgba(123, 228, 149, 0.3) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 12px !important;
+    gap: 8px !important;
+    justify-content: center !important;
   }
   
   .smart-guide-text .lock-icon {
     margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 8px !important;
     flex-shrink: 0 !important;
   }
   
   .smart-guide-text span[style*="display: block"] {
     flex: 1 !important;
-    font-size: 0.8rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
   }
   
   .smart-guide-text .example-text {
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
     opacity: 0.8 !important;
+    display: block !important;
+    margin-top: 4px !important;
   }
   
   .smart-health-system-box ul {
