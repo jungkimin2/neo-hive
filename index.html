@@ -1349,36 +1349,58 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 <style>
-/* 모바일에서 스크롤 걸림 해결 */
+/* 모바일 스크롤 문제 해결 - UI 단순화 */
 @media (max-width: 768px) {
-  /* 애니메이션으로 인한 스크롤 걸림 방지 */
-  .section.animate-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  .animate-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  /* 하이브 섹션 특별 처리 */
-  #hive {
-    transform: none !important;
-    transition: none !important;
-  }
-  
   /* 스크롤 성능 향상 */
   html, body {
     -webkit-overflow-scrolling: touch !important;
-    scroll-behavior: auto !important; /* smooth 제거 */
   }
   
-  /* 모든 요소의 will-change 제거 */
-  * {
-    will-change: auto !important;
+  /* 모바일에서 복잡한 showcase를 단순하게 변경 */
+  #hive .hive-showcase {
+    position: static !important;
+    height: auto !important;
+    margin: 20px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+  
+  /* 모든 이미지 숨기기 */
+  #hive .hive-showcase .hive-image {
+    display: none !important;
+  }
+  
+  /* 비디오 폰만 표시 - 위치 고정 */
+  #hive .hive-showcase .video-phone {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 0 auto !important;
+    width: 200px !important;
+    height: 400px !important;
+  }
+  
+  /* 버튼들 위치 조정 */
+  #hive .hive-showcase button {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 10px !important;
+  }
+  
+  /* 레이블들도 숨기기 */
+  #hive .hive-showcase .hive-label-left,
+  #hive .hive-showcase .hive-label-right {
+    display: none !important;
+  }
+  
+  /* 배경 글로우 효과 제거 */
+  #hive .hive-showcase > div[style*="radial-gradient"] {
+    display: none !important;
   }
 }
 </style>
