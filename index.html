@@ -7781,55 +7781,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 슬라이드 버튼 위치 강제 조정
-    function forceMobileSlideButtonPosition() {
-      const mobileSlideButtons = document.querySelector('.mobile-slide-buttons');
-      if (mobileSlideButtons && window.innerWidth <= 768) {
-        // 컨테이너 스타일 강제 적용
-        mobileSlideButtons.style.setProperty('display', 'block', 'important');
-        mobileSlideButtons.style.setProperty('position', 'absolute', 'important');
-        mobileSlideButtons.style.setProperty('width', '100%', 'important');
-        mobileSlideButtons.style.setProperty('height', '40px', 'important');
-        mobileSlideButtons.style.setProperty('bottom', '-45px', 'important');
-        mobileSlideButtons.style.setProperty('left', '0', 'important');
-        mobileSlideButtons.style.setProperty('z-index', '15', 'important');
-        
-        // 팀결성 버튼 위치 조정 (좌측 슬라이드 아래)
-        const teamButton = mobileSlideButtons.querySelector('.team-button');
-        if (teamButton) {
-          teamButton.style.setProperty('position', 'absolute', 'important');
-          teamButton.style.setProperty('left', '22%', 'important');
-          teamButton.style.setProperty('transform', 'translateX(-50%)', 'important');
-          teamButton.style.setProperty('bottom', '0', 'important');
-          console.log('Team button position forced to left: 22%');
-        }
-        
-        // 센터예약 버튼 위치 조정 (우측 슬라이드 아래)
-        const bookingButton = mobileSlideButtons.querySelector('.booking-button');
-        if (bookingButton) {
-          bookingButton.style.setProperty('position', 'absolute', 'important');
-          bookingButton.style.setProperty('left', '78%', 'important');
-          bookingButton.style.setProperty('transform', 'translateX(-50%)', 'important');
-          bookingButton.style.setProperty('bottom', '0', 'important');
-          console.log('Booking button position forced to left: 78%');
-        }
-      }
-    }
-
     // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
       removeGreyBoxes(); // 회색 박스 먼저 제거
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
-      forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 강제 조정
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
-        forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 다시 강제 조정
       }, 50);
     }
     
