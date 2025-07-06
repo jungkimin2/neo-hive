@@ -1355,35 +1355,28 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   html, body {
     /* iOS 관성 스크롤 */
     -webkit-overflow-scrolling: touch !important;
-    /* 스크롤 시 하드웨어 가속 */
-    -webkit-transform: translate3d(0,0,0);
+    overflow-scrolling: touch !important;
   }
   
-  /* 스크롤 시 걸리는 요소들 수정 */
-  .hive-showcase {
-    /* 모바일에서 position 조정 */
-    position: static !important;
-    height: auto !important;
-    overflow: visible !important;
+  /* 모든 요소에서 스크롤 차단 요소 제거 */
+  * {
+    /* 터치 스크롤 차단하는 속성 제거 */
+    touch-action: initial !important;
   }
   
-  /* 절대 위치 요소들을 상대 위치로 변경 */
-  .hive-showcase > * {
-    position: relative !important;
+  /* 스크롤 가능 영역만 터치 액션 설정 */
+  html, body, main {
+    touch-action: pan-y !important;
+  }
+  
+  /* 모바일에서 transform 스타일 제거 (스크롤 성능) */
+  .mobile-ui-position-adjustment,
+  #mobile-moved-merged-box,
+  .core-value-fresh-mobile,
+  #smart {
     transform: none !important;
     -webkit-transform: none !important;
-  }
-  
-  /* 터치 이벤트 최적화 */
-  .section, .container, main, p {
-    touch-action: pan-y !important;
-    /* 포인터 이벤트 확실히 활성화 */
-    pointer-events: auto !important;
-  }
-  
-  /* z-index 높은 요소들 조정 */
-  [style*="z-index: 20"] {
-    z-index: 2 !important;
+    position: static !important;
   }
 }
 </style>
@@ -8548,5 +8541,56 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 }
 </style>
+<script>
+// 모바일 스크롤 개선 스크립트
+if (window.innerWidth <= 768) {
+  // 모든 터치 이벤트의 preventDefault 제거
+  document.addEventListener('DOMContentLoaded', function() {
+    // 스크롤을 방해하는 모든 이벤트 리스너 덮어쓰기
+    const originalAddEventListener = EventTarget.prototype.addEventListener;
+    EventTarget.prototype.addEventListener = function(type, listener, options) {
+      if (type === 'touchstart' || type === 'touchmove' || type === 'touchend') {
+        // 터치 이벤트는 항상 passive로 설정
+        if (typeof options === 'object') {
+          options.passive = true;
+        } else {
+          options = { passive: true };
+        }
+      }
+      return originalAddEventListener.call(this, type, listener, options);
+    };
+    
+    // 기존 스타일 중 스크롤 방해 요소 제거
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @media (max-width: 768px) {
+        /* 모든 요소의 터치 액션 초기화 */
+        * {
+          touch-action: auto !important;
+        }
+        
+        /* 스크롤 성능 향상 */
+        html, body {
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          overscroll-behavior-y: none !important;
+        }
+        
+        /* Transform으로 인한 스크롤 문제 해결 */
+        .mobile-ui-position-adjustment,
+        #mobile-moved-merged-box,
+        .core-value-fresh-mobile,
+        #smart,
+        .section {
+          transform: none !important;
+          -webkit-transform: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  });
+}
+</script>
 </body>
 </html>
