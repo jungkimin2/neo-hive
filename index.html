@@ -1349,34 +1349,23 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 <style>
-/* 모바일 스크롤 터치 반응성 개선 */
+/* 모바일 스크롤 문제 해결 */
 @media (max-width: 768px) {
-  /* 스크롤 걸림 현상 해결 */
+  /* 높은 z-index 요소들이 스크롤 차단하지 않도록 */
+  .hive-showcase {
+    pointer-events: none !important;
+  }
+  
+  /* 하위 요소들은 클릭 가능하도록 */
+  .hive-showcase img,
+  .hive-showcase video,
+  .hive-showcase button {
+    pointer-events: auto !important;
+  }
+  
+  /* 스크롤 성능 향상 */
   html, body {
-    /* iOS 관성 스크롤 */
     -webkit-overflow-scrolling: touch !important;
-    overflow-scrolling: touch !important;
-  }
-  
-  /* 모든 요소에서 스크롤 차단 요소 제거 */
-  * {
-    /* 터치 스크롤 차단하는 속성 제거 */
-    touch-action: initial !important;
-  }
-  
-  /* 스크롤 가능 영역만 터치 액션 설정 */
-  html, body, main {
-    touch-action: pan-y !important;
-  }
-  
-  /* 모바일에서 transform 스타일 제거 (스크롤 성능) */
-  .mobile-ui-position-adjustment,
-  #mobile-moved-merged-box,
-  .core-value-fresh-mobile,
-  #smart {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: static !important;
   }
 }
 </style>
@@ -1474,11 +1463,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
       <!-- Center phone -->
-      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
+      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 10; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
         <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
       <!-- 네오 하이브 영상 스피커 버튼 (영상 하단 바깥쪽) -->
-      <button id="hive-speaker-btn" onclick="toggleHiveAudio()" style="position: absolute; left: 50%; top: calc(50% + 264px); transform: translateX(-50%); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 2147483647; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
+      <button id="hive-speaker-btn" onclick="toggleHiveAudio()" style="position: absolute; left: 50%; top: calc(50% + 264px); transform: translateX(-50%); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 11; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
       
       <!-- 모바일 환경용 네오 하이브 영상 스피커 버튼 -->
       <style>
@@ -8541,56 +8530,5 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 }
 </style>
-<script>
-// 모바일 스크롤 개선 스크립트
-if (window.innerWidth <= 768) {
-  // 모든 터치 이벤트의 preventDefault 제거
-  document.addEventListener('DOMContentLoaded', function() {
-    // 스크롤을 방해하는 모든 이벤트 리스너 덮어쓰기
-    const originalAddEventListener = EventTarget.prototype.addEventListener;
-    EventTarget.prototype.addEventListener = function(type, listener, options) {
-      if (type === 'touchstart' || type === 'touchmove' || type === 'touchend') {
-        // 터치 이벤트는 항상 passive로 설정
-        if (typeof options === 'object') {
-          options.passive = true;
-        } else {
-          options = { passive: true };
-        }
-      }
-      return originalAddEventListener.call(this, type, listener, options);
-    };
-    
-    // 기존 스타일 중 스크롤 방해 요소 제거
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @media (max-width: 768px) {
-        /* 모든 요소의 터치 액션 초기화 */
-        * {
-          touch-action: auto !important;
-        }
-        
-        /* 스크롤 성능 향상 */
-        html, body {
-          overflow-x: hidden !important;
-          overflow-y: auto !important;
-          -webkit-overflow-scrolling: touch !important;
-          overscroll-behavior-y: none !important;
-        }
-        
-        /* Transform으로 인한 스크롤 문제 해결 */
-        .mobile-ui-position-adjustment,
-        #mobile-moved-merged-box,
-        .core-value-fresh-mobile,
-        #smart,
-        .section {
-          transform: none !important;
-          -webkit-transform: none !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  });
-}
-</script>
 </body>
 </html>
