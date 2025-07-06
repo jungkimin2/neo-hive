@@ -1488,14 +1488,17 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   /* Mobile popup logo adjustments */
   .modal-header-advanced div[style*="width: 45px; height: 45px"] {
-    width: 35px !important;
-    height: 35px !important;
-    border: none !important; /* Remove border from logo container */
+    width: 50px !important;
+    height: 50px !important;
+    border: 2px solid #7BE495 !important; /* Add green neon border */
+    box-shadow: 0 0 15px rgba(123, 228, 149, 0.8), 
+                0 0 30px rgba(123, 228, 149, 0.5),
+                inset 0 0 10px rgba(123, 228, 149, 0.3) !important; /* Neon glow effect */
     overflow: visible !important; /* Allow logo to extend beyond container */
   }
   
   .modal-header-advanced img[src*="neohive3.png"] {
-    width: 80px !important; /* Significantly increase logo size */
+    width: 100px !important; /* Even larger logo size */
     height: auto !important;
     max-width: none !important;
   }
@@ -1512,10 +1515,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     line-height: 1 !important;
   }
   
-  /* Remove green border from modal on mobile */
+  /* Remove all borders and adjust shadow for modal on mobile */
   #formModal {
     border: none !important;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important; /* Subtle shadow only */
   }
   
   /* Force mobile hive buttons visibility */
