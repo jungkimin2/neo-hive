@@ -248,7 +248,6 @@ div > p.smart-guide-text {
 
 }
 </style>
-</body>
 <style>
 @media (max-width: 768px) {
 .mobile-flow-rounded-box,
@@ -1347,7 +1346,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
-<div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
+<div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 10000;">
   <div class="nav-bar">
     <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo" onclick="scrollToTop()" style="cursor: pointer;">
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
@@ -2207,7 +2206,6 @@ html body .core-value-fresh-mobile {
 </section>
 
 
-<!-- <div id="hive"></div> -->
           <section id="smart" class="section animate-on-scroll mobile-transform-target" style="background: #000; padding-top: 80px;">
   <div class="container" style="text-align:center;">
     <h2 style="font-size: 2rem; text-align: left;">
@@ -2514,7 +2512,6 @@ if (window.innerWidth <= 768) {
 </style>
     <!-- 네오 스마트 주요 기능 (features) 블록 삭제됨, 대신 UX 흐름 블록으로 교체 -->
     <!-- 핵심 UX 흐름: 네오 하이브 counterpart와 동일한 구조로 삽입 -->
-    <!-- <div id="smart"></div> -->
     <div class="slide-container p-10" style="margin-top: 2.5rem;">
       <div class="flex items-center mb-8">
         <h1 class="text-4xl font-bold" style="text-align: left; margin-top: 6rem; margin-bottom: 12px;">
