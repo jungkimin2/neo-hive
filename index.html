@@ -2838,7 +2838,7 @@ if (window.innerWidth <= 768) {
         </div>
       </div>
       <!-- 추가 UI: 출입 코드 생성 방식/이벤트 시스템 연동 -->
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin-top: 20px;">
+      <div class="smart-health-system-box" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin-top: 20px; position: relative; overflow: hidden;">
         <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
           <h4 style="color:#7BE495; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; text-align: left;">설치 한 번으로 스마트 헬스장 완성</h4>
           <div class="code-method-box" style="background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-left:4px solid #62D2A2; border-radius:8px; padding:20px; margin-bottom:24px;">
@@ -2873,8 +2873,89 @@ if (window.innerWidth <= 768) {
             </li>
           </ul>
         </div>
+        <!-- Matrix style background effects -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden;">
+          <div style="position: absolute; top: -100%; left: 0; right: 0; height: 100%; background: linear-gradient(to bottom, transparent 0%, rgba(123, 228, 149, 0.05) 50%, transparent 100%); animation: matrixScan 10s linear infinite;"></div>
+        </div>
       </div>
 <style>
+@keyframes matrixScan {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* Mobile specific styles for smart health system */
+@media (max-width: 768px) {
+  .smart-health-system-box {
+    padding: 16px !important;
+    gap: 24px !important;
+    margin: 16px 0 !important;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 20, 10, 0.9) 100%) !important;
+    border: 2px solid rgba(123, 228, 149, 0.8) !important;
+    box-shadow: 0 0 30px rgba(123, 228, 149, 0.4), 
+                inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
+  }
+  
+  .smart-health-system-box > div {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+  }
+  
+  .smart-health-system-box h4 {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+    margin: 0 0 16px 0 !important;
+    text-shadow: 0 0 10px rgba(123, 228, 149, 0.8) !important;
+  }
+  
+  .code-method-box {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-left: 3px solid #7BE495 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    margin-bottom: 20px !important;
+    box-shadow: inset 0 0 10px rgba(123, 228, 149, 0.2) !important;
+  }
+  
+  .smart-guide-text {
+    background: rgba(123, 228, 149, 0.05) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    border: 1px solid rgba(123, 228, 149, 0.3) !important;
+  }
+  
+  .smart-health-system-box ul {
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .smart-health-system-box ul li {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+    border: 1px solid rgba(123, 228, 149, 0.2) !important;
+    position: relative !important;
+    padding-left: 40px !important;
+  }
+  
+  .smart-health-system-box ul li span:first-child {
+    position: absolute !important;
+    left: 12px !important;
+    top: 12px !important;
+    color: #7BE495 !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+  }
+  
+  .smart-health-system-box ul li span[style*="color:#62D2A2"] {
+    display: block !important;
+    margin-top: 8px !important;
+    font-size: 0.8rem !important;
+    padding-left: 0 !important;
+  }
+}
+</style>
 /* .neos-card 3D effect removed for new style */
 </style>
       <!-- 전용 스마트 카드/스티커 안내 문장 (네온 그린, 기존 안내 박스 대신) -->
