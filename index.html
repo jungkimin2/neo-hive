@@ -1439,13 +1439,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
   
   /* Mobile popup logo adjustments */
-  .modal-header div[style*="width: 45px; height: 45px"] {
-    width: 40px !important;
-    height: 40px !important;
+  .modal-header-advanced div[style*="width: 45px; height: 45px"] {
+    width: 35px !important;
+    height: 35px !important;
   }
   
-  .modal-header img[src*="neohive3.png"] {
-    width: 52px !important; /* Increase logo size from 48px to 52px */
+  .modal-header-advanced img[src*="neohive3.png"] {
+    width: 55px !important; /* Increase logo size even more */
+  }
+  
+  /* Remove green border from modal on mobile */
+  #formModal {
+    border: none !important;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3) !important;
   }
   
   /* Force mobile hive buttons visibility */
@@ -3661,7 +3667,7 @@ if (window.innerWidth <= 768) {
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
-<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:95vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(123, 228, 149, 0.3), 0 0 100px rgba(123, 228, 149, 0.1);">
+<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:95vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3);">
   
   <!-- 모바일 고도화 헤더 -->
   <div class="modal-header-advanced" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%); padding: 16px 8px 12px; position: relative; border-bottom: 1px solid #7BE495;">
