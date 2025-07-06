@@ -3151,7 +3151,7 @@ if (window.innerWidth <= 768) {
                   letter-spacing: 0.05em;
                   text-transform: uppercase;
                 ">
-                  파트너 신청 시 <span style="color: #7BE495;">3개월 무료</span> 헬택
+                  파트너 신청 시 <span style="color: #7BE495;">3개월 무료</span> 혜택
                 </h3>
                 <span style="
                   display: inline-block;
@@ -3843,23 +3843,31 @@ if (window.innerWidth <= 768) {
       overlay.id = 'mobileForceOverlay';
       overlay.onclick = closeForm;
       
-      // 인라인 스타일 설정
+      // 인라인 스타일 설정 - 더 강한 어두운 효과
       overlay.style.cssText = `
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        background: rgba(0, 0, 0, 0.85) !important;
-        z-index: 2147483646 !important;
+        background: rgba(0, 0, 0, 0.9) !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        z-index: 9998 !important;
         display: block !important;
         visibility: visible !important;
-        opacity: 1 !important;
+        opacity: 0 !important;
         pointer-events: auto !important;
+        transition: opacity 0.3s ease !important;
       `;
       
       // body에 바로 추가
       document.body.appendChild(overlay);
+      
+      // 페이드인 효과를 위한 지연
+      requestAnimationFrame(() => {
+        overlay.style.setProperty('opacity', '1', 'important');
+      });
       
       // 생성 확인 및 강제 적용
       setTimeout(() => {
@@ -3870,8 +3878,10 @@ if (window.innerWidth <= 768) {
           createdOverlay.style.setProperty('left', '0', 'important');
           createdOverlay.style.setProperty('width', '100vw', 'important');
           createdOverlay.style.setProperty('height', '100vh', 'important');
-          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
-          createdOverlay.style.setProperty('z-index', '2147483646', 'important');
+          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
+          createdOverlay.style.setProperty('backdrop-filter', 'blur(4px)', 'important');
+          createdOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(4px)', 'important');
+          createdOverlay.style.setProperty('z-index', '9998', 'important');
           createdOverlay.style.setProperty('display', 'block', 'important');
           createdOverlay.style.setProperty('visibility', 'visible', 'important');
           createdOverlay.style.setProperty('opacity', '1', 'important');
@@ -3990,8 +4000,12 @@ if (window.innerWidth <= 768) {
     if (window.innerWidth <= 768) {
       const mobileOverlay = document.getElementById('mobileForceOverlay');
       if (mobileOverlay) {
-        mobileOverlay.remove();
-        console.log('Mobile force overlay removed');
+        // 페이드아웃 효과
+        mobileOverlay.style.setProperty('opacity', '0', 'important');
+        setTimeout(() => {
+          mobileOverlay.remove();
+          console.log('Mobile force overlay removed');
+        }, 300);
       }
       // 모바일에서 배경 스크롤 복원
       document.body.style.overflow = 'auto';
