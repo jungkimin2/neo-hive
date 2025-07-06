@@ -370,6 +370,13 @@ div > p.smart-guide-text {
     position: relative;
     overflow: hidden;
   }
+  
+  /* 모바일에서 overflow 문제 해결 */
+  @media (max-width: 768px) {
+    .hero {
+      overflow: visible !important;
+    }
+  }
   .hero-box {
     display: inline-block;
     background: radial-gradient(circle at top left, #7BE495, #3AC8A8, #0A0A0A);
@@ -823,7 +830,7 @@ div > p.smart-guide-text {
       transform: translateX(-50%) !important;
     }
     .mobile-image-label[data-index="3"] {
-      left: calc(50% + 155px) !important;
+      left: calc(50% + 147px) !important;
       top: calc(60% + 91px) !important;
       transform: translateX(-50%) !important;
     }
@@ -831,6 +838,30 @@ div > p.smart-guide-text {
     /* 모바일 배경 그라데이션 박스 표시 */
     .mobile-gradient-bg {
       display: block !important;
+    }
+    
+    /* 모바일 스크롤 성능 개선 */
+    .hero {
+      -webkit-overflow-scrolling: touch !important;
+      overflow: visible !important;
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+    }
+    
+    /* 상단 섹션 스크롤 최적화 */
+    body {
+      -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* will-change 제거로 성능 개선 */
+    * {
+      will-change: auto !important;
+    }
+    
+    /* 모바일 스크롤 시 부드러운 전환 */
+    .section {
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
     }
     
     /* 모바일에서 라벨 스타일 조정 */
