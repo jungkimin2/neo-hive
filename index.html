@@ -816,35 +816,15 @@ div > p.smart-guide-text {
       flex-shrink: 0 !important;
     }
     
-    /* 라벨 위치 설정 - 캡처 이미지처럼 조정 */
+    /* 라벨 위치 설정 - 좌우 균형 맞춤 */
     .mobile-image-label[data-index="0"] {
-      left: calc(50% - 112px) !important;
-      top: calc(60% + 90px) !important;
-      transform: translateX(-50%) !important;
-    }
-    .mobile-image-label[data-index="1"] {
-      left: calc(50% - 147px) !important;
-      top: calc(60% + 85px) !important;
-      transform: translateX(-50%) !important;
-    }
-    .mobile-image-label[data-index="2"] {
-      left: calc(50% - 182px) !important;
-      top: calc(60% + 80px) !important;
+      left: calc(50% - 145px) !important;
+      top: calc(60% + 75px) !important;
       transform: translateX(-50%) !important;
     }
     .mobile-image-label[data-index="3"] {
-      left: calc(50% + 42px) !important;
-      top: calc(60% + 90px) !important;
-      transform: translateX(-50%) !important;
-    }
-    .mobile-image-label[data-index="4"] {
-      left: calc(50% + 77px) !important;
-      top: calc(60% + 85px) !important;
-      transform: translateX(-50%) !important;
-    }
-    .mobile-image-label[data-index="5"] {
-      left: calc(50% + 112px) !important;
-      top: calc(60% + 80px) !important;
+      left: calc(50% + 50px) !important;
+      top: calc(60% + 75px) !important;
       transform: translateX(-50%) !important;
     }
     
@@ -4303,7 +4283,7 @@ if (window.innerWidth <= 768) {
             if (index === 0) {
               // 왼쪽 첫 번째 이미지 - 팀 결성
               label.innerHTML = `
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjMiIGZpbGw9IiM3QkU0OTUiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIzIiBmaWxsPSIjN0JFNDk1Ii8+CjxjaXJjbGUgY3g9IjEyIiBjeD0iNiIgcj0iMyIgZmlsbD0iIzdCRTQ5NSIvPgo8cGF0aCBkPSJNNCAxOWMwLTMuODcgMy4xMy03IDctN2g2YzMuODcgMCA3IDMuMTMgNyA3djJINHYtMnoiIGZpbGw9IiM3QkU0OTUiLz4KPC9zdmc+" alt="팀 결성">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjMiIGZpbGw9IiM3QkU0OTUiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIzIiBmaWxsPSIjN0JFNDk1Ii8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMyIgZmlsbD0iIzdCRTQ5NSIvPgo8cGF0aCBkPSJNNCAxOWMwLTMuODcgMy4xMy03IDctN2g2YzMuODcgMCA3IDMuMTMgNyA3djJINHYtMnoiIGZpbGw9IiM3QkU0OTUiLz4KPC9zdmc+" alt="팀 결성">
                 <span>팀 결성</span>`;
             } else if (index === 3) {
               // 오른쪽 첫 번째 이미지 - 센터 예약
