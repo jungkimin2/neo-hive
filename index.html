@@ -1,3 +1,4 @@
+
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -37,7 +38,11 @@
     justify-content: flex-start !important;
   }
   
-
+  .mobile-system-box-wrapper {
+    transform: translateY(-568px) !important;
+    -webkit-transform: translateY(-568px) !important;
+    position: relative !important;
+  }
   
   #smart {
     transform: translateY(-456px) !important;
@@ -92,6 +97,7 @@
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -103,6 +109,7 @@
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -182,10 +189,20 @@ pointer-events: auto !important;
 .core-value-fresh-mobile .core-title {
   font-size: 0.9rem !important; /* 기존보다 조금 줄임 */
 }
-
-
-
-
+/* 1. 모바일에서만 .mobile-system-desc 폰트 크기 더 작게 */
+.mobile-system-desc {
+  font-size: 0.65rem !important; /* 문구 크기를 더 작게 설정 */
+}
+/* 2. .mobile-system-title과 그 하단 설명 전체를 위로 한 칸(16px) 올림 */
+.mobile-system-title,
+.mobile-system-list {
+  transform: translateY(-16px) !important; /* 한 칸 위로 조정 */
+}
+/* 3. 모바일 환경에서만 .mobile-system-box 하단 여백을 기존보다 더 줄임 (명확히 2칸 더 줄임) */
+.mobile-system-box {
+  padding-bottom: 0 !important;
+  margin-bottom: -80px !important; /* 기존 -64px에서 한 칸 더 줄임 */
+}
 }
 </style>
 <style>
@@ -217,9 +234,20 @@ pointer-events: auto !important;
 
 
 
+.mobile-system-box {
+  background: linear-gradient(145deg, #0C1F13 10%, #04120A 90%);
+  border-radius: 22px !important;
+  box-shadow: 0 6px 20px rgba(123, 228, 149, 0.2);
+  padding: 22px !important;
+  margin-bottom: 16px !important;
+  border: 1px solid #62D2A2;
+}
 
-
-
+.mobile-system-title {
+  font-size: 1.05rem !important;
+  color: #7BE495;
+  text-shadow: 0 0 12px rgba(123, 228, 149, 0.8);
+}
 
 /* 모바일 환경에서 자물쇠 이모티콘 좌측 이동 및 예시 문구 크기 조정 */
 .lock-icon {
@@ -231,7 +259,14 @@ pointer-events: auto !important;
   font-size: 0.75rem !important;
 }
 
+/* 모바일 환경에서 무인 출입 시스템과 이벤트 시스템 UI 완전 숨김 */
+.mobile-ui-position-adjustment {
+  display: none !important;
+}
 
+.mobile-system-box {
+  display: none !important;
+}
 
 /* 모바일 환경에서 전체 스마트 가이드 텍스트를 우측으로 2칸 이동 */
 p.smart-guide-text {
@@ -245,7 +280,21 @@ div > p.smart-guide-text {
   padding-left: 32px !important;
 }
 
+.mobile-system-list li {
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+  color: #ccc !important;
+}
 
+.mobile-dot {
+  background-color: #7BE495 !important;
+}
+
+.mobile-system-desc {
+  font-size: 0.85rem !important;
+  color: #ffffff !important;
+  margin-top: 10px !important;
+}
 }
 </style>
 </body>
@@ -1130,8 +1179,8 @@ div > p.smart-guide-text {
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
       will-change: auto !important;
-      backface-visibility: visible !important;
-      -webkit-backface-visibility: visible !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
       visibility: visible !important;
       display: block !important;
     }
@@ -1300,69 +1349,6 @@ transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
-
-/* 모바일 슬라이드 버튼 스타일 */
-@media (max-width: 768px) {
-  /* 모바일 슬라이드 아래 버튼 표시 */
-  .mobile-slide-buttons {
-    display: flex !important;
-    justify-content: space-around !important;
-    width: 100% !important;
-    max-width: 360px !important;
-    margin: 20px auto 0 !important;
-    gap: 16px !important;
-    padding: 0 20px !important;
-  }
-  
-  /* 기존 라벨 숨김 */
-  .hive-label-left,
-  .hive-label-right {
-    display: none !important;
-  }
-  
-  /* 모바일 슬라이드 버튼 스타일 */
-  .mobile-slide-button {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    border: 1px solid #7BE495 !important;
-    border-radius: 12px !important;
-    padding: 6px 16px !important;
-    gap: 6px !important;
-    font-size: 0.65rem !important;
-    color: #7BE495 !important;
-    font-weight: 600 !important;
-    min-width: 110px !important;
-    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3) !important;
-    cursor: pointer !important;
-  }
-  
-  .mobile-slide-button img {
-    width: 20px !important;
-    height: 20px !important;
-  }
-  
-  /* 슬라이드 전환 최적화 */
-  .hive-image {
-    transition: all 0.3s ease-out !important;
-    -webkit-transition: all 0.3s ease-out !important;
-    will-change: auto !important;
-  }
-}
-
-/* PC에서는 슬라이드 버튼 숨김 */
-@media (min-width: 769px) {
-  .mobile-slide-buttons {
-    display: none !important;
-  }
-  
-  /* PC에서는 기존 라벨 표시 */
-  .hive-label-left,
-  .hive-label-right {
-    display: block !important;
-  }
-}
 </style>
 
 </head>
@@ -1412,7 +1398,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
   <div class="nav-bar">
-    <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo" onclick="scrollToTop()" style="cursor: pointer;">
+    <img src="./images/neohive3.png" alt="NeoHive" class="nav-logo">
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
   </div>
   <div class="nav-menu" id="nav-menu" style="display: none;">
@@ -1432,7 +1418,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-        <a href="#" onclick="scrollToTop(); return false;" style="display:block; cursor: pointer;">
+        <a href="#" style="display:block;">
           <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
         </a>
       </div>
@@ -1503,43 +1489,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
            style="position:absolute; left:50%; top:65%; transform:translate(200%, -60%) scale(0.85); z-index:1; pointer-events:auto; transition-delay:0.36s; width:160px; height:auto;">
 
       <!-- Center phone -->
-      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="60%" data-mobile-transform="translate(-50%, -50%)">
-        <video id="hive-showcase-video" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
+      <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="50%" data-mobile-transform="translate(-50%, -50%)">
+        <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
-      <!-- 네오 하이브 영상 스피커 버튼 (영상 하단 바깥쪽) -->
-      <button id="hive-speaker-btn" onclick="toggleHiveAudio()" style="position: absolute; left: 50%; top: calc(50% + 264px); transform: translateX(-50%); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 2147483647; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
-      
-      <!-- 모바일 환경용 네오 하이브 영상 스피커 버튼 -->
-      <style>
-      @media (max-width: 768px) {
-        #hive-speaker-btn {
-          position: absolute !important;
-          bottom: -50px !important;
-          top: auto !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
-          width: 80px !important;
-          height: 32px !important;
-          font-size: 10px !important;
-          border-radius: 16px !important;
-          background: rgba(0,0,0,0.9) !important;
-          border: 2px solid #7BE495 !important;
-          z-index: 20 !important;
-        }
-      }
-      </style>
-    </div>
-    
-    <!-- 모바일 슬라이드 하단 버튼 -->
-    <div class="mobile-slide-buttons" style="display: none;">
-      <button class="mobile-slide-button team-button">
-        <img src="./images/neo33.png" alt="팀 결성">
-        <span>팀 결성</span>
-      </button>
-      <button class="mobile-slide-button booking-button">
-        <img src="./images/neo41.png" alt="센터 예약">
-        <span>센터 예약</span>
-      </button>
     </div>
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
     <div class="slide-container p-10" style="margin-top: 24px;">
@@ -1601,110 +1553,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
           <div class="text-sm text-gray-400 mt-1" style="font-size: 0.75rem; color: #bbb; text-align: left;">QR코드로 자동 인증과<br>출석 랭킹 연동</div>
         </div>
       </div>
-
-      <!-- 모바일 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
-      <div class="mobile-system-ui-container" style="margin-top: 40px; display: none;">
-        <!-- 무인 출입 시스템 카드 -->
-        <div class="mobile-system-card-new" style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); border-radius: 18px; padding: 24px 20px; border: 1px solid rgba(123, 228, 149, 0.4); box-shadow: 0 6px 20px rgba(123, 228, 149, 0.15); margin-bottom: 20px;">
-          <div class="mobile-system-header-new" style="display: flex; align-items: center; margin-bottom: 20px;">
-            <img src="./images/neo35.png" alt="무인 출입 시스템" style="width: 32px; height: 32px; margin-right: 12px; background: rgba(123, 228, 149, 0.1); border-radius: 8px; padding: 6px;">
-            <h3 style="color: #7BE495; font-size: 1.1rem; font-weight: bold; margin: 0; text-shadow: 0 0 8px rgba(123, 228, 149, 0.6);">무인 출입 시스템 운영 방식</h3>
-          </div>
-          <div class="mobile-system-steps" style="background: rgba(123, 228, 149, 0.03); border-left: 3px solid #62D2A2; border-radius: 8px; padding: 16px;">
-            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">가상의 회원 등록 (시스템 계정)</span>
-            </div>
-            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</span>
-            </div>
-            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">네오 하이브를 통해 예약한 팀에게 코드 전송</span>
-            </div>
-            <div class="mobile-step-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">사용자는 코드 입력만으로 무인 헬스장 출입 가능</span>
-            </div>
-          </div>
-          <div class="mobile-summary" style="display: flex; align-items: center; margin-top: 16px; padding: 12px; background: rgba(62, 210, 162, 0.08); border-radius: 8px;">
-            <img src="./images/neo35.png" alt="출입 코드" style="width: 24px; height: 24px; margin-right: 10px;">
-            <span style="color: #62D2A2; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">간단한 코드 입력만으로 무인 헬스장에 손쉽게 출입할 수 있습니다.</span>
-          </div>
-        </div>
-
-        <!-- 이벤트 시스템 연동 카드 -->
-        <div class="mobile-system-card-new" style="background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%); border-radius: 18px; padding: 24px 20px; border: 1px solid rgba(123, 228, 149, 0.4); box-shadow: 0 6px 20px rgba(123, 228, 149, 0.15);">
-          <div class="mobile-system-header-new" style="display: flex; align-items: center; margin-bottom: 20px;">
-            <img src="./images/neo1256.png" alt="이벤트 시스템" style="width: 32px; height: 32px; margin-right: 12px; background: rgba(123, 228, 149, 0.1); border-radius: 8px; padding: 6px;">
-            <h3 style="color: #7BE495; font-size: 1.1rem; font-weight: bold; margin: 0; text-shadow: 0 0 8px rgba(123, 228, 149, 0.6);">이벤트 시스템 연동</h3>
-          </div>
-          <div class="mobile-event-list" style="background: rgba(123, 228, 149, 0.03); border-left: 3px solid #62D2A2; border-radius: 8px; padding: 16px;">
-            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</span>
-            </div>
-            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">팀원 전원 QR 출석체크 필요 (최소 3명)</span>
-            </div>
-            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 12px;">
-              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">출석체크 인정 횟수는 누적으로 진행</span>
-            </div>
-            <div class="mobile-event-item" style="display: flex; align-items: flex-start; margin-bottom: 0;">
-              <span style="color: #7BE495; margin-right: 8px; font-size: 1rem; flex-shrink: 0; margin-top: 2px;">•</span>
-              <span style="color: #fff; font-size: 0.9rem; line-height: 1.5;">팀장이 인증센터 선택 및 시간대 예약</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PC 환경: 무인 출입 시스템 UI - UX 흐름 6개 박스 하단 -->
-      <div class="pc-system-ui" style="margin-top: 40px; display: block;">
-        <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 30px 40px; margin: 20px auto; max-width: 1000px;">
-          <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
-            <h4 style="color:#7BE495; font-size: 1.2rem; font-weight: bold; margin-bottom: 16px; text-align: left; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);">
-              <img src="./images/neo35.png" alt="무인 출입 시스템" style="width: 28px; height: 28px; margin-right: 10px; vertical-align: middle;">
-              무인 출입 시스템 운영 방식
-            </h4>
-            <div style="background: rgba(123, 228, 149, 0.05); border-left: 4px solid #62D2A2; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-              <ol style="padding-left: 20px; margin: 0; list-style-type: decimal; color: #fff; line-height: 1.8;">
-                <li style="margin-bottom: 8px; font-size: 0.95rem;">가상의 회원 등록 (시스템 계정)</li>
-                <li style="margin-bottom: 8px; font-size: 0.95rem;">해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
-                <li style="margin-bottom: 8px; font-size: 0.95rem;">네오 하이브를 통해 예약한 팀에게 코드 전송</li>
-                <li style="margin-bottom: 8px; font-size: 0.95rem;">사용자는 코드 입력만으로 무인 헬스장 출입 가능</li>
-              </ol>
-            </div>
-            <p style="color: #62D2A2; font-size: 0.9rem; line-height: 1.6; margin-top: 16px; text-align: left; display: flex; align-items: center;">
-              <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 10px;">
-              <span>간단한 코드 입력만으로 무인 헬스장에 손쉽게 출입할 수 있습니다.</span>
-            </p>
-          </div>
-          <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
-            <h4 style="color: #7BE495; margin: 0 0 16px 0; font-size: 1.2rem; font-weight: bold; text-align: left; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);">
-              <img src="./images/neo1256.png" alt="이벤트 시스템" style="width: 28px; height: 28px; margin-right: 10px; vertical-align: middle;">
-              이벤트 시스템 연동
-            </h4>
-            <ul style="list-style-type: none; padding-left: 0; margin: 0; background: rgba(123, 228, 149, 0.05); border-left: 4px solid #62D2A2; border-radius: 8px; padding: 20px;">
-              <li style="text-align: left; margin-bottom: 12px; font-size: 0.95rem; color: #fff; display: flex; align-items: flex-start;">
-                <span style="color: #7BE495; margin-right: 8px; font-size: 1.2rem;">•</span>
-                <span>제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</span>
-              </li>
-              <li style="text-align: left; margin-bottom: 12px; font-size: 0.95rem; color: #fff; display: flex; align-items: flex-start;">
-                <span style="color: #7BE495; margin-right: 8px; font-size: 1.2rem;">•</span>
-                <span>팀원 전원 QR 출석체크 필요 (최소 3명)</span>
-              </li>
-              <li style="text-align: left; margin-bottom: 12px; font-size: 0.95rem; color: #fff; display: flex; align-items: flex-start;">
-                <span style="color: #7BE495; margin-right: 8px; font-size: 1.2rem;">•</span>
-                <span>출석체크 인정 횟수는 누적으로 진행</span>
-              </li>
-              <li style="text-align: left; margin-bottom: 0; font-size: 0.95rem; color: #fff; display: flex; align-items: flex-start;">
-                <span style="color: #7BE495; margin-right: 8px; font-size: 1.2rem;">•</span>
-                <span>팀장이 인증센터 선택 및 시간대 예약</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       <!-- FLEX 3-BOX BLOCK MOVED HERE -->
       <div class="neohive-flex-row" style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; align-items: flex-start; margin-top: 32px;">
         <!-- NeoFit H box (refactored with inner gradient strip) -->
@@ -1830,35 +1678,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   transform: none !important;
   margin-top: 0 !important;
 }
-
-.pc-system-ui {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-}
-
-/* 모바일 환경에서 PC용 무인 출입 시스템 UI 숨김 */
-@media (max-width: 768px) {
-.pc-system-ui {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-
-/* 원형 다이어그램의 모든 숫자는 표시 (1,2,3,4,5,6 모두 보이도록) */
-.circle-step-number {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: auto !important;
-  height: auto !important;
-  position: relative !important;
-  left: auto !important;
-  top: auto !important;
-  z-index: auto !important;
 }
 </style>
             <div class="core-icon">
@@ -2280,7 +2099,35 @@ html body .core-value-fresh-mobile {
   .mobile-core-value-fresh { display: none !important; }
 }
 </style>
-
+          <!-- 출입 코드 및 이벤트 시스템 연동: 단일 와이드 박스 (wider version) -->
+                                  <div class="mobile-system-box-wrapper mobile-ui-position-adjustment mobile-transform-target">
+            <div style="margin-top: -12px; width: calc(100% + 520px); margin-left: -520px; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px;">
+              <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.95rem; line-height: 1.6; text-align: left; padding: 0 48px;">
+                <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
+                  <h4 style="color:#FFFFFF; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; margin-left: -48px;">무인 출입 시스템 운영 방식</h4>
+                  <div class="code-method-box" style="background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-left:4px solid #62D2A2; border-radius:8px; padding:20px; margin-bottom:24px; margin-left: -48px;">
+                    <ul style="list-style:none; padding-left:0; margin:0; color:#ccc; font-size:0.85rem; line-height:1.6;">
+                      <li>1. 가상의 회원 등록 (시스템 계정)</li>
+                      <li>2. 해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
+                      <li>3. 네오 하이브를 통해 예약한 팀에게 코드 전송</li>
+                    </ul>
+                  </div>
+                  <p style="color: #ccc; font-size: 0.85rem; line-height: 1.6; margin-top: 0px; margin-left: -48px; text-align: left; display: flex; align-items: center;">
+                    <img src="./images/neo35.png" alt="출입 코드 아이콘" style="width: 24px; height: 24px; margin-right: 10px;"> 사용자는 코드만 입력하면 무인 헬스에 손쉽게 출입할 수 있습니다.
+                  </p>
+                </div>
+                <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
+                  <h4 style="color: #FFFFFF; margin: 0 0 8px 24px; font-size: 1.2rem;">이벤트 시스템 연동</h4>
+                  <ul style="padding-left: 24px; margin: 0; list-style-type: none; font-size: 0.85rem;">
+                    <li><span style="color:#7BE495;">•</span> 제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</li>
+                    <li><span style="color:#7BE495;">•</span> 팀원 전원 QR 출석체크 필요 (최소 3명)</li>
+                    <li><span style="color:#7BE495;">•</span> 출석체크 인정 횟수는 누적으로 진행</li>
+                    <li><span style="color:#7BE495;">•</span> 팀장이 인증센터 선택 및 시간대 예약</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2422,7 +2269,7 @@ html body .core-value-fresh-mobile {
   pointer-events: auto !important;
 }
 
-/* 모바일에서 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
+/* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
 @media (max-width: 768px) {
   .flipper img.neo-smart-logo.front,
   img.neo-smart-logo.front {
@@ -2490,39 +2337,32 @@ html body .core-value-fresh-mobile {
 /* 모바일 환경 스타일 */
 @media (max-width: 768px) {
   .back-text-overlay {
-    /* 모바일에서 완전히 숨김 */
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
+    /* 모바일 전용: 텍스트 오버레이 강화 */
     position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(calc(-50% - 230px), -50%) rotateY(0deg) !important; /* 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시 */
+    text-align: center !important; /* 중앙 정렬로 변경 */
+    padding: 25px 20px !important; /* 모바일 전용: 패딩 증가 */
+    z-index: 99999 !important; /* 모바일 전용: 최상위 표시 */
+    pointer-events: none !important;
+    width: 320px !important; /* 모바일 전용: 너비 더 확장 */
+    height: auto !important;
+    background: rgba(0, 0, 0, 0.95) !important; /* 모바일 전용: 배경 더 진하게 */
+    border-radius: 15px !important; /* 모바일 전용: 모서리 더 둥글게 */
+    border: 3px solid #7BE495 !important; /* 모바일 전용: 밝은 녹색 테두리 */
+    box-shadow: 0 0 30px rgba(123, 228, 149, 1) !important; /* 모바일 전용: 강한 글로우 */
+    opacity: 0 !important; /* JavaScript에서 제어 */
+    visibility: hidden !important;
+    display: block !important;
   }
+  
+  /* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
 }
 </style>
       <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
-        <video id="smart-showcase-video" src="./videos/neofits.mp4" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
-      <!-- 네오 스마트 영상 스피커 버튼 (영상 바깥쪽 우측 상단) -->
-      <button id="smart-speaker-btn" onclick="toggleSmartAudio()" style="position: absolute; left: calc(50% + 366px); top: calc(50% - 168px); width: 80px; height: 32px; background: rgba(0,0,0,0.9); border: 2px solid #7BE495; border-radius: 16px; color: #7BE495; font-size: 11px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5); font-weight: 600; transition: all 0.3s ease;">🔇 음소거</button>
-      
-      <!-- 모바일 환경용 네오 스마트 영상 스피커 버튼 -->
-      <style>
-      @media (max-width: 768px) {
-        #smart-speaker-btn {
-          left: calc(50% + 70px) !important;
-          top: calc(50% - 152px) !important;
-          width: 70px !important;
-          height: 28px !important;
-          font-size: 9px !important;
-          border-radius: 14px !important;
-        }
-      }
-      </style>
     </div> <!-- End of .hive-showcase -->
 
 <!-- JavaScript로 NEOS 카드 강제 이동 -->
@@ -2543,6 +2383,8 @@ if (window.innerWidth <= 768) {
     if (backCard) {
       backCard.style.setProperty('transform', 'translateY(64px) rotateY(180deg)', 'important');
     }
+    
+
     
     console.log('NEOS 카드 전체 위치 강제 조정 완료 (4칸 위로)');
   }
@@ -2657,45 +2499,13 @@ if (window.innerWidth <= 768) {
 <style>
 .circle-step-number {
   position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 32px;
-  height: 32px;
+  top: -2px;
+  left: 10px;
   font-size: 1rem;
   font-weight: bold;
   color: #7BE495;
-  background: transparent;
-  border: 2px solid #7BE495;
-  border-radius: 50%;
-  box-shadow: 
-    0 0 15px rgba(123, 228, 149, 0.8),
-    0 0 25px rgba(123, 228, 149, 0.5),
-    inset 0 0 8px rgba(123, 228, 149, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 5;
   pointer-events: none;
-  text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
-  transition: all 0.3s ease;
-}
-
-/* 모바일 환경에서 다이얼그램 숫자들을 상단 좌측으로 이동 */
-@media (max-width: 768px) {
-  .circle-step-number {
-    top: -8px !important;
-    left: -24px !important;
-    width: 20px !important;
-    height: 20px !important;
-    font-size: 0.7rem !important;
-    background: #0A0F0D !important;
-    border: 1.5px solid #7BE495 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 0 8px rgba(123, 228, 149, 0.6) !important;
-  }
 }
 @media (max-width: 768px) {
   .mobile-hide {
@@ -2853,17 +2663,6 @@ if (window.innerWidth <= 768) {
   box-shadow: 0 0 40px #7BE495cc, 0 0 8px #7BE49588;
   border-color: #3AC8A8;
   transform: scale(1.06);
-}
-
-.circle-step:hover .circle-step-number {
-  transform: scale(1.15);
-  box-shadow: 
-    0 0 20px rgba(123, 228, 149, 1),
-    0 0 35px rgba(123, 228, 149, 0.7),
-    inset 0 0 12px rgba(123, 228, 149, 0.4);
-  background: rgba(123, 228, 149, 0.1);
-  border-color: #9DF3C4;
-  color: #9DF3C4;
 }
 @media (max-width: 600px) {
   .circular-flow-container {
@@ -3087,7 +2886,7 @@ if (window.innerWidth <= 768) {
             </p>
             
             <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 24px; line-height: 1.8; text-align: center; padding: 20px; background: rgba(123,228,149,0.1); border-radius: 12px;">
-              <span class='neon-green'>매출 상승 효과!</span> <span style="color: #fff;">사전 예약 시,</span> <span class='neon-green'>3개월 무료 체험</span> <span style="color: #fff;">기회까지.</span>
+              <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
             </p>
             
             <p style="font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 28px; line-height: 1.8;">
@@ -3096,7 +2895,7 @@ if (window.innerWidth <= 768) {
             </p>
             
             <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 0; line-height: 1.8; text-align: center;">
-              지금 바로 <span class='neon-green'>NEO HIVE + NEO SMART</span>로<br>
+              👉 지금 바로 <span class='neon-green'>NEO HIVE + NEO SMART</span>로<br>
               헬스장의 <span class='neon-green'>새로운 가능성</span>을 경험해보세요.
             </p>
           </div>
@@ -3117,7 +2916,7 @@ if (window.innerWidth <= 768) {
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
                 <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
-                  <span class='neon-green'>매출 상승 효과!</span> <span style="color: #fff;">사전 예약 시,</span> <span class='neon-green'>3개월 무료 체험</span> <span style="color: #fff;">기회까지.</span>
+                  <span class='neon-green'>3~6개월</span> <span style="color: #fff;">내</span> 도입 비용의 <span class='neon-green'>완전한 회수</span>가 가능합니다.
                 </p>
               </div>
             </div>
@@ -3131,9 +2930,9 @@ if (window.innerWidth <= 768) {
             </div>
             
             <!-- 콜투액션 -->
-            <div style="text-align: center; padding: 0; margin-left: 8px;">
+            <div style="text-align: center; padding: 0; margin-left: -8px;">
               <p style="font-size: 0.85rem; color: #fff; font-weight: 600; line-height: 1.7; margin: 0;">
-                지금 바로 <span class='neon-green'>NEO HIVE + NEO SMART</span>로<br>
+                👉 지금 바로 <span class='neon-green'>NEO HIVE + NEO SMART</span>로<br>
                 헬스장의 <span class='neon-green'>새로운 가능성</span>을 경험해보세요.
               </p>
             </div>
@@ -3144,51 +2943,94 @@ if (window.innerWidth <= 768) {
       <!-- Decorative background images -->
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
-                  <!-- 사전 예약 혜택 안내 및 버튼 -->
-        <div style="text-align: center; margin-top: 40px;">
-          <!-- 혜택 안내 텍스트 -->
-          <div class="benefit-text-container" style="margin-bottom: 20px;">
-            <div style="font-size: 1.3rem; font-weight: 600; margin-bottom: 10px;">
-              <span style="color: #7BE495;">✨ 사전 예약 시 </span>
-              <span style="color: #fff; font-size: 1.5rem; font-weight: 700;">3개월 무료</span>
-              <span style="color: #7BE495;"> 혜택! 🎁</span>
-            </div>
-            <div class="neon-benefit-text" style="color: #7BE495; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; text-shadow: 0 0 5px #7BE495, 0 0 10px #7BE495, 0 0 15px #7BE495, 0 0 20px #7BE495;">
-              총 100만원 상당 혜택 제공
-            </div>
-            <div style="color: #fff; font-size: 1.2rem; font-weight: 500; display: flex; align-items: center; justify-content: center;">
-              <span style="color: #fff; font-size: 1.4rem; font-weight: 700; margin-right: 8px;">+</span>
-              맞춤형 운영 컨설팅 제공
-            </div>
-          </div>
-          
-          <!-- 사전 예약하기 버튼 - 네온 글로우 디자인 -->
-          <button onclick="openForm()" class="btn reservation-btn" style="
-            background: #000;
-        color: #7BE495;
-            padding: 20px 50px;
-            border: 3px solid #7BE495;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
-        cursor: pointer;
-            transition: all 0.3s ease;
+          <!-- 클릭 가능한 사전 예약 혜택 안내 -->
+        <div class="reservation-benefit-notice clickable-benefit-box" 
+             onclick="openForm();return false;" 
+             tabindex="0"
+             role="button"
+             aria-label="사전 예약 시 3개월 무료 혜택 신청하기"
+             style="margin-top: 40px; text-align: center; position: relative; cursor: pointer;">
+          <div style="
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(123, 228, 149, 0.15) 0%, rgba(62, 200, 162, 0.08) 100%);
+            border: 2px solid rgba(123, 228, 149, 0.5);
+            border-radius: 20px;
+            padding: 12px 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 
-              0 0 30px rgba(123, 228, 149, 0.6),
-              0 0 60px rgba(123, 228, 149, 0.4),
-              inset 0 0 20px rgba(123, 228, 149, 0.1);
-            text-shadow: 
-              0 0 10px rgba(123, 228, 149, 0.8),
-              0 0 20px rgba(123, 228, 149, 0.6),
-              0 0 30px rgba(123, 228, 149, 0.4);
-            letter-spacing: 2px;
-            min-width: 250px;
+              0 6px 20px rgba(123, 228, 149, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-      ">
-        사전 예약하기
-          </button>
-    </div>
+            transition: all 0.3s ease;
+            cursor: pointer;
+          ">
+            <!-- 글로우 효과 배경 -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: radial-gradient(circle at center, rgba(123, 228, 149, 0.15) 0%, transparent 70%);
+              pointer-events: none;
+            "></div>
+            
+            <!-- 메인 텍스트 -->
+            <div style="position: relative; z-index: 2;">
+              <span style="
+                color: #7BE495;
+                font-size: 1rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">✨ 사전 예약 시</span>
+              <span style="
+                color: #FFFFFF;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 0 8px;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+              ">3개월 무료</span>
+              <span style="
+                color: #7BE495;
+                font-size: 1rem;
+                font-weight: 600;
+                text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+                letter-spacing: 0.5px;
+              ">혜택! 🎁</span>
+            </div>
+            
+            <!-- 혜택 상세 내용 -->
+            <div style="
+              margin-top: 8px;
+              color: #B8E6C1;
+              font-size: 0.85rem;
+              font-weight: 500;
+              text-shadow: 0 0 4px rgba(184, 230, 193, 0.5);
+              position: relative;
+              z-index: 2;
+              line-height: 1.4;
+            ">
+              💎 프리미엄 기능 무료 체험<br>
+              🎯 맞춤형 운영 컨설팅 제공
+            </div>
+            
+            <!-- 클릭 안내 텍스트 -->
+            <div style="
+              margin-top: 6px;
+              color: #7BE495;
+              font-size: 0.7rem;
+              font-weight: 400;
+              opacity: 0.8;
+              position: relative;
+              z-index: 2;
+            ">
+              👆 클릭하여 신청하기
+            </div>
+          </div>
+        </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3219,7 +3061,7 @@ if (window.innerWidth <= 768) {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        padding-bottom: 60px !important; /* 푸터 제거로 인한 여백 조정 */
+        padding-bottom: 120px !important; /* 모바일에서 배경을 더 아래까지 연장 */
       }
       
       /* 모바일에서 배경 연장을 위한 가상 요소 추가 */
@@ -3235,15 +3077,22 @@ if (window.innerWidth <= 768) {
         z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
       }
       
-      /* 모바일에서 푸터 숨김 */
+      /* 모바일에서 푸터 강제 표시 */
       footer {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        height: 0 !important;
-        padding: 0 !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 10 !important; /* 가상 요소보다 높은 z-index */
+        background: #000 !important;
+        color: #fff !important;
+        padding: 20px !important;
         margin: 0 !important;
-        min-height: 0 !important;
+        text-align: center !important;
+        font-size: 0.9rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 80px !important; /* 최소 높이 보장 */
       }
       
       /* 모바일에서 푸터가 다른 요소에 가려지지 않도록 보호 */
@@ -3276,7 +3125,7 @@ if (window.innerWidth <= 768) {
       /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(0px) !important; /* 16px에서 0px로 변경 (좌측으로 1칸 이동) */
+        transform: translateX(16px) !important;
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
@@ -3323,44 +3172,11 @@ if (window.innerWidth <= 768) {
       .testimonial-card {
         padding: 24px 10px 18px 16px !important;
       }
-    }
-    
-    /* 모바일에서 로고 이미지 위치 조정 - 우측으로 1칸 이동 및 크기 확대 */
-@media (max-width: 768px) {
+      /* 모바일에서 로고 이미지 위치 조정 */
       .testimonial-card img[src="./images/hive3.png"] {
-    left: 136px !important; /* 120px에서 136px로 변경 (16px 우측 이동) */
+        left: 120px !important;
         top: 180px !important;
-    width: 320px !important; /* 280px에서 320px로 크기 확대 */
-  }
-  
-  /* 모바일에서 video-phone 초기 위치를 최종 위치로 즉시 고정 */
-  .video-phone {
-    left: 50% !important;
-    top: 60% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
-  /* 페이지 로딩 시에만 트랜지션 비활성화 */
-  .video-phone.no-transition {
-    transition: none !important;
-    -webkit-transition: none !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-  }
-  
-  /* 모바일에서 팀결성, 제휴센터 예약 라벨을 각 이미지 그룹 바로 아래로 이동 */
-  .hive-label-left {
-    top: 320px !important; /* 위로 2칸(32px) 더 이동: 352px → 320px */
-    left: 5% !important; /* 간격을 더 벌리기 위해 10% → 5%로 조정 */
-    transform: translateX(-50%) !important;
-    z-index: 25 !important;
-  }
-  
-  .hive-label-right {
-    top: 320px !important; /* 위로 2칸(32px) 더 이동: 352px → 320px */
-    right: 5% !important; /* 간격을 더 벌리기 위해 10% → 5%로 조정 */
-    transform: translateX(50%) !important;
-    z-index: 25 !important;
+        width: 280px !important;
       }
     }
   </style>
@@ -3374,67 +3190,34 @@ if (window.innerWidth <= 768) {
   경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
 </footer>
 
-<!-- 모달 배경 오버레이 - PC 환경에서만 JavaScript로 동적 생성 -->
-<!-- 모바일에서는 오버레이 없이 팝업만 표시 -->
+<!-- 모달 배경 오버레이 -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
 <div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px; color:#fff; box-sizing:border-box;">
-  <!-- 닫기 버튼 -->
-  <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
-  
-  <!-- 모바일: 헤더 없음, PC: 헤더 표시 -->
-  <div class="modal-header">
-    <h2>파트너 신청</h2>
-    <p>Neo Hive와 함께 성장하세요</p>
+  <div style="text-align:right;">
+    <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
   </div>
-  
-  <!-- 폼 영역 -->
-  <div class="modal-body">
-    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:12px;">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
-      <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
-      
-      <!-- 헬스장명 입력 -->
-      <div class="input-group">
-        <label for="gym">헬스장명</label>
-        <input id="gym" type="text" name="gym" placeholder="헬스장명을 입력해주세요" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
-      </div>
-      
-      <!-- 담당자명 입력 -->
-      <div class="input-group">
-        <label for="contact">담당자명</label>
-        <input id="contact" type="text" name="contact" placeholder="담당자명을 입력해주세요" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
-      </div>
-      
-      <!-- 상품 선택 -->
-      <div class="input-group">
-        <label for="product">신청 상품</label>
-        <select id="product" name="product" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
-          <option value="">신청 상품을 선택해주세요</option>
-          <option value="네오 하이브">네오 하이브</option>
-          <option value="네오 스마트">네오 스마트</option>
-          <option value="네오 하이브 + 네오 스마트">네오 하이브 + 네오 스마트</option>
-        </select>
-      </div>
-      
-      <!-- 연락처 입력 -->
-      <div class="input-group">
-        <label for="phone">연락처</label>
-        <input id="phone" type="tel" name="phone" placeholder="연락처를 입력해주세요 (예: 010-1234-5678)" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
-      </div>
-      
-      <!-- 요청사항 입력 -->
-      <div class="input-group">
-        <label for="memo">요청 사항</label>
-        <textarea id="memo" name="memo" placeholder="요청 사항이나 궁금한 점을 자유롭게 적어주세요" style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;" rows="4"></textarea>
-      </div>
-      
-      <!-- 제출 버튼 -->
-      <button type="submit" class="btn" style="align-self:center; margin-top:10px; background:#3AC8A8; color:#fff; font-weight:bold; border-radius:4px; width:auto; min-width:120px; max-width:200px; padding:12px 24px;">
-        💬 신청서 보내기
-      </button>
-    </form>
-  </div>
+  <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
+    <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
+    <label for="gym" style="position:absolute; left:-9999px;">헬스장명</label>
+    <input id="gym" type="text" name="gym" placeholder="헬스장명" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
+    <label for="contact" style="position:absolute; left:-9999px;">담당자명</label>
+    <input id="contact" type="text" name="contact" placeholder="담당자명" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
+    <label for="product" style="position:absolute; left:-9999px;">신청 상품 선택</label>
+    <select id="product" name="product" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
+      <option value="">신청 상품 선택</option>
+      <option value="네오 하이브">네오 하이브</option>
+      <option value="네오 스마트">네오 스마트</option>
+      <option value="네오 하이브 + 네오 스마트">네오 하이브 + 네오 스마트</option>
+    </select>
+    <label for="phone" style="position:absolute; left:-9999px;">연락처</label>
+    <input id="phone" type="tel" name="phone" placeholder="연락처" required style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;">
+    <label for="memo" style="position:absolute; left:-9999px;">요청 사항이나 메모</label>
+    <textarea id="memo" name="memo" placeholder="요청 사항이나 메모를 입력해주세요" style="padding:10px; border:1px solid #3AC8A8; border-radius:4px; background:#000; color:#fff;" rows="4"></textarea>
+    <button type="submit" class="btn" style="align-self:center; margin-top:10px; background:#3AC8A8; color:#fff; font-weight:bold; border-radius:4px; width:auto; min-width:120px; max-width:200px; padding:12px 24px;">신청서 보내기</button>
+  </form>
 </div>
 <script>
   // PC에서만 스크롤 제어 적용 (모바일에서는 스크롤 자유롭게 허용)
@@ -3519,8 +3302,6 @@ if (window.innerWidth <= 768) {
         }, { passive: true });
       }
     }
-    
-
 
     // 모바일에서 사전예약 버튼 강제 이벤트 바인딩
     if (window.innerWidth <= 768) {
@@ -3563,295 +3344,13 @@ if (window.innerWidth <= 768) {
       }, 1000);
     }
     
-    // 비디오 지연 로딩 - 모바일 최적화
-    if (window.innerWidth <= 768) {
-      // 모바일에서는 더 빠른 로딩
-      setTimeout(() => {
-        const videos = document.querySelectorAll('video[preload="none"]');
-        videos.forEach(video => {
-          video.preload = 'metadata';
-        });
-      }, 500);
-    } else {
-      // PC에서는 기존 방식
+    // 비디오 지연 로딩
     setTimeout(() => {
       const videos = document.querySelectorAll('video[preload="none"]');
       videos.forEach(video => {
         video.preload = 'metadata';
       });
     }, 1000);
-    }
-      });
-  
-  // 스크롤 기반 영상 음향 제어 시스템
-  function setupVideoAudioControl() {
-    console.log('🎵 영상 음향 제어 시스템 초기화 (스크롤 기반 자동 재생 비활성화)');
-    
-    // 페이지 이탈 시 모든 영상 음소거
-    window.addEventListener('beforeunload', () => {
-      const hiveVideo = document.getElementById('hive-showcase-video');
-      const smartVideo = document.getElementById('smart-showcase-video');
-      
-      if (hiveVideo) hiveVideo.muted = true;
-      if (smartVideo) smartVideo.muted = true;
-    });
-      }
-    
-    // 네오 하이브 영상 스피커 토글 함수
-    function toggleHiveAudio() {
-      const hiveVideo = document.getElementById('hive-showcase-video');
-      const speakerBtn = document.getElementById('hive-speaker-btn');
-      
-      if (hiveVideo && speakerBtn) {
-        if (hiveVideo.muted) {
-          hiveVideo.muted = false;
-          // 모바일과 PC에 따른 볼륨 설정
-          if (window.innerWidth <= 768) {
-            hiveVideo.volume = 0.1; // 모바일에서 10%
-          } else {
-            hiveVideo.volume = 0.15; // PC에서 15%
-          }
-          speakerBtn.innerHTML = '🔊 소리켜짐';
-          speakerBtn.style.background = 'rgba(123, 228, 149, 0.2)';
-          console.log('🎵 Neo Hive 영상 소리 켜짐');
-        } else {
-          hiveVideo.muted = true;
-          speakerBtn.innerHTML = '🔇 음소거';
-          speakerBtn.style.background = 'rgba(0,0,0,0.9)';
-          console.log('🔇 Neo Hive 영상 소리 꺼짐');
-        }
-      }
-    }
-
-    // 네오 스마트 영상 스피커 토글 함수
-    function toggleSmartAudio() {
-      const smartVideo = document.getElementById('smart-showcase-video');
-      const speakerBtn = document.getElementById('smart-speaker-btn');
-      
-      if (smartVideo && speakerBtn) {
-        if (smartVideo.muted) {
-          smartVideo.muted = false;
-          // 모바일과 PC에 따른 볼륨 설정
-          if (window.innerWidth <= 768) {
-            smartVideo.volume = 0.3; // 모바일에서 30%
-          } else {
-            smartVideo.volume = 0.6; // PC에서 60%
-          }
-          speakerBtn.innerHTML = '🔊 소리켜짐';
-          speakerBtn.style.background = 'rgba(123, 228, 149, 0.2)';
-          console.log('🎵 Neo Smart 영상 소리 켜짐');
-        } else {
-          smartVideo.muted = true;
-          speakerBtn.innerHTML = '🔇 음소거';
-          speakerBtn.style.background = 'rgba(0,0,0,0.9)';
-          console.log('🔇 Neo Smart 영상 소리 꺼짐');
-        }
-      }
-    }
-
-    // 페이지 상단으로 스크롤하는 함수 (모바일/PC 공통)
-    function scrollToTop() {
-      if (window.innerWidth <= 768) {
-        // 모바일: 네오 하이브 섹션이 보이는 위치로 스크롤
-        const hiveSection = document.getElementById('hive');
-        if (hiveSection) {
-          const navHeight = 60; // 모바일 네비게이션 높이
-          const targetPosition = hiveSection.offsetTop - navHeight - 20; // 추가 여백 20px
-          
-          window.scrollTo({
-            top: Math.max(0, targetPosition),
-            left: 0,
-            behavior: 'smooth'
-          });
-          
-          console.log('📱 네오 하이브 로고 클릭 - 네오 하이브 섹션으로 스크롤');
-        } else {
-          // 네오 하이브 섹션을 찾을 수 없으면 최상단으로
-          window.scrollTo(0, 0);
-        }
-      } else {
-        // PC: 완전 최상단으로 이동
-        window.scrollTo(0, 0);
-        
-        // 추가적으로 부드러운 스크롤도 적용
-        setTimeout(() => {
-          window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-          });
-        }, 10);
-        
-        console.log('💻 네오 하이브 로고 클릭 - 완전 최상단으로 스크롤');
-      }
-    }
- 
-  
-    // DOM 로드 완료 후 영상 음향 제어 시스템 초기화
-  document.addEventListener('DOMContentLoaded', () => {
-    setupVideoAudioControl();
-    
-         // 즉시 두 영상 모두 재생 및 음소거 해제 시도
-     setTimeout(() => {
-       const smartVideo = document.getElementById('smart-showcase-video');
-       const hiveVideo = document.getElementById('hive-showcase-video');
-       
-       // 네오 스마트 영상 재생 시도
-       if (smartVideo) {
-         const tryPlaySmart = () => {
-           smartVideo.play().then(() => {
-             console.log('🚀 페이지 로드 시 Neo Smart 영상 재생 성공');
-           }).catch(error => {
-             console.error('🚀 페이지 로드 시 Neo Smart 영상 재생 실패:', error);
-             // 2초 후 재시도
-             setTimeout(() => {
-               smartVideo.play().catch(e => console.log('Neo Smart 페이지 로드 재시도 실패:', e));
-             }, 2000);
-           });
-         };
-         
-         tryPlaySmart();
-       }
-       
-       // 네오 하이브 영상 재생 시도
-       if (hiveVideo) {
-         const tryPlayHive = () => {
-           hiveVideo.play().then(() => {
-             console.log('🚀 페이지 로드 시 Neo Hive 영상 재생 성공');
-           }).catch(error => {
-             console.error('🚀 페이지 로드 시 Neo Hive 영상 재생 실패:', error);
-             // 2초 후 재시도
-             setTimeout(() => {
-               hiveVideo.play().catch(e => console.log('Neo Hive 페이지 로드 재시도 실패:', e));
-             }, 2000);
-           });
-         };
-         
-         tryPlayHive();
-         console.log('🚀 페이지 로드 시 Neo Hive 영상 재생 시도');
-       }
-          }, 1000);
-     
-     // 전역 사용자 상호작용으로 모든 영상 재생 활성화
-     const enableAllVideos = () => {
-       const smartVideo = document.getElementById('smart-showcase-video');
-       const hiveVideo = document.getElementById('hive-showcase-video');
-       
-       if (smartVideo && smartVideo.paused) {
-         smartVideo.play().then(() => {
-           console.log('👆 사용자 상호작용으로 Neo Smart 영상 재생 활성화');
-         }).catch(e => console.log('Neo Smart 상호작용 재생 실패:', e));
-       }
-       
-       if (hiveVideo && hiveVideo.paused) {
-         hiveVideo.play().then(() => {
-           console.log('👆 사용자 상호작용으로 Neo Hive 영상 재생 활성화');
-         }).catch(e => console.log('Neo Hive 상호작용 재생 실패:', e));
-       }
-     };
-     
-     // 페이지 첫 클릭/터치 시 모든 영상 재생 활성화
-     document.addEventListener('click', enableAllVideos, { once: true });
-     document.addEventListener('touchstart', enableAllVideos, { once: true });
-     
-     // 네오 스마트 영상 디버깅
-    setTimeout(() => {
-      const smartVideo = document.getElementById('smart-showcase-video');
-      if (smartVideo) {
-        console.log('🎬 Neo Smart 영상 요소 발견:', smartVideo);
-        console.log('📁 영상 소스:', smartVideo.src);
-        console.log('🔇 음소거 상태:', smartVideo.muted);
-        console.log('🔊 볼륨 레벨:', smartVideo.volume);
-        console.log('📺 영상 준비 상태:', smartVideo.readyState);
-        
-        // 영상의 오디오 트랙 확인
-        smartVideo.addEventListener('loadedmetadata', () => {
-          console.log('📊 Neo Smart 영상 메타데이터 로드됨');
-          console.log('⏱️ 영상 길이:', smartVideo.duration, '초');
-          console.log('📏 영상 크기:', smartVideo.videoWidth, 'x', smartVideo.videoHeight);
-          
-          // 오디오 트랙 존재 여부 확인
-          if (smartVideo.mozHasAudio !== undefined) {
-            console.log('🎵 오디오 트랙 (Firefox):', smartVideo.mozHasAudio);
-          } else if (smartVideo.webkitAudioDecodedByteCount !== undefined) {
-            console.log('🎵 오디오 트랙 (Chrome):', smartVideo.webkitAudioDecodedByteCount > 0);
-          }
-          
-          // 강제 재생 시도
-          smartVideo.play().then(() => {
-            console.log('✅ Neo Smart 영상 재생 성공');
-          }).catch(error => {
-            console.error('❌ Neo Smart 영상 재생 실패:', error);
-            // 사용자 상호작용 후 재생 시도
-            document.addEventListener('click', () => {
-              smartVideo.play().then(() => {
-                console.log('✅ Neo Smart 영상 클릭 후 재생 성공');
-              }).catch(e => console.error('❌ Neo Smart 영상 클릭 후에도 재생 실패:', e));
-            }, { once: true });
-          });
-          
-          console.log('📊 Neo Smart 영상 메타데이터 로드됨');
-          
-
-        });
-        
-        smartVideo.addEventListener('error', (e) => {
-          console.error('❌ Neo Smart 영상 로드 오류:', e);
-        });
-        
-      } else {
-        console.error('❌ Neo Smart 영상 요소를 찾을 수 없음');
-      }
-      
-      // 네오 하이브 영상 디버깅
-      const hiveVideo = document.getElementById('hive-showcase-video');
-      if (hiveVideo) {
-        console.log('🎬 Neo Hive 영상 요소 발견:', hiveVideo);
-        console.log('📁 영상 소스:', hiveVideo.src);
-        console.log('🔇 음소거 상태:', hiveVideo.muted);
-        console.log('🔊 볼륨 레벨:', hiveVideo.volume);
-        console.log('▶️ 재생 상태:', hiveVideo.paused ? '일시정지' : '재생중');
-        console.log('📺 영상 준비 상태:', hiveVideo.readyState);
-        
-                 // 강제 재생 시도 (여러 번 시도)
-         const tryPlayHive = () => {
-           hiveVideo.play().then(() => {
-             console.log('✅ Neo Hive 영상 재생 성공');
-           }).catch(error => {
-             console.error('❌ Neo Hive 영상 재생 실패:', error);
-             // 1초 후 재시도
-             setTimeout(() => {
-               hiveVideo.play().catch(e => console.log('Neo Hive 재시도 실패:', e));
-             }, 1000);
-           });
-         };
-         
-         tryPlayHive();
-         
-         // 사용자 상호작용 후 재생 시도
-         const enableHivePlay = () => {
-           hiveVideo.play().then(() => {
-             console.log('✅ Neo Hive 영상 클릭 후 재생 성공');
-           }).catch(e => console.error('❌ Neo Hive 영상 클릭 후에도 재생 실패:', e));
-         };
-         
-         document.addEventListener('click', enableHivePlay, { once: true });
-         document.addEventListener('touchstart', enableHivePlay, { once: true });
-        
-        hiveVideo.addEventListener('loadedmetadata', () => {
-          console.log('📊 Neo Hive 영상 메타데이터 로드됨');
-          console.log('⏱️ 영상 길이:', hiveVideo.duration, '초');
-          console.log('📏 영상 크기:', hiveVideo.videoWidth, 'x', hiveVideo.videoHeight);
-        });
-        
-        hiveVideo.addEventListener('error', (e) => {
-          console.error('❌ Neo Hive 영상 로드 오류:', e);
-        });
-        
-      } else {
-        console.error('❌ Neo Hive 영상 요소를 찾을 수 없음');
-      }
-    }, 2000);
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
@@ -3883,109 +3382,31 @@ if (window.innerWidth <= 768) {
   });
   
   function openForm(event) {
-    console.log('📱 openForm called - Mobile no overlay');
+    console.log('=== openForm called ===');
+    console.log('Screen width:', window.innerWidth);
+    console.log('Is mobile:', window.innerWidth <= 768);
     
-    // 이벤트 처리
+    // 스크롤 방지
     if (event) {
       event.preventDefault();
       event.stopPropagation();
     }
     
     const modal = document.getElementById('formModal');
-    if (!modal) {
-      console.error('formModal not found');
-      return false;
-    }
-
-    // 기존 오버레이 모두 제거 (깔끔한 시작)
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"]').forEach(el => el.remove());
     
-    // 모바일에서만 오버레이 없이 팝업만 표시
+    // 모바일에서 가장 간단하고 확실한 방법으로 오버레이 생성
     if (window.innerWidth <= 768) {
-      console.log('📱 Mobile - No overlay, popup only');
+      console.log('📱 Mobile detected - creating simple overlay');
       
-      // 모바일에서 body 스크롤 제어
-      document.body.classList.add('modal-open');
+      // 기존 오버레이들 제거
+      document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
       
-      // 모달 표시 - 오버레이 없음
-      modal.style.setProperty('display', 'block', 'important');
-      modal.style.setProperty('visibility', 'visible', 'important');
-      modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('z-index', '2147483650', 'important');
-      
-      // 모바일에서 화면 상단에 고정 위치 (스크롤 영향 없음)
-      modal.style.setProperty('position', 'fixed', 'important');
-      modal.style.setProperty('top', '80px', 'important');
-      modal.style.setProperty('left', '50%', 'important');
-      modal.style.setProperty('transform', 'translateX(-50%)', 'important');
-      modal.style.setProperty('width', '90%', 'important');
-      modal.style.setProperty('max-width', '380px', 'important');
-      modal.style.setProperty('min-width', '300px', 'important');
-      modal.style.setProperty('padding', '25px', 'important');
-      modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('will-change', 'transform', 'important');
-      modal.style.setProperty('backface-visibility', 'hidden', 'important');
-      modal.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
-      
-      // 모바일에서 모든 오버레이 즉시 제거
-      function removeAllOverlays() {
-        document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"], .overlay, .Overlay').forEach(el => {
-          if (el && el.parentNode && el.id !== 'formModal') {
-            el.remove();
-          }
-        });
-      }
-      
-      // 즉시 제거
-      removeAllOverlays();
-      
-      // 지속적으로 오버레이 감시 및 제거
-      const overlayObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.type === 'childList') {
-            mutation.addedNodes.forEach((node) => {
-              if (node.nodeType === 1) { // Element node
-                const isOverlay = node.classList?.contains('modal-overlay') ||
-                                 node.classList?.contains('overlay') ||
-                                 node.id?.includes('overlay') ||
-                                 node.id?.includes('Overlay') ||
-                                 node.className?.includes('overlay') ||
-                                 node.className?.includes('Overlay');
-                
-                if (isOverlay && node.id !== 'formModal') {
-                  node.remove();
-                  console.log('🚫 Overlay removed automatically:', node);
-                }
-              }
-            });
-          }
-        });
-      });
-      
-      overlayObserver.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-      
-      // 5초 후 감시 해제
-      setTimeout(() => {
-        overlayObserver.disconnect();
-      }, 5000);
-      
-      // 모바일에서는 body 스크롤 막지 않음
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      document.body.style.height = '';
-      
-      console.log('✅ Mobile popup positioned at top - NO OVERLAY');
-      
-    } else {
-      // PC에서는 오버레이 사용
+      // 직접 createElement로 생성 (더 안정적)
       const overlay = document.createElement('div');
-      overlay.id = 'modalOverlay';
-      overlay.className = 'modal-overlay';
+      overlay.id = 'mobileForceOverlay';
       overlay.onclick = closeForm;
+      
+      // 인라인 스타일 설정
       overlay.style.cssText = `
         position: fixed !important;
         top: 0 !important;
@@ -3993,55 +3414,161 @@ if (window.innerWidth <= 768) {
         width: 100vw !important;
         height: 100vh !important;
         background: rgba(0, 0, 0, 0.85) !important;
-        z-index: 1000000 !important;
+        z-index: 2147483646 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
         pointer-events: auto !important;
       `;
+      
+      // body에 바로 추가
       document.body.appendChild(overlay);
       
-      // 모달 표시 - 오버레이보다 높은 z-index
-      modal.style.setProperty('display', 'block', 'important');
+      // 생성 확인 및 강제 적용
+      setTimeout(() => {
+        const createdOverlay = document.getElementById('mobileForceOverlay');
+        if (createdOverlay) {
+          createdOverlay.style.setProperty('position', 'fixed', 'important');
+          createdOverlay.style.setProperty('top', '0', 'important');
+          createdOverlay.style.setProperty('left', '0', 'important');
+          createdOverlay.style.setProperty('width', '100vw', 'important');
+          createdOverlay.style.setProperty('height', '100vh', 'important');
+          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
+          createdOverlay.style.setProperty('z-index', '2147483646', 'important');
+          createdOverlay.style.setProperty('display', 'block', 'important');
+          createdOverlay.style.setProperty('visibility', 'visible', 'important');
+          createdOverlay.style.setProperty('opacity', '1', 'important');
+          createdOverlay.style.setProperty('pointer-events', 'auto', 'important');
+          console.log('✅ Mobile overlay confirmed and styles applied');
+        } else {
+          console.error('❌ Mobile overlay creation failed');
+        }
+      }, 10);
+      
+    } else {
+      // PC에서는 기존 방식 유지
+      let overlay = document.getElementById('modalOverlay');
+      
+      // 오버레이가 없으면 동적으로 생성
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'modalOverlay';
+        overlay.className = 'modal-overlay';
+        overlay.onclick = closeForm;
+        document.body.appendChild(overlay);
+        console.log('PC Overlay created dynamically');
+      }
+      
+      // PC 오버레이 표시
+      if (overlay) {
+        overlay.style.setProperty('display', 'block', 'important');
+        overlay.style.setProperty('position', 'fixed', 'important');
+        overlay.style.setProperty('top', '0', 'important');
+        overlay.style.setProperty('left', '0', 'important');
+        overlay.style.setProperty('right', '0', 'important');
+        overlay.style.setProperty('bottom', '0', 'important');
+        overlay.style.setProperty('width', '100vw', 'important');
+        overlay.style.setProperty('height', '100vh', 'important');
+        overlay.style.setProperty('background', 'rgba(0, 0, 0, 0.85)', 'important');
+        overlay.style.setProperty('z-index', '2147483646', 'important');
+        overlay.style.setProperty('visibility', 'visible', 'important');
+        overlay.style.setProperty('opacity', '1', 'important');
+        overlay.style.setProperty('pointer-events', 'auto', 'important');
+        overlay.classList.add('active');
+        console.log('PC Overlay displayed');
+      }
+    }
+    
+    if (!modal) {
+      console.error('formModal not found');
+      return false;
+    }
+    modal.style.display = 'block';
+    
+    // 모바일 환경에서 현재 화면 위치에 팝업 표시
+    if (window.innerWidth <= 768) {
+      // 현재 스크롤 위치 가져오기
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      
+      // 즉시 적용 - 현재 화면 중앙에 표시 (2칸 좌측으로 이동)
+      modal.style.setProperty('position', 'absolute', 'important');
+      modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
+      modal.style.setProperty('left', '2.5%', 'important'); /* 12.5% → 2.5%로 2칸 좌측 이동 */
+      modal.style.setProperty('transform', 'translateY(-50%)', 'important');
+      modal.style.setProperty('width', '80%', 'important'); /* 75% → 80%로 약간 늘림 */
+      modal.style.setProperty('max-width', '350px', 'important');
+      modal.style.setProperty('min-width', '280px', 'important');
+      modal.style.setProperty('box-sizing', 'border-box', 'important');
+      modal.style.setProperty('margin', '0', 'important');
+      modal.style.setProperty('right', 'auto', 'important');
+      modal.style.setProperty('z-index', '2147483648', 'important');
+      modal.style.setProperty('background', '#000', 'important');
+      modal.style.setProperty('border', '2px solid #3AC8A8', 'important');
+      modal.style.setProperty('border-radius', '12px', 'important');
+      modal.style.setProperty('color', '#fff', 'important');
       modal.style.setProperty('visibility', 'visible', 'important');
       modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('z-index', '1000001', 'important');
+      modal.style.setProperty('padding', '20px', 'important');
+      
+              // 모바일에서는 이미 위에서 mobileForceOverlay가 생성됨
+      
+      console.log('Mobile modal positioned at scroll:', scrollTop, 'center:', scrollTop + windowHeight / 2);
+      
+      // 배경 스크롤 방지
+      document.body.style.overflow = 'hidden';
+      
+      // 추가 안전장치
+      setTimeout(() => {
+        if (modal.style.display === 'block') {
+          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const currentWindowHeight = window.innerHeight;
+          modal.style.setProperty('position', 'absolute', 'important');
+          modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
+          modal.style.setProperty('left', '2.5%', 'important'); /* 2칸 좌측 위치 유지 */
+          modal.style.setProperty('transform', 'translateY(-50%)', 'important');
+          modal.style.setProperty('z-index', '2147483648', 'important');
+          console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
+        }
+      }, 100);
+    } else {
+      // PC 환경에서는 기본 fixed 중앙 정렬
       modal.style.setProperty('position', 'fixed', 'important');
       modal.style.setProperty('top', '50%', 'important');
       modal.style.setProperty('left', '50%', 'important');
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-      console.log('✅ PC popup positioned with overlay');
+      modal.style.setProperty('z-index', '2147483648', 'important');
     }
     
     return false;
   }
   function closeForm() {
-    console.log('📱 closeForm called');
-    
     const modal = document.getElementById('formModal');
+    
     if (modal) {
       modal.style.display = 'none';
     }
     
-    // 모바일에서 body 스크롤 제어 해제
-    document.body.classList.remove('modal-open');
-    
-    // 모든 오버레이 제거 (모바일에서는 없지만 안전하게)
-    document.querySelectorAll('.modal-overlay, #modalOverlay, [id*="overlay"], [id*="Overlay"], [class*="overlay"], [class*="Overlay"], .overlay, .Overlay').forEach(el => {
-      if (el && el.parentNode && el.id !== 'formModal') {
-        el.remove();
+    // 모바일 전용 오버레이 제거
+    if (window.innerWidth <= 768) {
+      const mobileOverlay = document.getElementById('mobileForceOverlay');
+      if (mobileOverlay) {
+        mobileOverlay.remove();
+        console.log('Mobile force overlay removed');
       }
-    });
-    
-    // 스크롤 복원
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.height = '';
-    document.body.style.background = '';
-    document.body.style.backdropFilter = '';
-    
-    console.log('✅ Popup closed and scroll restored');
+      // 모바일에서 배경 스크롤 복원
+      document.body.style.overflow = 'auto';
+    } else {
+      // PC 오버레이 처리
+      const overlay = document.getElementById('modalOverlay');
+      if (overlay) {
+        overlay.style.setProperty('display', 'none', 'important');
+        overlay.style.setProperty('visibility', 'hidden', 'important');
+        overlay.style.setProperty('opacity', '0', 'important');
+        overlay.classList.remove('active');
+        console.log('PC Overlay hidden');
+      }
+    }
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -4352,7 +3879,9 @@ if (window.innerWidth <= 768) {
         });
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 트랜지션은 클래스로 제어
+            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
             videoPhone.style.setProperty('left', '50%', 'important');
             videoPhone.style.setProperty('top', '60%', 'important');
             videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -4391,18 +3920,18 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서 setTimeout으로 트랜지션 적용
-            setTimeout(() => {
-              videoPhone.style.setProperty('left', targetPosition.left, 'important');
-              videoPhone.style.setProperty('top', targetPosition.top, 'important');
-              videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
-              videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
-              videoPhone.style.setProperty('width', '90px', 'important');
-              videoPhone.style.setProperty('height', '180px', 'important');
-              videoPhone.style.setProperty('border', 'none', 'important');
-              videoPhone.style.setProperty('box-shadow', 'none', 'important');
-              videoPhone.style.setProperty('border-radius', '16px', 'important');
-            }, 10);
+            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+            videoPhone.style.setProperty('left', targetPosition.left, 'important');
+            videoPhone.style.setProperty('top', targetPosition.top, 'important');
+            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
+            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
+            videoPhone.style.setProperty('width', '90px', 'important');
+            videoPhone.style.setProperty('height', '180px', 'important');
+            videoPhone.style.setProperty('border', 'none', 'important');
+            videoPhone.style.setProperty('box-shadow', 'none', 'important');
+            videoPhone.style.setProperty('border-radius', '16px', 'important');
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4420,18 +3949,18 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서 setTimeout으로 트랜지션 적용
-          setTimeout(() => {
-            targetImg.style.setProperty('left', '50%', 'important');
-            targetImg.style.setProperty('top', '60%', 'important');
-            targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-            targetImg.style.setProperty('z-index', '10', 'important');
-            targetImg.style.setProperty('width', '180px', 'important');
-            targetImg.style.setProperty('height', '360px', 'important');
-            targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
-            targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-            targetImg.style.setProperty('border-radius', '20px', 'important');
-          }, 10);
+          // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+          targetImg.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+          targetImg.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+          targetImg.style.setProperty('left', '50%', 'important');
+          targetImg.style.setProperty('top', '60%', 'important');
+          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          targetImg.style.setProperty('z-index', '10', 'important');
+          targetImg.style.setProperty('width', '180px', 'important');
+          targetImg.style.setProperty('height', '360px', 'important');
+          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+          targetImg.style.setProperty('border-radius', '20px', 'important');
         } else {
           // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
@@ -4502,18 +4031,18 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 setTimeout으로 트랜지션 적용
-       setTimeout(() => {
-         img.style.setProperty('left', positions.left, 'important');
-         img.style.setProperty('top', positions.top, 'important');
-         img.style.setProperty('transform', positions.transform, 'important');
-         img.style.setProperty('z-index', positions.zIndex, 'important');
-         img.style.setProperty('width', '90px', 'important');
-         img.style.setProperty('height', '180px', 'important');
-         img.style.setProperty('border-radius', '16px', 'important');
-         img.style.setProperty('border', 'none', 'important');
-         img.style.setProperty('box-shadow', 'none', 'important');
-       }, 10);
+       // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
+       img.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+       img.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
+       img.style.setProperty('left', positions.left, 'important');
+       img.style.setProperty('top', positions.top, 'important');
+       img.style.setProperty('transform', positions.transform, 'important');
+       img.style.setProperty('z-index', positions.zIndex, 'important');
+       img.style.setProperty('width', '90px', 'important');
+       img.style.setProperty('height', '180px', 'important');
+       img.style.setProperty('border-radius', '16px', 'important');
+       img.style.setProperty('border', 'none', 'important');
+       img.style.setProperty('box-shadow', 'none', 'important');
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
@@ -5119,7 +4648,7 @@ if (video) {
     .hive-showcase {
       margin-top: 100px !important;
       padding: 0 16px !important;
-      touch-action: pan-y pan-x pinch-zoom !important;
+      touch-action: pan-x pinch-zoom !important;
     }
   }
 </style>
@@ -5130,17 +4659,7 @@ if (video) {
   @media (max-width: 768px) {
     body {
       padding-top: 56px !important;
-      touch-action: pan-y pinch-zoom !important;
-      -webkit-overflow-scrolling: touch !important;
-      overflow-y: auto !important;
     }
-    
-    html {
-      touch-action: pan-y pinch-zoom !important;
-      -webkit-overflow-scrolling: touch !important;
-      overflow-y: auto !important;
-    }
-    
     .hive-showcase {
       margin-top: 16px !important;
     }
@@ -5390,9 +4909,45 @@ if (video) {
 }
 </style>
 
-
+<style>
+@media (max-width: 768px) {
+/* 기존 2단 구조 숨김 */
+.neohive-twobox-col > div:last-child { display: none !important; }
+.mobile-system-box { display: flex !important; flex-direction: column; gap: 16px; width: 100%; margin: 0; padding: 0 4px; }
+.system-card { background: #101f18; border: 1.5px solid #7BE495; border-radius: 14px; padding: 16px 12px; box-shadow: 0 0 10px #7BE49522; width: 100%; font-size: 0.95rem; margin: 0 auto; }
+.system-card h4 { font-size: 1.1rem; color: #7BE495; margin-bottom: 10px; }
+.system-card ul { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; padding-left: 18px; }
+.system-desc { display: flex; align-items: center; font-size: 0.85rem; color: #7BE495; margin-top: 6px; }
+.system-desc img { width: 22px; height: 22px; margin-right: 8px; }
+}
+@media (min-width: 769px) {
+.mobile-system-box { display: none !important; }
+}
+</style>
 <!-- 모바일 전용 1단 카드형 시스템 안내 -->
-
+<div class="mobile-system-box" style="display:none;">
+<div class="system-card">
+  <h4>무인 출입 시스템 운영 방식</h4>
+  <ul>
+    <li>가상의 회원 등록 (시스템 계정)</li>
+    <li>해당 계정의 핸드폰 뒷자리 "1234"를 코드로 설정</li>
+    <li>네오 하이브를 통해 예약한 팀에게 코드 전송</li>
+  </ul>
+  <div class="system-desc">
+    <img src="./images/neo35.png" alt="출입 코드 아이콘" />
+    <span>사용자는 코드만 입력하면 무인 헬스에 손쉽게 출입할 수 있습니다.</span>
+  </div>
+</div>
+<div class="system-card">
+  <h4>이벤트 시스템 연동</h4>
+  <ul>
+    <li>제휴된 헬스장에서만 이벤트 진행 가능 (1곳 한정)</li>
+    <li>팀원 전원 QR 출석체크 필요 (최소 3명)</li>
+    <li>출석체크 인정 횟수는 누적으로 진행</li>
+    <li>팀장이 인증센터 선택 및 시간대 예약</li>
+  </ul>
+</div>
+</div>
 
 
 <!-- 기존 trial/feedback 메시지 모바일 폰트 오버라이드 삭제 (중복 제거) -->
@@ -5434,9 +4989,47 @@ h3 {
 }
 }
 </style>
+<style>
+/* 모바일 환경에서만 시스템/이벤트 박스를 핵심 가치 UI 밑으로 이동 */
+@media (max-width: 768px) {
+body .mobile-system-box-wrapper,
+html body .mobile-system-box-wrapper {
+  display: block !important;
+  width: 100%;
+  position: relative !important;
+  transform: translateY(-648px) !important; /* 1칸(16px) 아래로 이동: -664px → -648px */
+  -webkit-transform: translateY(-648px) !important;
+  margin-bottom: 24px;
+  z-index: 101;
+}
+}
+@media (min-width: 769px) {
+.mobile-system-box-wrapper {
+  display: block !important;
+  position: static !important;
+  transform: none !important;
+  margin-bottom: 0 !important;
+  z-index: auto;
+}
+}
+</style>
 
+<style>
+@media (max-width: 768px) {
+.mobile-system-desc {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-weight: bold !important; /* 문구 강조 효과 */
+  text-shadow: 0 0 6px rgba(123, 228, 149, 0.8) !important; /* 글자에 은은한 빛 효과 */
+}
 
-
+.mobile-system-desc img {
+  flex-shrink: 0 !important;
+  margin-right: 6px !important; /* 이미지와 문구 간격 명확히 설정 */
+}
+}
+</style>
 <style>
 /* 네오 스마트: 모바일 환경에서 UI 전체를 위로 이동, 폰트 크기 축소 및 개별 transform 제거 */
 @media (max-width: 768px) {
@@ -5510,11 +5103,11 @@ html body #smart p {
 <style>
 @media (max-width: 768px) {
 /* 모바일에서 모든 스크롤 애니메이션 효과 제거 (특정 UI 요소들 제외) */
-.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart),
-.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart) {
+.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.section.animate-on-scroll:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-left:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.slide-in-right:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart),
+.feature-item:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart) {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -5852,11 +5445,11 @@ document.addEventListener('DOMContentLoaded', function() {
             frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(-180deg)', 'important');
             backImage.style.setProperty('transform', 'translateY(64px) rotateY(0deg)', 'important');
             
-            // 모바일에서는 텍스트 오버레이 표시하지 않음
+            // 텍스트 오버레이도 뒷면과 함께 표시
             if (backTextOverlay) {
-              backTextOverlay.style.setProperty('display', 'none', 'important');
-              backTextOverlay.style.setProperty('opacity', '0', 'important');
-              backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
+              backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
+              backTextOverlay.style.setProperty('opacity', '1', 'important');
+              backTextOverlay.style.setProperty('visibility', 'visible', 'important');
             }
             console.log('Mobile: Showing back side with text');
           } else {
@@ -5880,26 +5473,29 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('PC transform applied:', transform);
       }
       
-      // 텍스트 오버레이 표시/숨김 (모바일에서는 완전히 비활성화)
+      // 텍스트 오버레이 표시/숨김 (강제 적용)
       if (backTextOverlay) {
-        if (isMobile) {
-          // 모바일에서는 항상 숨김
-          backTextOverlay.style.setProperty('display', 'none', 'important');
+        if (isFlipped) {
+          backTextOverlay.style.setProperty('opacity', '1', 'important');
+          backTextOverlay.style.setProperty('visibility', 'visible', 'important');
+          backTextOverlay.style.setProperty('display', 'block', 'important');
+          
+          // 모바일 환경에서만 추가 강화
+          if (isMobile) {
+            backTextOverlay.style.setProperty('z-index', '99999', 'important');
+            // 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시
+            backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
+            backTextOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.95)', 'important');
+            backTextOverlay.style.setProperty('border', '3px solid #7BE495', 'important');
+            backTextOverlay.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 1)', 'important');
+            
+            console.log('Mobile text overlay container ready (no text content)');
+          }
+        } else {
           backTextOverlay.style.setProperty('opacity', '0', 'important');
           backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-          console.log('Mobile: text overlay disabled');
-        } else {
-          // PC에서만 기존 로직 사용
-          if (isFlipped) {
-            backTextOverlay.style.setProperty('opacity', '1', 'important');
-            backTextOverlay.style.setProperty('visibility', 'visible', 'important');
-            backTextOverlay.style.setProperty('display', 'block', 'important');
-          } else {
-            backTextOverlay.style.setProperty('opacity', '0', 'important');
-            backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-          }
-          console.log('PC text overlay opacity:', isFlipped ? '1' : '0');
         }
+        console.log('Text overlay opacity:', isFlipped ? '1' : '0');
       }
       
       // 버튼 텍스트 변경
@@ -5974,21 +5570,12 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('PC 3D effects enabled');
     }
     
-    // 초기 텍스트 오버레이 숨김 (모바일에서는 완전히 비활성화)
+    // 초기 텍스트 오버레이 숨김 (강제 적용)
     if (backTextOverlay) {
-      if (isMobile) {
-        // 모바일에서는 완전히 비활성화
-        backTextOverlay.style.setProperty('display', 'none', 'important');
-        backTextOverlay.style.setProperty('opacity', '0', 'important');
-        backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-        console.log('Initial text overlay disabled on mobile');
-      } else {
-        // PC에서만 숨김 상태로 초기화
-        backTextOverlay.style.setProperty('opacity', '0', 'important');
-        backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-        backTextOverlay.style.setProperty('display', 'block', 'important');
-        console.log('Initial text overlay hidden on PC');
-      }
+      backTextOverlay.style.setProperty('opacity', '0', 'important');
+      backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
+      backTextOverlay.style.setProperty('display', 'block', 'important');
+      console.log('Initial text overlay hidden');
     }
     
     // PC에서 버튼에 호버 효과 추가
@@ -6950,10 +6537,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /* 모든 섹션들이 네비게이션 아래에 위치하도록 (특정 UI 요소들 제외) */
-  .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
-  .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
-  main:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile), 
-  div[class*="section"]:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile) {
+  .section:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  .container:not(#smart .container):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  main:not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper), 
+  div[class*="section"]:not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper) {
     position: relative !important;
     z-index: 1 !important;
     transform: none !important;
@@ -7036,14 +6623,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 특정 UI 요소들은 완전히 제외 */
-  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
+  #scrollable-content > *:not(.hive-showcase):not(.hive-image):not(.video-phone):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart):not([class*="mobile-ui"]):not([id*="mobile-moved"]):not([class*="core-value"]):not([class*="mobile-system"]) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
   }
   
-  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile),
-  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(#smart .container) {
+  .section:not(#hive):not(#smart):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper),
+  .container:not(.hive-showcase *):not(.mobile-ui-position-adjustment):not(#mobile-moved-merged-box):not(.core-value-fresh-mobile):not(.mobile-system-box-wrapper):not(#smart .container) {
     transform: none !important;
     -webkit-transform: none !important;
     position: relative !important;
@@ -7407,7 +6994,9 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 105 !important;
   }
   
-
+  .mobile-system-box-wrapper {
+    z-index: 115 !important;
+  }
   
   #smart {
     z-index: 50 !important;
@@ -7426,12 +7015,15 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 20px !important;
   }
   
-
+  .mobile-system-box-wrapper + * {
+    margin-top: 20px !important;
+  }
   
   /* 모든 UI 요소들의 가시성 강제 보장 */
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
   #smart {
     opacity: 1 !important;
     visibility: visible !important;
@@ -7443,6 +7035,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .mobile-ui-position-adjustment *,
   #mobile-moved-merged-box *,
   .core-value-fresh-mobile *,
+  .mobile-system-box-wrapper *,
   #smart * {
     opacity: 1 !important;
     visibility: visible !important;
@@ -7456,6 +7049,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .mobile-ui-position-adjustment,
   #mobile-moved-merged-box,
   .core-value-fresh-mobile,
+  .mobile-system-box-wrapper,
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
@@ -7502,7 +7096,121 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0 !important;
   }
 
+  /* 클릭 가능한 사전 예약 혜택 안내 - 반응형 디자인 */
+  .clickable-benefit-box {
+    animation: benefitGlow 3s ease-in-out infinite alternate;
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .clickable-benefit-box * {
+    cursor: pointer !important;
+    pointer-events: none; /* 하위 요소들은 클릭 이벤트 차단하여 부모에서만 처리 */
+  }
+  
+  @keyframes benefitGlow {
+    0% {
+      filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.3));
+    }
+    100% {
+      filter: drop-shadow(0 0 15px rgba(123, 228, 149, 0.6));
+    }
+  }
 
+  /* PC 환경에서 클릭 가능한 혜택 안내 호버 효과 */
+  @media (min-width: 769px) {
+    .clickable-benefit-box {
+      transition: all 0.3s ease !important;
+    }
+    
+    .clickable-benefit-box > div {
+      transition: all 0.3s ease !important;
+      cursor: pointer !important;
+    }
+    
+    .clickable-benefit-box:hover {
+      transform: translateY(-4px) scale(1.02) !important;
+      filter: drop-shadow(0 0 20px rgba(123, 228, 149, 0.7)) !important;
+    }
+    
+    .clickable-benefit-box:hover > div {
+      box-shadow: 
+        0 12px 30px rgba(123, 228, 149, 0.4),
+        0 6px 15px rgba(123, 228, 149, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+      border-color: rgba(123, 228, 149, 0.8) !important;
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.25) 0%, rgba(62, 200, 162, 0.15) 100%) !important;
+    }
+    
+    .clickable-benefit-box:hover span {
+      text-shadow: 0 0 12px rgba(123, 228, 149, 1) !important;
+    }
+    
+    .clickable-benefit-box:active {
+      transform: translateY(-2px) scale(0.98) !important;
+      transition: all 0.1s ease !important;
+    }
+  }
+
+  /* 모바일 환경에서 클릭 가능한 혜택 안내 최적화 */
+  @media (max-width: 768px) {
+    .clickable-benefit-box {
+      margin-top: 12px !important;
+      padding: 0 8px !important;
+      -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+      tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
+    }
+    
+    .clickable-benefit-box > div {
+      padding: 6px 16px !important;
+      border-radius: 16px !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      transition: all 0.2s ease !important;
+    }
+    
+    /* 모바일 터치 효과 */
+    .clickable-benefit-box:active {
+      transform: scale(0.95) !important;
+      transition: all 0.1s ease !important;
+    }
+    
+    .clickable-benefit-box:active > div {
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(62, 200, 162, 0.2) 100%) !important;
+      border-color: rgba(123, 228, 149, 0.8) !important;
+      box-shadow: 
+        0 8px 25px rgba(123, 228, 149, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .clickable-benefit-box span {
+      font-size: 0.8rem !important;
+    }
+    
+    .clickable-benefit-box span:nth-child(2) {
+      font-size: 0.9rem !important;
+      margin: 0 4px !important;
+    }
+    
+    .clickable-benefit-box > div > div:last-child {
+      font-size: 0.7rem !important;
+      margin-top: 2px !important;
+      line-height: 1.2 !important;
+    }
+    
+    /* 터치 중일 때 추가 효과 */
+    .clickable-benefit-box.touching {
+      transform: scale(0.95) !important;
+    }
+    
+    .clickable-benefit-box.touching > div {
+      background: linear-gradient(135deg, rgba(123, 228, 149, 0.35) 0%, rgba(62, 200, 162, 0.25) 100%) !important;
+      border-color: rgba(123, 228, 149, 0.9) !important;
+    }
+  }
 </style>
 
 <!-- PC 환경에서 네오 스마트 영상이 네비게이션 가리지 않도록 z-index 조정 -->
@@ -7516,7 +7224,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
-/* 모바일 환경에서 높은 z-index 유지 */
+/* 모바일 환경에서는 높은 z-index 유지 */
 @media (max-width: 768px) {
   .video-phone,
   .neo-smart-video,
@@ -7524,26 +7232,26 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
   }
   
-     /* PC 버전 팝업 모달 - 캡처 이미지 스타일 */
-   #formModal {
-     position: fixed !important;
-     top: 50% !important;
-     left: 50% !important;
-     transform: translate(-50%, -50%) !important;
-     width: 90% !important;
-     max-width: 600px !important;
-     min-width: 500px !important;
-     padding: 40px !important;
-     background: #1a1a1a !important;
-     border: 2px solid #7BE495 !important;
-     border-radius: 20px !important;
-     color: #fff !important;
-     z-index: 2147483648 !important;
-     box-sizing: border-box !important;
-     max-height: 90vh !important;
-     overflow-y: auto !important;
-     box-shadow: 0 0 50px rgba(123, 228, 149, 0.3) !important;
-   }
+  /* 모바일 팝업 모달 정렬 수정 */
+  #formModal {
+    width: 85% !important;
+    max-width: 350px !important;
+    padding: 20px !important;
+    left: 7.5% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    min-width: 280px !important;
+    box-sizing: border-box !important;
+    position: absolute !important;
+    right: auto !important;
+    z-index: 2147483648 !important;
+    background: #000 !important;
+    border: 2px solid #3AC8A8 !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
   
   #formModal form {
     width: 100% !important;
@@ -7568,28 +7276,26 @@ document.addEventListener('DOMContentLoaded', function() {
     align-self: center !important;
   }
   
-  /* 모바일에서 모든 오버레이 완전 비활성화 */
-  .modal-overlay,
-  .modal-overlay.active,
-  #modalOverlay,
-  #mobileForceOverlay,
-  #mobileDarkOverlay,
-  #mobileUltraOverlay,
-  #mobileBackup1,
-  #mobileBackup2,
-  [id*="overlay"],
-  [id*="Overlay"] {
+  /* 팝업 배경 오버레이 - 모바일 배경 어둡게 효과 */
+  .modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    z-index: 2147483646 !important; /* 모달보다 뒤에 위치 */
     display: none !important;
-    visibility: hidden !important;
+    pointer-events: auto !important;
     opacity: 0 !important;
-    pointer-events: none !important;
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
-    width: 0 !important;
-    height: 0 !important;
-    background: transparent !important;
-    z-index: -1 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  }
+  
+  .modal-overlay.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
@@ -7617,126 +7323,26 @@ document.addEventListener('DOMContentLoaded', function() {
   opacity: 1 !important;
 }
 
-/* 모바일 전용 강제 오버레이 스타일 제거됨 */
-
-/* 사전 예약하기 버튼 - 네온 글로우 스타일 */
-.reservation-btn {
-  animation: neonGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes neonGlow {
-  0% {
-    box-shadow: 
-      0 0 20px rgba(123, 228, 149, 0.4),
-      0 0 40px rgba(123, 228, 149, 0.3),
-      inset 0 0 15px rgba(123, 228, 149, 0.1);
-    text-shadow: 
-      0 0 8px rgba(123, 228, 149, 0.6),
-      0 0 15px rgba(123, 228, 149, 0.4);
-  }
-  100% {
-    box-shadow: 
-      0 0 40px rgba(123, 228, 149, 0.7),
-      0 0 80px rgba(123, 228, 149, 0.5),
-      inset 0 0 25px rgba(123, 228, 149, 0.2);
-    text-shadow: 
-      0 0 15px rgba(123, 228, 149, 1),
-      0 0 25px rgba(123, 228, 149, 0.8),
-      0 0 35px rgba(123, 228, 149, 0.6);
-  }
-}
-
-/* PC 환경에서 호버 효과 및 텍스트 크기 조정 */
-@media (min-width: 769px) {
-  .reservation-btn:hover {
-    transform: translateY(-3px) scale(1.05) !important;
-    box-shadow: 
-      0 0 50px rgba(123, 228, 149, 0.8),
-      0 0 100px rgba(123, 228, 149, 0.6),
-      inset 0 0 30px rgba(123, 228, 149, 0.3) !important;
-    border-color: #7BE495 !important;
-    background: #111 !important;
-    text-shadow: 
-      0 0 20px rgba(123, 228, 149, 1),
-      0 0 30px rgba(123, 228, 149, 0.9),
-      0 0 40px rgba(123, 228, 149, 0.7) !important;
-  }
-  
-  .reservation-btn:active {
-    transform: translateY(-1px) scale(1.02) !important;
-    transition: all 0.1s ease !important;
-  }
-  
-  /* PC 환경에서 혜택 안내 텍스트 더 크게 */
-  .benefit-text-container > div:first-child {
-    font-size: 1.6rem !important;
-  }
-  
-  .benefit-text-container > div:first-child span:nth-child(2) {
-    font-size: 1.8rem !important;
-  }
-  
-  .benefit-text-container > div:nth-child(2),
-  .benefit-text-container > div:nth-child(3) {
-    font-size: 1.4rem !important;
-  }
-  
-  /* PC에서 네온 효과 더 강하게 */
-  .neon-benefit-text {
-    text-shadow: 
-      0 0 5px #7BE495,
-      0 0 10px #7BE495,
-      0 0 15px #7BE495,
-      0 0 20px #7BE495;
-  }
-}
-
-/* 네온 혜택 텍스트 애니메이션 */
-.neon-benefit-text {
-  animation: neonBenefitGlow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes neonBenefitGlow {
-  0% {
-    text-shadow: 
-      0 0 5px #7BE495,
-      0 0 10px #7BE495,
-      0 0 15px #7BE495,
-      0 0 20px #7BE495;
-  }
-  100% {
-    text-shadow: 
-      0 0 8px #7BE495,
-      0 0 15px #7BE495,
-      0 0 25px #7BE495,
-      0 0 35px #7BE495,
-      0 0 45px #62D2A2;
-  }
-}
-
-/* 모바일 환경에서 터치 효과 */
-@media (max-width: 768px) {
-  .reservation-btn {
-    padding: 18px 40px !important;
-    font-size: 1.2rem !important;
-    min-width: 220px !important;
-    -webkit-tap-highlight-color: rgba(123, 228, 149, 0.3) !important;
-    transform: translateX(-83px) !important; /* 좌측으로 5.2칸(83px) 이동 */
-    position: relative !important;
-  }
-  
-  .reservation-btn:active {
-    transform: scale(0.95) !important;
-    background: #111 !important;
-    box-shadow: 
-      0 0 35px rgba(123, 228, 149, 0.8),
-      0 0 70px rgba(123, 228, 149, 0.6) !important;
-    transition: all 0.1s ease !important;
-  }
+/* 모바일 전용 강제 오버레이 스타일 */
+#mobileForceOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  z-index: 2147483646 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 </style>
 
-<!-- 모바일 전용 즉시 적용 스크립트 - 네오핏 스크롤 최적화 방식 -->
+<!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
 // 모바일 환경에서 페이지 로딩 시 즉시 스타일 적용
 (function() {
@@ -7744,25 +7350,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const isMobile = window.innerWidth <= 768;
   
   if (isMobile) {
-    // 즉시 터치 스크롤 활성화 - 네오핏 방식
-    document.documentElement.style.setProperty('touch-action', 'pan-y', 'important');
-    document.documentElement.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-    document.body.style.setProperty('touch-action', 'pan-y', 'important');
-    document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-    document.body.style.setProperty('pointer-events', 'auto', 'important');
-    
-    console.log('📱 모바일 터치 스크롤 즉시 활성화');
-    
-    // 터치 이벤트 즉시 활성화
-    document.addEventListener('touchstart', function() {}, { passive: true });
-    document.addEventListener('touchmove', function() {}, { passive: true });
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
                       const elements = [
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-444px)' },
           { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
-
+          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
           { selector: '#smart', transform: 'translateY(-432px)' }
       ];
       
@@ -7846,12 +7440,158 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 전용 단순 스크롤 보장 - 네오핏 간소화 방식
-    function ensureMobileScroll() {
-      document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
-      document.body.style.setProperty('overflow-y', 'auto', 'important');
+    // 회색 박스 강제 제거 함수
+    function removeGreyBoxes() {
+      // impact 섹션 완전 제거
+      const impactSections = document.querySelectorAll('#impact, div#impact, section#impact, .animate-on-scroll#impact');
+      impactSections.forEach(section => {
+        if (section) {
+          section.remove();
+        }
+      });
+      
+      // 모바일 시스템 UI 요소들 제거
+      const mobileSystemBoxes = document.querySelectorAll('.mobile-ui-position-adjustment, .mobile-system-box, .mobile-system-content, .mobile-system-title');
+      mobileSystemBoxes.forEach(box => {
+        if (box) {
+          box.remove();
+        }
+      });
+      
+      // 무인 출입 시스템과 이벤트 시스템 텍스트를 포함한 요소들 제거
+      const systemElements = document.querySelectorAll('*');
+      systemElements.forEach(el => {
+        if (el.textContent && (
+          el.textContent.includes('무인 출입 시스템 운영 방식') ||
+          el.textContent.includes('이벤트 시스템 연동')
+        )) {
+          const parentBox = el.closest('.mobile-ui-position-adjustment, .mobile-system-box');
+          if (parentBox) {
+            parentBox.remove();
+          }
+        }
+      });
+      
+      // 회색 배경을 가진 모든 div 제거
+      const greyBoxes = document.querySelectorAll('div[style*="background: linear-gradient(135deg, #0F1F1A"], div[style*="background: #0F1A1C"]');
+      greyBoxes.forEach(box => {
+        box.remove();
+      });
+      
+      // 특정 텍스트를 포함한 요소들 제거
+      const textElements = document.querySelectorAll('*');
+      textElements.forEach(el => {
+        if (el.textContent && (
+          el.textContent.includes('헬스장 운영의 패러다임 전환') ||
+          el.textContent.includes('피트니스 시장의 생존 전략') ||
+          el.textContent.includes('NEO HIVE 도입 시 매출 상승 효과') ||
+          el.textContent.includes('NEO SMART 도입 시 비용 절감 효과')
+        )) {
+          const parentDiv = el.closest('div[style*="background"]');
+          if (parentDiv) {
+            parentDiv.remove();
+          }
+        }
+      });
+      
+      // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동 (CSS와 함께 적용)
+      const benefitsSection = document.querySelector('section#benefits');
+      if (benefitsSection) {
+        benefitsSection.style.setProperty('margin-top', '-552px', 'important');
+        benefitsSection.style.setProperty('transform', 'translateY(-32px)', 'important');
+        benefitsSection.style.setProperty('background', '#000', 'important');
+        benefitsSection.style.setProperty('padding-top', '80px', 'important');
+        benefitsSection.style.setProperty('position', 'relative', 'important');
+        benefitsSection.style.setProperty('z-index', '10', 'important');
+        benefitsSection.style.setProperty('display', 'block', 'important');
+        benefitsSection.style.setProperty('visibility', 'visible', 'important');
+        benefitsSection.style.setProperty('opacity', '1', 'important');
+        
+        // 강제로 스타일 재적용
+        benefitsSection.offsetHeight; // 리플로우 강제 트리거
+      }
+      
+      // 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용
+      const costRecoveryText = document.getElementById('mobile-cost-recovery-text');
+      if (costRecoveryText) {
+        costRecoveryText.style.setProperty('text-align', 'center', 'important');
+        costRecoveryText.style.setProperty('transform', 'translateX(16px)', 'important');
+        costRecoveryText.style.setProperty('position', 'relative', 'important');
+        costRecoveryText.style.setProperty('width', '100%', 'important');
+        costRecoveryText.style.setProperty('margin', '0', 'important');
+        costRecoveryText.style.setProperty('padding', '0', 'important');
+        
+        // 강제 리플로우
+        costRecoveryText.offsetHeight;
+      }
+      
+      // 모바일에서 푸터 강제 표시
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.setProperty('display', 'block', 'important');
+        footer.style.setProperty('visibility', 'visible', 'important');
+        footer.style.setProperty('opacity', '1', 'important');
+        footer.style.setProperty('position', 'relative', 'important');
+        footer.style.setProperty('z-index', '10', 'important');
+        footer.style.setProperty('background', '#000', 'important');
+        footer.style.setProperty('color', '#fff', 'important');
+        footer.style.setProperty('padding', '20px', 'important');
+        footer.style.setProperty('margin', '0', 'important');
+        footer.style.setProperty('text-align', 'center', 'important');
+        footer.style.setProperty('font-size', '0.9rem', 'important');
+        
+        // 푸터 내용 확인 및 복구
+        if (!footer.textContent.trim()) {
+          footer.innerHTML = `
+            &copy; 2025 Neo Hive. All Rights Reserved.<br>
+            경기도 김포시 김포한강2로 361, 701동 204호 | 사업자등록번호: 476-24-01901
+          `;
+        }
+        
+        console.log('Mobile footer restored:', footer.textContent);
+      }
+      
+      // 모바일에서 스크롤바 완전 제거
+      document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+      document.documentElement.style.setProperty('scrollbar-width', 'none', 'important');
+      document.documentElement.style.setProperty('-ms-overflow-style', 'none', 'important');
+      document.body.style.setProperty('overflow-x', 'hidden', 'important');
       document.body.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-      console.log('📱 모바일 스크롤 보장');
+      
+      // 회색 가로 바 형태의 요소들 제거
+      const greyBars = document.querySelectorAll('div[style*="background-color: gray"], div[style*="background-color: grey"], div[style*="background: gray"], div[style*="background: grey"], div[style*="height: 4px"], div[style*="height: 5px"], div[style*="height: 8px"]');
+      greyBars.forEach(bar => {
+        if (bar.offsetHeight <= 10 && bar.offsetWidth > 100) {
+          bar.remove();
+        }
+      });
+      
+      // 스크롤 인디케이터 제거
+      const scrollIndicators = document.querySelectorAll('*[class*="scroll"], *[id*="scroll"]');
+      scrollIndicators.forEach(indicator => {
+        if (indicator.offsetHeight <= 10 && indicator.offsetWidth > 100) {
+          indicator.style.display = 'none';
+        }
+      });
+      
+      // 여백을 만드는 빈 div들 제거 (발광효과는 보호)
+      const emptyDivs = document.querySelectorAll('div:empty, div[style*="height"], div[style*="margin"]');
+      emptyDivs.forEach(div => {
+        // 발광효과 요소는 보호
+        if (div.classList.contains('circular-bg-glow')) {
+          return;
+        }
+        
+        const computedStyle = window.getComputedStyle(div);
+        const height = parseInt(computedStyle.height);
+        const marginTop = parseInt(computedStyle.marginTop);
+        const marginBottom = parseInt(computedStyle.marginBottom);
+        
+        // 큰 여백이나 높이를 가진 빈 요소들 제거
+        if ((height > 50 || marginTop > 50 || marginBottom > 50) && div.children.length === 0) {
+          div.remove();
+        }
+      });
     }
     
     
@@ -7878,16 +7618,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 페이지 로딩 완료 처리 - 네오핏 간소화 방식
+    // 모바일 페이지 로딩 완료 처리
     function showMobilePage() {
-      ensureMobileScroll(); // 단순 스크롤 보장
+      removeGreyBoxes(); // 회색 박스 먼저 제거
+      forceApplyMobileStyles();
+      adjustMobileIcons();
+      restoreGlowEffect(); // 발광효과 복구
       
-      // 페이지 표시 - 네오핏 방식
+      // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
-        document.body.style.opacity = '1';
-        console.log('📱 모바일 페이지 로딩 완료');
-      }, 30);
+        removeGreyBoxes(); // 한 번 더 제거
+        restoreGlowEffect(); // 발광효과 재복구
+      }, 50);
     }
     
     // 즉시 실행 (HTML 파싱과 동시에)
@@ -7901,7 +7644,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 페이지 완전 로드 시 재실행 (최종 보험)
     window.addEventListener('load', showMobilePage);
     
-    // MutationObserver로 DOM 변경 감지 시 재적용 - 간소화
+    // MutationObserver로 DOM 변경 감지 시 재적용
     const observer = new MutationObserver(function(mutations) {
       let shouldReapply = false;
       mutations.forEach(function(mutation) {
@@ -7910,7 +7653,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       if (shouldReapply) {
-        ensureMobileScroll(); // 스크롤 보장만 재적용
+        removeGreyBoxes(); // 회색 박스 제거
+        forceApplyMobileStyles();
+        adjustMobileIcons();
+        restoreGlowEffect(); // 발광효과 복구
       }
     });
     
@@ -7934,667 +7680,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   } else {
     // PC 환경에서는 body 즉시 표시
-    document.body.style.display = 'block';
     document.body.style.opacity = '1';
   }
 })();
 </script>
-
-<!-- 모바일 스크롤 최적화 CSS - 네오핏 간소화 방식 적용 -->
-<style>
-@media (max-width: 768px) {
-  /* 모바일에서만 애니메이션 비활성화 - 네오핏 성공 방식 */
-  .animate-on-scroll { 
-    animation: none !important; 
-    transition: none !important; 
-  }
-  
-  /* 즉시 터치 스크롤 활성화 */
-  html, body {
-    touch-action: pan-y !important;
-    -webkit-overflow-scrolling: touch !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* 전역 스크롤 최적화 */
-  * {
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 네비게이션 기본 설정 */
-  #mobile-top-nav-fixed {
-    pointer-events: auto !important;
-  }
-  
-  /* 단순 Neo Hive 스크롤 허용 */
-  #hive {
-    touch-action: pan-y !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 모바일 전용 무인 출입 시스템 UI 스타일 */
-  .mobile-system-ui-new {
-    display: block !important;
-    width: 100%;
-    padding: 0 16px;
-  }
-  
-  .mobile-system-card {
-    background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%);
-    border-radius: 16px;
-    padding: 20px;
-    border: 1px solid rgba(123, 228, 149, 0.3);
-    box-shadow: 0 4px 16px rgba(123, 228, 149, 0.1);
-  }
-  
-  .mobile-system-header {
-    display: flex;
-    align-items: center;
-    color: #7BE495;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 16px;
-    text-shadow: 0 0 8px rgba(123, 228, 149, 0.5);
-  }
-  
-  .mobile-system-content-new {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .mobile-system-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: #fff;
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  
-  .step-num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    background: #7BE495;
-    color: #000;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    font-weight: bold;
-    flex-shrink: 0;
-  }
-}
-
-/* PC에서는 숨김 */
-@media (min-width: 769px) {
-  .mobile-system-ui-new {
-    display: none !important;
-  }
-}
-
-/* 모바일 전용 무인 출입 시스템 UI 반응형 스타일 */
-@media (max-width: 768px) {
-  .mobile-system-ui-container {
-    display: block !important;
-    margin: 32px 16px !important;
-    padding: 0 !important;
-  }
-  
-  .mobile-system-card-new {
-    margin-bottom: 24px !important;
-    border-radius: 16px !important;
-    padding: 20px 16px !important;
-    box-shadow: 0 4px 16px rgba(123, 228, 149, 0.12) !important;
-    background: linear-gradient(135deg, #0C1F13 0%, #04120A 100%) !important;
-    border: 1px solid rgba(123, 228, 149, 0.3) !important;
-  }
-  
-  .mobile-system-header-new h3 {
-    font-size: 1rem !important;
-    text-shadow: 0 0 6px rgba(123, 228, 149, 0.5) !important;
-  }
-  
-  .mobile-system-header-new img {
-    width: 28px !important;
-    height: 28px !important;
-    padding: 4px !important;
-  }
-  
-  .mobile-system-steps {
-    padding: 14px !important;
-    background: rgba(123, 228, 149, 0.04) !important;
-  }
-  
-  .mobile-step-item {
-    margin-bottom: 10px !important;
-    align-items: flex-start !important;
-  }
-  
-  .mobile-step-item:last-child {
-    margin-bottom: 0 !important;
-  }
-  
-  .mobile-step-item .step-number {
-    width: 22px !important;
-    height: 22px !important;
-    font-size: 0.75rem !important;
-    margin-top: 1px !important;
-  }
-  
-  .mobile-step-item span:not(.step-number) {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
-    color: #fff !important;
-  }
-  
-  .mobile-event-list {
-    padding: 14px !important;
-    background: rgba(123, 228, 149, 0.04) !important;
-  }
-  
-  .mobile-event-item {
-    margin-bottom: 10px !important;
-  }
-  
-  .mobile-event-item:last-child {
-    margin-bottom: 0 !important;
-  }
-  
-  .mobile-event-item span:not(:first-child) {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
-    color: #fff !important;
-  }
-  
-  .mobile-summary {
-    padding: 10px 12px !important;
-    background: rgba(62, 210, 162, 0.06) !important;
-    border-radius: 6px !important;
-    margin-top: 14px !important;
-  }
-  
-  .mobile-summary img {
-    width: 20px !important;
-    height: 20px !important;
-    margin-right: 8px !important;
-  }
-  
-  .mobile-summary span {
-    font-size: 0.8rem !important;
-    line-height: 1.3 !important;
-    color: #62D2A2 !important;
-    font-weight: 500 !important;
-  }
-}
-
-/* PC에서는 모바일 UI 완전 숨김 */
-@media (min-width: 769px) {
-  .mobile-system-ui-container {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-  }
-}
-
-/* 모바일 환경에서 컴팩트한 팝업 디자인 - 헤더 없음 */
-@media (max-width: 768px) {
-  #formModal {
-    position: fixed !important;
-    top: 80px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 90% !important;
-    max-width: 380px !important;
-    min-width: 300px !important;
-    padding: 25px !important;
-    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #111 100%) !important;
-    border: 2px solid #7BE495 !important;
-    border-radius: 20px !important;
-    color: #fff !important;
-    box-shadow: 
-      0 0 25px rgba(123, 228, 149, 0.5),
-      0 0 50px rgba(123, 228, 149, 0.3) !important;
-    z-index: 2147483650 !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-    max-height: calc(100vh - 100px) !important;
-    animation: mobileModalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-    /* 모바일 브라우저의 뷰포트 문제 해결 */
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    /* 스크롤 시에도 위치 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
-  }
-  
-  /* 더 높은 우선순위로 모바일 팝업 위치 강제 설정 */
-  #formModal[style*="display: block"],
-  #formModal[style*="display:block"] {
-    position: fixed !important;
-    top: 80px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    /* 스크롤 시에도 위치 절대 고정 */
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
-  /* 모바일 환경에서 팝업 위치 완전 고정 - 최고 우선순위 */
-  body #formModal,
-  html #formModal {
-    position: fixed !important;
-    top: 80px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    will-change: transform !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
-  }
-  
-  /* 모바일 환경에서 팝업 표시 시 스크롤 제어 */
-  body.modal-open {
-    overflow: hidden !important;
-    position: fixed !important;
-    width: 100% !important;
-    height: 100% !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  
-  /* 모바일 환경에서 팝업 위치 안정화 */
-  #formModal {
-    -webkit-transform: translateX(-50%) !important;
-    -moz-transform: translateX(-50%) !important;
-    -ms-transform: translateX(-50%) !important;
-    -o-transform: translateX(-50%) !important;
-    transform: translateX(-50%) !important;
-    -webkit-transform-origin: 50% 0 !important;
-    -moz-transform-origin: 50% 0 !important;
-    -ms-transform-origin: 50% 0 !important;
-    -o-transform-origin: 50% 0 !important;
-    transform-origin: 50% 0 !important;
-  }
-  
-  @keyframes mobileModalSlideIn {
-    0% {
-      transform: translateX(-50%) translateY(-20px) scale(0.9);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(-50%) translateY(0) scale(1);
-      opacity: 1;
-    }
-  }
-  
-  #formModal[style*="display: block"] {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  /* 모바일에서 헤더 완전히 숨김 */
-  #formModal .modal-header {
-    display: none !important;
-  }
-  
-  /* 모바일에서 바디 패딩 조정 */
-  #formModal .modal-body {
-    padding: 0 !important;
-  }
-  
-  #formModal form {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-  }
-  
-  #formModal input,
-  #formModal textarea,
-  #formModal select {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    font-size: 16px !important;
-    padding: 12px !important;
-    margin-bottom: 8px !important;
-    border: 1px solid #7BE495 !important;
-    border-radius: 8px !important;
-    background: #111 !important;
-    color: #fff !important;
-    transition: all 0.3s ease !important;
-  }
-  
-  #formModal input:focus,
-  #formModal textarea:focus,
-  #formModal select:focus {
-    border-color: #7BE495 !important;
-    box-shadow: 0 0 15px rgba(123, 228, 149, 0.4) !important;
-    outline: none !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-  }
-  
-  #formModal textarea {
-    min-height: 80px !important;
-    resize: vertical !important;
-  }
-  
-  /* 플레이스홀더 스타일 */
-  #formModal input::placeholder,
-  #formModal textarea::placeholder {
-    color: #aaa !important;
-    opacity: 1 !important;
-  }
-  
-  /* 셀렉트 박스 */
-  #formModal select {
-    appearance: none !important;
-    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237BE495'><path d='M7 10l5 5 5-5z'/></svg>") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 12px center !important;
-    background-size: 16px !important;
-    cursor: pointer !important;
-  }
-  
-  /* 컴팩트한 제출 버튼 */
-  #formModal .btn {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: auto !important;
-    padding: 15px 20px !important;
-    box-sizing: border-box !important;
-    margin: 10px 0 0 0 !important;
-    background: linear-gradient(135deg, #7BE495, #62D2A2) !important;
-    color: #000 !important;
-    border: none !important;
-    border-radius: 12px !important;
-    font-weight: bold !important;
-    font-size: 1rem !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.3) !important;
-  }
-  
-  #formModal .btn:hover,
-  #formModal .btn:active {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.4) !important;
-  }
-  
-  /* 간소화된 닫기 버튼 */
-  #formModal button[onclick="closeForm()"] {
-    position: absolute !important;
-    top: 12px !important;
-    right: 12px !important;
-    background: rgba(0, 0, 0, 0.6) !important;
-    border: 1px solid #7BE495 !important;
-    color: #7BE495 !important;
-    font-size: 18px !important;
-    width: 30px !important;
-    height: 30px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    border-radius: 50% !important;
-    transition: all 0.3s ease !important;
-    line-height: 1 !important;
-  }
-  
-  #formModal button[onclick="closeForm()"]:hover {
-    background: #7BE495 !important;
-    color: #000 !important;
-    transform: scale(1.1) !important;
-  }
-  
-  /* 모바일에서 모든 오버레이 완전 제거 - 강력한 차단 */
-  #modalOverlay,
-  .modal-overlay,
-  .modal-overlay.active,
-  #mobileForceOverlay,
-  #mobileDarkOverlay,
-  #mobileUltraOverlay,
-  #mobileBackup1,
-  #mobileBackup2,
-  [id*="overlay"],
-  [id*="Overlay"],
-  [class*="overlay"],
-  [class*="Overlay"],
-  .overlay,
-  .Overlay,
-  div[style*="background: rgba(0, 0, 0"],
-  div[style*="background: rgba(0,0,0"],
-  div[style*="position: fixed"][style*="top: 0"][style*="left: 0"],
-  div[style*="z-index: 1000000"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
-    width: 0 !important;
-    height: 0 !important;
-    background: transparent !important;
-    z-index: -9999 !important;
-    transform: translateX(-9999px) !important;
-    -webkit-transform: translateX(-9999px) !important;
-  }
-  
-  /* 가상 요소 오버레이도 제거 */
-  *::before,
-  *::after {
-    background: transparent !important;
-  }
-  
-  /* 특정 가상 요소 오버레이 제거 */
-  [class*="overlay"]::before,
-  [class*="overlay"]::after,
-  [class*="Overlay"]::before,
-  [class*="Overlay"]::after,
-  .overlay::before,
-  .overlay::after,
-  .Overlay::before,
-  .Overlay::after {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    content: none !important;
-  }
-}
-
-/* PC 환경에서 팝업창 - 캡처 이미지 디자인 */
-@media (min-width: 769px) {
-     #formModal {
-     position: fixed !important;
-     top: 50% !important;
-     left: 50% !important;
-     transform: translate(-50%, -50%) !important;
-     width: 90% !important;
-     max-width: 600px !important;
-     min-width: 500px !important;
-     padding: 40px !important;
-     background: #0d0d0d !important;
-     border: 2px solid #7BE495 !important;
-     border-radius: 20px !important;
-     color: #fff !important;
-     z-index: 2147483647 !important;
-     box-sizing: border-box !important;
-     max-height: 90vh !important;
-     overflow-y: auto !important;
-     box-shadow: 0 0 50px rgba(123, 228, 149, 0.3) !important;
-   }
-  
-  /* PC에서는 모달 헤더 숨김 */
-  #formModal .modal-header {
-    display: none !important;
-  }
-  
-  /* PC에서는 모달 바디 패딩 제거 (헤더가 없으므로) */
-  #formModal .modal-body {
-    padding: 0 !important;
-  }
-  
-  #formModal form {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 0 !important;
-  }
-  
-     /* 캡처 이미지 스타일 - 모든 입력 필드 */
-   #formModal input,
-   #formModal textarea,
-   #formModal select {
-     width: 100% !important;
-     padding: 16px 20px !important;
-     background: #000 !important;
-     border: 2px solid #7BE495 !important;
-     border-radius: 12px !important;
-     color: #fff !important;
-     font-size: 16px !important;
-     font-family: inherit !important;
-     box-sizing: border-box !important;
-     outline: none !important;
-     transition: all 0.3s ease !important;
-     margin-bottom: 0 !important;
-   }
-   
-   /* 텍스트영역 특별 설정 - 캡처 이미지처럼 크게 */
-   #formModal textarea {
-     min-height: 120px !important;
-     resize: vertical !important;
-   }
-  
-  #formModal input::placeholder,
-  #formModal textarea::placeholder {
-    color: #888 !important;
-    opacity: 1 !important;
-  }
-  
-  #formModal input:focus,
-  #formModal textarea:focus,
-  #formModal select:focus {
-    border-color: #5BC978 !important;
-    box-shadow: 0 0 15px rgba(123, 228, 149, 0.3) !important;
-  }
-  
-  /* 드롭다운 화살표 스타일 */
-  #formModal select {
-    appearance: none !important;
-    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M7 10l5 5 5-5z'/></svg>") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 15px center !important;
-    background-size: 16px !important;
-  }
-  
-  /* 신청서 보내기 버튼 - 캡처 이미지 스타일 */
-  #formModal .btn {
-    width: 100% !important;
-    padding: 16px 24px !important;
-    background: #7BE495 !important;
-    color: #000 !important;
-    border: none !important;
-    border-radius: 12px !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    margin-top: 10px !important;
-    margin-bottom: 0 !important;
-  }
-  
-  #formModal .btn:hover {
-    background: #5BC978 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 20px rgba(123, 228, 149, 0.4) !important;
-  }
-  
-  /* PC 환경 닫기 버튼 - 원형 디자인 */
-  #formModal button[onclick="closeForm()"] {
-    position: absolute !important;
-    top: 20px !important;
-    right: 20px !important;
-    background: linear-gradient(135deg, rgba(123, 228, 149, 0.1), rgba(123, 228, 149, 0.2)) !important;
-    border: 2px solid #7BE495 !important;
-    color: #7BE495 !important;
-    font-size: 16px !important;
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    max-width: 38px !important;
-    max-height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    border-radius: 50% !important;
-    -webkit-border-radius: 50% !important;
-    -moz-border-radius: 50% !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    line-height: 1 !important;
-    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.2) !important;
-    font-weight: bold !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-  }
-  
-  #formModal button[onclick="closeForm()"]:hover {
-    background: linear-gradient(135deg, #7BE495, #5BC978) !important;
-    color: #000 !important;
-    transform: scale(1.1) rotate(90deg) !important;
-    box-shadow: 0 6px 20px rgba(123, 228, 149, 0.4) !important;
-    border-color: #5BC978 !important;
-  }
-  
-  #formModal button[onclick="closeForm()"]:active {
-    transform: scale(1.0) rotate(90deg) !important;
-    box-shadow: 0 3px 12px rgba(123, 228, 149, 0.6) !important;
-  }
-  
-  /* PC 환경 닫기 버튼 내부 아이콘 스타일 */
-  #formModal button[onclick="closeForm()"]:before {
-    content: "✕" !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    line-height: 1 !important;
-  }
-  
-  /* PC 오버레이 스타일 */
-  #modalOverlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0, 0, 0, 0.85) !important;
-    z-index: 2147483645 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-}
-}
-}
-</style>
 </body>
 </html>
