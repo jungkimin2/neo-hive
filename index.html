@@ -12,24 +12,39 @@
 @media screen and (max-width: 768px) and (orientation: portrait),
        screen and (max-width: 768px) and (orientation: landscape) {
   
-  /* 페이지 로딩 시 즉시 적용되는 모바일 전용 transform */
+  /* 스크롤 성능 최적화 */
+  * {
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 하드웨어 가속 비활성화로 스크롤 버벅임 해결 */
+  .mobile-ui-position-adjustment,
+  #mobile-moved-merged-box,
+  .core-value-fresh-mobile,
+  #smart,
+  .video-phone {
+    will-change: unset !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-transform: translate3d(0,0,0) !important;
+    transform: translate3d(0,0,0) !important;
+  }
+  
+  /* 페이지 로딩 시 즉시 적용되는 모바일 전용 위치 조정 */
   .mobile-ui-position-adjustment {
-    transform: translateY(-384px) !important;
-    -webkit-transform: translateY(-384px) !important;
+    margin-top: -384px !important;
     position: relative !important;
     z-index: 9999 !important;
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-312px) !important;
-    -webkit-transform: translateY(-312px) !important;
+    margin-top: -312px !important;
     position: relative !important;
     z-index: 10 !important;
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-364.8px) !important;
-    -webkit-transform: translateY(-364.8px) !important;
+    margin-top: -364.8px !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -37,28 +52,26 @@
     justify-content: flex-start !important;
   }
   
-
-  
   #smart {
-    transform: translateY(-456px) !important;
-    -webkit-transform: translateY(-456px) !important;
+    margin-top: -456px !important;
     position: relative !important;
   }
 
   /* 모바일 환경에서 .neos-wrapper 요소를 좌측으로 4칸(약 64px) 옮김 */
   .neos-wrapper {
     left: calc(15% - 64px) !important;
-    transform: translateY(-50%) !important;
+    top: 50% !important;
+    margin-top: -50% !important;
   }
 
-  /* 모바일 환경에서 video-phone 즉시 고정 위치 설정 */
+  /* 모바일 환경에서 video-phone 고정 위치 설정 */
   .video-phone {
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    -webkit-transform: translate(-50%, -50%) !important;
-    z-index: 2147483646 !important;
+    margin-left: -90px !important;
+    margin-top: -180px !important;
+    z-index: 100 !important;
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
@@ -71,15 +84,12 @@
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
     overflow: hidden !important;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
-    will-change: auto !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
   }
   
   /* 모바일 전용 페이지 로딩 시 깜빡임 방지 */
   body {
-    opacity: 0 !important;
-    transition: opacity 0.1s ease-in !important;
+    opacity: 1 !important;
+    transition: none !important;
   }
   
   body.mobile-loaded {
@@ -95,6 +105,19 @@
   #smart {
     transform: none !important;
     -webkit-transform: none !important;
+  }
+  
+  /* PC에서는 기존 라벨 표시 */
+  .hive-label-left,
+  .hive-label-right {
+    display: flex !important;
+  }
+  
+  /* PC에서는 모바일 라벨 숨김 - 강제 적용 */
+  .mobile-image-label {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 }
 
@@ -522,6 +545,16 @@ div > p.smart-guide-text {
     opacity: 1;
     transform: translateY(0);
   }
+  
+  /* 모바일에서 애니메이션 비활성화 */
+  @media screen and (max-width: 768px) {
+    .animate-on-scroll,
+    .section.animate-on-scroll {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
 
   @keyframes typing {
     from { width: 0; }
@@ -744,40 +777,109 @@ div > p.smart-guide-text {
        display: flex !important;
        align-items: center !important;
        justify-content: center !important;
-       margin: 80px 0 !important;
+       margin: 80px 0 100px 0 !important; /* 하단 여백 추가 */
        padding: 0 16px !important;
        width: 100% !important;
        height: 350px !important;
        overflow: visible !important;
      }
     
-    /* 모바일에서 하이브 라벨 위치 조정 */
+    /* 모바일에서 하이브 라벨 위치 조정 - 이미지 하단에 배치 */
     .hive-label-left {
-      top: 70px !important;
-      left: 6px !important;
-      font-size: 0.7rem !important;
-      padding: 3px 6px !important;
-      z-index: 25 !important;
-    }
-    
-    .hive-label-left img {
-      width: 16px !important;
-      height: 16px !important;
-      margin-right: 3px !important;
+      display: none !important; /* 기존 라벨 숨김 */
     }
     
     .hive-label-right {
-      top: 70px !important;
-      right: -11px !important;
-      font-size: 0.7rem !important;
-      padding: 3px 6px !important;
-      z-index: 25 !important;
+      display: none !important; /* 기존 라벨 숨김 */
     }
     
-    .hive-label-right img {
+    /* 모바일 전용 이미지 하단 라벨 */
+    .hive-showcase {
+      position: relative !important;
+    }
+    
+    .mobile-image-label {
+      position: absolute !important;
+      background: rgba(0, 0, 0, 0.9) !important;
+      padding: 6px 12px !important;
+      border-radius: 16px !important;
+      color: #7BE495 !important;
+      font-size: 0.7rem !important;
+      font-weight: 600 !important;
+      white-space: nowrap !important;
+      z-index: 50 !important; /* z-index 증가 */
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      border: 1.5px solid #7BE495 !important;
+      text-shadow: 0 0 8px rgba(123, 228, 149, 0.8) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+      transition: opacity 0.3s ease !important;
+      pointer-events: none !important;
+      visibility: visible !important;
+    }
+    
+    /* 라벨 위치를 이미지 index에 따라 동적으로 설정 */
+    .mobile-image-label[data-index="0"] {
+      left: calc(50% - 112px) !important;
+      top: calc(60% + 100px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    .mobile-image-label[data-index="1"] {
+      left: calc(50% - 147px) !important;
+      top: calc(60% + 95px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    .mobile-image-label[data-index="2"] {
+      left: calc(50% - 182px) !important;
+      top: calc(60% + 90px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    .mobile-image-label[data-index="3"] {
+      left: calc(50% + 42px) !important;
+      top: calc(60% + 100px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    .mobile-image-label[data-index="4"] {
+      left: calc(50% + 77px) !important;
+      top: calc(60% + 95px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    .mobile-image-label[data-index="5"] {
+      left: calc(50% + 112px) !important;
+      top: calc(60% + 90px) !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+    }
+    
+    /* 활성 이미지의 라벨 숨김 */
+    .hive-image.active + .mobile-image-label {
+      opacity: 0 !important;
+    }
+    
+    .mobile-image-label img {
       width: 16px !important;
       height: 16px !important;
-      margin-right: 3px !important;
+      filter: brightness(1.2) !important;
+    }
+    
+    /* 왼쪽 이미지들 라벨 */
+    .hive-image:nth-of-type(1) .mobile-image-label,
+    .hive-image:nth-of-type(2) .mobile-image-label,
+    .hive-image:nth-of-type(3) .mobile-image-label {
+      /* 팀 결성 라벨 */
+    }
+    
+    /* 오른쪽 이미지들 라벨 */
+    .hive-image:nth-of-type(4) .mobile-image-label,
+    .hive-image:nth-of-type(5) .mobile-image-label,
+    .hive-image:nth-of-type(6) .mobile-image-label {
+      /* 제휴센터 예약 라벨 */
     }
     
     /* 모바일에서는 모바일용 텍스트만 표시 */
@@ -799,63 +901,81 @@ div > p.smart-guide-text {
     .hive-label-right img {
       transition: all 0.5s ease-out !important;
     }
-           /* 모바일 하이브 이미지 기본 설정 */
+           /* 모바일 하이브 이미지 기본 설정 - 극도의 성능 최적화 */
      .hive-image {
        position: absolute !important;
        width: 70px !important;
        height: auto !important;
        border-radius: 12px !important;
        opacity: 1 !important;
-       transition: all 0.4s ease-out !important;
+       /* 트랜지션 제거하고 JS에서 처리 */
+       transition: none !important;
        cursor: pointer !important;
        object-fit: cover !important;
        display: block !important;
        visibility: visible !important;
+       /* will-change 제거로 메모리 절약 */
+       will-change: auto !important;
+       -webkit-backface-visibility: hidden !important;
+       backface-visibility: hidden !important;
+       /* 3D 레이어 강제 생성 */
+       -webkit-transform: translateZ(0) !important;
+       transform: translateZ(0) !important;
+       /* 이미지 렌더링 최적화 */
+       image-rendering: -webkit-optimize-contrast !important;
+       image-rendering: crisp-edges !important;
      }
      
-     /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 */
+     /* 모바일 중앙 기점 좌우 배치 - nth-of-type 사용 - 3D 가속 적용 */
      .hive-image:nth-of-type(1) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(-160%, -50%) scale(0.9) !important;
+       transform: translate3d(-160%, -50%, 0) scale3d(0.9, 0.9, 1) !important;
+       -webkit-transform: translate3d(-160%, -50%, 0) scale3d(0.9, 0.9, 1) !important;
        z-index: 3 !important;
      }
      .hive-image:nth-of-type(2) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(-210%, -50%) scale(0.8) !important;
+       transform: translate3d(-210%, -50%, 0) scale3d(0.8, 0.8, 1) !important;
+       -webkit-transform: translate3d(-210%, -50%, 0) scale3d(0.8, 0.8, 1) !important;
        z-index: 2 !important;
      }
      .hive-image:nth-of-type(3) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(-260%, -50%) scale(0.7) !important;
+       transform: translate3d(-260%, -50%, 0) scale3d(0.7, 0.7, 1) !important;
+       -webkit-transform: translate3d(-260%, -50%, 0) scale3d(0.7, 0.7, 1) !important;
        z-index: 1 !important;
      }
      .hive-image:nth-of-type(4) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(60%, -50%) scale(0.9) !important;
+       transform: translate3d(60%, -50%, 0) scale3d(0.9, 0.9, 1) !important;
+       -webkit-transform: translate3d(60%, -50%, 0) scale3d(0.9, 0.9, 1) !important;
        z-index: 3 !important;
      }
      .hive-image:nth-of-type(5) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(110%, -50%) scale(0.8) !important;
+       transform: translate3d(110%, -50%, 0) scale3d(0.8, 0.8, 1) !important;
+       -webkit-transform: translate3d(110%, -50%, 0) scale3d(0.8, 0.8, 1) !important;
        z-index: 2 !important;
      }
      .hive-image:nth-of-type(6) {
        left: 50% !important;
        top: 60% !important;
-       transform: translate(160%, -50%) scale(0.7) !important;
+       transform: translate3d(160%, -50%, 0) scale3d(0.7, 0.7, 1) !important;
+       -webkit-transform: translate3d(160%, -50%, 0) scale3d(0.7, 0.7, 1) !important;
        z-index: 1 !important;
      }
      
-     /* 모바일 활성 이미지 */
+     /* 모바일 활성 이미지 - 3D 가속 */
      .hive-image.active {
        left: 50% !important;
        top: 50% !important;
-       transform: translate(-50%, -50%) scale(1.2) !important;
+       transform: translate3d(-50%, -50%, 0) scale3d(1.2, 1.2, 1) !important;
+       -webkit-transform: translate3d(-50%, -50%, 0) scale3d(1.2, 1.2, 1) !important;
        z-index: 10 !important;
        width: 140px !important;
        height: 280px !important;
@@ -1349,6 +1469,96 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 </style>
 <body>
 <style>
+/* 모바일에서 스크롤 걸림 해결 */
+@media (max-width: 768px) {
+  /* 애니메이션으로 인한 스크롤 걸림 방지 */
+  .section.animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* 하이브 섹션 특별 처리 */
+  #hive {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  
+  /* 스크롤 성능 향상 */
+  html, body {
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: auto !important;
+    /* 오버스크롤 동작 개선 */
+    overscroll-behavior-y: contain !important;
+  }
+  
+  /* 모든 요소의 will-change 제거 */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* position fixed 요소들이 터치 이벤트를 가로채지 않도록 */
+  #mobile-top-nav-fixed {
+    pointer-events: none !important;
+  }
+  
+  #mobile-top-nav-fixed * {
+    pointer-events: auto !important;
+  }
+  
+  /* 문제가 되는 텍스트 영역 특별 처리 */
+  #hive .container {
+    /* 터치 스크롤 허용 */
+    touch-action: pan-y !important;
+    /* 하드웨어 가속 제거 */
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  /* 비디오와 버튼은 클릭 가능 */
+  #hive video,
+  #hive button,
+  #hive img {
+    pointer-events: auto !important;
+  }
+  
+  /* 모바일 슬라이드 트랜지션 최적화 */
+  .hive-image {
+    /* 부드러운 트랜지션을 위한 GPU 가속 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* will-change 제거로 메모리 절약 */
+    will-change: auto !important;
+    /* 트랜지션 단순화 */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+  }
+  
+  /* 비디오 폰 트랜지션 최적화 */
+  .video-phone {
+    /* 모바일에서 will-change 제거 */
+    will-change: auto !important;
+    /* 트랜지션 시간 단축 */
+    transition: all 0.25s ease-out !important;
+    /* 3D 변환 최적화 */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  
+  /* 슬라이드 애니메이션 중 다른 요소 최적화 */
+  .hive-showcase.transitioning * {
+    /* 애니메이션 중 다른 요소들의 repaint 방지 */
+    will-change: auto !important;
+  }
+}
 </style>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 10000;">
@@ -1454,12 +1664,29 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <style>
       @media (max-width: 768px) {
         #hive-speaker-btn {
-          left: calc(50% + 142px) !important;
-          top: calc(50% - 152px) !important;
-          width: 70px !important;
-          height: 28px !important;
-          font-size: 9px !important;
-          border-radius: 14px !important;
+          left: 50% !important;
+          top: calc(50% + 195px) !important; /* 영상 중앙에서 195px 아래 (영상 높이 360px/2 + 15px 여백) */
+          transform: translateX(-50%) !important;
+          width: 80px !important;
+          height: 36px !important;
+          font-size: 0.75rem !important;
+          border-radius: 18px !important;
+          background: rgba(0,0,0,0.9) !important;
+          border: 2px solid #7BE495 !important;
+          color: #7BE495 !important;
+          z-index: 100 !important;
+          box-shadow: 0 0 15px rgba(123, 228, 149, 0.5) !important;
+          font-weight: 600 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: all 0.3s ease !important;
+        }
+        
+        #hive-speaker-btn:active {
+          background: #7BE495 !important;
+          color: #000 !important;
+          transform: translateX(-50%) scale(0.95) !important;
         }
       }
       </style>
@@ -4220,6 +4447,47 @@ if (window.innerWidth <= 768) {
   let isTransitioning = false; // 전환 중 중복 클릭 방지
   const hiveImages = document.querySelectorAll('.hive-image');
   const videoPhone = document.querySelector('.video-phone');
+  
+  // RAF 기반 부드러운 애니메이션 함수
+  function animateWithRAF(element, targetStyles, duration, callback) {
+    const startTime = performance.now();
+    const startStyles = {};
+    
+    // 시작 값 저장
+    for (let prop in targetStyles) {
+      if (prop === 'transform' || prop === 'left' || prop === 'top' || prop === 'width' || prop === 'height') {
+        startStyles[prop] = element.style[prop] || getComputedStyle(element)[prop];
+      }
+    }
+    
+    function animate(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // easeOutCubic 이징 함수
+      const eased = 1 - Math.pow(1 - progress, 3);
+      
+      // 스타일 적용
+      if (targetStyles.transform) {
+        element.style.setProperty('transform', targetStyles.transform, 'important');
+        element.style.setProperty('-webkit-transform', targetStyles.transform, 'important');
+      }
+      if (targetStyles.left) element.style.setProperty('left', targetStyles.left, 'important');
+      if (targetStyles.top) element.style.setProperty('top', targetStyles.top, 'important');
+      if (targetStyles.width) element.style.setProperty('width', targetStyles.width, 'important');
+      if (targetStyles.height) element.style.setProperty('height', targetStyles.height, 'important');
+      if (targetStyles.zIndex) element.style.setProperty('z-index', targetStyles.zIndex, 'important');
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        if (callback) callback();
+      }
+    }
+    
+    // 애니메이션 시작
+    requestAnimationFrame(animate);
+  }
 
   // Store original inline style values for transform, left, top, zIndex on page load
   window.addEventListener('load', () => {
@@ -4232,9 +4500,38 @@ if (window.innerWidth <= 768) {
         img.dataset.originalZ = img.style.zIndex;
         img.dataset.index = index;
         
-        // 하드웨어 가속 적용
-        img.style.willChange = 'transform, opacity';
+        // 모바일에서는 will-change 사용 안함
+        if (window.innerWidth > 768) {
+          img.style.willChange = 'transform, opacity';
+        }
         img.style.transform = img.style.transform + ' translateZ(0)';
+        
+        // 모바일에서 이미지 하단 라벨 추가
+        if (window.innerWidth <= 768) {
+          // 기존 라벨이 있으면 제거
+          const existingLabel = document.querySelector(`.mobile-image-label[data-index="${index}"]`);
+          if (existingLabel) {
+            existingLabel.remove();
+          }
+          
+          const label = document.createElement('div');
+          label.className = 'mobile-image-label';
+          label.setAttribute('data-index', index);
+          
+          if (index < 3) {
+            // 왼쪽 이미지들 - 팀 결성
+            label.innerHTML = '<img src="./images/neo33.png" alt="팀 결성"><span>팀 결성</span>';
+          } else {
+            // 오른쪽 이미지들 - 제휴센터 예약
+            label.innerHTML = '<img src="./images/neo41.png" alt="센터 예약"><span>센터 예약</span>';
+          }
+          
+          // hive-showcase에 라벨 추가
+          const showcase = document.querySelector('.hive-showcase');
+          if (showcase) {
+            showcase.appendChild(label);
+          }
+        }
       });
       
       if (videoPhone) {
@@ -4273,16 +4570,23 @@ if (window.innerWidth <= 768) {
         });
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 트랜지션은 클래스로 제어
-            videoPhone.style.setProperty('left', '50%', 'important');
-            videoPhone.style.setProperty('top', '60%', 'important');
-            videoPhone.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-            videoPhone.style.setProperty('z-index', '10', 'important');
-            videoPhone.style.setProperty('width', '180px', 'important');
-            videoPhone.style.setProperty('height', '360px', 'important');
-            videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
-            videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-            videoPhone.style.setProperty('border-radius', '20px', 'important');
+          // 모바일에서 RAF 애니메이션 사용
+            if (!videoPhone.dataset.animating) {
+              videoPhone.dataset.animating = 'true';
+              animateWithRAF(videoPhone, {
+                left: '50%',
+                top: '60%',
+                transform: 'translate3d(-50%, -50%, 0)',
+                zIndex: '10',
+                width: '180px',
+                height: '360px'
+              }, 250, () => {
+                delete videoPhone.dataset.animating;
+                videoPhone.style.setProperty('border', '4px solid #7BE495', 'important');
+                videoPhone.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+                videoPhone.style.setProperty('border-radius', '20px', 'important');
+              });
+            }
           } else {
             // PC에서는 일반 스타일 적용
             videoPhone.style.left = '50%';
@@ -4312,18 +4616,23 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('left', targetPosition.left, 'important');
-            videoPhone.style.setProperty('top', targetPosition.top, 'important');
-            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
-            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
-            videoPhone.style.setProperty('width', '90px', 'important');
-            videoPhone.style.setProperty('height', '180px', 'important');
-            videoPhone.style.setProperty('border', 'none', 'important');
-            videoPhone.style.setProperty('box-shadow', 'none', 'important');
-            videoPhone.style.setProperty('border-radius', '16px', 'important');
+            // 모바일에서 RAF 애니메이션 사용
+            if (!videoPhone.dataset.animating) {
+              videoPhone.dataset.animating = 'true';
+              animateWithRAF(videoPhone, {
+                left: targetPosition.left,
+                top: targetPosition.top,
+                transform: targetPosition.transform,
+                zIndex: targetPosition.zIndex,
+                width: '90px',
+                height: '180px'
+              }, 250, () => {
+                delete videoPhone.dataset.animating;
+                videoPhone.style.setProperty('border', 'none', 'important');
+                videoPhone.style.setProperty('box-shadow', 'none', 'important');
+                videoPhone.style.setProperty('border-radius', '16px', 'important');
+              });
+            }
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4341,12 +4650,23 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-          targetImg.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-          targetImg.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-          targetImg.style.setProperty('left', '50%', 'important');
-          targetImg.style.setProperty('top', '60%', 'important');
-          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          // 모바일에서 RAF 애니메이션 사용
+          if (!targetImg.dataset.animating) {
+            targetImg.dataset.animating = 'true';
+            animateWithRAF(targetImg, {
+              left: '50%',
+              top: '60%',
+              transform: 'translate3d(-50%, -50%, 0) scale3d(1.2, 1.2, 1)',
+              zIndex: '10',
+              width: '180px',
+              height: '360px'
+            }, 250, () => {
+              delete targetImg.dataset.animating;
+              targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+              targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+              targetImg.style.setProperty('border-radius', '20px', 'important');
+            });
+          }
           targetImg.style.setProperty('z-index', '10', 'important');
           targetImg.style.setProperty('width', '180px', 'important');
           targetImg.style.setProperty('height', '360px', 'important');
@@ -4376,14 +4696,14 @@ if (window.innerWidth <= 768) {
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
-      // 모바일용 위치 - CSS nth-of-type(1~6)과 정확히 일치
+      // 모바일용 위치 - 3D 가속을 위해 translate3d 사용
       const positions = [
-        { left: '50%', top: '60%', transform: 'translate(-160%, -50%) scale(0.9)', zIndex: 3 }, // nth-of-type(1) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(-210%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(2) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(-260%, -50%) scale(0.7)', zIndex: 1 }, // nth-of-type(3) - z-index: 1
-        { left: '50%', top: '60%', transform: 'translate(60%, -50%) scale(0.9)', zIndex: 3 },  // nth-of-type(4) - z-index: 3
-        { left: '50%', top: '60%', transform: 'translate(110%, -50%) scale(0.8)', zIndex: 2 }, // nth-of-type(5) - z-index: 2
-        { left: '50%', top: '60%', transform: 'translate(160%, -50%) scale(0.7)', zIndex: 1 }  // nth-of-type(6) - z-index: 1
+        { left: '50%', top: '60%', transform: 'translate3d(-160%, -50%, 0) scale3d(0.9, 0.9, 1)', zIndex: 3 },
+        { left: '50%', top: '60%', transform: 'translate3d(-210%, -50%, 0) scale3d(0.8, 0.8, 1)', zIndex: 2 },
+        { left: '50%', top: '60%', transform: 'translate3d(-260%, -50%, 0) scale3d(0.7, 0.7, 1)', zIndex: 1 },
+        { left: '50%', top: '60%', transform: 'translate3d(60%, -50%, 0) scale3d(0.9, 0.9, 1)', zIndex: 3 },
+        { left: '50%', top: '60%', transform: 'translate3d(110%, -50%, 0) scale3d(0.8, 0.8, 1)', zIndex: 2 },
+        { left: '50%', top: '60%', transform: 'translate3d(160%, -50%, 0) scale3d(0.7, 0.7, 1)', zIndex: 1 }
       ];
       return positions[index] || positions[0];
     } else {
@@ -4423,18 +4743,20 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-       img.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('left', positions.left, 'important');
-       img.style.setProperty('top', positions.top, 'important');
-       img.style.setProperty('transform', positions.transform, 'important');
-       img.style.setProperty('z-index', positions.zIndex, 'important');
-       img.style.setProperty('width', '90px', 'important');
-       img.style.setProperty('height', '180px', 'important');
-       img.style.setProperty('border-radius', '16px', 'important');
-       img.style.setProperty('border', 'none', 'important');
-       img.style.setProperty('box-shadow', 'none', 'important');
+       // 모바일에서는 RAF를 이용한 수동 애니메이션
+       if (!img.dataset.animating) {
+         img.dataset.animating = 'true';
+         animateWithRAF(img, {
+           left: positions.left,
+           top: positions.top,
+           transform: positions.transform,
+           zIndex: positions.zIndex,
+           width: '90px',
+           height: '180px'
+         }, 250, () => {
+           delete img.dataset.animating;
+         });
+       }
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
@@ -5160,21 +5482,45 @@ if (video) {
 
 <style>
   @media (max-width: 768px) {
+    /* 네오 하이브 스피커 버튼을 비디오 하단에 배치 */
+    .hive-showcase {
+      position: relative !important;
+    }
+    
     #slide-prev, #slide-next {
-      top: auto !important;
-      bottom: -20px !important;
-      left: 50% !important;
-      right: auto !important;
-      transform: translateX(-50%) !important;
-      margin: 0 !important;
       position: absolute !important;
-      z-index: 30 !important;
+      top: calc(50% + 190px) !important; /* 비디오 중앙에서 190px 아래 (비디오 높이 360px/2 + 10px 여백) */
+      bottom: auto !important;
+      transform: translateY(-50%) !important;
+      width: 36px !important;
+      height: 36px !important;
+      background: rgba(0,0,0,0.8) !important;
+      border: 1px solid #7BE495 !important;
+      color: #7BE495 !important;
+      font-size: 1.2rem !important;
+      border-radius: 50% !important;
+      cursor: pointer !important;
+      z-index: 100 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: all 0.3s ease !important;
     }
+    
     #slide-prev {
-      left: calc(50% - 40px) !important;
+      left: calc(50% - 50px) !important;
+      right: auto !important;
     }
+    
     #slide-next {
-      left: calc(50% + 40px) !important;
+      right: calc(50% - 50px) !important;
+      left: auto !important;
+    }
+    
+    #slide-prev:active, #slide-next:active {
+      background: #7BE495 !important;
+      color: #000 !important;
+      transform: translateY(-50%) scale(0.95) !important;
     }
   }
 </style>
@@ -8511,5 +8857,56 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 }
 </style>
+<script>
+// 모바일 최적화
+if (window.innerWidth <= 768) {
+  document.addEventListener('DOMContentLoaded', function() {
+    // 스크롤 문제 해결
+    const problemText = Array.from(document.querySelectorAll('p')).find(p => 
+      p.textContent.includes('지역 기반 소모임 헬스 커뮤니티 플랫폼')
+    );
+    
+    if (problemText) {
+      let parent = problemText.parentElement;
+      while (parent && parent !== document.body) {
+        if (getComputedStyle(parent).overflow === 'hidden') {
+          parent.style.overflow = 'visible';
+        }
+        if (getComputedStyle(parent).transform !== 'none') {
+          parent.style.transform = 'none';
+        }
+        parent = parent.parentElement;
+      }
+    }
+    
+    // 슬라이드 트랜지션 최적화
+    const showcase = document.querySelector('.hive-showcase');
+    if (showcase) {
+      // 슬라이드 버튼 클릭 시 트랜지션 최적화
+      const slideButtons = showcase.querySelectorAll('#slide-prev, #slide-next');
+      slideButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // 트랜지션 시작 시 클래스 추가
+          showcase.classList.add('transitioning');
+          
+          // 트랜지션 완료 후 클래스 제거
+          setTimeout(() => {
+            showcase.classList.remove('transitioning');
+          }, 300);
+        });
+      });
+      
+      // 이미지 로딩 최적화
+      const images = showcase.querySelectorAll('.hive-image');
+      images.forEach(img => {
+        // 이미지가 뷰포트에 들어올 때만 로드
+        if ('loading' in HTMLImageElement.prototype) {
+          img.loading = 'lazy';
+        }
+      });
+    }
+  });
+}
+</script>
 </body>
 </html>
