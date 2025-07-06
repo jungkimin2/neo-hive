@@ -4233,6 +4233,37 @@ if (window.innerWidth <= 768) {
         // 하드웨어 가속 적용
         img.style.willChange = 'transform, opacity';
         img.style.transform = img.style.transform + ' translateZ(0)';
+        
+        // 모바일에서 이미지 하단 라벨 추가
+        if (window.innerWidth <= 768) {
+          const existingLabel = document.querySelector(`.mobile-image-label[data-index="${index}"]`);
+          if (!existingLabel) {
+            const label = document.createElement('div');
+            label.className = 'mobile-image-label';
+            label.setAttribute('data-index', index);
+            
+            if (index < 3) {
+              // 왼쪽 이미지들 - 팀 결성
+              label.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#7BE495">
+                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
+                <span>팀 결성</span>`;
+            } else {
+              // 오른쪽 이미지들 - 제휴센터 예약
+              label.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#7BE495">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>센터 예약</span>`;
+            }
+            
+            const showcase = document.querySelector('.hive-showcase');
+            if (showcase) {
+              showcase.appendChild(label);
+            }
+          }
+        }
       });
       
       if (videoPhone) {
