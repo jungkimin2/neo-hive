@@ -4383,16 +4383,18 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용
-            videoPhone.style.setProperty('left', targetPosition.left, 'important');
-            videoPhone.style.setProperty('top', targetPosition.top, 'important');
-            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
-            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
-            videoPhone.style.setProperty('width', '90px', 'important');
-            videoPhone.style.setProperty('height', '180px', 'important');
-            videoPhone.style.setProperty('border', 'none', 'important');
-            videoPhone.style.setProperty('box-shadow', 'none', 'important');
-            videoPhone.style.setProperty('border-radius', '16px', 'important');
+            // 모바일에서만 !important 사용 - 애니메이션을 위한 지연
+            setTimeout(() => {
+              videoPhone.style.setProperty('left', targetPosition.left, 'important');
+              videoPhone.style.setProperty('top', targetPosition.top, 'important');
+              videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
+              videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
+              videoPhone.style.setProperty('width', '90px', 'important');
+              videoPhone.style.setProperty('height', '180px', 'important');
+              videoPhone.style.setProperty('border', 'none', 'important');
+              videoPhone.style.setProperty('box-shadow', 'none', 'important');
+              videoPhone.style.setProperty('border-radius', '16px', 'important');
+            }, 10);
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4410,16 +4412,18 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용
-          targetImg.style.setProperty('left', '50%', 'important');
-          targetImg.style.setProperty('top', '60%', 'important');
-          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-          targetImg.style.setProperty('z-index', '10', 'important');
-          targetImg.style.setProperty('width', '180px', 'important');
-          targetImg.style.setProperty('height', '360px', 'important');
-          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
-          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-          targetImg.style.setProperty('border-radius', '20px', 'important');
+          // 모바일에서만 !important 사용 - 애니메이션을 위한 지연
+          setTimeout(() => {
+            targetImg.style.setProperty('left', '50%', 'important');
+            targetImg.style.setProperty('top', '60%', 'important');
+            targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+            targetImg.style.setProperty('z-index', '10', 'important');
+            targetImg.style.setProperty('width', '180px', 'important');
+            targetImg.style.setProperty('height', '360px', 'important');
+            targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+            targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+            targetImg.style.setProperty('border-radius', '20px', 'important');
+          }, 10);
         } else {
           // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
@@ -4490,17 +4494,19 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 부드러운 트랜지션
-       img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
-       img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
-       img.style.setProperty('left', positions.left, 'important');
-       img.style.setProperty('top', positions.top, 'important');
-       img.style.setProperty('z-index', positions.zIndex, 'important');
-       img.style.setProperty('width', '90px', 'important');
-       img.style.setProperty('height', '180px', 'important');
-       img.style.setProperty('border-radius', '16px', 'important');
-       img.style.setProperty('border', 'none', 'important');
-       img.style.setProperty('box-shadow', 'none', 'important');
+       // 모바일에서 부드러운 트랜지션 - 약간의 지연으로 애니메이션 보장
+       setTimeout(() => {
+         img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
+         img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
+         img.style.setProperty('left', positions.left, 'important');
+         img.style.setProperty('top', positions.top, 'important');
+         img.style.setProperty('z-index', positions.zIndex, 'important');
+         img.style.setProperty('width', '90px', 'important');
+         img.style.setProperty('height', '180px', 'important');
+         img.style.setProperty('border-radius', '16px', 'important');
+         img.style.setProperty('border', 'none', 'important');
+         img.style.setProperty('box-shadow', 'none', 'important');
+       }, 10);
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
