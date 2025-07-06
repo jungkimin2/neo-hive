@@ -530,6 +530,16 @@ div > p.smart-guide-text {
     opacity: 1;
     transform: translateY(0);
   }
+  
+  /* 모바일에서 애니메이션 비활성화 */
+  @media (max-width: 768px) {
+    .animate-on-scroll,
+    .section.animate-on-scroll {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
 
   @keyframes typing {
     from { width: 0; }
@@ -1466,6 +1476,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 <!-- <div id="features"></div> -->
 <section id="hive" class="section" style="background:#000; padding-top:24px;">
   <div class="container" style="text-align:center; padding-top:0;">
+    <h2 style="font-size: 2rem; text-align: left; color: #FFFFFF; margin-top:0;">
+      네오 하이브 : <span class="neon-green">"하나되는 우리"</span>
+    </h2>
+    <p style="margin: 10px 0 24px; color: #aaa; text-align: left; line-height: 1.6;">
+      지역 기반 소모임 헬스 커뮤니티 플랫폼<br><span class="neon-green">커뮤니티와 헬스장을 하나로 연결</span><span style="color:#aaa;">하여 지속적인 운동 문화를 만들고, 헬스장의 활성화를 도모합니다.</span>
+    </p>
 
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
       <!-- 모바일 배경 그라데이션 박스 -->
@@ -4408,18 +4424,16 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용 - RAF로 애니메이션
-            requestAnimationFrame(() => {
-              videoPhone.style.setProperty('left', targetPosition.left, 'important');
-              videoPhone.style.setProperty('top', targetPosition.top, 'important');
-              videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
-              videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
-              videoPhone.style.setProperty('width', '90px', 'important');
-              videoPhone.style.setProperty('height', '180px', 'important');
-              videoPhone.style.setProperty('border', 'none', 'important');
-              videoPhone.style.setProperty('box-shadow', 'none', 'important');
-              videoPhone.style.setProperty('border-radius', '16px', 'important');
-            });
+            // 모바일에서만 !important 사용
+            videoPhone.style.setProperty('left', targetPosition.left, 'important');
+            videoPhone.style.setProperty('top', targetPosition.top, 'important');
+            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
+            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
+            videoPhone.style.setProperty('width', '90px', 'important');
+            videoPhone.style.setProperty('height', '180px', 'important');
+            videoPhone.style.setProperty('border', 'none', 'important');
+            videoPhone.style.setProperty('box-shadow', 'none', 'important');
+            videoPhone.style.setProperty('border-radius', '16px', 'important');
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4437,18 +4451,16 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - RAF로 애니메이션
-          requestAnimationFrame(() => {
-            targetImg.style.setProperty('left', '50%', 'important');
-            targetImg.style.setProperty('top', '60%', 'important');
-            targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-            targetImg.style.setProperty('z-index', '10', 'important');
-            targetImg.style.setProperty('width', '180px', 'important');
-            targetImg.style.setProperty('height', '360px', 'important');
-            targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
-            targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-            targetImg.style.setProperty('border-radius', '20px', 'important');
-          });
+          // 모바일에서만 !important 사용
+          targetImg.style.setProperty('left', '50%', 'important');
+          targetImg.style.setProperty('top', '60%', 'important');
+          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+          targetImg.style.setProperty('z-index', '10', 'important');
+          targetImg.style.setProperty('width', '180px', 'important');
+          targetImg.style.setProperty('height', '360px', 'important');
+          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+          targetImg.style.setProperty('border-radius', '20px', 'important');
         } else {
           // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
@@ -4519,19 +4531,17 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 부드러운 트랜지션 - RAF 사용
-       requestAnimationFrame(() => {
-         img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
-         img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
-         img.style.setProperty('left', positions.left, 'important');
-         img.style.setProperty('top', positions.top, 'important');
-         img.style.setProperty('z-index', positions.zIndex, 'important');
-         img.style.setProperty('width', '90px', 'important');
-         img.style.setProperty('height', '180px', 'important');
-         img.style.setProperty('border-radius', '16px', 'important');
-         img.style.setProperty('border', 'none', 'important');
-         img.style.setProperty('box-shadow', 'none', 'important');
-       });
+       // 모바일에서 부드러운 트랜지션
+       img.style.setProperty('left', positions.left, 'important');
+       img.style.setProperty('top', positions.top, 'important');
+       img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
+       img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
+       img.style.setProperty('z-index', positions.zIndex, 'important');
+       img.style.setProperty('width', '90px', 'important');
+       img.style.setProperty('height', '180px', 'important');
+       img.style.setProperty('border-radius', '16px', 'important');
+       img.style.setProperty('border', 'none', 'important');
+       img.style.setProperty('box-shadow', 'none', 'important');
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
