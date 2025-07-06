@@ -853,9 +853,9 @@ div > p.smart-guide-text {
       -webkit-overflow-scrolling: touch !important;
     }
     
-    /* will-change 제거로 성능 개선 */
-    * {
-      will-change: auto !important;
+    /* 슬라이드 이미지에만 will-change 적용 */
+    .hive-image, .video-phone {
+      will-change: transform, left, top !important;
     }
     
     /* 모바일 스크롤 시 부드러운 전환 */
@@ -4752,12 +4752,23 @@ if (video) {
     width: 160px; /* Default PC width, JS might override for mobile */
     height: auto; /* Default PC height, JS might override for mobile */
     border-radius: 12px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 모바일 트랜지션 복구 */
-    -webkit-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                border 0.3s ease,
+                box-shadow 0.3s ease !important;
+    -webkit-transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        border 0.3s ease,
+                        box-shadow 0.3s ease !important;
     opacity: 0; /* Initial state for animation */
     border: none;
     box-shadow: none;
-    will-change: transform, left, top;
     transform: translateZ(0); /* Hardware acceleration */
     backface-visibility: hidden; /* Smoother animations */
     -webkit-backface-visibility: hidden; /* iOS Safari 지원 */
@@ -4798,15 +4809,26 @@ if (video) {
     .video-phone,
     .hive-showcase .hive-image,
     .hive-showcase .video-phone {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                  top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  border 0.3s ease,
+                  box-shadow 0.3s ease,
+                  border-radius 0.3s ease !important;
+      -webkit-transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                          top 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                          -webkit-transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                          width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                          height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                          border 0.3s ease,
+                          box-shadow 0.3s ease,
+                          border-radius 0.3s ease !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
-      -webkit-font-smoothing: antialiased !important;
       -webkit-backface-visibility: hidden !important;
       backface-visibility: hidden !important;
-      -webkit-perspective: 1000px !important;
-      perspective: 1000px !important;
     }
   }
 </style>
