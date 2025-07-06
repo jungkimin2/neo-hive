@@ -1451,7 +1451,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     transform: translate(-50%, -50%) !important;
     width: 92% !important;
     max-width: 400px !important;
-    max-height: 88vh !important;
+    max-height: 95vh !important;
     margin: 0 !important;
   }
   
@@ -1461,7 +1461,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   #formModal .modal-body {
     padding: 6px 8px 8px !important;
-    max-height: calc(88vh - 45px) !important;
+    max-height: calc(92vh - 60px) !important;
   }
   
   #formModal .input-group {
@@ -3318,24 +3318,24 @@ if (window.innerWidth <= 768) {
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
-<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(123, 228, 149, 0.3), 0 0 100px rgba(123, 228, 149, 0.1);">
+<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:95vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(123, 228, 149, 0.3), 0 0 100px rgba(123, 228, 149, 0.1);">
   
   <!-- 모바일 고도화 헤더 -->
-  <div class="modal-header-advanced" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%); padding: 8px 8px 4px; position: relative; border-bottom: 1px solid #7BE495;">
+  <div class="modal-header-advanced" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%); padding: 12px 8px 8px; position: relative; border-bottom: 1px solid #7BE495;">
     <!-- 닫기 버튼 -->
     <button onclick="closeForm()" style="position: absolute; top: 6px; right: 6px; background: rgba(123, 228, 149, 0.1); border: 1px solid #7BE495; font-size: 14px; color: #7BE495; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">&times;</button>
     
     <div style="text-align: center;">
-      <div style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(135deg, rgba(123, 228, 149, 0.2) 0%, rgba(123, 228, 149, 0.05) 100%); border-radius: 50%; margin-bottom: 2px; border: 2px solid #7BE495;">
-        <img src="./images/neohive3.png" alt="Neo Hive" style="width: 20px; height: auto;">
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.1) 100%); border-radius: 50%; margin-bottom: 4px; border: 2px solid #7BE495; box-shadow: 0 0 15px rgba(123, 228, 149, 0.5);">
+        <img src="./images/neohive3.png" alt="Neo Hive" style="width: 30px; height: auto; filter: brightness(1.2);">
       </div>
-      <h2 style="color: #7BE495; font-size: 0.9rem; margin: 0; font-weight: 700; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">파트너 신청</h2>
-      <p style="color: #aaa; font-size: 0.55rem; margin: 0;">Neo Hive와 함께 성장하세요</p>
+      <h2 style="color: #7BE495; font-size: 1rem; margin: 0 0 2px 0; font-weight: 700; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">파트너 신청</h2>
+      <p style="color: #aaa; font-size: 0.65rem; margin: 0;">Neo Hive와 함께 성장하세요</p>
     </div>
   </div>
   
   <!-- 폼 영역 -->
-  <div class="modal-body" style="padding: 6px 8px 8px; background: #0A0A0A; max-height: calc(85vh - 50px); overflow-y: auto; overflow-x: hidden;">
+  <div class="modal-body" style="padding: 8px 10px 10px; background: #0A0A0A; max-height: calc(92vh - 70px); overflow-y: auto; overflow-x: hidden;">
     <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:3px;">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
