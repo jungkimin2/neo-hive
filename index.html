@@ -1300,6 +1300,69 @@ transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
+
+/* 모바일 슬라이드 버튼 스타일 */
+@media (max-width: 768px) {
+  /* 모바일 슬라이드 아래 버튼 표시 */
+  .mobile-slide-buttons {
+    display: flex !important;
+    justify-content: space-around !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 20px auto 0 !important;
+    gap: 16px !important;
+    padding: 0 20px !important;
+  }
+  
+  /* 기존 라벨 숨김 */
+  .hive-label-left,
+  .hive-label-right {
+    display: none !important;
+  }
+  
+  /* 모바일 슬라이드 버튼 스타일 */
+  .mobile-slide-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #7BE495 !important;
+    border-radius: 12px !important;
+    padding: 6px 16px !important;
+    gap: 6px !important;
+    font-size: 0.65rem !important;
+    color: #7BE495 !important;
+    font-weight: 600 !important;
+    min-width: 110px !important;
+    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3) !important;
+    cursor: pointer !important;
+  }
+  
+  .mobile-slide-button img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  /* 슬라이드 전환 최적화 */
+  .hive-image {
+    transition: all 0.3s ease-out !important;
+    -webkit-transition: all 0.3s ease-out !important;
+    will-change: auto !important;
+  }
+}
+
+/* PC에서는 슬라이드 버튼 숨김 */
+@media (min-width: 769px) {
+  .mobile-slide-buttons {
+    display: none !important;
+  }
+  
+  /* PC에서는 기존 라벨 표시 */
+  .hive-label-left,
+  .hive-label-right {
+    display: block !important;
+  }
+}
 </style>
 
 </head>
@@ -1450,15 +1513,33 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <style>
       @media (max-width: 768px) {
         #hive-speaker-btn {
-          left: calc(50% + 142px) !important;
-          top: calc(50% - 152px) !important;
-          width: 70px !important;
-          height: 28px !important;
-          font-size: 9px !important;
-          border-radius: 14px !important;
+          position: absolute !important;
+          bottom: -50px !important;
+          top: auto !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 80px !important;
+          height: 32px !important;
+          font-size: 10px !important;
+          border-radius: 16px !important;
+          background: rgba(0,0,0,0.9) !important;
+          border: 2px solid #7BE495 !important;
+          z-index: 20 !important;
         }
       }
       </style>
+    </div>
+    
+    <!-- 모바일 슬라이드 하단 버튼 -->
+    <div class="mobile-slide-buttons" style="display: none;">
+      <button class="mobile-slide-button team-button">
+        <img src="./images/neo33.png" alt="팀 결성">
+        <span>팀 결성</span>
+      </button>
+      <button class="mobile-slide-button booking-button">
+        <img src="./images/neo41.png" alt="센터 예약">
+        <span>센터 예약</span>
+      </button>
     </div>
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
     <div class="slide-container p-10" style="margin-top: 24px;">
@@ -4310,18 +4391,18 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-            videoPhone.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-            videoPhone.style.setProperty('left', targetPosition.left, 'important');
-            videoPhone.style.setProperty('top', targetPosition.top, 'important');
-            videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
-            videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
-            videoPhone.style.setProperty('width', '90px', 'important');
-            videoPhone.style.setProperty('height', '180px', 'important');
-            videoPhone.style.setProperty('border', 'none', 'important');
-            videoPhone.style.setProperty('box-shadow', 'none', 'important');
-            videoPhone.style.setProperty('border-radius', '16px', 'important');
+            // 모바일에서 setTimeout으로 트랜지션 적용
+            setTimeout(() => {
+              videoPhone.style.setProperty('left', targetPosition.left, 'important');
+              videoPhone.style.setProperty('top', targetPosition.top, 'important');
+              videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
+              videoPhone.style.setProperty('z-index', targetPosition.zIndex, 'important');
+              videoPhone.style.setProperty('width', '90px', 'important');
+              videoPhone.style.setProperty('height', '180px', 'important');
+              videoPhone.style.setProperty('border', 'none', 'important');
+              videoPhone.style.setProperty('box-shadow', 'none', 'important');
+              videoPhone.style.setProperty('border-radius', '16px', 'important');
+            }, 10);
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4339,18 +4420,18 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-          targetImg.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-          targetImg.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-          targetImg.style.setProperty('left', '50%', 'important');
-          targetImg.style.setProperty('top', '60%', 'important');
-          targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-          targetImg.style.setProperty('z-index', '10', 'important');
-          targetImg.style.setProperty('width', '180px', 'important');
-          targetImg.style.setProperty('height', '360px', 'important');
-          targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
-          targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
-          targetImg.style.setProperty('border-radius', '20px', 'important');
+          // 모바일에서 setTimeout으로 트랜지션 적용
+          setTimeout(() => {
+            targetImg.style.setProperty('left', '50%', 'important');
+            targetImg.style.setProperty('top', '60%', 'important');
+            targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+            targetImg.style.setProperty('z-index', '10', 'important');
+            targetImg.style.setProperty('width', '180px', 'important');
+            targetImg.style.setProperty('height', '360px', 'important');
+            targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
+            targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
+            targetImg.style.setProperty('border-radius', '20px', 'important');
+          }, 10);
         } else {
           // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
@@ -4421,18 +4502,18 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-       img.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('left', positions.left, 'important');
-       img.style.setProperty('top', positions.top, 'important');
-       img.style.setProperty('transform', positions.transform, 'important');
-       img.style.setProperty('z-index', positions.zIndex, 'important');
-       img.style.setProperty('width', '90px', 'important');
-       img.style.setProperty('height', '180px', 'important');
-       img.style.setProperty('border-radius', '16px', 'important');
-       img.style.setProperty('border', 'none', 'important');
-       img.style.setProperty('box-shadow', 'none', 'important');
+       // 모바일에서 setTimeout으로 트랜지션 적용
+       setTimeout(() => {
+         img.style.setProperty('left', positions.left, 'important');
+         img.style.setProperty('top', positions.top, 'important');
+         img.style.setProperty('transform', positions.transform, 'important');
+         img.style.setProperty('z-index', positions.zIndex, 'important');
+         img.style.setProperty('width', '90px', 'important');
+         img.style.setProperty('height', '180px', 'important');
+         img.style.setProperty('border-radius', '16px', 'important');
+         img.style.setProperty('border', 'none', 'important');
+         img.style.setProperty('box-shadow', 'none', 'important');
+       }, 10);
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
