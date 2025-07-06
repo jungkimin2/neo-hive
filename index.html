@@ -1488,8 +1488,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       <style>
       @media (max-width: 768px) {
         #hive-speaker-btn {
-          left: calc(50% + 142px) !important;
-          top: calc(50% - 152px) !important;
+          left: 50% !important;
+          top: calc(60% + 190px) !important;
+          transform: translateX(-50%) !important;
           width: 70px !important;
           height: 28px !important;
           font-size: 9px !important;
@@ -4327,12 +4328,19 @@ if (window.innerWidth <= 768) {
     const container = document.querySelector('.hive-showcase');
     if (!container) return;
 
-    // requestAnimationFrame 제거하여 CSS 트랜지션이 작동하도록 함
+    // 모바일에서 좌측열 이미지에 RAF 적용
     if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
         hiveImages.forEach((img, index) => {
           img.classList.remove('active');
-          resetImageToOriginalPosition(img, index);
+          if (window.innerWidth <= 768 && index < 3) {
+            // 좌측열 이미지에만 RAF 적용
+            requestAnimationFrame(() => {
+              resetImageToOriginalPosition(img, index);
+            });
+          } else {
+            resetImageToOriginalPosition(img, index);
+          }
         });
         if (videoPhone) {
           if (window.innerWidth <= 768) {
@@ -4486,18 +4494,21 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서만 !important 사용 - 트랜지션 먼저 설정
-       img.style.setProperty('transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('-webkit-transition', 'all 0.4s cubic-bezier(0.4,0,0.2,1)', 'important');
-       img.style.setProperty('left', positions.left, 'important');
-       img.style.setProperty('top', positions.top, 'important');
-       img.style.setProperty('transform', positions.transform, 'important');
-       img.style.setProperty('z-index', positions.zIndex, 'important');
-       img.style.setProperty('width', '90px', 'important');
-       img.style.setProperty('height', '180px', 'important');
-       img.style.setProperty('border-radius', '16px', 'important');
-       img.style.setProperty('border', 'none', 'important');
-       img.style.setProperty('box-shadow', 'none', 'important');
+       // 모바일에서 RAF를 사용한 부드러운 트랜지션
+       requestAnimationFrame(() => {
+         img.style.setProperty('transition', 'all 0.25s cubic-bezier(0.4,0,0.2,1)', 'important');
+         img.style.setProperty('-webkit-transition', 'all 0.25s cubic-bezier(0.4,0,0.2,1)', 'important');
+         img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
+         img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
+         img.style.setProperty('left', positions.left, 'important');
+         img.style.setProperty('top', positions.top, 'important');
+         img.style.setProperty('z-index', positions.zIndex, 'important');
+         img.style.setProperty('width', '90px', 'important');
+         img.style.setProperty('height', '180px', 'important');
+         img.style.setProperty('border-radius', '16px', 'important');
+         img.style.setProperty('border', 'none', 'important');
+         img.style.setProperty('box-shadow', 'none', 'important');
+       });
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
@@ -4757,13 +4768,16 @@ if (video) {
     .video-phone,
     .hive-showcase .hive-image,
     .hive-showcase .video-phone {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -moz-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -o-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      will-change: transform, left, top, width, height, border, box-shadow, opacity !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -moz-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -o-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      will-change: transform, left, top !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
+      -webkit-font-smoothing: antialiased !important;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
     }
   }
 </style>
