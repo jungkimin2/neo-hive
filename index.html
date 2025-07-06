@@ -4292,21 +4292,21 @@ if (window.innerWidth <= 768) {
         img.style.willChange = 'transform, opacity';
         img.style.transform = img.style.transform + ' translateZ(0)';
         
-        // 모바일에서 이미지 하단 라벨 추가
-        if (window.innerWidth <= 768) {
+        // 모바일에서 이미지 하단 라벨 추가 - 좌우 첫 번째 이미지에만 표시
+        if (window.innerWidth <= 768 && (index === 0 || index === 3)) {
           const existingLabel = document.querySelector(`.mobile-image-label[data-index="${index}"]`);
           if (!existingLabel) {
             const label = document.createElement('div');
             label.className = 'mobile-image-label';
             label.setAttribute('data-index', index);
             
-            if (index < 3) {
-              // 왼쪽 이미지들 - 팀 결성
+            if (index === 0) {
+              // 왼쪽 첫 번째 이미지 - 팀 결성
               label.innerHTML = `
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjMiIGZpbGw9IiM3QkU0OTUiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIzIiBmaWxsPSIjN0JFNDk1Ii8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMyIgZmlsbD0iIzdCRTQ5NSIvPgo8cGF0aCBkPSJNNCAxOWMwLTMuODcgMy4xMy03IDctN2g2YzMuODcgMCA3IDMuMTMgNyA3djJINHYtMnoiIGZpbGw9IiM3QkU0OTUiLz4KPC9zdmc+" alt="팀 결성">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjMiIGZpbGw9IiM3QkU0OTUiLz4KPGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIzIiBmaWxsPSIjN0JFNDk1Ii8+CjxjaXJjbGUgY3g9IjEyIiBjeD0iNiIgcj0iMyIgZmlsbD0iIzdCRTQ5NSIvPgo8cGF0aCBkPSJNNCAxOWMwLTMuODcgMy4xMy03IDctN2g2YzMuODcgMCA3IDMuMTMgNyA3djJINHYtMnoiIGZpbGw9IiM3QkU0OTUiLz4KPC9zdmc+" alt="팀 결성">
                 <span>팀 결성</span>`;
-            } else {
-              // 오른쪽 이미지들 - 제휴센터 예약
+            } else if (index === 3) {
+              // 오른쪽 첫 번째 이미지 - 센터 예약
               label.innerHTML = `
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIgZmlsbD0iIzdCRTQ5NSIvPgo8L3N2Zz4=" alt="센터 예약">
                 <span>센터 예약</span>`;
