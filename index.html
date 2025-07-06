@@ -1488,8 +1488,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   
   /* Mobile popup logo adjustments */
   .modal-header-advanced div[style*="width: 45px; height: 45px"] {
-    width: 50px !important;
-    height: 50px !important;
+    width: 60px !important;
+    height: 60px !important;
     border: 2px solid #7BE495 !important; /* Add green neon border */
     box-shadow: 0 0 15px rgba(123, 228, 149, 0.8), 
                 0 0 30px rgba(123, 228, 149, 0.5),
@@ -1498,9 +1498,11 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
   
   .modal-header-advanced img[src*="neohive3.png"] {
-    width: 100px !important; /* Even larger logo size */
+    width: 150px !important; /* Much larger logo size */
     height: auto !important;
     max-width: none !important;
+    position: relative !important;
+    z-index: 10 !important;
   }
   
   /* Keep green bar but adjust styling on mobile */
