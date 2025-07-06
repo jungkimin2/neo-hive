@@ -1350,6 +1350,71 @@ transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
+
+/* 모바일 슬라이드 버튼 스타일 */
+@media (max-width: 768px) {
+  /* 모바일 슬라이드 아래 버튼 표시 */
+  .mobile-slide-buttons {
+    display: block !important;
+  }
+  
+  /* 기존 라벨 숨김 */
+  .hive-label-left,
+  .hive-label-right {
+    display: none !important;
+  }
+  
+  /* 모바일 슬라이드 버튼 스타일 */
+  .mobile-slide-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #7BE495 !important;
+    border-radius: 12px !important;
+    padding: 6px 16px !important;
+    gap: 6px !important;
+    font-size: 0.65rem !important;
+    color: #7BE495 !important;
+    font-weight: 600 !important;
+    min-width: 100px !important;
+    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3) !important;
+    cursor: pointer !important;
+    position: absolute !important;
+    top: 0 !important;
+  }
+  
+  /* 팀 결성 버튼 - 좌측 슬라이드 아래 */
+  .mobile-slide-button.team-button {
+    left: 22% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  /* 센터 예약 버튼 - 우측 슬라이드 아래 */
+  .mobile-slide-button.booking-button {
+    right: 22% !important;
+    left: auto !important;
+    transform: translateX(50%) !important;
+  }
+  
+  .mobile-slide-button img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* PC에서는 슬라이드 버튼 숨김 */
+@media (min-width: 769px) {
+  .mobile-slide-buttons {
+    display: none !important;
+  }
+  
+  /* PC에서는 기존 라벨 표시 */
+  .hive-label-left,
+  .hive-label-right {
+    display: block !important;
+  }
+}
 </style>
 
 </head>
@@ -1494,6 +1559,19 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
       </div>
     </div>
+    
+    <!-- 모바일 슬라이드 하단 버튼 -->
+    <div class="mobile-slide-buttons" style="display: none; position: relative; width: 100%; height: 50px; margin-top: -40px; z-index: 15;">
+      <button class="mobile-slide-button team-button" style="position: absolute; left: 22%; transform: translateX(-50%);">
+        <img src="./images/neo33.png" alt="팀 결성">
+        <span>팀 결성</span>
+      </button>
+      <button class="mobile-slide-button booking-button" style="position: absolute; right: 22%; transform: translateX(50%);">
+        <img src="./images/neo41.png" alt="센터 예약">
+        <span>센터 예약</span>
+      </button>
+    </div>
+    
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
     <div class="slide-container p-10" style="margin-top: 24px;">
     </div>
