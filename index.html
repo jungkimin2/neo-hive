@@ -1570,6 +1570,18 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     color: #7BE495 !important;
   }
 }
+
+/* Mobile overlay specific styles */
+#mobileForceOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  z-index: 8000 !important;
+  display: block !important;
+}
 </style>
 
 </head>
@@ -4121,6 +4133,7 @@ if (window.innerWidth <= 768) {
     // 모바일에서 가장 간단하고 확실한 방법으로 오버레이 생성
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile detected - creating simple overlay');
+      console.log('Window width:', window.innerWidth);
       
       // 기존 오버레이들 제거
       document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
@@ -4128,33 +4141,31 @@ if (window.innerWidth <= 768) {
       // 직접 createElement로 생성 (더 안정적)
       const overlay = document.createElement('div');
       overlay.id = 'mobileForceOverlay';
-      overlay.onclick = closeForm;
       
-      // 인라인 스타일 설정 - 더 강한 어두운 효과
-      overlay.style.cssText = `
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-        backdrop-filter: blur(4px) !important;
-        -webkit-backdrop-filter: blur(4px) !important;
-        z-index: 8000 !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 0 !important;
-        pointer-events: auto !important;
-        transition: opacity 0.3s ease !important;
-      `;
+      // 스타일을 직접 설정
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+      overlay.style.zIndex = '8000';
+      overlay.style.display = 'block';
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 0.3s ease';
       
-      // body에 바로 추가
+      // 클릭 이벤트 추가
+      overlay.addEventListener('click', closeForm);
+      
+      // body에 추가
       document.body.appendChild(overlay);
       
-      // 페이드인 효과를 위한 지연
-      requestAnimationFrame(() => {
-        overlay.style.setProperty('opacity', '1', 'important');
-      });
+      // 강제로 리플로우 발생시키고 opacity 적용
+      overlay.offsetHeight; // Force reflow
+      overlay.style.opacity = '1';
+      
+      console.log('Overlay created:', overlay);
+      console.log('Overlay parent:', overlay.parentNode);
       
       // 생성 확인 및 강제 적용
       setTimeout(() => {
