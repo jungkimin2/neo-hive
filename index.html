@@ -1497,9 +1497,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     width: 65px !important; /* Increase logo size even more */
   }
   
-  /* Remove green border from modal header on mobile */
+  /* Keep green bar but adjust styling on mobile */
   .modal-header-advanced {
-    border-bottom: none !important;
+    border-bottom: 1px solid #7BE495 !important;
   }
   
   /* Make X button larger on mobile */
@@ -1534,6 +1534,16 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+}
+
+/* PC environment popup X button style */
+@media (min-width: 769px) {
+  .modal-header-advanced button[onclick="closeForm()"] {
+    background: none !important;
+    border: none !important;
+    font-size: 20px !important;
+    color: #7BE495 !important;
   }
 }
 </style>
