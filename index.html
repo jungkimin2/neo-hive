@@ -71,7 +71,7 @@
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
     overflow: hidden !important;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
-    will-change: auto !important;
+    /* will-change 제거 - 스크롤 성능 향상 */
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
@@ -1010,17 +1010,20 @@ div > p.smart-guide-text {
   }
 
   /* Prevent horizontal scrolling on mobile */
-  html, body {
-    overflow-x: hidden;
-  }
-  
-  /* 스크롤 위치 안정화 */
   html {
+    overflow-x: hidden;
+    /* 스크롤 위치 안정화 */
     scroll-behavior: auto;
+    /* iOS 관성 스크롤 활성화 */
+    -webkit-overflow-scrolling: touch;
   }
   
   body {
+    overflow-x: hidden;
     position: relative;
+    /* 스크롤 시 레이어 분리로 성능 향상 */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
   
   /* 성능 최적화 */
@@ -1036,32 +1039,40 @@ div > p.smart-guide-text {
   
   /* 모바일 성능 최적화 */
   @media (max-width: 768px) {
-    * {
-      -webkit-transform: translateZ(0);
-      -moz-transform: translateZ(0);
-      -ms-transform: translateZ(0);
-      -o-transform: translateZ(0);
-      transform: translateZ(0);
-    }
+    /* transform: translateZ(0)를 모든 요소에 적용하지 않음 - 스크롤 성능 향상 */
     
-    /* 모바일에서 애니메이션 최적화 */
+    /* 모바일에서 애니메이션 최적화 - 애니메이션 중일 때만 will-change 적용 */
     .animate-on-scroll,
     .slide-in-left,
     .slide-in-right {
-      will-change: transform, opacity;
-      transform: translateZ(0);
+      /* will-change는 JavaScript로 애니메이션 시작/종료 시에만 적용 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     /* 모바일에서 비디오 최적화 */
     video {
-      will-change: auto;
-      transform: translateZ(0);
+      /* will-change 제거로 메모리 사용 최적화 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     /* 모바일에서 이미지 최적화 */
     img {
-      will-change: auto;
-      transform: translateZ(0);
+      /* will-change 제거로 메모리 사용 최적화 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    
+    /* 스크롤 성능 향상을 위한 추가 설정 */
+    html {
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* position: fixed 요소들의 스크롤 성능 개선 */
+    [style*="position: fixed"] {
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
     }
 
     /* 모바일에서만 Neo Hive 제목 아래로 이동 */
@@ -1099,7 +1110,7 @@ div > p.smart-guide-text {
     padding: 0 !important;
     margin: 0 !important;
     box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
-    will-change: transform, box-shadow, opacity;
+    /* will-change 제거 - 스크롤 성능 향상 */
     overflow: hidden !important;
   }
   .video-phone {
@@ -1129,7 +1140,7 @@ div > p.smart-guide-text {
       animation: none !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
-      will-change: auto !important;
+      /* will-change 제거 - 스크롤 성능 향상 */
       backface-visibility: visible !important;
       -webkit-backface-visibility: visible !important;
       visibility: visible !important;
@@ -1283,20 +1294,23 @@ font-size: 1.4rem !important;
 <style>
 @media (max-width: 768px) {
 .hive-image {
-will-change: transform, opacity;
-transform: translateZ(0);
+/* will-change 제거 - 스크롤 성능 향상 */
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .hive-image.active {
-will-change: transform, opacity;
-transform: translateZ(0);
+/* will-change 제거 - 스크롤 성능 향상 */
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .video-phone {
-will-change: transform, opacity;
-transform: translateZ(0);
+/* will-change 제거 - 스크롤 성능 향상 */
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
@@ -4935,7 +4949,7 @@ if (video) {
       margin: 40px 0 20px 0 !important;
       padding: 0 8px !important;
       justify-items: center !important;
-      will-change: auto !important;
+      /* will-change 제거 - 스크롤 성능 향상 */
     }
     
     .flow-step {
