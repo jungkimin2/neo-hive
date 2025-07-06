@@ -1020,6 +1020,9 @@ div > p.smart-guide-text {
   
   body {
     position: relative;
+    /* 모바일 터치 스크롤 개선 */
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* 성능 최적화 */
@@ -1345,6 +1348,36 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   }
 </style>
 <body>
+<style>
+/* 모바일 스크롤 터치 반응성 개선 */
+@media (max-width: 768px) {
+  /* 스크롤 걸림 현상 해결 */
+  html, body {
+    /* 부드러운 스크롤 */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* 모든 요소에 하드웨어 가속 비활성화 (스크롤 성능 향상) */
+  * {
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+  
+  /* 필요한 요소만 하드웨어 가속 */
+  .animate-on-scroll.visible,
+  .video-phone,
+  .floating-video {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* 터치 이벤트 최적화 */
+  .section, .container, main {
+    touch-action: pan-y !important;
+  }
+}
+</style>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 10000;">
   <div class="nav-bar">
@@ -3295,7 +3328,7 @@ if (window.innerWidth <= 768) {
 
 <div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:30px; width:90%; max-width:700px; height:auto; max-height:90vh; overflow:auto; border-radius:12px; color:#fff; box-sizing:border-box;">
   <!-- 닫기 버튼 -->
-  <button onclick="closeForm()" style="background:none; border:none; font-size:2rem; color:#fff;">&times;</button>
+  <button onclick="closeForm()" style="position:absolute; top:15px; right:15px; width:40px; height:40px; background:#1a1a1a; border:2px solid #7BE495; border-radius:50%; font-size:1.5rem; color:#7BE495; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s ease;">&times;</button>
   
   <!-- 모바일: 헤더 없음, PC: 헤더 표시 -->
   <div class="modal-header">
@@ -3474,7 +3507,7 @@ if (window.innerWidth <= 768) {
             } else {
               openForm(e);
             }
-          }, { passive: false });
+          }, { passive: true });
         });
       }, 1000);
     }
@@ -4150,7 +4183,7 @@ if (window.innerWidth <= 768) {
       }
     }, { passive: true });
     
-    // 터치 이벤트에서도 확인
+    // 터치 이벤트에서도 확인 - passive로 설정
     document.addEventListener('touchmove', function() {
       const mobileNav = document.getElementById('mobile-top-nav-fixed');
       if (mobileNav && window.getComputedStyle(mobileNav).position !== 'fixed') {
@@ -8486,13 +8519,7 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 3px 12px rgba(123, 228, 149, 0.6) !important;
   }
   
-  /* PC 환경 닫기 버튼 내부 아이콘 스타일 */
-  #formModal button[onclick="closeForm()"]:before {
-    content: "✕" !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    line-height: 1 !important;
-  }
+  /* PC 환경 닫기 버튼 내부 아이콘 스타일 - 제거 (중복 X 방지) */
   
   /* PC 오버레이 스타일 */
   #modalOverlay {
