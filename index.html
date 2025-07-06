@@ -3700,12 +3700,14 @@ if (window.innerWidth <= 768) {
                 font-size: 0.85rem !important;
               }
               
-              /* 모바일 터치 상태 */
+              /* 모바일 터치 상태 - 전체 박스 효과 제거 */
               .clickable-benefit-box:active > div:first-child {
-                transform: scale(0.98);
+                transform: none !important;
+                background: none !important;
               }
               
-              .clickable-benefit-box:active div[style*="파트너 신청하기"] {
+              /* 파트너 신청하기 버튼만 효과 적용 */
+              .clickable-benefit-box div[style*="파트너 신청하기"]:active {
                 transform: scale(0.98);
                 box-shadow: 
                   0 1px 4px rgba(0, 0, 0, 0.9),
@@ -7885,9 +7887,10 @@ document.addEventListener('DOMContentLoaded', function() {
       text-shadow: 0 0 12px rgba(123, 228, 149, 1) !important;
     }
     
+    /* PC에서도 전체 박스 클릭 효과 제거 */
     .clickable-benefit-box:active {
-      transform: translateY(-2px) scale(0.98) !important;
-      transition: all 0.1s ease !important;
+      transform: none !important;
+      transition: none !important;
     }
   }
 
@@ -7908,14 +7911,15 @@ document.addEventListener('DOMContentLoaded', function() {
       transition: all 0.2s ease !important;
     }
     
-    /* 모바일 터치 효과 */
+    /* 모바일 터치 효과 - 전체 박스 효과 완전 제거 */
     .clickable-benefit-box:active {
-      transform: scale(0.95) !important;
-      transition: all 0.1s ease !important;
+      transform: none !important;
+      transition: none !important;
     }
     
     .clickable-benefit-box:active > div {
-      background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(62, 200, 162, 0.2) 100%) !important;
+      background: none !important;
+      transform: none !important;
       border-color: rgba(123, 228, 149, 0.8) !important;
       box-shadow: 
         0 8px 25px rgba(123, 228, 149, 0.4),
