@@ -1351,10 +1351,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
 
-/* 모바일 슬라이드 버튼 스타일 */
+/* 모바일 하이브 버튼 스타일 (새로 작성) */
 @media (max-width: 768px) {
-  /* 모바일 슬라이드 아래 버튼 표시 */
-  .mobile-slide-buttons {
+  /* 모바일에서만 버튼 표시 */
+  .mobile-hive-buttons {
     display: block !important;
   }
   
@@ -1364,47 +1364,46 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     display: none !important;
   }
   
-  /* 모바일 슬라이드 버튼 스타일 */
-  .mobile-slide-button {
-    display: flex !important;
+  /* 모바일 하이브 버튼 스타일 */
+  .mobile-hive-btn {
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    border: 1px solid #7BE495 !important;
-    border-radius: 10px !important;
-    padding: 4px 12px !important;
-    gap: 4px !important;
-    font-size: 0.6rem !important;
+    gap: 6px !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    border: 2px solid #7BE495 !important;
+    border-radius: 20px !important;
+    padding: 6px 16px !important;
+    font-size: 0.75rem !important;
     color: #7BE495 !important;
-    font-weight: 600 !important;
-    min-width: 80px !important;
-    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3) !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(123, 228, 149, 0.3), 0 0 20px rgba(123, 228, 149, 0.2) !important;
+    transition: all 0.3s ease !important;
     cursor: pointer !important;
-    position: absolute !important;
-    top: 0 !important;
+    white-space: nowrap !important;
   }
   
-  /* 팀 결성 버튼 - 좌측 슬라이드 아래 */
-  .mobile-slide-button.team-button {
-    left: 20% !important;
-    transform: translateX(-50%) !important;
+  .mobile-hive-btn:active {
+    transform: translateX(-50%) scale(0.95) !important;
+    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.3), 0 0 15px rgba(123, 228, 149, 0.2) !important;
   }
   
-  /* 센터 예약 버튼 - 우측 슬라이드 아래 */
-  .mobile-slide-button.booking-button {
-    left: 80% !important;
-    transform: translateX(-50%) !important;
+  .mobile-hive-btn img {
+    width: 20px !important;
+    height: 20px !important;
+    filter: brightness(1.2) !important;
   }
   
-  .mobile-slide-button img {
-    width: 18px !important;
-    height: 18px !important;
+  .mobile-hive-btn span {
+    font-size: 0.75rem !important;
+    letter-spacing: -0.02em !important;
   }
 }
 
-/* PC에서는 슬라이드 버튼 숨김 */
+/* PC에서는 버튼 숨김 */
 @media (min-width: 769px) {
-  .mobile-slide-buttons {
+  .mobile-hive-buttons {
     display: none !important;
   }
   
@@ -1605,16 +1604,18 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       </div>
     </div>
     
-    <!-- 모바일 슬라이드 하단 버튼 -->
-    <div class="mobile-slide-buttons" style="position: absolute; width: 100%; height: 40px; bottom: -45px; left: 0; z-index: 15;">
-      <button class="mobile-slide-button team-button" style="position: absolute !important; left: 20% !important; transform: translateX(-50%) !important; bottom: 0 !important;">
+    <!-- 모바일 슬라이드 하단 버튼 (새로 작성) -->
+    <div class="mobile-hive-buttons" style="position: absolute; width: 100%; height: 50px; bottom: -60px; left: 0; z-index: 20;">
+      <!-- 팀결성 버튼 - 좌측 슬라이드 아래 -->
+      <a href="#" class="mobile-hive-btn team-btn" onclick="event.preventDefault(); openForm();" style="position: absolute; left: 20%; transform: translateX(-50%); bottom: 0;">
         <img src="./images/neo33.png" alt="팀 결성">
         <span>팀 결성</span>
-      </button>
-      <button class="mobile-slide-button booking-button" style="position: absolute !important; left: 80% !important; transform: translateX(-50%) !important; bottom: 0 !important;">
+      </a>
+      <!-- 센터예약 버튼 - 우측 슬라이드 아래 -->
+      <a href="#" class="mobile-hive-btn booking-btn" onclick="event.preventDefault(); openForm();" style="position: absolute; left: 80%; transform: translateX(-50%); bottom: 0;">
         <img src="./images/neo41.png" alt="센터 예약">
         <span>센터 예약</span>
-      </button>
+      </a>
     </div>
     
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
@@ -7781,38 +7782,24 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 모바일 슬라이드 버튼 위치 강제 조정
-    function forceMobileSlideButtonPosition() {
-      const mobileSlideButtons = document.querySelector('.mobile-slide-buttons');
-      if (mobileSlideButtons && window.innerWidth <= 768) {
-        // 컨테이너 스타일 강제 적용
-        mobileSlideButtons.style.setProperty('display', 'block', 'important');
-        mobileSlideButtons.style.setProperty('position', 'absolute', 'important');
-        mobileSlideButtons.style.setProperty('width', '100%', 'important');
-        mobileSlideButtons.style.setProperty('height', '40px', 'important');
-        mobileSlideButtons.style.setProperty('bottom', '-45px', 'important');
-        mobileSlideButtons.style.setProperty('left', '0', 'important');
-        mobileSlideButtons.style.setProperty('z-index', '15', 'important');
+    // 모바일 하이브 버튼 표시 강제 적용
+    function forceMobileHiveButtons() {
+      const mobileHiveButtons = document.querySelector('.mobile-hive-buttons');
+      if (mobileHiveButtons && window.innerWidth <= 768) {
+        // 컨테이너 표시
+        mobileHiveButtons.style.setProperty('display', 'block', 'important');
+        mobileHiveButtons.style.setProperty('visibility', 'visible', 'important');
+        mobileHiveButtons.style.setProperty('opacity', '1', 'important');
         
-        // 팀결성 버튼 위치 조정 (좌측 슬라이드 아래)
-        const teamButton = mobileSlideButtons.querySelector('.team-button');
-        if (teamButton) {
-          teamButton.style.setProperty('position', 'absolute', 'important');
-          teamButton.style.setProperty('left', '20%', 'important');
-          teamButton.style.setProperty('transform', 'translateX(-50%)', 'important');
-          teamButton.style.setProperty('bottom', '0', 'important');
-          console.log('Team button position forced to left: 20%');
-        }
+        // 모든 버튼 표시
+        const buttons = mobileHiveButtons.querySelectorAll('.mobile-hive-btn');
+        buttons.forEach(btn => {
+          btn.style.setProperty('display', 'inline-flex', 'important');
+          btn.style.setProperty('visibility', 'visible', 'important');
+          btn.style.setProperty('opacity', '1', 'important');
+        });
         
-        // 센터예약 버튼 위치 조정 (우측 슬라이드 아래)
-        const bookingButton = mobileSlideButtons.querySelector('.booking-button');
-        if (bookingButton) {
-          bookingButton.style.setProperty('position', 'absolute', 'important');
-          bookingButton.style.setProperty('left', '80%', 'important');
-          bookingButton.style.setProperty('transform', 'translateX(-50%)', 'important');
-          bookingButton.style.setProperty('bottom', '0', 'important');
-          console.log('Booking button position forced to left: 80%');
-        }
+        console.log('Mobile hive buttons forced to display');
       }
     }
 
@@ -7822,14 +7809,14 @@ document.addEventListener('DOMContentLoaded', function() {
       forceApplyMobileStyles();
       adjustMobileIcons();
       restoreGlowEffect(); // 발광효과 복구
-      forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 강제 조정
+      forceMobileHiveButtons(); // 모바일 하이브 버튼 표시
       
       // 페이지 표시
       setTimeout(() => {
         document.body.classList.add('mobile-loaded');
         removeGreyBoxes(); // 한 번 더 제거
         restoreGlowEffect(); // 발광효과 재복구
-        forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 다시 강제 조정
+        forceMobileHiveButtons(); // 모바일 하이브 버튼 다시 표시
       }, 50);
     }
     
@@ -7857,7 +7844,7 @@ document.addEventListener('DOMContentLoaded', function() {
         forceApplyMobileStyles();
         adjustMobileIcons();
         restoreGlowEffect(); // 발광효과 복구
-        forceMobileSlideButtonPosition(); // 슬라이드 버튼 위치 강제 조정
+        forceMobileHiveButtons(); // 모바일 하이브 버튼 표시
       }
     });
     
