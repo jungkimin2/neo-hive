@@ -1429,14 +1429,42 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     font-size: 1.1rem !important; /* Reduce font size for mobile */
     white-space: nowrap !important; /* Force single line */
     letter-spacing: 0.05em !important; /* Reduce letter spacing */
-    text-align: center !important; /* Center the text */
-    display: block !important; /* Ensure block display for centering */
-    width: 100% !important; /* Full width for proper centering */
+    text-align: left !important; /* Align text to left */
+    padding-left: 16px !important; /* Move text 2 units (32px) to the left */
+    display: block !important; /* Ensure block display */
+    width: 100% !important; /* Full width */
   }
   
   /* Adjust the inner data display box padding for mobile */
   .reservation-benefit-notice div[style*="background: rgba(123, 228, 149, 0.05)"] {
     padding: 12px 16px !important; /* Reduce padding for mobile */
+  }
+  
+  /* Hide the outer container box on mobile */
+  .reservation-benefit-notice > div[style*="background: linear-gradient(135deg, rgba(0, 0, 0, 0.98)"] {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Remove click functionality from the entire benefit notice on mobile */
+  .reservation-benefit-notice.clickable-benefit-box {
+    cursor: default !important;
+    pointer-events: none !important;
+  }
+  
+  /* Enable click only on the partner application button */
+  .reservation-benefit-notice div[style*="margin-top: 24px"][style*="cursor: pointer"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+  
+  /* Ensure the button text and icon are also clickable */
+  .reservation-benefit-notice div[style*="margin-top: 24px"] * {
+    pointer-events: auto !important;
   }
   
   /* Mobile popup logo adjustments */
