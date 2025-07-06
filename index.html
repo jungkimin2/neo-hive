@@ -1471,10 +1471,23 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   .modal-header-advanced div[style*="width: 45px; height: 45px"] {
     width: 35px !important;
     height: 35px !important;
+    border: none !important; /* Remove border from logo container */
   }
   
   .modal-header-advanced img[src*="neohive3.png"] {
-    width: 55px !important; /* Increase logo size even more */
+    width: 65px !important; /* Increase logo size even more */
+  }
+  
+  /* Remove green border from modal header on mobile */
+  .modal-header-advanced {
+    border-bottom: none !important;
+  }
+  
+  /* Make X button larger on mobile */
+  .modal-header-advanced button[onclick="closeForm()"] {
+    font-size: 28px !important;
+    padding: 8px !important;
+    line-height: 1 !important;
   }
   
   /* Remove green border from modal on mobile */
@@ -3700,7 +3713,7 @@ if (window.innerWidth <= 768) {
   <!-- 모바일 고도화 헤더 -->
   <div class="modal-header-advanced" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%); padding: 16px 8px 12px; position: relative; border-bottom: 1px solid #7BE495;">
     <!-- 닫기 버튼 -->
-    <button onclick="closeForm()" style="position: absolute; top: 6px; right: 6px; background: rgba(123, 228, 149, 0.1); border: 1px solid #7BE495; font-size: 14px; color: #7BE495; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">&times;</button>
+    <button onclick="closeForm()" style="position: absolute; top: 6px; right: 6px; background: none; border: none; font-size: 24px; color: #7BE495; width: auto; height: auto; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 4px;">&times;</button>
     
     <div style="text-align: center;">
       <div style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.1) 100%); border-radius: 50%; margin-bottom: 8px; border: 2px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.6), 0 0 40px rgba(123, 228, 149, 0.3);">
