@@ -4412,10 +4412,10 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 좌측 이미지는 더 빠른 트랜지션
-          const transitionTime = idx < 3 ? '0.2s' : '0.4s';
-          targetImg.style.setProperty('transition', `all ${transitionTime} cubic-bezier(0.25,0.1,0.25,1)`, 'important');
-          targetImg.style.setProperty('-webkit-transition', `all ${transitionTime} cubic-bezier(0.25,0.1,0.25,1)`, 'important');
+          // 모바일에서만 !important 사용 - 더 부드러운 트랜지션
+          const transitionTime = '0.4s';
+          targetImg.style.setProperty('transition', `all ${transitionTime} cubic-bezier(0.4, 0, 0.2, 1)`, 'important');
+          targetImg.style.setProperty('-webkit-transition', `all ${transitionTime} cubic-bezier(0.4, 0, 0.2, 1)`, 'important');
           targetImg.style.setProperty('left', '50%', 'important');
           targetImg.style.setProperty('top', '60%', 'important');
           targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -4442,15 +4442,13 @@ if (window.innerWidth <= 768) {
     // 전환 완료 후 플래그 리셋 및 will-change 제거
     setTimeout(() => {
       isTransitioning = false;
-      // 모바일에서 좌측 이미지의 will-change 제거
+      // 모바일에서 이미지의 will-change 제거
       if (window.innerWidth <= 768) {
-        hiveImages.forEach((img, idx) => {
-          if (idx < 3) {
-            img.style.willChange = 'auto';
-          }
+        hiveImages.forEach((img) => {
+          img.style.willChange = 'auto';
         });
       }
-    }, 250); // 좌측 이미지는 더 빠른 트랜지션
+    }, 450); // 트랜지션 시간에 맞춰 조정
   }
   
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
@@ -4505,9 +4503,9 @@ if (window.innerWidth <= 768) {
      if (window.innerWidth <= 768) {
        // 모바일에서 RAF를 사용한 부드러운 트랜지션
        requestAnimationFrame(() => {
-         // 좌측 이미지는 더 빠른 트랜지션
-         const transitionTime = index < 3 ? '0.18s' : '0.25s';
-         const easing = index < 3 ? 'cubic-bezier(0.25,0.1,0.25,1)' : 'cubic-bezier(0.4,0,0.2,1)';
+         // 더 부드러운 트랜지션을 위해 시간 연장
+         const transitionTime = '0.35s';
+         const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
          img.style.setProperty('transition', `all ${transitionTime} ${easing}`, 'important');
          img.style.setProperty('-webkit-transition', `all ${transitionTime} ${easing}`, 'important');
          img.style.setProperty('transform', positions.transform + ' translateZ(0) scale3d(1,1,1)', 'important');
@@ -4794,10 +4792,10 @@ if (video) {
     .video-phone,
     .hive-showcase .hive-image,
     .hive-showcase .video-phone {
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -moz-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      -o-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -moz-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -o-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
       will-change: transform, left, top !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
