@@ -1475,7 +1475,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 12px;">
       <!-- 모바일 배경 그라데이션 박스 -->
-      <div class="mobile-gradient-bg" style="display: none; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); width: 92%; height: 90%; background: linear-gradient(to bottom, rgba(123, 228, 149, 0.35) 0%, rgba(123, 228, 149, 0.25) 30%, rgba(123, 228, 149, 0.15) 60%, rgba(123, 228, 149, 0.05) 85%, transparent 100%), radial-gradient(ellipse at center top, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.1) 50%, transparent 80%); border: 1px solid transparent; border-top-color: rgba(123, 228, 149, 0.3); border-left-color: rgba(123, 228, 149, 0.2); border-right-color: rgba(123, 228, 149, 0.2); border-radius: 32px 32px 0 0; z-index: 0; pointer-events: none; box-shadow: 0 -10px 40px rgba(123, 228, 149, 0.2) inset, 0 0 60px rgba(123, 228, 149, 0.1); mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);"></div>
+      <div class="mobile-gradient-bg" style="display: none; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); width: 92%; height: 90%; background: linear-gradient(to bottom, rgba(62, 150, 85, 0.35) 0%, rgba(62, 150, 85, 0.25) 30%, rgba(62, 150, 85, 0.15) 60%, rgba(62, 150, 85, 0.05) 85%, transparent 100%), radial-gradient(ellipse at center top, rgba(62, 150, 85, 0.3) 0%, rgba(62, 150, 85, 0.1) 50%, transparent 80%); border: 1px solid transparent; border-top-color: rgba(62, 150, 85, 0.3); border-left-color: rgba(62, 150, 85, 0.2); border-right-color: rgba(62, 150, 85, 0.2); border-radius: 32px 32px 0 0; z-index: 0; pointer-events: none; box-shadow: 0 -10px 40px rgba(62, 150, 85, 0.2) inset, 0 0 60px rgba(62, 150, 85, 0.1); mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);"></div>
       <div class="hive-label-left" style="position: absolute; top: 100px; left: 130px; z-index: 20; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 20px; color: #7BE495; text-shadow: 0 0 8px rgba(123, 228, 149, 0.8), 0 0 16px rgba(123, 228, 149, 0.6); font-size: 0.85rem; font-weight: 500; animation: fadeInUp 1s ease forwards;">
         <img src="./images/neo33.png" alt="팀 결성 아이콘" style="width: 24px; height: 24px; margin-right: 6px; vertical-align: middle;"> <span class="label-text-pc">네오 하이브 팀 결성</span><span class="label-text-mobile">팀 결성</span>
       </div>
@@ -4414,8 +4414,8 @@ if (window.innerWidth <= 768) {
         // 비디오를 클릭된 이미지의 원래 위치로 이동
         if (videoPhone) {
           if (window.innerWidth <= 768) {
-            // 모바일에서만 !important 사용 - 애니메이션을 위한 지연
-            setTimeout(() => {
+            // 모바일에서만 !important 사용 - RAF로 애니메이션
+            requestAnimationFrame(() => {
               videoPhone.style.setProperty('left', targetPosition.left, 'important');
               videoPhone.style.setProperty('top', targetPosition.top, 'important');
               videoPhone.style.setProperty('transform', targetPosition.transform, 'important');
@@ -4425,7 +4425,7 @@ if (window.innerWidth <= 768) {
               videoPhone.style.setProperty('border', 'none', 'important');
               videoPhone.style.setProperty('box-shadow', 'none', 'important');
               videoPhone.style.setProperty('border-radius', '16px', 'important');
-            }, 10);
+            });
           } else {
             // PC에서는 일반 스타일 적용 - 비디오는 클릭된 이미지 위치의 정확한 z-index를 사용
             videoPhone.style.left = targetPosition.left;
@@ -4443,8 +4443,8 @@ if (window.innerWidth <= 768) {
         // 클릭된 이미지를 중앙으로 이동
         targetImg.classList.add('active');
         if (window.innerWidth <= 768) {
-          // 모바일에서만 !important 사용 - 애니메이션을 위한 지연
-          setTimeout(() => {
+          // 모바일에서만 !important 사용 - RAF로 애니메이션
+          requestAnimationFrame(() => {
             targetImg.style.setProperty('left', '50%', 'important');
             targetImg.style.setProperty('top', '60%', 'important');
             targetImg.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
@@ -4454,7 +4454,7 @@ if (window.innerWidth <= 768) {
             targetImg.style.setProperty('border', '4px solid #7BE495', 'important');
             targetImg.style.setProperty('box-shadow', '0 0 20px rgba(123, 228, 149, 0.6)', 'important');
             targetImg.style.setProperty('border-radius', '20px', 'important');
-          }, 10);
+          });
         } else {
           // PC에서는 일반 스타일 적용
           targetImg.style.left = '50%';
@@ -4525,8 +4525,8 @@ if (window.innerWidth <= 768) {
      const positions = getPositionForIndex(index);
      
      if (window.innerWidth <= 768) {
-       // 모바일에서 부드러운 트랜지션 - 약간의 지연으로 애니메이션 보장
-       setTimeout(() => {
+       // 모바일에서 부드러운 트랜지션 - RAF 사용
+       requestAnimationFrame(() => {
          img.style.setProperty('transform', positions.transform + ' translateZ(0)', 'important');
          img.style.setProperty('-webkit-transform', positions.transform + ' translateZ(0)', 'important');
          img.style.setProperty('left', positions.left, 'important');
@@ -4537,7 +4537,7 @@ if (window.innerWidth <= 768) {
          img.style.setProperty('border-radius', '16px', 'important');
          img.style.setProperty('border', 'none', 'important');
          img.style.setProperty('box-shadow', 'none', 'important');
-       }, 10);
+       });
      } else {
        // PC에서는 일반 스타일 적용
        img.style.left = positions.left;
