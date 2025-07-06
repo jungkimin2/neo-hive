@@ -71,7 +71,7 @@
     box-shadow: 0 0 20px rgba(123, 228, 149, 0.6) !important;
     overflow: hidden !important;
     background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A) !important;
-    /* will-change 제거 - 스크롤 성능 향상 */
+    will-change: auto !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
@@ -1010,20 +1010,17 @@ div > p.smart-guide-text {
   }
 
   /* Prevent horizontal scrolling on mobile */
-  html {
+  html, body {
     overflow-x: hidden;
-    /* 스크롤 위치 안정화 */
+  }
+  
+  /* 스크롤 위치 안정화 */
+  html {
     scroll-behavior: auto;
-    /* iOS 관성 스크롤 활성화 */
-    -webkit-overflow-scrolling: touch;
   }
   
   body {
-    overflow-x: hidden;
     position: relative;
-    /* 스크롤 시 레이어 분리로 성능 향상 */
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
   }
   
   /* 성능 최적화 */
@@ -1039,40 +1036,32 @@ div > p.smart-guide-text {
   
   /* 모바일 성능 최적화 */
   @media (max-width: 768px) {
-    /* transform: translateZ(0)를 모든 요소에 적용하지 않음 - 스크롤 성능 향상 */
+    * {
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      -o-transform: translateZ(0);
+      transform: translateZ(0);
+    }
     
-    /* 모바일에서 애니메이션 최적화 - 애니메이션 중일 때만 will-change 적용 */
+    /* 모바일에서 애니메이션 최적화 */
     .animate-on-scroll,
     .slide-in-left,
     .slide-in-right {
-      /* will-change는 JavaScript로 애니메이션 시작/종료 시에만 적용 */
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      will-change: transform, opacity;
+      transform: translateZ(0);
     }
 
     /* 모바일에서 비디오 최적화 */
     video {
-      /* will-change 제거로 메모리 사용 최적화 */
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      will-change: auto;
+      transform: translateZ(0);
     }
 
     /* 모바일에서 이미지 최적화 */
     img {
-      /* will-change 제거로 메모리 사용 최적화 */
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    
-    /* 스크롤 성능 향상을 위한 추가 설정 */
-    html {
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    /* position: fixed 요소들의 스크롤 성능 개선 */
-    [style*="position: fixed"] {
-      transform: translate3d(0, 0, 0);
-      -webkit-transform: translate3d(0, 0, 0);
+      will-change: auto;
+      transform: translateZ(0);
     }
 
     /* 모바일에서만 Neo Hive 제목 아래로 이동 */
@@ -1110,7 +1099,7 @@ div > p.smart-guide-text {
     padding: 0 !important;
     margin: 0 !important;
     box-shadow: 0 0 10px rgba(123, 228, 149, 0.5), 0 0 20px rgba(123, 228, 149, 0.3) !important;
-    /* will-change 제거 - 스크롤 성능 향상 */
+    will-change: transform, box-shadow, opacity;
     overflow: hidden !important;
   }
   .video-phone {
@@ -1140,7 +1129,7 @@ div > p.smart-guide-text {
       animation: none !important;
       transform-style: preserve-3d !important;
       -webkit-transform-style: preserve-3d !important;
-      /* will-change 제거 - 스크롤 성능 향상 */
+      will-change: auto !important;
       backface-visibility: visible !important;
       -webkit-backface-visibility: visible !important;
       visibility: visible !important;
@@ -1294,23 +1283,20 @@ font-size: 1.4rem !important;
 <style>
 @media (max-width: 768px) {
 .hive-image {
-/* will-change 제거 - 스크롤 성능 향상 */
-backface-visibility: hidden;
--webkit-backface-visibility: hidden;
+will-change: transform, opacity;
+transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .hive-image.active {
-/* will-change 제거 - 스크롤 성능 향상 */
-backface-visibility: hidden;
--webkit-backface-visibility: hidden;
+will-change: transform, opacity;
+transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .video-phone {
-/* will-change 제거 - 스크롤 성능 향상 */
-backface-visibility: hidden;
--webkit-backface-visibility: hidden;
+will-change: transform, opacity;
+transform: translateZ(0);
 transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 }
@@ -4949,7 +4935,7 @@ if (video) {
       margin: 40px 0 20px 0 !important;
       padding: 0 8px !important;
       justify-items: center !important;
-      /* will-change 제거 - 스크롤 성능 향상 */
+      will-change: auto !important;
     }
     
     .flow-step {
@@ -5262,49 +5248,6 @@ if (video) {
 }
 .neohive-flex-row > div > div > div[style*='flex-direction: column'] > div > div + div p + p {
   margin-top: 0 !important;
-}
-}
-</style>
-
-<style>
-@media (max-width: 768px) {
-/* 스크롤 걸림 해결: hive-showcase 구간 최적화 */
-.hive-showcase {
-  height: auto !important;
-  min-height: 620px !important;
-  overflow: visible !important;
-}
-
-/* 모든 애니메이션 효과 제거 */
-.hive-showcase .animate-on-scroll,
-.hive-showcase .slide-in-left,
-.hive-showcase .slide-in-right {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
-  transition: none !important;
-}
-
-/* 이미지들의 복잡한 transform 단순화 */
-.hive-showcase img.hive-image {
-  transform: none !important;
-  position: static !important;
-  display: none !important;
-}
-
-/* 배경 blur 효과 제거 */
-.hive-showcase div[style*="filter: blur"] {
-  display: none !important;
-}
-
-/* 비디오만 중앙에 표시 */
-.hive-showcase .video-phone {
-  position: relative !important;
-  left: auto !important;
-  top: auto !important;
-  transform: none !important;
-  margin: 0 auto !important;
-  display: block !important;
 }
 }
 </style>
