@@ -1444,6 +1444,48 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     color: #ccc;
     margin-bottom: 12px;
   }
+  
+  /* 모바일 모달 최적화 */
+  #formModal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    max-height: 85vh !important;
+    margin: 0 !important;
+  }
+  
+  #formModal .modal-header-advanced {
+    padding: 20px 16px 12px !important;
+  }
+  
+  #formModal .modal-body {
+    padding: 16px !important;
+    max-height: calc(85vh - 100px) !important;
+  }
+  
+  #formModal .input-group {
+    margin-bottom: 16px !important;
+  }
+  
+  #formModal label {
+    font-size: 0.85rem !important;
+    margin-bottom: 6px !important;
+  }
+  
+  #formModal input,
+  #formModal select,
+  #formModal textarea {
+    padding: 12px 14px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  #formModal button[type="submit"] {
+    padding: 14px 24px !important;
+    font-size: 1rem !important;
+  }
 }
 @media (min-width: 769px) {
   .mobile-only-text {
@@ -3289,7 +3331,7 @@ if (window.innerWidth <= 768) {
   </div>
   
   <!-- 폼 영역 -->
-  <div class="modal-body" style="padding: 24px 20px; background: #0A0A0A; max-height: calc(90vh - 140px); overflow-y: auto;">
+  <div class="modal-body" style="padding: 20px 16px 24px; background: #0A0A0A; max-height: calc(85vh - 120px); overflow-y: auto; overflow-x: hidden;">
     <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:12px;">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
@@ -3609,25 +3651,27 @@ if (window.innerWidth <= 768) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // 즉시 적용 - 현재 화면 중앙에 표시 (2칸 좌측으로 이동)
-      modal.style.setProperty('position', 'absolute', 'important');
-      modal.style.setProperty('top', (scrollTop + windowHeight / 2) + 'px', 'important');
-      modal.style.setProperty('left', '2.5%', 'important'); /* 12.5% → 2.5%로 2칸 좌측 이동 */
-      modal.style.setProperty('transform', 'translateY(-50%)', 'important');
-      modal.style.setProperty('width', '80%', 'important'); /* 75% → 80%로 약간 늘림 */
-      modal.style.setProperty('max-width', '350px', 'important');
-      modal.style.setProperty('min-width', '280px', 'important');
+      // 화면 중앙에 고정 표시 (fixed position으로 변경)
+      modal.style.setProperty('position', 'fixed', 'important');
+      modal.style.setProperty('top', '50%', 'important');
+      modal.style.setProperty('left', '50%', 'important');
+      modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+      modal.style.setProperty('width', '90%', 'important');
+      modal.style.setProperty('max-width', '400px', 'important');
+      modal.style.setProperty('max-height', '85vh', 'important');
+      modal.style.setProperty('height', 'auto', 'important');
+      modal.style.setProperty('overflow', 'hidden', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
       modal.style.setProperty('margin', '0', 'important');
-      modal.style.setProperty('right', 'auto', 'important');
       modal.style.setProperty('z-index', '2147483648', 'important');
       modal.style.setProperty('background', '#000', 'important');
-      modal.style.setProperty('border', '2px solid #3AC8A8', 'important');
-      modal.style.setProperty('border-radius', '12px', 'important');
+      modal.style.setProperty('border', '2px solid #7BE495', 'important');
+      modal.style.setProperty('border-radius', '20px', 'important');
       modal.style.setProperty('color', '#fff', 'important');
       modal.style.setProperty('visibility', 'visible', 'important');
       modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('padding', '20px', 'important');
+      modal.style.setProperty('padding', '0', 'important');
+      modal.style.setProperty('box-shadow', '0 0 50px rgba(123, 228, 149, 0.3), 0 0 100px rgba(123, 228, 149, 0.1)', 'important');
       
               // 모바일에서는 이미 위에서 mobileForceOverlay가 생성됨
       
@@ -3636,17 +3680,15 @@ if (window.innerWidth <= 768) {
       // 배경 스크롤 방지
       document.body.style.overflow = 'hidden';
       
-      // 추가 안전장치
+      // 추가 안전장치 - 고정 위치 유지
       setTimeout(() => {
         if (modal.style.display === 'block') {
-          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const currentWindowHeight = window.innerHeight;
-          modal.style.setProperty('position', 'absolute', 'important');
-          modal.style.setProperty('top', (currentScrollTop + currentWindowHeight / 2) + 'px', 'important');
-          modal.style.setProperty('left', '2.5%', 'important'); /* 2칸 좌측 위치 유지 */
-          modal.style.setProperty('transform', 'translateY(-50%)', 'important');
+          modal.style.setProperty('position', 'fixed', 'important');
+          modal.style.setProperty('top', '50%', 'important');
+          modal.style.setProperty('left', '50%', 'important');
+          modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
-          console.log('Modal safety check applied at position:', currentScrollTop + currentWindowHeight / 2);
+          console.log('Modal safety check applied - centered position maintained');
         }
       }, 100);
     } else {
