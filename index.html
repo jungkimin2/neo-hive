@@ -3357,7 +3357,7 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(16px) !important; position: relative !important; width: 100% !important;">
+                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(0) !important; position: relative !important; width: 100% !important; padding-left: 8px !important;">
                   <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
                 </p>
               </div>
@@ -3697,6 +3697,10 @@ if (window.innerWidth <= 768) {
             
             /* 모바일 최적화 강화 */
             @media (max-width: 768px) {
+              .clickable-benefit-box {
+                margin-top: 72px !important; /* 전체 UI를 2칸 더 아래로 이동 */
+              }
+              
               .clickable-benefit-box > div:first-child {
                 padding: 24px 20px !important;
                 border-radius: 12px !important;
@@ -3839,14 +3843,15 @@ if (window.innerWidth <= 768) {
         overflow: visible !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 강제 우측 이동 - transform 사용 */
+      /* 모바일에서 비용 회수 텍스트 중앙 정렬 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(16px) !important;
+        transform: translateX(0) !important;
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
+        padding-left: 8px !important;
       }
       
       /* 모바일에서 스크롤바 숨김 */
