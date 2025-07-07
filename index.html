@@ -4352,8 +4352,8 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
       modal.style.setProperty('width', '90%', 'important');
       modal.style.setProperty('max-width', '400px', 'important');
-      modal.style.setProperty('max-height', '75vh', 'important');
-      modal.style.setProperty('height', 'auto', 'important');
+      modal.style.setProperty('height', '90vh', 'important');
+      modal.style.setProperty('max-height', '90vh', 'important');
       modal.style.setProperty('overflow', 'hidden', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
       modal.style.setProperty('margin', '0', 'important');
@@ -4382,6 +4382,18 @@ if (window.innerWidth <= 768) {
           modal.style.setProperty('left', '50%', 'important');
           modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
+          modal.style.setProperty('height', '90vh', 'important');
+          modal.style.setProperty('max-height', '90vh', 'important');
+          
+          // modal-body 높이도 강제 설정
+          const modalBody = modal.querySelector('.modal-body');
+          if (modalBody) {
+            modalBody.style.setProperty('height', 'calc(90vh - 130px)', 'important');
+            modalBody.style.setProperty('max-height', 'calc(90vh - 130px)', 'important');
+            modalBody.style.setProperty('overflow', 'hidden', 'important');
+            modalBody.style.setProperty('padding', '0 16px 20px', 'important');
+          }
+          
           console.log('Modal safety check applied - centered position maintained');
         }
       }, 100);
@@ -8086,26 +8098,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 모바일 팝업 모달 정렬 수정 - 개선된 디자인 */
   #formModal {
-    width: 90% !important;
-    max-width: 400px !important;
-    padding: 0 !important;
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    min-width: 320px !important;
-    box-sizing: border-box !important;
-    z-index: 2147483648 !important;
-    background: #000 !important;
-    border: 1px solid rgba(123, 228, 149, 0.3) !important;
-    border-radius: 20px !important;
-    color: #fff !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: hidden !important;
-    height: 88vh !important;
-    max-height: 680px !important;
+    /* 인라인 스타일로 덮어씌워질 예정 */
   }
   
   #formModal .modal-header-redesigned {
@@ -8132,10 +8125,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   #formModal .modal-body {
-    padding: 16px !important;
-    height: calc(88vh - 120px) !important;
-    max-height: 560px !important;
-    overflow: hidden !important;
+    /* 인라인 스타일로 덮어씌워질 예정 */
   }
   
   #formModal form {
@@ -8241,20 +8231,11 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     animation: modalFadeIn 0.3s ease-out;
-    max-width: 380px !important;
-    height: 88vh !important;
-    max-height: 680px !important;
-    background: #0A0A0A !important;
-    border: 1px solid rgba(123, 228, 149, 0.2) !important;
     display: flex !important;
     flex-direction: column !important;
   }
   
   #formModal .modal-body {
-    height: calc(88vh - 120px) !important;
-    max-height: 560px !important;
-    overflow: hidden !important;
-    overflow-x: hidden !important;
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
