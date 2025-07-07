@@ -4116,37 +4116,90 @@ if (window.innerWidth <= 768) {
       event.stopPropagation();
     }
     
-    // 기존 모달이 있으면 제거
+    // 기존 모달과 오버레이가 있으면 제거
     const existingModal = document.getElementById('formModal');
     if (existingModal) {
       existingModal.remove();
     }
     
+    const existingOverlay = document.getElementById('modalOverlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+    
+    // 오버레이 생성
+    const overlay = document.createElement('div');
+    overlay.id = 'modalOverlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9998;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    overlay.addEventListener('click', closeForm);
+    document.body.appendChild(overlay);
+    
+    // 강제 리플로우 후 opacity 적용
+    overlay.offsetHeight;
+    overlay.style.opacity = '1';
+    
     // 새로운 모달 생성
     const modal = document.createElement('div');
     modal.id = 'formModal';
-    modal.style.cssText = `
-      display: block;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      background: #000;
-      padding: 0;
-      width: 90%;
-      max-width: 500px;
-      height: auto;
-      max-height: 85vh;
-      overflow: hidden;
-      border-radius: 20px;
-      color: #fff;
-      box-sizing: border-box;
-      box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(123, 228, 149, 0.3);
-    `;
     
-    // 모달 내용 생성
+    // 모바일과 PC 구분하여 스타일 적용
+    if (window.innerWidth <= 768) {
+      modal.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background: #000;
+        padding: 0;
+        width: 92%;
+        max-width: 400px;
+        height: auto;
+        max-height: 85vh;
+        overflow: hidden;
+        border-radius: 20px;
+        color: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(123, 228, 149, 0.3);
+      `;
+    } else {
+      modal.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background: #000;
+        padding: 0;
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+        max-height: 85vh;
+        overflow: hidden;
+        border-radius: 20px;
+        color: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(123, 228, 149, 0.3);
+      `;
+    }
+    
+    // 모달 내용 생성 - 모바일 여부에 따라 스타일 조정
+    const isMobile = window.innerWidth <= 768;
     modal.innerHTML = `
       <!-- 모바일 리디자인 헤더 -->
       <div class="modal-header-redesigned" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
@@ -4186,7 +4239,7 @@ if (window.innerWidth <= 768) {
       </div>
       
       <!-- 폼 영역 - 모바일 최적화 리디자인 -->
-      <div class="modal-body" style="padding: 0 16px 16px; background: #000; max-height: calc(85vh - 140px); overflow-y: auto; -webkit-overflow-scrolling: touch;">
+      <div class="modal-body" style="padding: 0 16px 16px; background: #000; ${isMobile ? 'max-height: calc(85vh - 160px);' : 'max-height: calc(85vh - 140px);'} overflow-y: auto; -webkit-overflow-scrolling: touch;">
         <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:8px;">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
@@ -4401,35 +4454,27 @@ if (window.innerWidth <= 768) {
   }
   function closeForm() {
     const modal = document.getElementById('formModal');
+    const overlay = document.getElementById('modalOverlay');
     
     if (modal) {
       modal.remove();
     }
     
-    // 모바일 전용 오버레이 제거
-    if (window.innerWidth <= 768) {
-      const mobileOverlay = document.getElementById('mobileForceOverlay');
-      if (mobileOverlay) {
-        // 페이드아웃 효과
-        mobileOverlay.style.setProperty('opacity', '0', 'important');
-        setTimeout(() => {
-          mobileOverlay.remove();
-          console.log('Mobile force overlay removed');
-        }, 300);
-      }
-      // 모바일에서 배경 스크롤 복원
-      document.body.style.overflow = 'auto';
-    } else {
-      // PC 오버레이 처리
-      const overlay = document.getElementById('modalOverlay');
-      if (overlay) {
-        overlay.style.setProperty('display', 'none', 'important');
-        overlay.style.setProperty('visibility', 'hidden', 'important');
-        overlay.style.setProperty('opacity', '0', 'important');
-        overlay.classList.remove('active');
-        console.log('PC Overlay hidden');
-      }
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.remove();
+      }, 300);
     }
+    
+    // 모바일 전용 오버레이 제거 (기존 코드와의 호환성)
+    const mobileOverlay = document.getElementById('mobileForceOverlay');
+    if (mobileOverlay) {
+      mobileOverlay.remove();
+    }
+    
+    // 배경 스크롤 복원
+    document.body.style.overflow = 'auto';
   }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
@@ -8115,6 +8160,8 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
     opacity: 1 !important;
     overflow: hidden !important;
+    height: auto !important;
+    max-height: 85vh !important;
   }
   
   #formModal .modal-header-redesigned {
@@ -8142,7 +8189,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   #formModal .modal-body {
     padding: 20px 16px !important;
-    max-height: calc(75vh - 140px) !important;
+    max-height: calc(85vh - 140px) !important;
+    overflow-y: auto !important;
   }
   
   #formModal form {
@@ -8249,7 +8297,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal {
     animation: modalFadeIn 0.3s ease-out;
     max-width: 380px !important;
-    max-height: 98vh !important;
+    max-height: 85vh !important;
     height: auto !important;
     background: #0A0A0A !important;
     border: 1px solid rgba(123, 228, 149, 0.2) !important;
@@ -8258,7 +8306,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   #formModal .modal-body {
-    max-height: calc(98vh - 120px) !important;
+    max-height: calc(85vh - 120px) !important;
     height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
@@ -8277,17 +8325,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   #formModal {
-    top: 5px !important;
-    transform: translateX(-50%) !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
   
   @keyframes modalFadeIn {
     from {
-      transform: translateX(-50%) scale(0.98);
+      transform: translate(-50%, -50%) scale(0.98);
       opacity: 0;
     }
     to {
-      transform: translateX(-50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
   }
