@@ -3386,7 +3386,7 @@ if (window.innerWidth <= 768) {
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
           <!-- 클릭 가능한 사전 예약 혜택 안내 -->
-        <div class="reservation-benefit-notice clickable-benefit-box" 
+        <div class="reservation-benefit-notice clickable-benefit-box desktop-only" 
              onclick="openForm();return false;" 
              tabindex="0"
              role="button"
@@ -3752,6 +3752,29 @@ if (window.innerWidth <= 768) {
             }
           </style>
         </div>
+        
+        <!-- 모바일 전용 간단한 파트너 신청 버튼 -->
+        <div class="mobile-partner-button mobile-only" onclick="openForm();return false;" style="margin-top: 20px; margin-bottom: 0; text-align: center; display: none;">
+          <button style="
+            background: #7BE495;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(123, 228, 149, 0.4);
+            transition: all 0.2s ease;
+            width: auto;
+            max-width: 280px;
+          " 
+          ontouchstart="this.style.transform='scale(0.96)'; this.style.boxShadow='0 2px 8px rgba(123, 228, 149, 0.3)';" 
+          ontouchend="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(123, 228, 149, 0.4)';">
+            파트너 신청하기
+          </button>
+        </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3760,6 +3783,12 @@ if (window.innerWidth <= 768) {
         display: block !important;
       }
       .testimonial-content-mobile {
+        display: none !important;
+      }
+      .desktop-only {
+        display: block !important;
+      }
+      .mobile-only {
         display: none !important;
       }
     }
@@ -3772,6 +3801,12 @@ if (window.innerWidth <= 768) {
       .testimonial-content-mobile {
         display: block !important;
       }
+      .desktop-only {
+        display: none !important;
+      }
+      .mobile-only {
+        display: block !important;
+      }
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
@@ -3782,20 +3817,12 @@ if (window.innerWidth <= 768) {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        padding-bottom: 120px !important; /* 모바일에서 배경을 더 아래까지 연장 */
+        padding-bottom: 60px !important; /* 모바일에서 하단 여백 축소 */
       }
       
-      /* 모바일에서 배경 연장을 위한 가상 요소 추가 */
+      /* 모바일에서 배경 연장을 위한 가상 요소 제거 */
       section#benefits::after {
-        content: '' !important;
-        display: block !important;
-        width: 100% !important;
-        height: 100px !important;
-        background: #000 !important;
-        position: absolute !important;
-        bottom: -100px !important;
-        left: 0 !important;
-        z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
+        display: none !important;
       }
       
       /* 모바일에서 푸터 강제 표시 */
