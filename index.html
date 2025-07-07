@@ -4110,8 +4110,8 @@ if (window.innerWidth <= 768) {
         padding: 0;
         width: 92%;
         max-width: 400px;
-        height: auto;
-        max-height: 85vh;
+        height: 88vh;
+        max-height: 680px;
         overflow: hidden;
         border-radius: 20px;
         color: #fff;
@@ -4183,7 +4183,7 @@ if (window.innerWidth <= 768) {
       </div>
       
       <!-- 폼 영역 - 모바일 최적화 리디자인 -->
-      <div class="modal-body" style="padding: 0 16px 16px; background: #000; ${isMobile ? 'height: auto;' : 'max-height: calc(85vh - 140px);'} ${isMobile ? '' : 'overflow-y: auto;'} -webkit-overflow-scrolling: touch;">
+      <div class="modal-body" style="padding: 0 16px 20px; background: #000; ${isMobile ? 'height: calc(88vh - 120px); max-height: 560px;' : 'max-height: calc(85vh - 140px);'} ${isMobile ? 'overflow: hidden;' : 'overflow-y: auto;'} -webkit-overflow-scrolling: touch;">
         <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:${isMobile ? '6px' : '8px'};">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
@@ -8104,8 +8104,8 @@ document.addEventListener('DOMContentLoaded', function() {
     visibility: visible !important;
     opacity: 1 !important;
     overflow: hidden !important;
-    height: auto !important;
-    max-height: 85vh !important;
+    height: 88vh !important;
+    max-height: 680px !important;
   }
   
   #formModal .modal-header-redesigned {
@@ -8133,9 +8133,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   #formModal .modal-body {
     padding: 16px !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
+    height: calc(88vh - 120px) !important;
+    max-height: 560px !important;
+    overflow: hidden !important;
   }
   
   #formModal form {
@@ -8242,8 +8242,8 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal {
     animation: modalFadeIn 0.3s ease-out;
     max-width: 380px !important;
-    max-height: 85vh !important;
-    height: auto !important;
+    height: 88vh !important;
+    max-height: 680px !important;
     background: #0A0A0A !important;
     border: 1px solid rgba(123, 228, 149, 0.2) !important;
     display: flex !important;
@@ -8251,9 +8251,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   #formModal .modal-body {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
+    height: calc(88vh - 120px) !important;
+    max-height: 560px !important;
+    overflow: hidden !important;
     overflow-x: hidden !important;
     flex: 1 !important;
     display: flex !important;
