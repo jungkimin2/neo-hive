@@ -1,3 +1,5 @@
+
+
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -1579,6 +1581,26 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
   background-color: rgba(0, 0, 0, 0.85) !important;
   z-index: 8000 !important;
   display: block !important;
+}
+
+/* Mobile popup form styles */
+@media (max-width: 768px) {
+  #formModal {
+    width: 95% !important;
+    max-width: none !important;
+    border: 2px solid #7BE495 !important;
+    background: #000 !important;
+    border-radius: 24px !important;
+  }
+  
+  #formModal .modal-body {
+    padding: 0 16px 16px !important;
+  }
+  
+  #formModal input::placeholder,
+  #formModal textarea::placeholder {
+    color: #666 !important;
+  }
 }
 </style>
 
@@ -3891,63 +3913,55 @@ if (window.innerWidth <= 768) {
 <div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:95vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3);">
   
   <!-- 모바일 고도화 헤더 -->
-  <div class="modal-header-advanced" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%); padding: 16px 8px 12px; position: relative; border-bottom: 1px solid #7BE495;">
+  <div class="modal-header-advanced" style="background: transparent; padding: 20px 20px 16px; position: relative;">
     <!-- 닫기 버튼 -->
-    <button onclick="closeForm()" style="position: absolute; top: 6px; right: 6px; background: none; border: none; font-size: 24px; color: #7BE495; width: auto; height: auto; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 4px;">&times;</button>
-    
-    <div style="text-align: center;">
-      <div style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, rgba(123, 228, 149, 0.3) 0%, rgba(123, 228, 149, 0.1) 100%); border-radius: 50%; margin-bottom: 8px; border: 2px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.6), 0 0 40px rgba(123, 228, 149, 0.3);">
-        <img src="./images/neohive3.png" alt="Neo Hive" style="width: 48px; height: auto; filter: brightness(1.3); drop-shadow(0 0 10px rgba(123, 228, 149, 0.8));">
-      </div>
-      <h2 style="color: #7BE495; font-size: 1rem; margin: 0 0 2px 0; font-weight: 700; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">파트너 신청</h2>
-      <p style="color: #aaa; font-size: 0.65rem; margin: 0;">Neo Hive와 함께 성장하세요</p>
-    </div>
+    <button onclick="closeForm()" style="position: absolute; top: 16px; right: 16px; background: none; border: 1px solid #7BE495; border-radius: 50%; width: 32px; height: 32px; font-size: 20px; color: #7BE495; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">&times;</button>
   </div>
   
   <!-- 폼 영역 -->
-  <div class="modal-body" style="padding: 8px 10px 10px; background: #0A0A0A; max-height: calc(92vh - 70px); overflow-y: auto; overflow-x: hidden;">
-    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:3px;">
+  <div class="modal-body" style="padding: 0 20px 20px; background: transparent; max-height: calc(95vh - 60px); overflow-y: auto; overflow-x: hidden;">
+    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:16px;">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
     <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
     <!-- 헬스장명 입력 -->
-    <div class="input-group" style="margin-bottom: 4px;">
-      <label for="gym" style="display: block; color: #7BE495; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; text-shadow: 0 0 10px rgba(123, 228, 149, 0.5);">헬스장명</label>
-      <input id="gym" type="text" name="gym" placeholder="헬스장명을 입력해주세요" required style="width: 100%; padding: 5px 8px; border: 2px solid rgba(123, 228, 149, 0.3); border-radius: 6px; background: rgba(123, 228, 149, 0.05); color: #fff; font-size: 0.8rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.1)'; this.style.boxShadow='0 0 20px rgba(123, 228, 149, 0.3)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.05)'; this.style.boxShadow='none';">
+    <div class="input-group" style="margin-bottom: 0;">
+      <label for="gym" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">헬스장명</label>
+      <input id="gym" type="text" name="gym" placeholder="헬스장명을 입력해주세요" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
     </div>
     <!-- 담당자명 입력 -->
-    <div class="input-group" style="margin-bottom: 4px;">
-      <label for="contact" style="display: block; color: #7BE495; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; text-shadow: 0 0 10px rgba(123, 228, 149, 0.5);">담당자명</label>
-      <input id="contact" type="text" name="contact" placeholder="담당자명을 입력해주세요" required style="width: 100%; padding: 5px 8px; border: 2px solid rgba(123, 228, 149, 0.3); border-radius: 6px; background: rgba(123, 228, 149, 0.05); color: #fff; font-size: 0.8rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.1)'; this.style.boxShadow='0 0 20px rgba(123, 228, 149, 0.3)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.05)'; this.style.boxShadow='none';">
+    <div class="input-group" style="margin-bottom: 0;">
+      <label for="contact" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">담당자명</label>
+      <input id="contact" type="text" name="contact" placeholder="담당자명을 입력해주세요" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
     </div>
     <!-- 상품 선택 -->
-    <div class="input-group" style="margin-bottom: 4px;">
-      <label for="product" style="display: block; color: #7BE495; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; text-shadow: 0 0 10px rgba(123, 228, 149, 0.5);">신청 상품</label>
-      <select id="product" name="product" required style="width: 100%; padding: 5px 8px; border: 2px solid rgba(123, 228, 149, 0.3); border-radius: 6px; background: rgba(123, 228, 149, 0.05); color: #fff; font-size: 0.8rem; transition: all 0.3s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237BE495%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 8px center; background-size: 14px; padding-right: 28px;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.1)'; this.style.boxShadow='0 0 20px rgba(123, 228, 149, 0.3)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.05)'; this.style.boxShadow='none';">
-        <option value="" style="background: #0A0A0A; color: #aaa;">신청 상품을 선택해주세요</option>
-        <option value="네오 하이브" style="background: #0A0A0A; color: #fff;">네오 하이브</option>
-        <option value="네오 스마트" style="background: #0A0A0A; color: #fff;">네오 스마트</option>
-        <option value="네오 하이브 + 네오 스마트" style="background: #0A0A0A; color: #fff;">네오 하이브 + 네오 스마트</option>
+    <div class="input-group" style="margin-bottom: 0;">
+      <label for="product" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">신청 상품</label>
+      <select id="product" name="product" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237BE495%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 20px; padding-right: 48px;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
+        <option value="" style="background: #000; color: #aaa;">신청 상품을 선택해주세요</option>
+        <option value="네오 하이브" style="background: #000; color: #fff;">네오 하이브</option>
+        <option value="네오 스마트" style="background: #000; color: #fff;">네오 스마트</option>
+        <option value="네오 하이브 + 네오 스마트" style="background: #000; color: #fff;">네오 하이브 + 네오 스마트</option>
       </select>
     </div>
     <!-- 연락처 입력 -->
-    <div class="input-group" style="margin-bottom: 4px;">
-      <label for="phone" style="display: block; color: #7BE495; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; text-shadow: 0 0 10px rgba(123, 228, 149, 0.5);">연락처</label>
-      <input id="phone" type="tel" name="phone" placeholder="연락처를 입력해주세요" required style="width: 100%; padding: 5px 8px; border: 2px solid rgba(123, 228, 149, 0.3); border-radius: 6px; background: rgba(123, 228, 149, 0.05); color: #fff; font-size: 0.8rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.1)'; this.style.boxShadow='0 0 20px rgba(123, 228, 149, 0.3)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.05)'; this.style.boxShadow='none';">
+    <div class="input-group" style="margin-bottom: 0;">
+      <label for="phone" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">연락처</label>
+      <input id="phone" type="tel" name="phone" placeholder="연락처를 입력해주세요 (예: 010-1234-5678)" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
     </div>
     <!-- 요청사항 입력 -->
-    <div class="input-group" style="margin-bottom: 6px;">
-      <label for="memo" style="display: block; color: #7BE495; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; text-shadow: 0 0 10px rgba(123, 228, 149, 0.5);">요청 사항</label>
-      <textarea id="memo" name="memo" placeholder="요청 사항이나 궁금한 점을 자유롭게 적어주세요" style="width: 100%; padding: 5px 8px; border: 2px solid rgba(123, 228, 149, 0.3); border-radius: 6px; background: rgba(123, 228, 149, 0.05); color: #fff; font-size: 0.8rem; transition: all 0.3s ease; box-sizing: border-box; resize: vertical; min-height: 40px;" rows="2" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.1)'; this.style.boxShadow='0 0 20px rgba(123, 228, 149, 0.3)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.05)'; this.style.boxShadow='none';"></textarea>
+    <div class="input-group" style="margin-bottom: 0;">
+      <label for="memo" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">요청 사항</label>
+      <textarea id="memo" name="memo" placeholder="요청 사항이나 궁금한 점을 자유롭게 적어주세요" style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; resize: vertical; min-height: 120px;" rows="5" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';"></textarea>
     </div>
     <!-- 제출 버튼 -->
-    <button type="submit" class="btn" style="width: 100%; padding: 8px 16px; background: linear-gradient(135deg, #7BE495 0%, #62D2A2 100%); color: #000; font-weight: 700; font-size: 0.85rem; border-radius: 8px; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.2); text-shadow: 0 1px 2px rgba(0,0,0,0.1); letter-spacing: 0.5px; margin-top: 0;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 30px rgba(123, 228, 149, 0.5), 0 0 60px rgba(123, 228, 149, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(123, 228, 149, 0.4), 0 0 40px rgba(123, 228, 149, 0.2)';">
-      <span style="display: flex; align-items: center; justify-content: center; gap: 4px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 2L11 13"></path>
-          <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+    <button type="submit" class="btn" style="width: 100%; padding: 18px; background: #7BE495; color: #000; font-weight: 700; font-size: 1.1rem; border-radius: 12px; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4); letter-spacing: 0.5px; margin-top: 8px;" onmouseover="this.style.background='#9AEFB0'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 30px rgba(123, 228, 149, 0.5)';" onmouseout="this.style.background='#7BE495'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(123, 228, 149, 0.4)';">
+      <span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
         </svg>
-        신청하기
+        신청서 보내기
       </span>
     </button>
     </form>
