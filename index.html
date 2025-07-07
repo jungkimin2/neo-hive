@@ -3910,38 +3910,48 @@ if (window.innerWidth <= 768) {
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
-<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:700px; height:auto; max-height:95vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 0, 0, 0.3);">
+<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:500px; height:auto; max-height:85vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5); border: 1px solid rgba(123, 228, 149, 0.3);">
   
   <!-- 모바일 고도화 헤더 -->
-  <div class="modal-header-advanced" style="background: transparent; padding: 0; position: relative;">
-    <!-- 상단 바 -->
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid rgba(123, 228, 149, 0.3);">
-      <h2 style="color: #7BE495; font-size: 1.1rem; margin: 0; font-weight: 600;">파트너 신청</h2>
-      <!-- 닫기 버튼 -->
-      <button onclick="closeForm()" style="background: none; border: 1px solid #7BE495; border-radius: 50%; width: 36px; height: 36px; font-size: 24px; color: #7BE495; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0;">&times;</button>
+  <div class="modal-header-advanced" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
+    <!-- 상단 바 - 모바일 스타일 개선 -->
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; position: relative; background: rgba(123, 228, 149, 0.05);">
+      <h2 style="color: #7BE495; font-size: 1.25rem; margin: 0; font-weight: 700; text-align: center;">파트너 신청</h2>
+      <!-- 닫기 버튼 - 우측 상단 고정 -->
+      <button onclick="closeForm()" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: rgba(123, 228, 149, 0.1); border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 20px; color: #7BE495; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0;">✕</button>
+    </div>
+    
+    <!-- 혜택 안내 배너 -->
+    <div style="background: linear-gradient(135deg, rgba(123, 228, 149, 0.15) 0%, rgba(123, 228, 149, 0.05) 100%); padding: 16px 20px; border-top: 1px solid rgba(123, 228, 149, 0.2);">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+        <div style="width: 6px; height: 6px; background: #7BE495; border-radius: 50%; flex-shrink: 0;"></div>
+        <p style="margin: 0; color: #7BE495; font-size: 0.9rem; font-weight: 600; text-align: center;">총 100만원 상당 혜택 제공</p>
+        <div style="width: 6px; height: 6px; background: #7BE495; border-radius: 50%; flex-shrink: 0;"></div>
+      </div>
+      <p style="margin: 8px 0 0 0; color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; text-align: center;">+ 맞춤형 운영 컨설팅 제공</p>
     </div>
   </div>
   
-  <!-- 폼 영역 -->
-  <div class="modal-body" style="padding: 0 20px 20px; background: transparent; max-height: calc(95vh - 60px); overflow-y: auto; overflow-x: hidden;">
-    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:16px;">
+  <!-- 폼 영역 - 모바일 최적화 -->
+  <div class="modal-body" style="padding: 24px 20px 20px; background: #000; max-height: calc(80vh - 140px); overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;">
+    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:20px;">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
     <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
     <!-- 헬스장명 입력 -->
     <div class="input-group" style="margin-bottom: 0;">
-      <label for="gym" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">헬스장명</label>
-      <input id="gym" type="text" name="gym" placeholder="헬스장명을 입력해주세요" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
+      <label for="gym" style="display: block; color: #7BE495; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">헬스장명</label>
+      <input id="gym" type="text" name="gym" placeholder="헬스장명을 입력해주세요" required style="width: 100%; padding: 14px 16px; border: 1.5px solid rgba(123, 228, 149, 0.3); border-radius: 10px; background: rgba(123, 228, 149, 0.03); color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.08)'; this.style.boxShadow='0 0 0 3px rgba(123, 228, 149, 0.15)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.03)'; this.style.boxShadow='none';">
     </div>
     <!-- 담당자명 입력 -->
     <div class="input-group" style="margin-bottom: 0;">
-      <label for="contact" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">담당자명</label>
-      <input id="contact" type="text" name="contact" placeholder="담당자명을 입력해주세요" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
+      <label for="contact" style="display: block; color: #7BE495; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">담당자명</label>
+      <input id="contact" type="text" name="contact" placeholder="담당자명을 입력해주세요" required style="width: 100%; padding: 14px 16px; border: 1.5px solid rgba(123, 228, 149, 0.3); border-radius: 10px; background: rgba(123, 228, 149, 0.03); color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.08)'; this.style.boxShadow='0 0 0 3px rgba(123, 228, 149, 0.15)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.03)'; this.style.boxShadow='none';">
     </div>
     <!-- 상품 선택 -->
     <div class="input-group" style="margin-bottom: 0;">
-      <label for="product" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">신청 상품</label>
-      <select id="product" name="product" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237BE495%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 20px; padding-right: 48px;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
+      <label for="product" style="display: block; color: #7BE495; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">신청 상품</label>
+      <select id="product" name="product" required style="width: 100%; padding: 14px 16px; border: 1.5px solid rgba(123, 228, 149, 0.3); border-radius: 10px; background: rgba(123, 228, 149, 0.03); color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237BE495%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 20px; padding-right: 48px; outline: none;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.08)'; this.style.boxShadow='0 0 0 3px rgba(123, 228, 149, 0.15)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.03)'; this.style.boxShadow='none';">
         <option value="" style="background: #000; color: #aaa;">신청 상품을 선택해주세요</option>
         <option value="네오 하이브" style="background: #000; color: #fff;">네오 하이브</option>
         <option value="네오 스마트" style="background: #000; color: #fff;">네오 스마트</option>
@@ -3950,16 +3960,16 @@ if (window.innerWidth <= 768) {
     </div>
     <!-- 연락처 입력 -->
     <div class="input-group" style="margin-bottom: 0;">
-      <label for="phone" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">연락처</label>
-      <input id="phone" type="tel" name="phone" placeholder="연락처를 입력해주세요 (예: 010-1234-5678)" required style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box;" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';">
+      <label for="phone" style="display: block; color: #7BE495; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">연락처</label>
+      <input id="phone" type="tel" name="phone" placeholder="010-1234-5678" required style="width: 100%; padding: 14px 16px; border: 1.5px solid rgba(123, 228, 149, 0.3); border-radius: 10px; background: rgba(123, 228, 149, 0.03); color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.08)'; this.style.boxShadow='0 0 0 3px rgba(123, 228, 149, 0.15)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.03)'; this.style.boxShadow='none';">
     </div>
     <!-- 요청사항 입력 -->
     <div class="input-group" style="margin-bottom: 0;">
-      <label for="memo" style="display: block; color: #7BE495; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">요청 사항</label>
-      <textarea id="memo" name="memo" placeholder="요청 사항이나 궁금한 점을 자유롭게 적어주세요" style="width: 100%; padding: 16px; border: 1px solid #7BE495; border-radius: 12px; background: transparent; color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; resize: vertical; min-height: 120px;" rows="5" onfocus="this.style.borderColor='#7BE495'; this.style.boxShadow='0 0 0 2px rgba(123, 228, 149, 0.2)';" onblur="this.style.borderColor='#7BE495'; this.style.boxShadow='none';"></textarea>
+      <label for="memo" style="display: block; color: #7BE495; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">요청 사항</label>
+      <textarea id="memo" name="memo" placeholder="요청 사항이나 궁금한 점을 자유롭게 적어주세요" style="width: 100%; padding: 14px 16px; border: 1.5px solid rgba(123, 228, 149, 0.3); border-radius: 10px; background: rgba(123, 228, 149, 0.03); color: #fff; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; resize: vertical; min-height: 100px; outline: none;" rows="4" onfocus="this.style.borderColor='#7BE495'; this.style.background='rgba(123, 228, 149, 0.08)'; this.style.boxShadow='0 0 0 3px rgba(123, 228, 149, 0.15)';" onblur="this.style.borderColor='rgba(123, 228, 149, 0.3)'; this.style.background='rgba(123, 228, 149, 0.03)'; this.style.boxShadow='none';"></textarea>
     </div>
     <!-- 제출 버튼 -->
-    <button type="submit" class="btn" style="width: 100%; padding: 18px; background: #7BE495; color: #000; font-weight: 700; font-size: 1.1rem; border-radius: 12px; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(123, 228, 149, 0.4); letter-spacing: 0.5px; margin-top: 8px;" onmouseover="this.style.background='#9AEFB0'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 30px rgba(123, 228, 149, 0.5)';" onmouseout="this.style.background='#7BE495'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(123, 228, 149, 0.4)';">
+    <button type="submit" class="btn" style="width: 100%; padding: 16px; background: #7BE495; color: #000; font-weight: 700; font-size: 1.05rem; border-radius: 10px; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(123, 228, 149, 0.3); letter-spacing: 0.3px; margin-top: 4px;" ontouchstart="this.style.background='#6DD888'; this.style.transform='scale(0.98)';" ontouchend="this.style.background='#7BE495'; this.style.transform='scale(1)';" onmouseover="this.style.background='#9AEFB0'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 24px rgba(123, 228, 149, 0.4)';" onmouseout="this.style.background='#7BE495'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(123, 228, 149, 0.3)';">
       <span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -7999,30 +8009,53 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 2147483646 !important; /* 모바일에서는 높은 값 유지 */
   }
   
-  /* 모바일 팝업 모달 정렬 수정 */
+  /* 모바일 팝업 모달 정렬 수정 - 개선된 디자인 */
   #formModal {
-    width: 85% !important;
-    max-width: 350px !important;
-    padding: 20px !important;
-    left: 7.5% !important;
-    transform: translateY(-50%) !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    padding: 0 !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
     margin: 0 !important;
-    min-width: 280px !important;
+    min-width: 320px !important;
     box-sizing: border-box !important;
-    position: absolute !important;
-    right: auto !important;
     z-index: 2147483648 !important;
     background: #000 !important;
-    border: 2px solid #3AC8A8 !important;
-    border-radius: 12px !important;
+    border: 1px solid rgba(123, 228, 149, 0.3) !important;
+    border-radius: 20px !important;
     color: #fff !important;
     visibility: visible !important;
     opacity: 1 !important;
+    overflow: hidden !important;
+  }
+  
+  #formModal .modal-header-advanced {
+    background: #000 !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+  
+  #formModal .modal-header-advanced button {
+    background: rgba(123, 228, 149, 0.1) !important;
+    border: none !important;
+    color: #7BE495 !important;
+  }
+  
+  #formModal .modal-header-advanced button:active {
+    background: rgba(123, 228, 149, 0.2) !important;
+    transform: scale(0.95) !important;
+  }
+  
+  #formModal .modal-body {
+    padding: 20px 16px !important;
+    max-height: calc(75vh - 140px) !important;
   }
   
   #formModal form {
     width: 100% !important;
     box-sizing: border-box !important;
+    gap: 16px !important;
   }
   
   #formModal input,
@@ -8032,15 +8065,25 @@ document.addEventListener('DOMContentLoaded', function() {
     box-sizing: border-box !important;
     font-size: 16px !important;
     margin: 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  #formModal .input-group {
+    margin-bottom: 0 !important;
+  }
+  
+  #formModal label {
+    font-size: 0.85rem !important;
+    margin-bottom: 8px !important;
   }
   
   #formModal .btn {
-    width: auto !important;
-    min-width: 120px !important;
-    max-width: 200px !important;
-    padding: 12px 24px !important;
-    box-sizing: border-box !important;
-    align-self: center !important;
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 1rem !important;
+    margin-top: 8px !important;
+    border-radius: 10px !important;
   }
   
   /* 팝업 배경 오버레이 - 모바일 배경 어둡게 효과 */
@@ -8106,6 +8149,72 @@ document.addEventListener('DOMContentLoaded', function() {
   opacity: 1 !important;
   pointer-events: auto !important;
   -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 모바일 팝업 추가 스타일링 */
+@media (max-width: 768px) {
+  #formModal {
+    animation: modalSlideUp 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideUp {
+    from {
+      transform: translate(-50%, -40%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  
+  /* 입력 필드 포커스 시 부드러운 효과 */
+  #formModal input:focus,
+  #formModal textarea:focus,
+  #formModal select:focus {
+    transform: scale(1.01);
+  }
+  
+  /* 헤더의 혜택 안내 텍스트 */
+  #formModal .modal-header-advanced p {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* 제출 버튼 터치 효과 개선 */
+  #formModal .btn:active {
+    background: #6DD888 !important;
+    transform: scale(0.98) !important;
+    box-shadow: 0 2px 8px rgba(123, 228, 149, 0.2) !important;
+  }
+  
+  /* 셀렉트 박스 화살표 스타일 */
+  #formModal select {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%237BE495%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 18px !important;
+    padding-right: 40px !important;
+  }
+  
+  /* 스크롤바 스타일링 */
+  #formModal .modal-body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(123, 228, 149, 0.3) transparent;
+  }
+  
+  #formModal .modal-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  #formModal .modal-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  #formModal .modal-body::-webkit-scrollbar-thumb {
+    background: rgba(123, 228, 149, 0.3);
+    border-radius: 2px;
+  }
 }
 </style>
 
