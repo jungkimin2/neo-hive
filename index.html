@@ -23,27 +23,20 @@
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-328px) !important;
-    -webkit-transform: translateY(-328px) !important;
+    transform: translateY(-312px) !important;
+    -webkit-transform: translateY(-312px) !important;
     position: relative !important;
     z-index: 10 !important;
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-380.8px) !important;
-    -webkit-transform: translateY(-380.8px) !important;
+    transform: translateY(-364.8px) !important;
+    -webkit-transform: translateY(-364.8px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-  }
-  
-  /* 모바일에서 팀워크 보상 박스 위로 이동 */
-  .neohive-twobox-col {
-    transform: translateY(-16px) !important;
-    -webkit-transform: translateY(-16px) !important;
-    position: relative !important;
   }
   
   .mobile-system-box-wrapper {
@@ -1169,34 +1162,6 @@ section {
     /* Move green gradient box down one step on mobile */
     .neohive-flex-row {
       margin-top: 48px !important;
-    }
-    
-    /* 모바일에서 Neo Hive 박스 상단 그라데이션 라인 표시 보장 */
-    .neohive-flex-row > div > div > div:first-child[style*="height: 6px"] {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      height: 6px !important;
-      background: linear-gradient(to right, #62D2A2, #7BE495) !important;
-      width: 100% !important;
-      margin: 0 !important;
-    }
-    
-    /* 모바일에서 팀워크 보상 박스 상단 그라데이션 라인 표시 보장 */
-    .neohive-twobox-col > div > div > div:first-child[style*="height: 6px"] {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      height: 6px !important;
-      background: linear-gradient(to right, #62D2A2, #7BE495) !important;
-      width: 100% !important;
-      margin: 0 !important;
-    }
-    
-    /* 모바일에서 Neo Hive 박스 overflow hidden 보존 */
-    .neohive-flex-row > div > div[style*="border-radius: 18px"],
-    .neohive-twobox-col > div > div[style*="border-radius: 18px"] {
-      overflow: hidden !important;
     }
   }
   p[style*="margin-top: 40px; font-weight: bold;"] {
@@ -3371,6 +3336,9 @@ if (window.innerWidth <= 768) {
     </div>
   </div>
 </section>
+
+
+
 <section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
@@ -3421,8 +3389,10 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 - 새로운 디자인 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="
+                background: linear-gradient(135deg, rgba(7, 25, 15, 0.95) 0%, rgba(15, 45, 25, 0.95) 50%, rgba(7, 25, 15, 0.95) 100%);
                 border: 1px solid rgba(123, 228, 149, 0.3);
                 border-radius: 16px;
+                padding: 24px 20px;
                 position: relative;
                 overflow: hidden;
                 box-shadow: 
@@ -3430,13 +3400,6 @@ if (window.innerWidth <= 768) {
                   inset 0 1px 0 rgba(123, 228, 149, 0.2),
                   inset 0 -1px 0 rgba(0, 0, 0, 0.3);
               ">
-                <!-- 상단 그라데이션 라인 -->
-                <div style="height: 6px; background: linear-gradient(to right, #62D2A2, #7BE495); width: 100%; margin: 0;"></div>
-                <div style="
-                  background: linear-gradient(135deg, rgba(7, 25, 15, 0.95) 0%, rgba(15, 45, 25, 0.95) 50%, rgba(7, 25, 15, 0.95) 100%);
-                  padding: 24px 20px;
-                  position: relative;
-                ">
                 <!-- 배경 그라데이션 효과 -->
                 <div style="
                   position: absolute;
@@ -3465,7 +3428,6 @@ if (window.innerWidth <= 768) {
                   파트너 신청 시, 
                   <span style="color: #7BE495; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">3개월 무료 체험 기회</span>까지.
                 </p>
-                </div>
               </div>
             </div>
             
@@ -3872,30 +3834,23 @@ if (window.innerWidth <= 768) {
       }
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
-      body section#benefits.section {
-        margin-top: -504px !important; /* 위치 재조정 - 16px 아래로 */
-        transform: none !important; /* transform 제거 */
+      section#benefits {
+        margin-top: -552px !important;
+        transform: translateY(0) !important; /* -16px에서 0으로 변경하여 아래로 1칸 더 이동 */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        padding-top: 0 !important; /* 상단 패딩 제거 */
-        padding-bottom: 60px !important;
-        border-top: none !important;
-        box-shadow: none !important;
+        padding-bottom: 60px !important; /* 모바일에서 하단 여백 축소 */
+        border-top: none !important; /* 상단 경계선 제거 */
+        box-shadow: none !important; /* 그림자 제거 */
       }
       
-      /* 파트너 신청하기 버튼 바로 다음 섹션 처리 */
-      .mobile-partner-button ~ section#benefits {
+      /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
+      .mobile-partner-button + section#benefits {
         border-top: none !important;
-        margin-top: -504px !important;
-      }
-      
-      /* 이전 섹션의 하단 여백 제거 */
-      section:has(+ #benefits) {
-        padding-bottom: 0 !important;
-        margin-bottom: 0 !important;
+        margin-top: -528px !important; /* 아래로 추가 1칸 이동하도록 조정 */
       }
       
       /* 섹션 사이의 회색 선 완전 제거 */
@@ -5086,11 +5041,10 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 좌측 화살표 - 좌측 이미지들(0,1,2)만 순환 (PC와 모바일 동일)
-      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0;
-      else if (slideIndex === 0) slideIndex = 1;
-      else if (slideIndex === 1) slideIndex = 2;
-      else if (slideIndex === 2) slideIndex = 0;
+      // 좌측 이미지들(0,1,2)만 순환
+      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
+      else if (slideIndex <= 0) slideIndex = 2;
+      else slideIndex = Math.max(slideIndex - 1, 0);
       showSlide(slideIndex);
     });
   }
@@ -5100,19 +5054,10 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      if (window.innerWidth <= 768) {
-        // 모바일: 우측 버튼은 좌측 이미지들을 제어 (화면상 위치가 반대)
-        if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0;
-        else if (slideIndex === 0) slideIndex = 1;
-        else if (slideIndex === 1) slideIndex = 2;
-        else if (slideIndex === 2) slideIndex = 0;
-      } else {
-        // PC: 우측 화살표 - 우측 이미지들(3,4,5)만 순환
-        if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
-        else if (slideIndex === 3) slideIndex = 4;
-        else if (slideIndex === 4) slideIndex = 5;
-        else if (slideIndex === 5) slideIndex = 3;
-      }
+      // 우측 이미지들(3,4,5)만 순환
+      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
+      else if (slideIndex >= 5) slideIndex = 3;
+      else slideIndex = Math.min(slideIndex + 1, 5);
       showSlide(slideIndex);
     });
   }
@@ -6026,24 +5971,7 @@ h3 {
 
 /* 파트너 신청하기 버튼 영역 하단 정리 */
 .mobile-partner-button {
-  margin-bottom: -40px !important;
-  padding-bottom: 0 !important;
-}
-
-/* 모바일에서 섹션 간격 강제 제거 */
-body > section,
-body .mobile-partner-button,
-body .testimonial-card {
-  margin-bottom: 0 !important;
-}
-
-/* 빈 공간 제거 */
-section:empty,
-div:empty:not(.plasma-bg) {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin-bottom: -20px !important;
 }
 
 /* 섹션 사이 회색 공간 제거 */
