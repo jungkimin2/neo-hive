@@ -4889,8 +4889,7 @@ if (window.innerWidth <= 768) {
     const container = document.querySelector('.hive-showcase');
     if (!container) return;
 
-    // PC에서 더 부드러운 전환을 위해 requestAnimationFrame 사용
-    requestAnimationFrame(() => {
+    // requestAnimationFrame 제거하여 CSS 트랜지션이 작동하도록 함
     if (idx === -1) {
         // 비디오가 중앙, 모든 이미지는 원래 자리
         hiveImages.forEach((img, index) => {
@@ -5307,19 +5306,8 @@ if (video) {
   .hive-showcase .hive-image,
   .hive-showcase div.hive-image,
   html body .hive-showcase .hive-image {
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    -webkit-transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  }
-  
-  /* PC에서 video-phone 트랜지션도 부드럽게 */
-  @media (min-width: 769px) {
-    .video-phone {
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-      -webkit-transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-      will-change: transform, left, top, width, height;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-    }
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   .hive-image.visible {
     opacity: 1;
