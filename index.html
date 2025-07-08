@@ -309,6 +309,10 @@ div > p.smart-guide-text {
   border-top-right-radius: 18px !important;
   padding-bottom: 12px !important;
 }
+/* Hide the gray line in mobile */
+.mobile-flow-rounded-box .bg-gradient-to-r.from-transparent.via-gray-500.to-transparent {
+  display: none !important;
+}
 }
 </style>
 <style>
@@ -1827,7 +1831,7 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <div class="slide-container p-10 mobile-flow-rounded-box" style="margin-top: 64px;">
       <div class="flex items-center mb-8">
         <h1 class="text-4xl font-bold neon-green" style="text-align: left; margin-top: 48px;">UX 흐름 + 무인 예약 시스템</h1>
-        <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent desktop-only"></div>
+        <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent desktop-only" style="display: block;"></div>
       </div>
       <div class="mb-6">
         <p class="text-xl text-gray-300" style="text-align: left;">
