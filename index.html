@@ -3336,9 +3336,6 @@ if (window.innerWidth <= 768) {
     </div>
   </div>
 </section>
-
-
-
 <section id="benefits" class="section animate-on-scroll" style="background: #000; padding-bottom: 80px;">
   <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
@@ -3835,22 +3832,29 @@ if (window.innerWidth <= 768) {
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
-        margin-top: -552px !important;
-        transform: translateY(0) !important; /* -16px에서 0으로 변경하여 아래로 1칸 더 이동 */
+        margin-top: -520px !important; /* 위치 재조정 */
+        transform: translateY(16px) !important; /* 아래로 1칸 이동 */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        padding-bottom: 60px !important; /* 모바일에서 하단 여백 축소 */
-        border-top: none !important; /* 상단 경계선 제거 */
-        box-shadow: none !important; /* 그림자 제거 */
+        padding-top: 0 !important; /* 상단 패딩 제거 */
+        padding-bottom: 60px !important;
+        border-top: none !important;
+        box-shadow: none !important;
       }
       
-      /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
-      .mobile-partner-button + section#benefits {
+      /* 파트너 신청하기 버튼 바로 다음 섹션 처리 */
+      .mobile-partner-button ~ section#benefits {
         border-top: none !important;
-        margin-top: -528px !important; /* 아래로 추가 1칸 이동하도록 조정 */
+        margin-top: -520px !important;
+      }
+      
+      /* 이전 섹션의 하단 여백 제거 */
+      section:has(+ #benefits) {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
       }
       
       /* 섹션 사이의 회색 선 완전 제거 */
@@ -5971,7 +5975,24 @@ h3 {
 
 /* 파트너 신청하기 버튼 영역 하단 정리 */
 .mobile-partner-button {
-  margin-bottom: -20px !important;
+  margin-bottom: -40px !important;
+  padding-bottom: 0 !important;
+}
+
+/* 모바일에서 섹션 간격 강제 제거 */
+body > section,
+body .mobile-partner-button,
+body .testimonial-card {
+  margin-bottom: 0 !important;
+}
+
+/* 빈 공간 제거 */
+section:empty,
+div:empty:not(.plasma-bg) {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* 섹션 사이 회색 공간 제거 */
