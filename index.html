@@ -1856,9 +1856,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
     
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
-    <div class="slide-container p-10" style="margin-top: 24px;">
-    </div>
-    <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
     <div class="slide-container p-10 mobile-flow-rounded-box" style="margin-top: 64px;">
       <div class="flex items-center mb-8">
         <h1 class="text-4xl font-bold neon-green" style="text-align: left; margin-top: 48px;">UX 흐름 + 무인 예약 시스템</h1>
@@ -5914,6 +5911,34 @@ h3 {
   border-bottom-left-radius: 28px !important;
   border-bottom-right-radius: 28px !important;
   overflow: hidden !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 모바일에서 슬라이드 컨테이너 하단 공간 제거 */
+.slide-container {
+  margin-bottom: 0 !important;
+}
+
+/* 파트너 신청하기 버튼 영역 하단 정리 */
+.mobile-partner-button {
+  margin-bottom: -20px !important;
+}
+
+/* 섹션 사이 회색 공간 제거 */
+section + section,
+.slide-container + section,
+.mobile-partner-button + section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* 마지막 섹션 하단 여백 제거 */
+section:last-of-type,
+.slide-container:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 20px !important;
 }
 }
 </style>
