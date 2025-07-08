@@ -5086,19 +5086,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      if (window.innerWidth <= 768) {
-        // 모바일: 좌측 버튼은 우측 이미지들을 제어 (화면상 위치가 반대)
-        if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
-        else if (slideIndex === 3) slideIndex = 4;
-        else if (slideIndex === 4) slideIndex = 5;
-        else if (slideIndex === 5) slideIndex = 3;
-      } else {
-        // PC: 좌측 화살표 - 좌측 이미지들(0,1,2)만 순환
-        if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0;
-        else if (slideIndex === 0) slideIndex = 1;
-        else if (slideIndex === 1) slideIndex = 2;
-        else if (slideIndex === 2) slideIndex = 0;
-      }
+      // 좌측 화살표 - 좌측 이미지들(0,1,2)만 순환 (PC와 모바일 동일)
+      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0;
+      else if (slideIndex === 0) slideIndex = 1;
+      else if (slideIndex === 1) slideIndex = 2;
+      else if (slideIndex === 2) slideIndex = 0;
       showSlide(slideIndex);
     });
   }
@@ -5108,19 +5100,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      if (window.innerWidth <= 768) {
-        // 모바일: 우측 버튼은 좌측 이미지들을 제어 (화면상 위치가 반대)
-        if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0;
-        else if (slideIndex === 0) slideIndex = 1;
-        else if (slideIndex === 1) slideIndex = 2;
-        else if (slideIndex === 2) slideIndex = 0;
-      } else {
-        // PC: 우측 화살표 - 우측 이미지들(3,4,5)만 순환
-        if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
-        else if (slideIndex === 3) slideIndex = 4;
-        else if (slideIndex === 4) slideIndex = 5;
-        else if (slideIndex === 5) slideIndex = 3;
-      }
+      // 우측 화살표 - 우측 이미지들(3,4,5)만 순환 (PC와 모바일 동일)
+      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
+      else if (slideIndex === 3) slideIndex = 4;
+      else if (slideIndex === 4) slideIndex = 5;
+      else if (slideIndex === 5) slideIndex = 3;
       showSlide(slideIndex);
     });
   }
