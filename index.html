@@ -3766,6 +3766,14 @@ if (window.innerWidth <= 768) {
         visibility: visible !important;
         opacity: 1 !important;
         padding-bottom: 60px !important; /* 모바일에서 하단 여백 축소 */
+        border-top: none !important; /* 상단 경계선 제거 */
+        box-shadow: none !important; /* 그림자 제거 */
+      }
+      
+      /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
+      .mobile-partner-button + section#benefits {
+        border-top: none !important;
+        margin-top: -560px !important; /* 더 가깝게 조정 */
       }
       
       /* 모바일에서 배경 연장을 위한 가상 요소 제거 */
@@ -3818,15 +3826,20 @@ if (window.innerWidth <= 768) {
         overflow: visible !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 중앙 정렬 - 좌측으로 3칸(40px) 이동 */
+      /* 모바일에서 비용 회수 텍스트 중앙 정렬 - 좌측으로 1칸(16px) 이동 */
       #mobile-cost-recovery-text {
         text-align: center !important;
-        transform: translateX(-40px) !important;
+        transform: translateX(-32px) !important;
         position: relative !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
         padding-left: 0px !important;
+      }
+      
+      /* 인라인 스타일 덮어쓰기 위한 더 강한 선택자 */
+      p#mobile-cost-recovery-text[style] {
+        transform: translateX(-32px) !important;
       }
       
       /* 모바일에서 스크롤바 숨김 */
