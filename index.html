@@ -313,6 +313,30 @@ div > p.smart-guide-text {
 .mobile-flow-rounded-box .bg-gradient-to-r.from-transparent.via-gray-500.to-transparent {
   display: none !important;
 }
+
+/* Fix gray line issue between sections in mobile */
+section + section {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Remove any visual artifacts between partner button and benefits section */
+.mobile-partner-button {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ensure clean transition between sections */
+section#benefits::before {
+  display: none !important;
+}
+
+/* Remove any residual borders or lines */
+section {
+  border: none !important;
+  outline: none !important;
+}
 }
 </style>
 <style>
@@ -3774,6 +3798,21 @@ if (window.innerWidth <= 768) {
       .mobile-partner-button + section#benefits {
         border-top: none !important;
         margin-top: -560px !important; /* 더 가깝게 조정 */
+      }
+      
+      /* 섹션 사이의 회색 선 완전 제거 */
+      section#benefits {
+        outline: none !important;
+        border: none !important;
+        background-clip: padding-box !important;
+      }
+      
+      /* 이전 섹션의 하단 처리 */
+      section:has(+ #benefits) {
+        border-bottom: none !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
       }
       
       /* 모바일에서 배경 연장을 위한 가상 요소 제거 */
