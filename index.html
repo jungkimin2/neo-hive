@@ -3402,10 +3402,8 @@ if (window.innerWidth <= 768) {
             <!-- 강조 박스 - 새로운 디자인 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
               <div style="
-                background: linear-gradient(135deg, rgba(7, 25, 15, 0.95) 0%, rgba(15, 45, 25, 0.95) 50%, rgba(7, 25, 15, 0.95) 100%);
                 border: 1px solid rgba(123, 228, 149, 0.3);
                 border-radius: 16px;
-                padding: 24px 20px;
                 position: relative;
                 overflow: hidden;
                 box-shadow: 
@@ -3413,6 +3411,13 @@ if (window.innerWidth <= 768) {
                   inset 0 1px 0 rgba(123, 228, 149, 0.2),
                   inset 0 -1px 0 rgba(0, 0, 0, 0.3);
               ">
+                <!-- 상단 그라데이션 라인 -->
+                <div style="height: 6px; background: linear-gradient(to right, #62D2A2, #7BE495); width: 100%; margin: 0;"></div>
+                <div style="
+                  background: linear-gradient(135deg, rgba(7, 25, 15, 0.95) 0%, rgba(15, 45, 25, 0.95) 50%, rgba(7, 25, 15, 0.95) 100%);
+                  padding: 24px 20px;
+                  position: relative;
+                ">
                 <!-- 배경 그라데이션 효과 -->
                 <div style="
                   position: absolute;
@@ -3441,6 +3446,7 @@ if (window.innerWidth <= 768) {
                   파트너 신청 시, 
                   <span style="color: #7BE495; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">3개월 무료 체험 기회</span>까지.
                 </p>
+                </div>
               </div>
             </div>
             
@@ -3849,7 +3855,7 @@ if (window.innerWidth <= 768) {
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
         margin-top: -520px !important; /* 위치 재조정 */
-        transform: translateY(16px) !important; /* 아래로 1칸 이동 */
+        transform: translateY(0px) !important; /* 위로 1칸 이동 (16px에서 0px로) */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
