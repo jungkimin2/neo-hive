@@ -4955,74 +4955,6 @@ if (window.innerWidth <= 768) {
     }, 400);
   }
   
-  // 위치만 순환시키는 함수 (가운데로 이동하지 않음)
-  function rotatePositions(direction) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    
-    // 모든 이미지가 active 상태가 아닌지 확인 (중앙에 없는 상태)
-    const hasActiveImage = hiveImages.some(img => img.classList.contains('active'));
-    
-    if (hasActiveImage) {
-      // 이미지가 중앙에 있으면 먼저 원위치로 복귀
-      slideIndex = -1;
-      showSlide(slideIndex);
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 400);
-      return;
-    }
-    
-    requestAnimationFrame(() => {
-      const showcase = document.querySelector('.hive-showcase');
-      const images = Array.from(hiveImages);
-      
-      if (direction === 'left') {
-        // 좌측 이미지들만 순환 (0→1→2→0)
-        // 마지막 좌측 이미지(index 2)를 첫 번째 위치로 이동
-        const lastLeft = images[2];
-        const secondLeft = images[1];
-        const firstLeft = images[0];
-        
-        // DOM 순서 변경
-        showcase.insertBefore(lastLeft, firstLeft);
-        
-        // 이미지 배열 업데이트
-        hiveImages = document.querySelectorAll('.hive-image');
-        
-        // 각 이미지에 올바른 위치 적용
-        hiveImages.forEach((img, index) => {
-          resetImageToOriginalPosition(img, index);
-        });
-        
-      } else {
-        // 우측 이미지들만 순환 (3→4→5→3)
-        // 첫 번째 우측 이미지(index 3)를 마지막 위치로 이동
-        const firstRight = images[3];
-        const lastRight = images[5];
-        const videoPhone = document.querySelector('.video-phone');
-        
-        // DOM 순서 변경 - 비디오 다음에 삽입
-        if (videoPhone && videoPhone.nextSibling) {
-          showcase.insertBefore(lastRight, videoPhone.nextSibling);
-          showcase.insertBefore(firstRight, lastRight.nextSibling);
-        }
-        
-        // 이미지 배열 업데이트
-        hiveImages = document.querySelectorAll('.hive-image');
-        
-        // 각 이미지에 올바른 위치 적용
-        hiveImages.forEach((img, index) => {
-          resetImageToOriginalPosition(img, index);
-        });
-      }
-    });
-    
-    setTimeout(() => {
-      isTransitioning = false;
-    }, window.innerWidth > 768 ? 600 : 400);
-  }
-  
   // 인덱스에 따른 위치 정보 반환 함수 - CSS nth-of-type과 정확히 일치
   function getPositionForIndex(index) {
     if (window.innerWidth <= 768) {
@@ -5109,8 +5041,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 좌측 화살표 - 위치만 순환 (가운데로 이동하지 않음)
-      rotatePositions('left');
+      // 좌측 이미지들(0,1,2)만 순환
+      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
+      else if (slideIndex <= 0) slideIndex = 2;
+      else slideIndex = Math.max(slideIndex - 1, 0);
+      showSlide(slideIndex);
     });
   }
   
@@ -5119,8 +5054,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 우측 화살표 - 위치만 순환 (가운데로 이동하지 않음)
-      rotatePositions('right');
+      // 우측 이미지들(3,4,5)만 순환
+      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
+      else if (slideIndex >= 5) slideIndex = 3;
+      else slideIndex = Math.min(slideIndex + 1, 5);
+      showSlide(slideIndex);
     });
   }
 
