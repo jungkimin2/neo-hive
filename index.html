@@ -314,6 +314,12 @@ div > p.smart-guide-text {
   display: none !important;
 }
 
+/* 모바일에서 매출 상승 효과 텍스트 좌측 정렬 */
+.testimonial-content-mobile div[style*="background: rgba(123,228,149,0.1)"] p {
+  text-align: left !important;
+  padding-left: 16px !important;
+}
+
 /* Fix gray line issue between sections in mobile */
 section + section {
   border-top: none !important;
@@ -3382,10 +3388,10 @@ if (window.innerWidth <= 768) {
               </p>
             </div>
             
-            <!-- 강조 박스 -->
+            <!-- 강조 박스 - 새로 생성 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
-              <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(-40px) !important; position: relative !important; width: 100% !important; padding-left: 8px !important;">
+              <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 20px;">
+                <p style="font-size: 0.85rem; color: #fff; font-weight: 600; line-height: 1.7; margin: 0; text-align: center; padding-left: 0;">
                   <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
                 </p>
               </div>
@@ -3865,21 +3871,7 @@ if (window.innerWidth <= 768) {
         overflow: visible !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 중앙 정렬 - 좌측으로 1칸(16px) 이동 */
-      #mobile-cost-recovery-text {
-        text-align: center !important;
-        transform: translateX(-32px) !important;
-        position: relative !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        padding-left: 0px !important;
-      }
-      
-      /* 인라인 스타일 덮어쓰기 위한 더 강한 선택자 */
-      p#mobile-cost-recovery-text[style] {
-        transform: translateX(-32px) !important;
-      }
+      /* 이전 mobile-cost-recovery-text 관련 CSS 제거됨 */
       
       /* 모바일에서 스크롤바 숨김 */
       body {
