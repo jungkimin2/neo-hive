@@ -317,7 +317,7 @@ div > p.smart-guide-text {
 /* 모바일에서 매출 상승 효과 텍스트 위치 조정 */
 .testimonial-content-mobile div[style*="linear-gradient(135deg"] p {
   text-align: left !important;
-  padding-left: 24px !important; /* 16px에서 24px로 증가 (0.5칸 우측 이동) */
+  padding-left: 29px !important; /* 24px에서 29px로 증가 (0.3칸 추가 우측 이동) */
   margin-left: 0 !important;
 }
 
@@ -3419,7 +3419,7 @@ if (window.innerWidth <= 768) {
                   line-height: 1.7;
                   margin: 0;
                   text-align: left;
-                  padding-left: 24px;
+                  padding-left: 29px;
                   position: relative;
                   z-index: 1;
                   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -3836,7 +3836,7 @@ if (window.innerWidth <= 768) {
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
         margin-top: -552px !important;
-        transform: translateY(-16px) !important; /* 기존 -32px에서 -16px로 변경하여 아래로 1칸 이동 */
+        transform: translateY(0) !important; /* -16px에서 0으로 변경하여 아래로 1칸 더 이동 */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
@@ -3850,7 +3850,7 @@ if (window.innerWidth <= 768) {
       /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
       .mobile-partner-button + section#benefits {
         border-top: none !important;
-        margin-top: -544px !important; /* 아래로 1칸 이동하도록 조정 */
+        margin-top: -528px !important; /* 아래로 추가 1칸 이동하도록 조정 */
       }
       
       /* 섹션 사이의 회색 선 완전 제거 */
