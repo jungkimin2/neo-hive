@@ -3872,9 +3872,9 @@ if (window.innerWidth <= 768) {
       }
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
-      section#benefits {
-        margin-top: -520px !important; /* 위치 재조정 */
-        transform: translateY(16px) !important; /* 아래로 1칸 이동 */
+      body section#benefits.section {
+        margin-top: -504px !important; /* 위치 재조정 - 16px 아래로 */
+        transform: none !important; /* transform 제거 */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
@@ -3889,7 +3889,7 @@ if (window.innerWidth <= 768) {
       /* 파트너 신청하기 버튼 바로 다음 섹션 처리 */
       .mobile-partner-button ~ section#benefits {
         border-top: none !important;
-        margin-top: -520px !important;
+        margin-top: -504px !important;
       }
       
       /* 이전 섹션의 하단 여백 제거 */
