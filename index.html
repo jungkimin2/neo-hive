@@ -4960,63 +4960,62 @@ if (window.innerWidth <= 768) {
     if (isTransitioning) return;
     isTransitioning = true;
     
+    // 모든 이미지가 active 상태가 아닌지 확인 (중앙에 없는 상태)
+    const hasActiveImage = hiveImages.some(img => img.classList.contains('active'));
+    
+    if (hasActiveImage) {
+      // 이미지가 중앙에 있으면 먼저 원위치로 복귀
+      slideIndex = -1;
+      showSlide(slideIndex);
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+      return;
+    }
+    
     requestAnimationFrame(() => {
-      // 모든 이미지가 active 상태가 아닌지 확인 (중앙에 없는 상태)
-      const hasActiveImage = hiveImages.some(img => img.classList.contains('active'));
+      const showcase = document.querySelector('.hive-showcase');
+      const images = Array.from(hiveImages);
       
-      if (hasActiveImage) {
-        // 이미지가 중앙에 있으면 먼저 원위치로 복귀
-        slideIndex = -1;
-        showSlide(slideIndex);
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 400);
-        return;
-      }
-      
-      // 이미지 위치 배열 생성
-      const positions = [];
-      for (let i = 0; i < 6; i++) {
-        positions[i] = getPositionForIndex(i);
-      }
-      
-      // 현재 각 이미지의 인덱스 추적
-      if (!window.imageIndexMap) {
-        window.imageIndexMap = [0, 1, 2, 3, 4, 5];
-      }
-      
-      // 위치 순환
       if (direction === 'left') {
-        // 좌측 이미지들만 순환 (0,1,2)
-        const temp = window.imageIndexMap[0];
-        window.imageIndexMap[0] = window.imageIndexMap[1];
-        window.imageIndexMap[1] = window.imageIndexMap[2];
-        window.imageIndexMap[2] = temp;
-      } else {
-        // 우측 이미지들만 순환 (3,4,5)
-        const temp = window.imageIndexMap[5];
-        window.imageIndexMap[5] = window.imageIndexMap[4];
-        window.imageIndexMap[4] = window.imageIndexMap[3];
-        window.imageIndexMap[3] = temp;
-      }
-      
-      // 새 위치로 이동
-      hiveImages.forEach((img, actualIndex) => {
-        const targetPositionIndex = window.imageIndexMap[actualIndex];
-        const newPosition = positions[targetPositionIndex];
+        // 좌측 이미지들만 순환 (0→1→2→0)
+        // 마지막 좌측 이미지(index 2)를 첫 번째 위치로 이동
+        const lastLeft = images[2];
+        const secondLeft = images[1];
+        const firstLeft = images[0];
         
-        if (window.innerWidth <= 768) {
-          img.style.setProperty('left', newPosition.left, 'important');
-          img.style.setProperty('top', newPosition.top, 'important');
-          img.style.setProperty('transform', newPosition.transform, 'important');
-          img.style.setProperty('z-index', newPosition.zIndex, 'important');
-        } else {
-          img.style.left = newPosition.left;
-          img.style.top = newPosition.top;
-          img.style.transform = newPosition.transform;
-          img.style.setProperty('z-index', newPosition.zIndex, 'important');
+        // DOM 순서 변경
+        showcase.insertBefore(lastLeft, firstLeft);
+        
+        // 이미지 배열 업데이트
+        hiveImages = document.querySelectorAll('.hive-image');
+        
+        // 각 이미지에 올바른 위치 적용
+        hiveImages.forEach((img, index) => {
+          resetImageToOriginalPosition(img, index);
+        });
+        
+      } else {
+        // 우측 이미지들만 순환 (3→4→5→3)
+        // 첫 번째 우측 이미지(index 3)를 마지막 위치로 이동
+        const firstRight = images[3];
+        const lastRight = images[5];
+        const videoPhone = document.querySelector('.video-phone');
+        
+        // DOM 순서 변경 - 비디오 다음에 삽입
+        if (videoPhone && videoPhone.nextSibling) {
+          showcase.insertBefore(lastRight, videoPhone.nextSibling);
+          showcase.insertBefore(firstRight, lastRight.nextSibling);
         }
-      });
+        
+        // 이미지 배열 업데이트
+        hiveImages = document.querySelectorAll('.hive-image');
+        
+        // 각 이미지에 올바른 위치 적용
+        hiveImages.forEach((img, index) => {
+          resetImageToOriginalPosition(img, index);
+        });
+      }
     });
     
     setTimeout(() => {
