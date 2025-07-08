@@ -5086,10 +5086,17 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 좌측 이미지들(0,1,2)만 순환
-      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
-      else if (slideIndex <= 0) slideIndex = 2;
-      else slideIndex = Math.max(slideIndex - 1, 0);
+      if (window.innerWidth <= 768) {
+        // 모바일: 모든 이미지를 순차적으로 순환 (0->1->2->3->4->5->0)
+        if (slideIndex === -1) slideIndex = 5; // 비디오에서 마지막 이미지로
+        else if (slideIndex <= 0) slideIndex = 5; // 첫 번째에서 마지막으로
+        else slideIndex = slideIndex - 1;
+      } else {
+        // PC: 좌측 이미지들(0,1,2)만 순환
+        if (slideIndex === -1 || slideIndex >= 3) slideIndex = 2;
+        else if (slideIndex <= 0) slideIndex = 2;
+        else slideIndex = Math.max(slideIndex - 1, 0);
+      }
       showSlide(slideIndex);
     });
   }
@@ -5099,10 +5106,17 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 우측 이미지들(3,4,5)만 순환
-      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
-      else if (slideIndex >= 5) slideIndex = 3;
-      else slideIndex = Math.min(slideIndex + 1, 5);
+      if (window.innerWidth <= 768) {
+        // 모바일: 모든 이미지를 순차적으로 순환 (0->1->2->3->4->5->0)
+        if (slideIndex === -1) slideIndex = 0; // 비디오에서 첫 번째 이미지로
+        else if (slideIndex >= 5) slideIndex = 0; // 마지막에서 첫 번째로
+        else slideIndex = slideIndex + 1;
+      } else {
+        // PC: 우측 이미지들(3,4,5)만 순환
+        if (slideIndex === -1 || slideIndex < 3) slideIndex = 3;
+        else if (slideIndex >= 5) slideIndex = 3;
+        else slideIndex = Math.min(slideIndex + 1, 5);
+      }
       showSlide(slideIndex);
     });
   }
