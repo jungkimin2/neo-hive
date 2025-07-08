@@ -5086,10 +5086,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 좌측 화살표 - 왼쪽으로 이동 (이전 이미지로)
-      if (slideIndex === -1) slideIndex = 5; // 비디오에서 마지막 이미지로
-      else if (slideIndex === 0) slideIndex = 5; // 첫 번째에서 마지막으로
-      else slideIndex = slideIndex - 1; // 이전 이미지로
+      // 좌측 화살표 - 좌측 이미지들(0,1,2)만 순환
+      if (slideIndex === -1 || slideIndex >= 3) slideIndex = 0; // 비디오나 우측에서 첫 번째 좌측 이미지로
+      else if (slideIndex === 0) slideIndex = 1;
+      else if (slideIndex === 1) slideIndex = 2;
+      else if (slideIndex === 2) slideIndex = 0;
       showSlide(slideIndex);
     });
   }
@@ -5099,10 +5100,11 @@ if (window.innerWidth <= 768) {
       e.stopPropagation();
       if (isTransitioning) return; // 전환 중이면 무시
       
-      // 우측 화살표 - 오른쪽으로 이동 (다음 이미지로)
-      if (slideIndex === -1) slideIndex = 0; // 비디오에서 첫 번째 이미지로
-      else if (slideIndex === 5) slideIndex = 0; // 마지막에서 첫 번째로
-      else slideIndex = slideIndex + 1; // 다음 이미지로
+      // 우측 화살표 - 우측 이미지들(3,4,5)만 순환
+      if (slideIndex === -1 || slideIndex < 3) slideIndex = 3; // 비디오나 좌측에서 첫 번째 우측 이미지로
+      else if (slideIndex === 3) slideIndex = 4;
+      else if (slideIndex === 4) slideIndex = 5;
+      else if (slideIndex === 5) slideIndex = 3;
       showSlide(slideIndex);
     });
   }
