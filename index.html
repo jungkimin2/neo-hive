@@ -1182,8 +1182,20 @@ section {
       margin: 0 !important;
     }
     
+    /* 모바일에서 팀워크 보상 박스 상단 그라데이션 라인 표시 보장 */
+    .neohive-twobox-col > div > div > div:first-child[style*="height: 6px"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: 6px !important;
+      background: linear-gradient(to right, #62D2A2, #7BE495) !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+    
     /* 모바일에서 Neo Hive 박스 overflow hidden 보존 */
-    .neohive-flex-row > div > div[style*="border-radius: 18px"] {
+    .neohive-flex-row > div > div[style*="border-radius: 18px"],
+    .neohive-twobox-col > div > div[style*="border-radius: 18px"] {
       overflow: hidden !important;
     }
   }
