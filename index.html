@@ -5289,17 +5289,15 @@ if (video) {
     width: 160px; /* Default PC width, JS might override for mobile */
     height: auto; /* Default PC height, JS might override for mobile */
     border-radius: 12px;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* 더 부드러운 easing */
-    -webkit-transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* iOS Safari 지원 */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 모바일 트랜지션 복구 */
+    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* iOS Safari 지원 */
     opacity: 0; /* Initial state for animation */
     border: none;
     box-shadow: none;
-    will-change: transform, opacity, width, height, left, top, z-index;
+    will-change: transform, opacity, width, height, left, top;
     transform: translateZ(0); /* Hardware acceleration */
     backface-visibility: hidden; /* Smoother animations */
     -webkit-backface-visibility: hidden; /* iOS Safari 지원 */
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
   }
   
   /* 더 높은 우선순위로 hive-image 트랜지션 강제 적용 */
