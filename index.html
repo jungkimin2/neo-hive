@@ -967,13 +967,13 @@ section {
       height: 36px;
       font-size: 1.5rem;
     }
-    /* 슬라이드 네비게이션 버튼 - 모바일에서 3칸 아래로 */
+    /* 슬라이드 네비게이션 버튼 */
     #slide-prev, #slide-next {
       width: 28px !important;
       height: 28px !important;
       font-size: 1rem !important;
-      top: calc(50% + 48px) !important;
-      transform: translateY(-50%) !important;
+      top: 100% !important;
+      transform: translateY(10px) !important;
       background: rgba(0,0,0,0.7) !important;
       border-radius: 50% !important;
       z-index: 20 !important;
@@ -1802,8 +1802,8 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
       </div>
       <!-- Background glow -->
       <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
-      <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; left:10px;">&#10094;</button>
-      <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; right:10px;">&#10095;</button>
+      <button id="slide-prev" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; left:10px; transform:translateY(-50%);">&#10094;</button>
+      <button id="slide-next" style="position:absolute; z-index:20; background:rgba(0,0,0,0.7); border:none; color:#7BE495; font-size:1rem; width:28px; height:28px; border-radius:50%; cursor:pointer; top:50%; right:10px; transform:translateY(-50%);">&#10095;</button>
 
       <!-- Left 3 images stacked behind center (팀 결성 관련) -->
       <img src="./images/neohive6.png" loading="lazy" decoding="async"
@@ -5733,20 +5733,20 @@ if (video) {
 <style>
   @media (max-width: 768px) {
     #slide-prev, #slide-next {
-      top: calc(50% + 48px) !important;
-      bottom: auto !important;
-      transform: translateY(-50%) !important;
+      top: auto !important;
+      bottom: -20px !important;
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%) !important;
       margin: 0 !important;
       position: absolute !important;
       z-index: 30 !important;
     }
     #slide-prev {
-      left: 10px !important;
-      right: auto !important;
+      left: calc(50% - 40px) !important;
     }
     #slide-next {
-      right: 10px !important;
-      left: auto !important;
+      left: calc(50% + 40px) !important;
     }
   }
 </style>
@@ -5951,7 +5951,6 @@ h3 {
 @media (max-width: 768px) {
 .mobile-shrink-heading {
   font-size: 0.78rem !important;
-  margin-top: -16px !important;
 }
 }
 </style>
