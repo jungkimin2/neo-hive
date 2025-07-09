@@ -1756,9 +1756,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
   </div>
   <div class="nav-menu" id="nav-menu" style="display: none;">
-    <a href="#hive" onclick="return scrollToSection('hive')">하이브 시스템</a>
-    <a href="#smart" onclick="return scrollToSection('smart')">스마트 시스템</a>
-    <a href="#impact" onclick="return scrollToSection('impact')">도입 효과</a>
+    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
+    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
+    <a href="#impact" onclick="closeNav()">도입 효과</a>
     <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
   </div>
 </div>
@@ -4632,16 +4632,6 @@ if (window.innerWidth <= 768) {
     if (menu) {
       menu.style.display = 'none';
     }
-  }
-  
-  // 모바일 네비게이션 부드러운 스크롤
-  function scrollToSection(sectionId) {
-    closeNav();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    return false;
   }
   
   // 모바일에서 로고 클릭 시 최상단으로 스크롤
