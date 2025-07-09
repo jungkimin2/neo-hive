@@ -1772,14 +1772,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-        <a href="#" style="display:block;">
+        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="display:block;">
           <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
         </a>
       </div>
       <nav class="desktop-nav">
-        <a href="#hive">하이브 시스템</a>
-        <a href="#smart">스마트 시스템</a>
-        <a href="#impact">도입 효과</a>
+        <a href="#hive" onclick="return scrollToSectionPC('hive')">하이브 시스템</a>
+        <a href="#smart" onclick="return scrollToSectionPC('smart')">스마트 시스템</a>
+        <a href="#benefits" onclick="return scrollToSectionPC('benefits')">도입 효과</a>
         <a href="javascript:void(0)" onclick="openForm();return false;" class="nav-neon-green">사전 예약하기</a>
       </nav>
     </div>
@@ -4672,6 +4672,22 @@ if (window.innerWidth <= 768) {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    return false;
+  }
+  
+  // PC용 스크롤 함수
+  function scrollToSectionPC(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      // PC에서는 헤더가 고정되어 있으므로 offset 조정
+      const headerHeight = 60; // PC 헤더 높이
+      const sectionTop = section.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      });
     }
     return false;
   }
