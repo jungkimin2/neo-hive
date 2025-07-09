@@ -4062,8 +4062,10 @@ if (window.innerWidth <= 768) {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowX = 'hidden';
       document.body.style.webkitOverflowScrolling = 'touch';
+      // 모바일에서도 스크롤 초기화 (최상단에서 시작)
+      window.scrollTo(0, 0);
     } else {
-      // PC에서만 스크롤 초기화
+      // PC에서 스크롤 초기화
       window.scrollTo(0, 0);
     }
     
@@ -4184,10 +4186,20 @@ if (window.innerWidth <= 768) {
     }
   });
   
-  // PC에서만 스크롤 초기화
+  // 페이지 언로드 시 스크롤 초기화 (모바일 포함)
   window.addEventListener('beforeunload', function() {
-    if (window.innerWidth > 768) {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+  });
+
+  // 페이지 완전 로드 후 모바일 스크롤 초기화 재확인
+  window.addEventListener('load', function() {
+    if (window.innerWidth <= 768) {
+      // 모바일에서 페이지 로드 완료 후 최상단으로 스크롤
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 100); // 약간의 지연을 주어 다른 스크립트가 실행된 후 초기화
     }
   });
   
