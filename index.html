@@ -4648,16 +4648,38 @@ if (window.innerWidth <= 768) {
   function scrollToSection(sectionId) {
     closeNav();
     
+    // 하이브 시스템 클릭 시 특별 처리
+    if (sectionId === 'hive' && window.innerWidth <= 768) {
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        // 하이브 쇼케이스 (슬라이드 이미지가 있는 부분) 찾기
+        const hiveShowcase = hiveSection.querySelector('.hive-showcase');
+        if (hiveShowcase) {
+          // 하이브 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
+          const mobileNavHeight = 60;
+          const showcaseRect = hiveShowcase.getBoundingClientRect();
+          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+          const viewportCenter = window.innerHeight / 2;
+          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          return false;
+        }
+      }
+    }
+    
     // 스마트 시스템 클릭 시 특별 처리
     if (sectionId === 'smart' && window.innerWidth <= 768) {
-      // 네오 스마트 : 내 손안의 스마트 트레이너 텍스트가 있는 h2 요소 찾기
       const smartSection = document.getElementById('smart');
       if (smartSection) {
-        const smartH2 = smartSection.querySelector('h2');
-        if (smartH2) {
-          // h2 요소의 위치로 스크롤 (모바일 네비게이션 높이 고려)
+        // 스마트 섹션의 하이브 쇼케이스 (NFC 태그 이미지가 있는 부분) 찾기
+        const smartShowcase = smartSection.querySelector('.hive-showcase');
+        if (smartShowcase) {
+          // 스마트 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
           const mobileNavHeight = 60;
-          const targetPosition = smartH2.getBoundingClientRect().top + window.pageYOffset - mobileNavHeight;
+          const showcaseRect = smartShowcase.getBoundingClientRect();
+          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+          const viewportCenter = window.innerHeight / 2;
+          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           return false;
         }
