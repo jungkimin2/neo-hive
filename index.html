@@ -8479,6 +8479,21 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-bottom: 16px !important;
   }
 }
+
+/* 네오 스마트 섹션 모바일 위치 조정 - 16px 아래로 이동 */
+@media (max-width: 768px) {
+  #smart {
+    margin-top: 16px !important;
+    position: relative !important;
+  }
+  
+  /* 대체 방법: transform 사용 (필요시) */
+  /*
+  #smart {
+    transform: translateY(16px) !important;
+  }
+  */
+}
 </style>
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
