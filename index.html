@@ -1756,9 +1756,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
   </div>
   <div class="nav-menu" id="nav-menu" style="display: none;">
-    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
-    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
-    <a href="#impact" onclick="closeNav()">도입 효과</a>
+    <a href="#hive" onclick="return scrollToSection('hive')">하이브 시스템</a>
+    <a href="#smart" onclick="return scrollToSection('smart')">스마트 시스템</a>
+    <a href="#impact" onclick="return scrollToSection('impact')">도입 효과</a>
     <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
   </div>
 </div>
@@ -2548,7 +2548,7 @@ html body .core-value-fresh-mobile {
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    top: 296px !important; /* 232px에서 296px로 변경 (64px 더 아래로 = 2칸) */
+    top: 264px !important; /* 296px에서 264px로 변경 (32px 위로 이동) */
     left: calc(50% - 48px) !important; /* 중앙에서 3칸(48px) 왼쪽으로 이동 */
     transform: translateX(-50%) !important;
     width: auto !important;
@@ -4033,7 +4033,15 @@ if (window.innerWidth <= 768) {
     }
     
     // 즉시 스크롤 초기화 (더 빠른 실행)
-    window.scrollTo(0, 0);
+    // 모바일에서는 네오 하이브 섹션으로 스크롤
+    if (window.innerWidth <= 768) {
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
   }
   
   // 모바일에서 z-index 강제 적용
@@ -4062,8 +4070,13 @@ if (window.innerWidth <= 768) {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowX = 'hidden';
       document.body.style.webkitOverflowScrolling = 'touch';
+      // 모바일에서 네오 하이브 섹션으로 스크롤
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
     } else {
-      // PC에서만 스크롤 초기화
+      // PC에서 스크롤 초기화
       window.scrollTo(0, 0);
     }
     
@@ -4184,10 +4197,29 @@ if (window.innerWidth <= 768) {
     }
   });
   
-  // PC에서만 스크롤 초기화
+  // 페이지 언로드 시 스크롤 초기화 (모바일 포함)
   window.addEventListener('beforeunload', function() {
-    if (window.innerWidth > 768) {
+    // 모바일에서는 네오 하이브 섹션으로, PC에서는 최상단으로
+    if (window.innerWidth <= 768) {
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    } else {
       window.scrollTo(0, 0);
+    }
+  });
+
+  // 페이지 완전 로드 후 모바일 스크롤 초기화 재확인
+  window.addEventListener('load', function() {
+    if (window.innerWidth <= 768) {
+      // 모바일에서 페이지 로드 완료 후 네오 하이브 섹션으로 스크롤
+      setTimeout(function() {
+        const hiveSection = document.getElementById('hive');
+        if (hiveSection) {
+          hiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100); // 약간의 지연을 주어 다른 스크립트가 실행된 후 이동
     }
   });
   
@@ -4632,6 +4664,16 @@ if (window.innerWidth <= 768) {
     if (menu) {
       menu.style.display = 'none';
     }
+  }
+  
+  // 모바일 네비게이션 부드러운 스크롤
+  function scrollToSection(sectionId) {
+    closeNav();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    return false;
   }
   
   // 모바일에서 로고 클릭 시 최상단으로 스크롤
@@ -6671,18 +6713,8 @@ document.addEventListener('DOMContentLoaded', function() {
       performFlip();
     });
     
-    // PC에서 이미지 클릭으로도 뒤집기 가능
-    if (flipContainer && !isMobile) {
-      flipContainer.addEventListener('click', function(e) {
-        // 버튼 클릭이 아닌 경우에만 실행
-        if (!e.target.closest('.neos-category-tags')) {
-          e.preventDefault();
-          e.stopPropagation();
-          console.log('Container clicked'); // 디버깅용
-          performFlip();
-        }
-      });
-    }
+    // PC에서 이미지 클릭으로 뒤집기 기능 제거 (버튼 클릭만 가능)
+    // 이제 뒷면보기 버튼을 클릭했을 때만 카드가 뒤집힙니다
     
     // 터치 이벤트 (모바일 전용)
     if (isMobile) {
@@ -6693,17 +6725,8 @@ document.addEventListener('DOMContentLoaded', function() {
         performFlip();
       });
       
-      // 모바일에서 컨테이너 터치로도 뒤집기 가능
-      if (flipContainer) {
-        flipContainer.addEventListener('touchstart', function(e) {
-          if (!e.target.closest('.neos-category-tags')) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Container touched'); // 디버깅용
-            performFlip();
-          }
-        });
-      }
+      // 모바일에서도 버튼 터치만으로 뒤집기 (컨테이너 터치 제거)
+      // 이제 뒷면보기 버튼을 터치했을 때만 카드가 뒤집힙니다
     }
     
     // 페이지 로드 시 초기 설정
