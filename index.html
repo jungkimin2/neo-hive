@@ -7199,11 +7199,11 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 강화 */
      section#benefits {
-       margin-top: -600px !important;
+       margin-top: -568px !important;  /* 32px 아래로 이동 */
        position: relative !important;
        z-index: 10 !important;
        background: #000 !important;
-       padding-top: 80px !important;
+       padding-top: 112px !important;  /* 32px 추가하여 내부 콘텐츠도 함께 아래로 이동 */
      }
      
      section#benefits .container {
@@ -7226,14 +7226,33 @@ document.addEventListener('DOMContentLoaded', function() {
      section[id="benefits"]:before {
        content: "" !important;
        display: block !important;
-       height: 200px !important;
+       height: 232px !important;  /* 32px 추가하여 회색 바 완전 제거 */
        background: #000 !important;
-       margin-top: -200px !important;
+       margin-top: -232px !important;
        position: absolute !important;
        width: 100% !important;
-       top: -200px !important;
+       top: -232px !important;
        left: 0 !important;
        z-index: 5 !important;
+     }
+     
+     /* 하단 회색 바 제거를 위한 추가 스타일 */
+     section#benefits::after {
+       content: "" !important;
+       display: block !important;
+       height: 50px !important;
+       background: #000 !important;
+       position: absolute !important;
+       width: 100% !important;
+       bottom: -50px !important;
+       left: 0 !important;
+       z-index: 5 !important;
+     }
+     
+     /* benefits 섹션 하단 패딩 조정 */
+     section#benefits {
+       padding-bottom: 100px !important;
+       overflow: visible !important;
      }
      
      /* "각 운동 기구에 최적화된..." 문구 사이즈 줄이기 */
