@@ -4033,15 +4033,8 @@ if (window.innerWidth <= 768) {
     }
     
     // 즉시 스크롤 초기화 (더 빠른 실행)
-    // 모바일에서는 네오 하이브 섹션으로 스크롤
-    if (window.innerWidth <= 768) {
-      const hiveSection = document.getElementById('hive');
-      if (hiveSection) {
-        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
+    // 모든 디바이스에서 페이지 최상단으로 스크롤
+    window.scrollTo(0, 0);
   }
   
   // 모바일에서 z-index 강제 적용
@@ -4070,11 +4063,8 @@ if (window.innerWidth <= 768) {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowX = 'hidden';
       document.body.style.webkitOverflowScrolling = 'touch';
-      // 모바일에서 네오 하이브 섹션으로 스크롤
-      const hiveSection = document.getElementById('hive');
-      if (hiveSection) {
-        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }
+      // 모바일에서도 페이지 최상단으로 스크롤
+      window.scrollTo(0, 0);
     } else {
       // PC에서 스크롤 초기화
       window.scrollTo(0, 0);
@@ -4199,27 +4189,15 @@ if (window.innerWidth <= 768) {
   
   // 페이지 언로드 시 스크롤 초기화 (모바일 포함)
   window.addEventListener('beforeunload', function() {
-    // 모바일에서는 네오 하이브 섹션으로, PC에서는 최상단으로
-    if (window.innerWidth <= 768) {
-      const hiveSection = document.getElementById('hive');
-      if (hiveSection) {
-        hiveSection.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
+    // 모든 디바이스에서 페이지 최상단으로
+    window.scrollTo(0, 0);
   });
 
   // 페이지 완전 로드 후 모바일 스크롤 초기화 재확인
   window.addEventListener('load', function() {
+    // 모바일에서도 페이지 최상단에 유지
     if (window.innerWidth <= 768) {
-      // 모바일에서 페이지 로드 완료 후 네오 하이브 섹션으로 스크롤
-      setTimeout(function() {
-        const hiveSection = document.getElementById('hive');
-        if (hiveSection) {
-          hiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100); // 약간의 지연을 주어 다른 스크립트가 실행된 후 이동
+      window.scrollTo(0, 0);
     }
   });
   
@@ -4669,6 +4647,24 @@ if (window.innerWidth <= 768) {
   // 모바일 네비게이션 부드러운 스크롤
   function scrollToSection(sectionId) {
     closeNav();
+    
+    // 스마트 시스템 클릭 시 특별 처리
+    if (sectionId === 'smart' && window.innerWidth <= 768) {
+      // 네오 스마트 : 내 손안의 스마트 트레이너 텍스트가 있는 h2 요소 찾기
+      const smartSection = document.getElementById('smart');
+      if (smartSection) {
+        const smartH2 = smartSection.querySelector('h2');
+        if (smartH2) {
+          // h2 요소의 위치로 스크롤 (모바일 네비게이션 높이 고려)
+          const mobileNavHeight = 60;
+          const targetPosition = smartH2.getBoundingClientRect().top + window.pageYOffset - mobileNavHeight;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          return false;
+        }
+      }
+    }
+    
+    // 기본 동작
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
