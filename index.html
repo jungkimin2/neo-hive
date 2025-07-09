@@ -4634,6 +4634,23 @@ if (window.innerWidth <= 768) {
     }
   }
   
+  // 모바일에서 로고 클릭 시 최상단으로 스크롤
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoElement = document.querySelector('.nav-logo');
+    if (logoElement) {
+      logoElement.addEventListener('click', function(e) {
+        // 모바일 환경에서만 작동
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
+  });
+  
   // 모바일 네비게이션 강제 고정 설정 (개선된 버전)
   function forceMobileNavigation() {
     const isMobile = window.innerWidth <= 768;
@@ -7601,6 +7618,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: auto !important;
     display: block !important;
     margin-left: -16px !important; /* 좌측으로 한 칸 이동 */
+    cursor: pointer !important; /* 클릭 가능함을 표시 */
   }
 
   /* 메뉴 버튼 스타일 */
