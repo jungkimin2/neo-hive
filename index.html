@@ -1167,27 +1167,27 @@ section {
     /* 모바일에서 화살표 버튼을 영상 아래로 이동 */
     #slide-prev, #slide-next {
       top: auto !important;
-      bottom: -80px !important;
+      bottom: -112px !important; /* 2칸 더 아래로 (32px 추가) */
       transform: none !important;
       background: rgba(0,0,0,0.9) !important;
       border: 1px solid #7BE495 !important;
-      width: 36px !important;
-      height: 36px !important;
-      font-size: 1.2rem !important;
+      width: 28px !important; /* 더 작게 */
+      height: 28px !important; /* 더 작게 */
+      font-size: 0.9rem !important; /* 화살표 크기도 작게 */
     }
     
     #slide-prev {
-      left: calc(50% - 50px) !important;
+      left: calc(50% - 45px) !important;
     }
     
     #slide-next {
-      right: calc(50% - 50px) !important;
+      right: calc(50% - 45px) !important;
       left: auto !important;
     }
     
     /* 화살표 버튼이 있을 때 showcase 하단 여백 추가 */
     .hive-showcase {
-      margin-bottom: 100px !important;
+      margin-bottom: 130px !important;
     }
   }
   p[style*="margin-top: 40px; font-weight: bold;"] {
@@ -4999,48 +4999,60 @@ if (window.innerWidth <= 768) {
       return;
     }
     
+    // 현재 위치 저장
+    const currentTransforms = [];
+    const currentZIndexes = [];
+    
+    hiveImages.forEach((img, index) => {
+      const style = window.getComputedStyle(img);
+      currentTransforms[index] = style.transform;
+      currentZIndexes[index] = style.zIndex;
+    });
+    
+    // 새로운 위치 계산
     requestAnimationFrame(() => {
-      const showcase = document.querySelector('.hive-showcase');
-      const images = Array.from(hiveImages);
-      
       if (direction === 'left') {
-        // 좌측 이미지들만 순환 (0→1→2→0)
-        // 마지막 좌측 이미지(index 2)를 첫 번째 위치로 이동
-        const lastLeft = images[2];
-        const secondLeft = images[1];
-        const firstLeft = images[0];
+        // 좌측 이미지들의 transform 값만 순환
+        const temp0 = currentTransforms[0];
+        const tempZ0 = currentZIndexes[0];
         
-        // DOM 순서 변경
-        showcase.insertBefore(lastLeft, firstLeft);
-        
-        // 이미지 배열 업데이트
-        hiveImages = document.querySelectorAll('.hive-image');
-        
-        // 각 이미지에 올바른 위치 적용
-        hiveImages.forEach((img, index) => {
-          resetImageToOriginalPosition(img, index);
-        });
-        
-      } else {
-        // 우측 이미지들만 순환 (3→4→5→3)
-        // 첫 번째 우측 이미지(index 3)를 마지막 위치로 이동
-        const firstRight = images[3];
-        const lastRight = images[5];
-        const videoPhone = document.querySelector('.video-phone');
-        
-        // DOM 순서 변경 - 비디오 다음에 삽입
-        if (videoPhone && videoPhone.nextSibling) {
-          showcase.insertBefore(lastRight, videoPhone.nextSibling);
-          showcase.insertBefore(firstRight, lastRight.nextSibling);
+        // 0 <- 1, 1 <- 2, 2 <- 0
+        if (window.innerWidth <= 768) {
+          hiveImages[0].style.setProperty('transform', currentTransforms[1], 'important');
+          hiveImages[0].style.setProperty('z-index', currentZIndexes[1], 'important');
+          hiveImages[1].style.setProperty('transform', currentTransforms[2], 'important');
+          hiveImages[1].style.setProperty('z-index', currentZIndexes[2], 'important');
+          hiveImages[2].style.setProperty('transform', temp0, 'important');
+          hiveImages[2].style.setProperty('z-index', tempZ0, 'important');
+        } else {
+          hiveImages[0].style.transform = currentTransforms[1];
+          hiveImages[0].style.zIndex = currentZIndexes[1];
+          hiveImages[1].style.transform = currentTransforms[2];
+          hiveImages[1].style.zIndex = currentZIndexes[2];
+          hiveImages[2].style.transform = temp0;
+          hiveImages[2].style.zIndex = tempZ0;
         }
+      } else {
+        // 우측 이미지들의 transform 값만 순환
+        const temp5 = currentTransforms[5];
+        const tempZ5 = currentZIndexes[5];
         
-        // 이미지 배열 업데이트
-        hiveImages = document.querySelectorAll('.hive-image');
-        
-        // 각 이미지에 올바른 위치 적용
-        hiveImages.forEach((img, index) => {
-          resetImageToOriginalPosition(img, index);
-        });
+        // 5 <- 4, 4 <- 3, 3 <- 5
+        if (window.innerWidth <= 768) {
+          hiveImages[5].style.setProperty('transform', currentTransforms[4], 'important');
+          hiveImages[5].style.setProperty('z-index', currentZIndexes[4], 'important');
+          hiveImages[4].style.setProperty('transform', currentTransforms[3], 'important');
+          hiveImages[4].style.setProperty('z-index', currentZIndexes[3], 'important');
+          hiveImages[3].style.setProperty('transform', temp5, 'important');
+          hiveImages[3].style.setProperty('z-index', tempZ5, 'important');
+        } else {
+          hiveImages[5].style.transform = currentTransforms[4];
+          hiveImages[5].style.zIndex = currentZIndexes[4];
+          hiveImages[4].style.transform = currentTransforms[3];
+          hiveImages[4].style.zIndex = currentZIndexes[3];
+          hiveImages[3].style.transform = temp5;
+          hiveImages[3].style.zIndex = tempZ5;
+        }
       }
     });
     
