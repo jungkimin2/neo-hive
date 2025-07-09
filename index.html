@@ -3322,6 +3322,11 @@ if (window.innerWidth <= 768) {
     top: calc(73% + 15px) !important; /* 3번째, 5번째 다이어그램 */
   }
   
+  /* 4번째 다이어그램만 위로 이동 - 하단 중앙 위치 */
+  .circle-step[style*="left: 50%; top: 100%"] {
+    top: calc(100% - 16px) !important;
+  }
+  
   /* circle-lines 모바일 위치 조정 */
   .circle-lines {
     top: calc(50% + 40px) !important;
@@ -8791,13 +8796,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동 (CSS와 함께 적용)
+      // benefits 섹션 강제 위치 조정 - 모바일에서만 적용
       const benefitsSection = document.querySelector('section#benefits');
-      if (benefitsSection) {
+      if (benefitsSection && window.innerWidth <= 768) {
         benefitsSection.style.setProperty('margin-top', '-552px', 'important');
-        benefitsSection.style.setProperty('transform', 'translateY(-32px)', 'important');
+        benefitsSection.style.setProperty('transform', 'translateY(0)', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
-        benefitsSection.style.setProperty('padding-top', '80px', 'important');
+        benefitsSection.style.setProperty('padding-top', '96px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
         benefitsSection.style.setProperty('display', 'block', 'important');
