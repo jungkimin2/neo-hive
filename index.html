@@ -4664,6 +4664,34 @@ if (window.innerWidth <= 768) {
       }
     }
     
+    // benefits 섹션 클릭 시 모바일에서 특별 처리
+    if (sectionId === 'benefits' && window.innerWidth <= 768) {
+      const benefitsSection = document.getElementById('benefits');
+      if (benefitsSection) {
+        // 모바일 파트너 신청 버튼 찾기
+        const partnerButton = benefitsSection.querySelector('.mobile-partner-button');
+        if (partnerButton) {
+          // 파트너 신청 버튼이 화면에 모두 보이도록 스크롤 위치 계산
+          const mobileNavHeight = 60;
+          const buttonBottom = partnerButton.getBoundingClientRect().bottom;
+          const viewportHeight = window.innerHeight;
+          const currentScroll = window.pageYOffset;
+          
+          // 버튼의 하단이 뷰포트 하단보다 아래에 있는 경우
+          if (buttonBottom > viewportHeight) {
+            // 버튼이 화면에 완전히 보이도록 스크롤
+            const targetPosition = currentScroll + (buttonBottom - viewportHeight) + 20; // 20px 여유 공간
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            return false;
+          }
+        }
+        // 파트너 버튼이 없거나 이미 보이는 경우 섹션 상단으로 스크롤
+        const sectionTop = benefitsSection.getBoundingClientRect().top + window.pageYOffset - mobileNavHeight;
+        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        return false;
+      }
+    }
+    
     // 기본 동작
     const section = document.getElementById(sectionId);
     if (section) {
