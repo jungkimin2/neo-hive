@@ -7323,7 +7323,7 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 강화 */
      section#benefits {
-       margin-top: -568px !important;  /* 32px 아래로 이동 */
+       margin-top: -536px !important;  /* 32px 아래로 이동 (기존 -568px에서 +32px) */
        position: relative !important;
        z-index: 10 !important;
        background: #000 !important;
@@ -7350,12 +7350,12 @@ document.addEventListener('DOMContentLoaded', function() {
      section[id="benefits"]:before {
        content: "" !important;
        display: block !important;
-       height: 232px !important;  /* 32px 추가하여 회색 바 완전 제거 */
+       height: 200px !important;  /* 섹션 아래 이동에 맞춰 조정 */
        background: #000 !important;
-       margin-top: -232px !important;
+       margin-top: -200px !important;
        position: absolute !important;
        width: 100% !important;
-       top: -232px !important;
+       top: -200px !important;
        left: 0 !important;
        z-index: 5 !important;
      }
