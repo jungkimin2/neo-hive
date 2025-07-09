@@ -4634,6 +4634,16 @@ if (window.innerWidth <= 768) {
     }
   }
   
+  // 모바일 네비게이션 부드러운 스크롤
+  function scrollToSection(sectionId) {
+    closeNav();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    return false;
+  }
+  
   // 모바일에서 로고 클릭 시 최상단으로 스크롤
   document.addEventListener('DOMContentLoaded', function() {
     const logoElement = document.querySelector('.nav-logo');
