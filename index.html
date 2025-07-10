@@ -1,5 +1,6 @@
 
 
+
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -1820,6 +1821,29 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
+
+<!-- PC 환경 비디오 볼륨 조정 스크립트 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // PC 환경에서만 실행
+  if (window.innerWidth > 768) {
+    // 네오 하이브 비디오 볼륨 30% 감소 (0.7배)
+    const hiveVideo = document.getElementById('hiveVideo');
+    if (hiveVideo) {
+      hiveVideo.volume = 0.7;
+      console.log('Neo Hive video volume set to 70%');
+    }
+    
+    // 네오 스마트 비디오 볼륨 30% 증가 (1.3배, 최대 1.0)
+    const neofitsVideo = document.getElementById('neofitsVideo');
+    if (neofitsVideo) {
+      neofitsVideo.volume = 1.0; // 최대값은 1.0
+      console.log('Neo Smart video volume set to 100% (max)');
+    }
+  }
+});
+</script>
+
 <body>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
@@ -2598,14 +2622,14 @@ html body .core-value-fresh-mobile {
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 48px;">
       <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
       <!-- Removed outer box/background for neo-smart-logo; only green glow on image remains -->
-      <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10;">
+      <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10; transform-style: preserve-3d;">
         <div class="wave-background"></div>
         <div class="flip-container">
           <div class="flipper">
             <img src="./images/neost.png" alt="NEO-S NFC Sticker" class="neo-smart-logo front"
                  style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));">
             <img src="./images/neo121.png" alt="NEO Smart Back Image" class="back"
-                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; backface-visibility: hidden; position: absolute; top: 0; left: 12px; transform: rotateY(180deg);" />
+                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px;" />
               <div class="back-text-overlay">
               </div>
           </div>
@@ -2695,6 +2719,11 @@ html body .core-value-fresh-mobile {
   transition: transform 0.8s ease;
 }
 
+/* PC 환경 flip 애니메이션 */
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+
 /* CSS hover 효과 제거 - JavaScript에서 완전히 제어 */
 
 .neo-smart-logo.front,
@@ -2709,13 +2738,15 @@ html body .core-value-fresh-mobile {
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  position: relative !important;
-  z-index: 99999 !important;
+  position: absolute !important;
+  z-index: 2 !important;
   width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
   margin: 0 auto !important;
   pointer-events: auto !important;
+  top: 0;
+  left: 0;
 }
 
 /* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
@@ -6841,11 +6872,14 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       } else {
-        // PC 환경: 기존 방식 그대로 유지
+        // PC 환경: 클래스 기반 뒤집기
         flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-        const transform = isFlipped ? 'rotateY(180deg)' : '';
-        flipper.style.setProperty('transform', transform, 'important');
-        console.log('PC transform applied:', transform);
+        if (isFlipped) {
+          flipper.classList.add('flipped');
+        } else {
+          flipper.classList.remove('flipped');
+        }
+        console.log('PC flip class:', isFlipped ? 'added' : 'removed');
       }
       
       // 텍스트 오버레이 표시/숨김 (강제 적용)
