@@ -4660,25 +4660,6 @@ if (window.innerWidth <= 768) {
       document.body.style.overflow = 'auto';
     }
   }
-  
-  // 스피커 버튼 음소거 토글 함수
-  function toggleMute() {
-    const video = document.getElementById('centerVideo');
-    const volumeOn = document.getElementById('volumeOn');
-    const volumeOff = document.getElementById('volumeOff');
-    
-    if (video) {
-      video.muted = !video.muted;
-      
-      if (video.muted) {
-        volumeOn.style.display = 'none';
-        volumeOff.style.display = 'block';
-      } else {
-        volumeOn.style.display = 'block';
-        volumeOff.style.display = 'none';
-      }
-    }
-  }
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
