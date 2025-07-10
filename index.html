@@ -93,6 +93,34 @@
   }
 }
 
+/* 모바일 팝업 배경 효과 */
+@media screen and (max-width: 768px) {
+  /* 메인 콘텐츠 래퍼 효과 */
+  body.modal-open > *:not(#formModal):not(#mobileBackgroundEffect) {
+    filter: blur(8px) brightness(0.4);
+    -webkit-filter: blur(8px) brightness(0.4);
+    transition: filter 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
+  }
+  
+  /* 배경 그라데이션 효과 */
+  #mobileBackgroundEffect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2147483645;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 30%, rgba(123, 228, 149, 0.1) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  body.modal-open #mobileBackgroundEffect {
+    opacity: 1;
+  }
+}
+
 /* PC 환경에서는 모든 transform 제거 */
 @media screen and (min-width: 769px) {
   .mobile-ui-position-adjustment,
@@ -4397,60 +4425,33 @@ if (window.innerWidth <= 768) {
       console.log('📱 Mobile detected - creating simple overlay');
       console.log('Window width:', window.innerWidth);
       
-      // 기존 오버레이들 제거
-      document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
+      // 기존 효과 제거
+      document.querySelectorAll('#mobileForceOverlay, #mobileBackgroundEffect').forEach(el => el.remove());
       
-      // 직접 createElement로 생성 (더 안정적)
-      const overlay = document.createElement('div');
-      overlay.id = 'mobileForceOverlay';
+      // body에 modal-open 클래스 추가 (블러 효과 적용)
+      document.body.classList.add('modal-open');
       
-      // 스타일을 직접 설정
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-      overlay.style.zIndex = '8000';
-      overlay.style.display = 'block';
-      overlay.style.opacity = '0';
-      overlay.style.transition = 'opacity 0.3s ease';
+      // 배경 그라데이션 효과 추가
+      const bgEffect = document.createElement('div');
+      bgEffect.id = 'mobileBackgroundEffect';
+      document.body.appendChild(bgEffect);
       
-      // 클릭 이벤트 추가
-      overlay.addEventListener('click', closeForm);
+      // 클릭 가능한 오버레이 생성
+      const clickOverlay = document.createElement('div');
+      clickOverlay.id = 'mobileForceOverlay';
+      clickOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 2147483646;
+        cursor: pointer;
+      `;
+      clickOverlay.addEventListener('click', closeForm);
+      document.body.appendChild(clickOverlay);
       
-      // body에 추가
-      document.body.appendChild(overlay);
-      
-      // 강제로 리플로우 발생시키고 opacity 적용
-      overlay.offsetHeight; // Force reflow
-      overlay.style.opacity = '1';
-      
-      console.log('Overlay created:', overlay);
-      console.log('Overlay parent:', overlay.parentNode);
-      
-      // 생성 확인 및 강제 적용
-      setTimeout(() => {
-        const createdOverlay = document.getElementById('mobileForceOverlay');
-        if (createdOverlay) {
-          createdOverlay.style.setProperty('position', 'fixed', 'important');
-          createdOverlay.style.setProperty('top', '0', 'important');
-          createdOverlay.style.setProperty('left', '0', 'important');
-          createdOverlay.style.setProperty('width', '100vw', 'important');
-          createdOverlay.style.setProperty('height', '100vh', 'important');
-          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
-          createdOverlay.style.setProperty('backdrop-filter', 'blur(4px)', 'important');
-          createdOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(4px)', 'important');
-          createdOverlay.style.setProperty('z-index', '8000', 'important');
-          createdOverlay.style.setProperty('display', 'block', 'important');
-          createdOverlay.style.setProperty('visibility', 'visible', 'important');
-          createdOverlay.style.setProperty('opacity', '1', 'important');
-          createdOverlay.style.setProperty('pointer-events', 'auto', 'important');
-          console.log('✅ Mobile overlay confirmed and styles applied');
-        } else {
-          console.error('❌ Mobile overlay creation failed');
-        }
-      }, 10);
+      console.log('Mobile background effects applied');
       
     } else {
       // PC에서는 기존 방식 유지
@@ -4581,11 +4582,19 @@ if (window.innerWidth <= 768) {
       }, 300);
     }
     
-    // 모바일 전용 오버레이 제거 (기존 코드와의 호환성)
+    // 모바일 전용 효과 제거
     const mobileOverlay = document.getElementById('mobileForceOverlay');
     if (mobileOverlay) {
       mobileOverlay.remove();
     }
+    
+    const bgEffect = document.getElementById('mobileBackgroundEffect');
+    if (bgEffect) {
+      bgEffect.remove();
+    }
+    
+    // modal-open 클래스 제거
+    document.body.classList.remove('modal-open');
     
     // 배경 스크롤 복원
     if (window.innerWidth <= 768) {
