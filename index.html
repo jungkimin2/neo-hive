@@ -4249,11 +4249,18 @@ if (window.innerWidth <= 768) {
       }, 1000);
     }
     
-    // 비디오 지연 로딩
+    // 비디오 지연 로딩 및 초기 볼륨 설정
     setTimeout(() => {
       const videos = document.querySelectorAll('video[preload="none"]');
       videos.forEach(video => {
         video.preload = 'metadata';
+        
+        // 비디오별 초기 볼륨 설정
+        if (video.id === 'centerVideo') {
+          video.volume = 0.3; // 네오 하이브 영상 30% (70% 감소)
+        } else if (video.id === 'neofitsVideo') {
+          video.volume = 1.0; // 네오 스마트 영상 100% (최대 볼륨)
+        }
       });
     }, 1000);
   });
@@ -4679,6 +4686,10 @@ if (window.innerWidth <= 768) {
     const volumeOff = document.getElementById('volumeOff');
     
     if (video) {
+      // 먼저 볼륨을 설정
+      video.volume = 0.3; // 70% 줄인 볼륨 (100% - 70% = 30%)
+      
+      // 그 다음 음소거 토글
       video.muted = !video.muted;
       
       if (video.muted) {
@@ -4706,6 +4717,8 @@ if (window.innerWidth <= 768) {
       } else {
         volumeOn.style.display = 'block';
         volumeOff.style.display = 'none';
+        // 음소거 해제 시 볼륨을 100%로 설정 (최대 볼륨)
+        video.volume = 1.0;
       }
     }
   }
