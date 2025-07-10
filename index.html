@@ -2598,16 +2598,14 @@ html body .core-value-fresh-mobile {
     <div class="hive-showcase" style="position: relative; width: 100%; height: 620px; margin-top: 48px;">
       <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.2), rgba(0,0,0,0)); border-radius: 50%; z-index:0; filter: blur(80px); pointer-events:none;"></div>
       <!-- Removed outer box/background for neo-smart-logo; only green glow on image remains -->
-      <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10;">
+      <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10; transform-style: preserve-3d;">
         <div class="wave-background"></div>
         <div class="flip-container">
-          <div class="flipper">
+          <div class="flipper" id="cardFlipper">
             <img src="./images/neost.png" alt="NEO-S NFC Sticker" class="neo-smart-logo front"
                  style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));">
             <img src="./images/neo121.png" alt="NEO Smart Back Image" class="back"
-                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; backface-visibility: hidden; position: absolute; top: 0; left: 12px; transform: rotateY(180deg);" />
-              <div class="back-text-overlay">
-              </div>
+                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px;" />
           </div>
         </div>
         <div class="neos-category-tags" style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-52%);">
@@ -2640,173 +2638,54 @@ html body .core-value-fresh-mobile {
 </style>
       </div>
 <style>
+/* 새로운 카드 뒤집기 애니메이션 스타일 */
 .flip-container {
   position: relative;
-  z-index: 5;
-  perspective: 1000px;
   width: 100%;
-  height: auto;
-  pointer-events: auto;
-}
-/* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 절반 이하로 축소 (PC는 영향 X) */
-@media (max-width: 768px) {
-  .flip-container {
-    transform: scale(0.45) !important;
-    transform-origin: center !important;
-    perspective: 1000px !important;
-    transform-style: preserve-3d !important; /* 3D 효과 활성화 */
-    position: relative !important;
-  }
-  
-  .flipper {
-    transform-style: preserve-3d !important;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    position: relative !important;
-    width: 100% !important;
-    height: 100% !important;
-    transform-origin: center center !important;
-  }
-  
-  /* 모바일 전용: 개별 이미지에 transition 추가 */
-  .neo-smart-logo.front {
-    transition: transform 0.6s ease !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
-  .flipper .back {
-    transition: transform 0.6s ease !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-
-  /* 3D 효과를 지원하기 위한 컨테이너 설정 */
-  .neos-wrapper {
-    transform-style: preserve-3d !important; /* 3D 효과 활성화 */
-    position: relative !important;
-  }
+  height: 600px;
+  perspective: 1000px;
+  z-index: 5;
 }
 
 .flipper {
   position: relative;
   width: 100%;
   height: 100%;
+  transition: transform 0.8s;
   transform-style: preserve-3d;
-  transition: transform 0.8s ease;
 }
 
-/* CSS hover 효과 제거 - JavaScript에서 완전히 제어 */
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
 
 .neo-smart-logo.front,
 .back {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   backface-visibility: hidden;
-  border-radius: 16px;
+  -webkit-backface-visibility: hidden;
 }
 
-/* Ensure .neo-smart-logo.front is always visible and not overridden */
 .neo-smart-logo.front {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  position: relative !important;
-  z-index: 99999 !important;
-  width: 100% !important;
-  height: auto !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  pointer-events: auto !important;
-}
-
-/* 모바일에서만 NEOS 카드 이미지를 위로 4칸(64px) 이동 - 최고 우선순위 */
-@media (max-width: 768px) {
-  .flipper img.neo-smart-logo.front,
-  img.neo-smart-logo.front {
-    transform: translateY(-64px) !important;
-    margin-top: -64px !important;
-    position: relative !important;
-  }
-  
-  /* 뒷면 이미지는 아래로 4칸 */
-  .flipper .back,
-  .back {
-    transform: translateY(64px) rotateY(180deg) !important;
-  }
-  
-
+  z-index: 2;
+  transform: rotateY(0deg);
 }
 
 .back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
   transform: rotateY(180deg);
-  /* Green neon glow */
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
 }
-/* 모바일 환경에서 뒷면 이미지 위치 조정 */
-@media (max-width: 768px) {
-  .flipper .back {
-    left: -102px !important; /* -112px에서 -102px로 변경 (10px 우측 이동) */
-    transform: rotateY(180deg) !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  
-  .back-text-overlay {
-    margin-left: -102px !important; /* -112px에서 -102px로 변경 */
-    transform: translate(-50%, -35%) rotateY(0deg) !important; /* 모바일에서는 텍스트를 뒤집지 않음 */
-    backface-visibility: visible !important; /* 모바일에서는 항상 보이도록 */
-    -webkit-backface-visibility: visible !important;
-  }
-}
-.back-text-overlay {
-  opacity: 0;
-  visibility: hidden;
-  display: block;
-  transition: opacity 0.4s ease-in 0.3s, visibility 0.4s ease-in 0.3s;
-  position: absolute;
-  top: 50%;
-  left: calc(50% - 50px);
-  transform: translate(calc(-50% - 64px), calc(-35% - 16px)) rotateY(180deg);
-  color: #7BE495;
-  text-align: left;
-  font-size: 0.9rem;
-  font-weight: bold;
-  z-index: 2;
-  width: 100%;
-  pointer-events: none;
-  text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);
-  line-height: 1.6;
-}
 
-/* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
-
-/* 모바일 환경 스타일 */
+/* 모바일 스타일 */
 @media (max-width: 768px) {
-  .back-text-overlay {
-    /* 모바일 전용: 텍스트 오버레이 강화 */
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(calc(-50% - 230px), -50%) rotateY(0deg) !important; /* 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시 */
-    text-align: center !important; /* 중앙 정렬로 변경 */
-    padding: 25px 20px !important; /* 모바일 전용: 패딩 증가 */
-    z-index: 99999 !important; /* 모바일 전용: 최상위 표시 */
-    pointer-events: none !important;
-    width: 320px !important; /* 모바일 전용: 너비 더 확장 */
-    height: auto !important;
-    background: rgba(0, 0, 0, 0.95) !important; /* 모바일 전용: 배경 더 진하게 */
-    border-radius: 15px !important; /* 모바일 전용: 모서리 더 둥글게 */
-    border: 3px solid #7BE495 !important; /* 모바일 전용: 밝은 녹색 테두리 */
-    box-shadow: 0 0 30px rgba(123, 228, 149, 1) !important; /* 모바일 전용: 강한 글로우 */
-    opacity: 0 !important; /* JavaScript에서 제어 */
-    visibility: hidden !important;
-    display: block !important;
+  .flip-container {
+    transform: scale(0.45);
+    transform-origin: center;
   }
-  
-  /* 텍스트 관련 스타일 제거됨 - 텍스트 내용이 삭제되었음 */
 }
 </style>
       <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
@@ -6788,162 +6667,49 @@ display: block !important;
 }
 </style>
 <script>
-// PC와 모바일 모두에서 작동하는 카드 뒤집기 스크립트
+// 새로운 카드 뒤집기 애니메이션 스크립트
 document.addEventListener('DOMContentLoaded', function() {
   const flipButton = document.querySelector('.neos-category-tags');
-  const flipper = document.querySelector('.flipper');
-  const backTextOverlay = document.querySelector('.back-text-overlay');
-  const flipContainer = document.querySelector('.flip-container');
-  
-  // 모바일 환경 감지 (더 정확한 방법)
-  const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const flipper = document.getElementById('cardFlipper');
   
   if (flipButton && flipper) {
     let isFlipped = false;
     
-    // 공통 뒤집기 함수
-    function performFlip() {
+    // 카드 뒤집기 함수
+    function flipCard() {
       isFlipped = !isFlipped;
-      console.log('Flip triggered, isFlipped:', isFlipped, 'isMobile:', isMobile); // 디버깅용
       
-      if (isMobile) {
-        // 모바일 전용: 개별 이미지 제어 (위치는 그대로, 뒤집기만)
-        const frontImage = document.querySelector('.neo-smart-logo.front');
-        const backImage = document.querySelector('.flipper .back');
-        
-        if (frontImage && backImage) {
-          // 3D 효과 활성화
-          flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-          
-          if (isFlipped) {
-            // 뒷면 보기: 앞면 숨기고 뒷면 보이기 (뒷면은 아래로 4칸)
-            frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(-180deg)', 'important');
-            backImage.style.setProperty('transform', 'translateY(64px) rotateY(0deg)', 'important');
-            
-            // 텍스트 오버레이도 뒷면과 함께 표시
-            if (backTextOverlay) {
-              backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
-              backTextOverlay.style.setProperty('opacity', '1', 'important');
-              backTextOverlay.style.setProperty('visibility', 'visible', 'important');
-            }
-            console.log('Mobile: Showing back side with text');
-          } else {
-            // 앞면 보기: 앞면 보이고 뒷면 숨기기 (뒷면은 아래로 4칸)
-            frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(0deg)', 'important');
-            backImage.style.setProperty('transform', 'translateY(64px) rotateY(180deg)', 'important');
-            
-            // 텍스트 오버레이도 숨기기
-            if (backTextOverlay) {
-              backTextOverlay.style.setProperty('opacity', '0', 'important');
-              backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-            }
-            console.log('Mobile: Showing front side, hiding text');
-          }
-        }
+      if (isFlipped) {
+        flipper.classList.add('flipped');
       } else {
-        // PC 환경: 기존 방식 그대로 유지
-        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-        const transform = isFlipped ? 'rotateY(180deg)' : '';
-        flipper.style.setProperty('transform', transform, 'important');
-        console.log('PC transform applied:', transform);
-      }
-      
-      // 텍스트 오버레이 표시/숨김 (강제 적용)
-      if (backTextOverlay) {
-        if (isFlipped) {
-          backTextOverlay.style.setProperty('opacity', '1', 'important');
-          backTextOverlay.style.setProperty('visibility', 'visible', 'important');
-          backTextOverlay.style.setProperty('display', 'block', 'important');
-          
-          // 모바일 환경에서만 추가 강화
-          if (isMobile) {
-            backTextOverlay.style.setProperty('z-index', '99999', 'important');
-            // 모바일에서는 텍스트를 뒤집지 않고 정면으로 표시
-            backTextOverlay.style.setProperty('transform', 'translate(calc(-50% - 230px), -50%) rotateY(0deg)', 'important');
-            backTextOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.95)', 'important');
-            backTextOverlay.style.setProperty('border', '3px solid #7BE495', 'important');
-            backTextOverlay.style.setProperty('box-shadow', '0 0 30px rgba(123, 228, 149, 1)', 'important');
-            
-            console.log('Mobile text overlay container ready (no text content)');
-          }
-        } else {
-          backTextOverlay.style.setProperty('opacity', '0', 'important');
-          backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-        }
-        console.log('Text overlay opacity:', isFlipped ? '1' : '0');
+        flipper.classList.remove('flipped');
       }
       
       // 버튼 텍스트 변경
       const buttonText = flipButton.querySelector('span');
       if (buttonText) {
         buttonText.textContent = isFlipped ? '앞면 보기' : '뒷면 보기';
-        console.log('Button text changed to:', buttonText.textContent);
       }
     }
     
-    // 클릭 이벤트 (PC와 모바일 모두)
+    // 클릭 이벤트
     flipButton.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Button clicked'); // 디버깅용
-      performFlip();
+      flipCard();
     });
     
-    // PC에서 이미지 클릭으로 뒤집기 기능 제거 (버튼 클릭만 가능)
-    // 이제 뒷면보기 버튼을 클릭했을 때만 카드가 뒤집힙니다
+    // 버튼 호버 효과
+    flipButton.style.cursor = 'pointer';
+    flipButton.style.transition = 'transform 0.2s';
     
-    // 터치 이벤트 (모바일 전용)
-    if (isMobile) {
-      flipButton.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Touch started'); // 디버깅용
-        performFlip();
-      });
-      
-      // 모바일에서도 버튼 터치만으로 뒤집기 (컨테이너 터치 제거)
-      // 이제 뒷면보기 버튼을 터치했을 때만 카드가 뒤집힙니다
-    }
+    flipButton.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(-52%) scale(1.05)';
+    });
     
-    // 페이지 로드 시 초기 설정
-    if (isMobile) {
-      // 모바일 전용: 개별 이미지 초기 상태 설정
-      const frontImage = document.querySelector('.neo-smart-logo.front');
-      const backImage = document.querySelector('.flipper .back');
-      
-      if (frontImage && backImage) {
-        // 3D 효과 활성화
-        flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-        
-        // 초기 상태: 앞면 보이기, 뒷면 숨기기 (뒷면은 아래로 4칸)
-        frontImage.style.setProperty('transform', 'translateY(-64px) rotateY(0deg)', 'important');
-        backImage.style.setProperty('transform', 'translateY(64px) rotateY(180deg)', 'important');
-        console.log('Mobile initial state: front visible, back hidden');
-      }
-    } else {
-      // PC 환경: 기존 방식 그대로 유지
-      flipper.style.setProperty('transform-style', 'preserve-3d', 'important');
-      console.log('PC 3D effects enabled');
-    }
-    
-    // 초기 텍스트 오버레이 숨김 (강제 적용)
-    if (backTextOverlay) {
-      backTextOverlay.style.setProperty('opacity', '0', 'important');
-      backTextOverlay.style.setProperty('visibility', 'hidden', 'important');
-      backTextOverlay.style.setProperty('display', 'block', 'important');
-      console.log('Initial text overlay hidden');
-    }
-    
-    // PC에서 버튼에 호버 효과 추가
-    if (!isMobile) {
-      flipButton.style.cursor = 'pointer';
-      flipButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateX(-52%) scale(1.05)';
-      });
-      flipButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateX(-52%) scale(1)';
-      });
-    }
+    flipButton.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(-52%) scale(1)';
+    });
   }
 });
 </script>
