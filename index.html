@@ -1790,6 +1790,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 2초 후 재실행
     setTimeout(applyMobileVolume, 2000);
+    
+    // 네오 스마트 영상도 볼륨 설정
+    const applyNeofitsVolume = function() {
+      const neofitsVideo = document.getElementById('neofitsVideo');
+      if (neofitsVideo) {
+        neofitsVideo.muted = true; // 일단 음소거 상태 유지
+        neofitsVideo.volume = 0.86; // 86% 볼륨으로 설정
+        
+        // 스피커 버튼 클릭 시 볼륨 유지
+        const originalToggleNeofitsMute = window.toggleNeofitsMute;
+        window.toggleNeofitsMute = function() {
+          const video = document.getElementById('neofitsVideo');
+          if (video) {
+            video.muted = !video.muted;
+            if (!video.muted) {
+              video.volume = 0.86; // 음소거 해제 시에도 86% 유지
+            }
+            
+            // 아이콘 업데이트
+            const volumeOn = document.getElementById('neofitsVolumeOn');
+            const volumeOff = document.getElementById('neofitsVolumeOff');
+            if (video.muted) {
+              volumeOn.style.display = 'none';
+              volumeOff.style.display = 'block';
+            } else {
+              volumeOn.style.display = 'block';
+              volumeOff.style.display = 'none';
+            }
+          }
+        };
+      }
+    };
+    
+    // 즉시 실행
+    applyNeofitsVolume();
+    
+    // 0.5초 후 재실행
+    setTimeout(applyNeofitsVolume, 500);
+    
+    // 1초 후 재실행
+    setTimeout(applyNeofitsVolume, 1000);
+    
+    // 2초 후 재실행
+    setTimeout(applyNeofitsVolume, 2000);
   }
 });
 </script>
