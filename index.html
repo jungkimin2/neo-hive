@@ -2764,6 +2764,23 @@ html body .core-value-fresh-mobile {
   width: 100%;
   height: auto;
   pointer-events: auto;
+  transform-style: preserve-3d;
+}
+
+/* PC용 flip 설정 추가 */
+@media (min-width: 769px) {
+  .flip-container {
+    transform-style: preserve-3d !important;
+  }
+  
+  .flipper {
+    transform-style: preserve-3d !important;
+    transition: transform 0.6s !important;
+  }
+  
+  .flipper[style*="rotateY(180deg)"] {
+    transform: rotateY(180deg) !important;
+  }
 }
 /* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 절반 이하로 축소 (PC는 영향 X) */
 @media (max-width: 768px) {
@@ -7088,10 +7105,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isMobile) {
       flipButton.style.cursor = 'pointer';
       flipButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateX(-52%) scale(1.05)';
+        this.style.transform = 'translateX(calc(-52% - 20px)) scale(1.05)';
       });
       flipButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateX(-52%) scale(1)';
+        this.style.transform = 'translateX(calc(-52% - 20px)) scale(1)';
       });
     }
   }
