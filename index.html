@@ -173,9 +173,10 @@
     opacity: 1 !important;
     visibility: visible !important;
     position: absolute !important;
-    top: -50px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    transform: none !important;
     z-index: 2147483647 !important;
   }
   
@@ -4740,6 +4741,14 @@ if (window.innerWidth <= 768) {
     const volumeOff = document.getElementById('neofitsVolumeOff');
     
     if (video) {
+      // 먼저 볼륨을 설정
+      if (window.innerWidth <= 768) {
+        video.volume = 0.2; // 모바일: 80% 줄인 볼륨 (매우 작은 소리)
+      } else {
+        video.volume = 0.3; // PC: 70% 줄인 볼륨 (30% 볼륨)
+      }
+      
+      // 그 다음 음소거 토글
       video.muted = !video.muted;
       
       if (video.muted) {
@@ -4748,8 +4757,6 @@ if (window.innerWidth <= 768) {
       } else {
         volumeOn.style.display = 'block';
         volumeOff.style.display = 'none';
-        // 음소거 해제 시 볼륨을 100%로 설정 (최대 볼륨)
-        video.volume = 1.0;
       }
     }
   }
