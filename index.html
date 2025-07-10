@@ -150,18 +150,28 @@
   fill: #7BE495;
 }
 
-/* 스피커 버튼 래퍼 - 기본적으로 숨김 */
+/* 스피커 버튼 래퍼 - PC와 모바일 모두 표시 */
 .speaker-button-wrapper {
-  display: none;
+  display: block;
+}
+
+/* PC 환경 스피커 버튼 스타일 */
+@media screen and (min-width: 769px) {
+  .speaker-button {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .speaker-button svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* 모바일 전용 스피커 버튼 조정 */
 @media screen and (max-width: 768px) {
-  /* 모바일에서만 스피커 버튼 래퍼 표시 */
-  .speaker-button-wrapper {
-    display: block !important;
-  }
-  
   .speaker-button {
     width: 36px;
     height: 36px;
