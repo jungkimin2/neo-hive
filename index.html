@@ -1,6 +1,5 @@
 
 
-
 <meta name="google-site-verification" content="OeM-YMo4NpQshyIm3m5H59IikSDp0BMe4sXKQmCu7NM" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -1721,6 +1720,25 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 </style>
 
+<!-- 뒷면보기 버튼 클릭 테스트 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const flipBtn = document.querySelector('.neos-category-tags');
+  if (flipBtn) {
+    console.log('뒷면보기 버튼 찾음');
+    flipBtn.addEventListener('click', function() {
+      console.log('뒷면보기 버튼 클릭됨!');
+      const span = this.querySelector('span');
+      if (span) {
+        span.textContent = span.textContent === '뒷면 보기' ? '앞면 보기' : '뒷면 보기';
+      }
+    });
+  } else {
+    console.log('뒷면보기 버튼을 찾을 수 없음');
+  }
+});
+</script>
+
 </head>
 <style>
 @media (max-width: 768px) {
@@ -1821,29 +1839,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     }
   }
 </style>
-
-<!-- PC 환경 비디오 볼륨 조정 스크립트 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // PC 환경에서만 실행
-  if (window.innerWidth > 768) {
-    // 네오 하이브 비디오 볼륨 30% 감소 (0.7배)
-    const hiveVideo = document.getElementById('hiveVideo');
-    if (hiveVideo) {
-      hiveVideo.volume = 0.7;
-      console.log('Neo Hive video volume set to 70%');
-    }
-    
-    // 네오 스마트 비디오 볼륨 30% 증가 (1.3배, 최대 1.0)
-    const neofitsVideo = document.getElementById('neofitsVideo');
-    if (neofitsVideo) {
-      neofitsVideo.volume = 1.0; // 최대값은 1.0
-      console.log('Neo Smart video volume set to 100% (max)');
-    }
-  }
-});
-</script>
-
 <body>
 <!-- 모바일 전용 상단 고정 네비게이션 (body 직속) -->
 <div id="mobile-top-nav-fixed" style="position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;">
@@ -2624,18 +2619,18 @@ html body .core-value-fresh-mobile {
       <!-- Removed outer box/background for neo-smart-logo; only green glow on image remains -->
       <div class="neos-wrapper" style="position:absolute; left:34%; top:calc(50% + 48px); transform:translate(-50%, -50%); width:550px; height:auto; z-index:10;">
         <div class="wave-background"></div>
-        <div class="flip-container" style="transform-style: preserve-3d;">
+        <div class="flip-container">
           <div class="flipper">
             <img src="./images/neost.png" alt="NEO-S NFC Sticker" class="neo-smart-logo front"
                  style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(123, 228, 149, 0.45));">
             <img src="./images/neo121.png" alt="NEO Smart Back Image" class="back"
-                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px;" />
+                 style="width: 100%; height: 100%; object-fit: contain; border-radius: 16px; backface-visibility: hidden; position: absolute; top: 0; left: 0; transform: rotateY(180deg);" />
               <div class="back-text-overlay">
               </div>
           </div>
         </div>
-        <div class="neos-category-tags" style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-52%);">
-          <div style="display: inline-block; text-align: center; margin: 0; background: rgba(0, 0, 0, 0.4); padding: 6px 16px; border-radius: 20px; width: auto; max-width: 100%;">
+        <div class="neos-category-tags" style="position: absolute; bottom: 72px; left: 50%; transform: translateX(-52%); cursor: pointer; z-index: 100;">
+          <div style="display: inline-block; text-align: center; margin: 0; background: rgba(0, 0, 0, 0.4); padding: 6px 16px; border-radius: 20px; width: auto; max-width: 100%; pointer-events: auto;">
             <span style="color: #7BE495; font-size: 0.85rem; font-weight: bold; text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);">
               뒷면 보기
             </span>
@@ -2646,6 +2641,15 @@ html body .core-value-fresh-mobile {
 @media (min-width: 769px) {
   .neos-category-tags {
     transform: translateX(calc(-52% - 20px)) !important; /* 기존 -52%에서 20px 더 좌측으로 (26px에서 6px 우측 이동) */
+    transition: transform 0.2s ease;
+  }
+  
+  .neos-category-tags:hover {
+    transform: translateX(calc(-52% - 20px)) scale(1.05) !important;
+  }
+  
+  .neos-category-tags:hover > div {
+    background: rgba(0, 0, 0, 0.6) !important;
   }
 }
 
@@ -2719,9 +2723,11 @@ html body .core-value-fresh-mobile {
   transition: transform 0.8s ease;
 }
 
-/* PC 환경 flip 애니메이션 */
-.flipper.flipped {
-  transform: rotateY(180deg);
+/* PC 환경에서 뒤집기 애니메이션 */
+@media (min-width: 769px) {
+  .flipper.flipped {
+    transform: rotateY(180deg) !important;
+  }
 }
 
 /* CSS hover 효과 제거 - JavaScript에서 완전히 제어 */
@@ -2741,7 +2747,7 @@ html body .core-value-fresh-mobile {
   position: absolute !important;
   z-index: 2 !important;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   max-width: 100% !important;
   margin: 0 auto !important;
   pointer-events: auto !important;
@@ -2771,11 +2777,8 @@ html body .core-value-fresh-mobile {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
   transform: rotateY(180deg);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
   /* Green neon glow */
   filter: drop-shadow(0 0 8px rgba(123, 228, 149, 0.6)) drop-shadow(0 0 16px rgba(123, 228, 149, 0.4));
 }
