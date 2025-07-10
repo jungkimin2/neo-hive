@@ -8900,9 +8900,26 @@ document.addEventListener('DOMContentLoaded', function() {
 /* 모바일 팝업 추가 스타일링 - 완전 리디자인 */
 @media (max-width: 768px) {
   #formModal {
+    /* 초기 위치를 중앙으로 설정하여 순간이동 방지 */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    /* 애니메이션 효과 */
     animation: modalFadeIn 0.3s ease-out;
     display: flex !important;
     flex-direction: column !important;
+    /* 초기 상태 설정 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* 모달이 보일 때 */
+  #formModal.show {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   #formModal .modal-body {
@@ -8920,19 +8937,15 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 0 !important;
   }
   
-  #formModal {
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
   @keyframes modalFadeIn {
     from {
-      transform: translate(-50%, -50%) scale(0.98);
+      transform: translate(-50%, -50%) scale(0.95);
+      -webkit-transform: translate(-50%, -50%) scale(0.95);
       opacity: 0;
     }
     to {
       transform: translate(-50%, -50%) scale(1);
+      -webkit-transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
   }
