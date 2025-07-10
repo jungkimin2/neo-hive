@@ -1739,6 +1739,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- PC 환경 비디오 볼륨 조정 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // PC 환경에서만 실행
+  if (window.innerWidth > 768) {
+    // 네오 하이브 비디오 볼륨 30% 감소 (0.7배)
+    const centerVideo = document.getElementById('centerVideo');
+    if (centerVideo) {
+      centerVideo.volume = 0.7;
+      console.log('Neo Hive video volume set to 70%');
+    }
+    
+    // 네오 스마트 비디오 (기존 설정 유지)
+    const neofitsVideo = document.getElementById('neofitsVideo');
+    if (neofitsVideo) {
+      neofitsVideo.volume = 1.0;
+      console.log('Neo Smart video volume set to 100%');
+    }
+  }
+});
+</script>
+
 </head>
 <style>
 @media (max-width: 768px) {
@@ -2629,7 +2651,7 @@ html body .core-value-fresh-mobile {
               </div>
           </div>
         </div>
-        <div class="neos-category-tags" style="position: absolute; bottom: 72px; left: 50%; transform: translateX(-52%); cursor: pointer; z-index: 100;">
+        <div class="neos-category-tags" style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-52%); cursor: pointer; z-index: 100;">
           <div style="display: inline-block; text-align: center; margin: 0; background: rgba(0, 0, 0, 0.4); padding: 6px 16px; border-radius: 20px; width: auto; max-width: 100%; pointer-events: auto;">
             <span style="color: #7BE495; font-size: 0.85rem; font-weight: bold; text-shadow: 0 0 6px rgba(123, 228, 149, 0.8);">
               뒷면 보기
@@ -2653,11 +2675,11 @@ html body .core-value-fresh-mobile {
   }
 }
 
-/* 모바일 환경에서 .neos-category-tags를 하단으로 8칸(약 160px) 이동 */
+/* 모바일 환경에서 .neos-category-tags를 하단으로 이동 */
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    top: 264px !important; /* 296px에서 264px로 변경 (32px 위로 이동) */
+    top: 328px !important; /* 264px에서 328px로 변경 (64px 아래로 = 4칸) */
     left: calc(50% - 48px) !important; /* 중앙에서 3칸(48px) 왼쪽으로 이동 */
     transform: translateX(-50%) !important;
     width: auto !important;
