@@ -1752,7 +1752,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const centerVideo = document.getElementById('centerVideo');
       if (centerVideo) {
         centerVideo.muted = true; // 일단 음소거 상태 유지
-        centerVideo.volume = 0.1; // 10% 볼륨으로 설정
+        centerVideo.volume = 0.3; // 30% 볼륨으로 설정
         
         // 스피커 버튼 클릭 시 볼륨 유지
         const originalToggleMute = window.toggleMute;
@@ -1761,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (video) {
             video.muted = !video.muted;
             if (!video.muted) {
-              video.volume = 0.1; // 음소거 해제 시에도 10% 유지
+              video.volume = 0.3; // 음소거 해제 시에도 30% 유지
             }
             
             // 아이콘 업데이트
@@ -4332,7 +4332,7 @@ if (window.innerWidth <= 768) {
         if (video.id === 'centerVideo') {
           // 모바일과 PC 구분
           if (window.innerWidth <= 768) {
-            video.volume = 0.05; // 모바일: 95% 줄인 볼륨 (5% 볼륨)
+            video.volume = 0.3; // 모바일: 30% 볼륨
           } else {
             video.volume = 0.7; // PC: 70% 볼륨
           }
@@ -4771,9 +4771,9 @@ if (window.innerWidth <= 768) {
     if (video) {
       // 먼저 볼륨을 설정
       if (window.innerWidth <= 768) {
-        video.volume = 0.05; // 모바일: 95% 줄인 볼륨 (5% 볼륨)
+        video.volume = 0.3; // 모바일: 30% 볼륨
       } else {
-        video.volume = 0.21; // PC: 79% 줄인 볼륨 (21% 볼륨)
+        video.volume = 0.3; // PC: 30% 볼륨
       }
       
       // 그 다음 음소거 토글
