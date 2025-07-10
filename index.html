@@ -4298,58 +4298,6 @@ if (window.innerWidth <= 768) {
     // 모달 내용 생성 - 모바일 여부에 따라 스타일 조정
     const isMobile = window.innerWidth <= 768;
     modal.innerHTML = `
-      <style>
-        /* 팝업 내 모든 요소들이 즉시 중앙 정렬된 상태로 표시 */
-        #formModal * {
-          text-align: center !important;
-        }
-        
-        /* 입력 필드들은 왼쪽 정렬 유지 */
-        #formModal input,
-        #formModal textarea,
-        #formModal select {
-          text-align: left !important;
-        }
-        
-        /* 레이블은 왼쪽 정렬 */
-        #formModal label {
-          text-align: left !important;
-          display: block !important;
-        }
-        
-        /* 헤더 텍스트는 중앙 정렬 */
-        #formModal h2,
-        #formModal p {
-          text-align: center !important;
-          width: 100% !important;
-        }
-        
-        /* 혜택 카드 내용 중앙 정렬 */
-        #formModal .modal-header-redesigned > div:last-child {
-          display: flex !important;
-          justify-content: center !important;
-          align-items: center !important;
-        }
-        
-        /* 닫기 버튼 위치 조정 */
-        #formModal button[onclick="closeForm()"] {
-          position: absolute !important;
-          right: 16px !important;
-          top: 14px !important;
-        }
-        
-        /* 모바일에서 헤더 컨텐츠 중앙 정렬 */
-        @media (max-width: 768px) {
-          #formModal .modal-header-redesigned > div:first-child {
-            justify-content: center !important;
-          }
-          
-          #formModal .modal-header-redesigned > div:first-child > div:first-child {
-            text-align: center !important;
-            flex: unset !important;
-          }
-        }
-      </style>
       <!-- 모바일 리디자인 헤더 -->
       <div class="modal-header-redesigned" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
         <!-- 미니멀한 상단 바 -->
@@ -4388,8 +4336,8 @@ if (window.innerWidth <= 768) {
       </div>
       
       <!-- 폼 영역 - 모바일 최적화 리디자인 -->
-      <div class="modal-body" style="padding: 0 16px 20px; background: #000; ${isMobile ? 'height: calc(92vh - 120px); max-height: 600px; min-height: 500px;' : 'max-height: calc(85vh - 140px);'} ${isMobile ? 'overflow: hidden;' : 'overflow-y: auto;'} -webkit-overflow-scrolling: touch;">
-        <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:${isMobile ? '6px' : '8px'};">
+      <div class="modal-body" style="padding: ${isMobile ? '0 20px 20px' : '0 16px 20px'}; background: #000; ${isMobile ? 'height: calc(92vh - 120px); max-height: 600px; min-height: 500px;' : 'max-height: calc(85vh - 140px);'} ${isMobile ? 'overflow-y: auto;' : 'overflow-y: auto;'} -webkit-overflow-scrolling: touch;">
+        <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:${isMobile ? '12px' : '8px'};">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
         <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
@@ -4401,12 +4349,12 @@ if (window.innerWidth <= 768) {
         <!-- 담당자명 입력 -->
         <div class="input-group" style="margin-bottom: 0;">
           <label for="contact" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">담당자명</label>
-          <input id="contact" type="text" name="contact" placeholder="예: 홍길동" required style="width: 100%; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+          <input id="contact" type="text" name="contact" placeholder="예: 홍길동" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
         </div>
         <!-- 상품 선택 -->
         <div class="input-group" style="margin-bottom: 0;">
           <label for="product" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">신청 상품</label>
-          <select id="product" name="product" required style="width: 100%; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23999%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 40px; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+          <select id="product" name="product" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23999%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 40px; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
             <option value="" style="background: #000; color: #aaa;">신청 상품을 선택해주세요</option>
             <option value="네오 하이브" style="background: #000; color: #fff;">네오 하이브</option>
             <option value="네오 스마트" style="background: #000; color: #fff;">네오 스마트</option>
@@ -4416,7 +4364,7 @@ if (window.innerWidth <= 768) {
         <!-- 연락처 입력 -->
         <div class="input-group" style="margin-bottom: 0;">
           <label for="phone" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">연락처</label>
-          <input id="phone" type="tel" name="phone" placeholder="010-1234-5678" required style="width: 100%; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+          <input id="phone" type="tel" name="phone" placeholder="010-1234-5678" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
         </div>
         <!-- 요청사항 입력 -->
         <div class="input-group" style="margin-bottom: 0;">
