@@ -4298,6 +4298,58 @@ if (window.innerWidth <= 768) {
     // 모달 내용 생성 - 모바일 여부에 따라 스타일 조정
     const isMobile = window.innerWidth <= 768;
     modal.innerHTML = `
+      <style>
+        /* 팝업 내 모든 요소들이 즉시 중앙 정렬된 상태로 표시 */
+        #formModal * {
+          text-align: center !important;
+        }
+        
+        /* 입력 필드들은 왼쪽 정렬 유지 */
+        #formModal input,
+        #formModal textarea,
+        #formModal select {
+          text-align: left !important;
+        }
+        
+        /* 레이블은 왼쪽 정렬 */
+        #formModal label {
+          text-align: left !important;
+          display: block !important;
+        }
+        
+        /* 헤더 텍스트는 중앙 정렬 */
+        #formModal h2,
+        #formModal p {
+          text-align: center !important;
+          width: 100% !important;
+        }
+        
+        /* 혜택 카드 내용 중앙 정렬 */
+        #formModal .modal-header-redesigned > div:last-child {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+        
+        /* 닫기 버튼 위치 조정 */
+        #formModal button[onclick="closeForm()"] {
+          position: absolute !important;
+          right: 16px !important;
+          top: 14px !important;
+        }
+        
+        /* 모바일에서 헤더 컨텐츠 중앙 정렬 */
+        @media (max-width: 768px) {
+          #formModal .modal-header-redesigned > div:first-child {
+            justify-content: center !important;
+          }
+          
+          #formModal .modal-header-redesigned > div:first-child > div:first-child {
+            text-align: center !important;
+            flex: unset !important;
+          }
+        }
+      </style>
       <!-- 모바일 리디자인 헤더 -->
       <div class="modal-header-redesigned" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
         <!-- 미니멀한 상단 바 -->
