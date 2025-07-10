@@ -4255,9 +4255,9 @@ if (window.innerWidth <= 768) {
       videos.forEach(video => {
         video.preload = 'metadata';
         
-        // 비디오별 초기 볼륨 설정
+        // 비디오별 초기 볼륨 설정 (모바일/PC 모두 동일)
         if (video.id === 'centerVideo') {
-          video.volume = 0.3; // 네오 하이브 영상 30% (70% 감소)
+          video.volume = 0.7; // 네오 하이브 영상 70% (30% 감소)
         } else if (video.id === 'neofitsVideo') {
           video.volume = 1.0; // 네오 스마트 영상 100% (최대 볼륨)
         }
@@ -4686,8 +4686,8 @@ if (window.innerWidth <= 768) {
     const volumeOff = document.getElementById('volumeOff');
     
     if (video) {
-      // 먼저 볼륨을 설정
-      video.volume = 0.3; // 70% 줄인 볼륨 (100% - 70% = 30%)
+      // 먼저 볼륨을 설정 (모바일/PC 모두 동일하게 70% 볼륨)
+      video.volume = 0.7; // 30% 줄인 볼륨 (100% - 30% = 70%)
       
       // 그 다음 음소거 토글
       video.muted = !video.muted;
