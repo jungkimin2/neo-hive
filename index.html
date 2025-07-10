@@ -165,29 +165,6 @@
   }
 }
 
-/* 모바일에서 neo-smart-video 스피커 버튼 강제 표시 */
-@media screen and (max-width: 768px) {
-  .neo-smart-video .speaker-button-wrapper,
-  .floating-video .speaker-button-wrapper {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    position: absolute !important;
-    top: -4px !important;
-    right: -4px !important;
-    left: auto !important;
-    transform: none !important;
-    z-index: 2147483647 !important;
-  }
-  
-  .neo-smart-video .speaker-button,
-  .floating-video .speaker-button {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-}
-
 /* PC 환경에서는 모든 transform 제거 */
 @media screen and (min-width: 769px) {
   .mobile-ui-position-adjustment,
@@ -1743,100 +1720,6 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 </style>
 
-<script>
-// 모바일 환경에서 네오 하이브 영상 볼륨 조절
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.innerWidth <= 768) {
-    // 여러 번 시도하여 확실히 적용
-    const applyMobileVolume = function() {
-      const centerVideo = document.getElementById('centerVideo');
-      if (centerVideo) {
-        centerVideo.muted = true; // 일단 음소거 상태 유지
-        centerVideo.volume = 0.3; // 30% 볼륨으로 설정
-        
-        // 스피커 버튼 클릭 시 볼륨 유지
-        const originalToggleMute = window.toggleMute;
-        window.toggleMute = function() {
-          const video = document.getElementById('centerVideo');
-          if (video) {
-            video.muted = !video.muted;
-            if (!video.muted) {
-              video.volume = 0.3; // 음소거 해제 시에도 30% 유지
-            }
-            
-            // 아이콘 업데이트
-            const volumeOn = document.getElementById('volumeOn');
-            const volumeOff = document.getElementById('volumeOff');
-            if (video.muted) {
-              volumeOn.style.display = 'none';
-              volumeOff.style.display = 'block';
-            } else {
-              volumeOn.style.display = 'block';
-              volumeOff.style.display = 'none';
-            }
-          }
-        };
-      }
-    };
-    
-    // 즉시 실행
-    applyMobileVolume();
-    
-    // 0.5초 후 재실행
-    setTimeout(applyMobileVolume, 500);
-    
-    // 1초 후 재실행
-    setTimeout(applyMobileVolume, 1000);
-    
-    // 2초 후 재실행
-    setTimeout(applyMobileVolume, 2000);
-    
-    // 네오 스마트 영상도 볼륨 설정
-    const applyNeofitsVolume = function() {
-      const neofitsVideo = document.getElementById('neofitsVideo');
-      if (neofitsVideo) {
-        neofitsVideo.muted = true; // 일단 음소거 상태 유지
-        neofitsVideo.volume = 0.86; // 86% 볼륨으로 설정
-        
-        // 스피커 버튼 클릭 시 볼륨 유지
-        const originalToggleNeofitsMute = window.toggleNeofitsMute;
-        window.toggleNeofitsMute = function() {
-          const video = document.getElementById('neofitsVideo');
-          if (video) {
-            video.muted = !video.muted;
-            if (!video.muted) {
-              video.volume = 0.86; // 음소거 해제 시에도 86% 유지
-            }
-            
-            // 아이콘 업데이트
-            const volumeOn = document.getElementById('neofitsVolumeOn');
-            const volumeOff = document.getElementById('neofitsVolumeOff');
-            if (video.muted) {
-              volumeOn.style.display = 'none';
-              volumeOff.style.display = 'block';
-            } else {
-              volumeOn.style.display = 'block';
-              volumeOff.style.display = 'none';
-            }
-          }
-        };
-      }
-    };
-    
-    // 즉시 실행
-    applyNeofitsVolume();
-    
-    // 0.5초 후 재실행
-    setTimeout(applyNeofitsVolume, 500);
-    
-    // 1초 후 재실행
-    setTimeout(applyNeofitsVolume, 1000);
-    
-    // 2초 후 재실행
-    setTimeout(applyNeofitsVolume, 2000);
-  }
-});
-</script>
 </head>
 <style>
 @media (max-width: 768px) {
@@ -2764,53 +2647,6 @@ html body .core-value-fresh-mobile {
   width: 100%;
   height: auto;
   pointer-events: auto;
-  transform-style: preserve-3d;
-}
-
-/* PC용 flip 설정 추가 */
-@media (min-width: 769px) {
-  .flip-container {
-    transform-style: preserve-3d !important;
-    position: relative !important;
-    width: 450px !important;
-    height: 600px !important;
-  }
-  
-  .flipper {
-    transform-style: preserve-3d !important;
-    transition: transform 0.6s !important;
-    width: 100% !important;
-    height: 100% !important;
-    position: relative !important;
-  }
-  
-  .flipper[style*="rotateY(180deg)"] {
-    transform: rotateY(180deg) !important;
-  }
-  
-  /* PC에서 front 이미지는 relative로 유지 */
-  .flipper .neo-smart-logo.front {
-    position: relative !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    z-index: 2 !important;
-  }
-  
-  /* PC에서 back 이미지만 absolute */
-  .flipper .back {
-    position: absolute !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: rotateY(180deg) !important;
-    z-index: 1 !important;
-  }
 }
 /* 모바일 환경에서만 flip-container의 뒷면 UI 크기를 절반 이하로 축소 (PC는 영향 X) */
 @media (max-width: 768px) {
@@ -4413,28 +4249,11 @@ if (window.innerWidth <= 768) {
       }, 1000);
     }
     
-    // 비디오 지연 로딩 및 초기 볼륨 설정
+    // 비디오 지연 로딩
     setTimeout(() => {
       const videos = document.querySelectorAll('video[preload="none"]');
       videos.forEach(video => {
         video.preload = 'metadata';
-        
-        // 비디오별 초기 볼륨 설정
-        if (video.id === 'centerVideo') {
-          // 모바일과 PC 구분
-          if (window.innerWidth <= 768) {
-            video.volume = 0.3; // 모바일: 30% 볼륨
-          } else {
-            video.volume = 0.49; // PC: 49% 볼륨 (30% 감소)
-          }
-        } else if (video.id === 'neofitsVideo') {
-          // 모바일과 PC 구분
-          if (window.innerWidth <= 768) {
-            video.volume = 0.86; // 모바일: 86% 볼륨 (추가 30% 증가)
-          } else {
-            video.volume = 1.0; // 네오 스마트 영상 100% (최대 볼륨)
-          }
-        }
       });
     }, 1000);
   });
@@ -4860,14 +4679,6 @@ if (window.innerWidth <= 768) {
     const volumeOff = document.getElementById('volumeOff');
     
     if (video) {
-      // 먼저 볼륨을 설정
-      if (window.innerWidth <= 768) {
-        video.volume = 0.3; // 모바일: 30% 볼륨
-      } else {
-        video.volume = 0.21; // PC: 21% 볼륨 (30% 감소)
-      }
-      
-      // 그 다음 음소거 토글
       video.muted = !video.muted;
       
       if (video.muted) {
@@ -4887,14 +4698,6 @@ if (window.innerWidth <= 768) {
     const volumeOff = document.getElementById('neofitsVolumeOff');
     
     if (video) {
-      // 먼저 볼륨을 설정
-      if (window.innerWidth <= 768) {
-        video.volume = 0.86; // 모바일: 86% 볼륨 (추가 30% 증가)
-      } else {
-        video.volume = 0.9; // PC: 10% 줄인 볼륨 (90% 볼륨)
-      }
-      
-      // 그 다음 음소거 토글
       video.muted = !video.muted;
       
       if (video.muted) {
@@ -6858,6 +6661,7 @@ div.video-phone[style],
   width: 100% !important;
   height: auto !important;
   object-fit: contain !important;
+  position: relative !important;
   z-index: 100 !important;
 }
 
@@ -7134,10 +6938,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isMobile) {
       flipButton.style.cursor = 'pointer';
       flipButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateX(calc(-52% - 20px)) scale(1.05)';
+        this.style.transform = 'translateX(-52%) scale(1.05)';
       });
       flipButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateX(calc(-52% - 20px)) scale(1)';
+        this.style.transform = 'translateX(-52%) scale(1)';
       });
     }
   }
