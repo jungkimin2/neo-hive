@@ -4490,7 +4490,6 @@ if (window.innerWidth <= 768) {
       console.error('formModal not found');
       return false;
     }
-    modal.style.display = 'block';
     
     // 모바일 환경에서 현재 화면 위치에 팝업 표시
     if (window.innerWidth <= 768) {
@@ -4561,6 +4560,9 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
       modal.style.setProperty('z-index', '2147483648', 'important');
     }
+    
+    // 모든 스타일 설정이 완료된 후에 display 설정
+    modal.style.display = 'block';
     
     return false;
   }
@@ -9113,5 +9115,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
-</body>
 </html>
