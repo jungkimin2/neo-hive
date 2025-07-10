@@ -1743,6 +1743,56 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 </style>
 
+<script>
+// 모바일 환경에서 네오 하이브 영상 볼륨 조절
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth <= 768) {
+    // 여러 번 시도하여 확실히 적용
+    const applyMobileVolume = function() {
+      const centerVideo = document.getElementById('centerVideo');
+      if (centerVideo) {
+        centerVideo.muted = true; // 일단 음소거 상태 유지
+        centerVideo.volume = 0.1; // 10% 볼륨으로 설정
+        
+        // 스피커 버튼 클릭 시 볼륨 유지
+        const originalToggleMute = window.toggleMute;
+        window.toggleMute = function() {
+          const video = document.getElementById('centerVideo');
+          if (video) {
+            video.muted = !video.muted;
+            if (!video.muted) {
+              video.volume = 0.1; // 음소거 해제 시에도 10% 유지
+            }
+            
+            // 아이콘 업데이트
+            const volumeOn = document.getElementById('volumeOn');
+            const volumeOff = document.getElementById('volumeOff');
+            if (video.muted) {
+              volumeOn.style.display = 'none';
+              volumeOff.style.display = 'block';
+            } else {
+              volumeOn.style.display = 'block';
+              volumeOff.style.display = 'none';
+            }
+          }
+        };
+      }
+    };
+    
+    // 즉시 실행
+    applyMobileVolume();
+    
+    // 0.5초 후 재실행
+    setTimeout(applyMobileVolume, 500);
+    
+    // 1초 후 재실행
+    setTimeout(applyMobileVolume, 1000);
+    
+    // 2초 후 재실행
+    setTimeout(applyMobileVolume, 2000);
+  }
+});
+</script>
 </head>
 <style>
 @media (max-width: 768px) {
