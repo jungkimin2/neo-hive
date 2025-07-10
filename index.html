@@ -4339,7 +4339,7 @@ if (window.innerWidth <= 768) {
         } else if (video.id === 'neofitsVideo') {
           // 모바일과 PC 구분
           if (window.innerWidth <= 768) {
-            video.volume = 0.26; // 모바일: 74% 줄인 볼륨 (26% 볼륨)
+            video.volume = 0.56; // 모바일: 56% 볼륨 (30% 증가)
           } else {
             video.volume = 1.0; // 네오 스마트 영상 100% (최대 볼륨)
           }
@@ -4798,7 +4798,7 @@ if (window.innerWidth <= 768) {
     if (video) {
       // 먼저 볼륨을 설정
       if (window.innerWidth <= 768) {
-        video.volume = 0.26; // 모바일: 74% 줄인 볼륨 (26% 볼륨)
+        video.volume = 0.56; // 모바일: 56% 볼륨 (30% 증가)
       } else {
         video.volume = 0.9; // PC: 10% 줄인 볼륨 (90% 볼륨)
       }
