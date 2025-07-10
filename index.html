@@ -2679,7 +2679,7 @@ html body .core-value-fresh-mobile {
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    top: 328px !important; /* 264px에서 328px로 변경 (64px 아래로 = 4칸) */
+    top: 376px !important; /* 328px에서 376px로 변경 (48px 아래로 = 3칸) */
     left: calc(50% - 48px) !important; /* 중앙에서 3칸(48px) 왼쪽으로 이동 */
     transform: translateX(-50%) !important;
     width: auto !important;
@@ -8922,6 +8922,20 @@ document.addEventListener('DOMContentLoaded', function() {
   */
 }
 </style>
+
+<!-- 비디오 볼륨 조정 스크립트 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // PC 환경에서 네오 하이브 영상 볼륨 30% 감소
+    if (window.innerWidth > 768) {
+        const centerVideo = document.getElementById('centerVideo');
+        if (centerVideo) {
+            centerVideo.volume = 0.7; // 100%에서 70%로 (30% 감소)
+            console.log('PC환경: 네오 하이브 영상 볼륨 70%로 설정');
+        }
+    }
+});
+</script>
 
 <!-- 모바일 전용 즉시 적용 스크립트 - 페이지 로딩 시 깜빡임 완전 방지 -->
 <script>
