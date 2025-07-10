@@ -93,6 +93,78 @@
   }
 }
 
+/* 모바일 팝업 배경 효과 */
+@media screen and (max-width: 768px) {
+  /* 메인 콘텐츠 래퍼 효과 */
+  body.modal-open > *:not(#formModal):not(#mobileBackgroundEffect) {
+    filter: blur(8px) brightness(0.4);
+    -webkit-filter: blur(8px) brightness(0.4);
+    transition: filter 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
+  }
+  
+  /* 배경 그라데이션 효과 */
+  #mobileBackgroundEffect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2147483645;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 30%, rgba(123, 228, 149, 0.1) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  body.modal-open #mobileBackgroundEffect {
+    opacity: 1;
+  }
+}
+
+/* 스피커 버튼 스타일 */
+.speaker-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #7BE495;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2147483647;
+  transition: all 0.3s ease;
+}
+
+.speaker-button:hover {
+  background: rgba(123, 228, 149, 0.2);
+  transform: scale(1.1);
+}
+
+.speaker-button svg {
+  width: 24px;
+  height: 24px;
+  fill: #7BE495;
+}
+
+/* 모바일 전용 스피커 버튼 조정 */
+@media screen and (max-width: 768px) {
+  .speaker-button {
+    width: 36px;
+    height: 36px;
+    top: 16px;
+    right: 16px;
+  }
+  
+  .speaker-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* PC 환경에서는 모든 transform 제거 */
 @media screen and (min-width: 769px) {
   .mobile-ui-position-adjustment,
@@ -308,6 +380,41 @@ div > p.smart-guide-text {
   border-top-left-radius: 18px !important;
   border-top-right-radius: 18px !important;
   padding-bottom: 12px !important;
+}
+/* Hide the gray line in mobile */
+.mobile-flow-rounded-box .bg-gradient-to-r.from-transparent.via-gray-500.to-transparent {
+  display: none !important;
+}
+
+/* 모바일에서 매출 상승 효과 텍스트 위치 조정 */
+.testimonial-content-mobile div[style*="linear-gradient(135deg"] p {
+  text-align: left !important;
+  padding-left: 29px !important; /* 24px에서 29px로 증가 (0.3칸 추가 우측 이동) */
+  margin-left: 0 !important;
+}
+
+/* Fix gray line issue between sections in mobile */
+section + section {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Remove any visual artifacts between partner button and benefits section */
+.mobile-partner-button {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ensure clean transition between sections */
+section#benefits::before {
+  display: none !important;
+}
+
+/* Remove any residual borders or lines */
+section {
+  border: none !important;
+  outline: none !important;
 }
 }
 </style>
@@ -625,6 +732,15 @@ div > p.smart-guide-text {
     /* 모바일: 핵심 가치 위치 조정 */
     .neohive-twobox-col > div:nth-child(2) {
       margin-top: 16px !important;
+    }
+    /* 모바일: 팀워크 보상 박스와 핵심 가치 박스를 위로 16px 이동 */
+    .neohive-twobox-col > div:nth-child(1) {
+      transform: translateY(-16px) !important;
+      position: relative !important;
+    }
+    .neohive-twobox-col > div:nth-child(2) {
+      transform: translateY(-16px) !important;
+      position: relative !important;
     }
     /* 전체 모바일 레이아웃 기본 설정 */
     body {
@@ -1712,9 +1828,9 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <button class="nav-menu-btn" onclick="toggleNav()">&#9776;</button>
   </div>
   <div class="nav-menu" id="nav-menu" style="display: none;">
-    <a href="#hive" onclick="closeNav()">하이브 시스템</a>
-    <a href="#smart" onclick="closeNav()">스마트 시스템</a>
-    <a href="#impact" onclick="closeNav()">도입 효과</a>
+    <a href="#hive" onclick="return scrollToSection('hive')">하이브 시스템</a>
+    <a href="#smart" onclick="return scrollToSection('smart')">스마트 시스템</a>
+    <a href="#benefits" onclick="return scrollToSection('benefits')">도입 효과</a>
     <a href="javascript:void(0)" onclick="openForm();closeNav();return false;">사전 예약하기</a>
   </div>
 </div>
@@ -1728,14 +1844,14 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <header style="position: relative; top: 0; left: 0; width: 100%;">
     <div class="container">
       <div class="logo-container" style="display:flex; align-items:center; justify-content: flex-start; margin: 0; padding: 4px 12px; margin-left: -45px;">
-        <a href="#" style="display:block;">
+        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="display:block;">
           <img src="./images/neohive3.png" alt="NeoHive Logo" style="height: 28px; margin-right: 0;">
         </a>
       </div>
       <nav class="desktop-nav">
-        <a href="#hive">하이브 시스템</a>
-        <a href="#smart">스마트 시스템</a>
-        <a href="#impact">도입 효과</a>
+        <a href="#hive" onclick="return scrollToSectionPC('hive')">하이브 시스템</a>
+        <a href="#smart" onclick="return scrollToSectionPC('smart')">스마트 시스템</a>
+        <a href="#benefits" onclick="return scrollToSectionPC('benefits')">도입 효과</a>
         <a href="javascript:void(0)" onclick="openForm();return false;" class="nav-neon-green">사전 예약하기</a>
       </nav>
     </div>
@@ -1800,7 +1916,16 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 
       <!-- Center phone -->
       <div class="video-phone" style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 180px; height: 360px; border-radius: 20px; overflow: hidden; border: 4px solid #7BE495; background: radial-gradient(circle at center, rgba(123, 228, 149, 0.3), #0A0A0A); box-shadow: 0 0 20px rgba(123, 228, 149, 0.6); z-index: 2147483646; opacity: 1; visibility: visible; display: block;" data-original-left="50%" data-original-top="50%" data-original-transform="translate(-50%, -50%)" data-mobile-left="50%" data-mobile-top="50%" data-mobile-transform="translate(-50%, -50%)">
-        <video src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <video id="centerVideo" src="./videos/neohivevideos.mp.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <!-- 스피커 버튼 -->
+        <button class="speaker-button" onclick="toggleMute()" aria-label="음소거 토글">
+          <svg id="speakerIcon" viewBox="0 0 24 24">
+            <!-- 음소거 해제 아이콘 (기본) -->
+            <path id="volumeOn" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            <!-- 음소거 아이콘 (숨김) -->
+            <path id="volumeOff" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" style="display: none;"/>
+          </svg>
+        </button>
       </div>
     </div>
     
@@ -1808,12 +1933,12 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     <div class="mobile-hive-buttons" style="position: relative; width: 100%; height: auto; margin-top: -36px; z-index: 9999; display: none;">
       <!-- 팀결성 버튼 - 좌측 슬라이드 아래 -->
       <div style="display: flex; justify-content: space-between; width: 100%; padding: 0 0; position: relative;">
-        <a href="#" class="mobile-hive-btn team-btn" onclick="event.preventDefault(); openForm();" style="margin-left: -8px;">
+        <a href="#" class="mobile-hive-btn team-btn" onclick="event.preventDefault();" style="margin-left: -8px;">
           <img src="./images/neo33.png" alt="팀 결성">
           <span>팀 결성</span>
         </a>
         <!-- 센터예약 버튼 - 우측 슬라이드 아래 -->
-        <a href="#" class="mobile-hive-btn booking-btn" onclick="event.preventDefault(); openForm();" style="margin-right: -16px;">
+        <a href="#" class="mobile-hive-btn booking-btn" onclick="event.preventDefault();" style="margin-right: -16px;">
           <img src="./images/neo41.png" alt="센터 예약">
           <span>센터 예약</span>
         </a>
@@ -1821,13 +1946,10 @@ transition: transform 0.4s ease-out, opacity 0.4s ease-out;
     </div>
     
     <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
-    <div class="slide-container p-10" style="margin-top: 24px;">
-    </div>
-    <!-- 핵심 UX 흐름 (steps 1~6) and cards -->
     <div class="slide-container p-10 mobile-flow-rounded-box" style="margin-top: 64px;">
       <div class="flex items-center mb-8">
         <h1 class="text-4xl font-bold neon-green" style="text-align: left; margin-top: 48px;">UX 흐름 + 무인 예약 시스템</h1>
-        <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+        <div class="flex-grow mx-5 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent desktop-only" style="display: block;"></div>
       </div>
       <div class="mb-6">
         <p class="text-xl text-gray-300" style="text-align: left;">
@@ -2507,7 +2629,7 @@ html body .core-value-fresh-mobile {
 @media (max-width: 768px) {
   .neos-category-tags {
     position: absolute !important;
-    top: 296px !important; /* 232px에서 296px로 변경 (64px 더 아래로 = 2칸) */
+    top: 264px !important; /* 296px에서 264px로 변경 (32px 위로 이동) */
     left: calc(50% - 48px) !important; /* 중앙에서 3칸(48px) 왼쪽으로 이동 */
     transform: translateX(-50%) !important;
     width: auto !important;
@@ -2688,7 +2810,18 @@ html body .core-value-fresh-mobile {
 }
 </style>
       <div class="floating-video neo-smart-video" style="left: 50%; z-index: 2147483647; top: 50%; transform: translate(-50%, -50%); opacity: 1; visibility: visible; position: absolute; display: block;">
-        <video src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <video id="neofitsVideo" src="./videos/neofits.mp4" autoplay loop muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <!-- neofits.mp4 전용 스피커 버튼 -->
+        <div class="speaker-button-wrapper">
+          <button class="speaker-button" onclick="toggleNeofitsMute()" aria-label="음소거 토글">
+            <svg id="neofitsSpeakerIcon" viewBox="0 0 24 24">
+              <!-- 음소거 해제 아이콘 (기본) -->
+              <path id="neofitsVolumeOn" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+              <!-- 음소거 아이콘 (숨김) -->
+              <path id="neofitsVolumeOff" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" style="display: none;"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div> <!-- End of .hive-showcase -->
 
@@ -2826,13 +2959,38 @@ if (window.innerWidth <= 768) {
 <style>
 .circle-step-number {
   position: absolute;
-  top: -2px;
-  left: 10px;
-  font-size: 1rem;
-  font-weight: bold;
+  top: -12px;
+  left: 6px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(145deg, #0F1A0F 0%, #1F3F1F 50%, #0A0F0D 100%);
+  border: 2px solid #7BE495;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #7BE495;
   z-index: 5;
-  pointer-events: none;
+  box-shadow: 0 0 15px rgba(123, 228, 149, 0.7),
+              0 0 30px rgba(123, 228, 149, 0.3),
+              inset 0 0 10px rgba(123, 228, 149, 0.15);
+  text-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.circle-step:hover .circle-step-number {
+  transform: scale(1.2);
+  background: linear-gradient(145deg, #1A2F1A 0%, #2F5F2F 50%, #0F1A0F 100%);
+  box-shadow: 0 0 25px rgba(123, 228, 149, 1),
+              0 0 50px rgba(123, 228, 149, 0.5),
+              inset 0 0 15px rgba(123, 228, 149, 0.25);
+  border-color: #9DF5A4;
+  color: #9DF5A4;
+  text-shadow: 0 0 12px rgba(157, 243, 164, 1);
 }
 @media (max-width: 768px) {
   .mobile-hide {
@@ -3113,7 +3271,7 @@ if (window.innerWidth <= 768) {
     min-width: 180px;
     position: relative !important;
     left: -50px !important;
-    top: -40px !important; /* NEO SMART UI를 2칸 위로 */
+    top: -24px !important; /* NEO SMART UI를 아래로 이동 */
   }
   .circle-lines {
     width: 400px !important;
@@ -3171,18 +3329,21 @@ if (window.innerWidth <= 768) {
     height: 24px !important;
   }
   .circle-step-number {
-    background: #0A0F0D !important;
+    background: linear-gradient(135deg, #0A0F0D 0%, #1a2f1a 100%) !important;
     border: 1.5px solid #7BE495 !important;
     border-radius: 50% !important;
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 0.6rem !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.7rem !important;
     color: #7BE495 !important;
-    box-shadow: 0 0 8px rgba(123, 228, 149, 0.6) !important;
+    box-shadow: 0 0 10px rgba(123, 228, 149, 0.8), 
+                inset 0 0 5px rgba(123, 228, 149, 0.2) !important;
     margin-left: 0px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 4px rgba(123, 228, 149, 0.8) !important;
   }
 }
 </style>
@@ -3251,6 +3412,11 @@ if (window.innerWidth <= 768) {
   .circle-step[style*="left: 85%; top: 73%"],
   .circle-step[style*="left: 15%; top: 73%"] {
     top: calc(73% + 15px) !important; /* 3번째, 5번째 다이어그램 */
+  }
+  
+  /* 4번째 다이어그램만 위로 이동 - 하단 중앙 위치 */
+  .circle-step[style*="left: 50%; top: 98%"] {
+    top: calc(98% - 16px) !important;
   }
   
   /* circle-lines 모바일 위치 조정 */
@@ -3328,7 +3494,7 @@ if (window.innerWidth <= 768) {
             </p>
             
             <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-bottom: 24px; line-height: 1.8; text-align: center; padding: 20px; background: rgba(123,228,149,0.1); border-radius: 12px;">
-              <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
+              <span class='neon-green'>매출 상승 효과!</span> 파트너 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
             </p>
             
             <p style="font-size: 1rem; color: #fff; font-weight: 500; margin-bottom: 28px; line-height: 1.8;">
@@ -3354,14 +3520,63 @@ if (window.innerWidth <= 768) {
               </p>
             </div>
             
-            <!-- 강조 박스 -->
+            <!-- 강조 박스 - 새로운 디자인 -->
             <div style="margin-bottom: 20px; margin-left: -32px; margin-right: -32px;">
-              <div style="background: rgba(123,228,149,0.1); border-radius: 12px; padding: 18px 12px 18px 6px;">
-                <p id="mobile-cost-recovery-text" style="font-size: 0.85rem !important; color: #fff !important; font-weight: 600 !important; line-height: 1.7 !important; margin: 0 !important; text-align: center !important; transform: translateX(0) !important; position: relative !important; width: 100% !important; padding-left: 8px !important;">
-                  <span class='neon-green'>매출 상승 효과!</span> 무료체험 신청 시, <span class='neon-green'>3개월 무료 체험 기회</span>까지.
+              <div style="
+                background: linear-gradient(135deg, rgba(7, 25, 15, 0.95) 0%, rgba(15, 45, 25, 0.95) 50%, rgba(7, 25, 15, 0.95) 100%);
+                border: 1px solid rgba(123, 228, 149, 0.3);
+                border-radius: 16px;
+                padding: 24px 20px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 
+                  0 4px 20px rgba(0, 0, 0, 0.5),
+                  inset 0 1px 0 rgba(123, 228, 149, 0.2),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+              ">
+                <!-- 배경 그라데이션 효과 -->
+                <div style="
+                  position: absolute;
+                  top: -50%;
+                  left: -50%;
+                  width: 200%;
+                  height: 200%;
+                  background: radial-gradient(circle at center, rgba(123, 228, 149, 0.1) 0%, transparent 60%);
+                  animation: pulseGlow 3s ease-in-out infinite;
+                "></div>
+                
+                <!-- 텍스트 -->
+                <p style="
+                  font-size: 0.9rem;
+                  color: #fff;
+                  font-weight: 600;
+                  line-height: 1.7;
+                  margin: 0;
+                  text-align: left;
+                  padding-left: 29px;
+                  position: relative;
+                  z-index: 1;
+                  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                ">
+                  <span style="color: #7BE495; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">매출 상승 효과!</span> 
+                  파트너 신청 시, 
+                  <span style="color: #7BE495; text-shadow: 0 0 20px rgba(123, 228, 149, 0.8);">3개월 무료 체험 기회</span>까지.
                 </p>
               </div>
             </div>
+            
+            <style>
+            @keyframes pulseGlow {
+              0%, 100% { 
+                opacity: 0.5;
+                transform: scale(1);
+              }
+              50% { 
+                opacity: 0.8;
+                transform: scale(1.1);
+              }
+            }
+            </style>
             
                           <!-- 두 번째 문구 -->
               <div style="margin-bottom: 24px; margin-left: -24px;">
@@ -3386,230 +3601,95 @@ if (window.innerWidth <= 768) {
       <img src="./images/hive3.png" alt="" style="opacity: 0.07; position: absolute; top: 180px; left: 250px; width: 480px; z-index: 0; pointer-events: none;" />
     </div>
           <!-- 클릭 가능한 사전 예약 혜택 안내 -->
-        <div class="reservation-benefit-notice clickable-benefit-box" 
+        <div class="reservation-benefit-notice clickable-benefit-box desktop-only" 
              onclick="openForm();return false;" 
              tabindex="0"
              role="button"
-             aria-label="파트너 신청 시 3개월 무료 혜택 신청하기"
+             aria-label="파트너 신청하기"
              style="margin-top: 40px; text-align: center; position: relative; cursor: pointer;">
+          <!-- CTA 버튼 - 프리미엄 디자인 -->
           <div style="
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
-            border: 2px solid rgba(123, 228, 149, 0.5);
-            border-radius: 16px;
-            padding: 32px 56px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 
-              0 8px 32px rgba(0, 0, 0, 0.8),
-              0 4px 16px rgba(123, 228, 149, 0.2),
-              inset 0 2px 2px rgba(123, 228, 149, 0.1),
-              inset 0 -2px 8px rgba(0, 0, 0, 0.5);
+            margin-top: 24px;
+            background: #000;
+            border: 1px solid rgba(123, 228, 149, 0.4);
+            border-radius: 4px;
+            padding: 18px 48px;
+            color: #7BE495;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            transform: translateZ(0);
+            box-shadow: 
+              0 2px 8px rgba(0, 0, 0, 0.8),
+              0 0 24px rgba(123, 228, 149, 0.2),
+              inset 0 1px 0 rgba(123, 228, 149, 0.3),
+              inset 0 -1px 0 rgba(123, 228, 149, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           ">
-            <!-- 매트릭스 스타일 배경 패턴 -->
+            <!-- 프리미엄 그라데이션 배경 -->
             <div style="
               position: absolute;
               top: 0;
               left: 0;
               right: 0;
               bottom: 0;
-              background-image: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(123, 228, 149, 0.03) 2px,
-                rgba(123, 228, 149, 0.03) 4px
-              );
-              pointer-events: none;
+              background: linear-gradient(135deg, 
+                rgba(123, 228, 149, 0.1) 0%, 
+                transparent 50%, 
+                rgba(123, 228, 149, 0.05) 100%);
+              opacity: 0;
+              transition: opacity 0.4s ease;
             "></div>
             
-            <!-- 스캔라인 효과 -->
+            <!-- 매트릭스 스타일 테두리 애니메이션 -->
             <div style="
               position: absolute;
-              top: -100%;
+              top: 0;
               left: 0;
               right: 0;
-              height: 100%;
-              background: linear-gradient(to bottom, transparent 0%, rgba(123, 228, 149, 0.1) 50%, transparent 100%);
-              animation: scanline 8s linear infinite;
-              pointer-events: none;
+              bottom: 0;
+              padding: 1px;
+              background: linear-gradient(90deg, 
+                transparent 0%, 
+                #7BE495 50%, 
+                transparent 100%);
+              -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              opacity: 0;
+              transition: opacity 0.4s ease;
             "></div>
             
-            <!-- 메인 콘텐츠 -->
-            <div style="position: relative; z-index: 2;">
-              <!-- 상단 타이틀 -->
-              <div style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 16px;
-                margin-bottom: 16px;
-              ">
-                <span style="
-                  display: inline-block;
-                  width: 8px;
-                  height: 8px;
-                  background: #7BE495;
-                  border-radius: 50%;
-                  box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
-                  animation: pulse 2s ease-in-out infinite;
-                "></span>
-                <h3 style="
-                  margin: 0;
-                  color: #fff;
-                  font-size: 1.2rem;
-                  font-weight: 600;
-                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                  letter-spacing: 0.05em;
-                  text-transform: uppercase;
-                ">
-                  파트너 신청 시 <span style="color: #7BE495;">3개월 무료</span> 혜택
-                </h3>
-                <span style="
-                  display: inline-block;
-                  width: 8px;
-                  height: 8px;
-                  background: #7BE495;
-                  border-radius: 50%;
-                  box-shadow: 0 0 10px rgba(123, 228, 149, 0.8);
-                  animation: pulse 2s ease-in-out infinite;
-                "></span>
-              </div>
-              
-              <!-- 중앙 데이터 디스플레이 -->
-              <div style="
-                background: rgba(123, 228, 149, 0.05);
-                border: 1px solid rgba(123, 228, 149, 0.2);
-                border-radius: 8px;
-                padding: 16px 32px;
-                margin: 16px 0;
-                position: relative;
-              ">
-                <!-- 코너 장식 -->
-                <div style="position: absolute; top: -1px; left: -1px; width: 12px; height: 12px; border-top: 2px solid #7BE495; border-left: 2px solid #7BE495;"></div>
-                <div style="position: absolute; top: -1px; right: -1px; width: 12px; height: 12px; border-top: 2px solid #7BE495; border-right: 2px solid #7BE495;"></div>
-                <div style="position: absolute; bottom: -1px; left: -1px; width: 12px; height: 12px; border-bottom: 2px solid #7BE495; border-left: 2px solid #7BE495;"></div>
-                <div style="position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px; border-bottom: 2px solid #7BE495; border-right: 2px solid #7BE495;"></div>
-                
-                <p style="
-                  margin: 0;
-                  color: #7BE495;
-                  font-size: 1.4rem;
-                  font-weight: 700;
-                  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
-                  text-shadow: 0 0 20px rgba(123, 228, 149, 0.5);
-                  letter-spacing: 0.1em;
-                ">
-                  총 100만원 상당 혜택 제공
-                </p>
-              </div>
-              
-              <!-- 추가 정보 -->
-              <div style="
-                margin-top: 12px;
-                color: rgba(255, 255, 255, 0.8);
-                font-size: 0.9rem;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-              ">
-                <span style="color: #7BE495;">+</span>
-                맞춤형 운영 컨설팅 제공
-              </div>
-              
-              <!-- CTA 버튼 - 프리미엄 디자인 -->
-              <div style="
-                margin-top: 24px;
-                background: #000;
-                border: 1px solid rgba(123, 228, 149, 0.4);
-                border-radius: 4px;
-                padding: 18px 48px;
-                color: #7BE495;
-                font-size: 1rem;
-                font-weight: 600;
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 12px;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 
-                  0 2px 8px rgba(0, 0, 0, 0.8),
-                  0 0 24px rgba(123, 228, 149, 0.2),
-                  inset 0 1px 0 rgba(123, 228, 149, 0.3),
-                  inset 0 -1px 0 rgba(123, 228, 149, 0.2);
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-              ">
-                <!-- 프리미엄 그라데이션 배경 -->
-                <div style="
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  background: linear-gradient(135deg, 
-                    rgba(123, 228, 149, 0.1) 0%, 
-                    transparent 50%, 
-                    rgba(123, 228, 149, 0.05) 100%);
-                  opacity: 0;
-                  transition: opacity 0.4s ease;
-                "></div>
-                
-                <!-- 매트릭스 스타일 테두리 애니메이션 -->
-                <div style="
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  padding: 1px;
-                  background: linear-gradient(90deg, 
-                    transparent 0%, 
-                    #7BE495 50%, 
-                    transparent 100%);
-                  -webkit-mask: 
-                    linear-gradient(#fff 0 0) content-box, 
-                    linear-gradient(#fff 0 0);
-                  -webkit-mask-composite: xor;
-                  mask-composite: exclude;
-                  opacity: 0;
-                  transition: opacity 0.4s ease;
-                "></div>
-                
-                <span style="
-                  position: relative; 
-                  z-index: 1; 
-                  font-weight: 700;
-                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                ">파트너 신청하기</span>
-                
-                <!-- 프리미엄 화살표 아이콘 -->
-                <div style="
-                  position: relative;
-                  z-index: 1;
-                  width: 20px;
-                  height: 20px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  transition: transform 0.4s ease;
-                ">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 7L17 17M17 17V7M17 17H7" stroke="#7BE495" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </div>
-              </div>
+            <span style="
+              position: relative; 
+              z-index: 1; 
+              font-weight: 700;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            ">파트너 신청하기</span>
+            
+            <!-- 프리미엄 화살표 아이콘 -->
+            <div style="
+              position: relative;
+              z-index: 1;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: transform 0.4s ease;
+            ">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 7L17 17M17 17V7M17 17H7" stroke="#7BE495" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+              </svg>
             </div>
           </div>
           
@@ -3652,17 +3732,7 @@ if (window.innerWidth <= 768) {
               }
             }
             
-            .clickable-benefit-box:hover > div:first-child {
-              border-color: rgba(123, 228, 149, 0.8);
-              box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.9),
-                0 8px 24px rgba(123, 228, 149, 0.3),
-                inset 0 2px 2px rgba(123, 228, 149, 0.2),
-                inset 0 -2px 8px rgba(0, 0, 0, 0.6);
-              transform: translateY(-2px);
-            }
-            
-            .clickable-benefit-box:hover div[style*="파트너 신청하기"] {
+            .clickable-benefit-box:hover > div {
               border-color: #7BE495;
               color: #fff;
               background: rgba(123, 228, 149, 0.05);
@@ -3671,9 +3741,10 @@ if (window.innerWidth <= 768) {
                 0 0 32px rgba(123, 228, 149, 0.4),
                 inset 0 1px 0 rgba(123, 228, 149, 0.5),
                 inset 0 -1px 0 rgba(123, 228, 149, 0.3);
+              transform: translateY(-2px);
             }
             
-            .clickable-benefit-box:hover div[style*="파트너 신청하기"] > div:nth-child(1) {
+            .clickable-benefit-box:hover > div > div:nth-child(1) {
               opacity: 1;
             }
             
@@ -3752,6 +3823,100 @@ if (window.innerWidth <= 768) {
             }
           </style>
         </div>
+        
+        <!-- 모바일 전용 파트너 신청 버튼 - PC와 동일한 디자인 -->
+        <div class="mobile-partner-button mobile-only" 
+             onclick="openForm();return false;" 
+             tabindex="0"
+             role="button"
+             aria-label="파트너 신청하기"
+             style="margin-top: 40px; margin-bottom: 20px; text-align: center; display: none; cursor: pointer;">
+          <!-- CTA 버튼 - PC와 동일한 프리미엄 디자인 -->
+          <div style="
+            margin: 0 auto;
+            background: #000;
+            border: 1px solid rgba(123, 228, 149, 0.4);
+            border-radius: 4px;
+            padding: 18px 48px;
+            color: #7BE495;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+              0 2px 8px rgba(0, 0, 0, 0.8),
+              0 0 24px rgba(123, 228, 149, 0.2),
+              inset 0 1px 0 rgba(123, 228, 149, 0.3),
+              inset 0 -1px 0 rgba(123, 228, 149, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          ">
+            <!-- 프리미엄 그라데이션 배경 -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(135deg, 
+                rgba(123, 228, 149, 0.1) 0%, 
+                transparent 50%, 
+                rgba(123, 228, 149, 0.05) 100%);
+              opacity: 0;
+              transition: opacity 0.4s ease;
+            "></div>
+            
+            <!-- 매트릭스 스타일 테두리 애니메이션 -->
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              padding: 1px;
+              background: linear-gradient(90deg, 
+                transparent 0%, 
+                #7BE495 50%, 
+                transparent 100%);
+              -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              opacity: 0;
+              transition: opacity 0.4s ease;
+            "></div>
+            
+            <span style="
+              position: relative; 
+              z-index: 1; 
+              font-weight: 700;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            ">파트너 신청하기</span>
+            
+            <!-- 프리미엄 화살표 아이콘 -->
+            <div style="
+              position: relative;
+              z-index: 1;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: transform 0.4s ease;
+            ">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 7L17 17M17 17V7M17 17H7" stroke="#7BE495" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+              </svg>
+            </div>
+          </div>
+        </div>
   </div>
   <style>
     /* PC 환경에서는 데스크톱 레이아웃 표시, 모바일 레이아웃 숨김 */
@@ -3760,6 +3925,12 @@ if (window.innerWidth <= 768) {
         display: block !important;
       }
       .testimonial-content-mobile {
+        display: none !important;
+      }
+      .desktop-only {
+        display: block !important;
+      }
+      .mobile-only {
         display: none !important;
       }
     }
@@ -3772,30 +3943,68 @@ if (window.innerWidth <= 768) {
       .testimonial-content-mobile {
         display: block !important;
       }
+      .desktop-only {
+        display: none !important;
+      }
+      .mobile-only {
+        display: block !important;
+      }
+      
+      /* 모바일 파트너 버튼 hover 효과 */
+      .mobile-partner-button > div:active {
+        border-color: #7BE495 !important;
+        color: #fff !important;
+        background: rgba(123, 228, 149, 0.05) !important;
+        box-shadow: 
+          0 4px 16px rgba(0, 0, 0, 0.9),
+          0 0 32px rgba(123, 228, 149, 0.4),
+          inset 0 1px 0 rgba(123, 228, 149, 0.5),
+          inset 0 -1px 0 rgba(123, 228, 149, 0.3) !important;
+        transform: translateY(-2px) scale(0.98) !important;
+      }
+      
+      .mobile-partner-button > div:active > div:nth-child(1) {
+        opacity: 1 !important;
+      }
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
         margin-top: -552px !important;
-        transform: translateY(-32px) !important;
+        transform: translateY(0) !important; /* -16px에서 0으로 변경하여 아래로 1칸 더 이동 */
         position: relative !important;
         z-index: 10 !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        padding-bottom: 120px !important; /* 모바일에서 배경을 더 아래까지 연장 */
+        padding-bottom: 60px !important; /* 모바일에서 하단 여백 축소 */
+        border-top: none !important; /* 상단 경계선 제거 */
+        box-shadow: none !important; /* 그림자 제거 */
       }
       
-      /* 모바일에서 배경 연장을 위한 가상 요소 추가 */
+      /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
+      .mobile-partner-button + section#benefits {
+        border-top: none !important;
+        margin-top: -528px !important; /* 아래로 추가 1칸 이동하도록 조정 */
+      }
+      
+      /* 섹션 사이의 회색 선 완전 제거 */
+      section#benefits {
+        outline: none !important;
+        border: none !important;
+        background-clip: padding-box !important;
+      }
+      
+      /* 이전 섹션의 하단 처리 */
+      section:has(+ #benefits) {
+        border-bottom: none !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      
+      /* 모바일에서 배경 연장을 위한 가상 요소 제거 */
       section#benefits::after {
-        content: '' !important;
-        display: block !important;
-        width: 100% !important;
-        height: 100px !important;
-        background: #000 !important;
-        position: absolute !important;
-        bottom: -100px !important;
-        left: 0 !important;
-        z-index: 1 !important; /* z-index를 낮춰서 푸터가 보이도록 */
+        display: none !important;
       }
       
       /* 모바일에서 푸터 강제 표시 */
@@ -3843,16 +4052,7 @@ if (window.innerWidth <= 768) {
         overflow: visible !important;
       }
       
-      /* 모바일에서 비용 회수 텍스트 중앙 정렬 */
-      #mobile-cost-recovery-text {
-        text-align: center !important;
-        transform: translateX(0) !important;
-        position: relative !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        padding-left: 8px !important;
-      }
+      /* 이전 mobile-cost-recovery-text 관련 CSS 제거됨 */
       
       /* 모바일에서 스크롤바 숨김 */
       body {
@@ -3894,9 +4094,9 @@ if (window.innerWidth <= 768) {
       .testimonial-card {
         padding: 24px 10px 18px 16px !important;
       }
-      /* 모바일에서 로고 이미지 위치 조정 */
+      /* 모바일에서 로고 이미지 위치 조정 - 우측으로 3칸(48px) 이동 */
       .testimonial-card img[src="./images/hive3.png"] {
-        left: 120px !important;
+        left: 168px !important;
         top: 180px !important;
         width: 280px !important;
       }
@@ -3915,99 +4115,7 @@ if (window.innerWidth <= 768) {
 <!-- 모달 배경 오버레이 -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeForm()"></div>
 
-<div id="formModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; background:#000; padding:0; width:90%; max-width:500px; height:auto; max-height:85vh; overflow:hidden; border-radius:20px; color:#fff; box-sizing:border-box; box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5); border: 1px solid rgba(123, 228, 149, 0.3);">
-  
-  <!-- 모바일 리디자인 헤더 -->
-  <div class="modal-header-redesigned" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
-    <!-- 미니멀한 상단 바 -->
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; background: #000;">
-      <div style="flex: 1;">
-        <h2 style="color: #fff; font-size: 1.1rem; margin: 0; font-weight: 600; letter-spacing: -0.02em;">파트너 신청</h2>
-        <p style="color: #7BE495; font-size: 0.75rem; margin: 4px 0 0 0; font-weight: 500;">NEO HIVE × NEO SMART</p>
-      </div>
-      <!-- 모던한 닫기 버튼 -->
-      <button onclick="closeForm()" style="background: transparent; border: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; border-radius: 12px;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 6L6 18M6 6l12 12" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-    
-    <!-- 혜택 카드 - 모던하고 깔끔한 디자인 -->
-    <div style="margin: 0 20px 20px; background: linear-gradient(135deg, #0D1F17 0%, #0A1410 100%); border: 1px solid rgba(123, 228, 149, 0.2); border-radius: 12px; padding: 16px; position: relative; overflow: hidden;">
-      <!-- 배경 패턴 -->
-      <div style="position: absolute; top: 0; right: -50px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-      
-      <div style="position: relative; z-index: 1;">
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-          <div style="width: 32px; height: 32px; background: rgba(123, 228, 149, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7BE495" opacity="0.8"/>
-            </svg>
-          </div>
-          <div>
-            <p style="margin: 0; color: #fff; font-size: 0.95rem; font-weight: 600;">총 100만원 상당 혜택</p>
-            <p style="margin: 2px 0 0 0; color: rgba(123, 228, 149, 0.8); font-size: 0.75rem;">맞춤형 운영 컨설팅 포함</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 폼 영역 - 모바일 최적화 리디자인 -->
-  <div class="modal-body" style="padding: 0 20px 24px; background: #000; max-height: calc(85vh - 180px); overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;">
-    <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:16px;">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
-    <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
-    <!-- 헬스장명 입력 -->
-    <div class="input-group" style="margin-bottom: 0;">
-      <label for="gym" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">헬스장명</label>
-      <input id="gym" type="text" name="gym" placeholder="예: 김포 헬스클럽" required style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
-    </div>
-    <!-- 담당자명 입력 -->
-    <div class="input-group" style="margin-bottom: 0;">
-      <label for="contact" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">담당자명</label>
-      <input id="contact" type="text" name="contact" placeholder="예: 홍길동" required style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
-    </div>
-    <!-- 상품 선택 -->
-    <div class="input-group" style="margin-bottom: 0;">
-      <label for="product" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">신청 상품</label>
-      <select id="product" name="product" required style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23999%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 40px; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
-        <option value="" style="background: #000; color: #aaa;">신청 상품을 선택해주세요</option>
-        <option value="네오 하이브" style="background: #000; color: #fff;">네오 하이브</option>
-        <option value="네오 스마트" style="background: #000; color: #fff;">네오 스마트</option>
-        <option value="네오 하이브 + 네오 스마트" style="background: #000; color: #fff;">네오 하이브 + 네오 스마트</option>
-      </select>
-    </div>
-    <!-- 연락처 입력 -->
-    <div class="input-group" style="margin-bottom: 0;">
-      <label for="phone" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">연락처</label>
-      <input id="phone" type="tel" name="phone" placeholder="010-1234-5678" required style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
-    </div>
-    <!-- 요청사항 입력 -->
-    <div class="input-group" style="margin-bottom: 0;">
-      <label for="memo" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px;">요청 사항 <span style="color: rgba(255, 255, 255, 0.5); font-weight: 400;">(선택)</span></label>
-      <textarea id="memo" name="memo" placeholder="궁금한 점이나 요청사항을 입력해주세요" style="width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: 0.95rem; transition: all 0.2s ease; box-sizing: border-box; resize: vertical; min-height: 80px; outline: none; line-height: 1.5;" rows="3" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';"></textarea>
-    </div>
-    <!-- 제출 버튼 -->
-    <!-- 제출 버튼 - 새로운 디자인 -->
-    <div style="margin-top: 8px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-      <button type="submit" class="btn-submit-redesigned" style="width: 100%; padding: 14px; background: #7BE495; color: #000; font-weight: 600; font-size: 0.95rem; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease; position: relative; overflow: hidden;" ontouchstart="this.style.background='#6DD888'; this.style.transform='scale(0.98)';" ontouchend="this.style.background='#7BE495'; this.style.transform='scale(1)';" onmouseover="this.style.background='#8AEEA6';" onmouseout="this.style.background='#7BE495';">
-        <span style="position: relative; z-index: 1;">신청서 보내기</span>
-      </button>
-      
-      <!-- 안전 보장 문구 -->
-      <p style="text-align: center; margin: 12px 0 0 0; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5);">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
-          <path d="M12 2L4 7V11C4 16.5 7 21.16 12 22C17 21.16 20 16.5 20 11V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        안전하게 보호되는 양식입니다
-      </p>
-    </div>
-    </form>
-  </div>
-</div>
+<!-- 기존 formModal 삭제됨 -->
 <script>
   // PC에서만 스크롤 제어 적용 (모바일에서는 스크롤 자유롭게 허용)
   if (window.innerWidth > 768) {
@@ -4017,6 +4125,7 @@ if (window.innerWidth <= 768) {
     }
     
     // 즉시 스크롤 초기화 (더 빠른 실행)
+    // 모든 디바이스에서 페이지 최상단으로 스크롤
     window.scrollTo(0, 0);
   }
   
@@ -4041,8 +4150,15 @@ if (window.innerWidth <= 768) {
   
   // DOMContentLoaded로 더 빠른 초기화
   document.addEventListener('DOMContentLoaded', function() {
-    // PC에서만 스크롤 초기화
-    if (window.innerWidth > 768) {
+    // 모바일에서 가로 스크롤 강제 차단
+    if (window.innerWidth <= 768) {
+      document.body.style.overflowX = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
+      document.body.style.webkitOverflowScrolling = 'touch';
+      // 모바일에서도 페이지 최상단으로 스크롤
+      window.scrollTo(0, 0);
+    } else {
+      // PC에서 스크롤 초기화
       window.scrollTo(0, 0);
     }
     
@@ -4163,9 +4279,16 @@ if (window.innerWidth <= 768) {
     }
   });
   
-  // PC에서만 스크롤 초기화
+  // 페이지 언로드 시 스크롤 초기화 (모바일 포함)
   window.addEventListener('beforeunload', function() {
-    if (window.innerWidth > 768) {
+    // 모든 디바이스에서 페이지 최상단으로
+    window.scrollTo(0, 0);
+  });
+
+  // 페이지 완전 로드 후 모바일 스크롤 초기화 재확인
+  window.addEventListener('load', function() {
+    // 모바일에서도 페이지 최상단에 유지
+    if (window.innerWidth <= 768) {
       window.scrollTo(0, 0);
     }
   });
@@ -4181,67 +4304,218 @@ if (window.innerWidth <= 768) {
       event.stopPropagation();
     }
     
-    const modal = document.getElementById('formModal');
+    // 기존 모달과 오버레이가 있으면 제거
+    const existingModal = document.getElementById('formModal');
+    if (existingModal) {
+      existingModal.remove();
+    }
+    
+    const existingOverlay = document.getElementById('modalOverlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+    
+    // 오버레이 생성
+    const overlay = document.createElement('div');
+    overlay.id = 'modalOverlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9998;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    overlay.addEventListener('click', closeForm);
+    document.body.appendChild(overlay);
+    
+    // 강제 리플로우 후 opacity 적용
+    overlay.offsetHeight;
+    overlay.style.opacity = '1';
+    
+    // 새로운 모달 생성
+    const modal = document.createElement('div');
+    modal.id = 'formModal';
+    
+    // 모바일과 PC 구분하여 스타일 적용
+    if (window.innerWidth <= 768) {
+      modal.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background: #000;
+        padding: 0;
+        width: 92%;
+        max-width: 400px;
+        height: 92vh;
+        max-height: 720px;
+        min-height: 620px;
+        overflow: hidden;
+        border-radius: 20px;
+        color: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(123, 228, 149, 0.3);
+      `;
+    } else {
+      modal.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background: #000;
+        padding: 0;
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+        max-height: 85vh;
+        overflow: hidden;
+        border-radius: 20px;
+        color: #fff;
+        box-sizing: border-box;
+        box-shadow: 0 0 40px rgba(123, 228, 149, 0.2), 0 0 80px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(123, 228, 149, 0.3);
+      `;
+    }
+    
+    // 모달 내용 생성 - 모바일 여부에 따라 스타일 조정
+    const isMobile = window.innerWidth <= 768;
+    modal.innerHTML = `
+      <!-- 모바일 리디자인 헤더 -->
+      <div class="modal-header-redesigned" style="background: #000; padding: 0; position: relative; border-radius: 20px 20px 0 0; overflow: hidden;">
+        <!-- 미니멀한 상단 바 -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: ${isMobile ? '14px 16px' : '12px 16px'}; background: #000;">
+          <div style="flex: 1;">
+            <h2 style="color: #fff; font-size: ${isMobile ? '1.05rem' : '1.1rem'}; margin: 0; font-weight: 600; letter-spacing: -0.02em;">파트너 신청</h2>
+            <p style="color: #7BE495; font-size: 0.75rem; margin: 4px 0 0 0; font-weight: 500;">NEO HIVE × NEO SMART</p>
+          </div>
+          <!-- 모던한 닫기 버튼 -->
+          <button onclick="closeForm()" style="background: transparent; border: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; border-radius: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6l12 12" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- 혜택 카드 - 모던하고 깔끔한 디자인 -->
+        <div style="margin: 0 16px 12px; background: linear-gradient(135deg, #0D1F17 0%, #0A1410 100%); border: 1px solid rgba(123, 228, 149, 0.2); border-radius: 12px; padding: 12px 16px; position: relative; overflow: hidden;">
+          <!-- 배경 패턴 -->
+          <div style="position: absolute; top: 0; right: -50px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+          
+          <div style="position: relative; z-index: 1;">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 0;">
+              <div style="width: 28px; height: 28px; background: rgba(123, 228, 149, 0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7BE495" opacity="0.8"/>
+                </svg>
+              </div>
+              <div>
+                <p style="margin: 0; color: #fff; font-size: 0.9rem; font-weight: 600;">총 100만원 상당 혜택</p>
+                <p style="margin: 1px 0 0 0; color: rgba(123, 228, 149, 0.8); font-size: 0.7rem;">맞춤형 운영 컨설팅 포함</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 폼 영역 - 모바일 최적화 리디자인 -->
+      <div class="modal-body" style="padding: ${isMobile ? '0 20px 20px' : '0 16px 20px'}; background: #000; ${isMobile ? 'height: calc(92vh - 120px); max-height: 600px; min-height: 500px;' : 'max-height: calc(85vh - 140px);'} ${isMobile ? 'overflow-y: auto;' : 'overflow-y: auto;'} -webkit-overflow-scrolling: touch;">
+        <form action="https://formsubmit.co/gio7603@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:${isMobile ? '12px' : '8px'};">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Neo Hive 파트너 신청">
+        <input type="hidden" name="_next" value="https://jungkimin2.github.io/neo-hive/">
+        <!-- 헬스장명 입력 -->
+        <div class="input-group" style="margin-bottom: 0;">
+          <label for="gym" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">헬스장명</label>
+          <input id="gym" type="text" name="gym" placeholder="예: 김포 헬스클럽" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+        </div>
+        <!-- 담당자명 입력 -->
+        <div class="input-group" style="margin-bottom: 0;">
+          <label for="contact" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">담당자명</label>
+          <input id="contact" type="text" name="contact" placeholder="예: 홍길동" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+        </div>
+        <!-- 상품 선택 -->
+        <div class="input-group" style="margin-bottom: 0;">
+          <label for="product" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">신청 상품</label>
+          <select id="product" name="product" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23999%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 40px; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+            <option value="" style="background: #000; color: #aaa;">신청 상품을 선택해주세요</option>
+            <option value="네오 하이브" style="background: #000; color: #fff;">네오 하이브</option>
+            <option value="네오 스마트" style="background: #000; color: #fff;">네오 스마트</option>
+            <option value="네오 하이브 + 네오 스마트" style="background: #000; color: #fff;">네오 하이브 + 네오 스마트</option>
+          </select>
+        </div>
+        <!-- 연락처 입력 -->
+        <div class="input-group" style="margin-bottom: 0;">
+          <label for="phone" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">연락처</label>
+          <input id="phone" type="tel" name="phone" placeholder="010-1234-5678" required style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; outline: none;" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';">
+        </div>
+        <!-- 요청사항 입력 -->
+        <div class="input-group" style="margin-bottom: 0;">
+          <label for="memo" style="display: block; color: rgba(255, 255, 255, 0.9); font-size: ${isMobile ? '0.8rem' : '0.85rem'}; font-weight: 500; margin-bottom: ${isMobile ? '2px' : '4px'};">요청 사항 <span style="color: rgba(255, 255, 255, 0.5); font-weight: 400;">(선택)</span></label>
+          <textarea id="memo" name="memo" placeholder="궁금한 점이나 요청사항을 입력해주세요" style="width: 100%; padding: ${isMobile ? '10px' : '8px 10px'}; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.05); color: #fff; font-size: ${isMobile ? '1rem' : '0.95rem'}; transition: all 0.2s ease; box-sizing: border-box; resize: ${isMobile ? 'none' : 'vertical'}; height: ${isMobile ? '80px' : 'auto'}; min-height: ${isMobile ? '80px' : '50px'}; outline: none; line-height: 1.4;" rows="${isMobile ? '3' : '2'}" onfocus="this.style.borderColor='rgba(123, 228, 149, 0.5)'; this.style.background='rgba(123, 228, 149, 0.05)';" onblur="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)';"></textarea>
+        </div>
+        <!-- 제출 버튼 -->
+        <div style="margin-top: ${isMobile ? '4px' : '2px'}; padding-top: ${isMobile ? '6px' : '8px'}; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <button type="submit" class="btn-submit-redesigned" style="width: 100%; padding: ${isMobile ? '14px' : '12px'}; background: #7BE495; color: #000; font-weight: 600; font-size: ${isMobile ? '1rem' : '0.95rem'}; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s ease; position: relative; overflow: hidden;" ontouchstart="this.style.background='#6DD888'; this.style.transform='scale(0.98)';" ontouchend="this.style.background='#7BE495'; this.style.transform='scale(1)';" onmouseover="this.style.background='#8AEEA6';" onmouseout="this.style.background='#7BE495';">
+            <span style="position: relative; z-index: 1;">신청서 보내기</span>
+          </button>
+          
+          <!-- 안전 보장 문구 -->
+          <p style="text-align: center; margin: ${isMobile ? '8px' : '12px'} 0 0 0; font-size: ${isMobile ? '0.7rem' : '0.75rem'}; color: rgba(255, 255, 255, 0.5);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
+              <path d="M12 2L4 7V11C4 16.5 7 21.16 12 22C17 21.16 20 16.5 20 11V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            안전하게 보호되는 양식입니다
+          </p>
+        </div>
+        </form>
+      </div>
+    `;
+    
+    // body에 추가
+    document.body.appendChild(modal);
     
     // 모바일에서 가장 간단하고 확실한 방법으로 오버레이 생성
     if (window.innerWidth <= 768) {
       console.log('📱 Mobile detected - creating simple overlay');
       console.log('Window width:', window.innerWidth);
       
-      // 기존 오버레이들 제거
-      document.querySelectorAll('#mobileForceOverlay, .modal-overlay').forEach(el => el.remove());
+      // 기존 효과 제거
+      document.querySelectorAll('#mobileForceOverlay, #mobileBackgroundEffect').forEach(el => el.remove());
       
-      // 직접 createElement로 생성 (더 안정적)
-      const overlay = document.createElement('div');
-      overlay.id = 'mobileForceOverlay';
+      // body에 modal-open 클래스 추가 (블러 효과 적용)
+      document.body.classList.add('modal-open');
       
-      // 스타일을 직접 설정
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-      overlay.style.zIndex = '8000';
-      overlay.style.display = 'block';
-      overlay.style.opacity = '0';
-      overlay.style.transition = 'opacity 0.3s ease';
+      // 배경 그라데이션 효과 추가
+      const bgEffect = document.createElement('div');
+      bgEffect.id = 'mobileBackgroundEffect';
+      document.body.appendChild(bgEffect);
       
-      // 클릭 이벤트 추가
-      overlay.addEventListener('click', closeForm);
+      // 클릭 가능한 오버레이 생성
+      const clickOverlay = document.createElement('div');
+      clickOverlay.id = 'mobileForceOverlay';
+      clickOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 2147483646;
+        cursor: pointer;
+      `;
+      clickOverlay.addEventListener('click', closeForm);
+      document.body.appendChild(clickOverlay);
       
-      // body에 추가
-      document.body.appendChild(overlay);
-      
-      // 강제로 리플로우 발생시키고 opacity 적용
-      overlay.offsetHeight; // Force reflow
-      overlay.style.opacity = '1';
-      
-      console.log('Overlay created:', overlay);
-      console.log('Overlay parent:', overlay.parentNode);
-      
-      // 생성 확인 및 강제 적용
-      setTimeout(() => {
-        const createdOverlay = document.getElementById('mobileForceOverlay');
-        if (createdOverlay) {
-          createdOverlay.style.setProperty('position', 'fixed', 'important');
-          createdOverlay.style.setProperty('top', '0', 'important');
-          createdOverlay.style.setProperty('left', '0', 'important');
-          createdOverlay.style.setProperty('width', '100vw', 'important');
-          createdOverlay.style.setProperty('height', '100vh', 'important');
-          createdOverlay.style.setProperty('background', 'rgba(0, 0, 0, 0.9)', 'important');
-          createdOverlay.style.setProperty('backdrop-filter', 'blur(4px)', 'important');
-          createdOverlay.style.setProperty('-webkit-backdrop-filter', 'blur(4px)', 'important');
-          createdOverlay.style.setProperty('z-index', '8000', 'important');
-          createdOverlay.style.setProperty('display', 'block', 'important');
-          createdOverlay.style.setProperty('visibility', 'visible', 'important');
-          createdOverlay.style.setProperty('opacity', '1', 'important');
-          createdOverlay.style.setProperty('pointer-events', 'auto', 'important');
-          console.log('✅ Mobile overlay confirmed and styles applied');
-        } else {
-          console.error('❌ Mobile overlay creation failed');
-        }
-      }, 10);
+      console.log('Mobile background effects applied');
       
     } else {
       // PC에서는 기존 방식 유지
@@ -4281,7 +4555,6 @@ if (window.innerWidth <= 768) {
       console.error('formModal not found');
       return false;
     }
-    modal.style.display = 'block';
     
     // 모바일 환경에서 현재 화면 위치에 팝업 표시
     if (window.innerWidth <= 768) {
@@ -4296,8 +4569,9 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
       modal.style.setProperty('width', '90%', 'important');
       modal.style.setProperty('max-width', '400px', 'important');
-      modal.style.setProperty('max-height', '75vh', 'important');
-      modal.style.setProperty('height', 'auto', 'important');
+      modal.style.setProperty('height', '92vh', 'important');
+      modal.style.setProperty('max-height', '720px', 'important');
+      modal.style.setProperty('min-height', '620px', 'important');
       modal.style.setProperty('overflow', 'hidden', 'important');
       modal.style.setProperty('box-sizing', 'border-box', 'important');
       modal.style.setProperty('margin', '0', 'important');
@@ -4326,6 +4600,20 @@ if (window.innerWidth <= 768) {
           modal.style.setProperty('left', '50%', 'important');
           modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
           modal.style.setProperty('z-index', '2147483648', 'important');
+          modal.style.setProperty('height', '92vh', 'important');
+          modal.style.setProperty('max-height', '720px', 'important');
+          modal.style.setProperty('min-height', '620px', 'important');
+          
+          // modal-body 높이도 강제 설정
+          const modalBody = modal.querySelector('.modal-body');
+          if (modalBody) {
+            modalBody.style.setProperty('height', 'calc(92vh - 120px)', 'important');
+            modalBody.style.setProperty('max-height', '600px', 'important');
+            modalBody.style.setProperty('min-height', '500px', 'important');
+            modalBody.style.setProperty('overflow', 'hidden', 'important');
+            modalBody.style.setProperty('padding', '0 16px 16px', 'important');
+          }
+          
           console.log('Modal safety check applied - centered position maintained');
         }
       }, 100);
@@ -4338,40 +4626,90 @@ if (window.innerWidth <= 768) {
       modal.style.setProperty('z-index', '2147483648', 'important');
     }
     
+    // 모든 스타일 설정이 완료된 후에 display 설정
+    modal.style.display = 'block';
+    
     return false;
   }
   function closeForm() {
     const modal = document.getElementById('formModal');
+    const overlay = document.getElementById('modalOverlay');
     
     if (modal) {
-      modal.style.display = 'none';
+      modal.remove();
     }
     
-    // 모바일 전용 오버레이 제거
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.remove();
+      }, 300);
+    }
+    
+    // 모바일 전용 효과 제거
+    const mobileOverlay = document.getElementById('mobileForceOverlay');
+    if (mobileOverlay) {
+      mobileOverlay.remove();
+    }
+    
+    const bgEffect = document.getElementById('mobileBackgroundEffect');
+    if (bgEffect) {
+      bgEffect.remove();
+    }
+    
+    // modal-open 클래스 제거
+    document.body.classList.remove('modal-open');
+    
+    // 배경 스크롤 복원
     if (window.innerWidth <= 768) {
-      const mobileOverlay = document.getElementById('mobileForceOverlay');
-      if (mobileOverlay) {
-        // 페이드아웃 효과
-        mobileOverlay.style.setProperty('opacity', '0', 'important');
-        setTimeout(() => {
-          mobileOverlay.remove();
-          console.log('Mobile force overlay removed');
-        }, 300);
-      }
-      // 모바일에서 배경 스크롤 복원
+      // 모바일에서는 세로 스크롤만 허용, 가로 스크롤은 계속 차단
       document.body.style.overflow = 'auto';
+      document.body.style.overflowX = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
     } else {
-      // PC 오버레이 처리
-      const overlay = document.getElementById('modalOverlay');
-      if (overlay) {
-        overlay.style.setProperty('display', 'none', 'important');
-        overlay.style.setProperty('visibility', 'hidden', 'important');
-        overlay.style.setProperty('opacity', '0', 'important');
-        overlay.classList.remove('active');
-        console.log('PC Overlay hidden');
+      // PC에서는 완전히 복원
+      document.body.style.overflow = 'auto';
+    }
+  }
+  
+  // 네오 하이브 메인 비디오 음소거 토글 함수
+  function toggleMute() {
+    const video = document.getElementById('centerVideo');
+    const volumeOn = document.getElementById('volumeOn');
+    const volumeOff = document.getElementById('volumeOff');
+    
+    if (video) {
+      video.muted = !video.muted;
+      
+      if (video.muted) {
+        volumeOn.style.display = 'none';
+        volumeOff.style.display = 'block';
+      } else {
+        volumeOn.style.display = 'block';
+        volumeOff.style.display = 'none';
       }
     }
   }
+  
+  // neofits.mp4 비디오 음소거 토글 함수
+  function toggleNeofitsMute() {
+    const video = document.getElementById('neofitsVideo');
+    const volumeOn = document.getElementById('neofitsVolumeOn');
+    const volumeOff = document.getElementById('neofitsVolumeOff');
+    
+    if (video) {
+      video.muted = !video.muted;
+      
+      if (video.muted) {
+        volumeOn.style.display = 'none';
+        volumeOff.style.display = 'block';
+      } else {
+        volumeOn.style.display = 'block';
+        volumeOff.style.display = 'none';
+      }
+    }
+  }
+  
   // ESC로 모달 닫기
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
@@ -4419,6 +4757,117 @@ if (window.innerWidth <= 768) {
       menu.style.display = 'none';
     }
   }
+  
+  // 모바일 네비게이션 부드러운 스크롤
+  function scrollToSection(sectionId) {
+    closeNav();
+    
+    // 하이브 시스템 클릭 시 특별 처리
+    if (sectionId === 'hive' && window.innerWidth <= 768) {
+      const hiveSection = document.getElementById('hive');
+      if (hiveSection) {
+        // 하이브 쇼케이스 (슬라이드 이미지가 있는 부분) 찾기
+        const hiveShowcase = hiveSection.querySelector('.hive-showcase');
+        if (hiveShowcase) {
+          // 하이브 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
+          const mobileNavHeight = 60;
+          const showcaseRect = hiveShowcase.getBoundingClientRect();
+          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+          const viewportCenter = window.innerHeight / 2;
+          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          return false;
+        }
+      }
+    }
+    
+    // 스마트 시스템 클릭 시 특별 처리
+    if (sectionId === 'smart' && window.innerWidth <= 768) {
+      const smartSection = document.getElementById('smart');
+      if (smartSection) {
+        // 스마트 섹션의 하이브 쇼케이스 (NFC 태그 이미지가 있는 부분) 찾기
+        const smartShowcase = smartSection.querySelector('.hive-showcase');
+        if (smartShowcase) {
+          // 스마트 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
+          const mobileNavHeight = 60;
+          const showcaseRect = smartShowcase.getBoundingClientRect();
+          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+          const viewportCenter = window.innerHeight / 2;
+          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          return false;
+        }
+      }
+    }
+    
+    // benefits 섹션 클릭 시 모바일에서 특별 처리
+    if (sectionId === 'benefits' && window.innerWidth <= 768) {
+      const benefitsSection = document.getElementById('benefits');
+      if (benefitsSection) {
+        // 모바일 파트너 신청 버튼 찾기
+        const partnerButton = benefitsSection.querySelector('.mobile-partner-button');
+        if (partnerButton) {
+          // 파트너 신청 버튼이 화면에 모두 보이도록 스크롤 위치 계산
+          const mobileNavHeight = 60;
+          const buttonBottom = partnerButton.getBoundingClientRect().bottom;
+          const viewportHeight = window.innerHeight;
+          const currentScroll = window.pageYOffset;
+          
+          // 버튼의 하단이 뷰포트 하단보다 아래에 있는 경우
+          if (buttonBottom > viewportHeight) {
+            // 버튼이 화면에 완전히 보이도록 스크롤
+            const targetPosition = currentScroll + (buttonBottom - viewportHeight) + 20; // 20px 여유 공간
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            return false;
+          }
+        }
+        // 파트너 버튼이 없거나 이미 보이는 경우 섹션 상단으로 스크롤
+        const sectionTop = benefitsSection.getBoundingClientRect().top + window.pageYOffset - mobileNavHeight;
+        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        return false;
+      }
+    }
+    
+    // 기본 동작
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    return false;
+  }
+  
+  // PC용 스크롤 함수
+  function scrollToSectionPC(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      // PC에서는 헤더가 고정되어 있으므로 offset 조정
+      const headerHeight = 60; // PC 헤더 높이
+      const sectionTop = section.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      });
+    }
+    return false;
+  }
+  
+  // 모바일에서 로고 클릭 시 최상단으로 스크롤
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoElement = document.querySelector('.nav-logo');
+    if (logoElement) {
+      logoElement.addEventListener('click', function(e) {
+        // 모바일 환경에서만 작동
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      });
+    }
+  });
   
   // 모바일 네비게이션 강제 고정 설정 (개선된 버전)
   function forceMobileNavigation() {
@@ -5175,20 +5624,111 @@ if (video) {
 }
 .step-number {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 30px;
-    height: 30px;
-    background: #000;
-    border: 2px solid #7BE495;
+    top: -12px;
+    left: -12px;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #0A0F0D 0%, #1a2f1a 100%);
+    border: 2.5px solid #7BE495;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 0 8px rgba(123, 228, 149, 0.8);
+    font-weight: 800;
+    font-size: 16px;
+    color: #7BE495;
+    box-shadow: 0 0 20px rgba(123, 228, 149, 0.8), 
+                0 0 40px rgba(123, 228, 149, 0.4),
+                inset 0 0 15px rgba(123, 228, 149, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
+
+.step-number:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgba(123, 228, 149, 1), 
+                0 0 60px rgba(123, 228, 149, 0.6),
+                inset 0 0 20px rgba(123, 228, 149, 0.3);
+    background: linear-gradient(135deg, #0A0F0D 0%, #2a4f2a 100%);
+    border-color: #9DF5A4;
+    color: #9DF5A4;
+}
+
+/* 숫자 애니메이션 효과 */
+.step-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: numberGlow 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+.circle-step-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(123, 228, 149, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: numberGlow 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes numberGlow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+/* 숫자 hover 시 회전 효과 */
+.step-number:hover {
+    animation: rotateNumber 0.5s ease-in-out;
+}
+
+.circle-step:hover .circle-step-number {
+    animation: rotateNumber 0.5s ease-in-out;
+}
+
+@keyframes rotateNumber {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    100% { transform: scale(1.15) rotate(360deg); }
+}
+
+/* 원형 다이어그램 호버 효과 추가 */
+.circle-step {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circle-step:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(123, 228, 149, 0.8);
+}
+
+/* flow-step 카드 호버 효과 */
+.flow-step {
+    transition: transform 0.3s ease;
+}
+
+.flow-step:hover {
+    transform: translateY(-5px);
+}
+
 .pulse {
     animation: pulse 2s infinite;
 }
@@ -5374,9 +5914,14 @@ if (video) {
       position: absolute !important;
       top: -8px !important;
       left: -8px !important;
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 0.8rem !important;
+      width: 26px !important;
+      height: 26px !important;
+      font-size: 0.85rem !important;
+      background: linear-gradient(135deg, #0A0F0D 0%, #1a2f1a 100%) !important;
+      box-shadow: 0 0 12px rgba(123, 228, 149, 0.8), 
+                  inset 0 0 8px rgba(123, 228, 149, 0.2) !important;
+      border: 2px solid #7BE495 !important;
+      font-weight: 700 !important;
     }
     
     .flow-step .flow-icon {
@@ -5562,7 +6107,7 @@ if (video) {
   @media (max-width: 768px) {
     #slide-prev, #slide-next {
       top: auto !important;
-      bottom: -20px !important;
+      bottom: -68px !important;
       left: 50% !important;
       right: auto !important;
       transform: translateX(-50%) !important;
@@ -5788,6 +6333,34 @@ h3 {
   border-bottom-left-radius: 28px !important;
   border-bottom-right-radius: 28px !important;
   overflow: hidden !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 모바일에서 슬라이드 컨테이너 하단 공간 제거 */
+.slide-container {
+  margin-bottom: 0 !important;
+}
+
+/* 파트너 신청하기 버튼 영역 하단 정리 */
+.mobile-partner-button {
+  margin-bottom: -20px !important;
+}
+
+/* 섹션 사이 회색 공간 제거 */
+section + section,
+.slide-container + section,
+.mobile-partner-button + section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* 마지막 섹션 하단 여백 제거 */
+section:last-of-type,
+.slide-container:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 20px !important;
 }
 }
 </style>
@@ -6316,18 +6889,8 @@ document.addEventListener('DOMContentLoaded', function() {
       performFlip();
     });
     
-    // PC에서 이미지 클릭으로도 뒤집기 가능
-    if (flipContainer && !isMobile) {
-      flipContainer.addEventListener('click', function(e) {
-        // 버튼 클릭이 아닌 경우에만 실행
-        if (!e.target.closest('.neos-category-tags')) {
-          e.preventDefault();
-          e.stopPropagation();
-          console.log('Container clicked'); // 디버깅용
-          performFlip();
-        }
-      });
-    }
+    // PC에서 이미지 클릭으로 뒤집기 기능 제거 (버튼 클릭만 가능)
+    // 이제 뒷면보기 버튼을 클릭했을 때만 카드가 뒤집힙니다
     
     // 터치 이벤트 (모바일 전용)
     if (isMobile) {
@@ -6338,17 +6901,8 @@ document.addEventListener('DOMContentLoaded', function() {
         performFlip();
       });
       
-      // 모바일에서 컨테이너 터치로도 뒤집기 가능
-      if (flipContainer) {
-        flipContainer.addEventListener('touchstart', function(e) {
-          if (!e.target.closest('.neos-category-tags')) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Container touched'); // 디버깅용
-            performFlip();
-          }
-        });
-      }
+      // 모바일에서도 버튼 터치만으로 뒤집기 (컨테이너 터치 제거)
+      // 이제 뒷면보기 버튼을 터치했을 때만 카드가 뒤집힙니다
     }
     
     // 페이지 로드 시 초기 설정
@@ -6990,11 +7544,11 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 강화 */
      section#benefits {
-       margin-top: -600px !important;
+       margin-top: -536px !important;  /* 32px 아래로 이동 (기존 -568px에서 +32px) */
        position: relative !important;
        z-index: 10 !important;
        background: #000 !important;
-       padding-top: 80px !important;
+       padding-top: 112px !important;  /* 32px 추가하여 내부 콘텐츠도 함께 아래로 이동 */
      }
      
      section#benefits .container {
@@ -7017,7 +7571,7 @@ document.addEventListener('DOMContentLoaded', function() {
      section[id="benefits"]:before {
        content: "" !important;
        display: block !important;
-       height: 200px !important;
+       height: 200px !important;  /* 섹션 아래 이동에 맞춰 조정 */
        background: #000 !important;
        margin-top: -200px !important;
        position: absolute !important;
@@ -7025,6 +7579,25 @@ document.addEventListener('DOMContentLoaded', function() {
        top: -200px !important;
        left: 0 !important;
        z-index: 5 !important;
+     }
+     
+     /* 하단 회색 바 제거를 위한 추가 스타일 */
+     section#benefits::after {
+       content: "" !important;
+       display: block !important;
+       height: 50px !important;
+       background: #000 !important;
+       position: absolute !important;
+       width: 100% !important;
+       bottom: -50px !important;
+       left: 0 !important;
+       z-index: 5 !important;
+     }
+     
+     /* benefits 섹션 하단 패딩 조정 */
+     section#benefits {
+       padding-bottom: 100px !important;
+       overflow: visible !important;
      }
      
      /* "각 운동 기구에 최적화된..." 문구 사이즈 줄이기 */
@@ -7244,6 +7817,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: auto !important;
     display: block !important;
     margin-left: -16px !important; /* 좌측으로 한 칸 이동 */
+    cursor: pointer !important; /* 클릭 가능함을 표시 */
   }
 
   /* 메뉴 버튼 스타일 */
@@ -8038,24 +8612,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   /* 모바일 팝업 모달 정렬 수정 - 개선된 디자인 */
   #formModal {
-    width: 90% !important;
-    max-width: 400px !important;
-    padding: 0 !important;
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    min-width: 320px !important;
-    box-sizing: border-box !important;
-    z-index: 2147483648 !important;
-    background: #000 !important;
-    border: 1px solid rgba(123, 228, 149, 0.3) !important;
-    border-radius: 20px !important;
-    color: #fff !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: hidden !important;
+    /* 인라인 스타일로 덮어씌워질 예정 */
   }
   
   #formModal .modal-header-redesigned {
@@ -8082,8 +8639,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   #formModal .modal-body {
-    padding: 20px 16px !important;
-    max-height: calc(75vh - 140px) !important;
+    /* 인라인 스타일로 덮어씌워질 예정 */
   }
   
   #formModal form {
@@ -8189,14 +8745,34 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 768px) {
   #formModal {
     animation: modalFadeIn 0.3s ease-out;
-    max-width: 380px !important;
-    background: #0A0A0A !important;
-    border: 1px solid rgba(123, 228, 149, 0.2) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  #formModal .modal-body {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  #formModal .modal-body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  
+  #formModal {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
   
   @keyframes modalFadeIn {
     from {
-      transform: translate(-50%, -48%) scale(0.98);
+      transform: translate(-50%, -50%) scale(0.98);
       opacity: 0;
     }
     to {
@@ -8215,7 +8791,7 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal textarea,
   #formModal select {
     font-size: 0.95rem !important;
-    padding: 12px 14px !important;
+    padding: 10px 12px !important;
     border-radius: 8px !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -8256,15 +8832,7 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #fff !important;
   }
   
-  /* 스크롤바 숨김 */
-  #formModal .modal-body {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  
-  #formModal .modal-body::-webkit-scrollbar {
-    display: none;
-  }
+  /* 스크롤바 숨김 - 이미 위에서 정의됨 */
   
   /* 헤더 간격 조정 */
   #formModal .modal-header-redesigned > div:first-child {
@@ -8275,6 +8843,21 @@ document.addEventListener('DOMContentLoaded', function() {
   #formModal .modal-header-redesigned > div:last-child {
     margin-bottom: 16px !important;
   }
+}
+
+/* 네오 스마트 섹션 모바일 위치 조정 - 32px 아래로 이동 */
+@media (max-width: 768px) {
+  #smart {
+    margin-top: 32px !important;
+    position: relative !important;
+  }
+  
+  /* 대체 방법: transform 사용 (필요시) */
+  /*
+  #smart {
+    transform: translateY(32px) !important;
+  }
+  */
 }
 </style>
 
@@ -8293,7 +8876,7 @@ document.addEventListener('DOMContentLoaded', function() {
           { selector: '#mobile-moved-merged-box', transform: 'translateY(-312px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-388.8px)' },
           { selector: '.mobile-system-box-wrapper', transform: 'translateY(-600px)' },
-          { selector: '#smart', transform: 'translateY(-432px)' }
+          { selector: '#smart', transform: 'translateY(-416px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
@@ -8430,13 +9013,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // benefits 섹션 강제 위치 조정 - 모바일에서 2칸 더 위로 이동 (CSS와 함께 적용)
+      // benefits 섹션 강제 위치 조정 - 모바일에서만 적용
       const benefitsSection = document.querySelector('section#benefits');
-      if (benefitsSection) {
+      if (benefitsSection && window.innerWidth <= 768) {
         benefitsSection.style.setProperty('margin-top', '-552px', 'important');
-        benefitsSection.style.setProperty('transform', 'translateY(-32px)', 'important');
+        benefitsSection.style.setProperty('transform', 'translateY(0)', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
-        benefitsSection.style.setProperty('padding-top', '80px', 'important');
+        benefitsSection.style.setProperty('padding-top', '96px', 'important');
         benefitsSection.style.setProperty('position', 'relative', 'important');
         benefitsSection.style.setProperty('z-index', '10', 'important');
         benefitsSection.style.setProperty('display', 'block', 'important');
@@ -8644,5 +9227,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
-</body>
 </html>
