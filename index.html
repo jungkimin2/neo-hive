@@ -4282,7 +4282,7 @@ if (window.innerWidth <= 768) {
         if (video.id === 'centerVideo') {
           // 모바일과 PC 구분
           if (window.innerWidth <= 768) {
-            video.volume = 0.6; // 모바일: 60% 볼륨
+            video.volume = 0.05; // 모바일: 95% 줄인 볼륨 (5% 볼륨)
           } else {
             video.volume = 0.7; // PC: 70% 볼륨
           }
@@ -4296,26 +4296,6 @@ if (window.innerWidth <= 768) {
         }
       });
     }, 1000);
-    
-    // 모바일 환경에서 볼륨 강제 적용 (2초 후 재설정)
-    if (window.innerWidth <= 768) {
-      setTimeout(function() {
-        const centerVideo = document.getElementById('centerVideo');
-        const neofitsVideo = document.getElementById('neofitsVideo');
-        
-        if (centerVideo) {
-          centerVideo.muted = false; // muted 해제
-          centerVideo.volume = 0.6; // 60% 볼륨
-          console.log('Mobile centerVideo volume set to 60%');
-        }
-        
-        if (neofitsVideo) {
-          neofitsVideo.muted = false; // muted 해제
-          neofitsVideo.volume = 0.26; // 26% 볼륨
-          console.log('Mobile neofitsVideo volume set to 26%');
-        }
-      }, 2000);
-    }
   });
   
   // 윈도우 리사이즈 시에도 z-index 적용
@@ -4741,7 +4721,7 @@ if (window.innerWidth <= 768) {
     if (video) {
       // 먼저 볼륨을 설정
       if (window.innerWidth <= 768) {
-        video.volume = 0.6; // 모바일: 60% 볼륨
+        video.volume = 0.05; // 모바일: 95% 줄인 볼륨 (5% 볼륨)
       } else {
         video.volume = 0.21; // PC: 79% 줄인 볼륨 (21% 볼륨)
       }
