@@ -4920,6 +4920,16 @@ if (window.innerWidth <= 768) {
                 top: targetPosition,
                 behavior: 'smooth'
               });
+            } else if (targetId === 'benefits') {
+              // 도입 효과 클릭 시 특별 처리
+              const headerHeight = 56; // 고정 헤더 높이
+              // benefits 섹션 상단에서 약간만 아래로 스크롤하여 타이틀과 설명이 보이도록
+              const targetPosition = targetElement.offsetTop + 50 - headerHeight;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
             } else {
               // 기본 스크롤 동작
               const headerHeight = 56; // 고정 헤더 높이
