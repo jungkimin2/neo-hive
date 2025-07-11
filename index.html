@@ -4943,23 +4943,11 @@ if (window.innerWidth <= 768) {
   function scrollToSection(sectionId) {
     closeNav();
     
-    // 하이브 시스템 클릭 시 특별 처리
+    // 하이브 시스템 클릭 시 특별 처리 - 페이지 최상단으로 스크롤
     if (sectionId === 'hive' && window.innerWidth <= 768) {
-      const hiveSection = document.getElementById('hive');
-      if (hiveSection) {
-        // 하이브 쇼케이스 (슬라이드 이미지가 있는 부분) 찾기
-        const hiveShowcase = hiveSection.querySelector('.hive-showcase');
-        if (hiveShowcase) {
-          // 하이브 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
-          const mobileNavHeight = 60;
-          const showcaseRect = hiveShowcase.getBoundingClientRect();
-          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
-          const viewportCenter = window.innerHeight / 2;
-          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
-          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-          return false;
-        }
-      }
+      // 페이지 최상단으로 부드럽게 스크롤
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return false;
     }
     
     // 스마트 시스템 클릭 시 특별 처리
