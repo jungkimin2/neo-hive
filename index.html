@@ -3117,7 +3117,7 @@ if (window.innerWidth <= 768) {
           <div class="circle-step-number">3</div>
           <img src="./images/soo11.png" alt="트레이너 보조 아이콘" style="width: 36px; height: 36px; margin-bottom: 8px;">
           <div style="font-weight: bold; color: #fff; margin-bottom: 2px; font-size: 0.9rem;">트레이너 시간 절약</div>
-          <div style="font-size: 0.75rem; color: #ccc; text-align:center;">교육 시간 절감,<br>매출·개인레슨 집중</div>
+          <div style="font-size: 0.75rem; color: #ccc; text-align:center;">교육 시간 절감,<br>매출·레슨 집중</div>
         </div>
         <div class="circle-step" style="position: absolute; left: 50%; top: 98%; transform: translate(-50%, -100%); width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(123,228,149,0.10), rgba(62,200,168,0.08)); border-radius: 50%; border: 2px solid #7BE495; box-shadow: 0 0 24px #7BE49555; z-index: 1;">
           <div class="circle-step-number">4</div>
@@ -5009,7 +5009,25 @@ if (window.innerWidth <= 768) {
   function scrollToSectionPC(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-      // PC에서는 헤더가 고정되어 있으므로 offset 조정
+      // 스마트 시스템 클릭 시 특별 처리
+      if (sectionId === 'smart') {
+        // NEO-S 카드가 있는 hive-showcase를 찾기
+        const smartShowcase = section.querySelector('.hive-showcase');
+        if (smartShowcase) {
+          const headerHeight = 60; // PC 헤더 높이
+          const showcaseTop = smartShowcase.offsetTop;
+          // showcase 상단에서 약간 위쪽으로 조정하여 타이틀도 보이도록
+          const targetPosition = showcaseTop - headerHeight - 100;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          return false;
+        }
+      }
+      
+      // 기본 동작
       const headerHeight = 60; // PC 헤더 높이
       const sectionTop = section.offsetTop - headerHeight;
       
