@@ -4910,14 +4910,27 @@ if (window.innerWidth <= 768) {
           const targetElement = document.getElementById(targetId);
           
           if (targetElement) {
-            const headerHeight = 56; // 고정 헤더 높이
-            const additionalOffset = 20; // 추가 여백
-            const targetPosition = targetElement.offsetTop - headerHeight - additionalOffset;
-            
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+            // 스마트 시스템 클릭 시 특별 처리
+            if (targetId === 'smart') {
+              const headerHeight = 56; // 고정 헤더 높이
+              // smart 섹션 상단에서 약간 아래로 스크롤하여 타이틀과 설명이 보이도록
+              const targetPosition = targetElement.offsetTop + 100 - headerHeight;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            } else {
+              // 기본 스크롤 동작
+              const headerHeight = 56; // 고정 헤더 높이
+              const additionalOffset = 20; // 추가 여백
+              const targetPosition = targetElement.offsetTop - headerHeight - additionalOffset;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
           }
         });
       });
@@ -5011,20 +5024,17 @@ if (window.innerWidth <= 768) {
     if (section) {
       // 스마트 시스템 클릭 시 특별 처리
       if (sectionId === 'smart') {
-        // NEO-S 카드가 있는 hive-showcase를 찾기
-        const smartShowcase = section.querySelector('.hive-showcase');
-        if (smartShowcase) {
-          const headerHeight = 60; // PC 헤더 높이
-          const showcaseTop = smartShowcase.offsetTop;
-          // showcase 상단에서 약간 위쪽으로 조정하여 타이틀도 보이도록
-          const targetPosition = showcaseTop - headerHeight - 100;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-          return false;
-        }
+        const headerHeight = 60; // PC 헤더 높이
+        // smart 섹션의 위치 가져오기
+        const sectionTop = section.offsetTop;
+        // 섹션 상단에서 추가로 500px 아래로 스크롤 (NEO-S 카드가 있는 위치)
+        const targetPosition = sectionTop + 500 - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        return false;
       }
       
       // 기본 동작
