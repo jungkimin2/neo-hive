@@ -2791,6 +2791,22 @@ html body .core-value-fresh-mobile {
     width: auto !important;
     text-align: center !important;
     z-index: 201 !important;
+    /* 터치 시 스크롤이 막히지 않도록 설정 */
+    touch-action: manipulation !important;
+  }
+  
+  /* 모바일에서 스크롤 성능 개선 */
+  .hive-showcase,
+  .flip-container,
+  .neos-wrapper {
+    touch-action: pan-y !important; /* 수직 스크롤 허용 */
+    -webkit-overflow-scrolling: touch !important; /* iOS 스크롤 부드럽게 */
+  }
+  
+  /* 뒷면보기 버튼 터치 영역 최적화 */
+  .neos-category-tags > div {
+    touch-action: manipulation !important;
+    cursor: pointer !important;
   }
 }
 </style>
@@ -7050,24 +7066,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 클릭 이벤트 (PC와 모바일 모두)
-    flipButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Button clicked'); // 디버깅용
-      performFlip();
-    });
+    // PC와 모바일 모두에서 작동하는 click 이벤트
+    if (!isMobile) {
+      flipButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        console.log('Button clicked (PC)'); // 디버깅용
+        performFlip();
+      });
+    }
     
     // PC에서 이미지 클릭으로 뒤집기 기능 제거 (버튼 클릭만 가능)
     // 이제 뒷면보기 버튼을 클릭했을 때만 카드가 뒤집힙니다
     
     // 터치 이벤트 (모바일 전용)
     if (isMobile) {
-      flipButton.addEventListener('touchstart', function(e) {
-        e.preventDefault();
+      // click 이벤트로 통합하여 스크롤 문제 해결
+      flipButton.addEventListener('click', function(e) {
         e.stopPropagation();
-        console.log('Touch started'); // 디버깅용
+        console.log('Button clicked (mobile)'); // 디버깅용
         performFlip();
       });
+      
+      // 터치 이벤트 중 스크롤을 방해하지 않도록 passive 옵션 추가
+      flipButton.addEventListener('touchstart', function(e) {
+        // preventDefault를 제거하여 스크롤이 가능하도록 함
+        console.log('Touch started'); // 디버깅용
+      }, { passive: true });
       
       // 모바일에서도 버튼 터치만으로 뒤집기 (컨테이너 터치 제거)
       // 이제 뒷면보기 버튼을 터치했을 때만 카드가 뒤집힙니다
