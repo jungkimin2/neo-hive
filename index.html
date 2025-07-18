@@ -30,8 +30,8 @@
   
   /* 네오 하이브 섹션 아래로 이동 - 조정 */
   #hive {
-    transform: translateY(80px) !important;
-    -webkit-transform: translateY(80px) !important;
+    transform: translateY(48px) !important;
+    -webkit-transform: translateY(48px) !important;
     position: relative !important;
     margin-top: 0 !important;
     padding-top: 20px !important;
@@ -267,8 +267,8 @@
   
   /* hive 섹션 아래로 내리기 - 조정 */
   #hive {
-    transform: translateY(80px) !important;  /* 모바일에서 아래로 이동 - 조정 */
-    -webkit-transform: translateY(80px) !important;
+    transform: translateY(48px) !important;  /* 모바일에서 아래로 이동 - 조정 */
+    -webkit-transform: translateY(48px) !important;
     position: relative !important;
     z-index: 100 !important;
     margin-top: 0 !important;
@@ -1230,8 +1230,8 @@ section {
     /* 네오 하이브 전체 콘텐츠를 함께 상단 이동 (3칸 = 48px) */
     #hive.section.animate-on-scroll,
     #hive.section.animate-on-scroll.visible {
-      transform: translateY(80px) !important;
-      -webkit-transform: translateY(80px) !important;
+      transform: translateY(48px) !important;
+      -webkit-transform: translateY(48px) !important;
     }
     
     /* 컨테이너 기본 설정 */
@@ -10210,11 +10210,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceApplyMobileStyles() {
                       const elements = [
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-280px)' },
-          { selector: '#mobile-moved-merged-box', transform: 'translateY(72px)' },
+          { selector: '#mobile-moved-merged-box', transform: 'translateY(40px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-356px)' },
           { selector: '.mobile-system-box-wrapper', transform: 'translateY(-420px)' },
           { selector: '#smart', transform: 'translateY(-384px)' }, // 기존 -368px에서 -16px 더 위로
-          { selector: '#hive', transform: 'translateY(80px)' }
+          { selector: '#hive', transform: 'translateY(48px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
