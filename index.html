@@ -30,23 +30,23 @@
   
   /* 네오 하이브 섹션 아래로 이동 - 조정 */
   #hive {
-    transform: translateY(48px) !important;
-    -webkit-transform: translateY(48px) !important;
+    transform: translateY(16px) !important;
+    -webkit-transform: translateY(16px) !important;
     position: relative !important;
     margin-top: 0 !important;
     padding-top: 20px !important;
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-264px) !important;
-    -webkit-transform: translateY(-264px) !important;
+    transform: translateY(-296px) !important;
+    -webkit-transform: translateY(-296px) !important;
     position: relative !important;
     z-index: 120 !important;
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-340px) !important;
-    -webkit-transform: translateY(-340px) !important;
+    transform: translateY(-372px) !important;
+    -webkit-transform: translateY(-372px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -55,14 +55,14 @@
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-308px) !important;
-    -webkit-transform: translateY(-308px) !important;
+    transform: translateY(-340px) !important;
+    -webkit-transform: translateY(-340px) !important;
     position: relative !important;
   }
   
   #smart {
-    transform: translateY(-208px) !important;
-    -webkit-transform: translateY(-208px) !important;
+    transform: translateY(-240px) !important;
+    -webkit-transform: translateY(-240px) !important;
     position: relative !important;
   }
   
@@ -111,7 +111,7 @@
   /* 모바일에서만 benefits 마진 조정 */
   @media (max-width: 768px) {
     #benefits {
-      margin-top: -304px !important;
+      margin-top: -336px !important;
     }
   }
   
@@ -10283,12 +10283,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 즉시 실행 함수로 스타일 강제 적용
     function forceApplyMobileStyles() {
                       const elements = [
-          { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-280px)' },
-          { selector: '#mobile-moved-merged-box', transform: 'translateY(-264px)' },
-          { selector: '.core-value-fresh-mobile', transform: 'translateY(-388px)' },
-          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-308px)' },
-          { selector: '#smart', transform: 'translateY(-272px)' }, // 3칸 더 아래로 조정
-          { selector: '#hive', transform: 'translateY(48px)' }
+          { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-312px)' },
+          { selector: '#mobile-moved-merged-box', transform: 'translateY(-296px)' },
+          { selector: '.core-value-fresh-mobile', transform: 'translateY(-420px)' },
+          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-340px)' },
+          { selector: '#smart', transform: 'translateY(-304px)' }, // 모든 요소 2칸 위로
+          { selector: '#hive', transform: 'translateY(16px)' }
       ];
       
       elements.forEach(({ selector, transform }) => {
