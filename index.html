@@ -4230,7 +4230,7 @@ if (window.innerWidth <= 768) {
         </div>
       </div>
       <!-- 추가 UI: 출입 코드 생성 방식/이벤트 시스템 연동 -->
-      <div class="smart-health-system-box" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin: 20px auto; max-width: 1100px; position: relative; overflow: hidden;">
+      <div class="smart-health-system-box" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin: 20px auto; max-width: 1100px; position: relative; overflow: hidden; z-index: 150;">
         <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
           <h4 style="color:#7BE495; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; text-align: left;">설치 한 번으로 스마트 헬스장 완성</h4>
           <div class="code-method-box" style="background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-left:4px solid #62D2A2; border-radius:8px; padding:20px; margin-bottom:24px;">
@@ -4286,6 +4286,9 @@ if (window.innerWidth <= 768) {
     border: 2px solid rgba(123, 228, 149, 0.8) !important;
     box-shadow: 0 0 30px rgba(123, 228, 149, 0.4), 
                 inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
+    transform: translateY(-200px) !important;
+    position: relative !important;
+    z-index: 200 !important;
   }
   
   .smart-health-system-box > div {
@@ -4320,12 +4323,13 @@ if (window.innerWidth <= 768) {
   .smart-guide-text {
     background: rgba(123, 228, 149, 0.05) !important;
     border-radius: 8px !important;
-    padding: 12px 8px !important;
+    padding: 16px 12px !important;
     border: 1px solid rgba(123, 228, 149, 0.3) !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
     justify-content: center !important;
+    min-height: 80px !important;
   }
   
   .smart-guide-text .lock-icon {
