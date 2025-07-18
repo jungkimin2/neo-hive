@@ -817,13 +817,15 @@ div > p.smart-guide-text {
   body .smart-guide-text .lock-icon,
   .smart-guide-text img.lock-icon {
     position: relative !important;
-    top: 16px !important;
+    top: -16px !important;
     margin-top: 0 !important;
+    margin-left: 16px !important;
+    margin-right: 8px !important;
   }
   
   body .smart-guide-text > span {
     position: relative !important;
-    top: -8px !important;
+    top: 8px !important;
   }
 }
 
@@ -4286,7 +4288,7 @@ if (window.innerWidth <= 768) {
     border: 2px solid rgba(123, 228, 149, 0.8) !important;
     box-shadow: 0 0 30px rgba(123, 228, 149, 0.4), 
                 inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
-    transform: translateY(-40px) !important;
+    transform: translateY(-24px) !important;
     position: relative !important;
     z-index: 200 !important;
   }
@@ -4334,9 +4336,11 @@ if (window.innerWidth <= 768) {
   
   .smart-guide-text .lock-icon {
     margin: 0 !important;
-    margin-left: 0 !important;
+    margin-left: 16px !important;
     margin-right: 8px !important;
     flex-shrink: 0 !important;
+    position: relative !important;
+    top: -16px !important;
   }
   
   .smart-guide-text span[style*="display: block"] {
@@ -4344,6 +4348,8 @@ if (window.innerWidth <= 768) {
     font-size: 0.75rem !important;
     line-height: 1.4 !important;
     text-align: center !important;
+    position: relative !important;
+    top: 8px !important;
   }
   
   .smart-guide-text .example-text {
