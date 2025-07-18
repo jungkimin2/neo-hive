@@ -38,15 +38,15 @@
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-108px) !important;
-    -webkit-transform: translateY(-108px) !important;
+    transform: translateY(-168px) !important;
+    -webkit-transform: translateY(-168px) !important;
     position: relative !important;
     z-index: 120 !important;
   }
   
   .core-value-fresh-mobile {
-    transform: translateY(-308px) !important;
-    -webkit-transform: translateY(-308px) !important;
+    transform: translateY(-340px) !important;
+    -webkit-transform: translateY(-340px) !important;
     position: relative !important;
     display: flex !important;
     flex-direction: row !important;
@@ -554,6 +554,20 @@
 
 br.mobile-only {
   display: none !important;
+}
+
+/* PC 환경에서 hive 섹션 조정 */
+@media screen and (min-width: 769px) {
+  #hive {
+    margin-top: 16px !important;
+    position: relative !important;
+  }
+  
+  /* hive 아래 모든 섹션도 함께 내리기 */
+  #hive ~ section {
+    position: relative !important;
+    top: 16px !important;
+  }
 }
 </style>
 <style>
@@ -10233,8 +10247,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceApplyMobileStyles() {
                       const elements = [
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-280px)' },
-          { selector: '#mobile-moved-merged-box', transform: 'translateY(-88px)' },
-          { selector: '.core-value-fresh-mobile', transform: 'translateY(-356px)' },
+          { selector: '#mobile-moved-merged-box', transform: 'translateY(-168px)' },
+          { selector: '.core-value-fresh-mobile', transform: 'translateY(-388px)' },
           { selector: '.mobile-system-box-wrapper', transform: 'translateY(-420px)' },
           { selector: '#smart', transform: 'translateY(-384px)' }, // 기존 -368px에서 -16px 더 위로
           { selector: '#hive', transform: 'translateY(48px)' }
