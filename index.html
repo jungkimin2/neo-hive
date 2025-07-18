@@ -4092,7 +4092,7 @@ if (window.innerWidth <= 768) {
         </p>
       </div>
       <!-- Circular Flow Steps UI for NEO SMART 핵심 흐름 -->
-      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 136px auto 0;">
+      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 200px auto 0;">
         <div class="circular-bg-glow"></div>
         <div style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, rgba(0, 0, 0, 0) 75%); border-radius: 50%; z-index:0; pointer-events: none;"></div>
         <div class="circle-center-title">
@@ -4311,9 +4311,9 @@ if (window.innerWidth <= 768) {
   }
   
   .smart-health-system-box {
-    padding: 16px !important;
+    padding: 16px 16px 60px 16px !important;
     gap: 24px !important;
-    margin: 16px 0 !important;
+    margin: 16px 0 100px 0 !important;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 20, 10, 0.9) 100%) !important;
     border: 2px solid rgba(123, 228, 149, 0.8) !important;
     box-shadow: 0 0 30px rgba(123, 228, 149, 0.4), 
@@ -4342,6 +4342,18 @@ if (window.innerWidth <= 768) {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+  }
+  
+  /* Force clear space after smart-health-system-box */
+  .smart-health-system-box::after {
+    content: '';
+    display: block;
+    height: 100px;
+    clear: both;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
   }
   
   .code-method-box {
