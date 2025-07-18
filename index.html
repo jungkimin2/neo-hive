@@ -38,8 +38,8 @@
   }
   
   #mobile-moved-merged-box {
-    transform: translateY(-168px) !important;
-    -webkit-transform: translateY(-168px) !important;
+    transform: translateY(-232px) !important;
+    -webkit-transform: translateY(-232px) !important;
     position: relative !important;
     z-index: 120 !important;
   }
@@ -55,14 +55,14 @@
   }
   
   .mobile-system-box-wrapper {
-    transform: translateY(-420px) !important;
-    -webkit-transform: translateY(-420px) !important;
+    transform: translateY(-356px) !important;
+    -webkit-transform: translateY(-356px) !important;
     position: relative !important;
   }
   
   #smart {
-    transform: translateY(-320px) !important;
-    -webkit-transform: translateY(-320px) !important;
+    transform: translateY(-256px) !important;
+    -webkit-transform: translateY(-256px) !important;
     position: relative !important;
   }
   
@@ -111,7 +111,7 @@
   /* 모바일에서만 benefits 마진 조정 */
   @media (max-width: 768px) {
     #benefits {
-      margin-top: -416px !important;
+      margin-top: -352px !important;
     }
   }
   
@@ -567,6 +567,43 @@ br.mobile-only {
   #hive ~ section {
     position: relative !important;
     top: 16px !important;
+  }
+  
+  /* PC에서도 회색 가로선 완전 제거 */
+  .flex-grow.mx-5.h-px.bg-gradient-to-r.from-transparent.via-gray-500.to-transparent,
+  .desktop-only.flex-grow.mx-5.h-px.bg-gradient-to-r {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+  }
+  
+  /* 스마트 섹션 위 여백을 검정색으로 덮기 */
+  #smart {
+    position: relative !important;
+    margin-top: -10px !important;
+    padding-top: 50px !important;
+    background: #000 !important;
+  }
+  
+  #smart::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: #000;
+    z-index: 1;
+  }
+  
+  /* 모든 회색 요소 숨기기 */
+  div[class*="gray"],
+  div[style*="gray"],
+  div[style*="grey"],
+  hr {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
   }
 }
 </style>
@@ -10247,10 +10284,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function forceApplyMobileStyles() {
                       const elements = [
           { selector: '.mobile-ui-position-adjustment', transform: 'translateY(-280px)' },
-          { selector: '#mobile-moved-merged-box', transform: 'translateY(-168px)' },
+          { selector: '#mobile-moved-merged-box', transform: 'translateY(-232px)' },
           { selector: '.core-value-fresh-mobile', transform: 'translateY(-388px)' },
-          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-420px)' },
-          { selector: '#smart', transform: 'translateY(-384px)' }, // 기존 -368px에서 -16px 더 위로
+          { selector: '.mobile-system-box-wrapper', transform: 'translateY(-356px)' },
+          { selector: '#smart', transform: 'translateY(-320px)' }, // 4칸 아래로 조정
           { selector: '#hive', transform: 'translateY(48px)' }
       ];
       
