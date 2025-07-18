@@ -97,8 +97,8 @@
   section {
     margin-top: 20px !important;
     margin-bottom: 20px !important;
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   
   /* PC에서는 benefits 마진 조정 안함 */
@@ -111,7 +111,7 @@
   /* 모바일에서만 benefits 마진 조정 */
   @media (max-width: 768px) {
     #benefits {
-      margin-top: -304px !important;
+      margin-top: -224px !important;
     }
   }
   
@@ -868,7 +868,7 @@ div > p.smart-guide-text {
   section#benefits,
   .section#benefits {
     padding-top: 0 !important;
-    margin-top: -620px !important;
+    margin-top: -540px !important;
   }
   
   /* smart와 benefits 사이 모든 요소 제거 */
@@ -887,7 +887,7 @@ div > p.smart-guide-text {
   
   /* benefits 섹션 확실한 위치 지정 */
   body section#benefits {
-    margin-top: -576px !important;
+    margin-top: -496px !important;
     padding-top: 0 !important;
   }
 }
@@ -4078,7 +4078,7 @@ if (window.innerWidth <= 768) {
         </p>
       </div>
       <!-- Circular Flow Steps UI for NEO SMART 핵심 흐름 -->
-      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 56px auto 0;">
+      <div class="circular-flow-container" style="position: relative; width: 580px; height: 580px; margin: 136px auto 0;">
         <div class="circular-bg-glow"></div>
         <div style="position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); width: 580px; height: 580px; background: radial-gradient(circle, rgba(123, 228, 149, 0.1) 0%, rgba(0, 0, 0, 0) 75%); border-radius: 50%; z-index:0; pointer-events: none;"></div>
         <div class="circle-center-title">
@@ -4286,7 +4286,7 @@ if (window.innerWidth <= 768) {
     border: 2px solid rgba(123, 228, 149, 0.8) !important;
     box-shadow: 0 0 30px rgba(123, 228, 149, 0.4), 
                 inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
-    transform: translateY(-120px) !important;
+    transform: translateY(-40px) !important;
     position: relative !important;
     z-index: 200 !important;
   }
@@ -5219,7 +5219,7 @@ if (window.innerWidth <= 768) {
       
       /* 모바일에서 benefits 섹션을 강제로 위로 이동 및 배경 연장 */
       section#benefits {
-        margin-top: -640px !important; /* 증가시켜 gray space 완전 제거 */
+        margin-top: -560px !important; /* 증가시켜 gray space 완전 제거 */
         transform: translateY(0) !important; /* -16px에서 0으로 변경하여 아래로 1칸 더 이동 */
         position: relative !important;
         z-index: 10 !important;
@@ -5236,7 +5236,7 @@ if (window.innerWidth <= 768) {
       /* 파트너 신청하기 버튼과 benefits 섹션 사이의 경계 제거 */
       .mobile-partner-button + section#benefits {
         border-top: none !important;
-        margin-top: -576px !important; /* 아래로 추가 1칸 이동하도록 조정 */
+        margin-top: -496px !important; /* 아래로 추가 1칸 이동하도록 조정 */
       }
       
       /* smart 섹션의 slide-container 하단 여백 제거 */
@@ -5254,7 +5254,7 @@ if (window.innerWidth <= 768) {
       
       /* smart 섹션과 benefits 섹션 사이 공백 완전 제거 */
       #smart + #benefits {
-        margin-top: -620px !important;
+        margin-top: -540px !important;
       }
       
       /* 섹션 사이의 회색 선 완전 제거 */
@@ -8928,7 +8928,7 @@ document.addEventListener('DOMContentLoaded', function() {
      
      /* "운동은 팀으로, 기구는 스마트하게" 섹션 위로 이동 - 여백 제거 강화 */
      section#benefits {
-       margin-top: -536px !important;  /* 32px 아래로 이동 (기존 -568px에서 +32px) */
+       margin-top: -456px !important;  /* 32px 아래로 이동 (기존 -568px에서 +32px) */
        position: relative !important;
        z-index: 10 !important;
        background: #000 !important;
@@ -10432,7 +10432,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // benefits 섹션 강제 위치 조정 - 모바일에서만 적용
       const benefitsSection = document.querySelector('section#benefits');
       if (benefitsSection && window.innerWidth <= 768) {
-        benefitsSection.style.setProperty('margin-top', '-400px', 'important');
+        benefitsSection.style.setProperty('margin-top', '-320px', 'important');
         benefitsSection.style.setProperty('transform', 'translateY(0)', 'important');
         benefitsSection.style.setProperty('background', '#000', 'important');
         benefitsSection.style.setProperty('padding-top', '140px', 'important');
