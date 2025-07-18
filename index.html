@@ -126,6 +126,17 @@
     padding-bottom: 20px !important;
   }
   
+  /* Smart section overflow control */
+  #smart {
+    overflow: visible !important;
+  }
+  
+  /* All sections below smart-health-system-box */
+  #smart ~ * {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
   /* 기존 hive-showcase 숨김 */
   #smart .hive-showcase {
     display: none !important;
@@ -4233,7 +4244,7 @@ if (window.innerWidth <= 768) {
         </div>
       </div>
       <!-- 추가 UI: 출입 코드 생성 방식/이벤트 시스템 연동 -->
-      <div class="smart-health-system-box" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin: 20px auto; max-width: 1100px; position: relative; overflow: hidden; z-index: 150;">
+      <div class="smart-health-system-box" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; color: #ccc; font-size: 0.85rem; line-height: 1.6; text-align: left; background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-radius: 16px; border: 1px solid #7BE495; box-shadow: 0 0 20px rgba(123, 228, 149, 0.15); padding: 20px 40px; margin: 20px auto; max-width: 1100px; position: relative; overflow: visible; z-index: 9999;">
         <div style="flex: 1 1 48%; min-width: 280px; text-align: left;">
           <h4 style="color:#7BE495; font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; text-align: left;">설치 한 번으로 스마트 헬스장 완성</h4>
           <div class="code-method-box" style="background: linear-gradient(135deg, #112921 0%, #0C1612 100%); border-left:4px solid #62D2A2; border-radius:8px; padding:20px; margin-bottom:24px;">
@@ -4281,6 +4292,24 @@ if (window.innerWidth <= 768) {
 
 /* Mobile specific styles for smart health system */
 @media (max-width: 768px) {
+  /* Ensure the container below doesn't overlap */
+  .smart-health-system-box ~ * {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Container wrapper for better stacking */
+  .smart-health-system-box:before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
   .smart-health-system-box {
     padding: 16px !important;
     gap: 24px !important;
@@ -4291,7 +4320,7 @@ if (window.innerWidth <= 768) {
                 inset 0 0 20px rgba(123, 228, 149, 0.1) !important;
     transform: translateY(-8px) !important;
     position: relative !important;
-    z-index: 500 !important;
+    z-index: 9999 !important;
     overflow: visible !important;
   }
   
@@ -4376,6 +4405,7 @@ if (window.innerWidth <= 768) {
     padding-left: 35px !important;
     font-size: 0.75rem !important; /* Reduce main text size */
     line-height: 1.4 !important;
+    z-index: 10 !important;
   }
   
   .smart-health-system-box ul li span:first-child {
