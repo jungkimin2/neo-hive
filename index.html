@@ -316,6 +316,29 @@
   body.mobile-loaded {
     opacity: 1 !important;
   }
+  
+  /* 모바일에서 hive 섹션 상단 여백 제거 */
+  body {
+    background: #000 !important;
+  }
+  
+  #hive {
+    margin-top: -30px !important;
+    padding-top: 80px !important;
+    background: #000 !important;
+  }
+  
+  /* 모바일 네비게이션과 컨텐츠 사이 여백 제거 */
+  .mobile-nav-container + * {
+    margin-top: 0 !important;
+  }
+  
+  /* 회색 구분선 완전 제거 */
+  div[class*="gray"],
+  div[style*="gray"],
+  div[style*="grey"] {
+    display: none !important;
+  }
 }
 
 /* 모바일 팝업 배경 효과 */
@@ -2384,7 +2407,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- <div id="features"></div> -->
 
 
-<section id="hive" class="section animate-on-scroll mobile-transform-target" style="background:#000; padding-top:24px;">
+<section id="hive" class="section animate-on-scroll mobile-transform-target" style="background:#000; padding-top:24px; margin-top: -20px;">
   <div class="container" style="text-align:center; padding-top:0; max-width: 1100px; margin: 0 auto; padding: 0 20px;">
     <h2 style="font-size: 2rem; text-align: left; color: #FFFFFF; margin-top:0;">
       네오 하이브 : <span class="neon-green">"하나되는 우리"</span>
