@@ -6118,26 +6118,29 @@ if (window.innerWidth <= 768) {
     if (sectionId === 'smart' && window.innerWidth <= 768) {
       const smartSection = document.getElementById('smart');
       if (smartSection) {
-        // NEO-S 카드가 있는 neos-wrapper 찾기
-        const neosWrapper = smartSection.querySelector('.neos-wrapper');
-        if (neosWrapper) {
-          // NEO-S 카드가 화면 중앙에 오도록 스크롤
+        // NEO-S 카드 디스플레이 영역 찾기
+        const cardDisplay = smartSection.querySelector('.card-display-area');
+        if (cardDisplay) {
+          // NEO-S 카드가 화면 상단에 오도록 스크롤
           const mobileNavHeight = 60;
-          const neosRect = neosWrapper.getBoundingClientRect();
-          const neosCenter = neosRect.top + (neosRect.height / 2);
-          const viewportCenter = window.innerHeight / 2;
-          const targetPosition = window.pageYOffset + neosCenter - viewportCenter - 30; // 약간 위로 조정
+          const cardRect = cardDisplay.getBoundingClientRect();
+          const targetPosition = window.pageYOffset + cardRect.top - mobileNavHeight - 20; // 네비게이션 바 아래 여유 공간
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           return false;
         } else {
-          // neos-wrapper가 없으면 hive-showcase로 대체
-          const smartShowcase = smartSection.querySelector('.hive-showcase');
-          if (smartShowcase) {
+          // card-display-area가 없으면 new-neos-showcase 찾기
+          const neosShowcase = smartSection.querySelector('.new-neos-showcase');
+          if (neosShowcase) {
             const mobileNavHeight = 60;
-            const showcaseRect = smartShowcase.getBoundingClientRect();
-            const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
-            const viewportCenter = window.innerHeight / 2;
-            const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+            const showcaseRect = neosShowcase.getBoundingClientRect();
+            const targetPosition = window.pageYOffset + showcaseRect.top - mobileNavHeight - 20;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            return false;
+          } else {
+            // 둘 다 없으면 섹션 상단으로 스크롤
+            const mobileNavHeight = 60;
+            const sectionRect = smartSection.getBoundingClientRect();
+            const targetPosition = window.pageYOffset + sectionRect.top - mobileNavHeight;
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             return false;
           }
