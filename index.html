@@ -6118,32 +6118,22 @@ if (window.innerWidth <= 768) {
     if (sectionId === 'smart' && window.innerWidth <= 768) {
       const smartSection = document.getElementById('smart');
       if (smartSection) {
-        // NEO-S 카드 디스플레이 영역 찾기
-        const cardDisplay = smartSection.querySelector('.card-display-area');
-        if (cardDisplay) {
-          // NEO-S 카드가 화면 상단에 오도록 스크롤
+        // 네오 스마트 제목(h2)을 찾아서 그 위치로 스크롤
+        const smartTitle = smartSection.querySelector('h2');
+        if (smartTitle) {
           const mobileNavHeight = 60;
-          const cardRect = cardDisplay.getBoundingClientRect();
-          const targetPosition = window.pageYOffset + cardRect.top - mobileNavHeight - 20; // 네비게이션 바 아래 여유 공간
+          const titleRect = smartTitle.getBoundingClientRect();
+          // 제목이 네비게이션 바 바로 아래에 오도록 스크롤
+          const targetPosition = window.pageYOffset + titleRect.top - mobileNavHeight - 10;
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           return false;
         } else {
-          // card-display-area가 없으면 new-neos-showcase 찾기
-          const neosShowcase = smartSection.querySelector('.new-neos-showcase');
-          if (neosShowcase) {
-            const mobileNavHeight = 60;
-            const showcaseRect = neosShowcase.getBoundingClientRect();
-            const targetPosition = window.pageYOffset + showcaseRect.top - mobileNavHeight - 20;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            return false;
-          } else {
-            // 둘 다 없으면 섹션 상단으로 스크롤
-            const mobileNavHeight = 60;
-            const sectionRect = smartSection.getBoundingClientRect();
-            const targetPosition = window.pageYOffset + sectionRect.top - mobileNavHeight;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            return false;
-          }
+          // h2가 없으면 섹션 상단으로 스크롤
+          const mobileNavHeight = 60;
+          const sectionRect = smartSection.getBoundingClientRect();
+          const targetPosition = window.pageYOffset + sectionRect.top - mobileNavHeight;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          return false;
         }
       }
     }
