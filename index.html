@@ -6118,17 +6118,29 @@ if (window.innerWidth <= 768) {
     if (sectionId === 'smart' && window.innerWidth <= 768) {
       const smartSection = document.getElementById('smart');
       if (smartSection) {
-        // 스마트 섹션의 하이브 쇼케이스 (NFC 태그 이미지가 있는 부분) 찾기
-        const smartShowcase = smartSection.querySelector('.hive-showcase');
-        if (smartShowcase) {
-          // 스마트 쇼케이스의 중앙이 화면 중앙에 오도록 스크롤
+        // NEO-S 카드가 있는 neos-wrapper 찾기
+        const neosWrapper = smartSection.querySelector('.neos-wrapper');
+        if (neosWrapper) {
+          // NEO-S 카드가 화면 중앙에 오도록 스크롤
           const mobileNavHeight = 60;
-          const showcaseRect = smartShowcase.getBoundingClientRect();
-          const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+          const neosRect = neosWrapper.getBoundingClientRect();
+          const neosCenter = neosRect.top + (neosRect.height / 2);
           const viewportCenter = window.innerHeight / 2;
-          const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+          const targetPosition = window.pageYOffset + neosCenter - viewportCenter - 30; // 약간 위로 조정
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           return false;
+        } else {
+          // neos-wrapper가 없으면 hive-showcase로 대체
+          const smartShowcase = smartSection.querySelector('.hive-showcase');
+          if (smartShowcase) {
+            const mobileNavHeight = 60;
+            const showcaseRect = smartShowcase.getBoundingClientRect();
+            const showcaseCenter = showcaseRect.top + (showcaseRect.height / 2);
+            const viewportCenter = window.innerHeight / 2;
+            const targetPosition = window.pageYOffset + showcaseCenter - viewportCenter;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            return false;
+          }
         }
       }
     }
