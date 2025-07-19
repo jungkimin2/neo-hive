@@ -6123,8 +6123,8 @@ if (window.innerWidth <= 768) {
         if (smartTitle) {
           const mobileNavHeight = 60;
           const titleRect = smartTitle.getBoundingClientRect();
-          // 제목이 네비게이션 바 바로 아래에 오도록 스크롤
-          const targetPosition = window.pageYOffset + titleRect.top - mobileNavHeight - 10;
+          // 제목이 네비게이션 바 바로 아래에 오도록 스크롤 (2칸 더 위로)
+          const targetPosition = window.pageYOffset + titleRect.top - mobileNavHeight - 42;
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
           return false;
         } else {
